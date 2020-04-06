@@ -341,7 +341,7 @@ MonoBehaviour:
     Key: Assets/1.Scenes
     Ordinal: 27
     Priority: 0
-    IconType: 50
+    IconType: 170
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 0
