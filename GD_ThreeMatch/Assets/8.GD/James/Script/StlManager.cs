@@ -72,7 +72,7 @@ public class StlManager : MonoBehaviour
         //    대상 파일이 이미 있으면 덮어씁니다.
         //1.경로-> 이름.json
         //2.데이터 
-        //File.WriteAllText(Application.dataPath + "/James.json", jdata);
+        //File.WriteAllText(Application.dataPath + "/8.GD/James/James.json", jdata);
         File.WriteAllText(Application.dataPath + "/8.GD/James/James.json", format);
 
         Debug.Log("세이브테스트");
