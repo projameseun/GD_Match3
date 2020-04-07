@@ -14,7 +14,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Normal,
         Enemy,
         Goal,
-        Player
+        
     }
 
     public enum NodeColor
@@ -25,7 +25,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Blue,
         Pink,
         White,
-        Blank
+        Blank,
+        Player
     }
 
 
@@ -53,51 +54,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     void Start()
     {
         thePuzzle = FindObjectOfType<PuzzleManager>();
-
-        //if (nodeType == NodeType.Null)
-        //{
-        //    this.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-        //}
-
-    }
-
-
-    private void Update()
-    {
-        //if (thePuzzle.SlotDown == true && Down == true)
-        //{
-
-
-        //    if (Distance > 140)
-        //    {
-        //        float AngleZ = GetAngleZ(CurrentVec, FirstVec);
-
-        //        if (AngleZ <= 45 || AngleZ >= 315) // 위
-        //        {
-        //            Debug.Log("위");
-        //        }
-        //        else if (AngleZ > 45 && AngleZ < 135) // 왼쪽
-        //        {
-        //            Debug.Log("왼쪽");
-        //        }
-        //        else if (AngleZ >= 135 && AngleZ <= 225) // 아래
-        //        {
-        //            Debug.Log("아래");
-        //        }
-        //        else if (AngleZ > 225 && AngleZ < 315) // 오른쪽
-        //        {
-        //            Debug.Log("오른쪽");
-        //        }
-        //        Debug.Log("Distance = " + Distance);
-        //        thePuzzle.SlotDown = false;
-        //        Down = false;
-        //    }
-        //}
     }
 
 
 
-   
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -105,7 +66,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         //    return;
 
 
-        if (thePuzzle.SlotDown == false)
+        if (thePuzzle.SlotDown == false&& thePuzzle.state == PuzzleManager.State.Ready)
         {
             Down = true;
             thePuzzle.SlotDown = true;
@@ -125,7 +86,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         if (thePuzzle.SlotDown == true && Down == true)
         {
-            if (Vector2.Distance(CurrentVec, FirstVec) < 0.5f)
+            if (Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
                 thePuzzle.SlotDown = false;
                 Down = false;
