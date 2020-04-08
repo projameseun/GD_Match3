@@ -408,7 +408,7 @@ public class PuzzleManager : MonoBehaviour
         {
             for (int i = TopLeft + Horizontal; i < BottomLeft; i+=Horizontal)
             {
-                for (int Num = 0; Num <TopRight - TopLeft -1; Num++)
+                for (int Num = 0; Num <TopRight - TopLeft; Num++)
                 {
                     if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
                     {
@@ -443,7 +443,7 @@ public class PuzzleManager : MonoBehaviour
         {
             for (int i = TopRight + Horizontal; i < BottomLeft; i += Horizontal)
             {
-                for (int Num = 0; Num > -(TopRight - TopLeft -1); Num--)
+                for (int Num = 0; Num > -(TopRight - TopLeft); Num--)
                 {
                     if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
                     {
