@@ -44,6 +44,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     //DB
     public bool Down;
     public Cube cube;
+    public SpriteMask Mask;
 
 
     public Vector2 FirstVec;

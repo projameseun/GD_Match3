@@ -31,8 +31,10 @@ public class Cube : MonoBehaviour
         {
             this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed);
 
-            if(Vector2.Distance(this.transform.position, TargetVec) <= 0)
+    
+            if(Vector2.Distance(this.transform.position, TargetVec) <= Speed/2)
             {
+                this.transform.position = TargetVec;
                 Move = false;
 
                 if(OnlyOneEvent == true)
