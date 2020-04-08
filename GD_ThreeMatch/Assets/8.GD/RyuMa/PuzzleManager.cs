@@ -30,6 +30,9 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] CubeSprites;
     public PuzzleSlot[] Slots;
 
+    public bool isMatched = false;
+    private FindMatches findMatches;
+
     //DB
     public bool SlotDown = false;
     public bool CubeEvent = false;
@@ -64,7 +67,8 @@ public class PuzzleManager : MonoBehaviour
 
             Slots[i].SlotNum = i;
         }
-        
+
+        findMatches = FindObjectOfType<FindMatches>();
     }
     private void Update()
     {
@@ -81,10 +85,16 @@ public class PuzzleManager : MonoBehaviour
                 CubeEvent = false;
 
                 //매치 조건이 맞는지 확인한다
-
+                findMatches.FindAllMatches();
+                if (isMatched)
+                    Debug.Log("Matched!");
 
                 //매치가 안될경우
-                ChangeCube(SelectNum, OtherNum, true);
+                if (!isMatched)
+                {
+                    ChangeCube(SelectNum, OtherNum, true);
+                    Debug.Log("Not Natched");
+                }
                 state = State.ChangeMatchRetrun;
             }
         }
@@ -149,6 +159,7 @@ public class PuzzleManager : MonoBehaviour
                 Slots[i].TestText.text = i.ToString();
                 Slots[i].cube.Num = i;
             }
+
         }
 
         while (true)
@@ -276,7 +287,7 @@ public class PuzzleManager : MonoBehaviour
         Slots[_Num].cube.Num = Slots[_Num].SlotNum;
         Slots[_OtherNum].cube.Num = Slots[_OtherNum].SlotNum;
 
-
+        
     }
 
     public void BT_ShowSlotText()
@@ -479,6 +490,7 @@ public class PuzzleManager : MonoBehaviour
 
         if (FirstEvent == true)
         {
+            isMatched = false;
             state = State.Ready;
         }
 

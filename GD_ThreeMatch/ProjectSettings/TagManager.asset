@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - RED
+  - YELLOW
+  - ORANGE
+  - BLUE
+  - PINK
+  - WHITE
+  - BLANK
+  - PLAYER
   layers:
   - Default
   - TransparentFX
