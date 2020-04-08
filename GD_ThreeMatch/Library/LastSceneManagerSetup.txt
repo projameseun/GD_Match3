@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/8.GD/James/Jason.unity
+- path: Assets/8.GD/James/Json2.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
