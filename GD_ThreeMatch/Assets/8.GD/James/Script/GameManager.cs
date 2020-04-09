@@ -4,11 +4,20 @@ using UnityEngine;
 using System.IO;
 //using Newtonsoft.Json;
 using UnityEngine.UI;
+
+[System.Serializable]
+public class Serialization<T>
+{
+    public Serialization(List<T> _target) => target = _target;
+    public List<T> target;
+}
+
+
 //직렬화 Inspector창에 보이게됨 (public만)
 [System.Serializable]
 public class Item
 {
-    public string Type, Name, Explain, Number,Index;
+    public string Type, Name, Explain, Number, Index;
     //Number를 string으로 한이유는
     //나중에 JSon으로 파싱하기때문에 
     public bool is_Using;
@@ -30,17 +39,17 @@ public class GameManager : MonoBehaviour
     public TextAsset IteamDatabase;
 
     //public Item My_Item;
-    public List<Item> m_ItemList,My_ItemList,CurItemList;
+    public List<Item> m_ItemList, My_ItemList, CurItemList;
 
     //탭에클릭햇을대 어떤게 담아져잇는지확인하는 변수
     //public string curType;
     public string curType = "Character";
 
     //슬롯추가
-    public GameObject[] Slot,UsingImage;
+    public GameObject[] Slot, UsingImage;
 
     //이미지추가
-    public Image[] TabImage,ItemImage;
+    public Image[] TabImage, ItemImage;
     public Sprite TabIdleSprite, TabSelectSprite;
     public Sprite[] ItemSprite;
 
@@ -74,18 +83,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //print(IteamDatabase);
-        string[] Line = IteamDatabase.text.Substring(0, 
+        string[] Line = IteamDatabase.text.Substring(0,
                     IteamDatabase.text.Length - 1).Split('\n');
         //-1을하는이유는 엑셀에서 엔터기능이들어가기 엔터를지우는작업
 
         //print(Line.Length);
-        for(int i=0; i<Line.Length; i++)
+        for (int i = 0; i < Line.Length; i++)
         {
             //탭으로 나눔
             string[] row = Line[i].Split('\t');
 
             //여기서 아이템형식을 넣어야되서 생성자함수를이용함
-            m_ItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4] == "TRUE",row[5]));
+            m_ItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4] == "TRUE", row[5]));
         }
 
         //jsonutilty
@@ -107,7 +116,7 @@ public class GameManager : MonoBehaviour
     public void GetItemClick()
     {
         Item curItem = My_ItemList.Find(x => x.Name == ItemNameInput.text);
-        ItemNumberInput.text = ItemNumberInput.text == "" ? "1" : ItemNumberInput.text; 
+        ItemNumberInput.text = ItemNumberInput.text == "" ? "1" : ItemNumberInput.text;
         if (curItem != null)
         {
             curItem.Number = (int.Parse(curItem.Number) + int.Parse(ItemNumberInput.text)).ToString();
@@ -132,13 +141,13 @@ public class GameManager : MonoBehaviour
     public void RemoveItemClick()
     {
         Item curItem = My_ItemList.Find(x => x.Name == ItemNameInput.text);
-        if(curItem != null)
+        if (curItem != null)
         {
             int curNumber = int.Parse(curItem.Number) - int.Parse(ItemNumberInput.text == "" ? "1" : ItemNumberInput.text);
 
             if (curNumber <= 0) My_ItemList.Remove(curItem);
             else curItem.Number = curNumber.ToString();
-         }
+        }
         My_ItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
         Save();
     }
@@ -161,7 +170,7 @@ public class GameManager : MonoBehaviour
         //Find는 하나 Findall전체
         Item UsingItem = CurItemList.Find(x => x.is_Using == true);
 
-        if(curType == "Character")
+        if (curType == "Character")
         {
             if (UsingItem != null) UsingItem.is_Using = false;
             CurItem.is_Using = true;
@@ -183,7 +192,7 @@ public class GameManager : MonoBehaviour
         CurItemList = My_ItemList.FindAll(x => x.Type == TabName);
 
         //슬롯과 텍스트보이기
-        for(int i=0; i<Slot.Length; i++)
+        for (int i = 0; i < Slot.Length; i++)
         {
             bool isExist = i < CurItemList.Count;
             //  Slot[i].SetActive(i < CurItemList.Count);
@@ -202,18 +211,20 @@ public class GameManager : MonoBehaviour
         int TabNum = 0;
         switch (TabName)
         {
-            case "Character": TabNum = 0;
+            case "Character":
+                TabNum = 0;
                 //Debug.Log("캐릭터");
                 break;
-            case "Balloon": TabNum = 1;
+            case "Balloon":
+                TabNum = 1;
                 break;
         }
-        for(int i=0; i<TabImage.Length; i++)
+        for (int i = 0; i < TabImage.Length; i++)
         {
             TabImage[i].sprite = i == TabNum ? TabSelectSprite : TabIdleSprite;
-           //Debug.Log(TabIdleSprite);
+            //Debug.Log(TabIdleSprite);
         }
-        
+
     }
 
     public void PointEnter(int slotNum)
@@ -269,7 +280,12 @@ public class GameManager : MonoBehaviour
 
         //JsonUtilty방법
         //datapath는 에셋에서만참조한다 
-        File.WriteAllText(filePath,"HI");
+
+        string jdata = JsonUtility.ToJson(new Serialization<Item>(My_ItemList));
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
+        string code = System.Convert.ToBase64String(bytes);
+
+        File.WriteAllText(filePath, code);
 
         TabClick(curType);
     }
@@ -281,17 +297,23 @@ public class GameManager : MonoBehaviour
 
 
         //json utitlty
-        if(!File.Exists(filePath))
+        if (!File.Exists(filePath))
         {
             ResetItemClick();
+            Debug.Log("TestReset");
             return;
         }
-        string jdata = File.ReadAllText(filePath);
+        string code = File.ReadAllText(filePath);
+
+        //JsonUtitlty
+        byte[] bytes = System.Convert.FromBase64String(code);
+        string jdata = System.Text.Encoding.UTF8.GetString(bytes);
+        My_ItemList = JsonUtility.FromJson<Serialization<Item>>(jdata).target;
 
         //나중확인
         TabClick(curType);
 
-       
+
     }
 
 }
