@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     //public Item My_Item;
     public List<Item> m_ItemList, My_ItemList, CurItemList;
 
+
     //탭에클릭햇을대 어떤게 담아져잇는지확인하는 변수
     //public string curType;
     public string curType = "Character";
@@ -65,6 +66,8 @@ public class GameManager : MonoBehaviour
 
     //JsonUtilty
     string filePath;
+
+    TextAsset textData;
 
     //Text.text.substring 기능
     //문자열을 컨트롤
@@ -98,8 +101,9 @@ public class GameManager : MonoBehaviour
         }
 
         //jsonutilty
-        filePath = Application.persistentDataPath + "/MyItem2.txt";
-        //print(filePath);
+       
+          filePath = Application.persistentDataPath + "/MyItem2.Json";
+       // print(filePath);
         Load();
 
         ExplainRect = ExplainPanel.GetComponent<RectTransform>();   //캐싱
@@ -296,19 +300,34 @@ public class GameManager : MonoBehaviour
         //My_ItemList = JsonConvert.DeserializeObject<List<Item>> (jdata);
 
 
+
         //json utitlty
         if (!File.Exists(filePath))
         {
             ResetItemClick();
-            Debug.Log("TestReset");
+           // Debug.Log("TestReset");
             return;
         }
+
+
+
         string code = File.ReadAllText(filePath);
 
         //JsonUtitlty
+
+        //textData = Resources.Load("MyItem2") as TextAsset;
+        // Debug.Log(textData);
+
         byte[] bytes = System.Convert.FromBase64String(code);
         string jdata = System.Text.Encoding.UTF8.GetString(bytes);
         My_ItemList = JsonUtility.FromJson<Serialization<Item>>(jdata).target;
+
+        //Resources폴더에서 제이슨 불러오는법
+        //textData = Resources.Load("MyItem2") as TextAsset;
+        //Debug.Log(textData);
+        //byte[] bytes = System.Convert.FromBase64String(textData.ToString());
+        //string jdata = System.Text.Encoding.UTF8.GetString(bytes);
+        //My_ItemList = JsonUtility.FromJson<Serialization<Item>>(jdata).target;
 
         //나중확인
         TabClick(curType);
