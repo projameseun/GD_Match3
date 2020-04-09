@@ -1,0 +1,20 @@
+안드로이드세팅
+Resolution and presentation
+
+Default Orientation - > Landscape Right
+
+Other Setting
+
+Package Name 무조건 소문자만 영어로만 
+ex)com.회사이름.프로젝트이름
+
+Scripting Backend Mono가아닌  IL2CPP 로 64비트만
+
+APi compatibilty Level - .NET4.x
+
+Target Architectures 
+두개다체크
+
+고라니 5분40초에 경로나옴 
+
+텍스트 테스트했으면 꼭 지워야 나중에 Json만들대 오류안남
