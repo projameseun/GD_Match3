@@ -1,2 +1,1 @@
-hi
-test
+[{"Type":"Character","Name":"Pig","Explain":"돼지","Number":"20","Index":"0\r","is_Using":false},{"Type":"Character","Name":"Creeper","Explain":"크리퍼","Number":"10","Index":"1\r","is_Using":true},{"Type":"Character","Name":"Bee","Explain":"벌","Number":"10","Index":"2\r","is_Using":false}]
