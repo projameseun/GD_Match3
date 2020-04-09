@@ -5,106 +5,97 @@ using UnityEngine;
 public class FindMatches : MonoBehaviour
 {
     public PuzzleManager puzzleManager;
-    public PuzzleSlot puzzleSlot;
     public List<PuzzleSlot> currentMathces = new List<PuzzleSlot>();
 
     // Start is called before the first frame update
     void Start()
     {
-        puzzleSlot = FindObjectOfType<PuzzleSlot>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
     }
 
-    public void FindAllMatches()
+    public void FindAllMatches(bool _ChangeBlank = true)
     {
-        
-        StartCoroutine(FindAllMatchesCo());
-        
-    }
-
-    private IEnumerator FindAllMatchesCo()
-    {
-        
-        yield return new WaitForSeconds(.2f);
-        for (int i = 0; i < 144; i++)
+        currentMathces = new List<PuzzleSlot>();
+        for (int i = 0; i < puzzleManager.Horizontal * puzzleManager.Vertical; i++)
         {
-            // ??? NULL값으로 인한 강제 리턴현상 
-            PuzzleSlot currentDot = puzzleManager.Slots[i];
-            // ??? NULL값으로 인한 강제 리턴현상 
-            if (currentDot.nodeColor != PuzzleSlot.NodeColor.Blank &&
-                currentDot.nodeColor != PuzzleSlot.NodeColor.Player &&
-                currentDot.nodeType != PuzzleSlot.NodeType.Null)
+
+            if (puzzleManager.Slots[i].nodeColor != PuzzleSlot.NodeColor.Player &&
+                puzzleManager.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+                puzzleManager.Slots[i].nodeColor != PuzzleSlot.NodeColor.Blank)
             {
-                
-                if (i > 12 && i < 143)
+
+                if (i > puzzleManager.TopRight && i < puzzleManager.BottomLeft)
                 {
-                    PuzzleSlot leftCube = puzzleSlot.pSlots[i - 1];
-                    PuzzleSlot rightCube = puzzleSlot.pSlots[i + 1];
-                    if (leftCube.nodeType != PuzzleSlot.NodeType.Null && rightCube.nodeType != PuzzleSlot.NodeType.Null)
+
+                    if (puzzleManager.Slots[i-1].nodeType != PuzzleSlot.NodeType.Null &&
+                        puzzleManager.Slots[i+1].nodeType != PuzzleSlot.NodeType.Null)
                     {
-                        if (leftCube.tag == currentDot.tag && rightCube.tag == currentDot.tag)
+
+                        if (puzzleManager.Slots[i-1].nodeColor == puzzleManager.Slots[i].nodeColor && puzzleManager.Slots[i+1].nodeColor == puzzleManager.Slots[i].nodeColor)
                         {
-                            if (!currentMathces.Contains(leftCube))
+                            if (!currentMathces.Contains(puzzleManager.Slots[i-1]))
                             {
-                                currentMathces.Add(leftCube);
+                               
+                                currentMathces.Add(puzzleManager.Slots[i-1]);
                             }
-                            leftCube.GetComponent<PuzzleManager>().isMatched = true;
-                            leftCube.nodeColor = PuzzleSlot.NodeColor.Blank;
-                            leftCube.cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, .2f);
+                            puzzleManager.isMatched = true;
+                            
+                           
 
-                            if (!currentMathces.Contains(rightCube))
+                            if (!currentMathces.Contains(puzzleManager.Slots[i+1]))
                             {
-                                currentMathces.Add(rightCube);
+                                currentMathces.Add(puzzleManager.Slots[i+1]);
                             }
-                            rightCube.GetComponent<PuzzleManager>().isMatched = true;
-                            rightCube.nodeColor = PuzzleSlot.NodeColor.Blank;
-                            rightCube.cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, .2f);
 
-                            if (!currentMathces.Contains(currentDot))
+
+                            if (!currentMathces.Contains(puzzleManager.Slots[i]))
                             {
-                                currentMathces.Add(currentDot);
+                                currentMathces.Add(puzzleManager.Slots[i]);
                             }
-                            currentDot.GetComponent<PuzzleManager>().isMatched = true;
-                            currentDot.nodeColor = PuzzleSlot.NodeColor.Blank;
-                            currentDot.cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, .2f);
+
+                            
+                            
                         }
                     }
 
-                }
-
-                PuzzleSlot upCube = puzzleSlot.pSlots[i - 12];
-                PuzzleSlot downCube = puzzleSlot.pSlots[i + 12];
-                if (upCube.nodeType != PuzzleSlot.NodeType.Null && downCube.nodeType != PuzzleSlot.NodeType.Null)
-                {
-                    if (upCube.tag == currentDot.tag && downCube.tag == currentDot.tag)
+                    if (puzzleManager.Slots[i + puzzleManager.Horizontal].nodeType != PuzzleSlot.NodeType.Null &&
+                   puzzleManager.Slots[i - puzzleManager.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                     {
-                        if (!currentMathces.Contains(upCube))
+                        if (puzzleManager.Slots[i + puzzleManager.Horizontal].nodeColor == puzzleManager.Slots[i].nodeColor &&
+                            puzzleManager.Slots[i - puzzleManager.Horizontal].nodeColor == puzzleManager.Slots[i].nodeColor)
                         {
-                            currentMathces.Add(upCube);
-                        }
-                        upCube.GetComponent<PuzzleManager>().isMatched = true;
-                        upCube.nodeColor = PuzzleSlot.NodeColor.Blank;
-                        upCube.cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, .2f);
 
-                        if (!currentMathces.Contains(downCube))
-                        {
-                            currentMathces.Add(downCube);
-                        }
-                        downCube.GetComponent<PuzzleManager>().isMatched = true;
-                        downCube.nodeColor = PuzzleSlot.NodeColor.Blank;
-                        downCube.cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, .2f);
+                            if (!currentMathces.Contains(puzzleManager.Slots[i + puzzleManager.Horizontal]))
+                            {
+                                currentMathces.Add(puzzleManager.Slots[i + puzzleManager.Horizontal]);
+                            }
+                            puzzleManager.isMatched = true;
 
-                        if (!currentMathces.Contains(currentDot))
-                        {
-                            currentMathces.Add(currentDot);
+
+                            if (!currentMathces.Contains(puzzleManager.Slots[i - puzzleManager.Horizontal]))
+                            {
+                                currentMathces.Add(puzzleManager.Slots[i - puzzleManager.Horizontal]);
+                            }
+
+                            if (!currentMathces.Contains(puzzleManager.Slots[i]))
+                            {
+                                currentMathces.Add(puzzleManager.Slots[i]);
+                            }
                         }
-                        currentDot.GetComponent<PuzzleManager>().isMatched = true;
-                        currentDot.nodeColor = PuzzleSlot.NodeColor.Blank;
-                        currentDot.cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, .2f);
                     }
                 }
             }
         }
+        if (_ChangeBlank == true)
+        {
+            for (int i = 0; i < currentMathces.Count; i++)
+            {
+                currentMathces[i].nodeColor = PuzzleSlot.NodeColor.Blank;
+            }
+            currentMathces.Clear();
+        }
 
     }
+
+    
 }

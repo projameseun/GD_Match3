@@ -26,7 +26,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Pink,
         White,
         Blank,
-        Player
+        Player,
+        Null
     }
 
 
@@ -37,9 +38,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     
 
     public Text TestText;
-
-    public PuzzleSlot[] pSlots;
-    FindMatches findMatches;
 
     //DB
     public bool Down;
@@ -55,14 +53,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     void Start()
     {
         thePuzzle = FindObjectOfType<PuzzleManager>();
-        findMatches = FindObjectOfType<FindMatches>();
-        pSlots = new PuzzleSlot[SlotNum];
     }
     
-    void Update()
-    {
-        SetTag();
-    }
 
 
 
@@ -121,29 +113,10 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
             }
             thePuzzle.CheckMoveCube(SlotNum, direction);
-            findMatches.FindAllMatches();
+            //findMatches.FindAllMatches();
             thePuzzle.SlotDown = false;
             Down = false;
         }
     }
 
-    void SetTag()
-    {
-        if (this.nodeColor == NodeColor.Red)
-            this.tag = "RED";
-        if (this.nodeColor == NodeColor.Yellow)
-            this.tag = "YELLOW";
-        if (this.nodeColor == NodeColor.Orange)
-            this.tag = "ORANGE";
-        if (this.nodeColor == NodeColor.Blue)
-            this.tag = "BLUE";
-        if (this.nodeColor == NodeColor.Pink)
-            this.tag = "PINK";
-        if (this.nodeColor == NodeColor.White)
-            this.tag = "WHITE";
-        if (this.nodeColor == NodeColor.Blank)
-            this.tag = "BLANK";
-        if (this.nodeColor == NodeColor.Player)
-            this.tag = "PLAYER";
-    }
 }

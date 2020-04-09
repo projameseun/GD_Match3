@@ -20,7 +20,8 @@ public class PuzzleManager : MonoBehaviour
         Ready = 0,
         ChangeMatch,
         ChangeMatchRetrun,
-        FillBlank
+        FillBlank,
+        CheckMatch
     }
 
     public State state;
@@ -30,6 +31,7 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] CubeSprites;
     public PuzzleSlot[] Slots;
 
+    //메치가 되면 true;
     public bool isMatched = false;
     private FindMatches findMatches;
 
@@ -52,8 +54,10 @@ public class PuzzleManager : MonoBehaviour
 
     private ObjectManager theObject;
     private PlayerCube thePlayer;
+    private FindMatches theMatch;
     private void Start()
     {
+        theMatch = FindObjectOfType<FindMatches>();
         theObject = FindObjectOfType<ObjectManager>();
         thePlayer = FindObjectOfType<PlayerCube>();
 
@@ -62,6 +66,7 @@ public class PuzzleManager : MonoBehaviour
             if (i <= TopRight || i >= BottomLeft || i % Horizontal <= TopLeft || i % Horizontal >= TopRight)
             {
                 Slots[i].nodeType = PuzzleSlot.NodeType.Null;
+                Slots[i].nodeColor = PuzzleSlot.NodeColor.Null;
                 Slots[i].Mask.enabled = false;
             }
 
@@ -72,11 +77,11 @@ public class PuzzleManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Test == true)
-        {
-            Test = false;
-            BT_FillBlank();
-        }
+        //if (Test == true)
+        //{
+        //    Test = false;
+        //    BT_FillBlank();
+        //}
 
         if (state == State.ChangeMatch)
         { 
@@ -87,19 +92,25 @@ public class PuzzleManager : MonoBehaviour
                 //매치 조건이 맞는지 확인한다
                 findMatches.FindAllMatches();
                 if (isMatched)
+                {
+                    isMatched = false;
                     Debug.Log("Matched!");
+                    BT_FillBlank();
+                    return;
+                }
+                   
 
                 //매치가 안될경우
                 if (!isMatched)
                 {
                     ChangeCube(SelectNum, OtherNum, true);
                     Debug.Log("Not Natched");
+                    state = State.ChangeMatchRetrun;
                 }
-                state = State.ChangeMatchRetrun;
+                
             }
-        }
-
-        if (state == State.ChangeMatchRetrun)
+        } 
+        else if (state == State.ChangeMatchRetrun)
         { 
             if(CubeEvent == true)
             {
@@ -108,13 +119,31 @@ public class PuzzleManager : MonoBehaviour
 
             }
         }
-        if (state == State.FillBlank)
+        else if (state == State.FillBlank)
         {
             if (CubeEvent == true)
             {
                 CubeEvent = false;
                 BT_FillBlank();
 
+            }
+        }
+        else if (state == State.CheckMatch)
+        {
+            findMatches.FindAllMatches();
+            if (isMatched)
+            {
+                isMatched = false;
+                Debug.Log("Matched!");
+                BT_FillBlank();
+                return;
+            }
+
+
+            //매치가 안될경우
+            if (!isMatched)
+            {
+                state = State.Ready;
             }
         }
 
@@ -149,6 +178,8 @@ public class PuzzleManager : MonoBehaviour
         }
 
 
+
+
         for (int i = 0; i < Slots.Length; i++)
         {
             if (Slots[i].nodeType != PuzzleSlot.NodeType.Null)
@@ -162,6 +193,15 @@ public class PuzzleManager : MonoBehaviour
 
         }
 
+        theMatch.FindAllMatches(false);
+        if (isMatched == true)
+        {
+            isMatched = false;
+            SetSlot();
+            return;
+        }
+
+
         while (true)
         {
             int rand = Random.Range(0, 144);
@@ -169,12 +209,14 @@ public class PuzzleManager : MonoBehaviour
             if (Slots[rand].nodeType != PuzzleSlot.NodeType.Null)
             {
                 Slots[rand].nodeColor = PuzzleSlot.NodeColor.Player;
+                Slots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
                 Player.transform.position = Slots[rand].transform.position;
 
                 Transform Parent = Slots[rand].cube.transform;
 
                 Player.transform.parent = Parent;
                 thePlayer.ChangeSprite(direction);
+
                 break;
             }
         }
@@ -215,7 +257,6 @@ public class PuzzleManager : MonoBehaviour
     public void SetCube(GameObject _Cube, PuzzleSlot _Slot)
     {
         int rand = Random.Range(0, CubeSprites.Length);
-
         _Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[rand];
         _Slot.nodeColor = (PuzzleSlot.NodeColor)rand;
 
@@ -490,10 +531,8 @@ public class PuzzleManager : MonoBehaviour
 
         if (FirstEvent == true)
         {
-            isMatched = false;
-            state = State.Ready;
+            state = State.CheckMatch;
         }
-
     }
 
     public void BT_ChangeDirection(int _Num)
