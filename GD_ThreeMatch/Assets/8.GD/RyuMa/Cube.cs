@@ -9,18 +9,20 @@ public class Cube : MonoBehaviour
     float Speed;
     bool Move;
     bool OnlyOneEvent = false;
-
-
+    bool DestroyEvent = false;
+    float DestoryTime = 1.0f;
     public int Num;
-
-
+    Color color = new Color(1f,1f,1f,1f);
+    SpriteRenderer SpriteRen;
 
 
     private PuzzleManager thePuzzle;
-
+    private ObjectManager theObject;
     private void Start()
     {
+        theObject = FindObjectOfType<ObjectManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
+        SpriteRen = GetComponent<SpriteRenderer>();
     }
 
 
@@ -46,10 +48,35 @@ public class Cube : MonoBehaviour
             }
                 
         }
+
+        if (DestroyEvent == true)
+        {
+            DestoryTime -= Time.deltaTime*3;
+
+            if (DestoryTime < 0.5f)
+            {
+                if (OnlyOneEvent == true)
+                {
+                    OnlyOneEvent = false;
+                    thePuzzle.CubeEvent = true;
+                }
+                GameObject Paricle = theObject.FindObj("CubeP");
+                Paricle.transform.position = this.transform.position;
+                Paricle.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(
+                    0, this.GetComponent<SpriteRenderer>().sprite);
+                Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 5);
+                Paricle.SetActive(true);
+                DestoryTime = 0;
+                DestroyEvent = false;
+            }
+            color.a = DestoryTime;
+            SpriteRen.color = color;
+        }
+
     }
 
 
-    public void MoveCube(Vector2 _vec, bool _Event = false, float _Speed = 0.05f)
+    public void MoveCube(Vector2 _vec, bool _Event = false, float _Speed = 0.5f)
     {
         Move = true;
         TargetVec = _vec;
@@ -58,7 +85,21 @@ public class Cube : MonoBehaviour
     }
 
 
+    public void DestroyCube(bool _Event = false)
+    {
+        OnlyOneEvent = _Event;
+        DestroyEvent = true;
+        DestoryTime = 1f;
+    }
 
+    public void Resetting()
+    {
+        OnlyOneEvent = false;
+        DestroyEvent = false;
+        DestoryTime = 1f;
+        SpriteRen.color = new Color(1, 1, 1, 1);
+        this.gameObject.SetActive(false);
+    }
 
 
 }

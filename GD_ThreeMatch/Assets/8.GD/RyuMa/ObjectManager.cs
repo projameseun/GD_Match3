@@ -11,12 +11,13 @@ public class ObjectManager : MonoBehaviour
 
     //게임오브젝트 리스트
     public List<GameObject> Cubes; //큐브 리스트
-
+    public List<GameObject> CubeParticles;
 
 
 
     //게임오브젝트 프리팹
     public GameObject Cube; //큐브 프리팹
+    public GameObject CubeParticle;
 
 
 
@@ -25,13 +26,25 @@ public class ObjectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         for (int i = 0; i < 400; i++)
         {
             GameObject x = Instantiate(Cube);
             x.SetActive(false);
             Cubes.Add(x);
         }
+        for (int i = 0; i < 100; i++)
+        {
+            GameObject x = Instantiate(CubeParticle);
+            x.SetActive(false);
+            CubeParticles.Add(x);
+        }
     }
+
 
 
     //사용하고싶은 오브젝트를 찾는 함수(오브젝트 이름, 오브젝트 활성화)
@@ -44,6 +57,10 @@ public class ObjectManager : MonoBehaviour
             case "Cube":
                 List = Cubes;
                 Frefab = Cube;
+                break;
+            case "CubeP":
+                List = CubeParticles;
+                Frefab = CubeParticle;
                 break;
         
         }

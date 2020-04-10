@@ -20,6 +20,7 @@ public class PuzzleManager : MonoBehaviour
         Ready = 0,
         ChangeMatch,
         ChangeMatchRetrun,
+        DestroyCube,
         FillBlank,
         CheckMatch
     }
@@ -83,9 +84,9 @@ public class PuzzleManager : MonoBehaviour
         //    BT_FillBlank();
         //}
 
-        if (state == State.ChangeMatch)
-        { 
-            if(CubeEvent == true)
+        if (state == State.ChangeMatch) //  큐브를 교환하는 상태
+        {
+            if (CubeEvent == true)
             {
                 CubeEvent = false;
 
@@ -93,12 +94,10 @@ public class PuzzleManager : MonoBehaviour
                 findMatches.FindAllMatches();
                 if (isMatched)
                 {
-                    isMatched = false;
-                    Debug.Log("Matched!");
-                    BT_FillBlank();
+                    DestroyCube();
                     return;
                 }
-                   
+
 
                 //매치가 안될경우
                 if (!isMatched)
@@ -107,19 +106,19 @@ public class PuzzleManager : MonoBehaviour
                     Debug.Log("Not Natched");
                     state = State.ChangeMatchRetrun;
                 }
-                
+
             }
-        } 
-        else if (state == State.ChangeMatchRetrun)
-        { 
-            if(CubeEvent == true)
+        }
+        else if (state == State.ChangeMatchRetrun)// 매치조건이 없어서 다시 원위치
+        {
+            if (CubeEvent == true)
             {
                 CubeEvent = false;
                 state = State.Ready;
 
             }
         }
-        else if (state == State.FillBlank)
+        else if (state == State.FillBlank)// 빈칸을 채우는 상태
         {
             if (CubeEvent == true)
             {
@@ -128,14 +127,12 @@ public class PuzzleManager : MonoBehaviour
 
             }
         }
-        else if (state == State.CheckMatch)
+        else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
         {
             findMatches.FindAllMatches();
             if (isMatched)
             {
-                isMatched = false;
-                Debug.Log("Matched!");
-                BT_FillBlank();
+                DestroyCube();
                 return;
             }
 
@@ -144,6 +141,14 @@ public class PuzzleManager : MonoBehaviour
             if (!isMatched)
             {
                 state = State.Ready;
+            }
+        }
+        else if (state == State.DestroyCube)//매치된 큐브 제거
+        {
+            if (CubeEvent == true)
+            {
+                CubeEvent = false;
+                BT_FillBlank();
             }
         }
 
@@ -384,7 +389,7 @@ public class PuzzleManager : MonoBehaviour
     {
         state = State.FillBlank;
         bool FirstEvent = true;
-        float Speed = 0.015f;
+        float Speed = 0.01f;
         if (direction == Direction.Down)
         {
             for (int i = 0; i < TopRight - TopLeft; i++)
@@ -540,6 +545,23 @@ public class PuzzleManager : MonoBehaviour
         direction = (Direction)_Num;
         thePlayer.ChangeSprite(direction);
     }
+    public void DestroyCube()
+    {
+        state = State.DestroyCube;
+        isMatched = false;
+        bool Event = true;
+        for (int i = 0; i < Slots.Length; i++)
+        {
+            if (Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+                Slots[i].nodeColor == PuzzleSlot.NodeColor.Blank)
+            {
+                Slots[i].cube.DestroyCube(Event);
+                Event = false;
+            }
+        }
+    }
+
+
 
 
 }

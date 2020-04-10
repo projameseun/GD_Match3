@@ -22326,7 +22326,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cubes: []
+  CubeParticles: []
   Cube: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
+  CubeParticle: {fileID: 5403376149186592919, guid: 0b63d0560b788cb43a464d6ece8b1160,
+    type: 3}
 --- !u!224 &2146267518 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1941941700360730127, guid: 15b6770109ac04f43a8a9f313944aa52,
