@@ -83,7 +83,24 @@ public class ObjectManager : MonoBehaviour
         return X;
     }
 
+    public void ResettingObj()
+    {
+        for(int i = 0; i < Cubes.Count; i++)
+        {
+            if(Cubes[i].activeSelf)
+            {
+                Cubes[i].GetComponent<Cube>().Resetting();
+            }
+        }
 
+        for(int i = 0; i < CubeParticles.Count; i++)
+        {
+            if(CubeParticles[i].activeSelf)
+            {
+                CubeParticles[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+    }
 
 
 }

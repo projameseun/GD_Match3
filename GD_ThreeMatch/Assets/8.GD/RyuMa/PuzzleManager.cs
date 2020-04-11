@@ -353,38 +353,6 @@ public class PuzzleManager : MonoBehaviour
     
     }
 
-    public void BT_RandomBlank()
-    {
-
-        for (int i = 0; i < 144; i++)
-        {
-            if (Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                Slots[i].nodeColor != PuzzleSlot.NodeColor.Blank &&
-                Slots[i].nodeColor != PuzzleSlot.NodeColor.Player)
-            {
-                break;
-            }
-
-            if (i == 143)
-                return;
-        }
-
-        while (true)
-        {
-            int rand = Random.Range(0, 144);
-            if (Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
-                Slots[rand].nodeColor != PuzzleSlot.NodeColor.Player &&
-                Slots[rand].nodeColor != PuzzleSlot.NodeColor.Blank)
-            {
-                Slots[rand].nodeColor = PuzzleSlot.NodeColor.Blank;
-                Slots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-                return;
-            }
-        }
-      
-
-    }
-
     public void BT_FillBlank()
     {
         state = State.FillBlank;
@@ -562,6 +530,99 @@ public class PuzzleManager : MonoBehaviour
     }
 
 
+    public void DeadlockCheck()
+    {
+        PuzzleSlot testPuzzle = new PuzzleSlot();
 
+        for (int i = 0; i < Horizontal * Vertical; i++)
+        {
+            if (Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+            {
+                // 상
+                if (Slots[i - Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                {
+
+                    testPuzzle.nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = Slots[i - Horizontal].nodeColor;
+                    Slots[i - Horizontal].nodeColor = testPuzzle.nodeColor;
+
+                    theMatch.FindAllMatches(false);
+
+                    Slots[i - Horizontal].nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = testPuzzle.nodeColor;
+
+                    if (isMatched)
+                    {
+                        isMatched = false;
+                        return;
+                    }
+                }
+                // 하
+                if (Slots[i + Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                {
+
+                    testPuzzle.nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = Slots[i + Horizontal].nodeColor;
+                    Slots[i + Horizontal].nodeColor = testPuzzle.nodeColor;
+
+                    theMatch.FindAllMatches(false);
+
+                    Slots[i + Horizontal].nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = testPuzzle.nodeColor;
+
+                    if (isMatched)
+                    {
+
+
+                        isMatched = false;
+                        return;
+                    }
+                }
+                // 좌
+                if (Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
+                {
+
+                    testPuzzle.nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = Slots[i - 1].nodeColor;
+                    Slots[i - 1].nodeColor = testPuzzle.nodeColor;
+
+                    theMatch.FindAllMatches(false);
+
+                    Slots[i - 1].nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = testPuzzle.nodeColor;
+
+                    if (isMatched)
+                    {
+
+
+                        isMatched = false;
+                        return;
+                    }
+                }
+                // 우
+                if (Slots[i + 1].nodeType != PuzzleSlot.NodeType.Null)
+                {
+
+                    testPuzzle.nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = Slots[i + 1].nodeColor;
+                    Slots[i + 1].nodeColor = testPuzzle.nodeColor;
+
+                    theMatch.FindAllMatches(false);
+
+                    Slots[i + 1].nodeColor = Slots[i].nodeColor;
+                    Slots[i].nodeColor = testPuzzle.nodeColor;
+
+                    if (isMatched)
+                    {
+
+
+                        isMatched = false;
+                        return;
+                    }
+                }
+
+            }
+        }
+    }
 
 }

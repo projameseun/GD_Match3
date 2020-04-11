@@ -9,10 +9,6 @@ public class ParticleManager : MonoBehaviour
     GameObject parent;
     bool Loop = false;
     float ParticleTime = 0;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

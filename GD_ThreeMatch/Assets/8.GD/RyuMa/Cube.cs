@@ -60,7 +60,7 @@ public class Cube : MonoBehaviour
                     OnlyOneEvent = false;
                     thePuzzle.CubeEvent = true;
                 }
-                GameObject Paricle = theObject.FindObj("CubeP");
+                GameObject Paricle = theObject.FindObj("CubeP", false);
                 Paricle.transform.position = this.transform.position;
                 Paricle.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(
                     0, this.GetComponent<SpriteRenderer>().sprite);
