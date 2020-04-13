@@ -170,13 +170,13 @@ public class PuzzleManager : MonoBehaviour
                     Slots[i].cube.gameObject.SetActive(false);
                     Slots[i].cube = null;
                 }
-                Slots[i].GetComponent<Image>().color = new Color(1, 1, 1, 0.2f);
+                Slots[i].GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 Slots[i].TestText.text = i.ToString();
 
             }
             else
             {
-                Slots[i].GetComponent<Image>().color = new Color(0, 0, 0, 0.5f);
+                Slots[i].GetComponent<Image>().color = new Color(0, 0, 0, 0.2f);
                 Slots[i].TestText.text = i.ToString();
                 Slots[i].TestText.color = new Color(1, 1, 1);
             }
