@@ -30,7 +30,13 @@ public class PuzzleManager : MonoBehaviour
 
 
     public Sprite[] CubeSprites;
-    public PuzzleSlot[] Slots;
+    public Sprite[] ArrowButtonSprite;
+    public PuzzleSlot[] MoveSlots;
+
+    //UI 오브젝트
+    public Image[] ArrowImage;
+
+
 
     //메치가 되면 true;
     public bool isMatched = false;
@@ -62,16 +68,16 @@ public class PuzzleManager : MonoBehaviour
         theObject = FindObjectOfType<ObjectManager>();
         thePlayer = FindObjectOfType<PlayerCube>();
 
-        for (int i = 0; i < Slots.Length; i++)
+        for (int i = 0; i < MoveSlots.Length; i++)
         {
             if (i <= TopRight || i >= BottomLeft || i % Horizontal <= TopLeft || i % Horizontal >= TopRight)
             {
-                Slots[i].nodeType = PuzzleSlot.NodeType.Null;
-                Slots[i].nodeColor = PuzzleSlot.NodeColor.Null;
-                Slots[i].Mask.enabled = false;
+                MoveSlots[i].nodeType = PuzzleSlot.NodeType.Null;
+                MoveSlots[i].nodeColor = PuzzleSlot.NodeColor.Null;
+                MoveSlots[i].Mask.enabled = false;
             }
 
-            Slots[i].SlotNum = i;
+            MoveSlots[i].SlotNum = i;
         }
 
         findMatches = FindObjectOfType<FindMatches>();
@@ -160,64 +166,62 @@ public class PuzzleManager : MonoBehaviour
 
     public void SetSlot()
     {
-        for (int i = 0; i < Slots.Length; i++)
+        for (int i = 0; i < MoveSlots.Length; i++)
         {
-            if (Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+            if (MoveSlots[i].nodeType != PuzzleSlot.NodeType.Null)
             {
-                Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
-                if (Slots[i].cube != null)
+                MoveSlots[i].nodeType = PuzzleSlot.NodeType.Normal;
+                MoveSlots[i].nodeColor = PuzzleSlot.NodeColor.Null;
+                if (MoveSlots[i].cube != null)
                 {
-                    Slots[i].cube.gameObject.SetActive(false);
-                    Slots[i].cube = null;
+                    MoveSlots[i].cube.gameObject.SetActive(false);
+                    MoveSlots[i].cube = null;
                 }
-                Slots[i].GetComponent<Image>().color = new Color(1, 1, 1, 0);
-                Slots[i].TestText.text = i.ToString();
+                MoveSlots[i].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                MoveSlots[i].TestText.text = i.ToString();
 
             }
             else
             {
-                Slots[i].GetComponent<Image>().color = new Color(0, 0, 0, 0.2f);
-                Slots[i].TestText.text = i.ToString();
-                Slots[i].TestText.color = new Color(1, 1, 1);
+                MoveSlots[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                MoveSlots[i].TestText.text = i.ToString();
+                MoveSlots[i].TestText.color = new Color(1, 1, 1);
             }
         }
 
 
+        NotMatchSetCube();
 
-
-        for (int i = 0; i < Slots.Length; i++)
+        for (int i = 0; i < MoveSlots.Length; i++)
         {
-            if (Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+            if (MoveSlots[i].nodeType != PuzzleSlot.NodeType.Null)
             {
-                GameObject Cube = theObject.FindObj("Cube");
-
-                SetCube(Cube, Slots[i]);
-                Slots[i].TestText.text = i.ToString();
-                Slots[i].cube.Num = i;
+                MoveSlots[i].TestText.text = i.ToString();
+                MoveSlots[i].cube.Num = i;
             }
 
         }
 
-        theMatch.FindAllMatches(false);
-        if (isMatched == true)
-        {
-            isMatched = false;
-            SetSlot();
-            return;
-        }
+        //theMatch.FindAllMatches(false);
+        //if (isMatched == true)
+        //{
+        //    isMatched = false;
+        //    SetSlot();
+        //    return;
+        //}
 
 
         while (true)
         {
-            int rand = Random.Range(0, 144);
+            int rand = Random.Range(0, Horizontal * Vertical);
 
-            if (Slots[rand].nodeType != PuzzleSlot.NodeType.Null)
+            if (MoveSlots[rand].nodeType != PuzzleSlot.NodeType.Null)
             {
-                Slots[rand].nodeColor = PuzzleSlot.NodeColor.Player;
-                Slots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-                Player.transform.position = Slots[rand].transform.position;
+                MoveSlots[rand].nodeColor = PuzzleSlot.NodeColor.Player;
+                MoveSlots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+                Player.transform.position = MoveSlots[rand].transform.position;
 
-                Transform Parent = Slots[rand].cube.transform;
+                Transform Parent = MoveSlots[rand].cube.transform;
 
                 Player.transform.parent = Parent;
                 thePlayer.ChangeSprite(direction);
@@ -227,33 +231,121 @@ public class PuzzleManager : MonoBehaviour
         }
         while (true)
         {
-            int rand = Random.Range(0, 144);
+            int rand = Random.Range(0, Horizontal * Vertical);
 
-            if (Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
-                Slots[rand].nodeColor != PuzzleSlot.NodeColor.Player)
+            if (MoveSlots[rand].nodeType != PuzzleSlot.NodeType.Null &&
+                MoveSlots[rand].nodeColor != PuzzleSlot.NodeColor.Player)
             {
-                Slots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
-                Slots[rand].GetComponent<Image>().color = new Color(1f, 0, 0, 0.8f);
-                Slots[rand].TestText.text = "적";
-                Slots[rand].TestText.enabled = true;
+                MoveSlots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
+                MoveSlots[rand].GetComponent<Image>().color = new Color(1f, 0, 0, 0.8f);
+                MoveSlots[rand].TestText.text = "적";
+                MoveSlots[rand].TestText.enabled = true;
                 break;
             }
         }
         while (true)
         {
-            int rand = Random.Range(0, 144);
+            int rand = Random.Range(0, Horizontal * Vertical);
 
-            if (Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
-                Slots[rand].nodeColor != PuzzleSlot.NodeColor.Player &&
-                Slots[rand].nodeType != PuzzleSlot.NodeType.Enemy)
+            if (MoveSlots[rand].nodeType != PuzzleSlot.NodeType.Null &&
+                MoveSlots[rand].nodeColor != PuzzleSlot.NodeColor.Player &&
+                MoveSlots[rand].nodeType != PuzzleSlot.NodeType.Enemy)
             {
-                Slots[rand].nodeType = PuzzleSlot.NodeType.Goal;
-                Slots[rand].GetComponent<Image>().color = new Color(0, 1f, 0, 0.8f);
-                Slots[rand].TestText.text = "골";
-                Slots[rand].TestText.enabled = true;
+                MoveSlots[rand].nodeType = PuzzleSlot.NodeType.Goal;
+                MoveSlots[rand].GetComponent<Image>().color = new Color(0, 1f, 0, 0.8f);
+                MoveSlots[rand].TestText.text = "골";
+                MoveSlots[rand].TestText.enabled = true;
                 break;
             }
         }
+
+    }
+
+    // 처음 매치가 안된 상태로 세팅
+    public void NotMatchSetCube()
+    {
+        PuzzleSlot CopySlot = new PuzzleSlot();
+        List<int> ColorList = new List<int>();
+        ColorList.Add(0);
+        ColorList.Add(1);
+        ColorList.Add(2);
+        ColorList.Add(3);
+        ColorList.Add(4);
+        ColorList.Add(5);
+        for (int i = TopLeft + Horizontal; i < BottomRight - Horizontal; i++)
+        {
+            if (MoveSlots[i].nodeType != PuzzleSlot.NodeType.Null)
+            {
+                List<int> RandomList = new List<int>(ColorList);
+                if (MoveSlots[i - Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                {
+                    if (MoveSlots[i - Horizontal - Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                    {
+                        if (MoveSlots[i - Horizontal].nodeColor == MoveSlots[i - Horizontal - Horizontal].nodeColor)
+                        {
+                            RandomList.Remove((int)MoveSlots[i - Horizontal].nodeColor);
+                        }
+                        else
+                        {
+                            int rand = Random.Range(0, 2);
+                            if (rand == 0)
+                            {
+                                RandomList.Remove((int)MoveSlots[i - Horizontal].nodeColor);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        int rand = Random.Range(0, 2);
+                        if (rand == 0)
+                        {
+                            RandomList.Remove((int)MoveSlots[i - Horizontal].nodeColor);
+                        }
+                    }
+
+                   
+                }
+                if (MoveSlots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
+                {
+                    if (MoveSlots[i - 2].nodeType != PuzzleSlot.NodeType.Null)
+                    {
+                        if (MoveSlots[i - 1].nodeColor == MoveSlots[i - 2].nodeColor)
+                        {
+                            RandomList.Remove((int)MoveSlots[i - 1].nodeColor);
+                        }
+                        else
+                        {
+                            int rand = Random.Range(0, 2);
+                            if (rand == 0)
+                            {
+                                RandomList.Remove((int)MoveSlots[i - 1].nodeColor);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        int rand = Random.Range(0, 2);
+                        if (rand == 0)
+                        {
+                            RandomList.Remove((int)MoveSlots[i - 1].nodeColor);
+                        }
+                    }
+                    
+                    
+                }
+
+                int RandColorNum = Random.Range(0, RandomList.Count);
+
+                GameObject Cube = theObject.FindObj("Cube");
+                Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[RandomList[RandColorNum]];
+                MoveSlots[i].nodeColor = (PuzzleSlot.NodeColor)RandomList[RandColorNum];
+
+                Cube.transform.position = MoveSlots[i].transform.position;
+                MoveSlots[i].cube = Cube.GetComponent<Cube>();
+
+            }
+        }
+
 
     }
 
@@ -278,28 +370,28 @@ public class PuzzleManager : MonoBehaviour
 
         if (_direction == Direction.Up) 
         {
-            if (Slots[_Num - 12].nodeType == PuzzleSlot.NodeType.Null)
+            if (MoveSlots[_Num - Horizontal].nodeType == PuzzleSlot.NodeType.Null)
                 return;
             else
-                ChangeNum = _Num - 12;
+                ChangeNum = _Num - Horizontal;
         }
         else if (_direction == Direction.Down)
         {
-            if (Slots[_Num + 12].nodeType == PuzzleSlot.NodeType.Null)
+            if (MoveSlots[_Num + Horizontal].nodeType == PuzzleSlot.NodeType.Null)
                 return;
             else
-                ChangeNum = _Num + 12;
+                ChangeNum = _Num + Horizontal;
         }
         else if (_direction == Direction.Left)
         {
-            if (Slots[_Num -1].nodeType == PuzzleSlot.NodeType.Null)
+            if (MoveSlots[_Num -1].nodeType == PuzzleSlot.NodeType.Null)
                 return;
             else
                 ChangeNum = _Num - 1;
         }
         else if (_direction == Direction.Right)
         {
-            if (Slots[_Num +1].nodeType == PuzzleSlot.NodeType.Null)
+            if (MoveSlots[_Num +1].nodeType == PuzzleSlot.NodeType.Null)
                 return;
             else
                 ChangeNum = _Num +1;
@@ -315,30 +407,30 @@ public class PuzzleManager : MonoBehaviour
     public void ChangeCube(int _Num, int _OtherNum,bool _Event = false, float Speed = 0.005f)
     {
         //_Num의 큐브정보 복제
-        Vector2 Vec = Slots[_Num].cube.transform.position;
-        GameObject Cube = Slots[_Num].cube.gameObject;
-        PuzzleSlot.NodeColor nodeColor = Slots[_Num].nodeColor;
+        Vector2 Vec = MoveSlots[_Num].cube.transform.position;
+        GameObject Cube = MoveSlots[_Num].cube.gameObject;
+        PuzzleSlot.NodeColor nodeColor = MoveSlots[_Num].nodeColor;
 
         //_Num의 정보를 _OtherNum의 정보로 덮어쓰기
-        Slots[_Num].cube.MoveCube(Slots[_OtherNum].transform.position, false, Speed);
+        MoveSlots[_Num].cube.MoveCube(MoveSlots[_OtherNum].transform.position, false, Speed);
 
-        Slots[_Num].cube = Slots[_OtherNum].cube;
-        Slots[_Num].nodeColor = Slots[_OtherNum].nodeColor;
+        MoveSlots[_Num].cube = MoveSlots[_OtherNum].cube;
+        MoveSlots[_Num].nodeColor = MoveSlots[_OtherNum].nodeColor;
 
         //_OtherNum을 복제정보로 덮어쓰기
-        Slots[_OtherNum].cube.MoveCube(Slots[_Num].transform.position, _Event, Speed);
-        Slots[_OtherNum].cube = Cube.GetComponent<Cube>();
-        Slots[_OtherNum].nodeColor = nodeColor;
+        MoveSlots[_OtherNum].cube.MoveCube(MoveSlots[_Num].transform.position, _Event, Speed);
+        MoveSlots[_OtherNum].cube = Cube.GetComponent<Cube>();
+        MoveSlots[_OtherNum].nodeColor = nodeColor;
 
-        Slots[_Num].cube.Num = Slots[_Num].SlotNum;
-        Slots[_OtherNum].cube.Num = Slots[_OtherNum].SlotNum;
+        MoveSlots[_Num].cube.Num = MoveSlots[_Num].SlotNum;
+        MoveSlots[_OtherNum].cube.Num = MoveSlots[_OtherNum].SlotNum;
 
         
     }
 
     public void BT_ShowSlotText()
     {
-        bool Active = !Slots[0].GetComponentInChildren<Text>().enabled;
+        bool Active = !MoveSlots[0].GetComponentInChildren<Text>().enabled;
 
 
         if (Active == true)
@@ -346,9 +438,9 @@ public class PuzzleManager : MonoBehaviour
         else
             GetComponentInParent<Canvas>().sortingOrder = 0;
 
-        for (int i = 0; i < 144; i++)
+        for (int i = 0; i < Horizontal *Vertical; i++)
         {
-            Slots[i].GetComponentInChildren<Text>().enabled = Active;
+            MoveSlots[i].GetComponentInChildren<Text>().enabled = Active;
         }
     
     }
@@ -364,17 +456,17 @@ public class PuzzleManager : MonoBehaviour
             {
                 for (int Num = BottomLeft -Horizontal; Num > TopRight; Num -= Horizontal)
                 {
-                    if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                    if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
                     {
 
-                        Slots[Num + i].cube.gameObject.SetActive(false);
+                        MoveSlots[Num + i].cube.gameObject.SetActive(false);
                         
-                        if (Slots[Num + i - Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                        if (MoveSlots[Num + i - Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                         {
                             
                             ChangeCube(Num + i, Num + i - Horizontal, FirstEvent, Speed);
-                            if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
-                                Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+                            if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                                MoveSlots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
                             FirstEvent = false;
                         }
@@ -382,10 +474,10 @@ public class PuzzleManager : MonoBehaviour
                         {
                             GameObject NewCube = theObject.FindObj("Cube");
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,1);
-                            SetCube(NewCube, Slots[Num + i]);
-                            NewCube.transform.position = Slots[Num + i - Horizontal].transform.position;
-                            Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(Slots[Num + i].transform.position, FirstEvent, Speed);
+                            SetCube(NewCube, MoveSlots[Num + i]);
+                            NewCube.transform.position = MoveSlots[Num + i - Horizontal].transform.position;
+                            MoveSlots[Num + i].cube = NewCube.GetComponent<Cube>();
+                            NewCube.GetComponent<Cube>().MoveCube(MoveSlots[Num + i].transform.position, FirstEvent, Speed);
                             FirstEvent = false;
                         }
                     }
@@ -400,17 +492,17 @@ public class PuzzleManager : MonoBehaviour
             {
                 for (int Num = TopLeft + Horizontal; Num < BottomLeft; Num += Horizontal)
                 {
-                    if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                    if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
                     {
 
-                        Slots[Num + i].cube.gameObject.SetActive(false);
+                        MoveSlots[Num + i].cube.gameObject.SetActive(false);
 
-                        if (Slots[Num + i + Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                        if (MoveSlots[Num + i + Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                         {
 
                             ChangeCube(Num + i, Num + i + Horizontal, FirstEvent, Speed);
-                            if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
-                                Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+                            if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                                MoveSlots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
                             FirstEvent = false;
                         }
@@ -418,10 +510,10 @@ public class PuzzleManager : MonoBehaviour
                         {
                             GameObject NewCube = theObject.FindObj("Cube");
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                            SetCube(NewCube, Slots[Num + i]);
-                            NewCube.transform.position = Slots[Num + i + 12].transform.position;
-                            Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(Slots[Num + i].transform.position, FirstEvent, Speed);
+                            SetCube(NewCube, MoveSlots[Num + i]);
+                            NewCube.transform.position = MoveSlots[Num + i + 12].transform.position;
+                            MoveSlots[Num + i].cube = NewCube.GetComponent<Cube>();
+                            NewCube.GetComponent<Cube>().MoveCube(MoveSlots[Num + i].transform.position, FirstEvent, Speed);
                             FirstEvent = false;
                         }
                     }
@@ -435,17 +527,17 @@ public class PuzzleManager : MonoBehaviour
             {
                 for (int Num = 0; Num <TopRight - TopLeft; Num++)
                 {
-                    if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                    if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
                     {
 
-                        Slots[Num + i].cube.gameObject.SetActive(false);
+                        MoveSlots[Num + i].cube.gameObject.SetActive(false);
 
-                        if (Slots[Num + i +1].nodeType != PuzzleSlot.NodeType.Null)
+                        if (MoveSlots[Num + i +1].nodeType != PuzzleSlot.NodeType.Null)
                         {
 
                             ChangeCube(Num + i, Num + i + 1, FirstEvent, Speed);
-                            if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
-                                Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+                            if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                                MoveSlots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
                             FirstEvent = false;
                         }
@@ -453,10 +545,10 @@ public class PuzzleManager : MonoBehaviour
                         {
                             GameObject NewCube = theObject.FindObj("Cube");
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                            SetCube(NewCube, Slots[Num + i]);
-                            NewCube.transform.position = Slots[Num + i +1].transform.position;
-                            Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(Slots[Num + i].transform.position, FirstEvent, Speed);
+                            SetCube(NewCube, MoveSlots[Num + i]);
+                            NewCube.transform.position = MoveSlots[Num + i +1].transform.position;
+                            MoveSlots[Num + i].cube = NewCube.GetComponent<Cube>();
+                            NewCube.GetComponent<Cube>().MoveCube(MoveSlots[Num + i].transform.position, FirstEvent, Speed);
                             FirstEvent = false;
                         }
                     }
@@ -470,17 +562,17 @@ public class PuzzleManager : MonoBehaviour
             {
                 for (int Num = 0; Num > -(TopRight - TopLeft); Num--)
                 {
-                    if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                    if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
                     {
 
-                        Slots[Num + i].cube.gameObject.SetActive(false);
+                        MoveSlots[Num + i].cube.gameObject.SetActive(false);
 
-                        if (Slots[Num + i - 1].nodeType != PuzzleSlot.NodeType.Null)
+                        if (MoveSlots[Num + i - 1].nodeType != PuzzleSlot.NodeType.Null)
                         {
 
                             ChangeCube(Num + i, Num + i - 1, FirstEvent, Speed);
-                            if (Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
-                                Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+                            if (MoveSlots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
+                                MoveSlots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
                             FirstEvent = false;
                         }
@@ -488,10 +580,10 @@ public class PuzzleManager : MonoBehaviour
                         {
                             GameObject NewCube = theObject.FindObj("Cube");
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                            SetCube(NewCube, Slots[Num + i]);
-                            NewCube.transform.position = Slots[Num + i - 1].transform.position;
-                            Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(Slots[Num + i].transform.position, FirstEvent, Speed);
+                            SetCube(NewCube, MoveSlots[Num + i]);
+                            NewCube.transform.position = MoveSlots[Num + i - 1].transform.position;
+                            MoveSlots[Num + i].cube = NewCube.GetComponent<Cube>();
+                            NewCube.GetComponent<Cube>().MoveCube(MoveSlots[Num + i].transform.position, FirstEvent, Speed);
                             FirstEvent = false;
                         }
                     }
@@ -511,6 +603,18 @@ public class PuzzleManager : MonoBehaviour
     public void BT_ChangeDirection(int _Num)
     {
         direction = (Direction)_Num;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == _Num)
+            {
+                ArrowImage[i].sprite = ArrowButtonSprite[1];
+            }else
+                ArrowImage[i].sprite = ArrowButtonSprite[0];
+        }
+
+
+
         thePlayer.ChangeSprite(direction);
     }
     public void DestroyCube()
@@ -518,12 +622,12 @@ public class PuzzleManager : MonoBehaviour
         state = State.DestroyCube;
         isMatched = false;
         bool Event = true;
-        for (int i = 0; i < Slots.Length; i++)
+        for (int i = 0; i < MoveSlots.Length; i++)
         {
-            if (Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                Slots[i].nodeColor == PuzzleSlot.NodeColor.Blank)
+            if (MoveSlots[i].nodeType != PuzzleSlot.NodeType.Null &&
+                MoveSlots[i].nodeColor == PuzzleSlot.NodeColor.Blank)
             {
-                Slots[i].cube.DestroyCube(Event);
+                MoveSlots[i].cube.DestroyCube(Event);
                 Event = false;
             }
         }
@@ -536,20 +640,20 @@ public class PuzzleManager : MonoBehaviour
 
         for (int i = 0; i < Horizontal * Vertical; i++)
         {
-            if (Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+            if (MoveSlots[i].nodeType != PuzzleSlot.NodeType.Null)
             {
                 // 상
-                if (Slots[i - Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                if (MoveSlots[i - Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = Slots[i - Horizontal].nodeColor;
-                    Slots[i - Horizontal].nodeColor = testPuzzle.nodeColor;
+                    testPuzzle.nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = MoveSlots[i - Horizontal].nodeColor;
+                    MoveSlots[i - Horizontal].nodeColor = testPuzzle.nodeColor;
 
                     theMatch.FindAllMatches(false);
 
-                    Slots[i - Horizontal].nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = testPuzzle.nodeColor;
+                    MoveSlots[i - Horizontal].nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = testPuzzle.nodeColor;
 
                     if (isMatched)
                     {
@@ -558,17 +662,17 @@ public class PuzzleManager : MonoBehaviour
                     }
                 }
                 // 하
-                if (Slots[i + Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                if (MoveSlots[i + Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = Slots[i + Horizontal].nodeColor;
-                    Slots[i + Horizontal].nodeColor = testPuzzle.nodeColor;
+                    testPuzzle.nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = MoveSlots[i + Horizontal].nodeColor;
+                    MoveSlots[i + Horizontal].nodeColor = testPuzzle.nodeColor;
 
                     theMatch.FindAllMatches(false);
 
-                    Slots[i + Horizontal].nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = testPuzzle.nodeColor;
+                    MoveSlots[i + Horizontal].nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = testPuzzle.nodeColor;
 
                     if (isMatched)
                     {
@@ -579,17 +683,17 @@ public class PuzzleManager : MonoBehaviour
                     }
                 }
                 // 좌
-                if (Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
+                if (MoveSlots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = Slots[i - 1].nodeColor;
-                    Slots[i - 1].nodeColor = testPuzzle.nodeColor;
+                    testPuzzle.nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = MoveSlots[i - 1].nodeColor;
+                    MoveSlots[i - 1].nodeColor = testPuzzle.nodeColor;
 
                     theMatch.FindAllMatches(false);
 
-                    Slots[i - 1].nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = testPuzzle.nodeColor;
+                    MoveSlots[i - 1].nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = testPuzzle.nodeColor;
 
                     if (isMatched)
                     {
@@ -600,17 +704,17 @@ public class PuzzleManager : MonoBehaviour
                     }
                 }
                 // 우
-                if (Slots[i + 1].nodeType != PuzzleSlot.NodeType.Null)
+                if (MoveSlots[i + 1].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = Slots[i + 1].nodeColor;
-                    Slots[i + 1].nodeColor = testPuzzle.nodeColor;
+                    testPuzzle.nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = MoveSlots[i + 1].nodeColor;
+                    MoveSlots[i + 1].nodeColor = testPuzzle.nodeColor;
 
                     theMatch.FindAllMatches(false);
 
-                    Slots[i + 1].nodeColor = Slots[i].nodeColor;
-                    Slots[i].nodeColor = testPuzzle.nodeColor;
+                    MoveSlots[i + 1].nodeColor = MoveSlots[i].nodeColor;
+                    MoveSlots[i].nodeColor = testPuzzle.nodeColor;
 
                     if (isMatched)
                     {

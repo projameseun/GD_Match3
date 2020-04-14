@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    public enum State
+    { 
+        SmoothMove,
+        Nothing
+    }
+
+    public State state;
+
     public Direction direction;
 
     public Camera MainCamera;
 
     public BoxCollider2D Bound;
 
+    public float CameraSpeed = 1f;
     public float Speed;
     bool Down;
-    float Lerp = 0;
     public float HRadious;
     public float VRadious;
 
     public Vector2 MaxBound;
     public Vector2 MinBound;
     public Vector2 NowPos;
-    public Vector2 MoveVec;
+    public Vector3 MoveVec = new Vector3(0,0,-10f);
 
     //인게임 3Match 방향대로 플레이어이동 
     //버튼결정안나서 
@@ -39,65 +47,73 @@ public class CameraManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Down)
+        if (state == State.SmoothMove)
         {
-            if (direction == Direction.Up)
+            if (Down)
             {
-                if (this.transform.position.y + VRadious > MaxBound.y)
+                if (direction == Direction.Up)
                 {
+                    MoveVec += Vector3.up * Time.deltaTime * CameraSpeed;
+                    MoveVec.z = -10;
 
-                    this.transform.position = new Vector3(
-                        this.transform.position.x,
-                        MaxBound.y - VRadious,-10);
-                    Down = false;
-                    Lerp = 0;
-                    return;
+                    if (this.transform.position.y + VRadious > MaxBound.y)
+                    {
+
+                        this.transform.position = new Vector3(
+                            this.transform.position.x,
+                            MaxBound.y - VRadious, -10);
+                        Down = false;
+                        return;
+                    }
+
                 }
-
-            }
-            else if (direction == Direction.Down)
-            {
-                if (this.transform.position.y - VRadious < MinBound.y)
+                else if (direction == Direction.Down)
                 {
+                    MoveVec += Vector3.down * Time.deltaTime * CameraSpeed;
+                    MoveVec.z = -10;
+                    if (this.transform.position.y - VRadious < MinBound.y)
+                    {
 
-                    this.transform.position = new Vector3(
-                        this.transform.position.x,
-                        MinBound.y + VRadious,-10);
-                    Down = false;
-                    Lerp = 0;
-                    return;
+                        this.transform.position = new Vector3(
+                            this.transform.position.x,
+                            MinBound.y + VRadious, -10);
+                        Down = false;
+                        return;
+                    }
                 }
-            }
-            else if (direction == Direction.Left)
-            {
-                if (this.transform.position.x - HRadious < MinBound.x)
+                else if (direction == Direction.Left)
                 {
+                    MoveVec += Vector3.left * Time.deltaTime * CameraSpeed;
+                    MoveVec.z = -10;
+                    if (this.transform.position.x - HRadious < MinBound.x)
+                    {
 
-                    this.transform.position = new Vector3(
-                        MinBound.x + HRadious,
-                        this.transform.position.y,-10);
-                    Down = false;
-                    Lerp = 0;
-                    return;
+                        this.transform.position = new Vector3(
+                            MinBound.x + HRadious,
+                            this.transform.position.y, -10);
+                        Down = false;
+                        return;
+                    }
                 }
-            }
-            else if (direction == Direction.Right)
-            {
-                if (this.transform.position.x + HRadious > MaxBound.x)
+                else if (direction == Direction.Right)
                 {
+                    MoveVec += Vector3.right * Time.deltaTime * CameraSpeed;
+                    MoveVec.z = -10;
+                    if (this.transform.position.x + HRadious > MaxBound.x)
+                    {
 
-                    this.transform.position = new Vector3(
-                        MaxBound.x - HRadious,
-                        this.transform.position.y,-10);
-                    Down = false;
-                    Lerp = 0;
-                    return;
+                        this.transform.position = new Vector3(
+                            MaxBound.x - HRadious,
+                            this.transform.position.y, -10);
+                        Down = false;
+                        return;
+                    }
                 }
             }
-
-            Lerp = Mathf.Lerp(Lerp, 20, 0.01f);
-            this.transform.Translate(MoveVec * Lerp  *Time.fixedDeltaTime* Speed);
+            this.transform.position = Vector3.Lerp(this.transform.position, MoveVec, Speed * Time.fixedDeltaTime);
         }
+
+       
     }
 
 
@@ -125,22 +141,22 @@ public class CameraManager : MonoBehaviour
         if (_Direction == 0)  // 위
         {
             direction = Direction.Up;
-            MoveVec = Vector2.up;
+
         }
         else if (_Direction == 1) //아래
         {
             direction = Direction.Down;
-            MoveVec = Vector2.down;
+
         }
         else if (_Direction == 2) // 왼쪽
         {
             direction = Direction.Left;
-            MoveVec = Vector2.left;
+      
         }
         else if (_Direction == 3) //오른쪽
         {
             direction = Direction.Right;
-            MoveVec = Vector2.right;
+     
         }
 
     }
@@ -148,7 +164,6 @@ public class CameraManager : MonoBehaviour
     public void MoveUp()
     {
         Down = false;
-        Lerp = 0;
     }
 
 

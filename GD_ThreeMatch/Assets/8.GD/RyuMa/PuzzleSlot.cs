@@ -19,12 +19,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public enum NodeColor
     { 
-        Red = 0,
-        Yellow,
-        Orange,
+        Black = 0,
         Blue,
+        Orange,
         Pink,
-        White,
+        Red,
+        Yellow,
         Blank,
         Player,
         Null
