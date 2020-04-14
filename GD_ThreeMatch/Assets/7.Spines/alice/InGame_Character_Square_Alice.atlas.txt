@@ -1,0 +1,13 @@
+
+InGame_Character_Square_Alice.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Alice
+  rotate: false
+  xy: 2, 2
+  size: 498, 845
+  orig: 500, 847
+  offset: 1, 1
+  index: -1

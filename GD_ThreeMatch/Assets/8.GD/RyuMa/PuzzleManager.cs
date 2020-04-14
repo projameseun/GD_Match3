@@ -60,13 +60,11 @@ public class PuzzleManager : MonoBehaviour
 
 
     private ObjectManager theObject;
-    private PlayerCube thePlayer;
     private FindMatches theMatch;
     private void Start()
     {
         theMatch = FindObjectOfType<FindMatches>();
         theObject = FindObjectOfType<ObjectManager>();
-        thePlayer = FindObjectOfType<PlayerCube>();
 
         for (int i = 0; i < MoveSlots.Length; i++)
         {
@@ -223,7 +221,7 @@ public class PuzzleManager : MonoBehaviour
                 Transform Parent = MoveSlots[rand].cube.transform;
 
                 Player.transform.parent = Parent;
-                thePlayer.ChangeSprite(direction);
+                //thePlayer.ChangeSprite(direction);
 
                 break;
             }
@@ -236,7 +234,7 @@ public class PuzzleManager : MonoBehaviour
                 MoveSlots[rand].nodeColor != PuzzleSlot.NodeColor.Player)
             {
                 MoveSlots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
-                MoveSlots[rand].GetComponent<Image>().color = new Color(1f, 0, 0, 0.8f);
+               
                 break;
             }
         }
@@ -602,7 +600,7 @@ public class PuzzleManager : MonoBehaviour
         {
             CameraButton[i].ButtonChange(_Num);
         }
-        thePlayer.ChangeSprite(direction);
+        //thePlayer.ChangeSprite(direction);
     }
     public void DestroyCube()
     {
