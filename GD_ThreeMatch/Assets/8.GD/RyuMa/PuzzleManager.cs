@@ -30,11 +30,11 @@ public class PuzzleManager : MonoBehaviour
 
 
     public Sprite[] CubeSprites;
-    public Sprite[] ArrowButtonSprite;
+    public CameraButtonManager[] CameraButton;
     public PuzzleSlot[] MoveSlots;
 
     //UI 오브젝트
-    public Image[] ArrowImage;
+
 
 
 
@@ -74,7 +74,6 @@ public class PuzzleManager : MonoBehaviour
             {
                 MoveSlots[i].nodeType = PuzzleSlot.NodeType.Null;
                 MoveSlots[i].nodeColor = PuzzleSlot.NodeColor.Null;
-                MoveSlots[i].Mask.enabled = false;
             }
 
             MoveSlots[i].SlotNum = i;
@@ -238,8 +237,6 @@ public class PuzzleManager : MonoBehaviour
             {
                 MoveSlots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
                 MoveSlots[rand].GetComponent<Image>().color = new Color(1f, 0, 0, 0.8f);
-                MoveSlots[rand].TestText.text = "적";
-                MoveSlots[rand].TestText.enabled = true;
                 break;
             }
         }
@@ -252,9 +249,7 @@ public class PuzzleManager : MonoBehaviour
                 MoveSlots[rand].nodeType != PuzzleSlot.NodeType.Enemy)
             {
                 MoveSlots[rand].nodeType = PuzzleSlot.NodeType.Goal;
-                MoveSlots[rand].GetComponent<Image>().color = new Color(0, 1f, 0, 0.8f);
-                MoveSlots[rand].TestText.text = "골";
-                MoveSlots[rand].TestText.enabled = true;
+                MoveSlots[rand].Goal.enabled = true;
                 break;
             }
         }
@@ -603,18 +598,10 @@ public class PuzzleManager : MonoBehaviour
     public void BT_ChangeDirection(int _Num)
     {
         direction = (Direction)_Num;
-
         for (int i = 0; i < 4; i++)
         {
-            if (i == _Num)
-            {
-                ArrowImage[i].sprite = ArrowButtonSprite[1];
-            }else
-                ArrowImage[i].sprite = ArrowButtonSprite[0];
+            CameraButton[i].ButtonChange(_Num);
         }
-
-
-
         thePlayer.ChangeSprite(direction);
     }
     public void DestroyCube()

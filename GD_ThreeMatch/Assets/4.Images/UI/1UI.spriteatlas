@@ -53,12 +53,15 @@ SpriteAtlas:
     - {fileID: 2800000, guid: b8cac078c04bd54439af49ee6043ce9f, type: 3}
     - {fileID: 2800000, guid: da9a5bd4d7fbc3146a8f8ee9dc110ae8, type: 3}
     - {fileID: 2800000, guid: b9cc604271b80cb4abbce0e02f9c45a7, type: 3}
-    totalSpriteSurfaceArea: 1038728
+    - {fileID: 2800000, guid: a62f6b0ebdf71b9499a53eeaad346a5c, type: 3}
+    - {fileID: 2800000, guid: 1f0d5695ee508af40ba2381104b47884, type: 3}
+    totalSpriteSurfaceArea: 1059292
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b9cc604271b80cb4abbce0e02f9c45a7, type: 3}
   - {fileID: 21300000, guid: da9a5bd4d7fbc3146a8f8ee9dc110ae8, type: 3}
+  - {fileID: 21300000, guid: 1f0d5695ee508af40ba2381104b47884, type: 3}
   - {fileID: 21300000, guid: 94a1d6f7e2d38f9429aaf8135ac35d75, type: 3}
   - {fileID: 21300000, guid: b8cac078c04bd54439af49ee6043ce9f, type: 3}
   - {fileID: 21300000, guid: 1e5b93d8aa696ce4c9e52238235d2116, type: 3}
@@ -67,10 +70,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 210360fb672e35b42b8a11d41a04e34d, type: 3}
   - {fileID: 21300000, guid: 2927444c9f3f68d46b973fa7fdf74f27, type: 3}
   - {fileID: 21300000, guid: 174de98d4d34b6f46ba201f6ea48dba4, type: 3}
+  - {fileID: 21300000, guid: a62f6b0ebdf71b9499a53eeaad346a5c, type: 3}
   - {fileID: 21300000, guid: afa5c16fbd5faff41baa1a27d1ee91a6, type: 3}
   m_PackedSpriteNamesToIndex:
   - UI_Arrow_on
   - UI_Arrow_off
+  - UI_Map
   - UI_Cube_Pink
   - UI_Ingame_Bar
   - UI_Cube_Black
@@ -79,6 +84,7 @@ SpriteAtlas:
   - UI_Cube_Red
   - UI_Ingame_BarMask
   - UI_Cube_Blue
+  - UI_Goal
   - UI_Cube_Orange
   m_Tag: 1UI
   m_IsVariant: 0

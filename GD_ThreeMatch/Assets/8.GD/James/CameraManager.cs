@@ -56,10 +56,10 @@ public class CameraManager : MonoBehaviour
                     MoveVec += Vector3.up * Time.deltaTime * CameraSpeed;
                     MoveVec.z = -10;
 
-                    if (this.transform.position.y + VRadious > MaxBound.y)
+                    if (MoveVec.y + VRadious > MaxBound.y)
                     {
 
-                        this.transform.position = new Vector3(
+                        MoveVec = new Vector3(
                             this.transform.position.x,
                             MaxBound.y - VRadious, -10);
                         Down = false;
@@ -71,10 +71,10 @@ public class CameraManager : MonoBehaviour
                 {
                     MoveVec += Vector3.down * Time.deltaTime * CameraSpeed;
                     MoveVec.z = -10;
-                    if (this.transform.position.y - VRadious < MinBound.y)
+                    if (MoveVec.y - VRadious < MinBound.y)
                     {
 
-                        this.transform.position = new Vector3(
+                        MoveVec = new Vector3(
                             this.transform.position.x,
                             MinBound.y + VRadious, -10);
                         Down = false;
@@ -85,10 +85,10 @@ public class CameraManager : MonoBehaviour
                 {
                     MoveVec += Vector3.left * Time.deltaTime * CameraSpeed;
                     MoveVec.z = -10;
-                    if (this.transform.position.x - HRadious < MinBound.x)
+                    if (MoveVec.x - HRadious < MinBound.x)
                     {
 
-                        this.transform.position = new Vector3(
+                        MoveVec = new Vector3(
                             MinBound.x + HRadious,
                             this.transform.position.y, -10);
                         Down = false;
@@ -99,10 +99,10 @@ public class CameraManager : MonoBehaviour
                 {
                     MoveVec += Vector3.right * Time.deltaTime * CameraSpeed;
                     MoveVec.z = -10;
-                    if (this.transform.position.x + HRadious > MaxBound.x)
+                    if (MoveVec.x + HRadious > MaxBound.x)
                     {
 
-                        this.transform.position = new Vector3(
+                        MoveVec = new Vector3(
                             MaxBound.x - HRadious,
                             this.transform.position.y, -10);
                         Down = false;
