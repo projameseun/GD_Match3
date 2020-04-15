@@ -42,12 +42,10 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     //DB
     public bool Down;
     public Cube cube;
-    public SpriteRenderer Goal;
 
 
-    public Vector2 FirstVec;
-    public Vector2 CurrentVec;
-    public float Distance = 0;
+    Vector2 FirstVec;
+    Vector2 CurrentVec;
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
     void Start()
