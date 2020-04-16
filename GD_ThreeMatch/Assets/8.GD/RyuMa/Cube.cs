@@ -14,6 +14,7 @@ public class Cube : MonoBehaviour
     public int Num;
     Color color = new Color(1f,1f,1f,1f);
     SpriteRenderer SpriteRen;
+    public SpriteRenderer MinimapSprite;
 
 
     private PuzzleManager thePuzzle;
@@ -51,7 +52,7 @@ public class Cube : MonoBehaviour
 
         if (DestroyEvent == true)
         {
-            DestoryTime -= Time.deltaTime*3;
+            DestoryTime -= Time.deltaTime*1.5f;
 
             if (DestoryTime < 0.5f)
             {

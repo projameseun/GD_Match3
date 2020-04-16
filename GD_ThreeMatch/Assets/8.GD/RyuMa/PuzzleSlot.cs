@@ -110,7 +110,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 direction = Direction.Right;
 
             }
-            thePuzzle.CheckMoveCube(SlotNum, direction);
+            thePuzzle.CheckMoveCube(SlotNum, direction,thePuzzle.Horizontal);
             //findMatches.FindAllMatches();
             thePuzzle.SlotDown = false;
             Down = false;

@@ -39,7 +39,6 @@ public class CameraManager : MonoBehaviour
     {
         MainCamera = GetComponent<Camera>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
-        CheckSizeInit();
     }
 
     // Update is called once per frame
@@ -118,8 +117,9 @@ public class CameraManager : MonoBehaviour
 
 
 
-    public void CheckSizeInit()
+    public void CheckSizeInit(BoxCollider2D _Bound)
     {
+        Bound = _Bound;
         MinBound = Bound.bounds.min;
         MaxBound = Bound.bounds.max;
      
@@ -127,7 +127,7 @@ public class CameraManager : MonoBehaviour
         HRadious = VRadious * Camera.main.aspect;
         VRadious /= 2;
         HRadious /= 2;
-
+        
     }
 
 
