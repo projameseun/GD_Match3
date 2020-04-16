@@ -110,7 +110,14 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 direction = Direction.Right;
 
             }
-            thePuzzle.CheckMoveCube(SlotNum, direction,thePuzzle.Horizontal);
+            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+            {
+                thePuzzle.CheckMoveCube(thePuzzle.theMoveMap, direction, SlotNum);
+            } 
+            else if(thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+            {
+                thePuzzle.CheckMoveCube(thePuzzle.theBattleMap, direction, SlotNum);
+            }
             //findMatches.FindAllMatches();
             thePuzzle.SlotDown = false;
             Down = false;

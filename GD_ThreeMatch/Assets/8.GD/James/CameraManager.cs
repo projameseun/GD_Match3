@@ -117,17 +117,51 @@ public class CameraManager : MonoBehaviour
 
 
 
-    public void SetBound(BoxCollider2D _Bound)
+    public void SetBound(BoxCollider2D _Bound,Vector2 _vec, bool _Move)
     {
+
+        if (_Move == true)
+        {
+            state = State.SmoothMove;
+        }else
+            state = State.Nothing;
+
+
+
+     
         Bound = _Bound;
         MinBound = Bound.bounds.min;
         MaxBound = Bound.bounds.max;
-     
+        
         VRadious = 2 * Camera.main.orthographicSize; 
         HRadious = VRadious * Camera.main.aspect;
         VRadious /= 2;
         HRadious /= 2;
-        
+        MoveVec = new Vector3(_vec.x, _vec.y, -10);
+        Debug.Log(MoveVec);
+        if (MoveVec.y + VRadious > MaxBound.y)
+        {
+
+            MoveVec.y = MaxBound.y - VRadious;
+        }
+        if (MoveVec.y - VRadious < MinBound.y)
+        {
+
+            MoveVec.y = MinBound.y + VRadious;
+        }
+        if (MoveVec.x - HRadious < MinBound.x)
+        {
+
+            MoveVec.x = MinBound.x + HRadious;
+
+        }
+        if (MoveVec.x + HRadious > MaxBound.x)
+        {
+
+            MoveVec.x = MaxBound.x - HRadious;
+        }
+        Debug.Log(MoveVec);
+        this.transform.position = MoveVec;
     }
 
 
