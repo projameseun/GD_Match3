@@ -34,6 +34,10 @@ public class PuzzleManager : MonoBehaviour
     public State state;
     public Direction direction;
 
+    public MapManager theMoveMap;
+    public MapManager theBattleMap;
+
+
 
     public Sprite[] CubeSprites;
     public CameraButtonManager[] CameraButton;
@@ -79,12 +83,14 @@ public class PuzzleManager : MonoBehaviour
     private ObjectManager theObject;
     private FindMatches theMatch;
     private FadeManager theFade;
+    private CameraManager theCamera;
     private void Start()
     {
         theFade = FindObjectOfType<FadeManager>();
         Player = FindObjectOfType<PlayerCube>();
         theMatch = FindObjectOfType<FindMatches>();
         theObject = FindObjectOfType<ObjectManager>();
+        theCamera = FindObjectOfType<CameraManager>();
 
         for (int i = 0; i < MoveSlots.Length; i++)
         {
@@ -123,10 +129,10 @@ public class PuzzleManager : MonoBehaviour
                     CubeEvent = false;
 
                     //매치 조건이 맞는지 확인한다
-                    findMatches.FindAllMatches();
+                    findMatches.FindAllMatches(theMoveMap.Slots);
                     if (isMatched)
                     {
-                        DestroyCube(MoveSlots);
+                        DestroyCube(theMoveMap.Slots);
                         return;
                     }
 
@@ -134,7 +140,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(MoveSlots, SelectNum, OtherNum, true);
+                        ChangeCube(theMoveMap.Slots, SelectNum, OtherNum, true);
                         Debug.Log("Not Natched");
                         state = State.ChangeMatchRetrun;
                     }
@@ -155,16 +161,16 @@ public class PuzzleManager : MonoBehaviour
                 if (CubeEvent == true)
                 {
                     CubeEvent = false;
-                    BT_FillBlank(MoveSlots, Horizontal);
+                    BT_FillBlank(theMoveMap.Slots, theMoveMap.Horizontal);
 
                 }
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
-                findMatches.FindAllMatches();
+                findMatches.FindAllMatches(theMoveMap.Slots);
                 if (isMatched)
                 {
-                    DestroyCube(MoveSlots);
+                    DestroyCube(theMoveMap.Slots);
                     return;
                 }
 
@@ -182,7 +188,7 @@ public class PuzzleManager : MonoBehaviour
                 if (CubeEvent == true)
                 {
                     CubeEvent = false;
-                    BT_FillBlank(MoveSlots, Horizontal);
+                    BT_FillBlank(theMoveMap.Slots, theMoveMap.Horizontal);
                 }
             }
         }
@@ -715,7 +721,7 @@ public class PuzzleManager : MonoBehaviour
                     _Slot[i].nodeColor = _Slot[i - _Horizontal].nodeColor;
                     _Slot[i - _Horizontal].nodeColor = testPuzzle.nodeColor;
 
-                    theMatch.FindAllMatches(false);
+                    theMatch.FindAllMatches(theMoveMap.Slots,false);
 
                     _Slot[i - _Horizontal].nodeColor = _Slot[i].nodeColor;
                     _Slot[i].nodeColor = testPuzzle.nodeColor;
@@ -734,7 +740,7 @@ public class PuzzleManager : MonoBehaviour
                     _Slot[i].nodeColor = _Slot[i + _Horizontal].nodeColor;
                     _Slot[i + _Horizontal].nodeColor = testPuzzle.nodeColor;
 
-                    theMatch.FindAllMatches(false);
+                    theMatch.FindAllMatches(theMoveMap.Slots,false);
 
                     _Slot[i + _Horizontal].nodeColor = _Slot[i].nodeColor;
                     _Slot[i].nodeColor = testPuzzle.nodeColor;
@@ -755,7 +761,7 @@ public class PuzzleManager : MonoBehaviour
                     _Slot[i].nodeColor = _Slot[i - 1].nodeColor;
                     _Slot[i - 1].nodeColor = testPuzzle.nodeColor;
 
-                    theMatch.FindAllMatches(false);
+                    theMatch.FindAllMatches(theMoveMap.Slots,false);
 
                     _Slot[i - 1].nodeColor = _Slot[i].nodeColor;
                     _Slot[i].nodeColor = testPuzzle.nodeColor;
@@ -776,7 +782,7 @@ public class PuzzleManager : MonoBehaviour
                     _Slot[i].nodeColor = _Slot[i + 1].nodeColor;
                     _Slot[i + 1].nodeColor = testPuzzle.nodeColor;
 
-                    theMatch.FindAllMatches(false);
+                    theMatch.FindAllMatches(theMoveMap.Slots,false);
 
                     _Slot[i + 1].nodeColor = _Slot[i].nodeColor;
                     _Slot[i].nodeColor = testPuzzle.nodeColor;
@@ -820,7 +826,8 @@ public class PuzzleManager : MonoBehaviour
     }
     public void BT_SetSlot()
     {
-        SetSlot(MoveSlots,Horizontal,Vertical);
+        theCamera.SetBound(theMoveMap.Bound);
+        SetSlot(theMoveMap.Slots, theMoveMap.Horizontal, theMoveMap.Vertical);
 
     }
     public void BT_Minimap()

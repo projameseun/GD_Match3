@@ -117,7 +117,7 @@ public class CameraManager : MonoBehaviour
 
 
 
-    public void CheckSizeInit(BoxCollider2D _Bound)
+    public void SetBound(BoxCollider2D _Bound)
     {
         Bound = _Bound;
         MinBound = Bound.bounds.min;

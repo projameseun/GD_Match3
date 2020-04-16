@@ -13,44 +13,44 @@ public class FindMatches : MonoBehaviour
         puzzleManager = FindObjectOfType<PuzzleManager>();
     }
 
-    public void FindAllMatches(bool _ChangeBlank = true)
+    public void FindAllMatches(PuzzleSlot[] _Slot,bool _ChangeBlank = true)
     {
         currentMathces = new List<PuzzleSlot>();
         for (int i = 0; i < puzzleManager.Horizontal * puzzleManager.Vertical; i++)
         {
 
-            if (puzzleManager.MoveSlots[i].nodeColor != PuzzleSlot.NodeColor.Player &&
-                puzzleManager.MoveSlots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                puzzleManager.MoveSlots[i].nodeColor != PuzzleSlot.NodeColor.Blank)
+            if (_Slot[i].nodeColor != PuzzleSlot.NodeColor.Player &&
+                _Slot[i].nodeType != PuzzleSlot.NodeType.Null &&
+                _Slot[i].nodeColor != PuzzleSlot.NodeColor.Blank)
             {
 
                 if (i > puzzleManager.TopRight && i < puzzleManager.BottomLeft)
                 {
 
-                    if (puzzleManager.MoveSlots[i-1].nodeType != PuzzleSlot.NodeType.Null &&
-                        puzzleManager.MoveSlots[i+1].nodeType != PuzzleSlot.NodeType.Null)
+                    if (_Slot[i-1].nodeType != PuzzleSlot.NodeType.Null &&
+                        _Slot[i+1].nodeType != PuzzleSlot.NodeType.Null)
                     {
 
-                        if (puzzleManager.MoveSlots[i-1].nodeColor == puzzleManager.MoveSlots[i].nodeColor && puzzleManager.MoveSlots[i+1].nodeColor == puzzleManager.MoveSlots[i].nodeColor)
+                        if (_Slot[i-1].nodeColor == _Slot[i].nodeColor && _Slot[i+1].nodeColor == _Slot[i].nodeColor)
                         {
-                            if (!currentMathces.Contains(puzzleManager.MoveSlots[i-1]))
+                            if (!currentMathces.Contains(_Slot[i-1]))
                             {
                                
-                                currentMathces.Add(puzzleManager.MoveSlots[i-1]);
+                                currentMathces.Add(_Slot[i-1]);
                             }
                             puzzleManager.isMatched = true;
                             
                            
 
-                            if (!currentMathces.Contains(puzzleManager.MoveSlots[i+1]))
+                            if (!currentMathces.Contains(_Slot[i+1]))
                             {
-                                currentMathces.Add(puzzleManager.MoveSlots[i+1]);
+                                currentMathces.Add(_Slot[i+1]);
                             }
 
 
-                            if (!currentMathces.Contains(puzzleManager.MoveSlots[i]))
+                            if (!currentMathces.Contains(_Slot[i]))
                             {
-                                currentMathces.Add(puzzleManager.MoveSlots[i]);
+                                currentMathces.Add(_Slot[i]);
                             }
 
                             
@@ -58,28 +58,28 @@ public class FindMatches : MonoBehaviour
                         }
                     }
 
-                    if (puzzleManager.MoveSlots[i + puzzleManager.Horizontal].nodeType != PuzzleSlot.NodeType.Null &&
-                   puzzleManager.MoveSlots[i - puzzleManager.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                    if (_Slot[i + puzzleManager.Horizontal].nodeType != PuzzleSlot.NodeType.Null &&
+                   _Slot[i - puzzleManager.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                     {
-                        if (puzzleManager.MoveSlots[i + puzzleManager.Horizontal].nodeColor == puzzleManager.MoveSlots[i].nodeColor &&
-                            puzzleManager.MoveSlots[i - puzzleManager.Horizontal].nodeColor == puzzleManager.MoveSlots[i].nodeColor)
+                        if (_Slot[i + puzzleManager.Horizontal].nodeColor == _Slot[i].nodeColor &&
+                            _Slot[i - puzzleManager.Horizontal].nodeColor == _Slot[i].nodeColor)
                         {
 
-                            if (!currentMathces.Contains(puzzleManager.MoveSlots[i + puzzleManager.Horizontal]))
+                            if (!currentMathces.Contains(_Slot[i + puzzleManager.Horizontal]))
                             {
-                                currentMathces.Add(puzzleManager.MoveSlots[i + puzzleManager.Horizontal]);
+                                currentMathces.Add(_Slot[i + puzzleManager.Horizontal]);
                             }
                             puzzleManager.isMatched = true;
 
 
-                            if (!currentMathces.Contains(puzzleManager.MoveSlots[i - puzzleManager.Horizontal]))
+                            if (!currentMathces.Contains(_Slot[i - puzzleManager.Horizontal]))
                             {
-                                currentMathces.Add(puzzleManager.MoveSlots[i - puzzleManager.Horizontal]);
+                                currentMathces.Add(_Slot[i - puzzleManager.Horizontal]);
                             }
 
-                            if (!currentMathces.Contains(puzzleManager.MoveSlots[i]))
+                            if (!currentMathces.Contains(_Slot[i]))
                             {
-                                currentMathces.Add(puzzleManager.MoveSlots[i]);
+                                currentMathces.Add(_Slot[i]);
                             }
                         }
                     }
