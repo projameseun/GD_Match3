@@ -6,7 +6,7 @@ public class MapManager : MonoBehaviour
 {
 
 
-    public BoxCollider2D Bound;
+    public Vector2 CameraPos;
 
     public GameObject SlotBase;
     public PuzzleSlot[] Slots;

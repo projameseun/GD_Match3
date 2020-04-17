@@ -70,8 +70,10 @@ public class PuzzleManager : MonoBehaviour
     private FindMatches theMatch;
     private FadeManager theFade;
     private CameraManager theCamera;
+    private BattleManager theBattle;
     private void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         theFade = FindObjectOfType<FadeManager>();
         Player = FindObjectOfType<PlayerCube>();
         theMatch = FindObjectOfType<FindMatches>();
@@ -96,6 +98,7 @@ public class PuzzleManager : MonoBehaviour
                 theFade.FadeEvent = false;
                 gameMode = GameMode.Battle;
                 SetSlot(theBattleMap, true);
+                theBattle.SetBattle(1);
                 ChangeGameMode();
             }
 
@@ -119,7 +122,6 @@ public class PuzzleManager : MonoBehaviour
                     if (!isMatched)
                     {
                         ChangeCube(theMoveMap, SelectNum, OtherNum, true);
-                        Debug.Log("Not Natched");
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -368,7 +370,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Goal;
                     Goal.transform.position = _Map.Slots[rand].transform.position;
-                    Transform Parent = _Map.Slots[rand].cube.transform;
+                    Transform Parent = _Map.Slots[rand].transform;
                     Goal.transform.parent = Parent;
                     break;
                 }
@@ -378,11 +380,13 @@ public class PuzzleManager : MonoBehaviour
         if (gameMode == GameMode.MoveMap)
         {
             Vector2 vec = new Vector2(Player.transform.position.x, Player.transform.position.y + 0.5f);
-            theCamera.SetBound(_Map.Bound, vec, true);
+            theCamera.SetBound(_Map, vec, true);
         }
         else if (gameMode == GameMode.Battle)
         {
-            theCamera.SetBound(_Map.Bound, _Map.Bound.transform.position, false);
+            Vector2 CameraPos = new Vector2(
+                theBattleMap.transform.position.x, theBattleMap.transform.position.y - 2);
+            theCamera.SetBound(_Map, CameraPos, false);
         }
 
     }
@@ -577,7 +581,7 @@ public class PuzzleManager : MonoBehaviour
         {
             IllustSlot.transform.position = MovePos.transform.position;
             Vector2 vec = new Vector2(Player.transform.position.x, Player.transform.position.y + 0.5f);
-            theCamera.SetBound(theMoveMap.Bound, vec, true);
+            theCamera.SetBound(theMoveMap, vec, true);
             MoveUI.SetActive(true);
             BattleUI.SetActive(false);
         }
@@ -636,7 +640,7 @@ public class PuzzleManager : MonoBehaviour
         {
             for (int i = 0; i < _Map.TopRight - _Map.TopLeft; i++)
             {
-                for (int Num = _Map.TopLeft + _Map.Horizontal; Num < _Map.TopRight; Num += _Map.Horizontal)
+                for (int Num = _Map.TopLeft + _Map.Horizontal; Num < _Map.BottomRight; Num += _Map.Horizontal)
                 {
                     if (_Map.Slots[Num + i].nodeColor == PuzzleSlot.NodeColor.Blank)
                     {
