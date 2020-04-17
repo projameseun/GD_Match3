@@ -24,9 +24,4 @@ public class MapManager : MonoBehaviour
     public int BottomRight;
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

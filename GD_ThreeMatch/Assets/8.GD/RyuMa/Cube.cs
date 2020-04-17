@@ -19,8 +19,10 @@ public class Cube : MonoBehaviour
 
     private PuzzleManager thePuzzle;
     private ObjectManager theObject;
+    private BattleManager theBattle;
     private void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         theObject = FindObjectOfType<ObjectManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         SpriteRen = GetComponent<SpriteRenderer>();
@@ -56,6 +58,10 @@ public class Cube : MonoBehaviour
 
             if (DestoryTime < 0.5f)
             {
+                //전투
+                if(thePuzzle.gameMode == PuzzleManager.GameMode.Battle && theBattle.BattleStart == true)
+                    theBattle.TakeDamage();
+
                 if (OnlyOneEvent == true)
                 {
                     OnlyOneEvent = false;

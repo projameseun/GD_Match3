@@ -264,7 +264,10 @@ public class PuzzleManager : MonoBehaviour
 
         for (int i = 0; i < _Map.Slots.Length; i++)
         {
-            if (i <= _Map.TopRight || i >= _Map.BottomLeft || i % _Map.Horizontal <= _Map.TopLeft || i % _Map.Horizontal >= _Map.TopRight)
+            if (i <= _Map.TopRight ||
+                i >= _Map.BottomLeft ||
+                i % _Map.Horizontal <= 0 ||
+                i % _Map.Horizontal >= _Map.Horizontal -1)
             {
                 _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
                 _Map.Slots[i].nodeColor = PuzzleSlot.NodeColor.Null;
@@ -321,13 +324,7 @@ public class PuzzleManager : MonoBehaviour
 
         }
 
-        //theMatch.FindAllMatches(false);
-        //if (isMatched == true)
-        //{
-        //    isMatched = false;
-        //    SetSlot();
-        //    return;
-        //}
+
         if (Reset == false)
         {
             while (true)
@@ -379,8 +376,8 @@ public class PuzzleManager : MonoBehaviour
 
         if (gameMode == GameMode.MoveMap)
         {
-            Vector2 vec = new Vector2(Player.transform.position.x, Player.transform.position.y + 0.5f);
-            theCamera.SetBound(_Map, vec, true);
+            //Vector2 vec = new Vector2(Player.transform.position.x, Player.transform.position.y + 0.5f);
+            theCamera.SetBound(_Map, _Map.transform.position, true);
         }
         else if (gameMode == GameMode.Battle)
         {
@@ -888,11 +885,6 @@ public class PuzzleManager : MonoBehaviour
     {
         bool Active = !theMoveMap.Slots[0].GetComponentInChildren<Text>().enabled;
 
-
-        if (Active == true)
-            GetComponentInParent<Canvas>().sortingOrder = 5;
-        else
-            GetComponentInParent<Canvas>().sortingOrder = 0;
 
         for (int i = 0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
         {

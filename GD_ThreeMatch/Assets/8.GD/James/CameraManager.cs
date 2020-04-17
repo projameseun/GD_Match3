@@ -119,47 +119,47 @@ public class CameraManager : MonoBehaviour
         VRadious /= 2;
         HRadious /= 2;
         MoveVec = new Vector3(_TargetVec.x, _TargetVec.y, -10);
+        this.transform.position = MoveVec;
+        //if (_Move == true)
+        //{
+        //    MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x - 0.05f;
+        //    MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 3.2f;
+        //    MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x + 0.05f;
+        //    MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.2f;
 
-        if (_Move == true)
-        {
-            MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x - 0.05f;
-            MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 3.2f;
-            MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x + 0.05f;
-            MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.2f;
+        //    if (MoveVec.y + VRadious > MaxBound.y)
+        //    {
 
-            if (MoveVec.y + VRadious > MaxBound.y)
-            {
+        //        MoveVec.y = MaxBound.y - VRadious;
+        //    }
+        //    if (MoveVec.y - VRadious < MinBound.y)
+        //    {
 
-                MoveVec.y = MaxBound.y - VRadious;
-            }
-            if (MoveVec.y - VRadious < MinBound.y)
-            {
+        //        MoveVec.y = MinBound.y + VRadious;
+        //    }
+        //    if (MoveVec.x - HRadious < MinBound.x)
+        //    {
 
-                MoveVec.y = MinBound.y + VRadious;
-            }
-            if (MoveVec.x - HRadious < MinBound.x)
-            {
+        //        MoveVec.x = MinBound.x + HRadious;
 
-                MoveVec.x = MinBound.x + HRadious;
+        //    }
+        //    if (MoveVec.x + HRadious > MaxBound.x)
+        //    {
 
-            }
-            if (MoveVec.x + HRadious > MaxBound.x)
-            {
+        //        MoveVec.x = MaxBound.x - HRadious;
+        //    }
 
-                MoveVec.x = MaxBound.x - HRadious;
-            }
 
-            
-            state = State.SmoothMove;
-            this.transform.position = MoveVec;
+        //    state = State.SmoothMove;
+        //    this.transform.position = MoveVec;
 
-        }
-        else
-        {
-            state = State.Nothing;
-            this.transform.position = MoveVec;
-        }
-            
+        //}
+        //else
+        //{
+        //    state = State.Nothing;
+        //    this.transform.position = MoveVec;
+        //}
+
 
 
 
@@ -171,10 +171,6 @@ public class CameraManager : MonoBehaviour
     public void MoveDonw(int _Direction)
     {
         Down = true;
-
-
-
-
         if (_Direction == 0)  // 위
         {
             direction = Direction.Up;
