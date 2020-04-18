@@ -12,6 +12,7 @@ public class Cube : MonoBehaviour
     bool DestroyEvent = false;
     float DestoryTime = 1.0f;
     public int Num;
+    public float Size;
     Color color = new Color(1f,1f,1f,1f);
     SpriteRenderer SpriteRen;
     public SpriteRenderer MinimapSprite;

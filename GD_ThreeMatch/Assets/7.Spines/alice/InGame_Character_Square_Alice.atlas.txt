@@ -6,7 +6,14 @@ filter: Linear,Linear
 repeat: none
 Alice
   rotate: false
-  xy: 2, 2
+  xy: 2, 155
+  size: 498, 845
+  orig: 500, 847
+  offset: 1, 1
+  index: -1
+Alice_Die
+  rotate: false
+  xy: 502, 155
   size: 498, 845
   orig: 500, 847
   offset: 1, 1

@@ -13,6 +13,8 @@ public enum Direction
 }
 
 
+
+
 public class PuzzleManager : MonoBehaviour
 {
     public enum GameMode
@@ -41,10 +43,12 @@ public class PuzzleManager : MonoBehaviour
 
 
     public Sprite[] CubeSprites;
+    public Sprite[] GirlSprites;
     public CameraButtonManager[] CameraButton;
 
 
     //UI 오브젝트
+    public CubeUI[] cubeUIs;
     public GameObject Goal;
     public GameObject MinimapBase;
     public GameObject MoveUI;
@@ -480,11 +484,32 @@ public class PuzzleManager : MonoBehaviour
 
 
     // 최초 한번만 실행해서 NULL이 아닌 슬롯에 큐브를 설치
-    public void SetCube(GameObject _Cube, PuzzleSlot _Slot)
+    public void SetCube(GameObject _Cube, PuzzleSlot _Slot,int _Num = 7,float _Size = 0.8f)
     {
-        int rand = Random.Range(0, CubeSprites.Length);
-        _Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[rand];
-        _Slot.nodeColor = (PuzzleSlot.NodeColor)rand;
+        if (_Num == 7)
+        {
+            int rand = Random.Range(0, 6);
+            _Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[rand];
+            _Cube.transform.localScale = new Vector3(_Size, _Size, _Size);
+            _Slot.nodeColor = (PuzzleSlot.NodeColor)rand;
+        }
+        else
+        {
+            _Cube.GetComponent<SpriteRenderer>().sprite = GirlSprites[_Num];
+            _Slot.nodeColor = (PuzzleSlot.NodeColor)_Num;
+            if (_Num == 0)
+            {
+
+            }
+            else if (_Num == 0)
+            { 
+            
+            }
+        }
+
+
+
+       
 
         _Cube.transform.position = _Slot.transform.position;
         _Slot.cube = _Cube.GetComponent<Cube>();

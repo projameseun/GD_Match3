@@ -6,8 +6,15 @@ filter: Linear,Linear
 repeat: none
 Beryl
   rotate: false
-  xy: 2, 2
-  size: 730, 872
-  orig: 732, 885
-  offset: 1, 12
+  xy: 438, 353
+  size: 431, 516
+  orig: 514, 623
+  offset: 41, 57
+  index: -1
+Beryl_2
+  rotate: false
+  xy: 2, 351
+  size: 434, 518
+  orig: 514, 623
+  offset: 38, 55
   index: -1

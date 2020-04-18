@@ -17,6 +17,19 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         
     }
 
+    public enum CubeType
+    {
+        Null=0,
+        NormalCube,
+        SpecialCube,
+        GirlCube,
+        
+
+
+    }
+
+
+
     public enum NodeColor
     { 
         Black = 0,
@@ -34,6 +47,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public NodeType nodeType;
     public NodeColor nodeColor;
+    public CubeType cubeType;
     public int SlotNum;
     
 
