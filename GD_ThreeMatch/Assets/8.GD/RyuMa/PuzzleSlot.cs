@@ -5,7 +5,25 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static HappyRyuMa.GameMaker;
 
-
+public enum CubeType
+{
+    Null = 0,
+    NormalCube,
+    SpecialCube,
+    GirlCube,
+}
+public enum NodeColor
+{
+    Black = 0,
+    Blue,
+    Orange,
+    Pink,
+    Red,
+    Yellow,
+    Blank,
+    Player,
+    Null
+}
 public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public enum NodeType
@@ -17,31 +35,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         
     }
 
-    public enum CubeType
-    {
-        Null=0,
-        NormalCube,
-        SpecialCube,
-        GirlCube,
-        
-
-
-    }
+   
 
 
 
-    public enum NodeColor
-    { 
-        Black = 0,
-        Blue,
-        Orange,
-        Pink,
-        Red,
-        Yellow,
-        Blank,
-        Player,
-        Null
-    }
+
 
 
 

@@ -29,9 +29,9 @@ public class FindMatches : MonoBehaviour
         for (int i = 0; i < _Horizontal * _Vertical; i++)
         {
 
-            if (_Map.Slots[i].nodeColor != PuzzleSlot.NodeColor.Player &&
+            if (_Map.Slots[i].nodeColor != NodeColor.Player &&
                 _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[i].nodeColor != PuzzleSlot.NodeColor.Blank)
+                _Map.Slots[i].nodeColor != NodeColor.Blank)
             {
 
                 if (i > _TopRight && i < _BottomLeft)
@@ -100,7 +100,7 @@ public class FindMatches : MonoBehaviour
         {
             for (int i = 0; i < currentMathces.Count; i++)
             {
-                currentMathces[i].nodeColor = PuzzleSlot.NodeColor.Blank;
+                currentMathces[i].nodeColor = NodeColor.Blank;
             }
             currentMathces.Clear();
         }

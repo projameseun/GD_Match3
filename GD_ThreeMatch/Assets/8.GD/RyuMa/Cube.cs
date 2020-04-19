@@ -11,6 +11,7 @@ public class Cube : MonoBehaviour
     bool OnlyOneEvent = false;
     bool DestroyEvent = false;
     float DestoryTime = 1.0f;
+    public NodeColor nodeColor;
     public int Num;
     public float Size;
     Color color = new Color(1f,1f,1f,1f);
@@ -62,20 +63,12 @@ public class Cube : MonoBehaviour
                 //전투
                 if(thePuzzle.gameMode == PuzzleManager.GameMode.Battle && theBattle.BattleStart == true)
                     theBattle.TakeDamage();
-
+                DestroyCubeEvent();
                 if (OnlyOneEvent == true)
                 {
                     OnlyOneEvent = false;
                     thePuzzle.CubeEvent = true;
                 }
-                GameObject Paricle = theObject.FindObj("CubeP", false);
-                Paricle.transform.position = this.transform.position;
-                Paricle.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(
-                    0, this.GetComponent<SpriteRenderer>().sprite);
-                Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 5);
-                Paricle.SetActive(true);
-                DestoryTime = 0;
-                DestroyEvent = false;
             }
             color.a = DestoryTime;
             SpriteRen.color = color;
@@ -99,6 +92,47 @@ public class Cube : MonoBehaviour
         DestroyEvent = true;
         DestoryTime = 1f;
     }
+    public void DestroyCubeEvent()
+    {
+        GameObject CubeEffect = theObject.FindObj("CubeE");
+
+        Vector2 Target= new Vector2(0,0);
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                for (int x = 0; x < 6; x++)
+                {
+                    if ((int)nodeColor == (int)thePuzzle.PlayerCubeUI[x].cubeColor)
+                    {
+                        Target = thePuzzle.PlayerCubeUI[x].transform.position;
+                    }
+                }
+                
+            }
+        }
+
+        CubeEffect.GetComponent<CubeEffect>().SetCubeEffect(this.transform.position,
+            Target,
+            nodeColor, 0, 1, true
+            );
+
+        GameObject Paricle = theObject.FindObj("CubeP", false);
+        Paricle.transform.position = this.transform.position;
+        Paricle.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(
+            0, this.GetComponent<SpriteRenderer>().sprite);
+        Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 5);
+        Paricle.SetActive(true);
+        DestoryTime = 0;
+        DestroyEvent = false;
+
+       
+
+
+
+
+    }
+
 
     public void Resetting()
     {

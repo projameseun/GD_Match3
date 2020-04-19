@@ -5,20 +5,22 @@ using UnityEngine.UI;
 
 public class CubeUI : MonoBehaviour
 {
-    public enum CubeColor
-    {
-        Black = 0,
-        Blue,
-        Orange,
-        Pink,
-        Red,
-        Yellow,
+    public enum UIType
+    { 
+        PlayerUI,
+        EnemyUI,
     }
+
+
+
 
     public Image CubeSprite;
     public Text CubeCountText;
 
-    public CubeColor cubeColor;
+
+    public UIType uIType;
+    public NodeColor cubeColor;
+    public int CubeCount;
 
 
     private PuzzleManager thePuzzle;
@@ -29,10 +31,21 @@ public class CubeUI : MonoBehaviour
 
 
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if(collision.)
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "CubeEffect")
+        {
+            if (uIType == UIType.PlayerUI)
+            {
+                if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
+                    (int)cubeColor)
+                {
+                    collision.GetComponent<CubeEffect>().UiSet(this);
+                }
+            }
+          
+        }
+    }
 
 
 
@@ -42,8 +55,10 @@ public class CubeUI : MonoBehaviour
     public void SetCubeUi(int _Num)
     {
         CubeSprite.sprite = thePuzzle.CubeSprites[_Num];
-        cubeColor = (CubeColor)_Num;
+        cubeColor = (NodeColor)_Num;
+
     }
+
 
 
 }

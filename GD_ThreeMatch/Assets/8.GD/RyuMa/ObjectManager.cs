@@ -12,13 +12,14 @@ public class ObjectManager : MonoBehaviour
     //게임오브젝트 리스트
     public List<GameObject> Cubes; //큐브 리스트
     public List<GameObject> CubeParticles;
+    public List<GameObject> CubeEfs;
 
 
 
     //게임오브젝트 프리팹
     public GameObject Cube; //큐브 프리팹
     public GameObject CubeParticle;
-
+    public GameObject CubeEf;
 
 
 
@@ -43,6 +44,12 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             CubeParticles.Add(x);
         }
+        for (int i = 0; i < 100; i++)
+        {
+            GameObject x = Instantiate(CubeEf);
+            x.SetActive(false);
+            CubeEfs.Add(x);
+        }
     }
 
 
@@ -61,6 +68,10 @@ public class ObjectManager : MonoBehaviour
             case "CubeP":
                 List = CubeParticles;
                 Frefab = CubeParticle;
+                break;
+            case "CubeE":
+                List = CubeEfs;
+                Frefab = CubeEf;
                 break;
         
         }
@@ -100,6 +111,16 @@ public class ObjectManager : MonoBehaviour
                 CubeParticles[i].GetComponent<ParticleManager>().Resetting();
             }
         }
+
+        for (int i = 0; i < CubeEfs.Count; i++)
+        {
+            if (CubeEfs[i].activeSelf)
+            {
+                CubeEfs[i].GetComponent<CubeEffect>().Resetting();
+            }
+        }
+
+
     }
 
 

@@ -12,6 +12,7 @@ TagManager:
   - WHITE
   - BLANK
   - PLAYER
+  - CubeEffect
   layers:
   - Default
   - TransparentFX
