@@ -52,11 +52,12 @@ public class CubeUI : MonoBehaviour
 
 
 
-    public void SetCubeUi(int _Num)
+    public void SetCubeUi(int _Num,Sprite _sprite)
     {
-        CubeSprite.sprite = thePuzzle.CubeSprites[_Num];
+        CubeSprite.sprite = _sprite;
         cubeColor = (NodeColor)_Num;
-
+        CubeCount = 0;
+        CubeCountText.text = "0";
     }
 
 

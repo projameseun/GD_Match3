@@ -35,12 +35,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         
     }
 
-   
-
-
-
-
-
 
 
     public NodeType nodeType;

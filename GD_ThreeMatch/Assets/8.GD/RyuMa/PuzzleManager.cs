@@ -90,7 +90,7 @@ public class PuzzleManager : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            PlayerCubeUI[i].SetCubeUi(i);
+            PlayerCubeUI[i].SetCubeUi(i,CubeSprites[i]);
         }
     }
 
@@ -472,12 +472,7 @@ public class PuzzleManager : MonoBehaviour
 
                 int RandColorNum = Random.Range(0, RandomList.Count);
                 GameObject Cube = theObject.FindObj("Cube");
-                Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[RandomList[RandColorNum]];
-                Cube.GetComponent<Cube>().MinimapSprite.sprite = CubeSprites[RandomList[RandColorNum]];
-                _Map.Slots[i].nodeColor = (NodeColor)RandomList[RandColorNum];
-
-                Cube.transform.position = _Map.Slots[i].transform.position;
-                _Map.Slots[i].cube = Cube.GetComponent<Cube>();
+                SetCube(Cube, _Map.Slots[i], RandColorNum);
 
             }
         }
@@ -487,29 +482,32 @@ public class PuzzleManager : MonoBehaviour
 
 
     // 최초 한번만 실행해서 NULL이 아닌 슬롯에 큐브를 설치
-    public void SetCube(GameObject _Cube, PuzzleSlot _Slot,int _Num = 7,float _Size = 0.8f)
+    public void SetCube(GameObject _Cube, PuzzleSlot _Slot,int _Num = 7,bool _GirlCube = false)
     {
         if (_Num == 7)
         {
             int rand = Random.Range(0, 6);
+           
             _Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[rand];
-            _Cube.transform.localScale = new Vector3(_Size, _Size, _Size);
+            _Cube.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             _Slot.nodeColor = (NodeColor)rand;
             _Cube.GetComponent<Cube>().nodeColor = (NodeColor)rand;
         }
         else
         {
-            _Cube.GetComponent<SpriteRenderer>().sprite = GirlSprites[_Num];
+            if (_GirlCube == true)
+            {
+                _Cube.GetComponent<SpriteRenderer>().sprite = GirlSprites[_Num];
+            }
+            else
+            {
+                _Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[_Num];
+                _Cube.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                _Cube.GetComponent<Cube>().MinimapSprite.sprite = CubeSprites[_Num];
+            }
             _Slot.nodeColor = (NodeColor)_Num;
             _Cube.GetComponent<Cube>().nodeColor = (NodeColor)_Num;
-            if (_Num == 0)
-            {
 
-            }
-            else if (_Num == 0)
-            { 
-            
-            }
         }
 
 

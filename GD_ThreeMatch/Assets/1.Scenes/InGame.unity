@@ -32406,8 +32406,10 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 1
   maskMaterials:
-    materialsMaskDisabled: []
-    materialsInsideMask: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: 963c38903ef428544900db865237af42, type: 2}
+    materialsInsideMask:
+    - {fileID: 2100000, guid: 41eba94235cf8a041bffd7f8cf68b41e, type: 2}
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: Idle
@@ -32431,7 +32433,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 963c38903ef428544900db865237af42, type: 2}
+  - {fileID: 2100000, guid: 41eba94235cf8a041bffd7f8cf68b41e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38385,75 +38387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e543fb9e8f83094199fb211b0f9d510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &3906484134770025059
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3906484135751111634, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_Name
-      value: CubeEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 183.50293
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3906484135751111637, guid: ec5514b72892e304a8e3b739a697ac0c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ec5514b72892e304a8e3b739a697ac0c, type: 3}
 --- !u!1001 &5489001449095375058
 PrefabInstance:
   m_ObjectHideFlags: 0
