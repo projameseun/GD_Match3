@@ -76,7 +76,7 @@ public class CubeEffect : MonoBehaviour
         }
     }
 
-
+    //----------움직이는 기능
     public void MoveCube()
     {
         FrontPos = FrontObj.transform.position - this.transform.position;
@@ -116,6 +116,9 @@ public class CubeEffect : MonoBehaviour
       
         this.transform.eulerAngles = Rotation;
     }
+    //----------움직이는 기능
+
+
 
     public void UiSet(CubeUI _UI)
     {
