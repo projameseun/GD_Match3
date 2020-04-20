@@ -108,6 +108,7 @@ public class PlayerUI : MonoBehaviour
     public void PlayerDie()
     {
         SpinAnim.AnimationState.SetAnimation(0, "Die", true);
+        
     }
 
 
