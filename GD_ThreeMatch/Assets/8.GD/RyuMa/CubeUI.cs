@@ -16,7 +16,7 @@ public class CubeUI : MonoBehaviour
 
     public Image CubeSprite;
     public Text CubeCountText;
-
+    public int UINum;
 
     public UIType uIType;
     public NodeColor cubeColor;
@@ -40,7 +40,7 @@ public class CubeUI : MonoBehaviour
                 if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
                     (int)cubeColor)
                 {
-                    collision.GetComponent<CubeEffect>().UiSet(this);
+                    collision.GetComponent<CubeEffect>().UiSet(this,UINum);
                 }
             }
           
@@ -52,10 +52,11 @@ public class CubeUI : MonoBehaviour
 
 
 
-    public void SetCubeUi(int _Num,Sprite _sprite)
+    public void SetCubeUi(int _ColorNum, int _UiNum,Sprite _sprite)
     {
+        UINum = _UiNum;
         CubeSprite.sprite = _sprite;
-        cubeColor = (NodeColor)_Num;
+        cubeColor = (NodeColor)_ColorNum;
         CubeCount = 0;
         CubeCountText.text = "0";
     }

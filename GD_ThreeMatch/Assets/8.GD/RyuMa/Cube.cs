@@ -105,11 +105,17 @@ public class Cube : MonoBehaviour
                 {
                     if ((int)nodeColor == (int)thePuzzle.PlayerCubeUI[x].cubeColor)
                     {
+
                         Target = thePuzzle.PlayerCubeUI[x].transform.position;
+                        Debug.Log(Target);
                     }
                 }
-                
+
             }
+        }
+        else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        { 
+            //전투 이동 구하기
         }
 
         CubeEffect.GetComponent<CubeEffect>().SetCubeEffect(this.transform.position,
@@ -125,12 +131,6 @@ public class Cube : MonoBehaviour
         Paricle.SetActive(true);
         DestoryTime = 0;
         DestroyEvent = false;
-
-       
-
-
-
-
     }
 
 

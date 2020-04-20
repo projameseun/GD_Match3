@@ -46,9 +46,11 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] GirlSprites;
     public CameraButtonManager[] CameraButton;
 
-
+    [Space]
+    [Header("UI 오브젝트")]
     //UI 오브젝트
     public CubeUI[] PlayerCubeUI;
+    public PlayerUI[] playerUIs; // 0은 왼쪽 캐릭터, 1은 오른쪽 캐릭터
     public GameObject Goal;
     public GameObject MinimapBase;
     public GameObject MoveUI;
@@ -60,14 +62,20 @@ public class PuzzleManager : MonoBehaviour
     public bool isMatched = false;
     private FindMatches findMatches;
 
+
+    [Space]
+    [Header("데이터 베이스")]
+
     //DB
     public bool SlotDown = false;
     public bool CubeEvent = false;
     int SelectNum = 0;
     int OtherNum = 0;
-    public PlayerCube Player;
 
-    //DB
+    public int FirstHeroNum;
+    public int secondHeroNum;
+
+    public PlayerCube Player;
 
 
     private ObjectManager theObject;
@@ -75,6 +83,7 @@ public class PuzzleManager : MonoBehaviour
     private FadeManager theFade;
     private CameraManager theCamera;
     private BattleManager theBattle;
+    private GirlManager theGirl;
     private void Start()
     {
         theBattle = FindObjectOfType<BattleManager>();
@@ -83,15 +92,12 @@ public class PuzzleManager : MonoBehaviour
         theMatch = FindObjectOfType<FindMatches>();
         theObject = FindObjectOfType<ObjectManager>();
         theCamera = FindObjectOfType<CameraManager>();
+        theGirl = FindObjectOfType<GirlManager>();
 
-      
 
         findMatches = FindObjectOfType<FindMatches>();
 
-        for (int i = 0; i < 6; i++)
-        {
-            PlayerCubeUI[i].SetCubeUi(i,CubeSprites[i]);
-        }
+       
     }
 
 
@@ -930,6 +936,27 @@ public class PuzzleManager : MonoBehaviour
     }
     public void BT_SetSlot()
     {
+        List<int> ColorList = new List<int>();
+        ColorList.Add(0);
+        ColorList.Add(1);
+        ColorList.Add(2);
+        ColorList.Add(3);
+        ColorList.Add(4);
+        ColorList.Add(5);
+        ColorList.Remove(FirstHeroNum);
+        ColorList.Remove(secondHeroNum);
+        PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeSprites[FirstHeroNum]);
+        PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeSprites[secondHeroNum]);
+        playerUIs[0].SetUi(FirstHeroNum);
+        playerUIs[1].SetUi(secondHeroNum);
+        for (int i = 0; i < 4; i++)
+        {
+
+
+            PlayerCubeUI[i+2].SetCubeUi(ColorList[i], i+2, CubeSprites[ColorList[i]]);
+        }
+
+
         SetSlot(theMoveMap);
 
     }

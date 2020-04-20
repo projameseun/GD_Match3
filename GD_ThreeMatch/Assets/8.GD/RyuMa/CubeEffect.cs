@@ -30,7 +30,11 @@ public class CubeEffect : MonoBehaviour
     Vector2 FrontPos;
     Vector3 Rotation = new Vector3(0,0,0);
 
-
+    private PuzzleManager thePuzzle;
+    private void Start()
+    {
+        thePuzzle = FindObjectOfType<PuzzleManager>();
+    }
 
 
 
@@ -54,6 +58,34 @@ public class CubeEffect : MonoBehaviour
         int _CubeCount,
         bool RandomStart)
     {
+    
+        if ((int)_nodeColor == 0) //검은색
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(0.42f, 0.42f, 0.42f);
+
+        }
+        else if ((int)_nodeColor == 1) //파란색
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(0.56f, 0.78f, 0.9f);
+        }
+        else if ((int)_nodeColor == 2) // 주황색
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(1f, 0.38f, 0.01f);
+        }
+        else if ((int)_nodeColor == 3) // 핑크
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(0.95f, 0.3f, 0.57f);
+        }
+        else if ((int)_nodeColor == 4) // 빨간색
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(0.94f, 0.11f, 0.01f);
+        }
+        else if ((int)_nodeColor == 5) // 노란색
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(1f, 0.89f, 0.51f);
+        }
+
+
         this.transform.position = StartVec;
         nodeColor = _nodeColor;
         cubeEffectType = _Type;
@@ -120,8 +152,12 @@ public class CubeEffect : MonoBehaviour
 
 
 
-    public void UiSet(CubeUI _UI)
+    public void UiSet(CubeUI _UI, int _UiNum)
     {
+        if (_UiNum < 2)
+            thePuzzle.playerUIs[_UiNum].AddSkillGauge(CubeCount);
+
+
         _UI.CubeCount += CubeCount;
         _UI.CubeCountText.text = _UI.CubeCount.ToString();
         Resetting();
