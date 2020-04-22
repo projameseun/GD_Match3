@@ -31,7 +31,8 @@ public class PuzzleManager : MonoBehaviour
         ChangeMatchRetrun,
         DestroyCube,
         FillBlank,
-        CheckMatch
+        CheckMatch,
+        ChangeMode
     }
     public GameMode gameMode = GameMode.MoveMap;
     public State state;
@@ -76,6 +77,9 @@ public class PuzzleManager : MonoBehaviour
     public int secondHeroNum;
 
     public PlayerCube Player;
+
+
+    //쓰래기통
 
 
     private ObjectManager theObject;
@@ -154,7 +158,18 @@ public class PuzzleManager : MonoBehaviour
                 if (CubeEvent == true)
                 {
                     CubeEvent = false;
-                    BT_FillBlank(theMoveMap);
+
+                    if (CheckEnemy(theMoveMap) == true)
+                    {
+                        state = State.ChangeMode;
+                        theFade.FadeIn();
+                    }
+                    else
+                    {
+                        BT_FillBlank(theMoveMap);
+                    }
+
+                  
 
                 }
             }
@@ -172,6 +187,22 @@ public class PuzzleManager : MonoBehaviour
                 if (!isMatched)
                 {
                     Player.ChangeAnim("Idle", true);
+
+
+                    if (DeadlockCheck(theMoveMap))
+                    {
+                        Debug.Log("매치가 가능한게 있어서 계속 진행");
+                        state = State.Ready;
+                    }
+                    else
+                    {
+                        Debug.Log("더이상 매치가 불가능");
+                        SetSlot(theMoveMap,true);
+                        state = State.Ready;
+                    }
+
+
+
                     state = State.Ready;
                 }
             }
@@ -274,6 +305,17 @@ public class PuzzleManager : MonoBehaviour
     //슬롯을 채운다. false일 경우 최초실행, true일 경우 현재 맵에서 리셋
     public void SetSlot(MapManager _Map, bool Reset = false)
     {
+        if (Reset == true)
+        {
+            Debug.Log("더이상 매치를 할 수 없어서 리셋을 시작합니다");
+        }
+        else
+        {
+            Debug.Log("처음 리셋을 시작합니다");
+        }
+
+       
+
 
         for (int i = 0; i < _Map.Slots.Length; i++)
         {
@@ -291,38 +333,63 @@ public class PuzzleManager : MonoBehaviour
 
 
 
-
-
-        for (int i = 0; i < _Map.Slots.Length; i++)
+        if (Reset == false)
         {
-            if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+            for (int i = 0; i < _Map.Slots.Length; i++)
             {
-                if (Reset == true)
+                if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
                 {
                     _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
                     _Map.Slots[i].nodeColor = NodeColor.Null;
+
+                    if (_Map.Slots[i].cube != null)
+                    {
+                        _Map.Slots[i].cube.Resetting();
+                        _Map.Slots[i].cube = null;
+                    }
+                    _Map.Slots[i].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                    _Map.Slots[i].TestText.text = i.ToString();
                 }
                 else
                 {
-                    if(_Map.Slots[i].nodeColor != NodeColor.Player)
-                        _Map.Slots[i].nodeColor = NodeColor.Null;
+                    _Map.Slots[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    _Map.Slots[i].TestText.text = i.ToString();
+                    _Map.Slots[i].TestText.color = new Color(1, 1, 1);
                 }
-
-                if (_Map.Slots[i].cube != null&& _Map.Slots[i].nodeColor != NodeColor.Player)
-                {
-                    _Map.Slots[i].cube.Resetting();
-                    _Map.Slots[i].cube = null;
-                }
-                _Map.Slots[i].GetComponent<Image>().color = new Color(1, 1, 1, 0);
-                _Map.Slots[i].TestText.text = i.ToString();
-            }
-            else
-            {
-                _Map.Slots[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                _Map.Slots[i].TestText.text = i.ToString();
-                _Map.Slots[i].TestText.color = new Color(1, 1, 1);
             }
         }
+        else 
+        {
+            for (int i = 0; i < _Map.Slots.Length; i++)
+            {
+                if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+                {
+                    if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Enemy ||
+                        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Goal ||
+                        _Map.Slots[i].nodeColor != NodeColor.Player ||
+                        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Object)
+                    {
+                        _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
+                        _Map.Slots[i].nodeColor = NodeColor.Null;
+                        if (_Map.Slots[i].cube != null)
+                        {
+                            _Map.Slots[i].cube.Resetting();
+                            _Map.Slots[i].cube = null;
+                        }
+                    }
+                    _Map.Slots[i].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                    _Map.Slots[i].TestText.text = i.ToString();
+                }
+                else
+                {
+                    _Map.Slots[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    _Map.Slots[i].TestText.text = i.ToString();
+                    _Map.Slots[i].TestText.color = new Color(1, 1, 1);
+                }
+            }
+        }
+
+       
 
 
         NotMatchSetCube(_Map);
@@ -366,7 +433,7 @@ public class PuzzleManager : MonoBehaviour
                     _Map.Slots[rand].nodeColor != NodeColor.Player)
                 {
                     _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
-
+                    _Map.Slots[rand].GetComponent<Image>().color = new Color(1, 0, 0, 1);
                     break;
                 }
             }
@@ -405,7 +472,6 @@ public class PuzzleManager : MonoBehaviour
     public void NotMatchSetCube(MapManager _Map)
     {
 
-        PuzzleSlot CopySlot = new PuzzleSlot();
         List<int> ColorList = new List<int>();
         ColorList.Add(0);
         ColorList.Add(1);
@@ -812,11 +878,25 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
+    // 블럭 움직일때마다 확인하며 만약 플레이어가 적슬롯에 들어오면 true 아니면 false
+    public bool CheckEnemy(MapManager _Map)
+    {
+        for (int i = 0; i < _Map.Horizontal * _Map.Vertical;i++)
+        {
+            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Enemy &&
+                _Map.Slots[i].nodeColor == NodeColor.Player)
+            {
+                return true;
+                //적 슬롯에 들어옴
+            }
+        }
+        return false;
+    }
 
 
 
-
-    public void DeadlockCheck(MapManager _Map)
+    //현재 매치가 가능한 상태가 있는지 체크
+    public bool DeadlockCheck(MapManager _Map)
     {
 
         PuzzleSlot testPuzzle = new PuzzleSlot();
@@ -841,7 +921,7 @@ public class PuzzleManager : MonoBehaviour
                     if (isMatched)
                     {
                         isMatched = false;
-                        return;
+                        return true;
                     }
                 }
                 // 하
@@ -862,7 +942,7 @@ public class PuzzleManager : MonoBehaviour
 
 
                         isMatched = false;
-                        return;
+                        return  true;
                     }
                 }
                 // 좌
@@ -883,7 +963,7 @@ public class PuzzleManager : MonoBehaviour
 
 
                         isMatched = false;
-                        return;
+                        return  true;
                     }
                 }
                 // 우
@@ -904,12 +984,15 @@ public class PuzzleManager : MonoBehaviour
 
 
                         isMatched = false;
-                        return;
+                        return  true;
                     }
                 }
 
             }
         }
+
+        return false;
+
     }
     public void BT_ShowSlotText()
     {

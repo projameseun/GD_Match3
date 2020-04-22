@@ -32,6 +32,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Normal,
         Enemy,
         Goal,
+        Object,
         
     }
 

@@ -107,7 +107,6 @@ public class Cube : MonoBehaviour
                     {
 
                         Target = thePuzzle.PlayerCubeUI[x].transform.position;
-                        Debug.Log(Target);
                     }
                 }
 
