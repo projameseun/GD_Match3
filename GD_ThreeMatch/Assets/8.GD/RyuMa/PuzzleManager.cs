@@ -80,7 +80,9 @@ public class PuzzleManager : MonoBehaviour
 
 
     //쓰래기통
-
+    bool EnemyReady = true; // true일 경우 전투 가능
+    public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
+    float AutoEventTime = 0;
 
     private ObjectManager theObject;
     private FindMatches theMatch;
@@ -113,7 +115,6 @@ public class PuzzleManager : MonoBehaviour
             if (theFade.FadeEvent == true)
             {
                 theFade.FadeEvent = false;
-                gameMode = GameMode.Battle;
                 SetSlot(theBattleMap, true);
                 theBattle.SetBattle(1);
                 ChangeGameMode();
@@ -159,18 +160,24 @@ public class PuzzleManager : MonoBehaviour
                 {
                     CubeEvent = false;
 
-                    if (CheckEnemy(theMoveMap) == true)
+                    if (EnemyReady == true)
                     {
-                        state = State.ChangeMode;
-                        theFade.FadeIn();
+                        if (CheckEnemy(theMoveMap) == true)
+                        {
+                            EnemyReady = false;
+                            state = State.ChangeMode;
+                            theFade.FadeIn();
+                        }
+                        else
+                        {
+                            BT_FillBlank(theMoveMap);
+                        }
                     }
                     else
                     {
                         BT_FillBlank(theMoveMap);
+                        EnemyReady = true;
                     }
-
-                  
-
                 }
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
@@ -188,7 +195,12 @@ public class PuzzleManager : MonoBehaviour
                 {
                     Player.ChangeAnim("Idle", true);
 
-
+                    if (CheckGoal(theMoveMap) == true)
+                    {
+                        Debug.Log("골 도착");
+                        state = State.Ready;
+                        return;
+                    }
                     if (DeadlockCheck(theMoveMap))
                     {
                         Debug.Log("매치가 가능한게 있어서 계속 진행");
@@ -201,9 +213,6 @@ public class PuzzleManager : MonoBehaviour
                         state = State.Ready;
                     }
 
-
-
-                    state = State.Ready;
                 }
             }
             else if (state == State.DestroyCube)//매치된 큐브 제거
@@ -220,8 +229,9 @@ public class PuzzleManager : MonoBehaviour
             if (theFade.FadeEvent == true)
             {
                 theFade.FadeEvent = false;
-                gameMode = GameMode.MoveMap;
                 ChangeGameMode();
+
+               
             }
 
             if (state == State.ChangeMatch) //  큐브를 교환하는 상태
@@ -295,7 +305,17 @@ public class PuzzleManager : MonoBehaviour
 
         }
 
-
+        if (AutoEvent == true)
+        {
+            if (AutoEventTime < 0.6f)
+                AutoEventTime += Time.deltaTime;
+            else
+            {
+                CubeEvent = true;
+                AutoEvent = false;
+                AutoEventTime = 0;
+            }
+        }
 
     }
 
@@ -410,7 +430,7 @@ public class PuzzleManager : MonoBehaviour
             while (true)
             {
                 int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
-
+                rand = 40;
                 if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null)
                 {
                     _Map.Slots[rand].nodeColor = NodeColor.Player;
@@ -428,7 +448,7 @@ public class PuzzleManager : MonoBehaviour
             while (true)
             {
                 int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
-
+                rand = 39;
                 if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
                     _Map.Slots[rand].nodeColor != NodeColor.Player)
                 {
@@ -461,9 +481,8 @@ public class PuzzleManager : MonoBehaviour
         }
         else if (gameMode == GameMode.Battle)
         {
-            Vector2 CameraPos = new Vector2(
-                theBattleMap.transform.position.x, theBattleMap.transform.position.y - 2);
-            theCamera.SetBound(_Map, CameraPos, false);
+           
+            theCamera.SetBound(_Map, _Map.transform.position, false);
         }
 
     }
@@ -662,21 +681,24 @@ public class PuzzleManager : MonoBehaviour
 
     public void ChangeGameMode()
     {
-        if (gameMode == GameMode.Battle)
+        if (gameMode == GameMode.MoveMap)
         {
             IllustSlot.transform.position = BattlePos.transform.position;
             //theCamera.SetBound(theBattleMap.Bound, theBattleMap.Bound.transform.position,false);
             MoveUI.SetActive(false);
             BattleUI.SetActive(true);
-
+            gameMode = GameMode.Battle;
+            state = State.Ready;
         }
-        else if (gameMode == GameMode.MoveMap)
+        else if (gameMode == GameMode.Battle)
         {
             IllustSlot.transform.position = MovePos.transform.position;
-            Vector2 vec = new Vector2(Player.transform.position.x, Player.transform.position.y + 0.5f);
-            theCamera.SetBound(theMoveMap, vec, true);
+            theCamera.SetBound(theMoveMap, theMoveMap.transform.position, true);
             MoveUI.SetActive(true);
             BattleUI.SetActive(false);
+            gameMode = GameMode.MoveMap;
+            state = State.FillBlank;
+            AutoEvent = true;
         }
     }
 
@@ -893,7 +915,20 @@ public class PuzzleManager : MonoBehaviour
         return false;
     }
 
+    public bool CheckGoal(MapManager _Map)
+    {
+        for (int i = 0; i < _Map.Vertical * _Map.Horizontal; i++)
+        {
+            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Goal &&
+                _Map.Slots[i].nodeColor == NodeColor.Player)
+            {
+                return true;
+            }
+        }
 
+
+        return false;
+    }
 
     //현재 매치가 가능한 상태가 있는지 체크
     public bool DeadlockCheck(MapManager _Map)

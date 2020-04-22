@@ -18,7 +18,7 @@ public class CubeEffect : MonoBehaviour
 
 
 
-    public Vector2 TargetPos; //목표 좌표
+    public GameObject TargetPos; //목표 좌표
     public float Speed; // 움직이는 속도
     public float AngleZ; // 목표 회전값
     public float AngleSpeed; // 회전속도
@@ -52,7 +52,7 @@ public class CubeEffect : MonoBehaviour
     }
 
 
-    public void SetCubeEffect(Vector2 StartVec,Vector2 _TargetVec,
+    public void SetCubeEffect(Vector2 StartVec,GameObject _TargetVec,
         NodeColor _nodeColor,
         CubeEffectType _Type,
         int _CubeCount,
@@ -123,7 +123,7 @@ public class CubeEffect : MonoBehaviour
 
         AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed*Time.deltaTime); ;
 
-        AngleZ = GetAngleZ(TargetPos, this.transform.position);
+        AngleZ = GetAngleZ(TargetPos.transform.position, this.transform.position);
         if (Rotation.z + 180 < AngleZ)
         {
             Rotation.z -= AngleSpeed * Time.deltaTime;
@@ -168,6 +168,7 @@ public class CubeEffect : MonoBehaviour
     public void Resetting()
     {
         Move = false;
+        TargetPos = null;
         AngleSpeed = 0;
         AngleZ = 0;
         this.transform.eulerAngles = new Vector3(0, 0, 0);

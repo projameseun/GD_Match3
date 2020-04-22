@@ -96,7 +96,7 @@ public class Cube : MonoBehaviour
     {
         GameObject CubeEffect = theObject.FindObj("CubeE");
 
-        Vector2 Target= new Vector2(0,0);
+        GameObject Target = null;
         if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
         {
             for (int i = 0; i < 6; i++)
@@ -106,7 +106,7 @@ public class Cube : MonoBehaviour
                     if ((int)nodeColor == (int)thePuzzle.PlayerCubeUI[x].cubeColor)
                     {
 
-                        Target = thePuzzle.PlayerCubeUI[x].transform.position;
+                        Target = thePuzzle.PlayerCubeUI[x].gameObject;
                     }
                 }
 
