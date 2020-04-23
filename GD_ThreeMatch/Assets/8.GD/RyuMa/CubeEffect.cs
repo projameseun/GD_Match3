@@ -5,7 +5,7 @@ using static HappyRyuMa.GameMaker;
 
 public enum CubeEffectType
 { 
-    GoPlayer,
+    GoPlayer = 0,
     GoEnemy
 
 }
@@ -31,8 +31,10 @@ public class CubeEffect : MonoBehaviour
     Vector3 Rotation = new Vector3(0,0,0);
 
     private PuzzleManager thePuzzle;
+    private BattleManager theBattle;
     private void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
 
@@ -58,7 +60,11 @@ public class CubeEffect : MonoBehaviour
         int _CubeCount,
         bool RandomStart)
     {
-    
+
+        if (_TargetVec == null)
+            return;
+
+
         if ((int)_nodeColor == 0) //검은색
         {
             this.GetComponent<SpriteRenderer>().color = new Color(0.42f, 0.42f, 0.42f);
@@ -159,6 +165,21 @@ public class CubeEffect : MonoBehaviour
 
 
         _UI.CubeCount += CubeCount;
+
+        if (_UI.uIType == CubeUI.UIType.EnemyUI)
+        {
+            if (_UI.CubeCount > -1)
+            {
+                theBattle.TakeDamage();
+            }
+        }
+
+
+
+        if (_UI.CubeCount < 0)
+            _UI.CubeCount = 0;
+
+
         _UI.CubeCountText.text = _UI.CubeCount.ToString();
         Resetting();
     }

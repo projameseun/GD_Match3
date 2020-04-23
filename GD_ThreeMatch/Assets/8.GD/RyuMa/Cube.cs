@@ -60,9 +60,6 @@ public class Cube : MonoBehaviour
 
             if (DestoryTime < 0.5f)
             {
-                //전투
-                if(thePuzzle.gameMode == PuzzleManager.GameMode.Battle && theBattle.BattleStart == true)
-                    theBattle.TakeDamage();
                 DestroyCubeEvent();
                 if (OnlyOneEvent == true)
                 {
@@ -95,7 +92,8 @@ public class Cube : MonoBehaviour
     public void DestroyCubeEvent()
     {
         GameObject CubeEffect = theObject.FindObj("CubeE");
-
+        int CubeNum = 1;   // 플레이어면 1, 적이면 -1
+        int CubeTarget = 0;  // 플레이어면 0, 적이면 1
         GameObject Target = null;
         if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
         {
@@ -113,13 +111,48 @@ public class Cube : MonoBehaviour
             }
         }
         else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
-        { 
+        {
+            bool CheckEnemyColor = false;
             //전투 이동 구하기
+            for (int i = 0; i < theBattle.EnemyCubeUi.Length; i++)
+            {
+                if (theBattle.EnemyCubeUi[i].gameObject.activeSelf == true)
+                {
+                    for (int x = 0; x < 6; x++)
+                    {
+                        if ((int)nodeColor == (int)theBattle.EnemyCubeUi[x].cubeColor)
+                        {
+                            Target = theBattle.EnemyCubeUi[x].gameObject;
+                            CubeNum = -1;
+                            CubeTarget = 1;
+                            i = 6;
+                            x = 6;
+                            CheckEnemyColor = true;
+                        }
+                    }
+                }
+            }
+            if (CheckEnemyColor == false)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int x = 0; x < 6; x++)
+                    {
+                        if ((int)nodeColor == (int)thePuzzle.PlayerCubeUI[x].cubeColor)
+                        {
+
+                            Target = thePuzzle.PlayerCubeUI[x].gameObject;
+                        }
+                    }
+
+                }
+            }
+
         }
 
         CubeEffect.GetComponent<CubeEffect>().SetCubeEffect(this.transform.position,
             Target,
-            nodeColor, 0, 1, true
+            nodeColor, (CubeEffectType)CubeTarget, CubeNum, true
             );
 
         GameObject Paricle = theObject.FindObj("CubeP", false);

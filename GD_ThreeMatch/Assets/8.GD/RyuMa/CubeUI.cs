@@ -35,7 +35,8 @@ public class CubeUI : MonoBehaviour
     {
         if (collision.tag == "CubeEffect")
         {
-            if (uIType == UIType.PlayerUI)
+            if (uIType == UIType.PlayerUI&&
+                collision.GetComponent<CubeEffect>().cubeEffectType == CubeEffectType.GoPlayer)
             {
                 if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
                     (int)cubeColor)
@@ -43,7 +44,16 @@ public class CubeUI : MonoBehaviour
                     collision.GetComponent<CubeEffect>().UiSet(this,UINum);
                 }
             }
-          
+            else if (uIType == UIType.EnemyUI &&
+              collision.GetComponent<CubeEffect>().cubeEffectType == CubeEffectType.GoEnemy)
+            {
+                if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
+                    (int)cubeColor)
+                {
+                    collision.GetComponent<CubeEffect>().UiSet(this, UINum);
+                }
+            }
+
         }
     }
 
@@ -52,13 +62,13 @@ public class CubeUI : MonoBehaviour
 
 
 
-    public void SetCubeUi(int _ColorNum, int _UiNum,Sprite _sprite)
+    public void SetCubeUi(int _ColorNum, int _UiNum,Sprite _sprite,int _CubeCount = 0)
     {
         UINum = _UiNum;
         CubeSprite.sprite = _sprite;
         cubeColor = (NodeColor)_ColorNum;
-        CubeCount = 0;
-        CubeCountText.text = "0";
+        CubeCount = _CubeCount;
+        CubeCountText.text = _CubeCount.ToString();
     }
 
 

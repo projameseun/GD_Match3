@@ -32,7 +32,8 @@ public class PuzzleManager : MonoBehaviour
         DestroyCube,
         FillBlank,
         CheckMatch,
-        ChangeMode
+        ChangeMode,
+        Event,
     }
     public GameMode gameMode = GameMode.MoveMap;
     public State state;
@@ -59,6 +60,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject MovePos;
     public GameObject BattlePos;
     public GameObject IllustSlot;
+    public Text MoveCountText;
     //메치가 되면 true;
     public bool isMatched = false;
     private FindMatches findMatches;
@@ -70,8 +72,8 @@ public class PuzzleManager : MonoBehaviour
     //DB
     public bool SlotDown = false;
     public bool CubeEvent = false;
-    int SelectNum = 0;
-    int OtherNum = 0;
+
+    public int MoveCount;
 
     public int FirstHeroNum;
     public int secondHeroNum;
@@ -83,6 +85,13 @@ public class PuzzleManager : MonoBehaviour
     bool EnemyReady = true; // true일 경우 전투 가능
     public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
     float AutoEventTime = 0;
+    int SelectNum = 0;
+    int OtherNum = 0;
+
+
+
+
+
 
     private ObjectManager theObject;
     private FindMatches theMatch;
@@ -131,6 +140,7 @@ public class PuzzleManager : MonoBehaviour
                     findMatches.FindAllMatches(theMoveMap);
                     if (isMatched)
                     {
+                        SetMoveCount(-1);
                         DestroyCube(theMoveMap);
                         return;
                     }
@@ -325,6 +335,9 @@ public class PuzzleManager : MonoBehaviour
     //슬롯을 채운다. false일 경우 최초실행, true일 경우 현재 맵에서 리셋
     public void SetSlot(MapManager _Map, bool Reset = false)
     {
+        SetMoveCount();
+
+
         if (Reset == true)
         {
             Debug.Log("더이상 매치를 할 수 없어서 리셋을 시작합니다");
@@ -688,7 +701,7 @@ public class PuzzleManager : MonoBehaviour
             MoveUI.SetActive(false);
             BattleUI.SetActive(true);
             gameMode = GameMode.Battle;
-            state = State.Ready;
+            state = State.Event;
         }
         else if (gameMode == GameMode.Battle)
         {
@@ -1040,6 +1053,20 @@ public class PuzzleManager : MonoBehaviour
         }
 
     }
+
+    public void SetMoveCount(int _Count = 0)
+    {
+        MoveCount += _Count;
+
+        if (MoveCount < 0)
+            MoveCount = 0;
+
+        MoveCountText.text = "Move" + System.Environment.NewLine + MoveCount;
+
+    }
+
+
+
     public void BT_ChangeDirection(int _Num)
     {
         if (state == State.Ready)

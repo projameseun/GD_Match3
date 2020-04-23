@@ -9,9 +9,9 @@ public class EnemyBase
 {
     public string Name;
     public Sprite MonsterSprite;
-    public float Hp;
     public int Damage;
     public int Count;
+    public int[] CubeCount;
 
 }
 
@@ -26,6 +26,7 @@ public class BattleManager : MonoBehaviour
     public Text EnemyName;
     public Image EnemyHpImage;
     public Text TimeText;
+    public CubeUI[] EnemyCubeUi;
 
 
     // 데이터베이스
@@ -39,12 +40,25 @@ public class BattleManager : MonoBehaviour
     public float DamageTime;
     Color DamageColor = new Color(1, 1, 1);
 
+    //쓰래기통
+    List<int> ColorNumList = new List<int>();
+
+
+
     private PuzzleManager thePuzzle;
     private FadeManager theFade;
     private void Start()
     {
+       
         theFade = FindObjectOfType<FadeManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
+
+        ColorNumList.Add(0);
+        ColorNumList.Add(1);
+        ColorNumList.Add(2);
+        ColorNumList.Add(3);
+        ColorNumList.Add(4);
+        ColorNumList.Add(5);
     }
 
     private void Update()
@@ -86,9 +100,35 @@ public class BattleManager : MonoBehaviour
     {
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
         EnemyName.text = Enemy[_enemyNum].Name;
-        MaxHp = Enemy[_enemyNum].Hp;
-        CurrentHp = MaxHp;
+        MaxHp = 0;
         GameTime = 30;
+        List<int> ColorNum = new List<int>(ColorNumList);
+
+
+        for (int i = 0; i < EnemyCubeUi.Length; i++)
+        {
+            if (i < Enemy[_enemyNum].CubeCount.Length)
+            {
+                EnemyCubeUi[i].transform.parent.gameObject.SetActive(true);
+                int RandColor = Random.Range(0, ColorNum.Count);
+                EnemyCubeUi[i].SetCubeUi(ColorNum[RandColor], i,
+                    thePuzzle.CubeSprites[ColorNum[RandColor]], Enemy[_enemyNum].CubeCount[i]);
+
+                MaxHp += Enemy[_enemyNum].CubeCount[i];
+                ColorNum.Remove(RandColor);
+            }
+            else
+            {
+                EnemyCubeUi[i].cubeColor = NodeColor.Null;
+                EnemyCubeUi[i].transform.parent.gameObject.SetActive(false);
+            }
+
+           
+        }
+
+        CurrentHp = MaxHp;
+
+
         BattleStart = true;
     }
 
