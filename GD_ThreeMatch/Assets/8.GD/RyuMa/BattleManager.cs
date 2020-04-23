@@ -33,7 +33,7 @@ public class BattleManager : MonoBehaviour
     public bool BattleStart;    // 배틀 시작시 true
     public float MaxHp;         // 몬스터 최대체력
     public float CurrentHp;     // 몬스터 현제체력
-
+    public int SelectEnemyNum;  // 선택된 몬스터의 숫자
     public float GameTime;      // 게임 남은시간
     public int GameTurnCount;   // 적 공격카운트
     public bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
@@ -98,6 +98,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattle(int _enemyNum)
     {
+        SelectEnemyNum = _enemyNum;
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
         EnemyName.text = Enemy[_enemyNum].Name;
         MaxHp = 0;

@@ -87,8 +87,9 @@ public class PuzzleManager : MonoBehaviour
     float AutoEventTime = 0;
     int SelectNum = 0;
     int OtherNum = 0;
-
-
+    float EventTime = 0;
+    bool EventEnd = false;
+    int[] EnemyCubeCount = new int[6];
 
 
 
@@ -118,6 +119,25 @@ public class PuzzleManager : MonoBehaviour
 
 
     private void Update()
+    {
+        PuzzleUpdate();
+
+        if (AutoEvent == true)
+        {
+            if (AutoEventTime < 0.6f)
+                AutoEventTime += Time.deltaTime;
+            else
+            {
+                CubeEvent = true;
+                AutoEvent = false;
+                AutoEventTime = 0;
+            }
+        }
+
+    }
+
+
+    public void PuzzleUpdate()
     {
         if (gameMode == GameMode.MoveMap)
         {
@@ -219,7 +239,7 @@ public class PuzzleManager : MonoBehaviour
                     else
                     {
                         Debug.Log("더이상 매치가 불가능");
-                        SetSlot(theMoveMap,true);
+                        SetSlot(theMoveMap, true);
                         state = State.Ready;
                     }
 
@@ -241,7 +261,7 @@ public class PuzzleManager : MonoBehaviour
                 theFade.FadeEvent = false;
                 ChangeGameMode();
 
-               
+
             }
 
             if (state == State.ChangeMatch) //  큐브를 교환하는 상태
@@ -299,7 +319,7 @@ public class PuzzleManager : MonoBehaviour
                 //매치가 안될경우
                 if (!isMatched)
                 {
-                    
+
                     state = State.Ready;
                 }
             }
@@ -311,23 +331,57 @@ public class PuzzleManager : MonoBehaviour
                     BT_FillBlank(theBattleMap);
                 }
             }
-
-
-        }
-
-        if (AutoEvent == true)
-        {
-            if (AutoEventTime < 0.6f)
-                AutoEventTime += Time.deltaTime;
-            else
+            else if (state == State.Event)
             {
-                CubeEvent = true;
-                AutoEvent = false;
-                AutoEventTime = 0;
+                if (EventTime <= 1)
+                {
+                    EventTime += Time.deltaTime;
+                }
+                else
+                {
+                    EventTime += Time.deltaTime;
+                    if (EventTime < 1.1f)
+                    {
+                        return;
+                    }
+                    else
+                        EventTime = 1f;
+
+                    EventEnd = true; // false일 경우 이밴트가 실행 true일 경우 이밴트 종료
+                    for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
+                    {
+                        for (int UINum = 0; UINum < 6; UINum++)
+                        {
+                            if (theBattle.EnemyCubeUi[i].cubeColor == PlayerCubeUI[UINum].cubeColor)
+                            {
+                                if (PlayerCubeUI[UINum].CubeCount > 0)
+                                {
+                                    PlayerCubeUI[UINum].AddCount(-1);
+                                    EventEnd = false;
+                                    theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
+                                        theBattle.EnemyCubeUi[i].gameObject, PlayerCubeUI[UINum].cubeColor,
+                                        (CubeEffectType)1, 1, false);
+
+                                }
+                            
+                            }
+                        }
+                    }
+
+                    if (EventEnd == true)
+                    {
+                        state = State.Ready;
+                    }
+
+
+                }
             }
+
+
         }
 
     }
+
 
 
 
@@ -701,6 +755,12 @@ public class PuzzleManager : MonoBehaviour
             MoveUI.SetActive(false);
             BattleUI.SetActive(true);
             gameMode = GameMode.Battle;
+
+            for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
+            {
+                EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
+            }
+
             state = State.Event;
         }
         else if (gameMode == GameMode.Battle)

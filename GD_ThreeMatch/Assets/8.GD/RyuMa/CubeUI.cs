@@ -57,7 +57,11 @@ public class CubeUI : MonoBehaviour
         }
     }
 
-
+    public void AddCount(int _Count)
+    {
+        CubeCount += _Count;
+        CubeCountText.text = CubeCount.ToString();
+    }
 
 
 
@@ -68,7 +72,7 @@ public class CubeUI : MonoBehaviour
         CubeSprite.sprite = _sprite;
         cubeColor = (NodeColor)_ColorNum;
         CubeCount = _CubeCount;
-        CubeCountText.text = _CubeCount.ToString();
+        CubeCountText.text = CubeCount.ToString();
     }
 
 

@@ -94,6 +94,21 @@ public class ObjectManager : MonoBehaviour
         return X;
     }
 
+    public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
+        CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart)
+    {
+        GameObject CubeEffect = FindObj("CubeE");
+        CubeEffect.GetComponent<CubeEffect>().SetCubeEffect(_StartVec,
+                   _Target,
+                   _NodeColor, _CubeTarget, _CubeCount, _RandStart
+                   );
+        return CubeEffect;
+
+    }
+
+
+
+
     public void ResettingObj()
     {
         for(int i = 0; i < Cubes.Count; i++)
