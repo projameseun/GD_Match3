@@ -29,6 +29,8 @@ public class CubeEffect : MonoBehaviour
     public GameObject FrontObj;
     Vector2 FrontPos;
     Vector3 Rotation = new Vector3(0,0,0);
+    int ReToPlayer = 0;
+    float DestroyCount;
 
     private PuzzleManager thePuzzle;
     private BattleManager theBattle;
@@ -49,7 +51,12 @@ public class CubeEffect : MonoBehaviour
             FindTarget();
         }
 
-       
+        if (DestroyCount > 0)
+            DestroyCount -= Time.fixedDeltaTime;
+        else
+            Resetting();
+
+
 
     }
 
@@ -60,6 +67,7 @@ public class CubeEffect : MonoBehaviour
         int _CubeCount,
         bool RandomStart)
     {
+
 
         if (_TargetVec == null)
             return;
@@ -98,6 +106,7 @@ public class CubeEffect : MonoBehaviour
         Move = true;
         TargetPos = _TargetVec;
         CubeCount = _CubeCount;
+        DestroyCount = 10f;
         if (RandomStart == true)
         {
             float RandZ = Random.Range(0F, 360f);
@@ -170,18 +179,36 @@ public class CubeEffect : MonoBehaviour
         {
             if (_UI.CubeCount > -1)
             {
-                theBattle.TakeDamage();
+                theBattle.TakeDamage(CubeCount);
             }
         }
 
 
 
+        int ReToPlayer = 0;
+
         if (_UI.CubeCount < 0)
+        {
+            ReToPlayer = -_UI.CubeCount;
             _UI.CubeCount = 0;
+            _UI.CubeCountText.text = _UI.CubeCount.ToString();
+            CubeCount = ReToPlayer;
+            DestroyCount = 10f;
+            cubeEffectType = CubeEffectType.GoPlayer;
+            for (int i = 0; i < 6; i++)
+            {
+                if (thePuzzle.PlayerCubeUI[i].cubeColor == nodeColor)
+                    TargetPos = thePuzzle.PlayerCubeUI[i].gameObject;
+            }
 
+        }
+        else
+        {
+            _UI.CubeCountText.text = _UI.CubeCount.ToString();
+            Resetting();
+        }
+           
 
-        _UI.CubeCountText.text = _UI.CubeCount.ToString();
-        Resetting();
     }
 
 

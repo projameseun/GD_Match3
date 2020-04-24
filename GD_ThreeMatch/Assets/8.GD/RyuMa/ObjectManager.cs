@@ -13,13 +13,14 @@ public class ObjectManager : MonoBehaviour
     public List<GameObject> Cubes; //큐브 리스트
     public List<GameObject> CubeParticles;
     public List<GameObject> CubeEfs;
-
+    public List<GameObject> SpeechBubbles;
 
 
     //게임오브젝트 프리팹
     public GameObject Cube; //큐브 프리팹
     public GameObject CubeParticle;
     public GameObject CubeEf;
+    public GameObject SpeechObj;
 
 
 
@@ -50,6 +51,12 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             CubeEfs.Add(x);
         }
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject x = Instantiate(SpeechObj);
+            x.SetActive(false);
+            SpeechBubbles.Add(x);
+        }
     }
 
 
@@ -73,6 +80,10 @@ public class ObjectManager : MonoBehaviour
                 List = CubeEfs;
                 Frefab = CubeEf;
                 break;
+            case "Speech":
+                List = SpeechBubbles;
+                Frefab = SpeechObj;
+                break;
         
         }
 
@@ -94,6 +105,8 @@ public class ObjectManager : MonoBehaviour
         return X;
     }
 
+
+    // 큐브 이펙트를 사용하는 함수
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
         CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart)
     {
@@ -106,7 +119,15 @@ public class ObjectManager : MonoBehaviour
 
     }
 
+    // 말풍선 이밴트를 사용하는 함수
+    public GameObject SpeechEvent(Vector2 _StartVec, string _Speech, float _LifeTime)
+    {
+        GameObject Speech = FindObj("Speech");
+        Speech.GetComponent<SpeechBubble>().SetSpeech(
+            _StartVec, _Speech, _LifeTime);
+        return Speech;
 
+    }
 
 
     public void ResettingObj()
@@ -134,6 +155,15 @@ public class ObjectManager : MonoBehaviour
                 CubeEfs[i].GetComponent<CubeEffect>().Resetting();
             }
         }
+
+        for (int i = 0; i < SpeechBubbles.Count; i++)
+        {
+            if (SpeechBubbles[i].activeSelf)
+            {
+                SpeechBubbles[i].GetComponent<SpeechBubble>().Resetting();
+            }
+        }
+
 
 
     }

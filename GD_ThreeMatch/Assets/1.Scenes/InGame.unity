@@ -3409,7 +3409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: 862}
+  m_AnchoredPosition: {x: -12, y: 894}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142174571
@@ -40502,10 +40502,13 @@ MonoBehaviour:
   Cubes: []
   CubeParticles: []
   CubeEfs: []
+  SpeechBubbles: []
   Cube: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
   CubeParticle: {fileID: 5403376149186592919, guid: 0b63d0560b788cb43a464d6ece8b1160,
     type: 3}
   CubeEf: {fileID: 3906484135751111634, guid: ec5514b72892e304a8e3b739a697ac0c, type: 3}
+  SpeechObj: {fileID: 2856293158945401586, guid: f7cea045fed22854f87f87f8bbb74d9b,
+    type: 3}
 --- !u!1001 &2144584081
 PrefabInstance:
   m_ObjectHideFlags: 0

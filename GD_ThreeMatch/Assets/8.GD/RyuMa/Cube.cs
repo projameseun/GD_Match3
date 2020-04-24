@@ -122,12 +122,15 @@ public class Cube : MonoBehaviour
                     {
                         if ((int)nodeColor == (int)theBattle.EnemyCubeUi[x].cubeColor)
                         {
-                            Target = theBattle.EnemyCubeUi[x].gameObject;
-                            CubeNum = -1;
-                            CubeTarget = 1;
-                            i = 6;
-                            x = 6;
-                            CheckEnemyColor = true;
+                            if (theBattle.EnemyCubeUi[x].CubeCount > 0)
+                            {
+                                Target = theBattle.EnemyCubeUi[x].gameObject;
+                                CubeNum = -1;
+                                CubeTarget = 1;
+                                i = 6;
+                                x = 6;
+                                CheckEnemyColor = true;
+                            }
                         }
                     }
                 }
@@ -140,7 +143,7 @@ public class Cube : MonoBehaviour
                     {
                         if ((int)nodeColor == (int)thePuzzle.PlayerCubeUI[x].cubeColor)
                         {
-
+                            CubeNum = 1;
                             Target = thePuzzle.PlayerCubeUI[x].gameObject;
                         }
                     }

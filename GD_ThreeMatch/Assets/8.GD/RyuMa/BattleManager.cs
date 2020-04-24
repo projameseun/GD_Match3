@@ -17,8 +17,17 @@ public class EnemyBase
 
 
 
+
+
 public class BattleManager : MonoBehaviour
 {
+    public enum BattleState
+    { 
+        
+    }
+
+
+
     public EnemyBase[] Enemy;
 
     // UI,오브젝트
@@ -126,11 +135,8 @@ public class BattleManager : MonoBehaviour
 
            
         }
-
+        TimeText.text = "Time : " + ((int)GameTime).ToString();
         CurrentHp = MaxHp;
-
-
-        BattleStart = true;
     }
 
 
@@ -140,11 +146,14 @@ public class BattleManager : MonoBehaviour
         EnemyHpImage.fillAmount = CurrentHp / MaxHp;
         if (GameTime < 0)
         {
+
+            Debug.Log("타임 오버");
             BattleStart = false;
             theFade.FadeIn();
         }
         else if (CurrentHp <= 0)
         {
+            Debug.Log("배틀 승리");
             BattleStart = false;
             theFade.FadeIn();
         }
@@ -152,7 +161,7 @@ public class BattleManager : MonoBehaviour
         TimeText.text = "Time : "+ ((int)GameTime).ToString();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int DamageCount)
     {
         DamageEvent = true;
         DamageTime = 0f;
@@ -160,7 +169,7 @@ public class BattleManager : MonoBehaviour
         DamageColor.g = 0f;
         DamageColor.b = 0f;
         EnemyImage.color = DamageColor;
-        CurrentHp -= 1;
+        CurrentHp += DamageCount;
 
     }
 

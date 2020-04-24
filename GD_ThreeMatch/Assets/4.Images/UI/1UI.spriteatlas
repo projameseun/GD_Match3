@@ -70,7 +70,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 22da5324abcbe9d4ea9af1883b00f840, type: 3}
     - {fileID: 2800000, guid: 2c2aed5c3fc8dce4682fd2448a09a55f, type: 3}
     - {fileID: 2800000, guid: a8096fb05816f69428918a87578614ba, type: 3}
-    totalSpriteSurfaceArea: 1227670
+    - {fileID: 2800000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
+    totalSpriteSurfaceArea: 1244390
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -89,6 +90,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9941ab98006136548976be45d4fa69f9, type: 3}
   - {fileID: 21300000, guid: 1e5b93d8aa696ce4c9e52238235d2116, type: 3}
   - {fileID: 21300000, guid: 850549099cfab374d8ef51b455a13af1, type: 3}
+  - {fileID: 21300000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
   - {fileID: 21300000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
   - {fileID: 21300000, guid: 210360fb672e35b42b8a11d41a04e34d, type: 3}
   - {fileID: 21300000, guid: 2927444c9f3f68d46b973fa7fdf74f27, type: 3}
@@ -115,6 +117,7 @@ SpriteAtlas:
   - Ui_Cube_Bar_6
   - UI_Cube_Black
   - UI_Cube_Yellow
+  - Speak_Bar
   - 256x256Mask
   - UI_Cube_Red
   - UI_Ingame_BarMask

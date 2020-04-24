@@ -91,6 +91,10 @@ public class PlayerUI : MonoBehaviour
 
     public void AddSkillGauge(int _CubeCount)
     {
+
+        if (_CubeCount < 0)
+            return;
+
         CurrentSkillGauge += _CubeCount;
         if (CurrentSkillGauge > MaxSkillGauge)
             CurrentSkillGauge = MaxSkillGauge;
