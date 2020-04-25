@@ -24,6 +24,8 @@ public enum NodeColor
     Player,
     Null
 }
+
+
 public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public enum NodeType
@@ -33,7 +35,10 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Enemy,
         Goal,
         Object,
-        
+        Horizon,
+        Vertical,
+        Hanoi
+
     }
 
 

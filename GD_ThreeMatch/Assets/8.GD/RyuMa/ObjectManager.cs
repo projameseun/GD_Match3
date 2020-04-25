@@ -7,8 +7,6 @@ public class ObjectManager : MonoBehaviour
 
 
 
-
-
     //게임오브젝트 리스트
     public List<GameObject> Cubes; //큐브 리스트
     public List<GameObject> CubeParticles;

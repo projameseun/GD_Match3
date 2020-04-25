@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpecialCubeType
+{ 
+    Vertical = 0,
+    Horizon,
+    Hanoi,
+    Null
+}
+
 public class Cube : MonoBehaviour
 {
+    public SpecialCubeType specialCubeType = SpecialCubeType.Null;
 
     Vector2 TargetVec;
     float Speed;
@@ -17,6 +26,8 @@ public class Cube : MonoBehaviour
     Color color = new Color(1f,1f,1f,1f);
     SpriteRenderer SpriteRen;
     public SpriteRenderer MinimapSprite;
+    public bool SpecialCube = false;
+   
 
 
     private PuzzleManager thePuzzle;
@@ -60,12 +71,28 @@ public class Cube : MonoBehaviour
 
             if (DestoryTime < 0.5f)
             {
-                DestroyCubeEvent();
                 if (OnlyOneEvent == true)
                 {
                     OnlyOneEvent = false;
                     thePuzzle.CubeEvent = true;
                 }
+
+                if (SpecialCube == true)
+                {
+                    color.a = 1;
+                    DestroyEvent = false;
+                    SpriteRen.color = color;
+                    SpriteRen.sprite = thePuzzle.SpecialSprites[(int)specialCubeType];
+
+                    return;
+
+                }
+                else
+                {
+                    DestroyCubeEvent();
+                }
+
+               
             }
             color.a = DestoryTime;
             SpriteRen.color = color;
@@ -88,6 +115,19 @@ public class Cube : MonoBehaviour
         OnlyOneEvent = _Event;
         DestroyEvent = true;
         DestoryTime = 1f;
+        if (SpecialCube == true)
+        {
+            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+            {
+                thePuzzle.theMoveMap.Slots[Num].nodeColor = nodeColor;
+            }
+            else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+            {
+                thePuzzle.theBattleMap.Slots[Num].nodeColor = nodeColor;
+            }
+        }
+
+
     }
     public void DestroyCubeEvent()
     {
@@ -169,6 +209,8 @@ public class Cube : MonoBehaviour
 
     public void Resetting()
     {
+        specialCubeType = SpecialCubeType.Null;
+        SpecialCube = false;
         OnlyOneEvent = false;
         DestroyEvent = false;
         DestoryTime = 1f;

@@ -46,6 +46,7 @@ public class PuzzleManager : MonoBehaviour
 
     public Sprite[] CubeSprites;
     public Sprite[] GirlSprites;
+    public Sprite[] SpecialSprites;
     public CameraButtonManager[] CameraButton;
 
     [Space]
@@ -75,6 +76,7 @@ public class PuzzleManager : MonoBehaviour
 
     public int MoveCount;
 
+    // 일러스트에 넣을 소녀들의 번호
     public int FirstHeroNum;
     public int secondHeroNum;
 
@@ -85,8 +87,8 @@ public class PuzzleManager : MonoBehaviour
     bool EnemyReady = true; // true일 경우 전투 가능
     public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
     float AutoEventTime = 0;
-    int SelectNum = 0;
-    int OtherNum = 0;
+    public int SelectNum = 0;
+    public int OtherNum = 0;
     float EventTime = 0;
     bool EventEnd = false;
     int[] EnemyCubeCount = new int[6];
@@ -160,6 +162,7 @@ public class PuzzleManager : MonoBehaviour
                     findMatches.FindAllMatches(theMoveMap);
                     if (isMatched)
                     {
+
                         SetMoveCount(-1);
                         DestroyCube(theMoveMap);
                         return;
@@ -215,6 +218,7 @@ public class PuzzleManager : MonoBehaviour
                 findMatches.FindAllMatches(theMoveMap);
                 if (isMatched)
                 {
+
                     DestroyCube(theMoveMap);
                     return;
                 }
@@ -736,6 +740,8 @@ public class PuzzleManager : MonoBehaviour
     // 빈칸을 방향에 맞게 채우는 기능
     public void BT_FillBlank(MapManager _Map)
     {
+        
+
 
         state = State.FillBlank;
         bool FirstEvent = true;
