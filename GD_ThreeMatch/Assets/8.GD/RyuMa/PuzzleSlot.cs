@@ -22,6 +22,7 @@ public enum NodeColor
     Yellow,
     Blank,
     Player,
+    Special,
     Null
 }
 
@@ -35,9 +36,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Enemy,
         Goal,
         Object,
-        Horizon,
-        Vertical,
-        Hanoi
 
     }
 
@@ -74,7 +72,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         //    return;
 
 
-        if (thePuzzle.SlotDown == false&& thePuzzle.state == PuzzleManager.State.Ready)
+        if (thePuzzle.SlotDown == false&& thePuzzle.state == PuzzleManager.State.Ready &&
+            nodeType != NodeType.Null)
         {
             Down = true;
             thePuzzle.SlotDown = true;

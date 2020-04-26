@@ -64,7 +64,6 @@ public class PuzzleManager : MonoBehaviour
     public Text MoveCountText;
     //메치가 되면 true;
     public bool isMatched = false;
-    private FindMatches findMatches;
 
 
     [Space]
@@ -113,9 +112,6 @@ public class PuzzleManager : MonoBehaviour
         theGirl = FindObjectOfType<GirlManager>();
 
 
-        findMatches = FindObjectOfType<FindMatches>();
-
-
     }
 
 
@@ -159,12 +155,13 @@ public class PuzzleManager : MonoBehaviour
                     CubeEvent = false;
 
                     //매치 조건이 맞는지 확인한다
-                    findMatches.FindAllMatches(theMoveMap);
+                    theMatch.FindAllMatches(theMoveMap);
                     if (isMatched)
                     {
-
+        
                         SetMoveCount(-1);
                         DestroyCube(theMoveMap);
+                        theMatch.FindSpecialCube(theMoveMap);
                         return;
                     }
 
@@ -215,11 +212,12 @@ public class PuzzleManager : MonoBehaviour
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
-                findMatches.FindAllMatches(theMoveMap);
+                theMatch.FindAllMatches(theMoveMap);
                 if (isMatched)
                 {
 
                     DestroyCube(theMoveMap);
+                    theMatch.FindSpecialCube(theMoveMap);
                     return;
                 }
 
@@ -231,18 +229,15 @@ public class PuzzleManager : MonoBehaviour
 
                     if (CheckGoal(theMoveMap) == true)
                     {
-                        Debug.Log("골 도착");
                         state = State.Ready;
                         return;
                     }
                     if (DeadlockCheck(theMoveMap))
                     {
-                        Debug.Log("매치가 가능한게 있어서 계속 진행");
                         state = State.Ready;
                     }
                     else
                     {
-                        Debug.Log("더이상 매치가 불가능");
                         SetSlot(theMoveMap, true);
                         state = State.Ready;
                     }
@@ -275,7 +270,7 @@ public class PuzzleManager : MonoBehaviour
                     CubeEvent = false;
 
                     //매치 조건이 맞는지 확인한다
-                    findMatches.FindAllMatches(theBattleMap);
+                    theMatch.FindAllMatches(theBattleMap);
                     if (isMatched)
                     {
                         DestroyCube(theBattleMap);
@@ -312,7 +307,7 @@ public class PuzzleManager : MonoBehaviour
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
-                findMatches.FindAllMatches(theBattleMap);
+                theMatch.FindAllMatches(theBattleMap);
                 if (isMatched)
                 {
                     DestroyCube(theBattleMap);

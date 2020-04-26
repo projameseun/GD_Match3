@@ -71,19 +71,22 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 2c2aed5c3fc8dce4682fd2448a09a55f, type: 3}
     - {fileID: 2800000, guid: a8096fb05816f69428918a87578614ba, type: 3}
     - {fileID: 2800000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
-    - {fileID: 2800000, guid: 47590802566e0cc42bf823af80a6decf, type: 3}
-    totalSpriteSurfaceArea: 1253190
+    - {fileID: 2800000, guid: 78e23f429e8edc44c802149b693eb81a, type: 3}
+    - {fileID: 2800000, guid: 117a6a7be9dd44543ba349f638236550, type: 3}
+    - {fileID: 2800000, guid: 13e9e185bb2e68c45a0964e38dbd6df2, type: 3}
+    totalSpriteSurfaceArea: 1268870
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
   - {fileID: 21300000, guid: a8096fb05816f69428918a87578614ba, type: 3}
   - {fileID: 21300000, guid: 58040ff02e04dd74fa8609baffb2acc4, type: 3}
-  - {fileID: 21300000, guid: 47590802566e0cc42bf823af80a6decf, type: 3}
   - {fileID: 21300000, guid: b9cc604271b80cb4abbce0e02f9c45a7, type: 3}
+  - {fileID: 21300000, guid: 78e23f429e8edc44c802149b693eb81a, type: 3}
   - {fileID: 21300000, guid: 22da5324abcbe9d4ea9af1883b00f840, type: 3}
   - {fileID: 21300000, guid: 399e3d6422eb51842b82218816c86864, type: 3}
   - {fileID: 21300000, guid: da9a5bd4d7fbc3146a8f8ee9dc110ae8, type: 3}
+  - {fileID: 21300000, guid: 13e9e185bb2e68c45a0964e38dbd6df2, type: 3}
   - {fileID: 21300000, guid: 1f0d5695ee508af40ba2381104b47884, type: 3}
   - {fileID: 21300000, guid: 201182e6dab547046b13a611e4fab4ab, type: 3}
   - {fileID: 21300000, guid: 12145da708207d34887c5453fd4f22d1, type: 3}
@@ -94,6 +97,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 850549099cfab374d8ef51b455a13af1, type: 3}
   - {fileID: 21300000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
   - {fileID: 21300000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
+  - {fileID: 21300000, guid: 117a6a7be9dd44543ba349f638236550, type: 3}
   - {fileID: 21300000, guid: 210360fb672e35b42b8a11d41a04e34d, type: 3}
   - {fileID: 21300000, guid: 2927444c9f3f68d46b973fa7fdf74f27, type: 3}
   - {fileID: 21300000, guid: 2c2aed5c3fc8dce4682fd2448a09a55f, type: 3}
@@ -107,11 +111,12 @@ SpriteAtlas:
   - Ui_Cube_2
   - Ui_1
   - Cube_Bar_1
-  - TestImage
   - UI_Arrow_on
+  - UI_Vertical
   - HP_Bar_2
   - Ui_Cube_Bar_4
   - UI_Arrow_off
+  - UI_Hanoi
   - UI_Map
   - Cube_Bar_1_in_1
   - Ui_Cube_Bar_2
@@ -122,6 +127,7 @@ SpriteAtlas:
   - UI_Cube_Yellow
   - Speak_Bar
   - 256x256Mask
+  - UI_Horizon
   - UI_Cube_Red
   - UI_Ingame_BarMask
   - HP_Bar_2_in_1
