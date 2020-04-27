@@ -1,0 +1,8 @@
+﻿User	James	제임스	FALSE	0
+Level	Level	레벨	FALSE	1
+Plask	RedPlask	용암플라스크	FALSE	2
+Feather	Feather	실리드의깃털	FALSE	3
+Money	Money	머니	FALSE	4
+Coin	Coin	도박사의동전	FALSE	5
+Diamond	Diamond	다이아몬드	FALSE	6
+Parchment	Parchment	양피지	FALSE	7

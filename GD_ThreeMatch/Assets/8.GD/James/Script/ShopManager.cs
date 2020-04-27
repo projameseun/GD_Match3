@@ -8,12 +8,13 @@ using UnityEngine.UI;
 //양피지, 다이아모드, 머니, 레벨
 
 [System.Serializable]
-public class Item
+public class UserInfo
 {
     public string Type, Name, Explain, Number, Index;
     public bool isUsing;
 
-    public Item(string type, string name, string explain, string number, string index, bool isUsing)
+
+    public UserInfo(string type, string name, string explain, string number, string index, bool isUsing)
     {
         Type = type;
         Name = name;
@@ -26,11 +27,14 @@ public class Item
 
 public class ShopManager : MonoBehaviour
 {
-    public List<Item> ItemList, MyItemList, CurItemList;
+    public List<UserInfo> UserList, MyUserList, CurUserList;
     public GameObject[] Slot;
+    public TextAsset UserInfo;
 
     public void Start()
     {
+        print(UserInfo);
+
         for(int i=0; i<Slot.Length; i++)
         {
            // Debug.Log(Slot.Length);

@@ -2706,15 +2706,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9896df91bb8c06d4b980a6c2890fac6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemList: []
-  MyItemList: []
-  CurItemList: []
+  UserList: []
+  MyUserList: []
+  CurUserList: []
   Slot:
   - {fileID: 1650740737}
   - {fileID: 521973722}
   - {fileID: 1767600603}
   - {fileID: 1461701810}
   - {fileID: 167183817}
+  UserInfo: {fileID: 4900000, guid: 300bd53e49dd15b4e90ca51975b2b746, type: 3}
 --- !u!4 &1185751020
 Transform:
   m_ObjectHideFlags: 0
