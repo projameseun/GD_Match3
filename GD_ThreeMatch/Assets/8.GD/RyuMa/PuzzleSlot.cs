@@ -54,6 +54,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public Cube cube;
 
 
+
+    //trunk
+
+    bool[] DoubleClick = new bool[2];
+    float[] DownTime = new float[2];
     Vector2 FirstVec;
     Vector2 CurrentVec;
     private PuzzleManager thePuzzle;
@@ -62,19 +67,29 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
-    
+    private void Update()
+    {
+        CheckDoubleClick();
+    }
 
 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //if (eventData.button == PointerEventData.InputButton.Right)
-        //    return;
-
+      
 
         if (thePuzzle.SlotDown == false&& thePuzzle.state == PuzzleManager.State.Ready &&
             nodeType != NodeType.Null)
         {
+            if (DownTime[0] <= 0)
+            {
+                DoubleClick[0] = true;
+            }
+            else
+            {
+
+                DoubleClick[1] = true;
+            }
             Down = true;
             thePuzzle.SlotDown = true;
             FirstVec = this.gameObject.transform.position;
@@ -91,8 +106,37 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     }
     public void OnPointerUp(PointerEventData eventData)
     {
+       
+     
+
         if (thePuzzle.SlotDown == true && Down == true)
         {
+            if (DoubleClick[0] == true)
+            {
+                DoubleClick[0] = false;
+                if (DownTime[0] > 0.2f)
+                {
+                    DownTime[0] = 0;
+                }
+                else
+                {
+
+                    DownTime[0] = 0.3f;
+                }
+            }
+            else if (DownTime[0] > 0 && DownTime[1] < 0.2f)
+            {
+                Debug.Log("더블클릭 성공");
+                DownTime[0] = 0;
+                DownTime[1] = 0;
+            }
+
+            if (DoubleClick[1] == true)
+            {
+                DoubleClick[1] = false;
+            }
+
+
             if (Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
                 thePuzzle.SlotDown = false;
@@ -134,5 +178,38 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             Down = false;
         }
     }
+
+
+
+    public void CheckDoubleClick()
+    {
+        if (DoubleClick[0] == true)
+        {
+            DownTime[0] += Time.deltaTime;
+        }
+        else if (DownTime[0] > 0 && DoubleClick[0] == false)
+        {
+            DownTime[0] -= Time.deltaTime;
+            if (DownTime[0] < 0)
+            {
+                DownTime[0] = 0;
+            }
+        }
+
+        if (DoubleClick[1] == true)
+        {
+            DownTime[1] += Time.deltaTime;
+
+        }
+        else if (DoubleClick[1] == false && DownTime[1] > 0)
+        {
+            DownTime[1] -= Time.deltaTime;
+            if (DownTime[1] < 0)
+                DownTime[1] = 0;
+        }
+
+
+    }
+
 
 }
