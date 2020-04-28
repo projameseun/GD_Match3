@@ -13,22 +13,25 @@ public enum SpecialCubeType
 public class Cube : MonoBehaviour
 {
     public SpecialCubeType specialCubeType = SpecialCubeType.Null;
+    public NodeColor nodeColor;
 
+
+
+    public int Num;
+    public float Size;
+    public SpriteRenderer MinimapSprite;
+    public bool SpecialCube = false;
+
+
+    // trunk
     Vector2 TargetVec;
     float Speed;
     bool Move;
     bool OnlyOneEvent = false;
     bool DestroyEvent = false;
     float DestoryTime = 1.0f;
-    public NodeColor nodeColor;
-    public int Num;
-    public float Size;
-    Color color = new Color(1f,1f,1f,1f);
+    Color color = new Color(1f, 1f, 1f, 1f);
     SpriteRenderer SpriteRen;
-    public SpriteRenderer MinimapSprite;
-    public bool SpecialCube = false;
-   
-
 
     private PuzzleManager thePuzzle;
     private ObjectManager theObject;
@@ -210,6 +213,7 @@ public class Cube : MonoBehaviour
     public void Resetting()
     {
         specialCubeType = SpecialCubeType.Null;
+        Move = false;
         SpecialCube = false;
         OnlyOneEvent = false;
         DestroyEvent = false;

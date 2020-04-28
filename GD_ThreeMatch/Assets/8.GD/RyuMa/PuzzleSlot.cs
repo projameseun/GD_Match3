@@ -5,13 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static HappyRyuMa.GameMaker;
 
-public enum CubeType
-{
-    Null = 0,
-    NormalCube,
-    SpecialCube,
-    GirlCube,
-}
+
 public enum NodeColor
 {
     Black = 0,
@@ -43,7 +37,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public NodeType nodeType;
     public NodeColor nodeColor;
-    public CubeType cubeType;
     public int SlotNum;
     
 
@@ -111,24 +104,25 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
         if (thePuzzle.SlotDown == true && Down == true)
         {
-            if (DoubleClick[0] == true)
+            if (DoubleClick[0] == true && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
                 DoubleClick[0] = false;
-                if (DownTime[0] > 0.2f)
+                if (DownTime[0] >= 0.4f)
                 {
                     DownTime[0] = 0;
                 }
                 else
                 {
 
-                    DownTime[0] = 0.3f;
+                    DownTime[0] = 0.4f;
                 }
             }
-            else if (DownTime[0] > 0 && DownTime[1] < 0.2f)
+            else if (DownTime[0] > 0 && DownTime[1] <= 0.4f && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
                 Debug.Log("더블클릭 성공");
                 DownTime[0] = 0;
                 DownTime[1] = 0;
+                DoubleClick[1] = false;
             }
 
             if (DoubleClick[1] == true)
@@ -186,6 +180,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         if (DoubleClick[0] == true)
         {
             DownTime[0] += Time.deltaTime;
+            if (DownTime[0] > 0.4f)
+            {
+                DownTime[0] = 0;
+                DoubleClick[0] = false;
+            }
+                
         }
         else if (DownTime[0] > 0 && DoubleClick[0] == false)
         {
@@ -199,7 +199,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         if (DoubleClick[1] == true)
         {
             DownTime[1] += Time.deltaTime;
-
+            if (DownTime[1] > 0.4f)
+            {
+                DownTime[1] = 0;
+                DoubleClick[1] = false;
+            }
+               
         }
         else if (DoubleClick[1] == false && DownTime[1] > 0)
         {

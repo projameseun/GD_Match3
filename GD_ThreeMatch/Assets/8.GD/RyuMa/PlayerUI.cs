@@ -31,8 +31,8 @@ public class PlayerUI : MonoBehaviour
     }
 
 
-
-    public void SetUi(int _nodeColor)
+    // 캐릭터별 카드색, 0이면 왼쪽 1이면 오른쪽
+    public void SetUi(int _nodeColor,int _Pos)
     {
         if (_nodeColor == 0) //검은색
         {
@@ -68,8 +68,19 @@ public class PlayerUI : MonoBehaviour
         CurrentSkillGauge = 0;
         SkillSlider.fillAmount = 0;
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
+
+        Debug.Log(thePuzzle.IllustSlot.transform.position.y);
+        SpineMesh.transform.localPosition = new Vector3(
+                theGirl.Girls[_nodeColor].IllustPosX[_Pos],
+                theGirl.Girls[_nodeColor].IllustPosY,
+                thePuzzle.IllustSlot.transform.position.z);
+        SpineMesh.transform.localScale = new Vector3(
+            theGirl.Girls[_nodeColor].IllustSize,
+            theGirl.Girls[_nodeColor].IllustSize,
+            1);
     }
 
+    
     public void TakeDamage(int _Damage)
     {
         CurrentHp -= _Damage;

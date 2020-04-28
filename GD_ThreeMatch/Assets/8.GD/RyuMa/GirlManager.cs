@@ -14,7 +14,9 @@ public class GirlHero
     public Material[] IllustMaterials;
     public SkeletonDataAsset[] IllustData;
     public Sprite SkillImage;
-    public float[] IllustPos;
+    public float[] IllustPosX;
+    public float IllustPosY;
+    public float IllustSize;
 
     [Space]
     [Header("DB")]
@@ -36,5 +38,28 @@ public class GirlManager : MonoBehaviour
 {
 
     public GirlHero[] Girls;
+
+    //UI,오브젝트
+    public GameObject IllustUISlot;
+
+
+    private PuzzleManager thePuzzle;
+    private void Start()
+    {
+        thePuzzle = FindObjectOfType<PuzzleManager>();
+    }
+
+
+
+
+    public void SetIngameUI()
+    { 
+        
+    
+    }
+
+
+
+
 
 }

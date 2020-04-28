@@ -120,6 +120,7 @@ public class PuzzleManager : MonoBehaviour
     {
         PuzzleUpdate();
 
+        //큐브 없이 큐브 이밴트를 사용해야 할 때 사용
         if (AutoEvent == true)
         {
             if (AutoEventTime < 0.6f)
@@ -367,6 +368,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
                 _Map.Slots[i].nodeColor = NodeColor.Null;
+
             }
 
             _Map.Slots[i].SlotNum = i;
@@ -382,7 +384,6 @@ public class PuzzleManager : MonoBehaviour
                 {
                     _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
                     _Map.Slots[i].nodeColor = NodeColor.Null;
-
                     if (_Map.Slots[i].cube != null)
                     {
                         _Map.Slots[i].cube.Resetting();
@@ -613,7 +614,6 @@ public class PuzzleManager : MonoBehaviour
             _Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[ColorNum];
             _Cube.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             _Cube.GetComponent<Cube>().MinimapSprite.sprite = CubeSprites[ColorNum];
-            _Slot.cubeType = CubeType.NormalCube;
         }
         _Slot.nodeColor = (NodeColor)ColorNum;
         _Cube.GetComponent<Cube>().nodeColor = (NodeColor)ColorNum;
@@ -1117,8 +1117,8 @@ public class PuzzleManager : MonoBehaviour
         ColorList.Remove(secondHeroNum);
         PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeSprites[FirstHeroNum]);
         PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeSprites[secondHeroNum]);
-        playerUIs[0].SetUi(FirstHeroNum);
-        playerUIs[1].SetUi(secondHeroNum);
+        playerUIs[0].SetUi(FirstHeroNum,0);
+        playerUIs[1].SetUi(secondHeroNum,1);
         for (int i = 0; i < 4; i++)
         {
 
@@ -1208,6 +1208,19 @@ public class PuzzleManager : MonoBehaviour
 
         }
     }
+
+    // 퍼즐 슬롯을 모두 리셋(초기화)시키는 이밴트
+    public void PuzzleResetting(MapManager _Map)
+    {
+        for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
+        {
+            _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
+            _Map.Slots[i].nodeColor = NodeColor.Null;
+            _Map.Slots[i].cube.Resetting();
+            _Map.Slots[i].cube = null;
+        }
+    }
+
 
 
 
