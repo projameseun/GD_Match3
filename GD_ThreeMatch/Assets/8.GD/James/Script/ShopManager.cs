@@ -3,9 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using JetBrains.Annotations;
 
 //깃털,도박사의동전,플라스크
 //양피지, 다이아모드, 머니, 레벨
+
+[System.Serializable]
+ public class Serialization<T>
+{
+    
+    public Serialization(List<T> _target) => target = _target;
+
+    public List<T> target;
+}
 
 [System.Serializable]
 public class ItemInfo
@@ -25,115 +36,132 @@ public class ItemInfo
 
 
     }
-}
+}//public class ItemInfo
 
 public class ShopManager : MonoBehaviour
 {
-       public List<ItemInfo> ItemList, MyItemList, CurItemList;
-       public GameObject[] Slot;
-       public TextAsset UserInfo;
-       public GameObject LevelTxt, ParchmentTxt, DiamondTxt, MoneyTxt;
+     public List<ItemInfo> ItemList, MyItemList, CurItemList;
+     public GameObject[] Slot;
+     public TextAsset UserInfo;
+     public GameObject LevelTxt, ParchmentTxt, DiamondTxt, MoneyTxt;
+
+    string FilePath;
    
-       public void Start()
-       {
+     public void Start()
+     {
    
        //값테스트
        ValueSetting();
    
-           //print(UserInfo);
+         //print(UserInfo);
    
-           for (int i = 0; i < Slot.Length; i++)
-           {
-               // Debug.Log(Slot.Length);
-               Slot[i].SetActive(false);
-           }
+         for (int i = 0; i < Slot.Length; i++)
+         {
+             // Debug.Log(Slot.Length);
+             Slot[i].SetActive(false);
+         }
    
-           string[] line = UserInfo.text.Substring(0, UserInfo.text.Length - 1).Split('\n');
-           for (int i = 0; i < line.Length; i++)
-           {
-               string[] row = line[i].Split('\t');
+         string[] line = UserInfo.text.Substring(0, UserInfo.text.Length - 1).Split('\n');
+         for (int i = 0; i < line.Length; i++)
+         {
+             string[] row = line[i].Split('\t');
    
-               ItemList.Add(new ItemInfo(row[0], row[1], row[2], row[3], row[4] == "TRUE", row[5]));
+             ItemList.Add(new ItemInfo(row[0], row[1], row[2], row[3], row[4] == "TRUE", row[5]));
    
-           }
+         }
+
+        //경로
+        FilePath = Application.persistentDataPath + "/MyItem.txt";
+        print(FilePath);
+
+        //저장
+        Save();
+    
    
+     }
+
+    public void Save()
+    {
+        //리스트는 저장이 안되지만 크랠스는 저장이된다.
+        string jdata = JsonUtility.ToJson(new Serialization<ItemInfo>(ItemList));
+        //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
+        File.WriteAllText(FilePath, jdata);
+    }
    
-       }
+     public void FreeClick()
+     {
+          
+     }
+     public void FeatherClick() //깃털버튼
+     {
    
-       public void FreeClick()
-       {
+     }
    
-       }
-       public void FeatherClick() //깃털버튼
-       {
+     public void CoinClick() //도박사의동전버튼
+     {
    
-       }
+     }
    
-       public void CoinClick() //도박사의동전버튼
-       {
+     public void PlaskClick() //용암프라스크버튼
+     {
    
-       }
+     }
    
-       public void PlaskClick() //용암프라스크버튼
-       {
+     public void ItemBuyBtn(int a_idx)
+     {
+         for (int i = 0; i < Slot.Length; i++)
+         {
+             if (i == a_idx)
+                 Slot[i].SetActive(true);
+             else
+                 Slot[i].SetActive(false);
+         }
+     }
    
-       }
+     public void InfoBtn(int a_idx)   //소녀상세
+     {
+         for (int i = 0; i < Slot.Length; i++)
+         {
+             if (i == a_idx)
+                 Slot[i].SetActive(true);
+             else
+                 Slot[i].SetActive(false);
    
-       public void ItemBuyBtn(int a_idx)
-       {
-           for (int i = 0; i < Slot.Length; i++)
-           {
-               if (i == a_idx)
-                   Slot[i].SetActive(true);
-               else
-                   Slot[i].SetActive(false);
-           }
-       }
+         }
+     }
    
-       public void InfoBtn(int a_idx)   //소녀상세
-       {
-           for (int i = 0; i < Slot.Length; i++)
-           {
-               if (i == a_idx)
-                   Slot[i].SetActive(true);
-               else
-                   Slot[i].SetActive(false);
+     public void MainBtn(int a_idx)
+     {
+         for (int i = 0; i < Slot.Length; i++)
+         {
+             if (i == a_idx)
+                 Slot[i].SetActive(true);
+             else
+                 Slot[i].SetActive(false);
+         }
+     }
    
-           }
-       }
+     public void AchivBtn(int a_idx)  //업적
+     {
+         for (int i = 0; i < Slot.Length; i++)
+         {
+             if (i == a_idx)
+                 Slot[i].SetActive(true);
+             else
+                 Slot[i].SetActive(false);
+         }
+     }
    
-       public void MainBtn(int a_idx)
-       {
-           for (int i = 0; i < Slot.Length; i++)
-           {
-               if (i == a_idx)
-                   Slot[i].SetActive(true);
-               else
-                   Slot[i].SetActive(false);
-           }
-       }
-   
-       public void AchivBtn(int a_idx)  //업적
-       {
-           for (int i = 0; i < Slot.Length; i++)
-           {
-               if (i == a_idx)
-                   Slot[i].SetActive(true);
-               else
-                   Slot[i].SetActive(false);
-           }
-       }
-   
-       public void SetBtn(int a_idx)    //환경설정
-       {
-           for (int i = 0; i < Slot.Length; i++)
-           {
-               if (i == a_idx)
-                   Slot[i].SetActive(true);
-               else
-                   Slot[i].SetActive(false);
-           }
-       }
+     public void SetBtn(int a_idx)    //환경설정
+     {
+         for (int i = 0; i < Slot.Length; i++)
+         {
+             if (i == a_idx)
+                 Slot[i].SetActive(true);
+             else
+                 Slot[i].SetActive(false);
+         }
+     }
    
     public void ValueSetting()
     {
