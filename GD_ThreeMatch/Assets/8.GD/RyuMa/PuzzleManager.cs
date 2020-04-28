@@ -406,9 +406,10 @@ public class PuzzleManager : MonoBehaviour
             {
                 if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
                 {
-                    if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Enemy ||
-                        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Goal ||
-                        _Map.Slots[i].nodeColor != NodeColor.Player ||
+                    //변경하지 않을 큐브를 넣는다
+                    if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Enemy &&
+                        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Goal &&
+                        _Map.Slots[i].nodeColor != NodeColor.Player &&
                         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Object)
                     {
                         _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
@@ -962,7 +963,7 @@ public class PuzzleManager : MonoBehaviour
         return false;
     }
 
-    //현재 매치가 가능한 상태가 있는지 체크
+    //현재 매치가 가능한 상태가 있는지 체크 true 면 가능, false 면 불가능
     public bool DeadlockCheck(MapManager _Map)
     {
 
@@ -1073,6 +1074,11 @@ public class PuzzleManager : MonoBehaviour
             theMoveMap.Slots[i].GetComponentInChildren<Text>().enabled = Active;
         }
 
+    }
+
+    public void BT_Test()
+    {
+        SetSlot(theMoveMap,true);
     }
 
 
