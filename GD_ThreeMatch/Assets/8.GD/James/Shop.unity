@@ -1126,7 +1126,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/0
+  m_Text: 
 --- !u!222 &503382552
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1672,7 +1672,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100,000
+  m_Text: 
 --- !u!222 &677441289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1852,7 +1852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lv01
+  m_Text: 
 --- !u!222 &857851054
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2706,9 +2706,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9896df91bb8c06d4b980a6c2890fac6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserList: []
-  MyUserList: []
-  CurUserList: []
+  ItemList: []
+  MyItemList: []
+  CurItemList: []
   Slot:
   - {fileID: 1650740737}
   - {fileID: 521973722}
@@ -2716,6 +2716,10 @@ MonoBehaviour:
   - {fileID: 1461701810}
   - {fileID: 167183817}
   UserInfo: {fileID: 4900000, guid: 300bd53e49dd15b4e90ca51975b2b746, type: 3}
+  LevelTxt: {fileID: 1667061031}
+  ParchmentTxt: {fileID: 1583841252}
+  DiamondTxt: {fileID: 661678798}
+  MoneyTxt: {fileID: 1523857322}
 --- !u!4 &1185751020
 Transform:
   m_ObjectHideFlags: 0
@@ -3710,7 +3714,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100,000
+  m_Text: 
 --- !u!222 &1489626832
 CanvasRenderer:
   m_ObjectHideFlags: 0

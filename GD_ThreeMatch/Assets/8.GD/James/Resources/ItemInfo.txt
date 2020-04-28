@@ -1,0 +1,6 @@
+﻿Plask	RedPlask	용암플라스크	0	FALSE	1
+Feather	Feather	실리드의깃털	0	FALSE	2
+Money	Money	머니	0	FALSE	3
+Coin	Coin	도박사의동전	0	FALSE	4
+Diamond	Diamond	다이아몬드	0	FALSE	5
+Parchment	Parchment	양피지	0	FALSE	6
