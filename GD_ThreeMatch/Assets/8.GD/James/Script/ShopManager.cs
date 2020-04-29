@@ -21,47 +21,53 @@ using JetBrains.Annotations;
 [System.Serializable]
 public class ItemInfo
 {
-    public string Type, Name, Explain, Number, Index;
+    public string Type, Name, Explain, Value, Index;
     public bool isUsing;
 
 
-    public ItemInfo(string type, string name, string explain, string number, bool isUsing, string index)
+    public ItemInfo(string type, string name, string explain, string value, bool isUsing, string index)
     {
         Type = type;
         Name = name;
         Explain = explain;
-        Number = number;
+        Value = value;
         this.isUsing = isUsing;
         Index = index;
 
 
     }
+    public ItemInfo() { }
 }//public class ItemInfo
 
 public class ShopManager : MonoBehaviour
 {
      public List<ItemInfo> ItemList, MyItemList, CurItemList;
      public GameObject[] Slot;
-     public TextAsset UserInfo;
+     public TextAsset ItemBase;
      public GameObject LevelTxt, ParchmentTxt, DiamondTxt, MoneyTxt;
 
-    string FilePath;
-   
-     public void Start()
+    public static ShopManager instance = null;
+
+
+    public void Start()
      {
+       // StorageManager.instance.Save();
+
+
    
        //값테스트
        ValueSetting();
    
          //print(UserInfo);
-   
+
+    //5개의 메뉴는 모두 끄고 시작한다
          for (int i = 0; i < Slot.Length; i++)
          {
              // Debug.Log(Slot.Length);
              Slot[i].SetActive(false);
          }
    
-         string[] line = UserInfo.text.Substring(0, UserInfo.text.Length - 1).Split('\n');
+         string[] line = ItemBase.text.Substring(0, ItemBase.text.Length - 1).Split('\n');
          for (int i = 0; i < line.Length; i++)
          {
              string[] row = line[i].Split('\t');
@@ -70,27 +76,20 @@ public class ShopManager : MonoBehaviour
    
          }
 
-        //경로
-        FilePath = Application.persistentDataPath + "/MyItem.txt";
-        print(FilePath);
+      
+       // print(FilePath);
 
         //저장
-        Save();
+       // Save();
     
    
      }
 
-    public void Save()
-    {
-        //리스트는 저장이 안되지만 크랠스는 저장이된다.
-        string jdata = JsonUtility.ToJson(new Serialization<ItemInfo>(ItemList));
-        //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
-        File.WriteAllText(FilePath, jdata);
-    }
+
    
      public void FreeClick()
      {
-          
+        PlayerManager.instance.AddItem("Free");
      }
      public void FeatherClick() //깃털버튼
      {
