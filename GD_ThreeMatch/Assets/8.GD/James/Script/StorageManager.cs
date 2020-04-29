@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-public  class StorageManager : MonoBehaviour
+public class StorageManager : MonoBehaviour
 {
-   
+
     public static StorageManager instance = null;
 
 
@@ -12,23 +12,36 @@ public  class StorageManager : MonoBehaviour
 
     void Start()
     {
-        //경로
-       
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void Save()
+    private void SaveItem()
     {
+        print(FilePath);
         //리스트는 저장이 안되지만 크랠스는 저장이된다.
-        string jdata = JsonUtility.ToJson(new Serialization<ItemInfo>(PlayerManager.instance.GetItemList()));
+        string jdata = JsonUtility.ToJson(new ItemSerialization<ItemInfo>(PlayerManager.instance.GetItemList()));
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         File.WriteAllText(FilePath, jdata);
     }
+    private void SavePlyerInfo()
+    {
 
-    
+    }
+    public void Save()
+    {
+       // SavePlyerInfo();
+        SaveItem();
+    }
+    void LoadItem()
+    {
+
+    }
+
 }

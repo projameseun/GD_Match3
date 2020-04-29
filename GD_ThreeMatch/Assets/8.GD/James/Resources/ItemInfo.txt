@@ -1,6 +1,3 @@
-﻿Plask	용암플라스크	용암에서 끓여낸 플라스크	0	FALSE	1
-Feather	실리드의깃털	실리드한테 뽑은 깃털	0	FALSE	2
-Money	돈	게임의 머니	0	FALSE	3
-Coin	도박사의동전	도박사들이 좋아했던 동전	0	FALSE	4
-Luby	루비	눈이부시게 빛나고 있다	0	FALSE	5
-Parchment	양피지	양피지를 모으자	0	FALSE	6
+﻿Plask	용암플라스크	용암에서끓여낸플라스크	0	FALSE	1
+Feather	실리드의깃털	실리드한테뽑은깃털	0	FALSE	2
+Coin	도박사의동전	도박사들이좋아했던동전	0	FALSE	3
