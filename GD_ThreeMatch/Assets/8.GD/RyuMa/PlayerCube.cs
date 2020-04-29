@@ -6,7 +6,7 @@ using Spine.Unity;
 public class PlayerCube : MonoBehaviour
 {
     public SkeletonAnimation anim;
-
+    public string AnimName;
 
     public Direction direction;
 
@@ -45,7 +45,10 @@ public class PlayerCube : MonoBehaviour
 
     public void ChangeAnim(string _state,bool _Loop = false)
     {
+        if (_state == AnimName)
+            return;
         anim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
+        AnimName = _state;
     }
 
 

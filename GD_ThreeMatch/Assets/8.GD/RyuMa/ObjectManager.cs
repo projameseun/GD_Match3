@@ -108,6 +108,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
         CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart)
     {
+
         GameObject CubeEffect = FindObj("CubeE");
         CubeEffect.GetComponent<CubeEffect>().SetCubeEffect(_StartVec,
                    _Target,
@@ -125,6 +126,17 @@ public class ObjectManager : MonoBehaviour
             _StartVec, _Speech, _LifeTime);
         return Speech;
 
+    }
+
+    public GameObject CubeParticleEvent(Vector2 TargetVec,Sprite _sprite)
+    {
+        GameObject Paricle = FindObj("CubeP", false);
+        Paricle.transform.position = TargetVec;
+        Paricle.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(
+            0, _sprite);
+        Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 5);
+        Paricle.SetActive(true);
+        return Paricle;
     }
 
 

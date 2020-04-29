@@ -20,7 +20,7 @@ public class Cube : MonoBehaviour
     public int Num;
     public float Size;
     public SpriteRenderer MinimapSprite;
-    public bool SpecialCube = false;
+    public bool SpecialCube = false; // 특수블럭으로 바꾸기 위해 사용하는 값
 
 
     // trunk
@@ -36,8 +36,10 @@ public class Cube : MonoBehaviour
     private PuzzleManager thePuzzle;
     private ObjectManager theObject;
     private BattleManager theBattle;
+    private BattleResultManager theBattleResult;
     private void Start()
     {
+        theBattleResult = FindObjectOfType<BattleResultManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theObject = FindObjectOfType<ObjectManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
@@ -86,7 +88,7 @@ public class Cube : MonoBehaviour
                     DestroyEvent = false;
                     SpriteRen.color = color;
                     SpriteRen.sprite = thePuzzle.SpecialSprites[(int)specialCubeType];
-
+                    SpecialCube = false;
                     return;
 
                 }
@@ -129,9 +131,22 @@ public class Cube : MonoBehaviour
                 thePuzzle.theBattleMap.Slots[Num].nodeColor = nodeColor;
             }
         }
+        else
+        {
+            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+            {
+                thePuzzle.theMoveMap.Slots[Num].nodeColor = NodeColor.Blank;
+            }
+            else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+            {
+                thePuzzle.theBattleMap.Slots[Num].nodeColor = NodeColor.Blank;
+            }
+        }
 
 
     }
+
+    //큐브가 터진 후 날라가는 이팩트
     public void DestroyCubeEvent()
     {
 
@@ -156,6 +171,9 @@ public class Cube : MonoBehaviour
         else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
             bool CheckEnemyColor = false;
+
+            theBattleResult.DestroyCubeCount++;
+
             //전투 이동 구하기
             for (int i = 0; i < theBattle.EnemyCubeUi.Length; i++)
             {
@@ -196,16 +214,38 @@ public class Cube : MonoBehaviour
 
         }
 
-        theObject.CubeEffectEvent(this.transform.position, Target, nodeColor,
-            (CubeEffectType)CubeTarget, CubeNum, true);
+        if ((int)nodeColor < 6)
+        {
+            theObject.CubeEffectEvent(this.transform.position, Target, nodeColor,
+        (CubeEffectType)CubeTarget, CubeNum, true);
 
-        GameObject Paricle = theObject.FindObj("CubeP", false);
-        Paricle.transform.position = this.transform.position;
-        Paricle.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(
-            0, this.GetComponent<SpriteRenderer>().sprite);
-        Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 5);
-        Paricle.SetActive(true);
-        DestoryTime = 0;
+        }
+
+
+        if (specialCubeType == SpecialCubeType.Null)
+        {
+            theObject.CubeParticleEvent(this.transform.position,
+        this.GetComponent<SpriteRenderer>().sprite);
+        }
+
+
+        if (specialCubeType == SpecialCubeType.Horizon)
+        {
+
+        }
+        else if (specialCubeType == SpecialCubeType.Vertical)
+        {
+
+        }
+        else if (specialCubeType == SpecialCubeType.Hanoi)
+        { 
+        
+        }
+
+
+
+
+            DestoryTime = 0;
         DestroyEvent = false;
     }
 

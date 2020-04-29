@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+//using TMPro;
+
+
+
+
 
 [System.Serializable]
 public class EnemyBase

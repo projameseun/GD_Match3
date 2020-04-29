@@ -33,6 +33,7 @@ public class PuzzleManager : MonoBehaviour
         FillBlank,
         CheckMatch,
         ChangeMode,
+        BattleResult,
         Event,
     }
     public GameMode gameMode = GameMode.MoveMap;
@@ -73,8 +74,8 @@ public class PuzzleManager : MonoBehaviour
     public bool SlotDown = false;
     public bool CubeEvent = false;
 
-    public int MoveCount;
-
+    public int MoveCount;   //움직임 가능한 횟수
+    public int CurrentPoint; // 현재 점수
     // 일러스트에 넣을 소녀들의 번호
     public int FirstHeroNum;
     public int secondHeroNum;
@@ -1214,6 +1215,15 @@ public class PuzzleManager : MonoBehaviour
 
         }
     }
+
+
+    public void BT_HorizonTest(int _SlotNum)
+    {
+        state = State.FillBlank;
+        theMatch.FindHorizonCube(theMoveMap, _SlotNum);
+    }
+
+
 
     // 퍼즐 슬롯을 모두 리셋(초기화)시키는 이밴트
     public void PuzzleResetting(MapManager _Map)

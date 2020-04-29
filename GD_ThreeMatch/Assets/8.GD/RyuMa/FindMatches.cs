@@ -5,6 +5,15 @@ using UnityEngine;
 public class FindMatches : MonoBehaviour
 {
 
+    // 큐브를 터트릴 경우 조건을 통합적으로 표시해주는 구간
+    //_Map.Slots[i].nodeColor != NodeColor.Player &&
+    //_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+    //_Map.Slots[i].nodeColor != NodeColor.Blank &&
+
+
+
+
+
     public List<PuzzleSlot> currentMathces = new List<PuzzleSlot>();
     List<int> SpecialCubeList = new List<int>();
 
@@ -500,6 +509,34 @@ public class FindMatches : MonoBehaviour
         SpecialCubeList.Clear();
     }
 
+
+    public void FindHorizonCube(MapManager _Map,int _SlotNum)
+    {
+        int HorizonNum =0;
+        for (int i = 0; i < _Map.Vertical; i++)
+        {
+            if (_SlotNum < i * _Map.Horizontal)
+            {
+                HorizonNum = (i - 1) * _Map.Horizontal;
+                break;
+            }
+        }
+
+        bool CubeEvent = true;
+
+        for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
+        {
+            if (_Map.Slots[i].nodeColor != NodeColor.Player &&
+                _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[i].nodeColor != NodeColor.Blank)
+            {
+                _Map.Slots[i].cube.DestroyCube(CubeEvent);
+                CubeEvent = false;
+            }
+        }
+
+
+    }
 
 
 
