@@ -55,9 +55,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     Vector2 FirstVec;
     Vector2 CurrentVec;
     private PuzzleManager thePuzzle;
+    private FindMatches theMatch;
     // Start is called before the first frame update
     void Start()
     {
+        theMatch = FindObjectOfType<FindMatches>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
     private void Update()
@@ -119,10 +121,13 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             }
             else if (DownTime[0] > 0 && DownTime[1] <= 0.4f && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
-                Debug.Log("더블클릭 성공");
+                //Debug.Log("더블클릭 성공");
+                SpecialCubeEvent();
                 DownTime[0] = 0;
                 DownTime[1] = 0;
                 DoubleClick[1] = false;
+
+
             }
 
             if (DoubleClick[1] == true)
@@ -215,6 +220,45 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
 
     }
+
+
+    public void SpecialCubeEvent()
+    {
+        if (cube.specialCubeType == SpecialCubeType.Null)
+            return;
+
+        MapManager _Map = null;
+        thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+        {
+            _Map = thePuzzle.theMoveMap;
+        }
+        else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        {
+            _Map = thePuzzle.theBattleMap;
+        }
+
+
+        switch (cube.specialCubeType)
+        {
+            case SpecialCubeType.Horizon:
+                theMatch.FindHorizonCube(_Map, SlotNum);
+                break;
+
+            case SpecialCubeType.Vertical:
+                theMatch.FindVerticalCube(_Map, SlotNum);
+                break;
+
+            case SpecialCubeType.Hanoi:
+                theMatch.FindHanoiCube(_Map, SlotNum);
+                break;
+        }
+
+    }
+
+    
+
 
 
 }

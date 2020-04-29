@@ -154,24 +154,24 @@ public class FindMatches : MonoBehaviour
                                         _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Vertical;
                                         _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
+                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                     }
                                     else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
                                     {
                                         _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Vertical;
                                         _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
+                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                     }
                                     else
                                     {
                                         int rand = Random.Range(0, SpecialCubeList.Count);
                                         _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
+                                        _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                         _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Vertical;
                                     }
 
-
-
-                                    Debug.Log("특수블럭 세로 생성");
                                     //if()
                                     break;
                                 }
@@ -181,12 +181,14 @@ public class FindMatches : MonoBehaviour
                                     {
                                         _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
+                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
                                     }
                                     else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
                                     {
                                         _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
+                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
 
                                     }
@@ -196,6 +198,7 @@ public class FindMatches : MonoBehaviour
 
                                         _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                         _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
+                                        _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
 
                                     }
@@ -218,6 +221,7 @@ public class FindMatches : MonoBehaviour
                                 if (SpecialCubeList.Contains(thePuzzle.SelectNum))
                                 {
                                     _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
+                                    _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                     _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Vertical;
                                     _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
                                 }
@@ -226,11 +230,13 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                     _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Vertical;
                                     _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
+                                    _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                 }
                                 else
                                 {
                                     int rand = Random.Range(0, SpecialCubeList.Count);
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
+                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                     _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Vertical;
                                 }
@@ -247,6 +253,7 @@ public class FindMatches : MonoBehaviour
                                 {
                                     _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                     _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
+                                    _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                     _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
                                 }
                                 else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
@@ -254,13 +261,14 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                     _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
                                     _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
-
+                                    _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                 }
                                 else
                                 {
                                     int rand = Random.Range(0, SpecialCubeList.Count);
 
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
+                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
                                     _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
 
@@ -352,7 +360,7 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                     _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
-                                    Debug.Log("특수블럭 가로 생성");
+
 
                                     break;
                                 }
@@ -513,6 +521,14 @@ public class FindMatches : MonoBehaviour
     public void FindHorizonCube(MapManager _Map,int _SlotNum)
     {
         int HorizonNum =0;
+
+
+        bool Special = true;
+
+
+
+        _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
+
         for (int i = 0; i < _Map.Vertical; i++)
         {
             if (_SlotNum < i * _Map.Horizontal)
@@ -521,8 +537,21 @@ public class FindMatches : MonoBehaviour
                 break;
             }
         }
+        for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
+        {
+            if (_Map.Slots[i].nodeColor != NodeColor.Player &&
+                _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[i].nodeColor != NodeColor.Blank)
+            {
+                if (i == _SlotNum)
+                    continue;
 
-        bool CubeEvent = true;
+                if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
+                    _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Horizon)
+                    Special = false;
+
+            }
+        }
 
         for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
         {
@@ -530,13 +559,317 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
                 _Map.Slots[i].nodeColor != NodeColor.Blank)
             {
-                _Map.Slots[i].cube.DestroyCube(CubeEvent);
-                CubeEvent = false;
+                if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Horizon)
+                    _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
+                _Map.Slots[i].cube.DestroyCube(Special);
+                Special = false;
+
             }
         }
 
+ 
+        Debug.Log("Special = " + Special);
+    }
+
+    public void FindVerticalCube(MapManager _Map, int _SlotNum)
+    {
+        int Vertical = _SlotNum % _Map.Horizontal;
+        _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
+        bool Special = true;
+
+        for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
+        {
+            if (_Map.Slots[i].nodeColor != NodeColor.Player &&
+                 _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+                 _Map.Slots[i].nodeColor != NodeColor.Blank)
+            {
+                if (i == _SlotNum)
+                    continue;
+                if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
+                    _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Vertical)
+                {
+                    Special = false;
+                }
+
+            }
+        }
+
+        for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
+        {
+            if (_Map.Slots[i].nodeColor != NodeColor.Player &&
+                 _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+                 _Map.Slots[i].nodeColor != NodeColor.Blank)
+            {
+
+                if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Vertical)
+                    _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
+
+                _Map.Slots[i].cube.DestroyCube(Special);
+                Special = false;
+
+            }
+        }
+
+       
+
+        Debug.Log("Special = " + Special);
 
     }
+
+    public void FindHanoiCube(MapManager _Map, int _SlotNum)
+    {
+       
+        int CheckCount = 1;
+
+        bool Special = true;
+
+        _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
+
+
+
+        // 11시 방향 확인
+        while (true && Special == true)
+        {
+            int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
+
+            if (Count < _Map.TopRight ||
+                Count % _Map.Horizontal == 0)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                {
+                    Special = false;
+                    break;
+                }
+
+            }
+
+            CheckCount++;
+
+        }
+
+
+        CheckCount = 1;
+        // 1시 방향 확인
+        while (true && Special == true)
+        {
+
+            int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
+
+            if (Count <= _Map.TopRight ||
+                Count % _Map.Horizontal == _Map.Horizontal - 1)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                {
+                    Special = false;
+                    break;
+                }
+            }
+
+            CheckCount++;
+        }
+
+        CheckCount = 1;
+
+        // 7시 방향 확인
+        while (true&& Special == true)
+        {
+            int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
+
+            if (Count >= _Map.BottomLeft ||
+                Count % _Map.Horizontal == 0)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                {
+                    Special = false;
+                    break;
+                }
+            }
+
+            CheckCount++;
+        }
+
+
+        CheckCount = 1;
+
+        // 5시 방향
+        while (true && Special == true)
+        {
+            int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
+
+            if (Count >= _Map.BottomLeft ||
+                Count % _Map.Horizontal == _Map.Horizontal - 1)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                {
+                    Special = false;
+                    break;
+                }
+            }
+
+            CheckCount++;
+        }
+
+
+
+
+
+
+
+
+        // 11시 방향
+        while (true)
+        {
+            int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
+
+            if (Count < _Map.TopRight ||
+                Count % _Map.Horizontal == 0)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+                if (Count == _SlotNum)
+                    continue;
+
+
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+
+
+                _Map.Slots[Count].cube.DestroyCube(Special);
+                Special = false;
+            }
+
+            CheckCount++;
+
+        }
+
+
+        CheckCount = 1;
+        // 1시 방향
+        while (true)
+        {
+            int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
+
+            if (Count <= _Map.TopRight ||
+                Count % _Map.Horizontal == _Map.Horizontal - 1)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+
+
+                _Map.Slots[Count].cube.DestroyCube(Special);
+                Special = false;
+            }
+
+            CheckCount++;
+        }
+
+        CheckCount = 1;
+
+        // 7시 방향
+        while (true)
+        {
+            int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
+
+            if (Count >= _Map.BottomLeft ||
+                Count % _Map.Horizontal == 0)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+
+
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+
+                _Map.Slots[Count].cube.DestroyCube(Special);
+                Special = false;
+            }
+
+            CheckCount++;
+        }
+
+
+        CheckCount = 1;
+
+        // 5시 방향
+        while (true)
+        {
+            int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
+
+            if (Count >= _Map.BottomLeft ||
+                Count % _Map.Horizontal == _Map.Horizontal -1)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].nodeColor != NodeColor.Player &&
+                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+                _Map.Slots[Count].nodeColor != NodeColor.Blank)
+            {
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+
+                _Map.Slots[Count].cube.DestroyCube(Special);
+                Special = false;
+            }
+
+            CheckCount++;
+        }
+
+        _Map.Slots[_SlotNum].cube.DestroyCube(Special);
+        Debug.Log("Special = " + Special);
+    }
+
+
 
 
 

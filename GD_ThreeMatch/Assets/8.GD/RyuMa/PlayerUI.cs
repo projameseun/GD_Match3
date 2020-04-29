@@ -69,7 +69,7 @@ public class PlayerUI : MonoBehaviour
         SkillSlider.fillAmount = 0;
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
 
-        Debug.Log(thePuzzle.IllustSlot.transform.position.y);
+
         SpineMesh.transform.localPosition = new Vector3(
                 theGirl.Girls[_nodeColor].IllustPosX[_Pos],
                 theGirl.Girls[_nodeColor].IllustPosY,

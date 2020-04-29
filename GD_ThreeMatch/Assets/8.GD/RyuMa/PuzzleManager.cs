@@ -34,6 +34,7 @@ public class PuzzleManager : MonoBehaviour
         CheckMatch,
         ChangeMode,
         BattleResult,
+        SpecialCubeEvent,
         Event,
     }
     public GameMode gameMode = GameMode.MoveMap;
@@ -160,7 +161,7 @@ public class PuzzleManager : MonoBehaviour
                     theMatch.FindAllMatches(theMoveMap);
                     if (isMatched)
                     {
-        
+
                         SetMoveCount(-1);
                         DestroyCube(theMoveMap);
                         theMatch.FindSpecialCube(theMoveMap);
@@ -252,6 +253,17 @@ public class PuzzleManager : MonoBehaviour
                 {
                     CubeEvent = false;
                     BT_FillBlank(theMoveMap);
+                }
+            }
+            else if (state == State.SpecialCubeEvent) // 특수블럭 깨지는 상황
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+
+                    BT_FillBlank(theMoveMap);
+
+
                 }
             }
         }
@@ -905,7 +917,7 @@ public class PuzzleManager : MonoBehaviour
         if (PlayerMove == false)
         {
             if (gameMode == GameMode.MoveMap)
-                Player.ChangeAnim("Idle");
+                Player.ChangeAnim("Idle",true);
         }
 
         if (FirstEvent == true)
@@ -974,6 +986,13 @@ public class PuzzleManager : MonoBehaviour
         {
             if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
             {
+
+                //해당 슬롯의 큐브가 특수블럭인지 확인
+                if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null)
+                {
+                    return true;
+                }
+
                 // 상
                 if (_Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                 {
@@ -1220,7 +1239,7 @@ public class PuzzleManager : MonoBehaviour
     public void BT_HorizonTest(int _SlotNum)
     {
         state = State.FillBlank;
-        theMatch.FindHorizonCube(theMoveMap, _SlotNum);
+        theMatch.FindHanoiCube(theMoveMap, _SlotNum);
     }
 
 

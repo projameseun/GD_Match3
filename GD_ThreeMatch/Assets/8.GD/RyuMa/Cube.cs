@@ -37,8 +37,10 @@ public class Cube : MonoBehaviour
     private ObjectManager theObject;
     private BattleManager theBattle;
     private BattleResultManager theBattleResult;
+    private FindMatches theMatch;
     private void Start()
     {
+        theMatch = FindObjectOfType<FindMatches>();
         theBattleResult = FindObjectOfType<BattleResultManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theObject = FindObjectOfType<ObjectManager>();
@@ -144,6 +146,10 @@ public class Cube : MonoBehaviour
         }
 
 
+
+
+
+
     }
 
     //큐브가 터진 후 날라가는 이팩트
@@ -217,36 +223,57 @@ public class Cube : MonoBehaviour
         if ((int)nodeColor < 6)
         {
             theObject.CubeEffectEvent(this.transform.position, Target, nodeColor,
-        (CubeEffectType)CubeTarget, CubeNum, true);
+            (CubeEffectType)CubeTarget, CubeNum, true);
 
-        }
-
-
-        if (specialCubeType == SpecialCubeType.Null)
-        {
             theObject.CubeParticleEvent(this.transform.position,
-        this.GetComponent<SpriteRenderer>().sprite);
-        }
-
-
-        if (specialCubeType == SpecialCubeType.Horizon)
-        {
+           this.GetComponent<SpriteRenderer>().sprite);
 
         }
-        else if (specialCubeType == SpecialCubeType.Vertical)
-        {
 
-        }
-        else if (specialCubeType == SpecialCubeType.Hanoi)
-        { 
-        
-        }
+
+        SpecialCubeEvent();
 
 
 
-
-            DestoryTime = 0;
+        DestoryTime = 0;
         DestroyEvent = false;
+    }
+
+
+    public void SpecialCubeEvent()
+    {
+        if (specialCubeType == SpecialCubeType.Null)
+            return;
+
+      
+        MapManager _Map = null;
+        thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+        {
+            _Map = thePuzzle.theMoveMap;
+        }
+        else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        {
+            _Map = thePuzzle.theBattleMap;
+        }
+
+
+        switch (specialCubeType)
+        {
+            case SpecialCubeType.Horizon:
+                theMatch.FindHorizonCube(_Map, Num);
+                break;
+
+            case SpecialCubeType.Vertical:
+                theMatch.FindVerticalCube(_Map, Num);
+                break;
+
+            case SpecialCubeType.Hanoi:
+                theMatch.FindHanoiCube(_Map, Num);
+                break;
+        }
+
     }
 
 
@@ -261,6 +288,10 @@ public class Cube : MonoBehaviour
         SpriteRen.color = new Color(1, 1, 1, 1);
         this.gameObject.SetActive(false);
     }
+
+
+
+
 
 
 }
