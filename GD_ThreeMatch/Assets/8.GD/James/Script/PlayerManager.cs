@@ -56,23 +56,27 @@ public class PlayerManager : MonoBehaviour
         return MyItemlist;
     }
 
-    public List<ItemInfo> SetItemList()
+    public List<ItemInfo> SetItemList(List<ItemInfo> a_ItemList)
     {
-   
 
+        MyItemlist = a_ItemList;
+        for(int i=0; i<MyItemlist.Count; i++)
+        {
+           
+            if (i == 0) ShopManager.instance.Feather = int.Parse(MyItemlist[i].Value);
+            if (i == 1) ShopManager.instance.Coin = int.Parse(MyItemlist[i].Value);
+            if (i == 2) ShopManager.instance.Plask = int.Parse(MyItemlist[i].Value);
+        }
         return MyItemlist;
     }
 
-    public List<PlayerInfo> GetPlayerList()
-    {
-        
-        return MyPlayerInfoList;
-    }
+
+    //==========Item
     public void SaveItem(List<ItemInfo> a_ItemList)
     {
         ////끝나면
         MyItemlist = a_ItemList;
-        StorageManager.instance.Save();
+        StorageManager.instance.SaveItem();
     }
     public void LoadItem()
     {
@@ -81,7 +85,19 @@ public class PlayerManager : MonoBehaviour
         StorageManager.instance.Load();
         
     }
-    // Update is called once per frame
+    //==========Item
+    public List<PlayerInfo> GetPlayerList()
+    {
+
+        return MyPlayerInfoList;
+    }
+    public void SavePlayerInfo(List<PlayerInfo> a_PlayerList)
+    {
+        MyPlayerInfoList = a_PlayerList;
+        StorageManager.instance.SavePlyerInfo();
+    }
+
+
     void Update()
     {
         

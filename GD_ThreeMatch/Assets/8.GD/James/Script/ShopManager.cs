@@ -45,8 +45,8 @@ public class ItemInfo
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField]
-    private int Level, Parchment, Luby, Money;
+    
+    public int Level, Parchment, Luby, Money;
 
     
     public int Feather, Coin, Plask;
@@ -58,8 +58,8 @@ public class ShopManager : MonoBehaviour
                        
 
     public static ShopManager instance = null;
+    
 
-    public List<ItemInfo> LoadItemList;
 
     //30:60
     //1:60
@@ -136,8 +136,9 @@ public class ShopManager : MonoBehaviour
      }
      public void FeatherClick() //깃털버튼
      {
-
         instance.Feather++;
+
+        
      }
    
      public void CoinClick() //도박사의동전버튼
