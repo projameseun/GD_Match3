@@ -1115,7 +1115,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3fa8742566db8554db1bb7c11122af2f, type: 3}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -3247,6 +3247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9896df91bb8c06d4b980a6c2890fac6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Level: 0
+  Parchment: 0
+  Luby: 0
+  Money: 0
+  Feather: 0
+  Coin: 0
+  Plask: 0
   Slot:
   - {fileID: 1650740737}
   - {fileID: 521973722}
@@ -3257,6 +3264,11 @@ MonoBehaviour:
   ParchmentTxt: {fileID: 1583841252}
   DiamondTxt: {fileID: 661678798}
   MoneyTxt: {fileID: 1523857322}
+  LoadItemList: []
+  m_WaitTime: 1
+  ParchmentThirty: 5
+  Second: 10
+  is_Parchment: 0
 --- !u!4 &1185751020
 Transform:
   m_ObjectHideFlags: 0

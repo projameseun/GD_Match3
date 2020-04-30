@@ -7,7 +7,6 @@ public class StorageManager : MonoBehaviour
 
     public static StorageManager instance = null;
 
-
     string FilePath = Application.persistentDataPath + "/MyItem.txt";
 
     void Start()
@@ -22,6 +21,16 @@ public class StorageManager : MonoBehaviour
 
     }
 
+    public void Save()
+    {
+        //SavePlyerInfo();  //플레이어정보
+        SaveItem();         //아이템정보
+    }
+    public void Load()
+    {
+        //LoadPlaeyrInfo(); //플레이어정보 
+        LoadItem();         //아이템정보
+    }
     private void SaveItem()
     {
         print(FilePath);
@@ -34,12 +43,18 @@ public class StorageManager : MonoBehaviour
     {
 
     }
-    public void Save()
-    {
-       // SavePlyerInfo();
-        SaveItem();
-    }
+ 
     void LoadItem()
+    {
+        //복호화
+        string jdata = File.ReadAllText(FilePath);
+        // byte[] bytes = System.Convert.FromBase64String(code);
+        //string jdata = System.Text.Encoding.UTF8.GetString(bytes);
+        PlayerManager.instance.SetItemList();
+      
+    }
+
+    private void LoadPlayerInfo()
     {
 
     }

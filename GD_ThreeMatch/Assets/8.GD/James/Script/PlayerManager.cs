@@ -51,29 +51,35 @@ public class PlayerManager : MonoBehaviour
     }
     public List<ItemInfo> GetItemList()
     {
-        //Debug.Log(MyItemlist.Count);
+   
        
+        return MyItemlist;
+    }
+
+    public List<ItemInfo> SetItemList()
+    {
+   
+
         return MyItemlist;
     }
 
     public List<PlayerInfo> GetPlayerList()
     {
+        
         return MyPlayerInfoList;
     }
-    public void AddItem(List<ItemInfo> a_ItemList)
+    public void SaveItem(List<ItemInfo> a_ItemList)
     {
         ////끝나면
-        //ItemInfo data = new ItemInfo();
-        //data.Type = a_ItemName;
-
         MyItemlist = a_ItemList;
-        // MyItemlist.Add(data);
-
-        
-        
-
-
         StorageManager.instance.Save();
+    }
+    public void LoadItem()
+    {
+        ////끝나면
+        
+        StorageManager.instance.Load();
+        
     }
     // Update is called once per frame
     void Update()
