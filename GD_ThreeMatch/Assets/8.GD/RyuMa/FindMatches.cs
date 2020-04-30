@@ -744,7 +744,7 @@ public class FindMatches : MonoBehaviour
 
 
 
-
+        CheckCount = 1;
 
 
 

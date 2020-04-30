@@ -106,13 +106,13 @@ public class ObjectManager : MonoBehaviour
 
     // 큐브 이펙트를 사용하는 함수
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
-        CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart)
+        CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart,float _Speed = 2000)
     {
 
         GameObject CubeEffect = FindObj("CubeE");
         CubeEffect.GetComponent<CubeEffect>().SetCubeEffect(_StartVec,
                    _Target,
-                   _NodeColor, _CubeTarget, _CubeCount, _RandStart
+                   _NodeColor, _CubeTarget, _CubeCount, _RandStart, _Speed
                    );
         return CubeEffect;
 

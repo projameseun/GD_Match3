@@ -5,11 +5,22 @@ using UnityEngine.UI;
 //using TMPro;
 
 
+[System.Serializable]
+public class SkillSlot
+{
+    public int SkillNum;
+    public int SkillCount;
+    public float Percentage = 100;  // 스킬 확률
+
+}
+
+
+
 public enum AttackType
 { 
-    R1 =0,      // 랜덤으로 1명
-    LR1,        // 가장 체력이 낮은 1명
-    R2          // 2명 모두
+    Random1 =0,      // 랜덤으로 1명
+    LowHpAttack,        // 가장 체력이 낮은 1명
+    FullAttack      // 2명 모두
 }
 
 
@@ -21,10 +32,10 @@ public class EnemyBase
 {
     public string EnemyName;
     public Sprite MonsterSprite;
-    public float Damage;
+    public float DamageValue;
     public int Count;
     public int[] CubeCount;
-
+    public SkillSlot[] skillSlots;
 }
 
 
@@ -32,8 +43,19 @@ public class EnemyBase
 public class EnemySkill
 {
     public string SkillName;
-    public float SkillDamage = 1;
+    public float MultiplyValue = 1;
     public AttackType attackType;
+
+}
+
+
+
+public enum BattleState
+{
+    Null = 0,
+    EnemyAttack,
+
+
 
 }
 
@@ -43,36 +65,37 @@ public class EnemySkill
 
 public class BattleManager : MonoBehaviour
 {
-
-
-
+    
 
     public EnemyBase[] Enemy;
     public EnemySkill[] EnemySkill;
+    public BattleState battleState;
     [Space]
     // UI,오브젝트
     public Image EnemyImage;
     public Text EnemyName;
     public Image EnemyHpImage;
     public Text TimeText;
+    public Text EnemyCountText;
     public CubeUI[] EnemyCubeUi;
     [Space]
 
     // 데이터베이스
     public bool BattleStart;    // 배틀 시작시 true
+    public int SelectEnemyNum;  // 선택된 몬스터의 숫자
     public float MaxHp;         // 몬스터 최대체력
     public float CurrentHp;     // 몬스터 현제체력
-    public int SelectEnemyNum;  // 선택된 몬스터의 숫자
     public float GameTime;      // 게임 남은시간
-    public int GameTurnCount;   // 적 공격카운트
+    public int CurrentEnemyCount;   // 적 공격카운트
     public bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
-    public float DamageTime;
-    Color DamageColor = new Color(1, 1, 1);
+ 
+    public bool BattleEvent; //
+
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
-
-
+    float DamageTime;
+    Color DamageColor = new Color(1, 1, 1);
 
     private PuzzleManager thePuzzle;
     private FadeManager theFade;
@@ -119,6 +142,22 @@ public class BattleManager : MonoBehaviour
 
 
             }
+
+            if (thePuzzle.state == PuzzleManager.State.BattleEvent)
+            {
+                if (battleState == BattleState.EnemyAttack)
+                {
+                    EnemyAttackEvent();
+                    battleState = BattleState.Null;
+                    thePuzzle.state = PuzzleManager.State.Ready;
+                    //몬스터 공격 이밴트
+                }
+                
+            
+            }
+
+
+
         }
 
 
@@ -129,7 +168,8 @@ public class BattleManager : MonoBehaviour
     {
         SelectEnemyNum = _enemyNum;
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
-        EnemyName.text = Enemy[_enemyNum].EnemyName;
+        SetEnemyCount(Enemy[_enemyNum].Count);
+        EnemyCountText.text = Enemy[_enemyNum].Count.ToString();
         MaxHp = 0;
         GameTime = 30;
         List<int> ColorNum = new List<int>(ColorNumList);
@@ -193,14 +233,56 @@ public class BattleManager : MonoBehaviour
 
     }
 
+    public float EnemyAttackEvent()
+    {
+        float rand = Random.Range(0.0f, 100.0f);
+        int SkillNum = 0;
+
+        if (Enemy[SelectEnemyNum].skillSlots.Length > 1)
+        {
+            for (int i = 0; i < Enemy[SelectEnemyNum].skillSlots.Length; i++)
+            {
+                if (Enemy[SelectEnemyNum].skillSlots[i].Percentage >= rand)
+                {
+                    SkillNum = Enemy[SelectEnemyNum].skillSlots[i].SkillNum;
+                    break;
+                }
+            }
+        }
+        float damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
+
+        if (EnemySkill[SkillNum].attackType == AttackType.Random1)
+        {
+            thePuzzle.playerUIs[0].TakeDamage((int)damage);
+        }
+        SetEnemyCount(Enemy[SelectEnemyNum].Count); 
+        //TODO: 임시
+
+        return damage;
+    }
 
 
 
 
+    public void SetEnemyCount(int _Count)
+    {
+        CurrentEnemyCount += _Count;
+        if (CurrentEnemyCount < 0)
+            CurrentEnemyCount = 0;
+        EnemyCountText.text = CurrentEnemyCount.ToString();
+    }
 
-    public void MonAttack(int _Value)
-    { 
-        
+
+    public void Resetting()
+    {
+        SelectEnemyNum = 0;
+        MaxHp = 0;
+        CurrentHp = 0;
+        CurrentEnemyCount = 0;
+        GameTime = 0;
+        CurrentEnemyCount = 0;
+        BattleStart = false;
+        DamageEvent = false;
     }
 
 

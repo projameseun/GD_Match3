@@ -33,9 +33,10 @@ public class PuzzleManager : MonoBehaviour
         FillBlank,
         CheckMatch,
         ChangeMode,
-        BattleResult,
+        BattleResult,    // 배틀 끝나고 결과창
         SpecialCubeEvent,
-        Event,
+        BattleInit,      // 처음 배틀 진입시 적 큐브를 감소
+        BattleEvent
     }
     public GameMode gameMode = GameMode.MoveMap;
     public State state;
@@ -113,7 +114,6 @@ public class PuzzleManager : MonoBehaviour
         theCamera = FindObjectOfType<CameraManager>();
         theGirl = FindObjectOfType<GirlManager>();
 
-
     }
 
 
@@ -146,7 +146,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 theFade.FadeEvent = false;
                 SetSlot(theBattleMap, true);
-                theBattle.SetBattle(1);
+                theBattle.SetBattle(0);
                 ChangeGameMode();
             }
 
@@ -287,7 +287,9 @@ public class PuzzleManager : MonoBehaviour
                     theMatch.FindAllMatches(theBattleMap);
                     if (isMatched)
                     {
+                        SetMoveCount(-1);
                         DestroyCube(theBattleMap);
+                        theMatch.FindSpecialCube(theBattleMap);
                         return;
                     }
 
@@ -296,7 +298,6 @@ public class PuzzleManager : MonoBehaviour
                     if (!isMatched)
                     {
                         ChangeCube(theBattleMap, SelectNum, OtherNum, true);
-                        Debug.Log("Not Natched");
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -318,22 +319,40 @@ public class PuzzleManager : MonoBehaviour
                     BT_FillBlank(theBattleMap);
 
                 }
+
+
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
+
                 theMatch.FindAllMatches(theBattleMap);
                 if (isMatched)
                 {
                     DestroyCube(theBattleMap);
+                    theMatch.FindSpecialCube(theBattleMap);
                     return;
                 }
-
-
                 //매치가 안될경우
                 if (!isMatched)
                 {
+                    if (DeadlockCheck(theBattleMap))
+                    {
+                        // 카운트가 0이되어 적이 공격함
+                        if (theBattle.CurrentEnemyCount <= 0)
+                        {
+                            theBattle.battleState = BattleState.EnemyAttack;
+                            state = State.BattleEvent;
+                            return;
+                        }
 
-                    state = State.Ready;
+
+                        state = State.Ready;
+                    }
+                    else
+                    {
+                        SetSlot(theBattleMap, true);
+                        state = State.Ready;
+                    }
                 }
             }
             else if (state == State.DestroyCube)//매치된 큐브 제거
@@ -344,7 +363,18 @@ public class PuzzleManager : MonoBehaviour
                     BT_FillBlank(theBattleMap);
                 }
             }
-            else if (state == State.Event)
+            else if (state == State.SpecialCubeEvent) // 특수블럭 깨지는 상황
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+
+                    BT_FillBlank(theBattleMap);
+
+
+                }
+            }
+            else if (state == State.BattleInit)
             {
                 CheckEnemyCubeCount();
             }
@@ -722,7 +752,7 @@ public class PuzzleManager : MonoBehaviour
                 EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
             }
 
-            state = State.Event;
+            state = State.BattleInit;
         }
         else if (gameMode == GameMode.Battle)
         {
@@ -740,7 +770,6 @@ public class PuzzleManager : MonoBehaviour
     // 빈칸을 방향에 맞게 채우는 기능
     public void BT_FillBlank(MapManager _Map)
     {
-        
 
 
         state = State.FillBlank;
@@ -905,7 +934,8 @@ public class PuzzleManager : MonoBehaviour
             }
         }
 
-        if (PlayerMove == false)
+
+        if (PlayerMove == false && gameMode == GameMode.MoveMap)
         {
             if (gameMode == GameMode.MoveMap)
                 Player.ChangeAnim("Idle",true);
@@ -1113,6 +1143,12 @@ public class PuzzleManager : MonoBehaviour
 
         MoveCountText.text = "Move" + System.Environment.NewLine + MoveCount;
 
+        if (gameMode == GameMode.Battle)
+        {
+            theBattle.SetEnemyCount(-1);
+        }
+
+
     }
 
 
@@ -1214,7 +1250,7 @@ public class PuzzleManager : MonoBehaviour
                             EventEnd = false;
                             theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
                                 theBattle.EnemyCubeUi[i].gameObject, PlayerCubeUI[UINum].cubeColor,
-                                (CubeEffectType)1, -CubeCount, false);
+                                (CubeEffectType)1, -CubeCount, false, 6000);
 
                         }
 

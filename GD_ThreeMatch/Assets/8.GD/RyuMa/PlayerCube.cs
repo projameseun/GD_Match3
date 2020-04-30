@@ -6,6 +6,7 @@ using Spine.Unity;
 public class PlayerCube : MonoBehaviour
 {
     public SkeletonAnimation anim;
+    AnimationState state;
     public string AnimName;
 
     public Direction direction;
@@ -14,10 +15,17 @@ public class PlayerCube : MonoBehaviour
     public int TrakNum;
 
 
-    private void Start()
-    {
+    //색 조정
 
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Q))
+    //    {
+    //        anim.skeleton.SetColor(new Color(0.5f, 0.5f, 0.5f));
+    //    }
+    //}
+
+
 
     public void ChangeDirection(Direction _direction)
     {
