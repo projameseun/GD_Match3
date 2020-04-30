@@ -38,7 +38,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public NodeType nodeType;
     public NodeColor nodeColor;
     public int SlotNum;
-    
+    public int EnemyNum; //적의 번호 인덱스를 받는다
 
     public Text TestText;
 

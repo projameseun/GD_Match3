@@ -5,17 +5,35 @@ using UnityEngine.UI;
 //using TMPro;
 
 
+public enum AttackType
+{ 
+    R1 =0,      // 랜덤으로 1명
+    LR1,        // 가장 체력이 낮은 1명
+    R2          // 2명 모두
+}
+
+
 
 
 
 [System.Serializable]
 public class EnemyBase
 {
-    public string Name;
+    public string EnemyName;
     public Sprite MonsterSprite;
-    public int Damage;
+    public float Damage;
     public int Count;
     public int[] CubeCount;
+
+}
+
+
+[System.Serializable]
+public class EnemySkill
+{
+    public string SkillName;
+    public float SkillDamage = 1;
+    public AttackType attackType;
 
 }
 
@@ -25,22 +43,20 @@ public class EnemyBase
 
 public class BattleManager : MonoBehaviour
 {
-    public enum BattleState
-    { 
-        
-    }
+
 
 
 
     public EnemyBase[] Enemy;
-
+    public EnemySkill[] EnemySkill;
+    [Space]
     // UI,오브젝트
     public Image EnemyImage;
     public Text EnemyName;
     public Image EnemyHpImage;
     public Text TimeText;
     public CubeUI[] EnemyCubeUi;
-
+    [Space]
 
     // 데이터베이스
     public bool BattleStart;    // 배틀 시작시 true
@@ -113,7 +129,7 @@ public class BattleManager : MonoBehaviour
     {
         SelectEnemyNum = _enemyNum;
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
-        EnemyName.text = Enemy[_enemyNum].Name;
+        EnemyName.text = Enemy[_enemyNum].EnemyName;
         MaxHp = 0;
         GameTime = 30;
         List<int> ColorNum = new List<int>(ColorNumList);
@@ -177,6 +193,15 @@ public class BattleManager : MonoBehaviour
 
     }
 
+
+
+
+
+
+    public void MonAttack(int _Value)
+    { 
+        
+    }
 
 
 

@@ -450,15 +450,6 @@ public class PuzzleManager : MonoBehaviour
 
         NotMatchSetCube(_Map);
 
-        for (int i = 0; i < _Map.Slots.Length; i++)
-        {
-            if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
-            {
-                _Map.Slots[i].TestText.text = i.ToString();
-                _Map.Slots[i].cube.Num = i;
-            }
-
-        }
 
 
         if (Reset == false)
@@ -631,7 +622,7 @@ public class PuzzleManager : MonoBehaviour
         }
         _Slot.nodeColor = (NodeColor)ColorNum;
         _Cube.GetComponent<Cube>().nodeColor = (NodeColor)ColorNum;
-
+        _Cube.GetComponent<Cube>().Num = _Slot.SlotNum;
         _Cube.transform.position = _Slot.transform.position;
         _Slot.cube = _Cube.GetComponent<Cube>();
 
@@ -1087,6 +1078,16 @@ public class PuzzleManager : MonoBehaviour
     public void BT_ShowSlotText()
     {
         bool Active = !theMoveMap.Slots[0].GetComponentInChildren<Text>().enabled;
+
+        if (theMoveMap.Slots[0].TestText.text == "")
+        {
+            for (int i = 0; i < theMoveMap.Slots.Length; i++)
+            {
+                theMoveMap.Slots[i].TestText.text = i.ToString();
+            }
+        }
+
+        
 
 
         for (int i = 0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
