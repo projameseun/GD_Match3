@@ -8,8 +8,8 @@ using UnityEngine.UI;
 [System.Serializable]
 public class SkillSlot
 {
-    public int SkillNum;
-    public int SkillCount;
+    public int SkillNum;            // 스킬 인덱스
+    public int SkillCount;          // 스킬 횟수
     public float Percentage = 100;  // 스킬 확률
 
 }
@@ -53,6 +53,7 @@ public class EnemySkill
 public enum BattleState
 {
     Null = 0,
+    BattleInit,
     EnemyAttack,
 
 
@@ -90,13 +91,16 @@ public class BattleManager : MonoBehaviour
     public bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
  
     public bool BattleEvent; //
-
+    public int CurrentAttackCount;
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
     float DamageTime;
     Color DamageColor = new Color(1, 1, 1);
-
+    bool AttackInit;
+    int SkillNum = 0;
+    float damage = 0;
+    private ObjectManager theObject;
     private PuzzleManager thePuzzle;
     private FadeManager theFade;
     private void Start()
@@ -104,6 +108,8 @@ public class BattleManager : MonoBehaviour
        
         theFade = FindObjectOfType<FadeManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
+        theObject = FindObjectOfType<ObjectManager>();
+
 
         ColorNumList.Add(0);
         ColorNumList.Add(1);
@@ -148,13 +154,16 @@ public class BattleManager : MonoBehaviour
                 if (battleState == BattleState.EnemyAttack)
                 {
                     EnemyAttackEvent();
-                    battleState = BattleState.Null;
-                    thePuzzle.state = PuzzleManager.State.Ready;
                     //몬스터 공격 이밴트
+                }
+                else if (battleState == BattleState.BattleInit)
+                {
+                    thePuzzle.CheckEnemyCubeCount();
                 }
                 
             
             }
+
 
 
 
@@ -166,6 +175,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattle(int _enemyNum)
     {
+        
         SelectEnemyNum = _enemyNum;
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
         SetEnemyCount(Enemy[_enemyNum].Count);
@@ -233,33 +243,67 @@ public class BattleManager : MonoBehaviour
 
     }
 
-    public float EnemyAttackEvent()
+    public void EnemyAttackEvent()
     {
-        float rand = Random.Range(0.0f, 100.0f);
-        int SkillNum = 0;
-
-        if (Enemy[SelectEnemyNum].skillSlots.Length > 1)
+        if (AttackInit == false)
         {
-            for (int i = 0; i < Enemy[SelectEnemyNum].skillSlots.Length; i++)
+            float rand = Random.Range(0.0f, 100.0f);
+            SkillNum = 0;
+
+            if (Enemy[SelectEnemyNum].skillSlots.Length > 1)
             {
-                if (Enemy[SelectEnemyNum].skillSlots[i].Percentage >= rand)
+                for (int i = 0; i < Enemy[SelectEnemyNum].skillSlots.Length; i++)
                 {
-                    SkillNum = Enemy[SelectEnemyNum].skillSlots[i].SkillNum;
-                    break;
+                    if (Enemy[SelectEnemyNum].skillSlots[i].Percentage >= rand)
+                    {
+                        SkillNum = Enemy[SelectEnemyNum].skillSlots[i].SkillNum;
+                        break;
+                    }
                 }
             }
+            damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
+            AttackInit = false;
+            CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
         }
-        float damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
-
-        if (EnemySkill[SkillNum].attackType == AttackType.Random1)
+        else
         {
-            thePuzzle.playerUIs[0].TakeDamage((int)damage);
-        }
-        SetEnemyCount(Enemy[SelectEnemyNum].Count); 
-        //TODO: 임시
+            if (CurrentAttackCount == 0)
+                return;
 
-        return damage;
+            CurrentAttackCount--;
+            Vector2 StartVec = EnemyImage.transform.position;
+            GameObject TargetVec = null;
+
+            if (EnemySkill[SkillNum].attackType == AttackType.Random1)
+            {
+
+                if (thePuzzle.playerUIs[0].CurrentHp <= 0)
+                {
+                    TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
+                }
+                else if (thePuzzle.playerUIs[1].CurrentHp <= 0)
+                {
+                    TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
+                }
+                else
+                {
+                    int randUI = Random.Range(0, 2);
+                    TargetVec = thePuzzle.playerUIs[randUI].Trigger.gameObject;
+                }
+
+
+            }
+
+
+            theObject.AttackEffectEvent(EnemyImage.transform.position,
+                TargetVec, (int)damage, 0, true);
+            
+        }
+      
+
+       
     }
+
 
 
 

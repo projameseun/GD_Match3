@@ -69,6 +69,9 @@ public class CubeEffect : MonoBehaviour
         float _Speed = 2000)
     {
 
+        RandomStart = false;
+        _Speed = 5000;
+
 
         if (_TargetVec == null)
             return;

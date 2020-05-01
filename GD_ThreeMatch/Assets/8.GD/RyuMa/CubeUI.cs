@@ -44,7 +44,8 @@ public class CubeUI : MonoBehaviour
                     collision.GetComponent<CubeEffect>().UiSet(this,UINum);
                 }
             }
-            else if (uIType == UIType.EnemyUI &&
+            else 
+            if (uIType == UIType.EnemyUI &&
               collision.GetComponent<CubeEffect>().cubeEffectType == CubeEffectType.GoEnemy)
             {
                 if ((int)collision.GetComponent<CubeEffect>().nodeColor ==

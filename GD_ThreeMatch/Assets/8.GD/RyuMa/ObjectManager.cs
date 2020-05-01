@@ -12,6 +12,7 @@ public class ObjectManager : MonoBehaviour
     public List<GameObject> CubeParticles;
     public List<GameObject> CubeEfs;
     public List<GameObject> SpeechBubbles;
+    public List<GameObject> AttackEffects;
 
 
     //게임오브젝트 프리팹
@@ -19,6 +20,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject CubeParticle;
     public GameObject CubeEf;
     public GameObject SpeechObj;
+    public GameObject AttackEffect;
 
 
 
@@ -37,7 +39,7 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             Cubes.Add(x);
         }
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 50; i++)
         {
             GameObject x = Instantiate(CubeParticle);
             x.SetActive(false);
@@ -55,6 +57,16 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             SpeechBubbles.Add(x);
         }
+        for (int i = 0; i < 15; i++)
+        {
+            GameObject x = Instantiate(AttackEffect);
+            x.SetActive(false);
+            AttackEffects.Add(x);
+        }
+
+
+        
+
     }
 
 
@@ -81,6 +93,10 @@ public class ObjectManager : MonoBehaviour
             case "Speech":
                 List = SpeechBubbles;
                 Frefab = SpeechObj;
+                break;
+            case "AttackEffect":
+                List = AttackEffects;
+                Frefab = AttackEffect;
                 break;
         
         }
@@ -139,6 +155,25 @@ public class ObjectManager : MonoBehaviour
         return Paricle;
     }
 
+    public GameObject AttackEffectEvent(Vector2 StartVec, GameObject _TargetVec, int _DamageValue,
+        int _EffectNum, bool _AttackEvent,
+        bool RandomStart = false,
+        float _Speed = 2000)
+    {
+        GameObject Effect = FindObj("AttackEffect");
+
+        Effect.GetComponent<AttackEffect>()
+            .SetCubeEffect(StartVec, _TargetVec , _DamageValue,
+            _EffectNum, _AttackEvent,
+            RandomStart, _Speed);
+
+        return Effect;
+
+    }
+
+
+
+
 
     public void ResettingObj()
     {
@@ -174,6 +209,15 @@ public class ObjectManager : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < AttackEffects.Count; i++)
+        {
+            if (AttackEffects[i].activeSelf)
+            {
+                AttackEffects[i].GetComponent<AttackEffect>().Resetting();
+            }
+
+
+        }
 
 
     }

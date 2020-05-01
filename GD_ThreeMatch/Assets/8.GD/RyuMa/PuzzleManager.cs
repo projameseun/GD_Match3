@@ -35,7 +35,6 @@ public class PuzzleManager : MonoBehaviour
         ChangeMode,
         BattleResult,    // 배틀 끝나고 결과창
         SpecialCubeEvent,
-        BattleInit,      // 처음 배틀 진입시 적 큐브를 감소
         BattleEvent
     }
     public GameMode gameMode = GameMode.MoveMap;
@@ -374,10 +373,7 @@ public class PuzzleManager : MonoBehaviour
 
                 }
             }
-            else if (state == State.BattleInit)
-            {
-                CheckEnemyCubeCount();
-            }
+
 
 
         }
@@ -752,7 +748,9 @@ public class PuzzleManager : MonoBehaviour
                 EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
             }
 
-            state = State.BattleInit;
+            state = State.BattleEvent;
+            theBattle.battleState = BattleState.BattleInit;
+
         }
         else if (gameMode == GameMode.Battle)
         {
@@ -1265,6 +1263,7 @@ public class PuzzleManager : MonoBehaviour
                     playerUIs[0].transform.position.y + 1.8f);
                 theObject.SpeechEvent(vec, "전투 시작!!!", 3);
                 theBattle.BattleStart = true;
+                theBattle.battleState = BattleState.Null;
 
             }
 

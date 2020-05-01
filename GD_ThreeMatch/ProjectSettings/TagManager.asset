@@ -13,6 +13,7 @@ TagManager:
   - BLANK
   - PLAYER
   - CubeEffect
+  - AttackEffect
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class PlayerUI : MonoBehaviour
     public MeshRenderer SpineMesh;
     public SkeletonAnimation SpinAnim;
 
+    public GameObject Trigger;
     public Image HpStateImage;
     public Image HpSlider;
     public Text HpText;
@@ -15,6 +16,7 @@ public class PlayerUI : MonoBehaviour
     public Text SkillGaugeText;
     public Image GirlCubeImage;
 
+    public int PlayerUINum;
     public float MaxHp;
     public float CurrentHp;
     public float MaxSkillGauge;
@@ -32,7 +34,7 @@ public class PlayerUI : MonoBehaviour
 
 
     // 캐릭터별 카드색, 0이면 왼쪽 1이면 오른쪽
-    public void SetUi(int _nodeColor,int _Pos)
+    public void SetUi(int _nodeColor,int _PlayerNum)
     {
         if (_nodeColor == 0) //검은색
         {
@@ -59,7 +61,7 @@ public class PlayerUI : MonoBehaviour
         {
             SkillSlider.color = new Color(1f, 0.89f, 0.51f);
         }
-
+        PlayerUINum = _PlayerNum;
         GirlCubeImage.sprite = thePuzzle.GirlSprites[_nodeColor];
         MaxHp = theGirl.Girls[_nodeColor].Hp;
         CurrentHp = MaxHp;
@@ -71,7 +73,7 @@ public class PlayerUI : MonoBehaviour
 
 
         SpineMesh.transform.localPosition = new Vector3(
-                theGirl.Girls[_nodeColor].IllustPosX[_Pos],
+                theGirl.Girls[_nodeColor].IllustPosX[_PlayerNum],
                 theGirl.Girls[_nodeColor].IllustPosY,
                 thePuzzle.IllustSlot.transform.position.z);
         SpineMesh.transform.localScale = new Vector3(
@@ -80,10 +82,30 @@ public class PlayerUI : MonoBehaviour
             1);
     }
 
-    
-    public void TakeDamage(int _Damage)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        CurrentHp -= _Damage;
+        if (collision.tag == "AttackEffect")
+        {
+
+            TakeDamage(collision.GetComponent<AttackEffect>());
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+    public void TakeDamage(AttackEffect _Effect)
+    {
+        CurrentHp -= _Effect.DamageValue;
         if (CurrentHp < 0)
             CurrentHp = 0;
         HpSlider.fillAmount = CurrentHp / MaxHp;
@@ -96,6 +118,12 @@ public class PlayerUI : MonoBehaviour
         { 
             //데미지 애니메이션 추가하기
         }
+
+
+
+        _Effect.Resetting();
+
+
 
     }
 
