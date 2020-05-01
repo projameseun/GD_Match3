@@ -7,8 +7,8 @@ public class StorageManager : MonoBehaviour
 
     public static StorageManager instance = null;
 
-    string FilePath = Application.persistentDataPath + "/MyItem.txt";
-    string FilePath2 = Application.persistentDataPath + "/PlayerInfo.txt";
+    string FilePath = Application.persistentDataPath + "/MyItem.json";
+    string FilePath2 = Application.persistentDataPath + "/PlayerInfo.json";
 
     void Start()
     {
@@ -38,6 +38,8 @@ public class StorageManager : MonoBehaviour
         string jdata = JsonUtility.ToJson(new ItemSerialization<ItemInfo>(PlayerManager.instance.GetItemList()));
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         File.WriteAllText(FilePath, jdata);
+        //만약에 Json으로 변경할려면 경로를 변경해주면된다
+        // string FilePath = Application.persistentDataPath + "/MyItem.json";
     }
     public void SavePlyerInfo()
     {
