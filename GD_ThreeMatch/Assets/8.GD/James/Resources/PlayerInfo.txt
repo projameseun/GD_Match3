@@ -1,4 +1,4 @@
-Level	레벨	플레이어레벨	0	FALSE	1
-Luby	루비	눈이부시게빛나고있다	0	FALSE	2
+Level	레벨	플레이어레벨	1	FALSE	1
 Parchment	양피지	양피지를모으자	0	FALSE	3
-Money	돈	게임의머니	0	FALSE	4
+Luby	루비	눈이부시게빛나고있다	100000	FALSE	2
+Money	돈	게임의머니	100000	FALSE	4

@@ -19,10 +19,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-
         InitSetting();
-
-       
     }
 
     void Update()
@@ -41,12 +38,14 @@ public class GameManager : MonoBehaviour
             if (i == 2) SetIemlist[i].Value = ShopManager.instance.Plask.ToString();
         }
 
+        //PlayerInfo Save
         for (int i = 0; i < SetPlayerlist.Count; i++)
         {
-           // Debug.Log("플레이어 리스트저ㅓ장");
+           
+            // Debug.Log("플레이어 리스트저ㅓ장");
             if (i == 0) SetPlayerlist[i].Value = ShopManager.instance.Level.ToString();
-            if (i == 1) SetPlayerlist[i].Value = ShopManager.instance.Luby.ToString();
-            if (i == 2) SetPlayerlist[i].Value = ShopManager.instance.Parchment.ToString();
+            if (i == 1) SetPlayerlist[i].Value = ShopManager.instance.Parchment.ToString();
+            if (i == 2) SetPlayerlist[i].Value = ShopManager.instance.Luby.ToString();
             if (i == 3) SetPlayerlist[i].Value = ShopManager.instance.Money.ToString();
         }
 
@@ -55,14 +54,13 @@ public class GameManager : MonoBehaviour
 
         //PlayerSave
 
-
-        
        
     }
 
     public void LoadBtn()
     {
         PlayerManager.instance.LoadItem();
+        PlayerManager.instance.LoadPlayerInfo();
     }
 
 
@@ -93,7 +91,7 @@ public class GameManager : MonoBehaviour
         string[] line2 = PlayerInfo.text.Substring(0, PlayerInfo.text.Length - 1).Split('\n');
 
         // Debug.Log(line.Length);
-        for (int i = 0; i < line.Length; i++)
+        for (int i = 0; i < line2.Length; i++)
         {
             string[] row = line2[i].Split('\t');
             //Debug.Log(row.Length);
@@ -101,6 +99,7 @@ public class GameManager : MonoBehaviour
             SetPlayerlist.Add(new PlayerInfo(row[0], row[1], row[2], row[3], row[4] == "TRUE", row[5]));
 
         }
+        //Debug.Log(SetPlayerlist.Count);
         //플레이어의 정보
     }
 }

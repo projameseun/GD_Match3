@@ -47,27 +47,21 @@ public class ShopManager : MonoBehaviour
 {
     
     public int Level, Parchment, Luby, Money;
-
-    
     public int Feather, Coin, Plask;
 
-
     public GameObject[] Slot;
-    
     public GameObject LevelTxt, ParchmentTxt, DiamondTxt, MoneyTxt;
-                       
-
     public static ShopManager instance = null;
-    
-
-
+   
     //30:60
     //1:60
+    //Time에대한 변수들
     private float m_Time;
     public float m_WaitTime; //1800 30분
     public int ParchmentThirty;
     public int Second;
     public bool is_Parchment;
+    //Time에대한 변수들
 
     public void Start()
      {
@@ -112,42 +106,50 @@ public class ShopManager : MonoBehaviour
                     ParchmentThirty -= 1;
                     Parchment++;
 
-                }
+                }// if (Second <= 0)
 
                 //Debug.Log(m_Time.ToString(ParchmentThirty + ":" + Second));
                 Second -= 1;
                 m_Time = m_WaitTime;
-
-
-            }
-        }
-
-
-
+            }// if (m_Time < 0f)
+        }// if (is_Parchment)
         ValueSetting();
-       
     }
-
-
 
     public void FreeClick()
      {
-      
+        Debug.Log("Free Click");
      }
      public void FeatherClick() //깃털버튼
      {
+        if (ShopManager.instance.Luby <= 0)
+        {
+            Debug.Log("루비가 부족합니다");
+            return;
+        }
+        ShopManager.instance.Luby -= 100;
         instance.Feather++;
-
-        
      }
    
      public void CoinClick() //도박사의동전버튼
      {
+        if (ShopManager.instance.Luby <= 0)
+        {
+            Debug.Log("루비가 부족합니다");
+            return;
+        }
+        ShopManager.instance.Luby -= 100;
         instance.Coin++;
      }
    
      public void PlaskClick() //용암프라스크버튼
      {
+        if (ShopManager.instance.Luby <= 0)
+        {
+            Debug.Log("루비가 부족합니다");
+            return;
+        }
+        ShopManager.instance.Luby -= 100;
         instance.Plask++;
      }
    
@@ -209,15 +211,15 @@ public class ShopManager : MonoBehaviour
    
     public void ValueSetting()
     {
-       LevelTxt.GetComponentInChildren<Text>().text = "Lv" + Level.ToString();
+       LevelTxt.GetComponentInChildren<Text>().text = "Lv" + ShopManager.instance.Level.ToString();
         if (is_Parchment) ParchmentTxt.GetComponentInChildren<Text>().text = Parchment.ToString() + "/5\n" + ParchmentThirty + ":" + Second;
         else
         {
             ParchmentTxt.GetComponentInChildren<Text>().fontSize = 60;
-            ParchmentTxt.GetComponentInChildren<Text>().text = Parchment.ToString() + "/5\n";
+            ParchmentTxt.GetComponentInChildren<Text>().text = ShopManager.instance.Parchment.ToString() + "/5\n";
         }
-            DiamondTxt.GetComponentInChildren<Text>().text = string.Format("{0}",Luby.ToString("n0"));
-       MoneyTxt.GetComponentInChildren<Text>().text = string.Format("{0}",Money.ToString("n0"));
+       DiamondTxt.GetComponentInChildren<Text>().text = string.Format("{0}",ShopManager.instance.Luby.ToString("n0"));
+       MoneyTxt.GetComponentInChildren<Text>().text = string.Format("{0}",ShopManager.instance.Money.ToString("n0"));
     }
 
 

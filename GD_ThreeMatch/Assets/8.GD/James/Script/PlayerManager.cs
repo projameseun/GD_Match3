@@ -43,16 +43,10 @@ public class PlayerManager : MonoBehaviour
 
     // private ItemInfo data ;
     // Start is called before the first frame update
-    void Start()
-    {
-        
 
-
-    }
+    //Get Set Item
     public List<ItemInfo> GetItemList()
     {
-   
-       
         return MyItemlist;
     }
 
@@ -60,16 +54,16 @@ public class PlayerManager : MonoBehaviour
     {
 
         MyItemlist = a_ItemList;
-        for(int i=0; i<MyItemlist.Count; i++)
+        for (int i = 0; i < MyItemlist.Count; i++)
         {
-           
+
             if (i == 0) ShopManager.instance.Feather = int.Parse(MyItemlist[i].Value);
             if (i == 1) ShopManager.instance.Coin = int.Parse(MyItemlist[i].Value);
             if (i == 2) ShopManager.instance.Plask = int.Parse(MyItemlist[i].Value);
         }
         return MyItemlist;
     }
-
+    //Get Set Item
 
     //==========Item
     public void SaveItem(List<ItemInfo> a_ItemList)
@@ -80,24 +74,48 @@ public class PlayerManager : MonoBehaviour
     }
     public void LoadItem()
     {
-        ////끝나면
-        
-        StorageManager.instance.Load();
+       
+        StorageManager.instance.LoadItem();
         
     }
     //==========Item
-    public List<PlayerInfo> GetPlayerList()
-    {
 
-        return MyPlayerInfoList;
-    }
+    //==========Player
     public void SavePlayerInfo(List<PlayerInfo> a_PlayerList)
     {
         MyPlayerInfoList = a_PlayerList;
         StorageManager.instance.SavePlyerInfo();
     }
 
+    public void LoadPlayerInfo()
+    {
+        StorageManager.instance.LoadPlayerInfo();
+    }
+    //==========Player
 
+    //Get Set Player
+    public List<PlayerInfo> GetPlayerList()
+    {
+
+        return MyPlayerInfoList;
+    }
+    public List<PlayerInfo> SetPlayerInfoList(List<PlayerInfo> a_PlayerInfoList)
+    {
+
+        MyPlayerInfoList = a_PlayerInfoList;
+        //Debug.Log(MyPlayerInfoList.Count);
+        for (int i = 0; i < MyPlayerInfoList.Count; i++)
+        {
+            Debug.Log(MyPlayerInfoList[i].Value);
+            if (i == 0) ShopManager.instance.Level = int.Parse(MyPlayerInfoList[i].Value);
+            if (i == 1) ShopManager.instance.Parchment = int.Parse(MyPlayerInfoList[i].Value);
+            if (i == 2) ShopManager.instance.Luby = int.Parse(MyPlayerInfoList[i].Value);
+            if (i == 3) ShopManager.instance.Money = int.Parse(MyPlayerInfoList[i].Value);
+        }
+        return MyPlayerInfoList;
+    }
+
+    //Get Set Player
     void Update()
     {
         

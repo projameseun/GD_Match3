@@ -15,7 +15,6 @@ public class StorageManager : MonoBehaviour
 
 
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -49,7 +48,7 @@ public class StorageManager : MonoBehaviour
         File.WriteAllText(FilePath2, jdata);
     }
  
-    void LoadItem()
+    public void LoadItem()
     {
         //복호화
         string jdata = File.ReadAllText(FilePath);
@@ -61,9 +60,16 @@ public class StorageManager : MonoBehaviour
        PlayerManager.instance.SetItemList(a_LoadItemList);
     }
 
-    private void LoadPlayerInfo()
+    public void LoadPlayerInfo()
     {
-
+        //복호화
+        string jdata = File.ReadAllText(FilePath2);
+        // byte[] bytes = System.Convert.FromBase64String(code);
+        //string jdata = System.Text.Encoding.UTF8.GetString(bytes);
+        //PlayerManager.instance.SetItemList();
+        List<PlayerInfo> a_PlayerInfoList;
+        a_PlayerInfoList = JsonUtility.FromJson<PlayerInfoSerialization<PlayerInfo>>(jdata).target;
+        PlayerManager.instance.SetPlayerInfoList(a_PlayerInfoList);
     }
 
 }
