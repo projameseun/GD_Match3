@@ -26,8 +26,10 @@ public class PlayerUI : MonoBehaviour
 
     private PuzzleManager thePuzzle;
     private GirlManager theGirl;
+    private BattleManager theBattle;
     private void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theGirl = FindObjectOfType<GirlManager>();
     }
@@ -85,6 +87,7 @@ public class PlayerUI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.tag == "AttackEffect")
         {
 
@@ -117,6 +120,11 @@ public class PlayerUI : MonoBehaviour
         else
         { 
             //데미지 애니메이션 추가하기
+        }
+
+        if (_Effect.AttackEvent == true)
+        {
+            theBattle.BattleEvent = true;
         }
 
 

@@ -568,7 +568,6 @@ public class FindMatches : MonoBehaviour
         }
 
  
-        Debug.Log("Special = " + Special);
     }
 
     public void FindVerticalCube(MapManager _Map, int _SlotNum)

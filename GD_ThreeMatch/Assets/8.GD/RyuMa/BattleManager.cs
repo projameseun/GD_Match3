@@ -66,7 +66,7 @@ public enum BattleState
 
 public class BattleManager : MonoBehaviour
 {
-    
+
 
     public EnemyBase[] Enemy;
     public EnemySkill[] EnemySkill;
@@ -89,7 +89,7 @@ public class BattleManager : MonoBehaviour
     public float GameTime;      // 게임 남은시간
     public int CurrentEnemyCount;   // 적 공격카운트
     public bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
- 
+
     public bool BattleEvent; //
     public int CurrentAttackCount;
 
@@ -105,7 +105,7 @@ public class BattleManager : MonoBehaviour
     private FadeManager theFade;
     private void Start()
     {
-       
+
         theFade = FindObjectOfType<FadeManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theObject = FindObjectOfType<ObjectManager>();
@@ -126,7 +126,7 @@ public class BattleManager : MonoBehaviour
         {
             if (DamageTime <= 1)
             {
-                DamageTime += Time.deltaTime*2;
+                DamageTime += Time.deltaTime * 2;
                 DamageColor.g = DamageTime;
                 DamageColor.b = DamageTime;
                 EnemyImage.color = DamageColor;
@@ -135,7 +135,7 @@ public class BattleManager : MonoBehaviour
             {
                 DamageEvent = false;
                 DamageTime = 0f;
-                EnemyImage.color = new Color(1,1,1);
+                EnemyImage.color = new Color(1, 1, 1);
             }
         }
 
@@ -153,6 +153,14 @@ public class BattleManager : MonoBehaviour
             {
                 if (battleState == BattleState.EnemyAttack)
                 {
+                    Debug.Log("공격");
+
+                    if (BattleEvent == true)
+                    {
+                        EnemyAttackEnd();
+                        return;
+                    }
+
                     EnemyAttackEvent();
                     //몬스터 공격 이밴트
                 }
@@ -160,8 +168,8 @@ public class BattleManager : MonoBehaviour
                 {
                     thePuzzle.CheckEnemyCubeCount();
                 }
-                
-            
+
+
             }
 
 
@@ -175,7 +183,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattle(int _enemyNum)
     {
-        
+
         SelectEnemyNum = _enemyNum;
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
         SetEnemyCount(Enemy[_enemyNum].Count);
@@ -203,7 +211,7 @@ public class BattleManager : MonoBehaviour
                 EnemyCubeUi[i].transform.parent.gameObject.SetActive(false);
             }
 
-           
+
         }
         TimeText.text = "Time : " + ((int)GameTime).ToString();
         CurrentHp = MaxHp;
@@ -227,8 +235,8 @@ public class BattleManager : MonoBehaviour
             BattleStart = false;
             theFade.FadeIn();
         }
-          
-        TimeText.text = "Time : "+ ((int)GameTime).ToString();
+
+        TimeText.text = "Time : " + ((int)GameTime).ToString();
     }
 
     public void TakeDamage(int DamageCount)
@@ -262,11 +270,13 @@ public class BattleManager : MonoBehaviour
                 }
             }
             damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
-            AttackInit = false;
+            AttackInit = true;
             CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
+            Debug.Log("1" +CurrentAttackCount);
         }
         else
         {
+
             if (CurrentAttackCount == 0)
                 return;
 
@@ -297,13 +307,20 @@ public class BattleManager : MonoBehaviour
 
             theObject.AttackEffectEvent(EnemyImage.transform.position,
                 TargetVec, (int)damage, 0, true);
-            
+
         }
-      
 
-       
+
+
     }
-
+    public void EnemyAttackEnd()
+    {
+        battleState = BattleState.Null;
+        thePuzzle.state = PuzzleManager.State.Ready;
+        BattleEvent = false;
+        SetEnemyCount(Enemy[SelectEnemyNum].Count);
+        AttackInit = false;
+    }
 
 
 
