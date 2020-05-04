@@ -15,14 +15,25 @@ public class SkillSlot
 }
 
 
-
+// 스킬 범위
 public enum AttackType
 { 
     Random1 =0,      // 랜덤으로 1명
     LowHpAttack,        // 가장 체력이 낮은 1명
     FullAttack      // 2명 모두
 }
+public enum EnemyTribe
+{ 
+    Null = 0,
+    Slime
+}
 
+public enum EnemyRating
+{ 
+    Normal = 0,
+    MiddleBoss,
+    Boss
+}
 
 
 
@@ -31,6 +42,8 @@ public enum AttackType
 public class EnemyBase
 {
     public string EnemyName;
+    public EnemyTribe enemyTribe;
+    public EnemyRating enemyRating;
     public Sprite MonsterSprite;
     public float DamageValue;
     public int Count;
@@ -44,7 +57,9 @@ public class EnemySkill
 {
     public string SkillName;
     public float MultiplyValue = 1;
+    public int SkillEfeckNum = 0;
     public AttackType attackType;
+  
 
 }
 
@@ -153,8 +168,6 @@ public class BattleManager : MonoBehaviour
             {
                 if (battleState == BattleState.EnemyAttack)
                 {
-                    Debug.Log("공격");
-
                     if (BattleEvent == true)
                     {
                         EnemyAttackEnd();
@@ -272,7 +285,6 @@ public class BattleManager : MonoBehaviour
             damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
             AttackInit = true;
             CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
-            Debug.Log("1" +CurrentAttackCount);
         }
         else
         {
@@ -306,7 +318,7 @@ public class BattleManager : MonoBehaviour
 
 
             theObject.AttackEffectEvent(EnemyImage.transform.position,
-                TargetVec, (int)damage, 0, true);
+                TargetVec, (int)damage, EnemySkill[SkillNum].SkillEfeckNum, true,true);
 
         }
 

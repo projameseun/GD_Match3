@@ -18,10 +18,12 @@ public class AttackEffect : MonoBehaviour
 
     //Trunk
     GameObject TargetPos; //목표 좌표
-    float Speed; // 움직이는 속도
+    float CurrentSpeed; // 움직이는 속도
+    float AddSpeed = 0.3f;
+    float MaxSpeed = 5000;
     float AngleZ; // 목표 회전값
     float AngleSpeed; // 회전속도
-    float AngleAddSpeed; //회전속도 증가폭
+    public float AngleAddSpeed = 0.3f; //회전속도 증가폭
     bool Move;
 
 
@@ -48,7 +50,8 @@ public class AttackEffect : MonoBehaviour
         if (_TargetVec == null)
             return;
 
-        Speed = _Speed;
+
+        CurrentSpeed = _Speed;
         AttackEvent = _AttackEvent;
         EffectNum = _EffectNum;
         DamageValue = _DamageValue;
@@ -59,11 +62,12 @@ public class AttackEffect : MonoBehaviour
         if (RandomStart == true)
         {
             float RandZ = Random.Range(0F, 360f);
+            RandZ = 0;
             Rotation.z = RandZ;
             this.transform.eulerAngles = Rotation;
             FrontPos = FrontObj.transform.position - this.transform.position;
             FrontPos.Normalize();
-            RB2D.velocity = FrontPos * 100;
+            RB2D.velocity = FrontPos * 1000;
             AngleSpeed = 200f;
         }
         else
@@ -77,14 +81,16 @@ public class AttackEffect : MonoBehaviour
     {
         FrontPos = FrontObj.transform.position - this.transform.position;
         FrontPos.Normalize();
-        RB2D.velocity = FrontPos * Speed * Time.deltaTime;
+        RB2D.velocity = FrontPos * CurrentSpeed * Time.deltaTime;
     }
 
 
     public void FindTarget()
     {
 
-        AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed * Time.deltaTime); ;
+        CurrentSpeed = Mathf.Lerp(CurrentSpeed, MaxSpeed, AddSpeed * Time.deltaTime);
+
+        AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed * Time.deltaTime);
 
         AngleZ = GetAngleZ(TargetPos.transform.position, this.transform.position);
         if (Rotation.z + 180 < AngleZ)
@@ -120,7 +126,7 @@ public class AttackEffect : MonoBehaviour
         TargetPos = null;
         AngleSpeed = 0;
         AngleZ = 0;
-        Speed = 2000;
+        CurrentSpeed = 0;
         this.transform.eulerAngles = new Vector3(0, 0, 0);
         Rotation = new Vector3(0, 0, 0);
         gameObject.SetActive(false);

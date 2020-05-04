@@ -69,7 +69,7 @@ public class CubeEffect : MonoBehaviour
         float _Speed = 2000)
     {
 
-        RandomStart = false;
+        RandomStart = true;
         _Speed = 5000;
 
 

@@ -1796,69 +1796,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy:
   - EnemyName: "\uBBF8\uB2C8 \uC2AC\uB77C\uC784"
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: d218a37b7463a574293153da886a44cf, type: 3}
-    DamageValue: 5
+    DamageValue: 6
     Count: 3
     CubeCount: 1e00000028000000
     skillSlots:
     - SkillNum: 0
       SkillCount: 1
       Percentage: 100
-  - EnemyName: "\uBBF8\uB2C8\uC5C4 \uC2AC\uB77C"
+  - EnemyName: "\uBBF8\uB2C8\uC5C4 \uC2AC\uB77C\uC784"
+    enemyTribe: 1
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
+    DamageValue: 9
+    Count: 2
+    CubeCount: 460000003200000050000000
     skillSlots:
     - SkillNum: 0
-      SkillCount: 0
-      Percentage: 60
+      SkillCount: 1
+      Percentage: 100
+  - EnemyName: "\uD0B9 \uC2AC\uB77C\uC784"
+    enemyTribe: 1
+    enemyRating: 2
+    MonsterSprite: {fileID: 21300000, guid: d218a37b7463a574293153da886a44cf, type: 3}
+    DamageValue: 10
+    Count: 2
+    CubeCount: 50000000460000003c00000064000000
+    skillSlots:
     - SkillNum: 0
-      SkillCount: 0
+      SkillCount: 1
+      Percentage: 60
+    - SkillNum: 1
+      SkillCount: 1
       Percentage: 100
   - EnemyName: 
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     DamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     DamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     DamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     DamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     DamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     DamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
-  - EnemyName: 
+    enemyTribe: 0
+    enemyRating: 0
     MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     DamageValue: 0
     Count: 5
@@ -1867,6 +1890,11 @@ MonoBehaviour:
   EnemySkill:
   - SkillName: "\uC2AC\uB77C\uC784 \uC5B4\uD0DD"
     MultiplyValue: 1
+    SkillEfeckNum: 0
+    attackType: 0
+  - SkillName: "\uD0B9\uC2AC\uB77C\uC784 \uB2E4\uC774\uBE0C"
+    MultiplyValue: 1.5
+    SkillEfeckNum: 0
     attackType: 0
   battleState: 0
   EnemyImage: {fileID: 690643896}
