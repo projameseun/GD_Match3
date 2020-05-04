@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using UnityEngine.UI;
+using UnityEditor.Experimental.GraphView;
+
 public class PlayerUI : MonoBehaviour
 {
     public MeshRenderer SpineMesh;
@@ -17,6 +19,7 @@ public class PlayerUI : MonoBehaviour
     public Image GirlCubeImage;
 
     public int PlayerUINum;
+    public NodeColor nodeColor;
     public float MaxHp;
     public float CurrentHp;
     public float MaxSkillGauge;
@@ -41,7 +44,6 @@ public class PlayerUI : MonoBehaviour
         if (_nodeColor == 0) //검은색
         {
             SkillSlider.color = new Color(0.42f, 0.42f, 0.42f);
-            
         }
         else if (_nodeColor == 1) //파란색
         {
@@ -63,6 +65,7 @@ public class PlayerUI : MonoBehaviour
         {
             SkillSlider.color = new Color(1f, 0.89f, 0.51f);
         }
+        nodeColor = (NodeColor)_nodeColor;
         PlayerUINum = _PlayerNum;
         GirlCubeImage.sprite = thePuzzle.GirlSprites[_nodeColor];
         MaxHp = theGirl.Girls[_nodeColor].Hp;

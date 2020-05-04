@@ -11,6 +11,7 @@ public class SkillSlot
     public int SkillNum;            // 스킬 인덱스
     public int SkillCount;          // 스킬 횟수
     public float Percentage = 100;  // 스킬 확률
+    public float SkillCoolDown;     // 스킬 쿨다운
 
 }
 
@@ -57,7 +58,7 @@ public class EnemySkill
 {
     public string SkillName;
     public float MultiplyValue = 1;
-    public int SkillEfeckNum = 0;
+    public int SkillEffectNum = 0;
     public AttackType attackType;
   
 
@@ -104,9 +105,11 @@ public class BattleManager : MonoBehaviour
     public float GameTime;      // 게임 남은시간
     public int CurrentEnemyCount;   // 적 공격카운트
     public bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
-
     public bool BattleEvent; //
     public int CurrentAttackCount;
+    public float MaxSkillCoolDown;
+    public float CurrentSkillCoolDown;
+    public bool AttackEndEvent;
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
@@ -115,6 +118,17 @@ public class BattleManager : MonoBehaviour
     bool AttackInit;
     int SkillNum = 0;
     float damage = 0;
+    Vector2 StartVec = new Vector2();
+    GameObject TargetVec = null;
+
+
+
+
+
+
+
+
+
     private ObjectManager theObject;
     private PuzzleManager thePuzzle;
     private FadeManager theFade;
@@ -173,7 +187,7 @@ public class BattleManager : MonoBehaviour
                         EnemyAttackEnd();
                         return;
                     }
-
+                    
                     EnemyAttackEvent();
                     //몬스터 공격 이밴트
                 }
@@ -264,6 +278,12 @@ public class BattleManager : MonoBehaviour
 
     }
 
+
+
+    // 공격 이밴트
+    // 공격 시작시 해당 유닛의 스킬을 확률값에 맞게 정한다
+    // 시작시 초기화 단계후 쿨다운에 맞춰서 스킬을 발사한다
+    // 마지막 스킬에는 스킬 앤드 이밴트를 받아 스킬이 끝났다는걸 알려준다
     public void EnemyAttackEvent()
     {
         if (AttackInit == false)
@@ -285,6 +305,9 @@ public class BattleManager : MonoBehaviour
             damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
             AttackInit = true;
             CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
+            MaxSkillCoolDown = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCoolDown;
+            CurrentSkillCoolDown = 0;
+            AttackEndEvent = false;
         }
         else
         {
@@ -292,33 +315,91 @@ public class BattleManager : MonoBehaviour
             if (CurrentAttackCount == 0)
                 return;
 
-            CurrentAttackCount--;
-            Vector2 StartVec = EnemyImage.transform.position;
-            GameObject TargetVec = null;
-
-            if (EnemySkill[SkillNum].attackType == AttackType.Random1)
+            if (CurrentSkillCoolDown > 0)
             {
+                CurrentSkillCoolDown -= Time.deltaTime;
+            }
+            else
+            {
+                CurrentAttackCount--;
+                if (CurrentAttackCount == 0)
+                    AttackEndEvent = true;
+                // 쿨타임 적용
+                CurrentSkillCoolDown = MaxSkillCoolDown;
+                // 파티클 시작지점 적용 나중에 추가할것
+                StartVec = EnemyImage.transform.position;
 
-                if (thePuzzle.playerUIs[0].CurrentHp <= 0)
+
+                // 스킬 타입분류
+                if (EnemySkill[SkillNum].attackType == AttackType.Random1)
                 {
-                    TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
+
+                    if (thePuzzle.playerUIs[0].CurrentHp <= 0)
+                    {
+                        TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
+                    }
+                    else if (thePuzzle.playerUIs[1].CurrentHp <= 0)
+                    {
+                        TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
+                    }
+                    else
+                    {
+                        int randUI = Random.Range(0, 2);
+                        TargetVec = thePuzzle.playerUIs[randUI].Trigger.gameObject;
+                    }
+
+
                 }
-                else if (thePuzzle.playerUIs[1].CurrentHp <= 0)
+                else if (EnemySkill[SkillNum].attackType == AttackType.LowHpAttack)
+                {
+                    if (thePuzzle.playerUIs[0].CurrentHp <= 0)
+                    {
+                        TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
+                    }
+                    else if (thePuzzle.playerUIs[1].CurrentHp <= 0)
+                    {
+                        TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
+                    }
+                    else
+                    {
+                        if (thePuzzle.playerUIs[0].CurrentHp == thePuzzle.playerUIs[1].CurrentHp)
+                        {
+                            int randUI = Random.Range(0, 2);
+                            TargetVec = thePuzzle.playerUIs[randUI].Trigger.gameObject;
+                        }
+                        else
+                        {
+                            if (thePuzzle.playerUIs[0].CurrentHp <= thePuzzle.playerUIs[1].CurrentHp)
+                            {
+                                TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
+                            }
+                            else
+                            {
+                                TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
+                            }
+                        }
+
+                    }
+                }
+                else if (EnemySkill[SkillNum].attackType == AttackType.FullAttack)
                 {
                     TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
-                }
-                else
-                {
-                    int randUI = Random.Range(0, 2);
-                    TargetVec = thePuzzle.playerUIs[randUI].Trigger.gameObject;
+                    theObject.AttackEffectEvent(EnemyImage.transform.position,
+                  TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, false, true);
+
+                    TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
+                    theObject.AttackEffectEvent(EnemyImage.transform.position,
+                  TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
+
+                    return;
                 }
 
 
+                theObject.AttackEffectEvent(EnemyImage.transform.position,
+                    TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
             }
 
-
-            theObject.AttackEffectEvent(EnemyImage.transform.position,
-                TargetVec, (int)damage, EnemySkill[SkillNum].SkillEfeckNum, true,true);
+          
 
         }
 

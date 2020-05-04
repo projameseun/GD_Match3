@@ -69,7 +69,7 @@ public class CubeEffect : MonoBehaviour
         float _Speed = 2000)
     {
 
-        RandomStart = true;
+        RandomStart = false;
         _Speed = 5000;
 
 
@@ -174,8 +174,6 @@ public class CubeEffect : MonoBehaviour
 
     public void UiSet(CubeUI _UI, int _UiNum)
     {
-        if (_UiNum < 2)
-            thePuzzle.playerUIs[_UiNum].AddSkillGauge(CubeCount);
 
 
         _UI.CubeCount += CubeCount;
