@@ -2,30 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum CharacterState
+{
+    NULL = 0,
+    Alice,
+    Beryl
+}
+
 
 public class GirlSel : MonoBehaviour
 {
-    public SkeletonAnimation skeletonAnimation;
+    public SkeletonAnimation skeletonAnimation = null;
     public SkeletonDataAsset data_Alice;
     public SkeletonDataAsset data_Beryl;
+
+    public Button aliceBtn;
+    public Button BerylBtn;
+    public CharacterState characterState = CharacterState.NULL;
 
     // Update is called once per frame
     void Start()
     {
-        if (skeletonAnimation.skeletonDataAsset != null)
+        aliceBtn.onClick.AddListener(() =>
         {
-            if (skeletonAnimation.skeletonDataAsset == data_Alice)
-            {
-                Debug.Log("앨리스 출력");
-            }
-        }
-        if (skeletonAnimation.skeletonDataAsset != null)
-        {
-            if (skeletonAnimation.skeletonDataAsset == data_Beryl)
-            {
-                Debug.Log("배릴 출력");
-            }
-        }
+            characterState = CharacterState.Alice;
+            skeletonAnimation.skeletonDataAsset = data_Alice;
+        });
 
+        BerylBtn.onClick.AddListener(() =>
+        {
+            characterState = CharacterState.Beryl;
+            skeletonAnimation.skeletonDataAsset = data_Beryl;
+        });
     }
+
+    
 }
+
