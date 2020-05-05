@@ -33,9 +33,9 @@ public class PuzzleManager : MonoBehaviour
         FillBlank,
         CheckMatch,
         ChangeMode,
-        BattleResult,
+        BattleResult,    // 배틀 끝나고 결과창
         SpecialCubeEvent,
-        Event,
+        BattleEvent
     }
     public GameMode gameMode = GameMode.MoveMap;
     public State state;
@@ -113,7 +113,6 @@ public class PuzzleManager : MonoBehaviour
         theCamera = FindObjectOfType<CameraManager>();
         theGirl = FindObjectOfType<GirlManager>();
 
-
     }
 
 
@@ -146,7 +145,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 theFade.FadeEvent = false;
                 SetSlot(theBattleMap, true);
-                theBattle.SetBattle(1);
+                theBattle.SetBattle(0);
                 ChangeGameMode();
             }
 
@@ -287,7 +286,9 @@ public class PuzzleManager : MonoBehaviour
                     theMatch.FindAllMatches(theBattleMap);
                     if (isMatched)
                     {
+                        SetMoveCount(-1);
                         DestroyCube(theBattleMap);
+                        theMatch.FindSpecialCube(theBattleMap);
                         return;
                     }
 
@@ -296,7 +297,6 @@ public class PuzzleManager : MonoBehaviour
                     if (!isMatched)
                     {
                         ChangeCube(theBattleMap, SelectNum, OtherNum, true);
-                        Debug.Log("Not Natched");
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -318,22 +318,40 @@ public class PuzzleManager : MonoBehaviour
                     BT_FillBlank(theBattleMap);
 
                 }
+
+
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
+
                 theMatch.FindAllMatches(theBattleMap);
                 if (isMatched)
                 {
                     DestroyCube(theBattleMap);
+                    theMatch.FindSpecialCube(theBattleMap);
                     return;
                 }
-
-
                 //매치가 안될경우
                 if (!isMatched)
                 {
+                    if (DeadlockCheck(theBattleMap))
+                    {
+                        // 카운트가 0이되어 적이 공격함
+                        if (theBattle.CurrentEnemyCount <= 0)
+                        {
+                            theBattle.battleState = BattleState.EnemyAttack;
+                            state = State.BattleEvent;
+                            return;
+                        }
 
-                    state = State.Ready;
+
+                        state = State.Ready;
+                    }
+                    else
+                    {
+                        SetSlot(theBattleMap, true);
+                        state = State.Ready;
+                    }
                 }
             }
             else if (state == State.DestroyCube)//매치된 큐브 제거
@@ -344,10 +362,18 @@ public class PuzzleManager : MonoBehaviour
                     BT_FillBlank(theBattleMap);
                 }
             }
-            else if (state == State.Event)
+            else if (state == State.SpecialCubeEvent) // 특수블럭 깨지는 상황
             {
-                CheckEnemyCubeCount();
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+
+                    BT_FillBlank(theBattleMap);
+
+
+                }
             }
+
 
 
         }
@@ -450,15 +476,6 @@ public class PuzzleManager : MonoBehaviour
 
         NotMatchSetCube(_Map);
 
-        for (int i = 0; i < _Map.Slots.Length; i++)
-        {
-            if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
-            {
-                _Map.Slots[i].TestText.text = i.ToString();
-                _Map.Slots[i].cube.Num = i;
-            }
-
-        }
 
 
         if (Reset == false)
@@ -631,7 +648,7 @@ public class PuzzleManager : MonoBehaviour
         }
         _Slot.nodeColor = (NodeColor)ColorNum;
         _Cube.GetComponent<Cube>().nodeColor = (NodeColor)ColorNum;
-
+        _Cube.GetComponent<Cube>().Num = _Slot.SlotNum;
         _Cube.transform.position = _Slot.transform.position;
         _Slot.cube = _Cube.GetComponent<Cube>();
 
@@ -731,7 +748,9 @@ public class PuzzleManager : MonoBehaviour
                 EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
             }
 
-            state = State.Event;
+            state = State.BattleEvent;
+            theBattle.battleState = BattleState.BattleInit;
+
         }
         else if (gameMode == GameMode.Battle)
         {
@@ -749,7 +768,6 @@ public class PuzzleManager : MonoBehaviour
     // 빈칸을 방향에 맞게 채우는 기능
     public void BT_FillBlank(MapManager _Map)
     {
-        
 
 
         state = State.FillBlank;
@@ -914,7 +932,8 @@ public class PuzzleManager : MonoBehaviour
             }
         }
 
-        if (PlayerMove == false)
+
+        if (PlayerMove == false && gameMode == GameMode.MoveMap)
         {
             if (gameMode == GameMode.MoveMap)
                 Player.ChangeAnim("Idle",true);
@@ -1088,6 +1107,16 @@ public class PuzzleManager : MonoBehaviour
     {
         bool Active = !theMoveMap.Slots[0].GetComponentInChildren<Text>().enabled;
 
+        if (theMoveMap.Slots[0].TestText.text == "")
+        {
+            for (int i = 0; i < theMoveMap.Slots.Length; i++)
+            {
+                theMoveMap.Slots[i].TestText.text = i.ToString();
+            }
+        }
+
+        
+
 
         for (int i = 0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
         {
@@ -1111,6 +1140,12 @@ public class PuzzleManager : MonoBehaviour
             MoveCount = 0;
 
         MoveCountText.text = "Move" + System.Environment.NewLine + MoveCount;
+
+        if (gameMode == GameMode.Battle)
+        {
+            theBattle.SetEnemyCount(-1);
+        }
+
 
     }
 
@@ -1213,7 +1248,7 @@ public class PuzzleManager : MonoBehaviour
                             EventEnd = false;
                             theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
                                 theBattle.EnemyCubeUi[i].gameObject, PlayerCubeUI[UINum].cubeColor,
-                                (CubeEffectType)1, -CubeCount, false);
+                                (CubeEffectType)1, -CubeCount, false, 6000);
 
                         }
 
@@ -1228,6 +1263,7 @@ public class PuzzleManager : MonoBehaviour
                     playerUIs[0].transform.position.y + 1.8f);
                 theObject.SpeechEvent(vec, "전투 시작!!!", 3);
                 theBattle.BattleStart = true;
+                theBattle.battleState = BattleState.Null;
 
             }
 

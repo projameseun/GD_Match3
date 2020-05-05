@@ -61,12 +61,16 @@ public class CubeEffect : MonoBehaviour
     }
 
 
-    public void SetCubeEffect(Vector2 StartVec,GameObject _TargetVec,
+    public void SetCubeEffect(Vector2 StartVec, GameObject _TargetVec,
         NodeColor _nodeColor,
         CubeEffectType _Type,
         int _CubeCount,
-        bool RandomStart)
+        bool RandomStart,
+        float _Speed = 2000)
     {
+
+        RandomStart = false;
+        _Speed = 5000;
 
 
         if (_TargetVec == null)
@@ -99,6 +103,7 @@ public class CubeEffect : MonoBehaviour
             this.GetComponent<SpriteRenderer>().color = new Color(1f, 0.89f, 0.51f);
         }
 
+        Speed = _Speed;
 
         this.transform.position = StartVec;
         nodeColor = _nodeColor;
@@ -167,10 +172,8 @@ public class CubeEffect : MonoBehaviour
 
 
 
-    public void UiSet(CubeUI _UI, int _UiNum)
+    public void UiSet(CubeUI _UI)
     {
-        if (_UiNum < 2)
-            thePuzzle.playerUIs[_UiNum].AddSkillGauge(CubeCount);
 
 
         _UI.CubeCount += CubeCount;
@@ -219,6 +222,7 @@ public class CubeEffect : MonoBehaviour
         TargetPos = null;
         AngleSpeed = 0;
         AngleZ = 0;
+        Speed = 2000;
         this.transform.eulerAngles = new Vector3(0, 0, 0);
         Rotation = new Vector3(0, 0, 0);
         gameObject.SetActive(false);

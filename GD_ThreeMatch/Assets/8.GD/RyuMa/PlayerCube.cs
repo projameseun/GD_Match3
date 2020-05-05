@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using Spine;
 
 public class PlayerCube : MonoBehaviour
 {
     public SkeletonAnimation anim;
+    [SpineSlot]
+
     public string AnimName;
 
     public Direction direction;
@@ -14,10 +17,23 @@ public class PlayerCube : MonoBehaviour
     public int TrakNum;
 
 
-    private void Start()
-    {
+    //색 조정
 
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Q))
+    //    {
+    //        anim.skeleton.SetColor(new Color(0.5f, 0.5f, 0.5f));
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.W))
+    //    {
+    //        anim.skeleton.Data.FindSlot("Hand_L_1").
+    //    }
+
+
+    //}
+
+
 
     public void ChangeDirection(Direction _direction)
     {

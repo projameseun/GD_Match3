@@ -152,9 +152,17 @@ public class Cube : MonoBehaviour
 
     }
 
-    //큐브가 터진 후 날라가는 이팩트
+    //큐브가 터진 후 이밴트
     public void DestroyCubeEvent()
     {
+        for (int i = 0; i < 2; i++)
+        {
+            if (thePuzzle.playerUIs[i].nodeColor == nodeColor)
+            {
+                thePuzzle.playerUIs[i].AddSkillGauge(1);
+            }
+        }
+
 
         int CubeNum = 1;   // 플레이어면 1, 적이면 -1
         int CubeTarget = 0;  // 플레이어면 0, 적이면 1
@@ -222,9 +230,12 @@ public class Cube : MonoBehaviour
 
         if ((int)nodeColor < 6)
         {
-            theObject.CubeEffectEvent(this.transform.position, Target, nodeColor,
+            GameObject CubeEffect = theObject.CubeEffectEvent(this.transform.position, Target, nodeColor,
             (CubeEffectType)CubeTarget, CubeNum, true);
-
+            if (theBattle.CurrentEnemyCount == 0 && CubeTarget == 1)
+            {
+                theBattle.PlayerAttackEffect.Add(CubeEffect);
+            }
             theObject.CubeParticleEvent(this.transform.position,
            this.GetComponent<SpriteRenderer>().sprite);
 
