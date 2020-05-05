@@ -104,12 +104,8 @@ public class BattleManager : MonoBehaviour
     public float CurrentHp;     // 몬스터 현제체력
     public float GameTime;      // 게임 남은시간
     public int CurrentEnemyCount;   // 적 공격카운트
-    public bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
-    public bool BattleEvent; //
-    public int CurrentAttackCount;
-    public float MaxSkillCoolDown;
-    public float CurrentSkillCoolDown;
-    public bool AttackEndEvent;
+    public bool BattleEvent; // 몬스터 공격이 끝나면 true
+    public List<GameObject> PlayerAttackEffect;
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
@@ -120,8 +116,13 @@ public class BattleManager : MonoBehaviour
     float damage = 0;
     Vector2 StartVec = new Vector2();
     GameObject TargetVec = null;
-
-
+    bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
+    int CurrentAttackCount; //현재 남은 공격횟수
+    float MaxSkillCoolDown; // 최대 공격횟수
+    float CurrentSkillCoolDown; // 스킬 쿨다운
+    bool AttackEndEvent; // 마지막 공격때 적용
+    float Player1CacHp; // 소녀체력계산
+    float Player2CacHp; // 소녀체력계산
 
 
 
@@ -171,6 +172,7 @@ public class BattleManager : MonoBehaviour
 
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
+
             if (BattleStart)
             {
                 UILoad();
@@ -182,6 +184,9 @@ public class BattleManager : MonoBehaviour
             {
                 if (battleState == BattleState.EnemyAttack)
                 {
+                    if (PlayerAttackEffect.Count > 0 || DamageEvent == true)
+                        return;
+
                     if (BattleEvent == true)
                     {
                         EnemyAttackEnd();
@@ -213,6 +218,7 @@ public class BattleManager : MonoBehaviour
 
         SelectEnemyNum = _enemyNum;
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
+        CurrentEnemyCount = 0;
         SetEnemyCount(Enemy[_enemyNum].Count);
         EnemyCountText.text = Enemy[_enemyNum].Count.ToString();
         MaxHp = 0;
@@ -290,6 +296,8 @@ public class BattleManager : MonoBehaviour
         {
             float rand = Random.Range(0.0f, 100.0f);
             SkillNum = 0;
+            Player1CacHp = thePuzzle.playerUIs[0].CurrentHp;
+            Player2CacHp = thePuzzle.playerUIs[1].CurrentHp;
 
             if (Enemy[SelectEnemyNum].skillSlots.Length > 1)
             {
@@ -305,6 +313,8 @@ public class BattleManager : MonoBehaviour
             damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
             AttackInit = true;
             CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
+            if (CurrentAttackCount == 0)
+                CurrentAttackCount = 1;
             MaxSkillCoolDown = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCoolDown;
             CurrentSkillCoolDown = 0;
             AttackEndEvent = false;
@@ -334,11 +344,11 @@ public class BattleManager : MonoBehaviour
                 if (EnemySkill[SkillNum].attackType == AttackType.Random1)
                 {
 
-                    if (thePuzzle.playerUIs[0].CurrentHp <= 0)
+                    if (Player1CacHp <= 0)
                     {
                         TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
                     }
-                    else if (thePuzzle.playerUIs[1].CurrentHp <= 0)
+                    else if (Player2CacHp <= 0)
                     {
                         TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
                     }
@@ -352,24 +362,24 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (EnemySkill[SkillNum].attackType == AttackType.LowHpAttack)
                 {
-                    if (thePuzzle.playerUIs[0].CurrentHp <= 0)
+                    if (Player1CacHp <= 0)
                     {
                         TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
                     }
-                    else if (thePuzzle.playerUIs[1].CurrentHp <= 0)
+                    else if (Player2CacHp <= 0)
                     {
                         TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
                     }
                     else
                     {
-                        if (thePuzzle.playerUIs[0].CurrentHp == thePuzzle.playerUIs[1].CurrentHp)
+                        if (Player1CacHp == Player2CacHp)
                         {
                             int randUI = Random.Range(0, 2);
                             TargetVec = thePuzzle.playerUIs[randUI].Trigger.gameObject;
                         }
                         else
                         {
-                            if (thePuzzle.playerUIs[0].CurrentHp <= thePuzzle.playerUIs[1].CurrentHp)
+                            if (Player1CacHp <= Player2CacHp)
                             {
                                 TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
                             }
@@ -386,14 +396,31 @@ public class BattleManager : MonoBehaviour
                     TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
                     theObject.AttackEffectEvent(EnemyImage.transform.position,
                   TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, false, true);
+                    Player1CacHp -= (int)damage;
+
 
                     TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
                     theObject.AttackEffectEvent(EnemyImage.transform.position,
                   TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
-
+                    Player2CacHp -= (int)damage;
                     return;
                 }
 
+
+                if (TargetVec == thePuzzle.playerUIs[0].Trigger.gameObject)
+                {
+                    Player1CacHp -= (int)damage;
+                    if (Player1CacHp < 0)
+                        Player1CacHp = 0;
+                }
+
+                else if (TargetVec == thePuzzle.playerUIs[1].Trigger.gameObject)
+                {
+                    Player2CacHp -= (int)damage;
+                    if (Player2CacHp < 0)
+                        Player2CacHp = 0;
+                }
+                    
 
                 theObject.AttackEffectEvent(EnemyImage.transform.position,
                     TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
@@ -438,9 +465,4 @@ public class BattleManager : MonoBehaviour
         BattleStart = false;
         DamageEvent = false;
     }
-
-
-
-
-
 }

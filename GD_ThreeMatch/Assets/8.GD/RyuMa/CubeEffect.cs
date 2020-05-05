@@ -172,7 +172,7 @@ public class CubeEffect : MonoBehaviour
 
 
 
-    public void UiSet(CubeUI _UI, int _UiNum)
+    public void UiSet(CubeUI _UI)
     {
 
 

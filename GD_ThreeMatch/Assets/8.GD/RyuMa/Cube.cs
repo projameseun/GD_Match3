@@ -230,9 +230,12 @@ public class Cube : MonoBehaviour
 
         if ((int)nodeColor < 6)
         {
-            theObject.CubeEffectEvent(this.transform.position, Target, nodeColor,
+            GameObject CubeEffect = theObject.CubeEffectEvent(this.transform.position, Target, nodeColor,
             (CubeEffectType)CubeTarget, CubeNum, true);
-
+            if (theBattle.CurrentEnemyCount == 0 && CubeTarget == 1)
+            {
+                theBattle.PlayerAttackEffect.Add(CubeEffect);
+            }
             theObject.CubeParticleEvent(this.transform.position,
            this.GetComponent<SpriteRenderer>().sprite);
 

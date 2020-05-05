@@ -24,8 +24,10 @@ public class CubeUI : MonoBehaviour
 
 
     private PuzzleManager thePuzzle;
+    private BattleManager theBattle;
     private void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
 
@@ -41,17 +43,22 @@ public class CubeUI : MonoBehaviour
                 if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
                     (int)cubeColor)
                 {
-                    collision.GetComponent<CubeEffect>().UiSet(this,UINum);
+                    collision.GetComponent<CubeEffect>().UiSet(this);
                 }
             }
             else 
             if (uIType == UIType.EnemyUI &&
               collision.GetComponent<CubeEffect>().cubeEffectType == CubeEffectType.GoEnemy)
             {
+                if (theBattle.PlayerAttackEffect.Contains(collision.gameObject))
+                {
+                    theBattle.PlayerAttackEffect.Remove(collision.gameObject);
+                }
+
                 if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
                     (int)cubeColor)
                 {
-                    collision.GetComponent<CubeEffect>().UiSet(this, UINum);
+                    collision.GetComponent<CubeEffect>().UiSet(this);
                 }
             }
 
