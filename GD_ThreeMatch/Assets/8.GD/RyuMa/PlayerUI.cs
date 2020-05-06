@@ -5,10 +5,21 @@ using Spine.Unity;
 using UnityEngine.UI;
 using UnityEditor.Experimental.GraphView;
 
+public enum PlayerUIState
+{ 
+    Null = 0,
+    Idle,
+    Die
+}
+
+
 public class PlayerUI : MonoBehaviour
 {
     public MeshRenderer SpineMesh;
     public SkeletonAnimation SpinAnim;
+
+    public PlayerUIState state;
+
 
     public GameObject Trigger;
     public Image HpStateImage;
@@ -142,7 +153,7 @@ public class PlayerUI : MonoBehaviour
     public void AddSkillGauge(int _CubeCount)
     {
 
-        if (_CubeCount < 0)
+        if (_CubeCount < 0 || state == PlayerUIState.Die)
             return;
 
         CurrentSkillGauge += _CubeCount;
@@ -161,6 +172,8 @@ public class PlayerUI : MonoBehaviour
 
     public void PlayerDie()
     {
+        state = PlayerUIState.Die;
+
         SpinAnim.AnimationState.SetAnimation(0, "Die", true);
         
     }

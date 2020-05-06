@@ -71,6 +71,7 @@ public enum BattleState
     Null = 0,
     BattleInit,
     EnemyAttack,
+    PlayerDie,
 
 
 
@@ -433,18 +434,45 @@ public class BattleManager : MonoBehaviour
 
 
     }
+
+    // 몬스터의 공격이 끝났을 때
     public void EnemyAttackEnd()
     {
-        battleState = BattleState.Null;
-        thePuzzle.state = PuzzleManager.State.Ready;
-        BattleEvent = false;
-        SetEnemyCount(Enemy[SelectEnemyNum].Count);
-        AttackInit = false;
+        // 게임 게속 진행
+        if (CheckPlayerRetire() == false)
+        {
+            battleState = BattleState.Null;
+            thePuzzle.state = PuzzleManager.State.Ready;
+            BattleEvent = false;
+            SetEnemyCount(Enemy[SelectEnemyNum].Count);
+            AttackInit = false;
+        }
+        else // 플레이어 2명 모두 죽음
+        {
+            battleState = BattleState.PlayerDie;
+            Debug.Log("전멸");
+            BattleStart = false;
+            theFade.FadeIn();
+
+        }
+
+
+    }
+
+    // 플레이어가 모두 죽었는지 체크한다. true면 전멸, false면 계속 진행
+    public bool CheckPlayerRetire()
+    {
+        bool Retire = false;
+        if (thePuzzle.playerUIs[0].CurrentHp <= 0 &&
+            thePuzzle.playerUIs[1].CurrentHp <= 0)
+        {
+            Retire = true;
+        }
+        return Retire;
     }
 
 
-
-
+    // 몬스터의 카운터를 세팅한다
     public void SetEnemyCount(int _Count)
     {
         CurrentEnemyCount += _Count;
