@@ -6,7 +6,7 @@ public class StorageManager : MonoBehaviour
 {
 
     public static StorageManager instance = null;
-
+ 
     string FilePath = Application.persistentDataPath + "/MyItem.json";
     string FilePath2 = Application.persistentDataPath + "/PlayerInfo.json";
 
@@ -35,7 +35,7 @@ public class StorageManager : MonoBehaviour
     {
         print(FilePath);
         //리스트는 저장이 안되지만 크랠스는 저장이된다.
-        string jdata = JsonUtility.ToJson(new ItemSerialization<ItemInfo>(PlayerManager.instance.GetItemList()));
+        string jdata = JsonUtility.ToJson(new ItemSerialization<ItemInfo>(PlayerManager.instance.MyItemList));
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         File.WriteAllText(FilePath, jdata);
         //만약에 Json으로 변경할려면 경로를 변경해주면된다
@@ -52,6 +52,7 @@ public class StorageManager : MonoBehaviour
  
     public void LoadItem()
     {
+        Debug.Log("로드를 눌렀습니다");
         //복호화
         string jdata = File.ReadAllText(FilePath);
         // byte[] bytes = System.Convert.FromBase64String(code);
@@ -59,7 +60,7 @@ public class StorageManager : MonoBehaviour
         //PlayerManager.instance.SetItemList();
         List<ItemInfo> a_LoadItemList;
        a_LoadItemList = JsonUtility.FromJson<ItemSerialization<ItemInfo>>(jdata).target;
-       PlayerManager.instance.SetItemList(a_LoadItemList);
+       PlayerManager.instance.MyItemList = (a_LoadItemList);
     }
 
     public void LoadPlayerInfo()

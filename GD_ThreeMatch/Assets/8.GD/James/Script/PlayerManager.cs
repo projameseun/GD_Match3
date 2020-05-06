@@ -37,39 +37,55 @@ public class PlayerManager : MonoBehaviour
     static public PlayerManager instance;
 
     private List<PlayerInfo> MyPlayerInfoList = new List<PlayerInfo>();
-    private List<ItemInfo> MyItemlist = new List<ItemInfo>();
+    private List<ItemInfo> myitemList = new List<ItemInfo>();
 
+    public List<ItemInfo> MyItemList
+    {
+        get { return myitemList; }
+
+        set
+        {
+            myitemList = value;
+            for (int i = 0; i < myitemList.Count; i++)
+            {
+
+                if (i == 0) ShopManager.instance.Feather = int.Parse(myitemList[i].Value);
+                if (i == 1) ShopManager.instance.Coin = int.Parse(myitemList[i].Value);
+                if (i == 2) ShopManager.instance.Plask = int.Parse(myitemList[i].Value);
+            }
+        }
+    }
 
 
     // private ItemInfo data ;
     // Start is called before the first frame update
 
-    //Get Set Item
-    public List<ItemInfo> GetItemList()
-    {
-        return MyItemlist;
-    }
+    ////Get Set Item
+    //public List<ItemInfo> GetItemList()
+    //{
+    //    return MyItemlist;
+    //}
 
-    public List<ItemInfo> SetItemList(List<ItemInfo> a_ItemList)
-    {
+    //public List<ItemInfo> SetItemList(List<ItemInfo> a_ItemList)
+    //{
 
-        MyItemlist = a_ItemList;
-        for (int i = 0; i < MyItemlist.Count; i++)
-        {
+    //    MyItemlist = a_ItemList;
+    //    for (int i = 0; i < MyItemlist.Count; i++)
+    //    {
 
-            if (i == 0) ShopManager.instance.Feather = int.Parse(MyItemlist[i].Value);
-            if (i == 1) ShopManager.instance.Coin = int.Parse(MyItemlist[i].Value);
-            if (i == 2) ShopManager.instance.Plask = int.Parse(MyItemlist[i].Value);
-        }
-        return MyItemlist;
-    }
+    //        if (i == 0) ShopManager.instance.Feather = int.Parse(MyItemlist[i].Value);
+    //        if (i == 1) ShopManager.instance.Coin = int.Parse(MyItemlist[i].Value);
+    //        if (i == 2) ShopManager.instance.Plask = int.Parse(MyItemlist[i].Value);
+    //    }
+    //    return MyItemlist;
+    //}
     //Get Set Item
 
     //==========Item
     public void SaveItem(List<ItemInfo> a_ItemList)
     {
         ////끝나면
-        MyItemlist = a_ItemList;
+        MyItemList = a_ItemList;
         StorageManager.instance.SaveItem();
     }
     public void LoadItem()
