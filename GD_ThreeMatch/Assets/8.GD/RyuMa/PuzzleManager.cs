@@ -308,6 +308,7 @@ public class PuzzleManager : MonoBehaviour
                 if (CubeEvent == true)
                 {
                     CubeEvent = false;
+                    theBattle.ComboValue = 1;
                     state = State.Ready;
                 }
             }
@@ -324,10 +325,11 @@ public class PuzzleManager : MonoBehaviour
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
-
+                theBattle.ComboValue++;
                 theMatch.FindAllMatches(theBattleMap);
                 if (isMatched)
                 {
+                    
                     DestroyCube(theBattleMap);
                     theMatch.FindSpecialCube(theBattleMap);
                     return;
@@ -335,6 +337,7 @@ public class PuzzleManager : MonoBehaviour
                 //매치가 안될경우
                 if (!isMatched)
                 {
+                    theBattle.ComboValue = 1;
                     if (DeadlockCheck(theBattleMap))
                     {
                         // 몬스터의 체력이 0이 될 경우

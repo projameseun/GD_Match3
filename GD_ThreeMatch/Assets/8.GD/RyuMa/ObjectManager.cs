@@ -13,6 +13,7 @@ public class ObjectManager : MonoBehaviour
     public List<GameObject> CubeEfs;
     public List<GameObject> SpeechBubbles;
     public List<GameObject> AttackEffects;
+    public List<GameObject> DamageTexts;
 
 
     //게임오브젝트 프리팹
@@ -21,7 +22,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject CubeEf;
     public GameObject SpeechObj;
     public GameObject AttackEffect;
-
+    public GameObject DamageText;
 
 
 
@@ -30,6 +31,8 @@ public class ObjectManager : MonoBehaviour
     {
         Init();
     }
+
+
 
     public void Init()
     {
@@ -63,9 +66,14 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             AttackEffects.Add(x);
         }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(DamageText);
+            x.SetActive(false);
+            DamageTexts.Add(x);
+        }
 
 
-        
 
     }
 
@@ -98,7 +106,11 @@ public class ObjectManager : MonoBehaviour
                 List = AttackEffects;
                 Frefab = AttackEffect;
                 break;
-        
+            case "DamageText":
+                List = DamageTexts;
+                Frefab = DamageText;
+                break;
+
         }
 
 
@@ -172,6 +184,16 @@ public class ObjectManager : MonoBehaviour
     }
 
 
+    public GameObject DamageTextEvent(Vector2 _startPos, string _Value,float _Time = 1.5f)
+    {
+        GameObject TextOBJ = FindObj("DamageText");
+
+        TextOBJ.GetComponent<DamageText>().SetDamageText(_startPos, _Value, _Time);
+
+
+        return TextOBJ;
+    }
+
 
 
 
@@ -214,6 +236,15 @@ public class ObjectManager : MonoBehaviour
             if (AttackEffects[i].activeSelf)
             {
                 AttackEffects[i].GetComponent<AttackEffect>().Resetting();
+            }
+
+
+        }
+        for (int i = 0; i < DamageTexts.Count; i++)
+        {
+            if (DamageTexts[i].activeSelf)
+            {
+                DamageTexts[i].GetComponent<DamageText>().Resetting();
             }
 
 

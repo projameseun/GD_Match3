@@ -203,7 +203,7 @@ public class Cube : MonoBehaviour
                             if (theBattle.EnemyCubeUi[x].CubeCount > 0)
                             {
                                 Target = theBattle.EnemyCubeUi[x].gameObject;
-                                CubeNum = -1;
+                                CubeNum = -1 * theBattle.ComboValue;
                                 CubeTarget = 1;
                                 i = 6;
                                 x = 6;

@@ -107,7 +107,8 @@ public class BattleManager : MonoBehaviour
     public float GameTime;      // 게임 남은시간
     public int CurrentEnemyCount;   // 적 공격카운트
     public bool BattleEvent; // 몬스터 공격이 끝나면 true
-    public List<GameObject> PlayerAttackEffect;
+    public List<GameObject> PlayerAttackEffect; //플레이어가 마지막에 공격하고 날라가는 큐브 이펙트
+    public int ComboValue = 1;
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
@@ -221,7 +222,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattle(int _enemyNum)
     {
-
+        ComboValue = 1;
         SelectEnemyNum = _enemyNum;
         EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
         CurrentEnemyCount = 0;
@@ -280,6 +281,7 @@ public class BattleManager : MonoBehaviour
 
     public void TakeDamage(int DamageCount)
     {
+
         DamageEvent = true;
         DamageTime = 0f;
         DamageColor.r = 1f;

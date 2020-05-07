@@ -34,8 +34,10 @@ public class CubeEffect : MonoBehaviour
 
     private PuzzleManager thePuzzle;
     private BattleManager theBattle;
+    private ObjectManager theObject;
     private void Start()
     {
+        theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
@@ -69,8 +71,7 @@ public class CubeEffect : MonoBehaviour
         float _Speed = 2000)
     {
 
-        RandomStart = false;
-        _Speed = 5000;
+ 
 
 
         if (_TargetVec == null)
@@ -182,21 +183,22 @@ public class CubeEffect : MonoBehaviour
         {
             if (_UI.CubeCount > -1)
             {
+                if (CubeCount < 0)
+                    theObject.DamageTextEvent(this.transform.position, (-CubeCount).ToString());
                 theBattle.TakeDamage(CubeCount);
             }
         }
 
 
 
-        int ReToPlayer = 0;
 
         if (_UI.CubeCount < 0)
         {
-            ReToPlayer = -_UI.CubeCount;
             _UI.CubeCount = 0;
             _UI.CubeCountText.text = _UI.CubeCount.ToString();
-            CubeCount = ReToPlayer;
+            CubeCount = 1;
             DestroyCount = 10f;
+            
             cubeEffectType = CubeEffectType.GoPlayer;
             for (int i = 0; i < 6; i++)
             {
