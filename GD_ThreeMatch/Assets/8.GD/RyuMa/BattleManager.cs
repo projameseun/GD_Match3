@@ -72,6 +72,7 @@ public enum BattleState
     BattleInit,
     EnemyAttack,
     PlayerDie,
+    EnemyDie,
 
 
 
@@ -153,6 +154,7 @@ public class BattleManager : MonoBehaviour
     private void Update()
     {
 
+        //몬스터가 데미지를 입으면 색을 빨간색으로 해주는 이밴트
         if (DamageEvent == true)
         {
             if (DamageTime <= 1)
@@ -173,7 +175,7 @@ public class BattleManager : MonoBehaviour
 
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
-
+            
             if (BattleStart)
             {
                 UILoad();
@@ -183,7 +185,13 @@ public class BattleManager : MonoBehaviour
 
             if (thePuzzle.state == PuzzleManager.State.BattleEvent)
             {
-                if (battleState == BattleState.EnemyAttack)
+                //처음 배틀 시작할 때 세팅을 해준다
+                if (battleState == BattleState.BattleInit)
+                {
+                    thePuzzle.CheckEnemyCubeCount();
+                }
+                // 몬스터가 공격할 때 실행한다
+                else if (battleState == BattleState.EnemyAttack)
                 {
                     if (PlayerAttackEffect.Count > 0 || DamageEvent == true)
                         return;
@@ -193,21 +201,18 @@ public class BattleManager : MonoBehaviour
                         EnemyAttackEnd();
                         return;
                     }
-                    
+
                     EnemyAttackEvent();
                     //몬스터 공격 이밴트
                 }
-                else if (battleState == BattleState.BattleInit)
-                {
-                    thePuzzle.CheckEnemyCubeCount();
+                // 몬스터가 죽었을 때 실행한다
+                else if (battleState == BattleState.EnemyDie)
+                { 
+                    
                 }
 
 
             }
-
-
-
-
         }
 
 
@@ -254,7 +259,7 @@ public class BattleManager : MonoBehaviour
 
     public void UILoad()
     {
-        GameTime -= Time.deltaTime;
+        //GameTime -= Time.deltaTime;
         EnemyHpImage.fillAmount = CurrentHp / MaxHp;
         if (GameTime < 0)
         {
@@ -470,6 +475,14 @@ public class BattleManager : MonoBehaviour
         }
         return Retire;
     }
+
+
+
+    public void EnemyDieEvent()
+    { 
+    
+    }
+
 
 
     // 몬스터의 카운터를 세팅한다

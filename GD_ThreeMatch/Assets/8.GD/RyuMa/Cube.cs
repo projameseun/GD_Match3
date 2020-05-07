@@ -164,6 +164,9 @@ public class Cube : MonoBehaviour
         }
 
 
+
+
+
         int CubeNum = 1;   // 플레이어면 1, 적이면 -1
         int CubeTarget = 0;  // 플레이어면 0, 적이면 1
         GameObject Target = null;
@@ -243,8 +246,6 @@ public class Cube : MonoBehaviour
 
 
         SpecialCubeEvent();
-
-
 
         DestoryTime = 0;
         DestroyEvent = false;

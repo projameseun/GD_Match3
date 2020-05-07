@@ -1919,12 +1919,8 @@ MonoBehaviour:
   CurrentHp: 0
   GameTime: 0
   CurrentEnemyCount: 0
-  DamageEvent: 0
   BattleEvent: 0
-  CurrentAttackCount: 0
-  MaxSkillCoolDown: 0
-  CurrentSkillCoolDown: 0
-  AttackEndEvent: 0
+  PlayerAttackEffect: []
 --- !u!1001 &93290213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16001,6 +15997,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpineMesh: {fileID: 1256532553}
   SpinAnim: {fileID: 1256532552}
+  state: 0
   Trigger: {fileID: 12652537}
   HpStateImage: {fileID: 1491517708}
   HpSlider: {fileID: 8444404}
@@ -16009,6 +16006,7 @@ MonoBehaviour:
   SkillGaugeText: {fileID: 852106825}
   GirlCubeImage: {fileID: 1566859979}
   PlayerUINum: 0
+  nodeColor: 0
   MaxHp: 0
   CurrentHp: 0
   MaxSkillGauge: 0
@@ -36469,6 +36467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpineMesh: {fileID: 0}
   SpinAnim: {fileID: 0}
+  state: 0
   Trigger: {fileID: 0}
   HpStateImage: {fileID: 0}
   HpSlider: {fileID: 0}
@@ -36477,6 +36476,7 @@ MonoBehaviour:
   SkillGaugeText: {fileID: 0}
   GirlCubeImage: {fileID: 0}
   PlayerUINum: 0
+  nodeColor: 0
   MaxHp: 0
   CurrentHp: 0
   MaxSkillGauge: 0
@@ -41236,6 +41236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpineMesh: {fileID: 1836634021}
   SpinAnim: {fileID: 1836634020}
+  state: 0
   Trigger: {fileID: 1379587657}
   HpStateImage: {fileID: 1865519924}
   HpSlider: {fileID: 927008395}
@@ -41244,6 +41245,7 @@ MonoBehaviour:
   SkillGaugeText: {fileID: 1919843648}
   GirlCubeImage: {fileID: 494564646}
   PlayerUINum: 0
+  nodeColor: 0
   MaxHp: 0
   CurrentHp: 0
   MaxSkillGauge: 0

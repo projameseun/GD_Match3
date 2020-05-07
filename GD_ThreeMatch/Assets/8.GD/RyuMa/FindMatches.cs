@@ -27,6 +27,8 @@ public class FindMatches : MonoBehaviour
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
 
+
+    //매치가 가능한 조건이 있는지 확인
     public void FindAllMatches(MapManager _Map,bool _ChangeBlank = true)
     {
 
@@ -118,6 +120,7 @@ public class FindMatches : MonoBehaviour
 
     }
 
+    //특수 큐브를 만들 수 있는지 확인
     public void FindSpecialCube(MapManager _Map)
     {
 
@@ -517,7 +520,7 @@ public class FindMatches : MonoBehaviour
         SpecialCubeList.Clear();
     }
 
-
+    //가로 특수큐브
     public void FindHorizonCube(MapManager _Map,int _SlotNum)
     {
         int HorizonNum =0;
@@ -570,6 +573,7 @@ public class FindMatches : MonoBehaviour
  
     }
 
+    //세로 특수큐브
     public void FindVerticalCube(MapManager _Map, int _SlotNum)
     {
         int Vertical = _SlotNum % _Map.Horizontal;
@@ -615,6 +619,7 @@ public class FindMatches : MonoBehaviour
 
     }
 
+    //대각선 특수큐브
     public void FindHanoiCube(MapManager _Map, int _SlotNum)
     {
        

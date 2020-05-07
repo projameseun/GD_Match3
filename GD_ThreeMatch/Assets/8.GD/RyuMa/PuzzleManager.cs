@@ -75,6 +75,7 @@ public class PuzzleManager : MonoBehaviour
     public bool SlotDown = false;
     public bool CubeEvent = false;
 
+    public int EnemySlotNum; // 현재 몬스터가 있는 슬롯 위치
     public int MoveCount;   //움직임 가능한 횟수
     public int CurrentPoint; // 현재 점수
     // 일러스트에 넣을 소녀들의 번호
@@ -336,8 +337,14 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if (DeadlockCheck(theBattleMap))
                     {
+                        // 몬스터의 체력이 0이 될 경우
+                        if (theBattle.CurrentHp <= 0)
+                        {
+                            theBattle.battleState = BattleState.EnemyDie;
+                            state = State.BattleEvent;
+                        }
                         // 카운트가 0이되어 적이 공격함
-                        if (theBattle.CurrentEnemyCount <= 0)
+                        else if (theBattle.CurrentEnemyCount <= 0)
                         {
                             theBattle.battleState = BattleState.EnemyAttack;
                             state = State.BattleEvent;
@@ -480,6 +487,15 @@ public class PuzzleManager : MonoBehaviour
 
         if (Reset == false)
         {
+            //SetPlayer(_Map);
+            //맵에서 플레이어의 위치를 지정시킨다
+
+            //SetEnemy(_Map);
+            //맵에서 몬스터의 위치를 지정시킨다
+
+            //SetGoal(_Map);
+            //맵에서 골의 위치를 지정시킨다
+
             while (true)
             {
                 int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
@@ -488,6 +504,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     _Map.Slots[rand].nodeColor = NodeColor.Player;
                     _Map.Slots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+                    _Map.Slots[rand].cube.nodeColor = NodeColor.Player;
                     Player.transform.position = _Map.Slots[rand].transform.position;
 
                     Transform Parent = _Map.Slots[rand].cube.transform;
@@ -539,6 +556,54 @@ public class PuzzleManager : MonoBehaviour
         }
 
     }
+
+    //플레이어 위치에 SD케릭터 넣기
+    public void SetPlayer(MapManager _Map)
+    {
+        for (int i = _Map.TopLeft; i < _Map.BottomLeft; i++)
+        {
+            if (_Map.Slots[i].nodeColor == NodeColor.Player)
+            {
+                _Map.Slots[i].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+                _Map.Slots[i].cube.nodeColor = NodeColor.Player;
+
+                Player.transform.position = _Map.Slots[i].transform.position;
+                Transform Parent = _Map.Slots[i].cube.transform;
+                Player.transform.parent = Parent;
+                Player.ChangeDirection(_Map.direction);
+                break;
+            }
+        }
+       
+    }
+    //몬스터 슬롯에 UI 배치
+    public void SetEnemy(MapManager _Map)
+    {
+        for (int i = _Map.TopLeft; i < _Map.BottomLeft; i++)
+        {
+            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Enemy)
+            {
+                
+            }
+        }
+    }
+
+    //골 슬롯에 UI 배치
+    public void SetGoal(MapManager _Map)
+    {
+        for (int i = _Map.TopLeft; i < _Map.BottomLeft; i++)
+        {
+            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Goal)
+            {
+                _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Goal;
+                Goal.transform.position = _Map.Slots[i].transform.position;
+                Transform Parent = _Map.Slots[i].transform;
+                Goal.transform.parent = Parent;
+                break;
+            }
+        }
+    }
+
 
     // 처음 매치가 안된 상태로 세팅
     public void NotMatchSetCube(MapManager _Map)
@@ -972,11 +1037,18 @@ public class PuzzleManager : MonoBehaviour
             if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Enemy &&
                 _Map.Slots[i].nodeColor == NodeColor.Player)
             {
+                EnemySlotNum = i;
                 return true;
                 //적 슬롯에 들어옴
             }
         }
         return false;
+    }
+
+    public void EnemySlotDestroy(int _Num)
+    {
+        theMoveMap.Slots[EnemySlotNum].nodeType = PuzzleSlot.NodeType.Normal;
+        
     }
 
     // 마지막에 멈춘 위치가 골이면 true
