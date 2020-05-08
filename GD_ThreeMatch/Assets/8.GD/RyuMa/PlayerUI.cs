@@ -29,6 +29,7 @@ public class PlayerUI : MonoBehaviour
     public Text SkillGaugeText;
     public Image GirlCubeImage;
 
+    public SelectGirl selectGirl;
     public int PlayerUINum;
     public NodeColor nodeColor;
     public float MaxHp;
@@ -77,6 +78,7 @@ public class PlayerUI : MonoBehaviour
             SkillSlider.color = new Color(1f, 0.89f, 0.51f);
         }
         nodeColor = (NodeColor)_nodeColor;
+        selectGirl = (SelectGirl)_nodeColor;
         PlayerUINum = _PlayerNum;
         GirlCubeImage.sprite = thePuzzle.GirlSprites[_nodeColor];
         MaxHp = theGirl.Girls[_nodeColor].Hp;

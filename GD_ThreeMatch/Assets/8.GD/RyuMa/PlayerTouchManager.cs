@@ -28,14 +28,11 @@ public class PlayerTouchManager : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle &&
-            theBattle.battleState != BattleState.BattleInit &&
-            TouchDown == false)
+        if (CheckList() == true)
         {
             TouchDown = true;
             Debug.Log("클릭함");
         }
-       
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -43,8 +40,25 @@ public class PlayerTouchManager : MonoBehaviour, IPointerDownHandler, IPointerUp
         if (TouchDown == true)
         {
             TouchDown = false;
+            GirlSkill(playerUI.selectGirl);
         }
     }
+
+    public bool CheckList()
+    {
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle &&      //현재 전투중인가
+            theBattle.battleState != BattleState.BattleInit &&          //현재 전투 상태
+            TouchDown == false &&                                       //연속 터치 방지
+            playerUI.CurrentHp >0 &&                                    //소녀가 죽었나
+            playerUI.CurrentSkillGauge >= playerUI.MaxSkillGauge        //스킬 게이지가 충분한가
+            )
+        {
+            return true;
+        }
+        return false;
+    }
+
+
 
 
     public void GirlSkill(SelectGirl _Girl)
