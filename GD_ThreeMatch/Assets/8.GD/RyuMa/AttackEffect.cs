@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static HappyRyuMa.GameMaker;
 
+public enum AttackEffectType
+{ 
+    Null = 0,
+
+}
+
 public class AttackEffect : MonoBehaviour
 {
     public Rigidbody2D RB2D;
@@ -18,9 +24,9 @@ public class AttackEffect : MonoBehaviour
 
     //Trunk
     GameObject TargetPos; //목표 좌표
-    float CurrentSpeed; // 움직이는 속도
-    float AddSpeed = 0.3f;
-    float MaxSpeed = 5000;
+    public float CurrentSpeed; // 움직이는 속도
+    float AddSpeed = 50000f;
+    float MaxSpeed = 50000f;
     float AngleZ; // 목표 회전값
     float AngleSpeed; // 회전속도
     public float AngleAddSpeed = 0.3f; //회전속도 증가폭
@@ -61,14 +67,14 @@ public class AttackEffect : MonoBehaviour
         TargetPos = _TargetVec;
         if (RandomStart == true)
         {
-            float RandZ = Random.Range(0F, 360f);
-            RandZ = 0;
+            float RandZ = Random.Range(0F, 180f);
+            RandZ -= 90;
             Rotation.z = RandZ;
             this.transform.eulerAngles = Rotation;
             FrontPos = FrontObj.transform.position - this.transform.position;
             FrontPos.Normalize();
-            RB2D.velocity = FrontPos * 1000;
-            AngleSpeed = 200f;
+            RB2D.velocity = FrontPos * 2000;
+            AngleSpeed = 100f;
         }
         else
         {
@@ -88,11 +94,20 @@ public class AttackEffect : MonoBehaviour
     public void FindTarget()
     {
 
-        CurrentSpeed = Mathf.Lerp(CurrentSpeed, MaxSpeed, AddSpeed * Time.deltaTime);
+        
 
         AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed * Time.deltaTime);
 
         AngleZ = GetAngleZ(TargetPos.transform.position, this.transform.position);
+        if (Rotation.z == AngleZ)
+        {
+            if (CurrentSpeed < MaxSpeed)
+            {
+                CurrentSpeed += AddSpeed * Time.deltaTime;
+            }
+        }
+
+
         if (Rotation.z + 180 < AngleZ)
         {
             Rotation.z -= AngleSpeed * Time.deltaTime;

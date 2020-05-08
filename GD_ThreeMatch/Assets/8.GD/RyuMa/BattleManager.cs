@@ -106,8 +106,8 @@ public class BattleManager : MonoBehaviour
     // 데이터베이스
     public bool BattleStart;    // 배틀 시작시 true
     public int SelectEnemyNum;  // 선택된 몬스터의 숫자
-    public double MaxHp;         // 몬스터 최대체력
-    public double CurrentHp;     // 몬스터 현제체력
+    public int MaxHp;         // 몬스터 최대체력
+    public int CurrentHp;     // 몬스터 현제체력
     public float GameTime;      // 게임 남은시간
     public int CurrentEnemyCount;   // 적 공격카운트
     public bool BattleEvent; // 몬스터 공격이 끝나면 true
@@ -234,6 +234,7 @@ public class BattleManager : MonoBehaviour
         EnemyAnim = EnemySpine.GetComponent<SkeletonAnimation>();
         EnemyAnim.Initialize(true);
         CurrentEnemyCount = 0;
+        EnemyName.text = Enemy[SelectEnemyNum].EnemyName;
         SetEnemyCount(Enemy[_enemyNum].Count);
         EnemyCountText.text = Enemy[_enemyNum].Count.ToString();
         MaxHp = 0;
@@ -274,7 +275,7 @@ public class BattleManager : MonoBehaviour
     public void UILoad()
     {
         //GameTime -= Time.deltaTime;
-        EnemyHpImage.fillAmount = (float)(CurrentHp / MaxHp);
+        EnemyHpImage.fillAmount = ((float)CurrentHp / (float)MaxHp);
         if (GameTime < 0)
         {
 

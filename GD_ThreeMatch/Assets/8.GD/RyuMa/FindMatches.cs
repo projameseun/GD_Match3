@@ -615,8 +615,6 @@ public class FindMatches : MonoBehaviour
 
        
 
-        Debug.Log("Special = " + Special);
-
     }
 
     //대각선 특수큐브
