@@ -21570,7 +21570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084506280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.05, y: 4.71, z: 0}
+  m_LocalPosition: {x: 8.28, y: 4.88, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -25186,10 +25186,8 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 1
   maskMaterials:
-    materialsMaskDisabled:
-    - {fileID: 2100000, guid: f5a8426508d99a14b961df640d6cf78d, type: 2}
-    materialsInsideMask:
-    - {fileID: 2100000, guid: f38220461c660ea4bade2dcfc0d0643e, type: 2}
+    materialsMaskDisabled: []
+    materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: Idle
@@ -25213,7 +25211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f38220461c660ea4bade2dcfc0d0643e, type: 2}
+  - {fileID: 2100000, guid: f5a8426508d99a14b961df640d6cf78d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

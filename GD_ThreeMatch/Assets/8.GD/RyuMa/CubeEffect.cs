@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 using static HappyRyuMa.GameMaker;
 
@@ -37,6 +38,8 @@ public class CubeEffect : MonoBehaviour
     private ObjectManager theObject;
     private void Start()
     {
+        Move = true;
+        DestroyCount = 10;
         theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
@@ -142,9 +145,9 @@ public class CubeEffect : MonoBehaviour
     public void FindTarget()
     {
 
-        AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed*Time.deltaTime); ;
-
+        AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed*Time.deltaTime); 
         AngleZ = GetAngleZ(TargetPos.transform.position, this.transform.position);
+
         if (Rotation.z + 180 < AngleZ)
         {
             Rotation.z -= AngleSpeed * Time.deltaTime;
@@ -166,7 +169,7 @@ public class CubeEffect : MonoBehaviour
                     Rotation.z = AngleZ;
             }
         }
-      
+
         this.transform.eulerAngles = Rotation;
     }
     //----------움직이는 기능

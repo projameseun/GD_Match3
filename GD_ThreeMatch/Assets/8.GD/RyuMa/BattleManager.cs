@@ -232,7 +232,7 @@ public class BattleManager : MonoBehaviour
         EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = Enemy[_enemyNum].IllustData;
         EnemySpine.GetComponent<MeshRenderer>().material = Enemy[_enemyNum].IllustMaterials;
         EnemyAnim = EnemySpine.GetComponent<SkeletonAnimation>();
-        //EnemyAnim.AnimationState.SetAnimation(0, "Idle", true);
+        EnemyAnim.Initialize(true);
         CurrentEnemyCount = 0;
         SetEnemyCount(Enemy[_enemyNum].Count);
         EnemyCountText.text = Enemy[_enemyNum].Count.ToString();
