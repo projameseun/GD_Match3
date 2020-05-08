@@ -275,7 +275,6 @@ namespace Spine.Unity.Editor {
 				EditorGUIUtility.PingObject(folderObject);
 			}
 		}
-
 		void OnInspectorGUIMulti () {
 
 			// Skeleton data file field.

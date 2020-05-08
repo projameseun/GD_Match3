@@ -1798,8 +1798,10 @@ MonoBehaviour:
   - EnemyName: "\uBBF8\uB2C8 \uC2AC\uB77C\uC784"
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: d218a37b7463a574293153da886a44cf, type: 3}
-    DamageValue: 6
+    IllustMaterials: {fileID: 2100000, guid: 963c38903ef428544900db865237af42, type: 2}
+    IllustData: {fileID: 11400000, guid: 9ea919092760dbd4bb251243528d0f94, type: 2}
+    MinDamageValue: 6
+    MaxDamageValue: 7
     Count: 3
     CubeCount: 1e00000028000000
     skillSlots:
@@ -1809,9 +1811,11 @@ MonoBehaviour:
       SkillCoolDown: 0.2
   - EnemyName: "\uBBF8\uB2C8\uC5C4 \uC2AC\uB77C\uC784"
     enemyTribe: 1
-    enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 9
+    enemyRating: 1
+    IllustMaterials: {fileID: 2100000, guid: f5a8426508d99a14b961df640d6cf78d, type: 2}
+    IllustData: {fileID: 11400000, guid: ce61a51c3e7e47148a6c6b0194844647, type: 2}
+    MinDamageValue: 9
+    MaxDamageValue: 10
     Count: 2
     CubeCount: 460000003200000050000000
     skillSlots:
@@ -1822,8 +1826,10 @@ MonoBehaviour:
   - EnemyName: "\uD0B9 \uC2AC\uB77C\uC784"
     enemyTribe: 1
     enemyRating: 2
-    MonsterSprite: {fileID: 21300000, guid: d218a37b7463a574293153da886a44cf, type: 3}
-    DamageValue: 10
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 10
+    MaxDamageValue: 12
     Count: 2
     CubeCount: 50000000460000003c00000064000000
     skillSlots:
@@ -1838,56 +1844,70 @@ MonoBehaviour:
   - EnemyName: 
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 0
+    MaxDamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 0
+    MaxDamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 0
+    MaxDamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 0
+    MaxDamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 0
+    MaxDamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 0
+    MaxDamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
   - EnemyName: 
     enemyTribe: 0
     enemyRating: 0
-    MonsterSprite: {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
-    DamageValue: 0
+    IllustMaterials: {fileID: 0}
+    IllustData: {fileID: 0}
+    MinDamageValue: 0
+    MaxDamageValue: 0
     Count: 5
     CubeCount: 0500000005000000
     skillSlots: []
@@ -1901,7 +1921,8 @@ MonoBehaviour:
     SkillEffectNum: 0
     attackType: 0
   battleState: 0
-  EnemyImage: {fileID: 690643896}
+  EnemySpine: {fileID: 1689186297}
+  EnemyAnim: {fileID: 1689186299}
   EnemyName: {fileID: 529796475}
   EnemyHpImage: {fileID: 1198082504}
   TimeText: {fileID: 517529305}
@@ -1920,7 +1941,7 @@ MonoBehaviour:
   GameTime: 0
   CurrentEnemyCount: 0
   BattleEvent: 0
-  PlayerAttackEffect: []
+  PlayerAttackEffectList: []
   ComboValue: 1
 --- !u!1001 &93290213
 PrefabInstance:
@@ -6553,7 +6574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.76, y: 2.77}
+  m_AnchoredPosition: {x: -4.76, y: 3.5}
   m_SizeDelta: {x: 0.7, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &297803782
@@ -9673,11 +9694,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1982161570}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.2, y: 3.16}
+  m_AnchoredPosition: {x: 0.2, y: 3.5}
   m_SizeDelta: {x: 0.7, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &447897192
@@ -11242,11 +11263,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 690643895}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: -143.00006}
+  m_AnchoredPosition: {x: 0, y: 27}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &529796475
@@ -12671,7 +12692,7 @@ RectTransform:
   m_Children:
   - {fileID: 589964877}
   m_Father: {fileID: 667348436}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13028,7 +13049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.07, y: 3.17}
+  m_AnchoredPosition: {x: -1.07, y: 3.5}
   m_SizeDelta: {x: 0.7, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &639756118
@@ -13874,8 +13895,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.79999983, y: 0.79999983, z: 1}
   m_Children:
-  - {fileID: 609992766}
   - {fileID: 833817654}
+  - {fileID: 609992766}
   m_Father: {fileID: 501382755}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14562,9 +14583,8 @@ GameObject:
   m_Component:
   - component: {fileID: 690643895}
   - component: {fileID: 690643897}
-  - component: {fileID: 690643896}
   m_Layer: 5
-  m_Name: EnemyImage
+  m_Name: EnemyImageSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14581,43 +14601,16 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1689186298}
   - {fileID: 529796474}
   m_Father: {fileID: 569388308}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 668}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 0, y: 502}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &690643896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690643894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e342896fc464ae9488ec8cee20b2c35e, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &690643897
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16546,7 +16539,7 @@ RectTransform:
   m_Children:
   - {fileID: 1747540568}
   m_Father: {fileID: 1982161570}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17115,11 +17108,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 667348436}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: 2.8}
+  m_AnchoredPosition: {x: -6, y: 3.5}
   m_SizeDelta: {x: 0.7, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &833817655
@@ -18181,7 +18174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.35, y: 3.22}
+  m_AnchoredPosition: {x: -2.35, y: 3.5}
   m_SizeDelta: {x: 0.7, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &902121296
@@ -25193,8 +25186,10 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 1
   maskMaterials:
-    materialsMaskDisabled: []
-    materialsInsideMask: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: f5a8426508d99a14b961df640d6cf78d, type: 2}
+    materialsInsideMask:
+    - {fileID: 2100000, guid: f38220461c660ea4bade2dcfc0d0643e, type: 2}
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: Idle
@@ -25218,7 +25213,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5a8426508d99a14b961df640d6cf78d, type: 2}
+  - {fileID: 2100000, guid: f38220461c660ea4bade2dcfc0d0643e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33903,6 +33898,122 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e543fb9e8f83094199fb211b0f9d510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1689186297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1689186298}
+  - component: {fileID: 1689186301}
+  - component: {fileID: 1689186300}
+  - component: {fileID: 1689186299}
+  m_Layer: 0
+  m_Name: EnemySpine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1689186298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689186297}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_Children: []
+  m_Father: {fileID: 690643895}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1689186299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689186297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDataAsset: {fileID: 0}
+  initialSkinName: 
+  initialFlipX: 0
+  initialFlipY: 0
+  separatorSlotNames: []
+  zSpacing: 0
+  useClipping: 1
+  immutableTriangles: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  tintBlack: 0
+  singleSubmesh: 0
+  fixDrawOrder: 0
+  addNormals: 0
+  calculateTangents: 0
+  maskInteraction: 0
+  maskMaterials:
+    materialsMaskDisabled: []
+    materialsInsideMask: []
+    materialsOutsideMask: []
+  disableRenderingOnOverride: 1
+  _animationName: Idle
+  loop: 1
+  timeScale: 1
+--- !u!23 &1689186300
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689186297}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 21
+--- !u!33 &1689186301
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689186297}
+  m_Mesh: {fileID: 0}
 --- !u!1 &1698957838
 GameObject:
   m_ObjectHideFlags: 0
@@ -34979,7 +35090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.5, y: 2.8}
+  m_AnchoredPosition: {x: -3.5, y: 3.5}
   m_SizeDelta: {x: 0.7, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &1754014360
@@ -39442,8 +39553,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.79999983, y: 0.79999983, z: 1}
   m_Children:
-  - {fileID: 800179311}
   - {fileID: 447897191}
+  - {fileID: 800179311}
   m_Father: {fileID: 501382755}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

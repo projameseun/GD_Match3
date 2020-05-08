@@ -237,7 +237,7 @@ public class Cube : MonoBehaviour
             (CubeEffectType)CubeTarget, CubeNum, true);
             if (theBattle.CurrentEnemyCount == 0 && CubeTarget == 1)
             {
-                theBattle.PlayerAttackEffect.Add(CubeEffect);
+                theBattle.PlayerAttackEffectList.Add(CubeEffect);
             }
             theObject.CubeParticleEvent(this.transform.position,
            this.GetComponent<SpriteRenderer>().sprite);

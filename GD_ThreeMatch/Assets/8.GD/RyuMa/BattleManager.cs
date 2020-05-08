@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Spine.Unity;
 //using TMPro;
 
 
@@ -45,8 +46,10 @@ public class EnemyBase
     public string EnemyName;
     public EnemyTribe enemyTribe;
     public EnemyRating enemyRating;
-    public Sprite MonsterSprite;
-    public float DamageValue;
+    public Material IllustMaterials;
+    public SkeletonDataAsset IllustData;
+    public int MinDamageValue;
+    public int MaxDamageValue;
     public int Count;
     public int[] CubeCount;
     public SkillSlot[] skillSlots;
@@ -91,7 +94,8 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
     [Space]
     // UI,오브젝트
-    public Image EnemyImage;
+    public GameObject EnemySpine;
+    public SkeletonAnimation EnemyAnim;
     public Text EnemyName;
     public Image EnemyHpImage;
     public Text TimeText;
@@ -102,12 +106,12 @@ public class BattleManager : MonoBehaviour
     // 데이터베이스
     public bool BattleStart;    // 배틀 시작시 true
     public int SelectEnemyNum;  // 선택된 몬스터의 숫자
-    public float MaxHp;         // 몬스터 최대체력
-    public float CurrentHp;     // 몬스터 현제체력
+    public double MaxHp;         // 몬스터 최대체력
+    public double CurrentHp;     // 몬스터 현제체력
     public float GameTime;      // 게임 남은시간
     public int CurrentEnemyCount;   // 적 공격카운트
     public bool BattleEvent; // 몬스터 공격이 끝나면 true
-    public List<GameObject> PlayerAttackEffect; //플레이어가 마지막에 공격하고 날라가는 큐브 이펙트
+    public List<GameObject> PlayerAttackEffectList; //플레이어가 마지막에 공격하고 날라가는 큐브 이펙트
     public int ComboValue = 1;
 
     //쓰래기통
@@ -116,8 +120,8 @@ public class BattleManager : MonoBehaviour
     Color DamageColor = new Color(1, 1, 1);
     bool AttackInit;
     int SkillNum = 0;
-    float damage = 0;
-    Vector2 StartVec = new Vector2();
+    int damage = 0;
+    Vector2 StartVec;    // 파티클 시작지점 적용 나중에 추가할것
     GameObject TargetVec = null;
     bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
     int CurrentAttackCount; //현재 남은 공격횟수
@@ -155,6 +159,7 @@ public class BattleManager : MonoBehaviour
     private void Update()
     {
 
+
         //몬스터가 데미지를 입으면 색을 빨간색으로 해주는 이밴트
         if (DamageEvent == true)
         {
@@ -163,13 +168,13 @@ public class BattleManager : MonoBehaviour
                 DamageTime += Time.deltaTime * 2;
                 DamageColor.g = DamageTime;
                 DamageColor.b = DamageTime;
-                EnemyImage.color = DamageColor;
+                EnemyAnim.skeleton.SetColor(DamageColor);
             }
             else
             {
                 DamageEvent = false;
                 DamageTime = 0f;
-                EnemyImage.color = new Color(1, 1, 1);
+                EnemyAnim.skeleton.SetColor(new Color(1, 1, 1));
             }
         }
 
@@ -194,7 +199,7 @@ public class BattleManager : MonoBehaviour
                 // 몬스터가 공격할 때 실행한다
                 else if (battleState == BattleState.EnemyAttack)
                 {
-                    if (PlayerAttackEffect.Count > 0 || DamageEvent == true)
+                    if (PlayerAttackEffectList.Count > 0 || DamageEvent == true)
                         return;
 
                     if (BattleEvent == true)
@@ -224,7 +229,10 @@ public class BattleManager : MonoBehaviour
     {
         ComboValue = 1;
         SelectEnemyNum = _enemyNum;
-        EnemyImage.sprite = Enemy[_enemyNum].MonsterSprite;
+        EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = Enemy[_enemyNum].IllustData;
+        EnemySpine.GetComponent<MeshRenderer>().material = Enemy[_enemyNum].IllustMaterials;
+        EnemyAnim = EnemySpine.GetComponent<SkeletonAnimation>();
+        //EnemyAnim.AnimationState.SetAnimation(0, "Idle", true);
         CurrentEnemyCount = 0;
         SetEnemyCount(Enemy[_enemyNum].Count);
         EnemyCountText.text = Enemy[_enemyNum].Count.ToString();
@@ -256,12 +264,17 @@ public class BattleManager : MonoBehaviour
         TimeText.text = "Time : " + ((int)GameTime).ToString();
         CurrentHp = MaxHp;
     }
+    public void EndBattle()
+    {
+        //EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = null;
+        //EnemySpine.GetComponent<MeshRenderer>().material = null;
+    }
 
 
     public void UILoad()
     {
         //GameTime -= Time.deltaTime;
-        EnemyHpImage.fillAmount = CurrentHp / MaxHp;
+        EnemyHpImage.fillAmount = (float)(CurrentHp / MaxHp);
         if (GameTime < 0)
         {
 
@@ -272,6 +285,7 @@ public class BattleManager : MonoBehaviour
         else if (CurrentHp <= 0)
         {
             Debug.Log("배틀 승리");
+            EndBattle();
             BattleStart = false;
             theFade.FadeIn();
         }
@@ -281,13 +295,19 @@ public class BattleManager : MonoBehaviour
 
     public void TakeDamage(int DamageCount)
     {
-
+        if (DamageCount > 0)
+        {
+            Debug.Log("데미지가 플러스로 나옴");
+            return;
+        }
+           
         DamageEvent = true;
         DamageTime = 0f;
         DamageColor.r = 1f;
         DamageColor.g = 0f;
         DamageColor.b = 0f;
-        EnemyImage.color = DamageColor;
+        EnemyAnim.skeleton.SetColor(DamageColor);
+        
         CurrentHp += DamageCount;
 
     }
@@ -318,7 +338,11 @@ public class BattleManager : MonoBehaviour
                     }
                 }
             }
-            damage = EnemySkill[SkillNum].MultiplyValue * Enemy[SelectEnemyNum].DamageValue;
+
+
+            damage = (int)(Random.Range(Enemy[SelectEnemyNum].MinDamageValue,
+                Enemy[SelectEnemyNum].MaxDamageValue + 1) *
+                EnemySkill[SkillNum].MultiplyValue);
             AttackInit = true;
             CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
             if (CurrentAttackCount == 0)
@@ -345,10 +369,11 @@ public class BattleManager : MonoBehaviour
                 // 쿨타임 적용
                 CurrentSkillCoolDown = MaxSkillCoolDown;
                 // 파티클 시작지점 적용 나중에 추가할것
-                StartVec = EnemyImage.transform.position;
+                StartVec = EnemyAnim.gameObject.transform.position;
 
 
                 // 스킬 타입분류
+                // 랜덤으로 1명
                 if (EnemySkill[SkillNum].attackType == AttackType.Random1)
                 {
 
@@ -368,6 +393,7 @@ public class BattleManager : MonoBehaviour
 
 
                 }
+                // 채력이 가장 낮은 플레이어
                 else if (EnemySkill[SkillNum].attackType == AttackType.LowHpAttack)
                 {
                     if (Player1CacHp <= 0)
@@ -399,39 +425,40 @@ public class BattleManager : MonoBehaviour
 
                     }
                 }
+                // 전체공격
                 else if (EnemySkill[SkillNum].attackType == AttackType.FullAttack)
                 {
                     TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
-                    theObject.AttackEffectEvent(EnemyImage.transform.position,
-                  TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, false, true);
-                    Player1CacHp -= (int)damage;
+                    theObject.AttackEffectEvent(StartVec,
+                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, false, true);
+                    Player1CacHp -= damage;
 
 
                     TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
-                    theObject.AttackEffectEvent(EnemyImage.transform.position,
-                  TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
-                    Player2CacHp -= (int)damage;
+                    theObject.AttackEffectEvent(StartVec,
+                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
+                    Player2CacHp -= damage;
                     return;
                 }
 
 
                 if (TargetVec == thePuzzle.playerUIs[0].Trigger.gameObject)
                 {
-                    Player1CacHp -= (int)damage;
+                    Player1CacHp -= damage;
                     if (Player1CacHp < 0)
                         Player1CacHp = 0;
                 }
 
                 else if (TargetVec == thePuzzle.playerUIs[1].Trigger.gameObject)
                 {
-                    Player2CacHp -= (int)damage;
+                    Player2CacHp -= damage;
                     if (Player2CacHp < 0)
                         Player2CacHp = 0;
                 }
                     
 
-                theObject.AttackEffectEvent(EnemyImage.transform.position,
-                    TargetVec, (int)damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
+                theObject.AttackEffectEvent(StartVec,
+                    TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
             }
 
           

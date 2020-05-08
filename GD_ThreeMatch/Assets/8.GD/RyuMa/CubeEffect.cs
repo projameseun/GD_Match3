@@ -71,7 +71,7 @@ public class CubeEffect : MonoBehaviour
         float _Speed = 2000)
     {
 
- 
+        RandomStart = false;
 
 
         if (_TargetVec == null)
@@ -104,7 +104,7 @@ public class CubeEffect : MonoBehaviour
             this.GetComponent<SpriteRenderer>().color = new Color(1f, 0.89f, 0.51f);
         }
 
-        Speed = _Speed;
+        Speed = 4000;
 
         this.transform.position = StartVec;
         nodeColor = _nodeColor;

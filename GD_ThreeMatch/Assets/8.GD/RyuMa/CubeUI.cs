@@ -50,9 +50,9 @@ public class CubeUI : MonoBehaviour
             if (uIType == UIType.EnemyUI &&
               collision.GetComponent<CubeEffect>().cubeEffectType == CubeEffectType.GoEnemy)
             {
-                if (theBattle.PlayerAttackEffect.Contains(collision.gameObject))
+                if (theBattle.PlayerAttackEffectList.Contains(collision.gameObject))
                 {
-                    theBattle.PlayerAttackEffect.Remove(collision.gameObject);
+                    theBattle.PlayerAttackEffectList.Remove(collision.gameObject);
                 }
 
                 if ((int)collision.GetComponent<CubeEffect>().nodeColor ==

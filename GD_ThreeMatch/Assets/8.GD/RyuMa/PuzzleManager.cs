@@ -146,7 +146,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 theFade.FadeEvent = false;
                 SetSlot(theBattleMap, true);
-                theBattle.SetBattle(0);
+                theBattle.SetBattle(theBattle.SelectEnemyNum);
                 ChangeGameMode();
             }
 
