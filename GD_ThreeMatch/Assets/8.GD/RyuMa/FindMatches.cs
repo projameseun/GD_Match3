@@ -868,7 +868,6 @@ public class FindMatches : MonoBehaviour
         }
 
         _Map.Slots[_SlotNum].cube.DestroyCube(Special);
-        Debug.Log("Special = " + Special);
     }
 
 

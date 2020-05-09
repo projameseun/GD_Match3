@@ -169,7 +169,7 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject AttackEffectEvent(Vector2 StartVec, GameObject _TargetVec, int _DamageValue,
         int _EffectNum, bool _AttackEvent,
-        bool RandomStart = false,
+        AttackEffectType AttackType,
         float _Speed = 2000)
     {
         GameObject Effect = FindObj("AttackEffect");
@@ -177,7 +177,7 @@ public class ObjectManager : MonoBehaviour
         Effect.GetComponent<AttackEffect>()
             .SetCubeEffect(StartVec, _TargetVec , _DamageValue,
             _EffectNum, _AttackEvent,
-            RandomStart, _Speed);
+            AttackType, _Speed);
 
         return Effect;
 

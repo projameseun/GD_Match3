@@ -301,7 +301,16 @@ public class BattleManager : MonoBehaviour
             Debug.Log("데미지가 플러스로 나옴");
             return;
         }
-           
+
+        if (DamageTime > 0)
+        {
+            EnemyAnim.AnimationState.SetAnimation(0, "Hit", false);
+            EnemyAnim.AnimationState.AddAnimation(0, "Idle", true, 0.5f);
+        }
+      
+
+
+
         DamageEvent = true;
         DamageTime = 0f;
         DamageColor.r = 1f;
@@ -431,13 +440,13 @@ public class BattleManager : MonoBehaviour
                 {
                     TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
                     theObject.AttackEffectEvent(StartVec,
-                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, false, true);
+                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, false, AttackEffectType.Missile);
                     Player1CacHp -= damage;
 
 
                     TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
                     theObject.AttackEffectEvent(StartVec,
-                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
+                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, AttackEffectType.Missile);
                     Player2CacHp -= damage;
                     return;
                 }
@@ -459,7 +468,7 @@ public class BattleManager : MonoBehaviour
                     
 
                 theObject.AttackEffectEvent(StartVec,
-                    TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, true);
+                    TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, AttackEffectType.Missile);
             }
 
           

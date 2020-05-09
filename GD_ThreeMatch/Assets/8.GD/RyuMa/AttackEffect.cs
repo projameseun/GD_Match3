@@ -6,6 +6,7 @@ using static HappyRyuMa.GameMaker;
 public enum AttackEffectType
 { 
     Null = 0,
+    Missile,
 
 }
 
@@ -13,7 +14,7 @@ public class AttackEffect : MonoBehaviour
 {
     public Rigidbody2D RB2D;
     public GameObject FrontObj;
-
+    public AttackEffectType attackEffectType;
 
     public float DamageValue;
     public int EffectNum;
@@ -50,7 +51,7 @@ public class AttackEffect : MonoBehaviour
     public void SetCubeEffect(Vector2 StartVec, GameObject _TargetVec, int _DamageValue,
         int _EffectNum,
         bool _AttackEvent,
-        bool RandomStart,
+        AttackEffectType AttackType,
         float _Speed = 2000)
     {
         if (_TargetVec == null)
@@ -65,20 +66,21 @@ public class AttackEffect : MonoBehaviour
  
         Move = true;
         TargetPos = _TargetVec;
-        if (RandomStart == true)
+        attackEffectType = AttackType;
+        if (AttackType == AttackEffectType.Null)
         {
-            float RandZ = Random.Range(0F, 180f);
-            RandZ -= 90;
+            AngleSpeed = 2000f;
+        }
+        else if(AttackType == AttackEffectType.Missile)
+        {
+            float RandZ = Random.Range(0F, 120f);
+            RandZ -= 60f;
             Rotation.z = RandZ;
             this.transform.eulerAngles = Rotation;
             FrontPos = FrontObj.transform.position - this.transform.position;
             FrontPos.Normalize();
-            RB2D.velocity = FrontPos * 2000;
+            RB2D.velocity = FrontPos * 5000;
             AngleSpeed = 100f;
-        }
-        else
-        {
-            AngleSpeed = 2000f;
         }
     }
 
@@ -93,44 +95,44 @@ public class AttackEffect : MonoBehaviour
 
     public void FindTarget()
     {
-
-        
-
-        AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed * Time.deltaTime);
-
-        AngleZ = GetAngleZ(TargetPos.transform.position, this.transform.position);
-        if (Rotation.z == AngleZ)
+        if (attackEffectType == AttackEffectType.Missile)
         {
-            if (CurrentSpeed < MaxSpeed)
+            AngleSpeed = Mathf.Lerp(AngleSpeed, 2000, AngleAddSpeed * Time.deltaTime);
+
+            AngleZ = GetAngleZ(TargetPos.transform.position, this.transform.position);
+            if (Rotation.z == AngleZ)
             {
-                CurrentSpeed += AddSpeed * Time.deltaTime;
+                if (CurrentSpeed < MaxSpeed)
+                {
+                    CurrentSpeed += AddSpeed * Time.deltaTime;
+                }
             }
-        }
 
 
-        if (Rotation.z + 180 < AngleZ)
-        {
-            Rotation.z -= AngleSpeed * Time.deltaTime;
-            if (Rotation.z < 0)
-                Rotation.z += 360;
-        }
-        else
-        {
-            if (Rotation.z < AngleZ)
+            if (Rotation.z + 180 < AngleZ)
             {
-                Rotation.z += AngleSpeed * Time.deltaTime;
-                if (Rotation.z > AngleZ)
-                    Rotation.z = AngleZ;
+                Rotation.z -= AngleSpeed * Time.deltaTime;
+                if (Rotation.z < 0)
+                    Rotation.z += 360;
             }
             else
             {
-                Rotation.z -= AngleSpeed * Time.deltaTime;
                 if (Rotation.z < AngleZ)
-                    Rotation.z = AngleZ;
+                {
+                    Rotation.z += AngleSpeed * Time.deltaTime;
+                    if (Rotation.z > AngleZ)
+                        Rotation.z = AngleZ;
+                }
+                else
+                {
+                    Rotation.z -= AngleSpeed * Time.deltaTime;
+                    if (Rotation.z < AngleZ)
+                        Rotation.z = AngleZ;
+                }
             }
-        }
 
-        this.transform.eulerAngles = Rotation;
+            this.transform.eulerAngles = Rotation;
+        }
     }
     //----------움직이는 기능
 

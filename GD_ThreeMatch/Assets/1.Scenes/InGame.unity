@@ -1798,8 +1798,8 @@ MonoBehaviour:
   - EnemyName: "\uBBF8\uB2C8 \uC2AC\uB77C\uC784"
     enemyTribe: 0
     enemyRating: 0
-    IllustMaterials: {fileID: 2100000, guid: 963c38903ef428544900db865237af42, type: 2}
-    IllustData: {fileID: 11400000, guid: 9ea919092760dbd4bb251243528d0f94, type: 2}
+    IllustMaterials: {fileID: 2100000, guid: af2c8022106ec7643bdceab21c083a8e, type: 2}
+    IllustData: {fileID: 11400000, guid: fd8accc517040fd4db31e88e6920b149, type: 2}
     MinDamageValue: 6
     MaxDamageValue: 7
     Count: 3
@@ -30060,6 +30060,8 @@ MonoBehaviour:
   - SoundName: MoveMap
     clip: {fileID: 8300000, guid: 3ad8a39602f3ad74abd7675f7991f267, type: 3}
   SESoundslots: []
+  BGMValue: 1
+  SEValue: 1
   SoundFrefab: {fileID: 2166947668013155545, guid: 9ab029c6e4aa59e45bdcd3277265ce32,
     type: 3}
 --- !u!1001 &1536035705
@@ -34038,7 +34040,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: af2c8022106ec7643bdceab21c083a8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
