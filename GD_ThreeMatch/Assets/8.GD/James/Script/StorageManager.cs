@@ -6,9 +6,16 @@ public class StorageManager : MonoBehaviour
 {
 
     public static StorageManager instance = null;
- 
-    string FilePath = Application.persistentDataPath + "/MyItem.json";
-    string FilePath2 = Application.persistentDataPath + "/PlayerInfo.json";
+
+
+    //만약에 저방법을 사용할려면 에셋에다가 streamingAssets 이폴더를 꼮 생성해야된다 
+    //그리고 안드로이든 pc든 이폴더가 만약에 존재하지앟는다면 불러와지지않는다 응근히 까다롭다
+    // FilePath = Application.streamingAssetsPath + "MyItemText3.txt";
+
+    string FilePath = Application.streamingAssetsPath + "/MyItem.json";
+    string FilePath2 = Application.streamingAssetsPath + "/PlayerInfo.json";
+    //string FilePath = Application.persistentDataPath + "/MyItem.json";
+    //string FilePath2 = Application.persistentDataPath + "/PlayerInfo.json";
 
     void Start()
     {
@@ -26,11 +33,7 @@ public class StorageManager : MonoBehaviour
     //    SavePlyerInfo();  //플레이어정보
     //    SaveItem();         //아이템정보
     //}
-    public void Load()
-    {
-        //LoadPlaeyrInfo(); //플레이어정보 
-        LoadItem();         //아이템정보
-    }
+
     public void SaveItem()
     {
         print(FilePath);
@@ -45,7 +48,7 @@ public class StorageManager : MonoBehaviour
     {
         print(FilePath2);
         //리스트는 저장이 안되지만 크랠스는 저장이된다.
-        string jdata = JsonUtility.ToJson(new PlayerInfoSerialization<PlayerInfo>(PlayerManager.instance.GetPlayerList()));
+        string jdata = JsonUtility.ToJson(new PlayerInfoSerialization<PlayerInfo>(PlayerManager.instance.MyPlayerInfoList));
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         File.WriteAllText(FilePath2, jdata);
     }
@@ -72,7 +75,7 @@ public class StorageManager : MonoBehaviour
         //PlayerManager.instance.SetItemList();
         List<PlayerInfo> a_PlayerInfoList;
         a_PlayerInfoList = JsonUtility.FromJson<PlayerInfoSerialization<PlayerInfo>>(jdata).target;
-        PlayerManager.instance.SetPlayerInfoList(a_PlayerInfoList);
+        PlayerManager.instance.MyPlayerInfoList = (a_PlayerInfoList);
     }
 
 }
