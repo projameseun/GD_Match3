@@ -113,6 +113,7 @@ public class BattleManager : MonoBehaviour
     public bool BattleEvent; // 몬스터 공격이 끝나면 true
     public List<GameObject> PlayerAttackEffectList; //플레이어가 마지막에 공격하고 날라가는 큐브 이펙트
     public int ComboValue = 1;
+    public float ComboStack = 10f;
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
@@ -332,6 +333,10 @@ public class BattleManager : MonoBehaviour
     {
         if (AttackInit == false)
         {
+
+            EnemyAnim.AnimationState.SetAnimation(0, "Attack", false);
+            EnemyAnim.AnimationState.AddAnimation(0, "Idle", true, 1f);
+
             float rand = Random.Range(0.0f, 100.0f);
             SkillNum = 0;
             Player1CacHp = thePuzzle.playerUIs[0].CurrentHp;
@@ -520,6 +525,23 @@ public class BattleManager : MonoBehaviour
     public void EnemyDieEvent()
     { 
     
+    }
+
+
+
+    public void AddComboValue()
+    {
+        ComboValue++;
+        if (ComboValue > 1)
+        {
+            ComboStack += ComboValue;
+        }
+    }
+    public void ResetCombo()
+    {
+        ComboValue = 1;
+        ComboStack = 10;
+
     }
 
 

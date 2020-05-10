@@ -206,7 +206,7 @@ public class Cube : MonoBehaviour
                             if (theBattle.EnemyCubeUi[x].CubeCount > 0)
                             {
                                 Target = theBattle.EnemyCubeUi[x].gameObject;
-                                CubeNum = -1 * theBattle.ComboValue;
+                                CubeNum = (int)(-1 * theBattle.ComboStack);
                                 CubeTarget = 1;
                                 i = 6;
                                 x = 6;
@@ -260,6 +260,7 @@ public class Cube : MonoBehaviour
         if (specialCubeType == SpecialCubeType.Null)
             return;
 
+        theBattle.AddComboValue();
       
         MapManager _Map = null;
         thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
