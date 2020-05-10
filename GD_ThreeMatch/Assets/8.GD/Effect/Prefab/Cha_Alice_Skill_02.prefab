@@ -9635,6 +9635,7 @@ GameObject:
   - component: {fileID: 8855283819938358112}
   - component: {fileID: 4088362962440798287}
   - component: {fileID: 5483642998900446519}
+  - component: {fileID: -556360354036656056}
   m_Layer: 0
   m_Name: Cha_Alice_Skill_02
   m_TagString: Untagged
@@ -14381,6 +14382,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-556360354036656056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833142059233759571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba64957678875d4419c0e3d10097fe3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 4088362962440798287}
 --- !u!1 &4857144669182855419
 GameObject:
   m_ObjectHideFlags: 0

@@ -34214,6 +34214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 0
   state: 0
+  selectGirl: 0
   theMoveMap: {fileID: 2117506427}
   theBattleMap: {fileID: 1517139743}
   CubeSprites:
@@ -43324,6 +43325,7 @@ MonoBehaviour:
   SpeechBubbles: []
   AttackEffects: []
   DamageTexts: []
+  AliceSkills: []
   Cube: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
   CubeParticle: {fileID: 5403376149186592919, guid: 0b63d0560b788cb43a464d6ece8b1160,
     type: 3}
@@ -43333,6 +43335,8 @@ MonoBehaviour:
   AttackEffect: {fileID: 8513642887261709746, guid: c05b61f94debe5d4e80bc964fbcfdb6c,
     type: 3}
   DamageText: {fileID: 4307822733976733254, guid: ba37e6db2eb6d444b816753203768fb0,
+    type: 3}
+  AliceSkill: {fileID: 8665986790152930951, guid: abfe5e62e9767434ab8d73c4cbfc161a,
     type: 3}
 --- !u!1001 &2144584081
 PrefabInstance:

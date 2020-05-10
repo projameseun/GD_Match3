@@ -14,6 +14,7 @@ public class ObjectManager : MonoBehaviour
     public List<GameObject> SpeechBubbles;
     public List<GameObject> AttackEffects;
     public List<GameObject> DamageTexts;
+    public List<GameObject> AliceSkills;
 
 
     //게임오브젝트 프리팹
@@ -23,6 +24,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject SpeechObj;
     public GameObject AttackEffect;
     public GameObject DamageText;
+    public GameObject AliceSkill;
 
 
 
@@ -72,9 +74,14 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             DamageTexts.Add(x);
         }
+        for (int i = 0; i < 30; i++)
+        {
+            GameObject x = Instantiate(AliceSkill);
+            x.SetActive(false);
+            AliceSkills.Add(x);
+        }
 
-
-
+        
     }
 
 
@@ -109,6 +116,10 @@ public class ObjectManager : MonoBehaviour
             case "DamageText":
                 List = DamageTexts;
                 Frefab = DamageText;
+                break;
+            case "AliceSkill":
+                List = AliceSkills;
+                Frefab = AliceSkill;
                 break;
 
         }
@@ -194,6 +205,17 @@ public class ObjectManager : MonoBehaviour
         return TextOBJ;
     }
 
+    public GameObject AliceSkillEvent(Vector2 _StartPos)
+    {
+        GameObject AliceObj = FindObj("AliceSkill",false);
+        AliceObj.transform.position = _StartPos;
+        AliceObj.SetActive(true);
+        AliceObj.GetComponent<ParticleManager>().ParticleSetting(false,
+            null, 1f);
+
+        return AliceObj;
+    }
+
 
 
 
@@ -245,6 +267,15 @@ public class ObjectManager : MonoBehaviour
             if (DamageTexts[i].activeSelf)
             {
                 DamageTexts[i].GetComponent<DamageText>().Resetting();
+            }
+
+
+        }
+        for (int i = 0; i < AliceSkills.Count; i++)
+        {
+            if (AliceSkills[i].activeSelf)
+            {
+                AliceSkills[i].GetComponent<ParticleManager>().Resetting();
             }
 
 

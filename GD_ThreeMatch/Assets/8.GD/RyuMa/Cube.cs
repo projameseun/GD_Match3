@@ -117,7 +117,7 @@ public class Cube : MonoBehaviour
     }
 
 
-    public void DestroyCube(bool _Event = false)
+    public void DestroyCube(bool _Event, bool SpecialEffect = false)
     {
         OnlyOneEvent = _Event;
         DestroyEvent = true;
@@ -145,7 +145,14 @@ public class Cube : MonoBehaviour
             }
         }
 
-
+        if (SpecialEffect == true)
+        {
+            if (thePuzzle.selectGirl == SelectGirl.G2_Alice)
+            {
+                theObject.AliceSkillEvent(this.transform.position);
+            }
+            
+        }
 
 
 

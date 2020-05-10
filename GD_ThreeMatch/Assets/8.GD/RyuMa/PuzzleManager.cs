@@ -4,6 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
+
+public enum SelectGirl
+{ 
+    G1a000 = 0,
+    G2_Alice,
+    G3a222,
+    G4_Beryl,
+    G5a444,
+    G6a555
+}
+
+
 public enum Direction
 { 
     Up = 0,
@@ -39,7 +52,7 @@ public class PuzzleManager : MonoBehaviour
     }
     public GameMode gameMode = GameMode.MoveMap;
     public State state;
-
+    public SelectGirl selectGirl = SelectGirl.G2_Alice;
 
     public MapManager theMoveMap;
     public MapManager theBattleMap;
@@ -1244,7 +1257,7 @@ public class PuzzleManager : MonoBehaviour
     // 맨처음 이동맵을 세팅하는 함수
     public void BT_SetSlot()
     {
-        //theSound.PlayBGM("MoveMap");
+        theSound.PlayBGM("MoveMap");
         List<int> ColorList = new List<int>();
         ColorList.Add(0);
         ColorList.Add(1);
