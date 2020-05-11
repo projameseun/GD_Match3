@@ -291,8 +291,11 @@ public class PuzzleManager : MonoBehaviour
 
 
             }
-
-            if (state == State.ChangeMatch) //  큐브를 교환하는 상태
+            if (state == State.Ready)
+            {
+                theBattle.CheckComboCoolDonw();
+            }
+            else if (state == State.ChangeMatch) //  큐브를 교환하는 상태
             {
                 if (CubeEvent == true)
                 {
@@ -352,7 +355,6 @@ public class PuzzleManager : MonoBehaviour
                 //매치가 안될경우
                 if (!isMatched)
                 {
-                    theBattle.ResetCombo();
                     if (DeadlockCheck(theBattleMap))
                     {
                         // 몬스터의 체력이 0이 될 경우

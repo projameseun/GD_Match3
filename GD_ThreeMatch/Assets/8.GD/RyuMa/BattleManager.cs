@@ -101,6 +101,8 @@ public class BattleManager : MonoBehaviour
     public Text TimeText;
     public Text EnemyCountText;
     public CubeUI[] EnemyCubeUi;
+    public Image ComboCoolDownImage;
+    public Text ComboText;
     [Space]
 
     // 데이터베이스
@@ -114,6 +116,8 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> PlayerAttackEffectList; //플레이어가 마지막에 공격하고 날라가는 큐브 이펙트
     public int ComboValue = 1;
     public float ComboStack = 10f;
+    [HideInInspector] public float CurrentComboCoolDown = 1;
+    public float MaxComboCoolDown = 1f;
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
@@ -228,6 +232,8 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattle(int _enemyNum)
     {
+        ComboCoolDownImage.fillAmount = 0;
+        ComboText.text = "";
         ComboValue = 1;
         SelectEnemyNum = _enemyNum;
         EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = Enemy[_enemyNum].IllustData;
@@ -268,8 +274,11 @@ public class BattleManager : MonoBehaviour
     }
     public void EndBattle()
     {
-        //EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = null;
-        //EnemySpine.GetComponent<MeshRenderer>().material = null;
+        BattleStart = false;
+        ComboCoolDownImage.fillAmount = 0;
+        ComboText.text = "";
+        EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
+        battleState = BattleState.EnemyDie;
     }
 
 
@@ -288,15 +297,30 @@ public class BattleManager : MonoBehaviour
         {
             Debug.Log("배틀 승리");
             EndBattle();
-            BattleStart = false;
-            theFade.FadeIn();
+
         }
+        if (ComboValue > 1)
+        {
+            ComboCoolDownImage.fillAmount = CurrentComboCoolDown / MaxComboCoolDown;
+            ComboText.text = ComboValue + " 콤보 (" + ComboStack + ")";
+        }
+        else
+        {
+            ComboCoolDownImage.fillAmount = 0;
+            ComboText.text = "";
+        }
+
+
+
+
+
 
         TimeText.text = "Time : " + ((int)GameTime).ToString();
     }
 
     public void TakeDamage(int DamageCount)
     {
+        
         if (DamageCount > 0)
         {
             Debug.Log("데미지가 플러스로 나옴");
@@ -333,7 +357,7 @@ public class BattleManager : MonoBehaviour
     {
         if (AttackInit == false)
         {
-
+            ResetCombo();
             EnemyAnim.AnimationState.SetAnimation(0, "Attack", false);
             EnemyAnim.AnimationState.AddAnimation(0, "Idle", true, 1f);
 
@@ -531,6 +555,7 @@ public class BattleManager : MonoBehaviour
 
     public void AddComboValue()
     {
+        CurrentComboCoolDown = MaxComboCoolDown;
         ComboValue++;
         if (ComboValue > 1)
         {
@@ -541,7 +566,19 @@ public class BattleManager : MonoBehaviour
     {
         ComboValue = 1;
         ComboStack = 10;
+        CurrentComboCoolDown = 0;
+    }
+    public void CheckComboCoolDonw()
+    {
+        if (CurrentComboCoolDown > 0)
+        {
+            CurrentComboCoolDown -= Time.deltaTime;
+        }
+        else
+        {
+            ResetCombo();
 
+        }
     }
 
 

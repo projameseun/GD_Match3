@@ -115,7 +115,7 @@ public class CubeEffect : MonoBehaviour
         Move = true;
         TargetPos = _TargetVec;
         CubeCount = _CubeCount;
-        DestroyCount = 10f;
+        DestroyCount = 10f; // 오브젝트 생존시간
         if (RandomStart == true)
         {
             float RandZ = Random.Range(0F, 360f);
@@ -180,17 +180,26 @@ public class CubeEffect : MonoBehaviour
     {
 
 
-        _UI.CubeCount += CubeCount;
+      
 
         if (_UI.uIType == CubeUI.UIType.EnemyUI)
         {
-            if (_UI.CubeCount > -1)
+            if (_UI.CubeCount + CubeCount >= 0)
             {
                 if (CubeCount < 0)
                     theObject.DamageTextEvent(this.transform.position, (-CubeCount).ToString());
                 theBattle.TakeDamage(CubeCount);
             }
+            else
+            {
+
+                if (CubeCount < 0)
+                    theObject.DamageTextEvent(this.transform.position, (-_UI.CubeCount).ToString());
+                theBattle.TakeDamage(-_UI.CubeCount);
+            }
         }
+
+        _UI.CubeCount += CubeCount;
 
 
 
