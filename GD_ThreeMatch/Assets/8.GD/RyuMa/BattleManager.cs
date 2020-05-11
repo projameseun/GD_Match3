@@ -329,6 +329,7 @@ public class BattleManager : MonoBehaviour
 
         if (DamageTime > 0)
         {
+
             EnemyAnim.AnimationState.SetAnimation(0, "Hit", false);
             EnemyAnim.AnimationState.AddAnimation(0, "Idle", true, 0.5f);
         }
