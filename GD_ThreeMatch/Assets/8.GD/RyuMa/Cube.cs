@@ -19,7 +19,7 @@ public class Cube : MonoBehaviour
 
     public int Num;
     public float Size;
-    public SpriteRenderer MinimapSprite;
+    //public SpriteRenderer MinimapSprite;
     public bool SpecialCube = false; // 특수블럭으로 바꾸기 위해 사용하는 값
 
 

@@ -723,13 +723,15 @@ public class PuzzleManager : MonoBehaviour
 
         if (_GirlCube == true)
         {
+            Debug.Log("걸큐브 생성");
+
             _Cube.GetComponent<SpriteRenderer>().sprite = GirlSprites[ColorNum];
         }
         else
         {
             _Cube.GetComponent<SpriteRenderer>().sprite = CubeSprites[ColorNum];
             _Cube.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-            _Cube.GetComponent<Cube>().MinimapSprite.sprite = CubeSprites[ColorNum];
+            //_Cube.GetComponent<Cube>().MinimapSprite.sprite = CubeSprites[ColorNum];
         }
         _Slot.nodeColor = (NodeColor)ColorNum;
         _Cube.GetComponent<Cube>().nodeColor = (NodeColor)ColorNum;
