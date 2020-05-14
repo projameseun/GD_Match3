@@ -141,7 +141,10 @@ public class PlayerUI : MonoBehaviour
             theBattle.BattleEvent = true;
         }
 
-
+        if (theBattle.EnemyAttackEffectList.Contains(_Effect.gameObject))
+        {
+            theBattle.EnemyAttackEffectList.Remove(_Effect.gameObject);
+        }
 
         _Effect.Resetting();
 

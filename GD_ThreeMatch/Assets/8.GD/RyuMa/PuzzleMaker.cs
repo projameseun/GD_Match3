@@ -45,6 +45,8 @@ public class PuzzleMaker : MonoBehaviour
 
     public void Update()
     {
+
+
         if (ButtonDown == true)
         {
             ButtonDown = false;
@@ -111,7 +113,16 @@ public class PuzzleMaker : MonoBehaviour
 
 
     }
-
+    public void ShowSlotNum()
+    {
+        if (theMoveMap.Slots[0].TestText.text == "")
+        {
+            for (int i = 0; i < theMoveMap.Slots.Length; i++)
+            {
+                theMoveMap.Slots[i].TestText.text = i.ToString();
+            }
+        }
+    }
 
 
 

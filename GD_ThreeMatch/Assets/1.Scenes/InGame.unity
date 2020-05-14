@@ -1916,10 +1916,12 @@ MonoBehaviour:
     MultiplyValue: 1
     SkillEffectNum: 0
     attackType: 0
+    attackEffectType: 3
   - SkillName: "\uD0B9\uC2AC\uB77C\uC784 \uB2E4\uC774\uBE0C"
     MultiplyValue: 1.5
     SkillEffectNum: 0
     attackType: 0
+    attackEffectType: 0
   battleState: 0
   EnemySpine: {fileID: 1689186297}
   EnemyAnim: {fileID: 1689186299}
@@ -1944,6 +1946,7 @@ MonoBehaviour:
   CurrentEnemyCount: 0
   BattleEvent: 0
   PlayerAttackEffectList: []
+  EnemyAttackEffectList: []
   ComboValue: 1
   ComboStack: 10
   CurrentComboCoolDown: 1

@@ -63,6 +63,7 @@ public class EnemySkill
     public float MultiplyValue = 1;
     public int SkillEffectNum = 0;
     public AttackType attackType;
+    public AttackEffectType attackEffectType;
   
 
 }
@@ -114,6 +115,7 @@ public class BattleManager : MonoBehaviour
     public int CurrentEnemyCount;   // 적 공격카운트
     public bool BattleEvent; // 몬스터 공격이 끝나면 true
     public List<GameObject> PlayerAttackEffectList; //플레이어가 마지막에 공격하고 날라가는 큐브 이펙트
+    public List<GameObject> EnemyAttackEffectList; //몬스터가 공격한 이팩트 리스트
     public int ComboValue = 1;
     public float ComboStack = 10f;
     [HideInInspector] public float CurrentComboCoolDown = 1;
@@ -135,6 +137,7 @@ public class BattleManager : MonoBehaviour
     bool AttackEndEvent; // 마지막 공격때 적용
     float Player1CacHp; // 소녀체력계산
     float Player2CacHp; // 소녀체력계산
+
 
 
 
@@ -207,7 +210,7 @@ public class BattleManager : MonoBehaviour
                     if (PlayerAttackEffectList.Count > 0 || DamageEvent == true)
                         return;
 
-                    if (BattleEvent == true)
+                    if (BattleEvent == true && EnemyAttackEffectList.Count ==0)
                     {
                         EnemyAttackEnd();
                         return;
@@ -469,14 +472,17 @@ public class BattleManager : MonoBehaviour
                 else if (EnemySkill[SkillNum].attackType == AttackType.FullAttack)
                 {
                     TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
-                    theObject.AttackEffectEvent(StartVec,
-                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, false, AttackEffectType.Missile);
+                    EnemyAttackEffectList.Add(theObject.AttackEffectEvent(StartVec,
+                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, false, EnemySkill[SkillNum].attackEffectType)
+                        );
                     Player1CacHp -= damage;
 
 
                     TargetVec = thePuzzle.playerUIs[1].Trigger.gameObject;
+                    EnemyAttackEffectList.Add(
                     theObject.AttackEffectEvent(StartVec,
-                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, AttackEffectType.Missile);
+                  TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, EnemySkill[SkillNum].attackEffectType)
+                    );
                     Player2CacHp -= damage;
                     return;
                 }
@@ -495,10 +501,11 @@ public class BattleManager : MonoBehaviour
                     if (Player2CacHp < 0)
                         Player2CacHp = 0;
                 }
-                    
 
+                EnemyAttackEffectList.Add(
                 theObject.AttackEffectEvent(StartVec,
-                    TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, AttackEffectType.Missile);
+                    TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, AttackEndEvent, EnemySkill[SkillNum].attackEffectType)
+                );
             }
 
           
