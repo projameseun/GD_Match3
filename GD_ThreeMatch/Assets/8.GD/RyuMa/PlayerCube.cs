@@ -39,7 +39,6 @@ public class PlayerCube : MonoBehaviour
     {
 
         direction = _direction;
-
         if (direction == Direction.Up)
         { 
             
