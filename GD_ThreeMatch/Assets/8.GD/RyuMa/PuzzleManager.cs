@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -207,25 +206,7 @@ public class PuzzleManager : MonoBehaviour
                 if (CubeEvent == true)
                 {
                     CubeEvent = false;
-
-                    if (EnemyReady == true)
-                    {
-                        if (CheckEnemy(theMoveMap) == true)
-                        {
-                            EnemyReady = false;
-                            state = State.ChangeMode;
-                            theFade.FadeIn();
-                        }
-                        else
-                        {
-                            BT_FillBlank(theMoveMap);
-                        }
-                    }
-                    else
-                    {
-                        BT_FillBlank(theMoveMap);
-                        EnemyReady = true;
-                    }
+                    BT_FillBlank(theMoveMap);
                 }
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
@@ -245,11 +226,11 @@ public class PuzzleManager : MonoBehaviour
                 {
                     Player.ChangeAnim("Idle", true);
 
-                    if (CheckGoal(theMoveMap) == true)
-                    {
-                        state = State.Ready;
-                        return;
-                    }
+                    //if (CheckGoal(theMoveMap) == true)
+                    //{
+                    //    state = State.Ready;
+                    //    return;
+                    //}
                     if (DeadlockCheck(theMoveMap))
                     {
                         state = State.Ready;
@@ -430,7 +411,7 @@ public class PuzzleManager : MonoBehaviour
             if (i <= _Map.TopRight ||
                 i >= _Map.BottomLeft ||
                 i % _Map.Horizontal <= 0 ||
-                i % _Map.Horizontal >= _Map.Horizontal - 1)
+                i % _Map.Horizontal >= _Map.TopRight)
             {
                 _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
                 _Map.Slots[i].nodeColor = NodeColor.Null;
@@ -474,7 +455,6 @@ public class PuzzleManager : MonoBehaviour
                 {
                     //변경하지 않을 큐브를 넣는다
                     if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Enemy &&
-                        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Goal &&
                         _Map.Slots[i].nodeColor != NodeColor.Player &&
                         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Object)
                     {
@@ -500,69 +480,68 @@ public class PuzzleManager : MonoBehaviour
 
 
 
-
         NotMatchSetCube(_Map);
 
 
 
-        if (Reset == false)
-        {
-            //SetPlayer(_Map);
-            //맵에서 플레이어의 위치를 지정시킨다
+        //if (Reset == false)
+        //{
+        //    //SetPlayer(_Map);
+        //    //맵에서 플레이어의 위치를 지정시킨다
 
-            //SetEnemy(_Map);
-            //맵에서 몬스터의 위치를 지정시킨다
+        //    //SetEnemy(_Map);
+        //    //맵에서 몬스터의 위치를 지정시킨다
 
-            //SetGoal(_Map);
-            //맵에서 골의 위치를 지정시킨다
+        //    //SetGoal(_Map);
+        //    //맵에서 골의 위치를 지정시킨다
 
-            while (true)
-            {
-                int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
-                rand = 40;
-                if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null)
-                {
-                    _Map.Slots[rand].nodeColor = NodeColor.Player;
-                    _Map.Slots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-                    _Map.Slots[rand].cube.nodeColor = NodeColor.Player;
-                    Player.transform.position = _Map.Slots[rand].transform.position;
+        //    while (true)
+        //    {
+        //        int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
+        //        rand = 43;
+        //        if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+        //            _Map.Slots[rand].nodeColor = NodeColor.Player;
+        //            _Map.Slots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+        //            _Map.Slots[rand].cube.nodeColor = NodeColor.Player;
+        //            Player.transform.position = _Map.Slots[rand].transform.position;
 
-                    Transform Parent = _Map.Slots[rand].cube.transform;
+        //            Transform Parent = _Map.Slots[rand].cube.transform;
 
-                    Player.transform.parent = Parent;
-                    Player.ChangeDirection(_Map.direction);
+        //            Player.transform.parent = Parent;
+        //            Player.ChangeDirection(_Map.direction);
 
-                    break;
-                }
-            }
-            while (true)
-            {
-                int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
-                rand = 39;
-                if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
-                    _Map.Slots[rand].nodeColor != NodeColor.Player)
-                {
-                    _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
-                    _Map.Slots[rand].GetComponent<Image>().color = new Color(1, 0, 0, 1);
-                    break;
-                }
-            }
-            while (true)
-            {
-                int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
+        //            break;
+        //        }
+        //    }
+        //    while (true)
+        //    {
+        //        int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
+        //        rand = 44;
+        //        if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
+        //            _Map.Slots[rand].nodeColor != NodeColor.Player)
+        //        {
+        //            _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
+        //            _Map.Slots[rand].GetComponent<Image>().color = new Color(1, 0, 0, 1);
+        //            break;
+        //        }
+        //    }
+        //    while (true)
+        //    {
+        //        int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
 
-                if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
-                    _Map.Slots[rand].nodeColor != NodeColor.Player &&
-                    _Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Enemy)
-                {
-                    _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Goal;
-                    Goal.transform.position = _Map.Slots[rand].transform.position;
-                    Transform Parent = _Map.Slots[rand].transform;
-                    Goal.transform.parent = Parent;
-                    break;
-                }
-            }
-        }
+        //        if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
+        //            _Map.Slots[rand].nodeColor != NodeColor.Player &&
+        //            _Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Enemy)
+        //        {
+        //            _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Goal;
+        //            Goal.transform.position = _Map.Slots[rand].transform.position;
+        //            Transform Parent = _Map.Slots[rand].transform;
+        //            Goal.transform.parent = Parent;
+        //            break;
+        //        }
+        //    }
+        //}
 
         if (gameMode == GameMode.MoveMap)
         {
@@ -609,20 +588,20 @@ public class PuzzleManager : MonoBehaviour
     }
 
     //골 슬롯에 UI 배치
-    public void SetGoal(MapManager _Map)
-    {
-        for (int i = _Map.TopLeft; i < _Map.BottomLeft; i++)
-        {
-            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Goal)
-            {
-                _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Goal;
-                Goal.transform.position = _Map.Slots[i].transform.position;
-                Transform Parent = _Map.Slots[i].transform;
-                Goal.transform.parent = Parent;
-                break;
-            }
-        }
-    }
+    //public void SetGoal(MapManager _Map)
+    //{
+    //    for (int i = _Map.TopLeft; i < _Map.BottomLeft; i++)
+    //    {
+    //        if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Goal)
+    //        {
+    //            _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Goal;
+    //            Goal.transform.position = _Map.Slots[i].transform.position;
+    //            Transform Parent = _Map.Slots[i].transform;
+    //            Goal.transform.parent = Parent;
+    //            break;
+    //        }
+    //    }
+    //}
 
 
     // 처음 매치가 안된 상태로 세팅
@@ -1073,21 +1052,23 @@ public class PuzzleManager : MonoBehaviour
         
     }
 
-    // 마지막에 멈춘 위치가 골이면 true
-    public bool CheckGoal(MapManager _Map)
-    {
-        for (int i = 0; i < _Map.Vertical * _Map.Horizontal; i++)
-        {
-            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Goal &&
-                _Map.Slots[i].nodeColor == NodeColor.Player)
-            {
-                return true;
-            }
-        }
+    //// 마지막에 멈춘 위치가 골이면 true
+    //public bool CheckGoal(MapManager _Map)
+    //{
+    //    for (int i = 0; i < _Map.Vertical * _Map.Horizontal; i++)
+    //    {
+    //        if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Goal &&
+    //            _Map.Slots[i].nodeColor == NodeColor.Player)
+    //        {
+    //            return true;
+    //        }
+    //    }
 
 
-        return false;
-    }
+    //    return false;
+    //}
+
+
 
     //현재 매치가 가능한 상태가 있는지 체크 true 면 가능, false 면 불가능
     public bool DeadlockCheck(MapManager _Map)
@@ -1286,6 +1267,7 @@ public class PuzzleManager : MonoBehaviour
         SetSlot(theMoveMap);
 
     }
+
     public void BT_Minimap()
     {
         MinimapBase.SetActive(!MinimapBase.activeSelf);

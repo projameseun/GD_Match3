@@ -20,6 +20,23 @@ public enum NodeColor
     Null
 }
 
+[System.Serializable]
+public class MonsterSheet
+{
+    //몬스터 시트
+    [HideInInspector] public int[] EnemyIndex = null;
+    [HideInInspector] public int[] EnemyChance = null;
+    [HideInInspector] public bool OnlyOneEnemy = false;
+    [HideInInspector] public int OnlyOneNum;
+}
+
+[System.Serializable]
+public class PortalSheet
+{
+    [HideInInspector] public string MapName = null;
+    [HideInInspector] public int NextPosNum;
+}
+
 
 public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
@@ -28,8 +45,9 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Null = 0,
         Normal,
         Enemy,
-        Goal,
+        Portal,
         Object,
+    
 
     }
 
@@ -38,13 +56,29 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public NodeType nodeType;
     public NodeColor nodeColor;
     public int SlotNum;
-    public int EnemyNum; //적의 번호 인덱스를 받는다
 
     public Text TestText;
 
     //DB
     public bool Down;
     public Cube cube;
+
+
+    ////몬스터 시트
+
+    public MonsterSheet monsterSheet = null;
+
+    // 포탈 시트
+    public PortalSheet portalSheet = null;
+
+    //[HideInInspector] public int[] EnemyIndex = null;
+    //[HideInInspector] public int[] EnemyChance = null;
+    //[HideInInspector] public bool OnlyOneEnemy = false;
+    //[HideInInspector] public int OnlyOneNum;
+
+    //포탈 시트
+
+
 
 
 
@@ -257,7 +291,29 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     }
 
-    
+
+    public void Resetting()
+    {
+        if (nodeType != NodeType.Null)
+        {
+
+            if (nodeType == NodeType.Enemy)
+            {
+                monsterSheet = null;
+            }
+            else if (nodeType == NodeType.Portal)
+            {
+                portalSheet = null;
+            }
+
+
+            nodeType = NodeType.Normal;
+            nodeColor = NodeColor.Null;
+            cube.Resetting();
+            cube = null;
+        }
+    }
+
 
 
 

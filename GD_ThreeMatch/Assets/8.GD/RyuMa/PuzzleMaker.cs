@@ -10,7 +10,7 @@ public enum ChangeMode
     Normal,
     Player,
     Enemy,
-    Goal,
+    Portal,
     Object
 }
 
@@ -45,6 +45,12 @@ public class PuzzleMaker : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            BT_PuzzleMaker();
+        }
+
+
 
 
         if (ButtonDown == true)
@@ -90,11 +96,11 @@ public class PuzzleMaker : MonoBehaviour
             theMoveMap.Slots[SlotNum].TestText.color = new Color(1, 0, 0);
 
         }
-        else if (changeMode == ChangeMode.Goal)
+        else if (changeMode == ChangeMode.Portal)
         {
-            theMoveMap.Slots[SlotNum].nodeType = PuzzleSlot.NodeType.Goal;
+            theMoveMap.Slots[SlotNum].nodeType = PuzzleSlot.NodeType.Portal;
             theMoveMap.Slots[SlotNum].nodeColor = NodeColor.Null;
-            theMoveMap.Slots[SlotNum].TestText.text = "G";
+            theMoveMap.Slots[SlotNum].TestText.text = "P";
             theMoveMap.Slots[SlotNum].TestText.color = new Color(1, 0.8f, 0);
             Goal.transform.position = theMoveMap.Slots[SlotNum].transform.position;
             Transform Parent = theMoveMap.Slots[SlotNum].transform;
@@ -177,7 +183,7 @@ public class PuzzleMaker : MonoBehaviour
             {
                 //변경하지 않을 큐브를 넣는다
                 if (theMoveMap.Slots[i].nodeType != PuzzleSlot.NodeType.Enemy &&
-                    theMoveMap.Slots[i].nodeType != PuzzleSlot.NodeType.Goal &&
+                    theMoveMap.Slots[i].nodeType != PuzzleSlot.NodeType.Portal &&
                     theMoveMap.Slots[i].nodeColor != NodeColor.Player &&
                     theMoveMap.Slots[i].nodeType != PuzzleSlot.NodeType.Object)
                 {
