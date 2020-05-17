@@ -1030,21 +1030,103 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    // 블럭 움직일때마다 확인하며 만약 플레이어가 적슬롯에 들어오면 true 아니면 false
-    public bool CheckEnemy(MapManager _Map)
+
+
+
+
+    // 플레이어가 있는 슬롯의 넘버를 가져온다
+    public int CheckPlayerSlot(MapManager _Map)
     {
-        for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
+        for (int i = 0; i < _Map.TopRight; i++)
         {
-            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Enemy &&
-                _Map.Slots[i].nodeColor == NodeColor.Player)
+            for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
             {
-                EnemySlotNum = i;
-                return true;
-                //적 슬롯에 들어옴
+                if (_Map.Slots[i + Hor].nodeColor == NodeColor.Player)
+                {
+                    return i + Hor;
+                }
             }
         }
-        return false;
+        return 0;
     }
+
+
+    public void CheckEndMatchEvent()
+    {
+        int SlotNum = CheckPlayerSlot(theMoveMap);
+
+        //현재 슬롯이 몬스터인지
+
+        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Normal)
+        {
+            return;
+        }
+        else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
+        {
+            EnemyEvent(theMoveMap, SlotNum);
+        }
+        else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+        {
+            CheckPortal(theMoveMap, SlotNum);
+        }
+
+
+
+
+    }
+
+
+    // 몬스터 이밴트
+    public void EnemyEvent(MapManager _Map, int i)
+    {
+        Player.CurrentEnemyMeetChance += _Map.Slots[i].monsterSheet.addEnemyMeet;
+
+        if (CheckEnemyMeet(_Map) == true)
+        {
+            float rand = Random.Range(0.0f, 100.0f);
+
+            for (int Index = 0; Index < _Map.Slots[i].monsterSheet.EnemyIndex.Length; i++)
+            {
+                if (_Map.Slots[i].monsterSheet.EnemyChance[Index] <= rand)
+                {
+                    theBattle.SelectEnemyNum = _Map.Slots[i].monsterSheet.EnemyIndex[Index];
+                    theFade.FadeIn();
+                    state = State.Ready;
+                    break;
+                }
+            }
+        }
+        return;
+
+    }
+
+    // 포탈 이밴트
+    public void CheckPortal(MapManager _Map, int _Num)
+    { 
+
+
+
+    }
+
+
+
+    // 현재 적과 조우했는지 확인, true면 전투 시작
+    public bool CheckEnemyMeet(MapManager _Map)
+    { 
+        float rand = Random.Range(0.0f, 100.0f);
+
+
+        if (rand <= Player.CurrentEnemyMeetChance)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+
 
     public void EnemySlotDestroy(int _Num)
     {

@@ -9,12 +9,17 @@ public class PlayerCube : MonoBehaviour
     public SkeletonAnimation anim;
     [SpineSlot]
 
-    public string AnimName;
 
+   
+    public string AnimName; // 현재 에니메이션 상태를 저장
+    public int TrakNum;
     public Direction direction;
 
 
-    public int TrakNum;
+
+    // 몬스터시트
+    public int CurrentEnemyMeetChance = 0; //현재 적과 조주할 확률
+
 
 
     //색 조정
@@ -66,6 +71,11 @@ public class PlayerCube : MonoBehaviour
         anim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
         AnimName = _state;
     }
+
+
+
+    // 현재 적과 조우하 확률을 계산, 적과 조우할 경우 true
+
 
 
 

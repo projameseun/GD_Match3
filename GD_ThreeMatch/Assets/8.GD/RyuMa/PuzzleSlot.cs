@@ -24,10 +24,11 @@ public enum NodeColor
 public class MonsterSheet
 {
     //몬스터 시트
-    [HideInInspector] public int[] EnemyIndex = null;
-    [HideInInspector] public int[] EnemyChance = null;
-    [HideInInspector] public bool OnlyOneEnemy = false;
-    [HideInInspector] public int OnlyOneNum;
+    [HideInInspector] public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
+    [HideInInspector] public int addEnemyMeet;              //적과 조우할 확률 증가량
+    [HideInInspector] public int[] EnemyIndex = null;       //몬스터 인덱스 번호
+    [HideInInspector] public int[] EnemyChance = null;      //몬스터별 확률
+    [HideInInspector] public int OnlyOneNum;                //데이터 시트에 저장할 번호
 }
 
 [System.Serializable]
