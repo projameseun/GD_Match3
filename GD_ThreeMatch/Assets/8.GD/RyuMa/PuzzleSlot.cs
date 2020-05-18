@@ -23,19 +23,22 @@ public enum NodeColor
 [System.Serializable]
 public class MonsterSheet
 {
+
     //몬스터 시트
-    [HideInInspector] public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
-    [HideInInspector] public int addEnemyMeet;              //적과 조우할 확률 증가량
-    [HideInInspector] public int[] EnemyIndex = null;       //몬스터 인덱스 번호
-    [HideInInspector] public int[] EnemyChance = null;      //몬스터별 확률
-    [HideInInspector] public int OnlyOneNum;                //데이터 시트에 저장할 번호
+    public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
+    public int addEnemyMeet;              //적과 조우할 확률 증가량
+    public int[] EnemyIndex = null;       //몬스터 인덱스 번호
+    public int[] EnemyChance = null;      //몬스터별 확률
+    public int OnlyOneNum;                //데이터 시트에 저장할 번호
+
+
 }
 
 [System.Serializable]
 public class PortalSheet
 {
-    [HideInInspector] public string MapName = null;
-    [HideInInspector] public int NextPosNum;
+    public string MapName = null;
+    public int NextPosNum;
 }
 
 
@@ -91,9 +94,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     Vector2 CurrentVec;
     private PuzzleManager thePuzzle;
     private FindMatches theMatch;
+    private PuzzleMaker theMaker;
     // Start is called before the first frame update
     void Start()
     {
+        theMaker = FindObjectOfType<PuzzleMaker>();
         theMatch = FindObjectOfType<FindMatches>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
@@ -136,7 +141,13 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-       
+
+        if (theMaker.PuzzleMakerStart == true)
+        {
+            theMaker.BT_PuzzleMaker(this, SlotNum);
+            return;
+        }
+
      
 
         if (thePuzzle.SlotDown == true && Down == true)

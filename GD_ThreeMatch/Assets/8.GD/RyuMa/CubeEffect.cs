@@ -30,7 +30,6 @@ public class CubeEffect : MonoBehaviour
     public GameObject FrontObj;
     Vector2 FrontPos;
     Vector3 Rotation = new Vector3(0,0,0);
-    int ReToPlayer = 0;
     float DestroyCount;
 
     private PuzzleManager thePuzzle;

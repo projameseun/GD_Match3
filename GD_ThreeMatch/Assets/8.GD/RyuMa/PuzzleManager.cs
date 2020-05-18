@@ -98,7 +98,6 @@ public class PuzzleManager : MonoBehaviour
 
 
     //쓰래기통
-    bool EnemyReady = true; // true일 경우 전투 가능
     public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
     float AutoEventTime = 0;
     public int SelectNum = 0;
@@ -226,6 +225,11 @@ public class PuzzleManager : MonoBehaviour
                 {
                     Player.ChangeAnim("Idle", true);
 
+                    if (CheckEndMatchEvent() == true)
+                    {
+                        return;
+                    }
+                 
                     //if (CheckGoal(theMoveMap) == true)
                     //{
                     //    state = State.Ready;
@@ -1050,8 +1054,8 @@ public class PuzzleManager : MonoBehaviour
         return 0;
     }
 
-
-    public void CheckEndMatchEvent()
+    //매치가 끝난 다음에 이밴트 확인
+    public bool CheckEndMatchEvent()
     {
         int SlotNum = CheckPlayerSlot(theMoveMap);
 
@@ -1059,18 +1063,20 @@ public class PuzzleManager : MonoBehaviour
 
         if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Normal)
         {
-            return;
+            return false;
         }
         else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
         {
             EnemyEvent(theMoveMap, SlotNum);
+            return true;
         }
         else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
         {
             CheckPortal(theMoveMap, SlotNum);
+            return true;
         }
 
-
+        return false;
 
 
     }
@@ -1081,6 +1087,7 @@ public class PuzzleManager : MonoBehaviour
     {
         Player.CurrentEnemyMeetChance += _Map.Slots[i].monsterSheet.addEnemyMeet;
 
+        //몬스터와 만날 확률을 계산, true면 적과 조우
         if (CheckEnemyMeet(_Map) == true)
         {
             float rand = Random.Range(0.0f, 100.0f);
@@ -1099,31 +1106,28 @@ public class PuzzleManager : MonoBehaviour
         return;
 
     }
-
-    // 포탈 이밴트
-    public void CheckPortal(MapManager _Map, int _Num)
-    { 
-
-
-
-    }
-
-
-
     // 현재 적과 조우했는지 확인, true면 전투 시작
     public bool CheckEnemyMeet(MapManager _Map)
-    { 
+    {
         float rand = Random.Range(0.0f, 100.0f);
-
-
         if (rand <= Player.CurrentEnemyMeetChance)
         {
             return true;
         }
-
         return false;
+    }
+
+    // 포탈 이밴트
+    public void CheckPortal(MapManager _Map, int _Num)
+    {
+        //포탈 이밴트
+        string LoadMapName = _Map.Slots[_Num].portalSheet.MapName; //로드할 맵 이름
+        int PlayerSlotNum = _Map.Slots[_Num].portalSheet.NextPosNum; //로드 후 플레이어 위치
 
     }
+
+
+
 
 
 

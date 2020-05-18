@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -33,8 +34,10 @@ public class CameraManager : MonoBehaviour
     //
 
     private PuzzleManager thePuzzle;
+    private PuzzleMaker theMaker;
     void Start()
     {
+        theMaker = FindObjectOfType<PuzzleMaker>();
         MainCamera = GetComponent<Camera>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
@@ -44,6 +47,38 @@ public class CameraManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (theMaker.PuzzleMakerStart == true)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                MoveVec += Vector3.up * Time.deltaTime * CameraSpeed;
+                MoveVec.z = -10;
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                MoveVec += Vector3.down * Time.deltaTime * CameraSpeed;
+                MoveVec.z = -10;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                MoveVec += Vector3.left * Time.deltaTime * CameraSpeed;
+                MoveVec.z = -10;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                MoveVec += Vector3.right * Time.deltaTime * CameraSpeed;
+                MoveVec.z = -10;
+            }
+
+
+
+            this.transform.position = Vector3.Lerp(this.transform.position, MoveVec, Speed * Time.fixedDeltaTime);
+        }
+
+
+
         if (state == State.SmoothMove)
         {
             if (Down)

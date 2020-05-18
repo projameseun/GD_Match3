@@ -41036,8 +41036,10 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 1
   maskMaterials:
-    materialsMaskDisabled: []
-    materialsInsideMask: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: f7c3d7cbd80a7e047bb9a69ace235206, type: 2}
+    materialsInsideMask:
+    - {fileID: 2100000, guid: b7b6f8d40cca02d4ca3756e579c3d676, type: 2}
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: Idle
@@ -41061,7 +41063,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7c3d7cbd80a7e047bb9a69ace235206, type: 2}
+  - {fileID: 2100000, guid: b7b6f8d40cca02d4ca3756e579c3d676, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41118,8 +41120,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1084506281}
   AnimName: 
-  direction: 0
   TrakNum: 0
+  direction: 0
+  CurrentEnemyMeetChance: 0
 --- !u!1001 &1085048901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66173,11 +66176,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theMoveMap: {fileID: 2117506427}
   Player: {fileID: 1084506285}
-  Goal: {fileID: 386249301}
-  EnemyNum: 0
+  IngameUi: {fileID: 1992849515}
+  PuzzleMakerStart: 0
   changeMode: 0
-  SlotNum: 0
-  ButtonDown: 0
+  MapName: 
+  TopLeft: 0
+  TopRight: 5
+  BottomLeft: 100
+  BottomRight: 105
+  EnemyColor: {r: 1, g: 0, b: 0, a: 1}
+  OnlyOneEnemy: 0
+  addEnemyMeet: 0
+  enemyIndex: []
+  DataSheet: 0
+  MoveMapName: 
+  PlayerStartPos: 0
 --- !u!1001 &1704704568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74417,8 +74430,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: 840}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: 417, y: 880}
+  m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1924831739
 MonoBehaviour:
@@ -74463,8 +74476,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1703859105}
-        m_MethodName: BT_ShowSlotText
+      - m_Target: {fileID: 1703859107}
+        m_MethodName: BT_SonMapStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -81117,7 +81130,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: test
+  m_Text: "\uC190\uB9F5\n\uC2DC\uC791\uD558\uAE30"
 --- !u!222 &2096200143
 CanvasRenderer:
   m_ObjectHideFlags: 0
