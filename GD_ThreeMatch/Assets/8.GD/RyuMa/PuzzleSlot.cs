@@ -88,8 +88,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     //trunk
 
-    bool[] DoubleClick = new bool[2];
-    float[] DownTime = new float[2];
+    bool[] DoubleClick = new bool[2] { false,false};
+    float[] DownTime = new float[2] { 0,0};
     Vector2 FirstVec;
     Vector2 CurrentVec;
     private PuzzleManager thePuzzle;
@@ -111,7 +111,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnPointerDown(PointerEventData eventData)
     {
-      
+        if (theMaker.PuzzleMakerStart == true)
+        {
+            return;
+        }
+
 
         if (thePuzzle.SlotDown == false&& thePuzzle.state == PuzzleManager.State.Ready &&
             nodeType != NodeType.Null)
@@ -141,14 +145,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-
         if (theMaker.PuzzleMakerStart == true)
         {
             theMaker.BT_PuzzleMaker(this, SlotNum);
             return;
         }
 
-     
 
         if (thePuzzle.SlotDown == true && Down == true)
         {

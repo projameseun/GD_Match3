@@ -393,10 +393,57 @@ public class PuzzleManager : MonoBehaviour
     }
 
     //슬롯을 채운다. false일 경우 최초실행, true일 경우 현재 맵에서 리셋
+
+    public void LoadMap(MapManager _Map, bool ReLoadMap) //맵을 다시 불러온다면 true, 처음이면 false
+    {
+        if (ReLoadMap == true)
+        {
+
+            for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.Slots.Length; i++)
+            {
+                if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+                {
+                    _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
+                    _Map.Slots[i].nodeColor = NodeColor.Null;
+                    if (_Map.Slots[i].cube != null)
+                    {
+                        _Map.Slots[i].cube.Resetting();
+                        
+                    }
+                }
+            }
+        }
+
+        for (int Hor = _Map.Horizontal; Hor < _Map.BottomLeft; Hor += _Map.Horizontal)
+        {
+            for (int i = 1; i < _Map.TopRight; i++)
+            {
+                if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
+                {
+                    if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
+                    {
+                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.2f);
+                    }
+                    else if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
+                    {
+                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.2f);
+                    }
+
+                    _Map.Slots[i + Hor].TestText.enabled = false;
+                }
+            }
+        }
+
+
+        NotMatchSetCube(_Map);
+       
+    }
+
+
+
     public void SetSlot(MapManager _Map, bool Reset = false)
     {
         SetMoveCount();
-
 
         if (Reset == true)
         {
@@ -619,75 +666,149 @@ public class PuzzleManager : MonoBehaviour
         ColorList.Add(3);
         ColorList.Add(4);
         ColorList.Add(5);
-        for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomRight - _Map.Horizontal; i++)
+
+        for (int Hor = _Map.Horizontal; Hor < _Map.BottomLeft; Hor += _Map.Horizontal)
         {
-            if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[i].nodeColor == NodeColor.Null)
+            for (int i = 1; i < _Map.TopRight; i++)
             {
-                List<int> RandomList = new List<int>(ColorList);
-                if (_Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null &&
+                    _Map.Slots[i + Hor].nodeColor == NodeColor.Null)
                 {
-                    if (_Map.Slots[i - _Map.Horizontal - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+                    List<int> RandomList = new List<int>(ColorList);
+                    if (_Map.Slots[i + Hor - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                     {
-                        if (_Map.Slots[i - _Map.Horizontal].nodeColor == _Map.Slots[i - _Map.Horizontal - _Map.Horizontal].nodeColor)
+                        if (_Map.Slots[i + Hor - _Map.Horizontal - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                         {
-                            RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
+                            if (_Map.Slots[i + Hor - _Map.Horizontal].nodeColor == _Map.Slots[i + Hor - _Map.Horizontal - _Map.Horizontal].nodeColor)
+                            {
+                                RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
+                            }
+                            else
+                            {
+                                int rand = Random.Range(0, 2);
+                                if (rand == 0)
+                                {
+                                    RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
+                                }
+                            }
                         }
                         else
                         {
                             int rand = Random.Range(0, 2);
                             if (rand == 0)
                             {
-                                RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
+                                RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
                             }
                         }
-                    }
-                    else
-                    {
-                        int rand = Random.Range(0, 2);
-                        if (rand == 0)
-                        {
-                            RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
-                        }
-                    }
 
 
-                }
-                if (_Map.Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
-                {
-                    if (_Map.Slots[i - 2].nodeType != PuzzleSlot.NodeType.Null)
+                    }
+                    if (_Map.Slots[i + Hor - 1].nodeType != PuzzleSlot.NodeType.Null)
                     {
-                        if (_Map.Slots[i - 1].nodeColor == _Map.Slots[i - 2].nodeColor)
+                        if (_Map.Slots[i + Hor - 2].nodeType != PuzzleSlot.NodeType.Null)
                         {
-                            RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
+                            if (_Map.Slots[i + Hor - 1].nodeColor == _Map.Slots[i + Hor - 2].nodeColor)
+                            {
+                                RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
+                            }
+                            else
+                            {
+                                int rand = Random.Range(0, 2);
+                                if (rand == 0)
+                                {
+                                    RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
+                                }
+                            }
                         }
                         else
                         {
                             int rand = Random.Range(0, 2);
                             if (rand == 0)
                             {
-                                RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
+                                RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
                             }
                         }
-                    }
-                    else
-                    {
-                        int rand = Random.Range(0, 2);
-                        if (rand == 0)
-                        {
-                            RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
-                        }
+
+
                     }
 
+                    int RandColorNum = Random.Range(0, RandomList.Count);
+                    GameObject Cube = theObject.FindObj("Cube");
+                    SetCube(Cube, _Map.Slots[i + Hor], RandomList[RandColorNum]);
 
                 }
-
-                int RandColorNum = Random.Range(0, RandomList.Count);
-                GameObject Cube = theObject.FindObj("Cube");
-                SetCube(Cube, _Map.Slots[i], RandomList[RandColorNum]);
-
             }
         }
+
+        //for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomRight - _Map.Horizontal; i++)
+        //{
+        //    if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[i].nodeColor == NodeColor.Null)
+        //    {
+        //        List<int> RandomList = new List<int>(ColorList);
+        //        if (_Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+        //            if (_Map.Slots[i - _Map.Horizontal - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //            {
+        //                if (_Map.Slots[i - _Map.Horizontal].nodeColor == _Map.Slots[i - _Map.Horizontal - _Map.Horizontal].nodeColor)
+        //                {
+        //                    RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
+        //                }
+        //                else
+        //                {
+        //                    int rand = Random.Range(0, 2);
+        //                    if (rand == 0)
+        //                    {
+        //                        RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                int rand = Random.Range(0, 2);
+        //                if (rand == 0)
+        //                {
+        //                    RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
+        //                }
+        //            }
+
+
+        //        }
+        //        if (_Map.Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+        //            if (_Map.Slots[i - 2].nodeType != PuzzleSlot.NodeType.Null)
+        //            {
+        //                if (_Map.Slots[i - 1].nodeColor == _Map.Slots[i - 2].nodeColor)
+        //                {
+        //                    RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
+        //                }
+        //                else
+        //                {
+        //                    int rand = Random.Range(0, 2);
+        //                    if (rand == 0)
+        //                    {
+        //                        RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                int rand = Random.Range(0, 2);
+        //                if (rand == 0)
+        //                {
+        //                    RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
+        //                }
+        //            }
+
+
+        //        }
+
+        //        int RandColorNum = Random.Range(0, RandomList.Count);
+        //        GameObject Cube = theObject.FindObj("Cube");
+        //        SetCube(Cube, _Map.Slots[i], RandomList[RandColorNum]);
+
+        //    }
+        //}
 
 
     }
@@ -1067,8 +1188,7 @@ public class PuzzleManager : MonoBehaviour
         }
         else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
         {
-            EnemyEvent(theMoveMap, SlotNum);
-            return true;
+            return EnemyEvent(theMoveMap, SlotNum);
         }
         else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
         {
@@ -1083,27 +1203,29 @@ public class PuzzleManager : MonoBehaviour
 
 
     // 몬스터 이밴트
-    public void EnemyEvent(MapManager _Map, int i)
+    public bool EnemyEvent(MapManager _Map, int i)
     {
         Player.CurrentEnemyMeetChance += _Map.Slots[i].monsterSheet.addEnemyMeet;
 
         //몬스터와 만날 확률을 계산, true면 적과 조우
         if (CheckEnemyMeet(_Map) == true)
         {
+            Debug.Log("몬스터 출현");
             float rand = Random.Range(0.0f, 100.0f);
 
             for (int Index = 0; Index < _Map.Slots[i].monsterSheet.EnemyIndex.Length; i++)
             {
-                if (_Map.Slots[i].monsterSheet.EnemyChance[Index] <= rand)
+                if (rand <= _Map.Slots[i].monsterSheet.EnemyChance[Index])
                 {
                     theBattle.SelectEnemyNum = _Map.Slots[i].monsterSheet.EnemyIndex[Index];
                     theFade.FadeIn();
                     state = State.Ready;
-                    break;
+                    return true;
                 }
             }
         }
-        return;
+        Debug.Log("몬스터 출현 안함");
+        return false;
 
     }
     // 현재 적과 조우했는지 확인, true면 전투 시작
@@ -1353,6 +1475,28 @@ public class PuzzleManager : MonoBehaviour
         SetSlot(theMoveMap);
 
     }
+    // 플레이어 UI를 세팅한다
+    public void SetPlayerUi()
+    {
+        List<int> ColorList = new List<int>();
+        ColorList.Add(0);
+        ColorList.Add(1);
+        ColorList.Add(2);
+        ColorList.Add(3);
+        ColorList.Add(4);
+        ColorList.Add(5);
+        ColorList.Remove(FirstHeroNum);
+        ColorList.Remove(secondHeroNum);
+        PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeSprites[FirstHeroNum]);
+        PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeSprites[secondHeroNum]);
+        playerUIs[0].SetUi(FirstHeroNum, 0);
+        playerUIs[1].SetUi(secondHeroNum, 1);
+        for (int i = 0; i < 4; i++)
+        {
+            PlayerCubeUI[i + 2].SetCubeUi(ColorList[i], i + 2, CubeSprites[ColorList[i]]);
+        }
+    }
+
 
     public void BT_Minimap()
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class CameraManager : MonoBehaviour
     public enum State
     { 
         SmoothMove,
-        Nothing
+        Nothing,
+        SonMap,
     }
 
     public State state;
@@ -19,7 +21,7 @@ public class CameraManager : MonoBehaviour
 
     public float CameraSpeed = 1f;
     public float Speed;
-    bool Down;
+    public bool Down;
     public float HRadious;
     public float VRadious;
 
@@ -47,7 +49,7 @@ public class CameraManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (theMaker.PuzzleMakerStart == true)
+        if (state == State.SonMap)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -155,45 +157,66 @@ public class CameraManager : MonoBehaviour
         HRadious /= 2;
         MoveVec = new Vector3(_TargetVec.x, _TargetVec.y, -10);
         this.transform.position = MoveVec;
-        //if (_Move == true)
-        //{
-        //    MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x - 0.05f;
-        //    MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 3.2f;
-        //    MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x + 0.05f;
-        //    MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.2f;
+        if (_Move == true)
+        {
+            MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x+ 0.1f;
+            MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 3.3f;
+            MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x - 0.1f;
+            MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.1f;
 
-        //    if (MoveVec.y + VRadious > MaxBound.y)
-        //    {
+            Debug.Log("MaxBound.x = " + MaxBound.x);
+            Debug.Log("MaxBound.y = " + MaxBound.y);
+            Debug.Log(Math.Abs(MaxBound.x - MinBound.x));
 
-        //        MoveVec.y = MaxBound.y - VRadious;
-        //    }
-        //    if (MoveVec.y - VRadious < MinBound.y)
-        //    {
+            if (Math.Abs(MaxBound.x - MinBound.x) < 5.8)
+            {
+                MoveVec.x = (MaxBound.x + MinBound.x) / 2;
+                MinBound.x = MoveVec.x - HRadious;
+                MaxBound.x = MoveVec.x + HRadious;
 
-        //        MoveVec.y = MinBound.y + VRadious;
-        //    }
-        //    if (MoveVec.x - HRadious < MinBound.x)
-        //    {
+            }
+            
+            if (Math.Abs(MaxBound.y - MinBound.y) < 10)
+            {
+                MoveVec.y = (MaxBound.y + MinBound.y) / 2;
 
-        //        MoveVec.x = MinBound.x + HRadious;
-
-        //    }
-        //    if (MoveVec.x + HRadious > MaxBound.x)
-        //    {
-
-        //        MoveVec.x = MaxBound.x - HRadious;
-        //    }
+                MinBound.y = MoveVec.y - VRadious;
+                MaxBound.y = MoveVec.y + VRadious;
+            }
 
 
-        //    state = State.SmoothMove;
-        //    this.transform.position = MoveVec;
+            if (MoveVec.y + VRadious > MaxBound.y)
+            {
 
-        //}
-        //else
-        //{
-        //    state = State.Nothing;
-        //    this.transform.position = MoveVec;
-        //}
+                MoveVec.y = MaxBound.y - VRadious;
+            }
+            if (MoveVec.y - VRadious < MinBound.y)
+            {
+
+                MoveVec.y = MinBound.y + VRadious;
+            }
+            if (MoveVec.x - HRadious < MinBound.x)
+            {
+
+                MoveVec.x = MinBound.x + HRadious;
+
+            }
+            if (MoveVec.x + HRadious > MaxBound.x)
+            {
+
+                MoveVec.x = MaxBound.x - HRadious;
+            }
+
+
+            state = State.SmoothMove;
+            this.transform.position = MoveVec;
+
+        }
+        else
+        {
+            state = State.Nothing;
+            this.transform.position = MoveVec;
+        }
 
 
 

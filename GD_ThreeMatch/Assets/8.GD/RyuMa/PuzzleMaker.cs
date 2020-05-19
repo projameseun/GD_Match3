@@ -27,7 +27,7 @@ public class PuzzleMaker : MonoBehaviour
     public MapManager theMoveMap;
     public PlayerCube Player;
     public GameObject IngameUi;
-
+    public GameObject SonMapBase;
     [HideInInspector] public bool PuzzleMakerStart;
     public ChangeMode changeMode;
 
@@ -56,6 +56,10 @@ public class PuzzleMaker : MonoBehaviour
 
     public string MoveMapName;      //이동할 맵의 이름
     public int PlayerStartPos;      //플레이어가 시작할 슬롯의 넘버
+
+    [Header("TestPlaySetting")]
+    public int PlayerStartNum;
+
 
 
     private PuzzleManager thePuzzle;
@@ -139,8 +143,10 @@ public class PuzzleMaker : MonoBehaviour
 
     public void BT_SonMapStart()
     {
+        SonMapBase.SetActive(true);
         theCam.MoveVec = theCam.gameObject.transform.position;
         theCam.MoveVec.z = -10;
+        theCam.state = CameraManager.State.SonMap;
         PuzzleMakerStart = true;
         IngameUi.SetActive(false);
         ShowSlotNum();
@@ -176,6 +182,27 @@ public class PuzzleMaker : MonoBehaviour
             theMoveMap.Slots[i].SlotNum = i;
             theMoveMap.Slots[i].TestText.enabled = true;
         }
+    }
+
+
+    public void BT_TestStart()
+    {
+        SonMapBase.SetActive(false);
+        IngameUi.SetActive(true);
+        thePuzzle.SetPlayerUi();
+        thePuzzle.LoadMap(theMoveMap,false);
+        PuzzleMakerStart = false;
+        theMoveMap.Slots[PlayerStartNum].nodeColor = NodeColor.Player;
+        theMoveMap.Slots[PlayerStartNum].cube.nodeColor = NodeColor.Player;
+        theMoveMap.Slots[PlayerStartNum].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        Player.transform.position = theMoveMap.Slots[PlayerStartNum].cube.transform.position;
+        Player.transform.SetParent(theMoveMap.Slots[PlayerStartNum].cube.transform);
+
+        theCam.state = CameraManager.State.SmoothMove;
+        thePuzzle.gameMode = PuzzleManager.GameMode.MoveMap;
+        thePuzzle.state = PuzzleManager.State.Ready;
+        theCam.SetBound(theMoveMap, Player.transform.position, true);
+
     }
 
 
