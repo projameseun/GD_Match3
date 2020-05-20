@@ -95,9 +95,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     private PuzzleManager thePuzzle;
     private FindMatches theMatch;
     private PuzzleMaker theMaker;
+    private BattleManager theBattle;
     // Start is called before the first frame update
     void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theMatch = FindObjectOfType<FindMatches>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
@@ -170,7 +172,18 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             else if (DownTime[0] > 0 && DownTime[1] <= 0.4f && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
                 //Debug.Log("더블클릭 성공");
-                SpecialCubeEvent();
+                
+                // 스킬을 사용할 수 있는지
+                if (theBattle.CurrentSkillUI != SkillUI.UI2_Null)
+                {
+                    SkillEvent();
+                }
+                // 특수블럭인지
+                else if (cube.specialCubeType != SpecialCubeType.Null)
+                {
+                    SpecialCubeEvent();
+                }
+
                 DownTime[0] = 0;
                 DownTime[1] = 0;
                 DoubleClick[1] = false;
@@ -272,8 +285,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void SpecialCubeEvent()
     {
-        if (cube.specialCubeType == SpecialCubeType.Null)
-            return;
 
         MapManager _Map = null;
         thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
@@ -303,6 +314,17 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 break;
         }
 
+    }
+
+    public void SkillEvent()
+    {
+        thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+        thePuzzle.SetMoveCount(-1);
+        thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
+        theMatch.GirlSkill(
+            (SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor,
+            thePuzzle.theBattleMap, SlotNum);
+        theBattle.ReadySkill(SkillUI.UI2_Null);
     }
 
 

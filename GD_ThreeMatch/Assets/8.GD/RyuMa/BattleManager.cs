@@ -84,7 +84,12 @@ public enum BattleState
 
 
 
-
+public enum SkillUI
+{ 
+    UI0_FirstGirl = 0,
+    UI1_1SecondGril,
+    UI2_Null
+}
 
 public class BattleManager : MonoBehaviour
 {
@@ -119,7 +124,9 @@ public class BattleManager : MonoBehaviour
     public int ComboValue = 1;
     public float ComboStack = 10f;
     [HideInInspector] public float CurrentComboCoolDown = 1;
-    public float MaxComboCoolDown = 1f;
+    [HideInInspector] public float MaxComboCoolDown = 1f;
+    public SkillUI CurrentSkillUI;
+
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
@@ -137,7 +144,7 @@ public class BattleManager : MonoBehaviour
     bool AttackEndEvent; // 마지막 공격때 적용
     float Player1CacHp; // 소녀체력계산
     float Player2CacHp; // 소녀체력계산
-
+    
 
 
 
@@ -150,7 +157,7 @@ public class BattleManager : MonoBehaviour
     private FadeManager theFade;
     private void Start()
     {
-
+        CurrentSkillUI = SkillUI.UI2_Null;
         theFade = FindObjectOfType<FadeManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theObject = FindObjectOfType<ObjectManager>();
@@ -305,7 +312,7 @@ public class BattleManager : MonoBehaviour
         if (ComboValue > 1)
         {
             ComboCoolDownImage.fillAmount = CurrentComboCoolDown / MaxComboCoolDown;
-            ComboText.text = ComboValue + " 콤보 (" + ComboStack + ")";
+            ComboText.text = (ComboValue -1) + " 콤보 (" + ComboStack + ")";
         }
         else
         {
@@ -588,6 +595,48 @@ public class BattleManager : MonoBehaviour
 
         }
     }
+
+
+
+    public void ReadySkill(SkillUI _Num)
+    {
+        if (CurrentSkillUI != _Num)
+        {
+            CurrentSkillUI = _Num;
+            CheckSkillUI((int)CurrentSkillUI);
+        }
+        else if (_Num == SkillUI.UI2_Null)
+        {
+            CurrentSkillUI = SkillUI.UI2_Null;
+            CheckSkillUI(2);
+        }
+        else
+        {
+            CurrentSkillUI = SkillUI.UI2_Null;
+            CheckSkillUI(2);
+        }
+
+
+    }
+
+    public void CheckSkillUI(int _Num)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            if (i == _Num)
+            {
+                thePuzzle.playerUIs[i].SetSkill(true);
+            } 
+            else
+            {
+                thePuzzle.playerUIs[i].SetSkill(false);
+            }
+        }
+    }
+    
+
+
+
 
 
 

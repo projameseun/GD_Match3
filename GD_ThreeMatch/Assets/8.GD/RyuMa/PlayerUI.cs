@@ -17,7 +17,6 @@ public class PlayerUI : MonoBehaviour
 {
     public MeshRenderer SpineMesh;
     public SkeletonAnimation SpinAnim;
-
     public PlayerUIState state;
 
 
@@ -35,6 +34,8 @@ public class PlayerUI : MonoBehaviour
     public float CurrentHp;
     public float MaxSkillGauge;
     public float CurrentSkillGauge;
+
+    public bool SkillOn;
 
 
 
@@ -115,6 +116,28 @@ public class PlayerUI : MonoBehaviour
     }
 
 
+    public void CheckSkill()
+    {
+        theBattle.ReadySkill((SkillUI)PlayerUINum);
+    }
+
+
+    // 스킬 활성화 여부, true일 경우 스킬 활성화 이펙트
+    public void SetSkill(bool On)
+    {
+        if (On == true)
+        {
+            SpinAnim.skeleton.SetColor(Color.black);
+            SkillOn = true;
+        }
+        else
+        {
+            SpinAnim.skeleton.SetColor(new Color(1,1,1));
+            SkillOn = false;
+        }
+    }
+
+
 
 
 
@@ -172,9 +195,29 @@ public class PlayerUI : MonoBehaviour
 
     }
 
+    public void ResetSkillGauge()
+    {
+        CurrentSkillGauge = 0;
+        GirlCubeImage.color = new Color(1, 1, 1, 0);
+        SkillSlider.fillAmount = CurrentSkillGauge / MaxSkillGauge;
+        SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
+    }
+
+
+    public float GetSkillGauge()
+    {
+
+        return CurrentSkillGauge / MaxSkillGauge;
+    }
+
 
     public void PlayerDie()
     {
+        if ((int)theBattle.CurrentSkillUI == PlayerUINum)
+        {
+            theBattle.ReadySkill(SkillUI.UI2_Null);
+        }
+
         state = PlayerUIState.Die;
 
         SpinAnim.AnimationState.SetAnimation(0, "Die", true);

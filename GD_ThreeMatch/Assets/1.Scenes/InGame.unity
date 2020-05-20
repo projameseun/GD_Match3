@@ -4813,6 +4813,7 @@ MonoBehaviour:
   ComboStack: 10
   CurrentComboCoolDown: 1
   MaxComboCoolDown: 2
+  CurrentSkillUI: 0
 --- !u!1001 &93290213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30150,6 +30151,7 @@ MonoBehaviour:
   CurrentHp: 0
   MaxSkillGauge: 0
   CurrentSkillGauge: 0
+  SkillOn: 0
 --- !u!58 &764160748
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -31679,6 +31681,7 @@ MonoBehaviour:
     nodeColor: 1
     Hp: 0
     SkillCount: 0
+    SkillDamage: 0
     Level: 0
     Exp: 0
   - Name: "\uC5D8\uB9AC\uC2A4"
@@ -31692,7 +31695,8 @@ MonoBehaviour:
     IllustSize: 1
     nodeColor: 1
     Hp: 123
-    SkillCount: 30
+    SkillCount: 3
+    SkillDamage: 2.5
     Level: 0
     Exp: 0
   - Name: 222
@@ -31705,6 +31709,7 @@ MonoBehaviour:
     nodeColor: 3
     Hp: 0
     SkillCount: 0
+    SkillDamage: 0
     Level: 0
     Exp: 0
   - Name: "\uBCA0\uB9B4"
@@ -31718,7 +31723,8 @@ MonoBehaviour:
     IllustSize: 0.9
     nodeColor: 3
     Hp: 133
-    SkillCount: 25
+    SkillCount: 3
+    SkillDamage: 0
     Level: 0
     Exp: 0
   - Name: 444
@@ -31731,6 +31737,7 @@ MonoBehaviour:
     nodeColor: 3
     Hp: 0
     SkillCount: 0
+    SkillDamage: 0
     Level: 0
     Exp: 0
   - Name: 5555
@@ -31743,6 +31750,7 @@ MonoBehaviour:
     nodeColor: 3
     Hp: 0
     SkillCount: 0
+    SkillDamage: 0
     Level: 0
     Exp: 0
   IllustUISlot: {fileID: 0}
@@ -70890,6 +70898,7 @@ MonoBehaviour:
   CurrentHp: 0
   MaxSkillGauge: 0
   CurrentSkillGauge: 0
+  SkillOn: 0
 --- !u!1001 &1841258119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80429,6 +80438,7 @@ MonoBehaviour:
   CurrentHp: 0
   MaxSkillGauge: 0
   CurrentSkillGauge: 0
+  SkillOn: 0
 --- !u!58 &2081591610
 CircleCollider2D:
   m_ObjectHideFlags: 0

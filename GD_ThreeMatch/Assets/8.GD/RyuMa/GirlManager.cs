@@ -24,6 +24,7 @@ public class GirlHero
     public NodeColor nodeColor;
     public float Hp;
     public float SkillCount;
+    public float SkillDamage;
     public int Level;
     public int Exp;
 

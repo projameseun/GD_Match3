@@ -12,7 +12,8 @@ public enum SelectGirl
     G3a222,
     G4_Beryl,
     G5a444,
-    G6a555
+    G6a555,
+    Null
 }
 
 
@@ -332,7 +333,7 @@ public class PuzzleManager : MonoBehaviour
                 theMatch.FindAllMatches(theBattleMap);
                 if (isMatched)
                 {
-                    
+
                     DestroyCube(theBattleMap);
                     theMatch.FindSpecialCube(theBattleMap);
                     return;
@@ -1417,14 +1418,16 @@ public class PuzzleManager : MonoBehaviour
     //MoveCount를 조종한다. 
     public void SetMoveCount(int _Count = 0)
     {
-        MoveCount += _Count;
+        if (gameMode == GameMode.MoveMap)
+        {
+            MoveCount += _Count;
 
-        if (MoveCount < 0)
-            MoveCount = 0;
+            if (MoveCount < 0)
+                MoveCount = 0;
 
-        MoveCountText.text = "Move" + System.Environment.NewLine + MoveCount;
-
-        if (gameMode == GameMode.Battle)
+            MoveCountText.text = "Move" + System.Environment.NewLine + MoveCount;
+        }
+        else if (gameMode == GameMode.Battle)
         {
             theBattle.SetEnemyCount(-1);
         }

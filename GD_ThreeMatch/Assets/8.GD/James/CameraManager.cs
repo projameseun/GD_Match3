@@ -164,9 +164,6 @@ public class CameraManager : MonoBehaviour
             MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x - 0.1f;
             MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.1f;
 
-            Debug.Log("MaxBound.x = " + MaxBound.x);
-            Debug.Log("MaxBound.y = " + MaxBound.y);
-            Debug.Log(Math.Abs(MaxBound.x - MinBound.x));
 
             if (Math.Abs(MaxBound.x - MinBound.x) < 5.8)
             {

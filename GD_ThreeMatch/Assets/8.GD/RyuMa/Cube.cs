@@ -32,6 +32,9 @@ public class Cube : MonoBehaviour
     float DestoryTime = 1.0f;
     Color color = new Color(1f, 1f, 1f, 1f);
     SpriteRenderer SpriteRen;
+    float SkillDamage = 0;
+
+
 
     private PuzzleManager thePuzzle;
     private ObjectManager theObject;
@@ -116,12 +119,16 @@ public class Cube : MonoBehaviour
         Speed = _Speed;
     }
 
-
-    public void DestroyCube(bool _Event, bool SpecialEffect = false)
+    // 큐브 파괴이밴트, 한번만 true로 할것
+    public void DestroyCube(bool _Event, bool SpecialEffect = false, float Skill = 0)
     {
         OnlyOneEvent = _Event;
         DestroyEvent = true;
         DestoryTime = 1f;
+        if (Skill >0)
+        {
+            SkillDamage = Skill;
+        }
         if (SpecialCube == true)
         {
             if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
@@ -147,17 +154,35 @@ public class Cube : MonoBehaviour
 
         if (SpecialEffect == true)
         {
-            if (thePuzzle.selectGirl == SelectGirl.G2_Alice)
+            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
             {
-                theObject.AliceSkillEvent(this.transform.position);
+                SkillEffectEvent(thePuzzle.selectGirl);
             }
-            
+            else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+            {
+                if (theBattle.CurrentSkillUI == SkillUI.UI2_Null)
+                {
+                    SkillEffectEvent(thePuzzle.selectGirl);
+                }
+                else
+                {
+                    SkillEffectEvent((SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor);
+                }
+            }
         }
-
-
-
-
     }
+
+
+
+    public void SkillEffectEvent(SelectGirl _Girl)
+    {
+        if (_Girl == SelectGirl.G2_Alice)
+        {
+            theObject.AliceSkillEvent(this.transform.position);
+        }
+    }
+
+
 
     //큐브가 터진 후 이밴트
     public void DestroyCubeEvent()
@@ -206,7 +231,15 @@ public class Cube : MonoBehaviour
                             if (theBattle.EnemyCubeUi[x].CubeCount > 0)
                             {
                                 Target = theBattle.EnemyCubeUi[x].gameObject;
-                                CubeNum = (int)(-1 * theBattle.ComboStack);
+                                if (SkillDamage > 0)
+                                {
+                                    CubeNum = (int)(-1 * theBattle.ComboStack*SkillDamage);
+                                }
+                                else
+                                {
+                                    CubeNum = (int)(-1 * theBattle.ComboStack);
+                                }
+                                
                                 CubeTarget = 1;
                                 i = 6;
                                 x = 6;
@@ -300,6 +333,7 @@ public class Cube : MonoBehaviour
         OnlyOneEvent = false;
         DestroyEvent = false;
         DestoryTime = 1f;
+        SkillDamage = 0;
         SpriteRen.color = new Color(1, 1, 1, 1);
         this.gameObject.SetActive(false);
     }
