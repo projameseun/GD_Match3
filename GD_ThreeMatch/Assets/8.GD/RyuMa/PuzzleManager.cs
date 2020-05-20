@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -1450,7 +1450,7 @@ public class PuzzleManager : MonoBehaviour
     // 맨처음 이동맵을 세팅하는 함수
     public void BT_SetSlot()
     {
-        theSound.PlayBGM("MoveMap");
+        //theSound.PlayBGM("MoveMap");
         List<int> ColorList = new List<int>();
         ColorList.Add(0);
         ColorList.Add(1);
