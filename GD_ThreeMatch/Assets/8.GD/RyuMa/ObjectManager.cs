@@ -197,6 +197,8 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject DamageTextEvent(Vector2 _startPos, string _Value,float _Time = 1.5f)
     {
+        Debug.Log("DamageText");
+        Debug.Log("Damage = " + _Value);
         GameObject TextOBJ = FindObj("DamageText");
 
         TextOBJ.GetComponent<DamageText>().SetDamageText(_startPos, _Value, _Time);

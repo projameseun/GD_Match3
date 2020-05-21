@@ -77,6 +77,8 @@ public enum BattleState
     EnemyAttack,
     PlayerDie,
     EnemyDie,
+    PlayerWind,
+    PlayerLose
 
 
 
@@ -284,11 +286,15 @@ public class BattleManager : MonoBehaviour
     }
     public void EndBattle()
     {
+
         BattleStart = false;
+        ResetCombo();
         ComboCoolDownImage.fillAmount = 0;
         ComboText.text = "";
         EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
+        thePuzzle.state = PuzzleManager.State.BattleEvent;
         battleState = BattleState.EnemyDie;
+        //theFade.FadeIn();
     }
 
 
@@ -339,11 +345,14 @@ public class BattleManager : MonoBehaviour
 
         if (DamageTime > 0)
         {
-
+            
             EnemyAnim.AnimationState.SetAnimation(0, "Hit", false);
             EnemyAnim.AnimationState.AddAnimation(0, "Idle", true, 0.5f);
         }
-      
+        if (CurrentHp <= 0)
+        {
+            EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
+        }
 
 
 
@@ -653,11 +662,14 @@ public class BattleManager : MonoBehaviour
     public void Resetting()
     {
         SelectEnemyNum = 0;
+        ComboValue = 1;
+        ComboStack = 10;
         MaxHp = 0;
         CurrentHp = 0;
         CurrentEnemyCount = 0;
         GameTime = 0;
         CurrentEnemyCount = 0;
+        thePuzzle.Player.CurrentEnemyMeetChance = 0;
         BattleStart = false;
         DamageEvent = false;
     }

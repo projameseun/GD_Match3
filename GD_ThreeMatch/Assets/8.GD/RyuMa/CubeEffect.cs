@@ -193,8 +193,14 @@ public class CubeEffect : MonoBehaviour
             {
 
                 if (CubeCount < 0)
-                    theObject.DamageTextEvent(this.transform.position, (-_UI.CubeCount).ToString());
-                theBattle.TakeDamage(-_UI.CubeCount);
+                {
+                    if (_UI.CubeCount != 0)
+                    {
+                        theObject.DamageTextEvent(this.transform.position, (_UI.CubeCount).ToString());
+                        theBattle.TakeDamage(-_UI.CubeCount);
+                    }
+                }
+       
             }
         }
 

@@ -948,10 +948,11 @@ public class PuzzleManager : MonoBehaviour
         {
             IllustSlot.transform.position = MovePos.transform.position;
             theCamera.SetBound(theMoveMap, theMoveMap.transform.position, true);
+            theBattle.Resetting();
             MoveUI.SetActive(true);
             BattleUI.SetActive(false);
             gameMode = GameMode.MoveMap;
-            state = State.FillBlank;
+            state = State.Ready;
             AutoEvent = true;
         }
     }
