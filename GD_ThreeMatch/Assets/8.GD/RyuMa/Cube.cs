@@ -176,9 +176,14 @@ public class Cube : MonoBehaviour
 
     public void SkillEffectEvent(SelectGirl _Girl)
     {
+
         if (_Girl == SelectGirl.G2_Alice)
         {
             theObject.AliceSkillEvent(this.transform.position);
+        }
+        else if (_Girl == SelectGirl.G4_Beryl)
+        { 
+            // 베릴 이펙트넣기   
         }
     }
 

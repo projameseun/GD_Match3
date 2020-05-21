@@ -887,6 +887,7 @@ public class FindMatches : MonoBehaviour
             case SelectGirl.G3a222:
                 break;
             case SelectGirl.G4_Beryl:
+                SkillBeryl(_Map, _SlotNum);
                 break;
             case SelectGirl.G5a444:
                 break;
@@ -945,6 +946,71 @@ public class FindMatches : MonoBehaviour
         }
 
         _Map.Slots[_SlotNum].cube.DestroyCube(Special, true, Damage);
+
+
+    }
+
+    public void SkillBeryl(MapManager _Map, int _SlotNum)
+    {
+        bool Special = true;
+        float Damage = theGirl.Girls[(int)SelectGirl.G4_Beryl].SkillDamage;
+
+        // 11시
+        if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeType != PuzzleSlot.NodeType.Null)
+        {
+            if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeColor == NodeColor.Special)
+            {
+                Special = false;
+            }
+
+            _Map.Slots[_SlotNum - _Map.Horizontal -1].cube.DestroyCube(false, true, Damage);
+        }
+
+
+        //1시
+
+        if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
+        {
+            if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeColor == NodeColor.Special)
+            {
+                Special = false;
+            }
+
+            _Map.Slots[_SlotNum - _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage);
+        }
+
+        // 7시
+        if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeType != PuzzleSlot.NodeType.Null)
+        {
+            if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeColor == NodeColor.Special)
+            {
+                Special = false;
+            }
+
+            _Map.Slots[_SlotNum + _Map.Horizontal - 1].cube.DestroyCube(false, true, Damage);
+        }
+
+
+        // 5시
+
+        if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
+        {
+            if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeColor == NodeColor.Special)
+            {
+                Special = false;
+            }
+
+            _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage);
+        }
+
+
+        if (_Map.Slots[_SlotNum].nodeColor == NodeColor.Special)
+        {
+            Special = false;
+        }
+
+        _Map.Slots[_SlotNum].cube.DestroyCube(Special, true, Damage);
+
 
 
     }

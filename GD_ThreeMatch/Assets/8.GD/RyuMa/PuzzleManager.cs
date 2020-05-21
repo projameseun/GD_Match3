@@ -423,11 +423,11 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
                     {
-                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.2f);
+                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.4f);
                     }
                     else if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
                     {
-                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.2f);
+                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.4f);
                     }
 
                     _Map.Slots[i + Hor].TestText.enabled = false;
