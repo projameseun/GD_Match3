@@ -1,11 +1,25 @@
-﻿using System.Collections;
+﻿using Spine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum MapType
+{ 
+    M1_MoveMap = 0,
+    M2_BattleMap,
+    M3_Null
+}
+
+
+
 public class MapManager : MonoBehaviour
 {
+    public MapType mapType;
 
 
+    public GameObject SlotPrefab;
+    public GameObject Base;
     public Vector2 CameraPos;
 
     public GameObject SlotBase;
@@ -22,6 +36,26 @@ public class MapManager : MonoBehaviour
     public int TopRight;
     public int BottomLeft;
     public int BottomRight;
+
+
+    private void Start()
+    {
+        if (mapType == MapType.M1_MoveMap)
+        {
+            int Size = Horizontal * Vertical;
+            Slots = new PuzzleSlot[Size];
+
+            for (int i = 0; i < Size; i++)
+            {
+                GameObject SlotObj = Instantiate(SlotPrefab);
+                SlotObj.transform.SetParent(Base.transform);
+                SlotObj.gameObject.name = string.Format("Slot" + i);
+                Slots[i] = SlotObj.GetComponent<PuzzleSlot>();
+            }
+        }
+    }
+
+
 
 
 }

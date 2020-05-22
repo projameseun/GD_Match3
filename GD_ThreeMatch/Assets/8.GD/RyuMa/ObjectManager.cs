@@ -27,11 +27,14 @@ public class ObjectManager : MonoBehaviour
     public GameObject AliceSkill;
 
 
-
+    private PuzzleManager thePuzzle;
     // Start is called before the first frame update
     void Start()
     {
+        thePuzzle = FindObjectOfType<PuzzleManager>();
+
         Init();
+        LoadingInit();
     }
 
 
@@ -82,6 +85,29 @@ public class ObjectManager : MonoBehaviour
         }
 
         
+    }
+
+
+    // 로딩중에 오브젝트를 한번 잡는다
+    public void LoadingInit()
+    {
+        GameObject Cube = CubeEffectEvent(this.gameObject.transform.position,
+            this.gameObject, NodeColor.Black, CubeEffectType.GoEnemy, 0, false, 2000);
+        Cube.GetComponent<CubeEffect>().DestroyCount = 1;
+
+        SpeechEvent(this.transform.position, "test", 1);
+        CubeParticleEvent(this.transform.position, thePuzzle.CubeSprites[0]);
+        GameObject AttackEffect = AttackEffectEvent(this.transform.position, this.gameObject, 0, 0, false, AttackEffectType.ET0_Null);
+        AttackEffect.GetComponent<AttackEffect>().DestroyCount = 1;
+
+        DamageTextEvent(this.transform.position, "test", 1);
+
+
+        for (int i = 0; i < 10; i++)
+        {
+            AliceSkillEvent(this.transform.position);
+        }
+
     }
 
 
@@ -197,8 +223,6 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject DamageTextEvent(Vector2 _startPos, string _Value,float _Time = 1.5f)
     {
-        Debug.Log("DamageText");
-        Debug.Log("Damage = " + _Value);
         GameObject TextOBJ = FindObj("DamageText");
 
         TextOBJ.GetComponent<DamageText>().SetDamageText(_startPos, _Value, _Time);

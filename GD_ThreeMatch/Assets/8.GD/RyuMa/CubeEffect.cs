@@ -30,7 +30,7 @@ public class CubeEffect : MonoBehaviour
     public GameObject FrontObj;
     Vector2 FrontPos;
     Vector3 Rotation = new Vector3(0,0,0);
-    float DestroyCount;
+    public float DestroyCount;
 
     private PuzzleManager thePuzzle;
     private BattleManager theBattle;
@@ -38,7 +38,6 @@ public class CubeEffect : MonoBehaviour
     private void Start()
     {
         Move = true;
-        DestroyCount = 10;
         theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();

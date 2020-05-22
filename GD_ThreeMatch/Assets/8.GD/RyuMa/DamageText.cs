@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class DamageText : MonoBehaviour
 {
+    public TextMeshPro damageText;
 
-    public Text damageText;
     bool FlotingEvent;
     float FlotingTime;
     float Speed = 0.2f;
@@ -51,7 +51,7 @@ public class DamageText : MonoBehaviour
 
 
         damageText.text = _Value;
-        color = Color.red;
+        color = damageText.color;
         color.a = 1;
         damageText.color = color;
         FlotingTime = _Time;

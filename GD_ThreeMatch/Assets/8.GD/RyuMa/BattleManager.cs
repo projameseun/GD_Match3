@@ -127,16 +127,16 @@ public class BattleManager : MonoBehaviour
     public float ComboStack = 10f;
     [HideInInspector] public float CurrentComboCoolDown = 1;
     [HideInInspector] public float MaxComboCoolDown = 1f;
-    public SkillUI CurrentSkillUI;
-
+    [HideInInspector] public SkillUI CurrentSkillUI;  //현재 사용중인 혹은 사용 하려는 스킬의 UI대상
+    [HideInInspector] public float AttackEffectEventTime;
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();
     float DamageTime;
     Color DamageColor = new Color(1, 1, 1);
     bool AttackInit;
-    int SkillNum = 0;
-    int damage = 0;
+    int SkillNum = 0;   //선택된 enemyskill 의 인덱스 넘버
+    int damage = 0;     //선택된 몬스터의 대미지 계산 결과값
     Vector2 StartVec;    // 파티클 시작지점 적용 나중에 추가할것
     GameObject TargetVec = null;
     bool DamageEvent;    // 몬스터 데미지 받으면 실행하는 이밴트
@@ -226,6 +226,12 @@ public class BattleManager : MonoBehaviour
                     }
 
                     EnemyAttackEvent();
+                    if (AttackEffectEventTime > 0)
+                    {
+                        AttackEffectEventTime -= Time.deltaTime;
+                    }
+
+
                     //몬스터 공격 이밴트
                 }
                 // 몬스터가 죽었을 때 실행한다
@@ -409,6 +415,13 @@ public class BattleManager : MonoBehaviour
             MaxSkillCoolDown = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCoolDown;
             CurrentSkillCoolDown = 0;
             AttackEndEvent = false;
+
+            if (EnemySkill[SkillNum].attackEffectType == AttackEffectType.ET3_)
+            {
+                AttackEffectEventTime = 3;
+            }
+
+
         }
         else
         {

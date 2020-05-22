@@ -22,7 +22,7 @@ public class AttackEffect : MonoBehaviour
     public int EffectNum;
     public bool AttackEvent;
 
-
+    public float DestroyCount;
 
 
     //Trunk
@@ -43,8 +43,20 @@ public class AttackEffect : MonoBehaviour
     Vector3 Rotation = new Vector3(0, 0, 0);
 
 
+    private BattleManager theBattle;
+    private void Start()
+    {
+        theBattle = FindObjectOfType<BattleManager>();
+    }
+
+
+
+
     private void FixedUpdate()
     {
+        
+
+
         if (Move == true)
         {
             if(MoveEvent == true)
@@ -52,6 +64,12 @@ public class AttackEffect : MonoBehaviour
 
             if(FindEvnet == true)
                 FindTarget();
+
+            if (DestroyCount > 0)
+                DestroyCount -= Time.deltaTime;
+            else
+                Resetting();
+
         }
     }
 
@@ -65,7 +83,11 @@ public class AttackEffect : MonoBehaviour
         if (_TargetVec == null)
             return;
 
+        if (theBattle == null)
+            theBattle = FindObjectOfType<BattleManager>();
 
+
+        DestroyCount = 10;
         CurrentSpeed = _Speed;
         AttackEvent = _AttackEvent;
         EffectNum = _EffectNum;
@@ -110,11 +132,12 @@ public class AttackEffect : MonoBehaviour
         }
         else if (attackEffectType == AttackEffectType.ET3_)
         {
+
             MoveEvent = false;
             float RandZ = Random.Range(0F, 360f);
             Rotation.z = RandZ;
             this.transform.eulerAngles = Rotation;
-            EventTime = 1.5f;
+            EventTime = theBattle.AttackEffectEventTime;
             FrontPos = FrontObj.transform.position - this.transform.position;
             FrontPos.Normalize();
             float Power = Random.Range(5f, 10f);
@@ -171,7 +194,7 @@ public class AttackEffect : MonoBehaviour
                     Rotation.z = AngleZ;
                     this.transform.eulerAngles = Rotation;
                     AngleSpeed = 2000;
-                    CurrentSpeed = MaxSpeed / 3;
+                    CurrentSpeed = MaxSpeed / 5;
                 }
                  
                 FindTargetAngleZ();
@@ -224,8 +247,6 @@ public class AttackEffect : MonoBehaviour
 
     public void Resetting()
     {
-        
-
         Move = false;
         DamageValue = 0;
         TargetPos = null;

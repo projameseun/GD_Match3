@@ -140,6 +140,7 @@ MonoBehaviour:
   DamageValue: 0
   EffectNum: 0
   AttackEvent: 0
+  MaxAttackEventTime: 3
   CurrentSpeed: 0
   AngleAddSpeed: 0.3
 --- !u!1 &8513642887710797928

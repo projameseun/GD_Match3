@@ -10,6 +10,8 @@ public class ParticleManager : MonoBehaviour
     bool Loop = false;
     float ParticleTime = 0;
 
+
+
     // Update is called once per frame
     void Update()
     {
