@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public enum ChangeMode
 {
-    Null = 0,
-    Normal,
-    Player,
-    Enemy,
-    Portal,
-    Object
+    Ch0_Null = 0,
+    Ch1_Normal,
+    Ch2_Enemy,
+    Ch3_Portal,
+    Ch4_Object
 }
 
 [System.Serializable]
@@ -30,7 +29,6 @@ public class PuzzleMaker : MonoBehaviour
     public GameObject SonMapBase;
     [HideInInspector] public bool PuzzleMakerStart;
     public ChangeMode changeMode;
-
 
 
     [Header("MapSetting")]
@@ -60,7 +58,9 @@ public class PuzzleMaker : MonoBehaviour
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
 
-
+    [Header("")]
+    public ObjectType objectType;
+    public int ObjectNum;
 
     private PuzzleManager thePuzzle;
     private ObjectManager theObject;
@@ -83,20 +83,23 @@ public class PuzzleMaker : MonoBehaviour
         if (_Slot.monsterSheet != null)
             _Slot.monsterSheet = null;
 
+        if (_Slot.objectSheet != null)
+            _Slot.objectSheet = null;
 
-        if (changeMode == ChangeMode.Null)
+
+        if (changeMode == ChangeMode.Ch0_Null)
         {
             _Slot.nodeType = PuzzleSlot.NodeType.Null;
             _Slot.nodeColor = NodeColor.Null;
-            _Slot.TestText.text = "N"; //string.Format("N(" + _SlotNum + ")");
+            _Slot.TestText.text = ""; //string.Format("N(" + _SlotNum + ")");
             _Slot.TestText.color = new Color(1, 1, 1);
         }
-        else if (changeMode == ChangeMode.Normal)
+        else if (changeMode == ChangeMode.Ch1_Normal)
         {
             _Slot.nodeType = PuzzleSlot.NodeType.Normal;
             _Slot.nodeColor = NodeColor.Null;
             _Slot.TestText.text = "C"; //string.Format(_SlotNum.ToString());
-            _Slot.TestText.color = new Color(0,0,0);
+            _Slot.TestText.color = new Color(0, 0, 0);
         }
         //else if (changeMode == ChangeMode.Player)
         //{
@@ -105,7 +108,7 @@ public class PuzzleMaker : MonoBehaviour
         //    _Slot.TestText.text = "P";
         //    _Slot.TestText.color = new Color(0, 0, 1);
         //}
-        else if (changeMode == ChangeMode.Enemy)
+        else if (changeMode == ChangeMode.Ch2_Enemy)
         {
             _Slot.nodeType = PuzzleSlot.NodeType.Enemy;
             _Slot.nodeColor = NodeColor.Null;
@@ -127,7 +130,7 @@ public class PuzzleMaker : MonoBehaviour
             }
 
         }
-        else if (changeMode == ChangeMode.Portal)
+        else if (changeMode == ChangeMode.Ch3_Portal)
         {
             _Slot.nodeType = PuzzleSlot.NodeType.Portal;
             _Slot.nodeColor = NodeColor.Null;
@@ -137,6 +140,16 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.portalSheet = new PortalSheet();
             _Slot.portalSheet.MapName = MoveMapName;
             _Slot.portalSheet.NextPosNum = PlayerStartPos;
+        }
+        else if (changeMode == ChangeMode.Ch4_Object)
+        {
+            _Slot.nodeType = PuzzleSlot.NodeType.Null;
+            _Slot.nodeColor = NodeColor.Null;
+
+            _Slot.objectSheet = new ObjectSheet();
+            _Slot.objectSheet.objectType = objectType;
+            _Slot.objectSheet.ObjectNum = ObjectNum;
+
         }
 
     }

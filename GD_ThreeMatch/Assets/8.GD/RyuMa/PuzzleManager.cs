@@ -64,6 +64,9 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] SpecialSprites;
     public CameraButtonManager[] CameraButton;
 
+    public GameObject EnemySlotObj;
+
+
     [Space]
     [Header("UI 오브젝트")]
     //UI 오브젝트
@@ -423,7 +426,10 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
                     {
-                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.4f);
+                        GameObject SlotE = Instantiate(EnemySlotObj);
+                        SlotE.transform.position = _Map.Slots[i + Hor].transform.position;
+
+                        //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.4f);
                     }
                     else if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
                     {

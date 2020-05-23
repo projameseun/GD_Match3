@@ -19,7 +19,6 @@ public class MapManager : MonoBehaviour
 
 
     public GameObject SlotPrefab;
-    public GameObject Base;
     public Vector2 CameraPos;
 
     public GameObject SlotBase;
@@ -44,17 +43,16 @@ public class MapManager : MonoBehaviour
         {
             int Size = Horizontal * Vertical;
             Slots = new PuzzleSlot[Size];
-
+            //GameObject SlotObj = Instantiate(SlotPrefab);
             for (int i = 0; i < Size; i++)
             {
                 GameObject SlotObj = Instantiate(SlotPrefab);
-                SlotObj.transform.SetParent(Base.transform);
+                SlotObj.transform.parent = SlotBase.transform;
                 SlotObj.gameObject.name = string.Format("Slot" + i);
                 Slots[i] = SlotObj.GetComponent<PuzzleSlot>();
             }
         }
     }
-
 
 
 
