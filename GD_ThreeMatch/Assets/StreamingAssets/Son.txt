@@ -1,0 +1,3 @@
+TopRight	5	FALSE
+BottomLeft	80	FALSE
+BottomRight	85	FALSE
