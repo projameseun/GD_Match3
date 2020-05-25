@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Spine;
+using UnityEngine.UIElements;
 
 public class PlayerCube : MonoBehaviour
 {
@@ -10,18 +11,30 @@ public class PlayerCube : MonoBehaviour
     [SpineSlot]
 
 
-   
+    
     public string AnimName; // 현재 에니메이션 상태를 저장
     public int TrakNum;
     public Direction direction;
+
+    //특수블럭 사용 변수
+    public MapManager Map;
+    public int SlotNum;
+    public SpecialCubeType Type;
+
 
 
 
     // 몬스터시트
     public int CurrentEnemyMeetChance = 0; //현재 적과 조주할 확률
 
-
-
+    private PuzzleManager thePuzzle;
+    private FindMatches theMatch;
+    private void Start()
+    {
+        theMatch = FindObjectOfType<FindMatches>();
+        thePuzzle = FindObjectOfType<PuzzleManager>();
+        anim.state.Event += HandleEvent;
+    }
     //색 조정
 
     //private void Update()
@@ -38,11 +51,22 @@ public class PlayerCube : MonoBehaviour
 
     //}
 
+    public void HandleEvent(TrackEntry trackEntry, Spine.Event e)
+    {
+        if (e.Data.Name == "Attack")
+        {
+            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+            {
+                theMatch.SpecialCubeEvent(Map, SlotNum, Type);
+            }
+        }
+    }
+
+
 
 
     public void ChangeDirection(Direction _direction)
     {
-
         direction = _direction;
 
         if (direction == Direction.Up)

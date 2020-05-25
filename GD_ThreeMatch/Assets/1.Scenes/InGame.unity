@@ -13321,8 +13321,10 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 1
   maskMaterials:
-    materialsMaskDisabled: []
-    materialsInsideMask: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: f7c3d7cbd80a7e047bb9a69ace235206, type: 2}
+    materialsInsideMask:
+    - {fileID: 2100000, guid: b7b6f8d40cca02d4ca3756e579c3d676, type: 2}
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: Idle
@@ -13346,7 +13348,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7c3d7cbd80a7e047bb9a69ace235206, type: 2}
+  - {fileID: 2100000, guid: b7b6f8d40cca02d4ca3756e579c3d676, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13405,6 +13407,9 @@ MonoBehaviour:
   AnimName: 
   TrakNum: 0
   direction: 0
+  Map: {fileID: 0}
+  SlotNum: 0
+  Type: 0
   CurrentEnemyMeetChance: 0
 --- !u!1 &1089707902
 GameObject:

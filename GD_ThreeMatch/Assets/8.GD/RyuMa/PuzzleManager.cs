@@ -47,6 +47,7 @@ public class PuzzleManager : MonoBehaviour
         CheckMatch,
         ChangeMode,
         BattleResult,    // 배틀 끝나고 결과창
+        GirlSkillEvent,
         SpecialCubeEvent,
         BattleEvent
     }
@@ -233,7 +234,7 @@ public class PuzzleManager : MonoBehaviour
                     {
                         return;
                     }
-                 
+
                     //if (CheckGoal(theMoveMap) == true)
                     //{
                     //    state = State.Ready;
@@ -269,6 +270,10 @@ public class PuzzleManager : MonoBehaviour
 
 
                 }
+            }
+            else if (state == State.GirlSkillEvent)
+            { 
+
             }
         }
         else if (gameMode == GameMode.Battle)

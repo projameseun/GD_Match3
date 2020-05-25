@@ -319,6 +319,13 @@ Mouse_S_1
   orig: 10, 5
   offset: 1, 1
   index: -1
+Mouse_S_2
+  rotate: true
+  xy: 261, 2
+  size: 12, 11
+  orig: 13, 12
+  offset: 0, 1
+  index: -1
 Pervis_1
   rotate: true
   xy: 298, 499

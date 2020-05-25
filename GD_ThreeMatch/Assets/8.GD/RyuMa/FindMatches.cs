@@ -872,6 +872,28 @@ public class FindMatches : MonoBehaviour
         _Map.Slots[_SlotNum].cube.DestroyCube(Special,true);
     }
 
+    public void SpecialCubeEvent(MapManager _Map, int _SlotNum, SpecialCubeType _Type)
+    {
+        switch (_Type)
+        {
+            case SpecialCubeType.Horizon:
+                FindHorizonCube(_Map, _SlotNum);
+                break;
+
+            case SpecialCubeType.Vertical:
+                FindVerticalCube(_Map, _SlotNum);
+                break;
+
+            case SpecialCubeType.Hanoi:
+                FindHanoiCube(_Map, _SlotNum);
+                break;
+        }
+
+    }
+
+
+
+
 
 
     public void GirlSkill(SelectGirl _Girl, MapManager _Map, int _SlotNum)

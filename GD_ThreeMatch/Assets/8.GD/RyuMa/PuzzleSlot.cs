@@ -106,8 +106,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     //trunk
 
-    bool[] DoubleClick = new bool[2] { false,false};
-    float[] DownTime = new float[2] { 0,0};
+    bool[] DoubleClick;
+    float[] DownTime;
     Vector2 FirstVec;
     Vector2 CurrentVec;
     private PuzzleManager thePuzzle;
@@ -117,6 +117,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     // Start is called before the first frame update
     void Start()
     {
+        DoubleClick = new bool[2] { false, false };
+        DownTime = new float[2] { 0, 0 };
         theBattle = FindObjectOfType<BattleManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theMatch = FindObjectOfType<FindMatches>();
@@ -308,11 +310,15 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
 
         MapManager _Map = null;
-        thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
         thePuzzle.SetMoveCount(-1);
         if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
         {
-            _Map = thePuzzle.theMoveMap;
+            thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+            thePuzzle.Player.ChangeAnim("Attack");
+            thePuzzle.Player.Map = thePuzzle.theMoveMap;
+            thePuzzle.Player.SlotNum = SlotNum;
+            thePuzzle.Player.Type = cube.specialCubeType;
+            
         }
         else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
@@ -320,20 +326,20 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         }
 
 
-        switch (cube.specialCubeType)
-        {
-            case SpecialCubeType.Horizon:
-                theMatch.FindHorizonCube(_Map, SlotNum);
-                break;
+        //switch (cube.specialCubeType)
+        //{
+        //    case SpecialCubeType.Horizon:
+        //        theMatch.FindHorizonCube(_Map, SlotNum);
+        //        break;
 
-            case SpecialCubeType.Vertical:
-                theMatch.FindVerticalCube(_Map, SlotNum);
-                break;
+        //    case SpecialCubeType.Vertical:
+        //        theMatch.FindVerticalCube(_Map, SlotNum);
+        //        break;
 
-            case SpecialCubeType.Hanoi:
-                theMatch.FindHanoiCube(_Map, SlotNum);
-                break;
-        }
+        //    case SpecialCubeType.Hanoi:
+        //        theMatch.FindHanoiCube(_Map, SlotNum);
+        //        break;
+        //}
 
     }
 
