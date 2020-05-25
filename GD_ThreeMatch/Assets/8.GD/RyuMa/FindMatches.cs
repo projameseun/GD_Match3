@@ -38,7 +38,7 @@ public class FindMatches : MonoBehaviour
         currentMathces = new List<PuzzleSlot>();
         for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
         {
-
+            //Debug.Log(i);
             if (_Map.Slots[i].nodeColor != NodeColor.Player &&
                 _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
                 _Map.Slots[i].nodeColor != NodeColor.Blank &&

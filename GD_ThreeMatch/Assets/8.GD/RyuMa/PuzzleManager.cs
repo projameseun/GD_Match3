@@ -137,6 +137,7 @@ public class PuzzleManager : MonoBehaviour
 
     private void Update()
     {
+        
         PuzzleUpdate();
 
         //큐브 없이 큐브 이밴트를 사용해야 할 때 사용
@@ -1198,11 +1199,11 @@ public class PuzzleManager : MonoBehaviour
         {
             return EnemyEvent(theMoveMap, SlotNum);
         }
-        else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
-        {
-            CheckPortal(theMoveMap, SlotNum);
-            return true;
-        }
+        //else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+        //{
+        //    CheckPortal(theMoveMap, SlotNum);
+        //    return true;
+        //}
 
         return false;
 
@@ -1460,7 +1461,7 @@ public class PuzzleManager : MonoBehaviour
     // 맨처음 이동맵을 세팅하는 함수
     public void BT_SetSlot()
     {
-        theSound.PlayBGM("MoveMap");
+       // theSound.PlayBGM("MoveMap");
         List<int> ColorList = new List<int>();
         ColorList.Add(0);
         ColorList.Add(1);

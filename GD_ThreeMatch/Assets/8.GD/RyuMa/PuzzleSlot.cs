@@ -56,6 +56,9 @@ public class ObjectSheet
 
 
 
+
+
+[System.Serializable]
 public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public enum NodeType
@@ -74,6 +77,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public NodeType nodeType;
     public NodeColor nodeColor;
     public int SlotNum;
+   
 
     public Text TestText;
 
@@ -81,6 +85,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public bool Down;
     public Cube cube;
 
+    
 
     ////몬스터 시트
 
@@ -114,6 +119,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     private FindMatches theMatch;
     private PuzzleMaker theMaker;
     private BattleManager theBattle;
+
+    
+
+
+
+
     // Start is called before the first frame update
 
 
