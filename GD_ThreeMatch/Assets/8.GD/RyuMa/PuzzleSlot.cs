@@ -115,6 +115,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     private PuzzleMaker theMaker;
     private BattleManager theBattle;
     // Start is called before the first frame update
+
+
     void Start()
     {
         theBattle = FindObjectOfType<BattleManager>();

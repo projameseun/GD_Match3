@@ -156,6 +156,7 @@ public class PuzzleMaker : MonoBehaviour
 
     public void BT_SonMapStart()
     {
+        
         SonMapBase.SetActive(true);
         theCam.MoveVec = theCam.gameObject.transform.position;
         theCam.MoveVec.z = -10;
@@ -169,9 +170,13 @@ public class PuzzleMaker : MonoBehaviour
     {
 
         theMoveMap.TopLeft = TopLeft;
-        theMoveMap.TopRight = TopRight;
-        theMoveMap.BottomLeft = BottomLeft;
-        theMoveMap.BottomRight = BottomRight;
+        theMoveMap.TopRight = MapManager.instance.TopRight;
+        theMoveMap.BottomLeft = MapManager.instance.BottomLeft;
+        theMoveMap.BottomRight = MapManager.instance.BottomRight;
+        //theMoveMap.TopLeft = TopLeft;
+        //theMoveMap.TopRight = TopRight;
+        //theMoveMap.BottomLeft = BottomLeft;
+        //theMoveMap.BottomRight = BottomRight;
 
 
         for (int i = 0; i < theMoveMap.Slots.Length; i++)

@@ -12,7 +12,7 @@ public class StorageManager : MonoBehaviour
     //그리고 안드로이든 pc든 이폴더가 만약에 존재하지앟는다면 불러와지지않는다 응근히 까다롭다
     // FilePath = Application.streamingAssetsPath + "MyItemText3.txt";
 
-    string FilePath = Application.streamingAssetsPath + "/Son.json";
+    string FilePath = Application.streamingAssetsPath + "/Son4.json";
     //string FilePath2 = Application.streamingAssetsPath + "/PlayerInfo.json";
     //string FilePath = Application.persistentDataPath + "/MyItem.json";
     //string FilePath2 = Application.persistentDataPath + "/PlayerInfo.json";

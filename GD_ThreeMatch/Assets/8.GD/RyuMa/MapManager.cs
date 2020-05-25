@@ -13,7 +13,7 @@ public class MapInfoSerialization<T>
    
     public List<T> Info;
 }
-
+[System.Serializable]
 public class MapInfo
 {
     public string Name,Value;
@@ -83,6 +83,8 @@ public class MapManager : MonoBehaviour
                 if (i == 2) MapManager.instance.BottomRight = int.Parse(mapinfoList[i].Value);
 
             }
+
+            
         }
     }// public List<MapInfo> MapInfoList
 
@@ -97,6 +99,18 @@ public class MapManager : MonoBehaviour
     {
         
         StorageManager.instance.LoadMapInfo();
+
+       
+    }
+
+    public void SettinMapInfo()
+    {
+
+        //Debug.Log("로드확인");
+        TopRight = MapManager.instance.TopRight;
+        BottomLeft = MapManager.instance.BottomLeft;
+        BottomRight = MapManager.instance.BottomRight;
+        
     }
 
     private void Start()
@@ -115,6 +129,8 @@ public class MapManager : MonoBehaviour
             }
         }
     }
+
+   
 
 
 

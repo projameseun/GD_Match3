@@ -19,14 +19,14 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        InitSetting();
+        //InitSetting();
     }
 
 
 
     public void SaveBtn()
     {
-        Debug.Log("teststest");
+        
         
         //for (int i = 0; i < SetMapList.Count; i++)
         //{
@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public void LoadBtn()
     {
         MapManager.instance.LoadMapInfo();
+
+        MapManager.instance.SettinMapInfo();
     }
 
 
@@ -50,14 +52,15 @@ public class GameManager : MonoBehaviour
         //아이템의정보
         string[] line = MapBase.text.Substring(0, MapBase.text.Length - 1).Split('\n');
 
-        // Debug.Log(line.Length);
+        Debug.Log(line.Length);
         for (int i = 0; i < line.Length; i++)
         {
             string[] row = line[i].Split('\t');
-            Debug.Log(row.Length);
+            //Debug.Log(row.Length);
 
             SetMapList.Add(new MapInfo(row[0], row[1],row[2] == "TRUE"));
-
+            Debug.Log(SetMapList[i].Value);
+      
         }
 
      
