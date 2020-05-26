@@ -193,6 +193,11 @@ public class GameManager : MonoBehaviour
         {
             theMoveMap.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
             theMoveMap.Slots[i].nodeColor = NodeColor.Null;
+            if(theMoveMap.Slots[i].cube != null)
+            {
+                theMoveMap.Slots[i].cube.Resetting();
+                theMoveMap.Slots[i].cube = null;
+            }
             
         }
 
@@ -214,6 +219,8 @@ public class GameManager : MonoBehaviour
                 ListCount++;
             }
         }
+
+        theMaker.BT_TestStart();
     }
 
 

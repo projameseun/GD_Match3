@@ -1,1 +1,21 @@
-{"Info":[{"Name":"MapName","Value":"james02"},{"Name":"TopRight","Value":"12"},{"Name":"BottomLeft","Value":"120"},{"Name":"BottomRight","Value":"132"}]}
+{
+  "Slot": [
+    {
+      "Name": "MapName",
+      "Value": "james02"
+    },
+    
+    {
+      "Name": "TopRight",
+      "Value": "12"
+    },
+    {
+      "Name": "BottomLeft",
+      "Value": "120"
+    },
+    {
+      "Name": "BottomRight",
+      "Value": "132"
+    }
+  ]
+}
