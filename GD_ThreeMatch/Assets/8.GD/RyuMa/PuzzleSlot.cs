@@ -172,6 +172,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         if (theMaker.PuzzleMakerStart == true)
         {
+            Debug.Log("test");
             theMaker.BT_PuzzleMaker(this, SlotNum);
             return;
         }
@@ -308,8 +309,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void SpecialCubeEvent()
     {
-
-        MapManager _Map = null;
         thePuzzle.SetMoveCount(-1);
         if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
         {
@@ -322,7 +321,26 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         }
         else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
-            _Map = thePuzzle.theBattleMap;
+            thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+
+            // 슬롯이 오른쪽
+            Direction dir = Direction.Right;
+            Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
+
+            if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
+            {
+                
+
+                StartVec.x -= 1;
+                dir = Direction.Right;
+            }
+            else
+            {
+                StartVec.x += 1;
+                dir = Direction.Left;
+            }
+            thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, thePuzzle.theBattleMap,SlotNum);
+
         }
 
 
@@ -345,13 +363,27 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void SkillEvent()
     {
-        thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+        // 슬롯이 오른쪽
+        Direction dir = Direction.Right;
         thePuzzle.SetMoveCount(-1);
-        thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
-        theMatch.GirlSkill(
-            (SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor,
+        Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
+        thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+        if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
+        {
+            StartVec.x -= 1;
+            dir = Direction.Right;
+        }
+        else
+        {
+            StartVec.x += 1;
+            dir = Direction.Left;
+        }
+        thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill,
             thePuzzle.theBattleMap, SlotNum);
-        theBattle.ReadySkill(SkillUI.UI2_Null);
+
+      
+        thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
+      
     }
 
 

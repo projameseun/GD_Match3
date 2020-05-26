@@ -39,18 +39,16 @@ public class MapManager : MonoBehaviour
 
     private void Start()
     {
-        if (mapType == MapType.M1_MoveMap)
+        int Size = Horizontal * Vertical;
+        Slots = new PuzzleSlot[Size];
+        //GameObject SlotObj = Instantiate(SlotPrefab);
+        for (int i = 0; i < Size; i++)
         {
-            int Size = Horizontal * Vertical;
-            Slots = new PuzzleSlot[Size];
-            //GameObject SlotObj = Instantiate(SlotPrefab);
-            for (int i = 0; i < Size; i++)
-            {
-                GameObject SlotObj = Instantiate(SlotPrefab);
-                SlotObj.transform.parent = SlotBase.transform;
-                SlotObj.gameObject.name = string.Format("Slot" + i);
-                Slots[i] = SlotObj.GetComponent<PuzzleSlot>();
-            }
+            GameObject SlotObj = Instantiate(SlotPrefab);
+            SlotObj.transform.parent = SlotBase.transform;
+            SlotObj.gameObject.name = string.Format("Slot" + i);
+            Slots[i] = SlotObj.GetComponent<PuzzleSlot>();
+            Slots[i].SlotNum = i;
         }
     }
 

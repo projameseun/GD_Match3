@@ -5,6 +5,12 @@ using Spine.Unity;
 using Spine;
 using UnityEngine.UIElements;
 
+
+public enum SkillType
+{ 
+    ST0_SpecialCube,
+    ST1_GirlSkill
+}
 public class PlayerCube : MonoBehaviour
 {
     public SkeletonAnimation anim;
@@ -21,6 +27,10 @@ public class PlayerCube : MonoBehaviour
     public int SlotNum;
     public SpecialCubeType Type;
 
+    //전투 이밴트 변수
+    SkillType skillType;
+    Vector2 VisitVec;
+    
 
 
 
@@ -29,8 +39,10 @@ public class PlayerCube : MonoBehaviour
 
     private PuzzleManager thePuzzle;
     private FindMatches theMatch;
+    private BattleManager theBattle;
     private void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         theMatch = FindObjectOfType<FindMatches>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         anim.state.Event += HandleEvent;
@@ -58,6 +70,25 @@ public class PlayerCube : MonoBehaviour
             if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
             {
                 theMatch.SpecialCubeEvent(Map, SlotNum, Type);
+            }
+            else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+            {
+                if (skillType == SkillType.ST0_SpecialCube)
+                {
+                    theMatch.SpecialCubeEvent(Map, SlotNum, Type);
+                }
+                else if (skillType == SkillType.ST1_GirlSkill)
+                {
+                    theMatch.GirlSkill(
+                          (SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor,
+                    Map, SlotNum);
+                    theBattle.ReadySkill(SkillUI.UI2_Null);
+                }
+                ChangeAnim("Idle", true);
+                this.transform.position = VisitVec;
+
+                
+
             }
         }
     }
@@ -95,12 +126,16 @@ public class PlayerCube : MonoBehaviour
         anim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
         AnimName = _state;
     }
-
-
-
-    // 현재 적과 조우하 확률을 계산, 적과 조우할 경우 true
-
-
+    public void BattleEvent(Vector2 TargetVec, Direction _Dir, SkillType _Type,MapManager _Map, int _SlotNum)
+    {
+        Map = _Map;
+        skillType = _Type;
+        SlotNum = _SlotNum;
+        VisitVec = this.transform.position;
+        ChangeAnim("Attack");
+        this.transform.position = TargetVec;
+        ChangeDirection(_Dir);
+    }
 
 
 }

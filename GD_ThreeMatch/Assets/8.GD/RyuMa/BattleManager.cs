@@ -418,7 +418,7 @@ public class BattleManager : MonoBehaviour
 
             if (EnemySkill[SkillNum].attackEffectType == AttackEffectType.ET3_)
             {
-                AttackEffectEventTime = 3;
+                AttackEffectEventTime = 1.5f;
             }
 
 
