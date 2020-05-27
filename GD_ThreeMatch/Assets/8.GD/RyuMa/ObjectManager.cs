@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -91,7 +92,7 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             AliceAnimEffects.Add(x);
         }
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             GameObject x = Instantiate(SlimeAttackParticle);
             x.SetActive(false);
@@ -167,6 +168,11 @@ public class ObjectManager : MonoBehaviour
             case "AliceAnimEffect":
                 List = AliceAnimEffects;
                 Frefab = AliceAnimEffect;
+                break;
+            case "SlimeP":
+                List = SlimeAttackParticles;
+                Frefab = SlimeAttackParticle;
+                
                 break;
 
         }
@@ -275,7 +281,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject AliceAnimEvent(Vector2 _StartPos, Direction _Dir)
     {
         GameObject AliceAnim = FindObj("AliceAnimEffect", false);
-        AliceAnim.transform.position = _StartPos;
+
+        AliceAnim.transform.position = new Vector2(_StartPos.x, _StartPos.y +0.1f);
         if (_Dir == Direction.Left)
             AliceAnim.transform.localScale = new Vector3(-2f, 2f, 1);
         else
@@ -286,6 +293,26 @@ public class ObjectManager : MonoBehaviour
             null, 1f);
 
         return AliceAnim;
+    }
+
+
+
+
+    //SlimeAttackParticle
+    public GameObject SlimePEvent(Vector2 TargetVec)
+    {
+        //SlimeAttackParticle
+        GameObject Paricle = FindObj("SlimeP", false);
+
+        Vector2 RandVec = TargetVec;
+        float RandX = Random.Range(-0.5f, 0.5f);
+        float RandY = Random.Range(-0.3f, 1f);
+        RandVec.x += RandX;
+        RandVec.y += RandY;
+        Paricle.transform.position = RandVec;
+        Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 2);
+        Paricle.SetActive(true);
+        return Paricle;
     }
 
 

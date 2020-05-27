@@ -42,8 +42,10 @@ public class PlayerUI : MonoBehaviour
     private PuzzleManager thePuzzle;
     private GirlManager theGirl;
     private BattleManager theBattle;
+
     private void Start()
     {
+
         theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theGirl = FindObjectOfType<GirlManager>();
@@ -53,6 +55,19 @@ public class PlayerUI : MonoBehaviour
     // 캐릭터별 카드색, 0이면 왼쪽 1이면 오른쪽
     public void SetUi(int _nodeColor,int _PlayerNum)
     {
+        if (theGirl.Girls[_nodeColor].IllustMaterials.Length > 0)
+        {
+            SpineMesh.material = theGirl.Girls[_nodeColor].IllustMaterials[0];
+        }
+
+
+        if (theGirl.Girls[_nodeColor].IllustData.Length > 0)
+        {
+            SpinAnim.skeletonDataAsset = theGirl.Girls[_nodeColor].IllustData[0];
+        }
+            
+
+
         if (_nodeColor == 0) //검은색
         {
             SkillSlider.color = new Color(0.42f, 0.42f, 0.42f);
@@ -168,6 +183,9 @@ public class PlayerUI : MonoBehaviour
         {
             theBattle.EnemyAttackEffectList.Remove(_Effect.gameObject);
         }
+
+        theBattle.EnemyPEvent(this.transform.position);
+
 
         _Effect.Resetting();
 

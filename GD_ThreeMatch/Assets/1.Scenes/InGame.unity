@@ -4922,7 +4922,7 @@ MonoBehaviour:
     - {fileID: 0}
     SkillImage: {fileID: 21300000, guid: f541f76cafcc9344497908c358064553, type: 3}
     IllustPosX:
-    - -5.4
+    - -5
     - 4
     IllustPosY: -6.5
     IllustSize: 1

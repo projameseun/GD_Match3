@@ -569,6 +569,18 @@ public class BattleManager : MonoBehaviour
 
     }
 
+
+    public void EnemyPEvent(Vector2 vec)
+    {
+        switch (EnemySkill[SkillNum].SkillEffectNum)
+        {
+            case 0:
+               theObject.SlimePEvent(vec);
+               break;
+        }
+    }
+
+
     // 플레이어가 모두 죽었는지 체크한다. true면 전멸, false면 계속 진행
     public bool CheckPlayerRetire()
     {
