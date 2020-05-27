@@ -280,8 +280,7 @@ public class Cube : MonoBehaviour
             {
                 theBattle.PlayerAttackEffectList.Add(CubeEffect);
             }
-            theObject.CubeParticleEvent(this.transform.position,
-           this.GetComponent<SpriteRenderer>().sprite);
+            theObject.CubeParticleEvent(this.transform.position);
 
         }
 

@@ -15,7 +15,7 @@ public class ObjectManager : MonoBehaviour
     public List<GameObject> AttackEffects;
     public List<GameObject> DamageTexts;
     public List<GameObject> AliceSkills;
-
+    public List<GameObject> AliceAnimEffects;
 
     //게임오브젝트 프리팹
     public GameObject Cube; //큐브 프리팹
@@ -25,7 +25,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject AttackEffect;
     public GameObject DamageText;
     public GameObject AliceSkill;
-
+    public GameObject AliceAnimEffect;
 
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
@@ -83,8 +83,14 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             AliceSkills.Add(x);
         }
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject x = Instantiate(AliceAnimEffect);
+            x.SetActive(false);
+            AliceAnimEffects.Add(x);
+        }
 
-        
+
     }
 
 
@@ -96,7 +102,7 @@ public class ObjectManager : MonoBehaviour
         Cube.GetComponent<CubeEffect>().DestroyCount = 1;
 
         SpeechEvent(this.transform.position, "test", 1);
-        CubeParticleEvent(this.transform.position, thePuzzle.CubeSprites[0]);
+        CubeParticleEvent(this.transform.position);
         GameObject AttackEffect = AttackEffectEvent(this.transform.position, this.gameObject, 0, 0, false, AttackEffectType.ET0_Null);
         AttackEffect.GetComponent<AttackEffect>().DestroyCount = 1;
 
@@ -147,6 +153,10 @@ public class ObjectManager : MonoBehaviour
                 List = AliceSkills;
                 Frefab = AliceSkill;
                 break;
+            case "AliceAnimEffect":
+                List = AliceAnimEffects;
+                Frefab = AliceAnimEffect;
+                break;
 
         }
 
@@ -193,13 +203,11 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    public GameObject CubeParticleEvent(Vector2 TargetVec,Sprite _sprite)
+    public GameObject CubeParticleEvent(Vector2 TargetVec)
     {
         GameObject Paricle = FindObj("CubeP", false);
         Paricle.transform.position = TargetVec;
-        Paricle.GetComponent<ParticleSystem>().textureSheetAnimation.SetSprite(
-            0, _sprite);
-        Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 5);
+        Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 2);
         Paricle.SetActive(true);
         return Paricle;
     }
@@ -242,7 +250,21 @@ public class ObjectManager : MonoBehaviour
         return AliceObj;
     }
 
+    public GameObject AliceAnimEvent(Vector2 _StartPos, Direction _Dir)
+    {
+        GameObject AliceAnim = FindObj("AliceAnimEffect", false);
+        AliceAnim.transform.position = _StartPos;
+        if (_Dir == Direction.Left)
+            AliceAnim.transform.localScale = new Vector3(-2f, 2f, 1);
+        else
+            AliceAnim.transform.localScale = new Vector3(2f, 2f, 1);
 
+        AliceAnim.SetActive(true);
+        AliceAnim.GetComponent<ParticleManager>().ParticleSetting(false,
+            null, 1f);
+
+        return AliceAnim;
+    }
 
 
     public void ResettingObj()
@@ -303,9 +325,16 @@ public class ObjectManager : MonoBehaviour
             {
                 AliceSkills[i].GetComponent<ParticleManager>().Resetting();
             }
-
-
         }
+
+        for (int i = 0; i < AliceAnimEffects.Count; i++)
+        {
+            if (AliceAnimEffects[i].activeSelf)
+            {
+                AliceAnimEffects[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+
 
 
     }

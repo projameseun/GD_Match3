@@ -40,8 +40,10 @@ public class PlayerCube : MonoBehaviour
     private PuzzleManager thePuzzle;
     private FindMatches theMatch;
     private BattleManager theBattle;
+    private ObjectManager theObject;
     private void Start()
     {
+        theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theMatch = FindObjectOfType<FindMatches>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
@@ -67,6 +69,8 @@ public class PlayerCube : MonoBehaviour
     {
         if (e.Data.Name == "Attack")
         {
+            theObject.AliceAnimEvent(this.transform.position, direction);
+
             if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
             {
                 theMatch.SpecialCubeEvent(Map, SlotNum, Type);
@@ -84,12 +88,28 @@ public class PlayerCube : MonoBehaviour
                     Map, SlotNum);
                     theBattle.ReadySkill(SkillUI.UI2_Null);
                 }
+               
+
+            }
+        }
+
+        //공격 끝나고
+        if (e.Data.Name == "Attack_End")
+        {
+            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+            {
+               
+            }
+            else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+            {
+
                 ChangeAnim("Idle", true);
                 this.transform.position = VisitVec;
 
-                
-
             }
+
+
+           
         }
     }
 

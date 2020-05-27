@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: Slime_Spine_Fin_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 2d5db59654adf124cb5e211c4301e752, type: 3}
+  atlasFile: {fileID: 4900000, guid: 68eb55634acc497478063349ae532101, type: 3}
   materials:
-  - {fileID: 2100000, guid: b24883670bb9409409fdb80645632cef, type: 2}
+  - {fileID: 2100000, guid: f0587cdbce7b33a46965f3b7c4e0f983, type: 2}

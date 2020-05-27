@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Slime_Spine_Fin_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 2cd3d4159fa8a804ba3b6963b62d9c5a, type: 2}
+  - {fileID: 11400000, guid: 42b3d50b35e74a24b9eac11ebdb3cdba, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 7591a1a6f492a77409671a2d37e66e91, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 452d3009ac9ca5b43bcdd629124c1c29, type: 3}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

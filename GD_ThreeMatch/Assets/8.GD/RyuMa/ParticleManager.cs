@@ -45,7 +45,7 @@ public class ParticleManager : MonoBehaviour
     }
     public void Resetting()
     {
-      
+        this.transform.localScale = new Vector3(1, 1, 1);
         parent = null;
         Loop = false;
         ParticleTime = 0;
