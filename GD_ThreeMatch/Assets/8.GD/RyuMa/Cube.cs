@@ -179,6 +179,7 @@ public class Cube : MonoBehaviour
 
         if (_Girl == SelectGirl.G2_Alice)
         {
+            
             theObject.AliceSkillEvent(this.transform.position);
         }
         else if (_Girl == SelectGirl.G4_Beryl)

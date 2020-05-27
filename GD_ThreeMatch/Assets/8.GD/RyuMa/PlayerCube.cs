@@ -30,6 +30,7 @@ public class PlayerCube : MonoBehaviour
     //전투 이밴트 변수
     SkillType skillType;
     Vector2 VisitVec;
+    public bool GirlEffect = false; // 스킬 효과
     
 
 
@@ -69,6 +70,7 @@ public class PlayerCube : MonoBehaviour
     {
         if (e.Data.Name == "Attack")
         {
+            
             theObject.AliceAnimEvent(this.transform.position, direction);
 
             if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
@@ -83,10 +85,12 @@ public class PlayerCube : MonoBehaviour
                 }
                 else if (skillType == SkillType.ST1_GirlSkill)
                 {
+                    GirlEffect = true;
                     theMatch.GirlSkill(
                           (SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor,
                     Map, SlotNum);
                     theBattle.ReadySkill(SkillUI.UI2_Null);
+                    GirlEffect = false;
                 }
                
 
