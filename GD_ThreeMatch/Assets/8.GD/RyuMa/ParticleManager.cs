@@ -36,6 +36,7 @@ public class ParticleManager : MonoBehaviour
         if (_Parent != null)
         {
             parent = _Parent;
+            this.transform.parent = _Parent.transform;
             this.transform.position = _Parent.transform.position;
 
         }

@@ -404,10 +404,6 @@ public class BattleManager : MonoBehaviour
                 }
             }
 
-
-            damage = (int)(Random.Range(Enemy[SelectEnemyNum].MinDamageValue,
-                Enemy[SelectEnemyNum].MaxDamageValue + 1) *
-                EnemySkill[SkillNum].MultiplyValue);
             AttackInit = true;
             CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
             if (CurrentAttackCount == 0)
@@ -428,13 +424,17 @@ public class BattleManager : MonoBehaviour
 
             if (CurrentAttackCount == 0)
                 return;
-
             if (CurrentSkillCoolDown > 0)
             {
                 CurrentSkillCoolDown -= Time.deltaTime;
             }
             else
             {
+                //대미지 계산
+                damage = (int)(Random.Range(Enemy[SelectEnemyNum].MinDamageValue,
+                Enemy[SelectEnemyNum].MaxDamageValue + 1) *
+                EnemySkill[SkillNum].MultiplyValue);
+
                 CurrentAttackCount--;
                 if (CurrentAttackCount == 0)
                     AttackEndEvent = true;
@@ -568,6 +568,8 @@ public class BattleManager : MonoBehaviour
 
 
     }
+
+
 
 
     public void EnemyPEvent(Vector2 vec)

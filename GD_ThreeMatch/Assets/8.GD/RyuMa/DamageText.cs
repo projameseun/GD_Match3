@@ -41,8 +41,8 @@ public class DamageText : MonoBehaviour
     public void SetDamageText(Vector2 _StartVec, string _Value, float _Time = 1.5f)
     {
         Vector2 StartPos = _StartVec;
-        StartPos.x += Random.Range(-0.3f, 0.3f);
-        StartPos.y += Random.Range(-0.3f, 0.3f);
+        StartPos.x += Random.Range(-0.9f, 0.9f);
+        StartPos.y += Random.Range(-0.3f, 0.9f);
         this.transform.position = StartPos;
 
 

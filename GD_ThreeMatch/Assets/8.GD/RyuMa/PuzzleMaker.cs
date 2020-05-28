@@ -77,7 +77,6 @@ public class PuzzleMaker : MonoBehaviour
 
     public void BT_PuzzleMaker(PuzzleSlot _Slot, int _SlotNum)
     {
-        Debug.Log("_Slot = " + _Slot);
         if (_Slot.portalSheet != null)
             _Slot.portalSheet = null;
 

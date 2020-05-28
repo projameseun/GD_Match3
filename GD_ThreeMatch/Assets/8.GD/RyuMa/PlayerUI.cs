@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using UnityEngine.UI;
-
+using Spine;
 
 public enum PlayerUIState
 { 
@@ -39,18 +39,92 @@ public class PlayerUI : MonoBehaviour
 
 
 
+    //trunk
+    string AnimName;
+    int TrakNum;
+
+    //데미지 이벤트
+    bool DamageEvent;
+    float DamageTime;
+    Color DamageColor = new Color(1,1,1,1);
+
+    //스킬 on off 이밴트
+    bool SkillOnEvent;
+    bool AddScale;
+    Vector3 ScaleVec = new Vector3(1,1,1);
+    float ImageScale;
+
     private PuzzleManager thePuzzle;
     private GirlManager theGirl;
     private BattleManager theBattle;
+    private ObjectManager theObject;
 
     private void Start()
     {
-
+        theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theGirl = FindObjectOfType<GirlManager>();
+        
     }
 
+    private void Update()
+    {
+        if (DamageEvent == true)
+        {
+            if (DamageTime <= 1)
+            {
+                DamageTime += Time.deltaTime * 2;
+                DamageColor.g = DamageTime;
+                DamageColor.b = DamageTime;
+                SpinAnim.skeleton.SetColor(DamageColor);
+            }
+            else
+            {
+                DamageEvent = false;
+                DamageTime = 0f;
+                SpinAnim.skeleton.SetColor(new Color(1, 1, 1));
+            }
+        }
+
+        if (SkillOnEvent == true)
+        {
+            if (AddScale == true)
+            {
+                ImageScale += Time.deltaTime*2.5f;
+                if (ImageScale >= 1.3f)
+                {
+                    AddScale = false;
+                }
+            }
+            else
+            {
+                ImageScale -= Time.deltaTime*2.5f;
+                if (ImageScale <= 0.8f)
+                {
+                    AddScale = true;
+                }
+            }
+            if (ImageScale > 0.9f && ImageScale < 1.1f)
+            {
+                ScaleVec.x = ImageScale;
+                ScaleVec.y = ImageScale;
+            }
+          
+            GirlCubeImage.transform.localScale = ScaleVec;
+        }
+    }
+    public void HandleEvent(TrackEntry trackEntry, Spine.Event e)
+    {
+        if (e.Data.Name == "Hit_End")
+        {
+            ChangeAnim("Idle",true);
+        }
+        if (e.Data.Name == "Attack_End")
+        {
+            ChangeAnim("Idle", true);
+        }
+    }
 
     // 캐릭터별 카드색, 0이면 왼쪽 1이면 오른쪽
     public void SetUi(int _nodeColor,int _PlayerNum)
@@ -65,8 +139,8 @@ public class PlayerUI : MonoBehaviour
         {
             SpinAnim.skeletonDataAsset = theGirl.Girls[_nodeColor].IllustData[0];
         }
-            
-
+        SpinAnim.Initialize(true);
+        SpinAnim.state.Event += HandleEvent;
 
         if (_nodeColor == 0) //검은색
         {
@@ -142,14 +216,25 @@ public class PlayerUI : MonoBehaviour
     {
         if (On == true)
         {
-            SpinAnim.skeleton.SetColor(Color.black);
+            SkillOnEvent = true;
+            ImageScale = 1;
             SkillOn = true;
         }
         else
         {
-            SpinAnim.skeleton.SetColor(new Color(1,1,1));
+            SkillOnEvent = false;
+            ImageScale = 1;
+            GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
             SkillOn = false;
         }
+    }
+
+    public void ChangeAnim(string _state, bool _Loop = false)
+    {
+        if (_state == AnimName)
+            return;
+        SpinAnim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
+        AnimName = _state;
     }
 
 
@@ -160,6 +245,7 @@ public class PlayerUI : MonoBehaviour
 
     public void TakeDamage(AttackEffect _Effect)
     {
+        theObject.DamageTextEvent(this.transform.position, _Effect.DamageValue.ToString());
         CurrentHp -= _Effect.DamageValue;
         if (CurrentHp < 0)
             CurrentHp = 0;
@@ -170,7 +256,12 @@ public class PlayerUI : MonoBehaviour
             PlayerDie();
         }
         else
-        { 
+        {
+            if(PlayerUINum == 0)
+                ChangeAnim("Hit");
+            DamageEvent = true;
+            DamageTime = 0f;
+
             //데미지 애니메이션 추가하기
         }
 
@@ -215,6 +306,11 @@ public class PlayerUI : MonoBehaviour
 
     public void ResetSkillGauge()
     {
+        SkillOnEvent = false;
+        ImageScale = 1;
+        GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
+        SkillOn = false;
+        ChangeAnim("Attack");
         CurrentSkillGauge = 0;
         GirlCubeImage.color = new Color(1, 1, 1, 0);
         SkillSlider.fillAmount = CurrentSkillGauge / MaxSkillGauge;
@@ -231,14 +327,17 @@ public class PlayerUI : MonoBehaviour
 
     public void PlayerDie()
     {
+        ChangeAnim("Die");
+        DamageEvent = false;
+        DamageTime = 0f;
+        SpinAnim.skeleton.SetColor(new Color(1, 1, 1));
+
         if ((int)theBattle.CurrentSkillUI == PlayerUINum)
         {
             theBattle.ReadySkill(SkillUI.UI2_Null);
         }
 
         state = PlayerUIState.Die;
-
-        SpinAnim.AnimationState.SetAnimation(0, "Die", true);
         
     }
 

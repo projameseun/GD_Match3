@@ -23,7 +23,8 @@ public class PlayerTouchManager : MonoBehaviour, IPointerClickHandler
     {
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle &&
            theBattle.battleState != BattleState.BattleInit &&
-           playerUI.GetSkillGauge() >= 1
+           playerUI.GetSkillGauge() >= 1 &&
+           playerUI.state != PlayerUIState.Die
            )
         {
             playerUI.CheckSkill();

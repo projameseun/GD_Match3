@@ -150,11 +150,12 @@ public class PlayerCube : MonoBehaviour
         anim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
         AnimName = _state;
     }
-    public void BattleEvent(Vector2 TargetVec, Direction _Dir, SkillType _Type,MapManager _Map, int _SlotNum)
+    public void BattleEvent(Vector2 TargetVec, Direction _Dir, SkillType _Type,SpecialCubeType _CubeType,MapManager _Map, int _SlotNum)
     {
         Map = _Map;
         skillType = _Type;
         SlotNum = _SlotNum;
+        Type = _CubeType;
         VisitVec = this.transform.position;
         ChangeAnim("Attack");
         this.transform.position = TargetVec;

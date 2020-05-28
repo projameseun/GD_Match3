@@ -334,6 +334,7 @@ public class FindMatches : MonoBehaviour
                                         {
                                             _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                             _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Horizon;
+                                            _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                             _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
 
                                             break;
@@ -348,7 +349,9 @@ public class FindMatches : MonoBehaviour
                                     {
                                         if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
                                         {
+
                                             _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
+                                            _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                             _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
                                             _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Horizon;
 
@@ -365,7 +368,7 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                     _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
-
+                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
 
                                     break;
                                 }
@@ -375,6 +378,7 @@ public class FindMatches : MonoBehaviour
                                     {
                                         if (_Map.Slots[thePuzzle.SelectNum].cube.SpecialCube == false)
                                         {
+                                            _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                             _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                             _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
                                             _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
@@ -390,6 +394,7 @@ public class FindMatches : MonoBehaviour
                                     {
                                         if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
                                         {
+                                            _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                             _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                             _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
                                             _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
@@ -403,6 +408,7 @@ public class FindMatches : MonoBehaviour
 
                                     int rand = Random.Range(0, SpecialCubeList.Count);
 
+                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                     _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
@@ -425,6 +431,7 @@ public class FindMatches : MonoBehaviour
                                 {
                                     if (_Map.Slots[thePuzzle.SelectNum].cube.SpecialCube == false)
                                     {
+                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Horizon;
                                         _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
@@ -441,6 +448,7 @@ public class FindMatches : MonoBehaviour
                                 {
                                     if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
                                     {
+                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
                                         _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Horizon;
@@ -455,6 +463,7 @@ public class FindMatches : MonoBehaviour
 
                                 int rand = Random.Range(0, SpecialCubeList.Count);
 
+                                _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
                                 _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                 _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
                                 _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;
@@ -468,6 +477,7 @@ public class FindMatches : MonoBehaviour
                                 {
                                     if (_Map.Slots[thePuzzle.SelectNum].cube.SpecialCube == false)
                                     {
+                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Horizon;
                                         _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.Special;
@@ -483,6 +493,7 @@ public class FindMatches : MonoBehaviour
                                 {
                                     if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
                                     {
+                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.Special;
                                         _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Horizon;
                                         _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.Special;
@@ -496,6 +507,7 @@ public class FindMatches : MonoBehaviour
 
                                 int rand = Random.Range(0, SpecialCubeList.Count);
 
+                                _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.Special;
                                 _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                 _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
                                 _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.Special;

@@ -17,6 +17,7 @@ public class ObjectManager : MonoBehaviour
     public List<GameObject> DamageTexts;
     public List<GameObject> AliceSkills;
     public List<GameObject> AliceAnimEffects;
+    public List<GameObject> SlimeSkillParticles;
     public List<GameObject> SlimeAttackParticles;
 
     //게임오브젝트 프리팹
@@ -28,6 +29,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject DamageText;
     public GameObject AliceSkill;
     public GameObject AliceAnimEffect;
+    public GameObject SlimeSkillParticle;
     public GameObject SlimeAttackParticle;
 
     private PuzzleManager thePuzzle;
@@ -94,6 +96,12 @@ public class ObjectManager : MonoBehaviour
         }
         for (int i = 0; i < 20; i++)
         {
+            GameObject x = Instantiate(SlimeSkillParticle);
+            x.SetActive(false);
+            SlimeSkillParticles.Add(x);
+        }
+        for (int i = 0; i < 20; i++)
+        {
             GameObject x = Instantiate(SlimeAttackParticle);
             x.SetActive(false);
             SlimeAttackParticles.Add(x);
@@ -121,10 +129,10 @@ public class ObjectManager : MonoBehaviour
             AliceSkillEvent(this.transform.position);
         }
 
-        for (int i = 0; i < 10; i++)
-        {
-            //AliceSkillEvent(this.transform.position);
-        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    //AliceSkillEvent(this.transform.position);
+        //}
 
     }
 
@@ -172,7 +180,10 @@ public class ObjectManager : MonoBehaviour
             case "SlimeP":
                 List = SlimeAttackParticles;
                 Frefab = SlimeAttackParticle;
-                
+                break;
+            case "SlimeSkillParticle":
+                List = SlimeSkillParticles;
+                Frefab = SlimeSkillParticle;
                 break;
 
         }
@@ -240,6 +251,17 @@ public class ObjectManager : MonoBehaviour
             .SetCubeEffect(StartVec, _TargetVec , _DamageValue,
             _EffectNum, _AttackEvent,
             AttackType, _Speed);
+
+        GameObject EffectP = null;
+
+        switch (_EffectNum)
+        {
+            case 0:
+                EffectP = FindObj("SlimeSkillParticle");
+                break;
+        }
+        EffectP.GetComponent<ParticleManager>().ParticleSetting(true, Effect, 10);
+
 
         return Effect;
 
@@ -383,7 +405,14 @@ public class ObjectManager : MonoBehaviour
                 AliceAnimEffects[i].GetComponent<ParticleManager>().Resetting();
             }
         }
-
+        for (int i = 0; i < SlimeSkillParticles.Count; i++)
+        {
+            if (SlimeSkillParticles[i].activeSelf)
+            {
+                SlimeSkillParticles[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+        
         for (int i = 0; i < SlimeAttackParticles.Count; i++)
         {
             if (SlimeAttackParticles[i].activeSelf)

@@ -172,7 +172,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         if (theMaker.PuzzleMakerStart == true)
         {
-            Debug.Log("test");
             theMaker.BT_PuzzleMaker(this, SlotNum);
             return;
         }
@@ -339,7 +338,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 StartVec.x += 1;
                 dir = Direction.Left;
             }
-            thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, thePuzzle.theBattleMap,SlotNum);
+            thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, cube.specialCubeType,thePuzzle.theBattleMap,SlotNum);
 
         }
 
@@ -363,11 +362,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void SkillEvent()
     {
-        // 슬롯이 오른쪽
+       
         Direction dir = Direction.Right;
         thePuzzle.SetMoveCount(-1);
         Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
         thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+        // 슬롯이 오른쪽
         if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
         {
             StartVec.x -= 1;
@@ -378,7 +378,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             StartVec.x += 1;
             dir = Direction.Left;
         }
-        thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill,
+        thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, cube.specialCubeType,
             thePuzzle.theBattleMap, SlotNum);
 
       
