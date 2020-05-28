@@ -25,7 +25,11 @@ public class PuzzleMaker : MonoBehaviour
 
     public MapManager theMoveMap;
     public PlayerCube Player;
+    public GameObject TestStartBt;
     public GameObject IngameUi;
+    public GameObject SonMapStartBt;
+    public GameObject SaveButton;
+    public GameObject LoadButton;
     public GameObject SonMapBase;
     public bool PuzzleMakerStart;
     public ChangeMode changeMode;
@@ -65,11 +69,31 @@ public class PuzzleMaker : MonoBehaviour
     private PuzzleManager thePuzzle;
     private ObjectManager theObject;
     private CameraManager theCam;
+    private GameManager theGM;
     private void Start()
     {
+        theGM = FindObjectOfType<GameManager>();
         theCam = FindObjectOfType<CameraManager>();
         theObject = FindObjectOfType<ObjectManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
+
+        if (SaveButton != null)
+        {
+            SaveButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                theGM.SaveBtn();
+            });
+        }
+        if (LoadButton != null)
+        {
+            LoadButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                theGM.LoadBtn();
+                SonMapBase.SetActive(false);
+                SonMapStartBt.SetActive(false);
+            });
+        }
+
     }
 
 
@@ -156,7 +180,9 @@ public class PuzzleMaker : MonoBehaviour
 
     public void BT_SonMapStart()
     {
-        SonMapBase.SetActive(true);
+        LoadButton.SetActive(false);
+        SonMapStartBt.SetActive(false);
+        TestStartBt.SetActive(true);
         theCam.MoveVec = theCam.gameObject.transform.position;
         theCam.MoveVec.z = -10;
         theCam.state = CameraManager.State.SonMap;
@@ -200,7 +226,7 @@ public class PuzzleMaker : MonoBehaviour
 
     public void BT_TestStart()
     {
-        SonMapBase.SetActive(false);
+        SaveButton.SetActive(true);
         IngameUi.SetActive(true);
         thePuzzle.SetPlayerUi();
         thePuzzle.LoadMap(theMoveMap,false);

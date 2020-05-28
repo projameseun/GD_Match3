@@ -121,8 +121,12 @@ public class PuzzleManager : MonoBehaviour
     private BattleManager theBattle;
     private GirlManager theGirl;
     private SoundManager theSound;
+    private GameManager theGM;
+    private PuzzleMaker theMaker;
     private void Start()
     {
+        theMaker = FindObjectOfType<PuzzleMaker>();
+        theGM = FindObjectOfType<GameManager>();
         theSound = FindObjectOfType<SoundManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theFade = FindObjectOfType<FadeManager>();
@@ -1256,8 +1260,8 @@ public class PuzzleManager : MonoBehaviour
     public void CheckPortal(MapManager _Map, int _Num)
     {
         //포탈 이밴트
-        string LoadMapName = _Map.Slots[_Num].portalSheet.MapName; //로드할 맵 이름
-        int PlayerSlotNum = _Map.Slots[_Num].portalSheet.NextPosNum; //로드 후 플레이어 위치
+        theMaker.MapName = _Map.Slots[_Num].portalSheet.MapName; //로드할 맵 이름
+        theMaker.PlayerStartNum = _Map.Slots[_Num].portalSheet.NextPosNum; //로드 후 플레이어 위치
 
     }
 
