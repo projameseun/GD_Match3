@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Spine.Unity;
+using Spine;
 //using TMPro;
 
 
@@ -258,6 +259,7 @@ public class BattleManager : MonoBehaviour
         EnemySpine.GetComponent<MeshRenderer>().material = Enemy[_enemyNum].IllustMaterials;
         EnemyAnim = EnemySpine.GetComponent<SkeletonAnimation>();
         EnemyAnim.Initialize(true);
+        EnemyAnim.state.Event += HandleEvent;
         CurrentEnemyCount = 0;
         EnemyName.text = Enemy[SelectEnemyNum].EnemyName;
         SetEnemyCount(Enemy[_enemyNum].Count);
@@ -290,16 +292,35 @@ public class BattleManager : MonoBehaviour
         TimeText.text = "Time : " + ((int)GameTime).ToString();
         CurrentHp = MaxHp;
     }
+
+    public void HandleEvent(TrackEntry trackEntry, Spine.Event e)
+    {
+        if (e.Data.Name == "Hit_End")
+        {
+
+            EnemyAnim.AnimationState.SetAnimation(0, "Idle", true);
+        }
+
+        if (e.Data.Name == "Attack_End")
+        {
+
+            EnemyAnim.AnimationState.SetAnimation(0, "Idle", true);
+        }
+
+    }
+
+
+
     public void EndBattle()
     {
-
+        battleState = BattleState.EnemyDie;
+        thePuzzle.state = PuzzleManager.State.BattleEvent;
+        Debug.Log("배틀 승리");
         BattleStart = false;
         ResetCombo();
         ComboCoolDownImage.fillAmount = 0;
         ComboText.text = "";
         EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
-        thePuzzle.state = PuzzleManager.State.BattleEvent;
-        battleState = BattleState.EnemyDie;
         //theFade.FadeIn();
     }
 
@@ -308,19 +329,19 @@ public class BattleManager : MonoBehaviour
     {
         //GameTime -= Time.deltaTime;
         EnemyHpImage.fillAmount = ((float)CurrentHp / (float)MaxHp);
-        if (GameTime < 0)
-        {
+        //if (GameTime < 0)
+        //{
 
-            Debug.Log("타임 오버");
-            BattleStart = false;
-            theFade.FadeIn();
-        }
-        else if (CurrentHp <= 0)
-        {
-            Debug.Log("배틀 승리");
-            EndBattle();
+        //    Debug.Log("타임 오버");
+        //    BattleStart = false;
+        //    theFade.FadeIn();
+        //}
+        //else if (CurrentHp <= 0)
+        //{
+        //    Debug.Log("배틀 승리");
+        //    EndBattle();
 
-        }
+        //}
         if (ComboValue > 1)
         {
             ComboCoolDownImage.fillAmount = CurrentComboCoolDown / MaxComboCoolDown;
@@ -353,7 +374,6 @@ public class BattleManager : MonoBehaviour
         {
             
             EnemyAnim.AnimationState.SetAnimation(0, "Hit", false);
-            EnemyAnim.AnimationState.AddAnimation(0, "Idle", true, 0.5f);
         }
         if (CurrentHp <= 0)
         {
@@ -385,7 +405,6 @@ public class BattleManager : MonoBehaviour
         {
             ResetCombo();
             EnemyAnim.AnimationState.SetAnimation(0, "Attack", false);
-            EnemyAnim.AnimationState.AddAnimation(0, "Idle", true, 1f);
 
             float rand = Random.Range(0.0f, 100.0f);
             SkillNum = 0;

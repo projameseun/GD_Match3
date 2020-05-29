@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 
@@ -341,6 +342,9 @@ public class PuzzleManager : MonoBehaviour
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
+
+                if (theBattle.PlayerAttackEffectList.Count > 0 && theBattle.CurrentEnemyCount == 0)
+                    return;
                 theBattle.AddComboValue();
                 theMatch.FindAllMatches(theBattleMap);
                 if (isMatched)
@@ -358,8 +362,8 @@ public class PuzzleManager : MonoBehaviour
                         // 몬스터의 체력이 0이 될 경우
                         if (theBattle.CurrentHp <= 0)
                         {
-                            theBattle.battleState = BattleState.EnemyDie;
-                            state = State.BattleEvent;
+                            theBattle.EndBattle();
+                            return;
                         }
                         // 카운트가 0이되어 적이 공격함
                         else if (theBattle.CurrentEnemyCount <= 0)
@@ -854,6 +858,12 @@ public class PuzzleManager : MonoBehaviour
             //_Cube.GetComponent<Cube>().MinimapSprite.sprite = CubeSprites[ColorNum];
         }
         _Slot.nodeColor = (NodeColor)ColorNum;
+        if (_Cube.GetComponent<SpriteRenderer>().color.a < 1)
+        {
+            Debug.Log("투명한 상태로 받아옴");
+            _Cube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
         _Cube.GetComponent<Cube>().nodeColor = (NodeColor)ColorNum;
         _Cube.GetComponent<Cube>().Num = _Slot.SlotNum;
         _Cube.transform.position = _Slot.transform.position;
