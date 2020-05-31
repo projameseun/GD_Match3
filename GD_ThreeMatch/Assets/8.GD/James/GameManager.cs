@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         for(int i=0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
         {
             theMoveMap.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
-            theMoveMap.Slots[i].nodeColor = NodeColor.Null;
+            theMoveMap.Slots[i].nodeColor = NodeColor.NC8_Null;
             if(theMoveMap.Slots[i].cube != null)
             {
                 theMoveMap.Slots[i].cube.Resetting();
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
             for(int i=0; i<=theMoveMap.TopRight; i++)
             {
                 theMoveMap.Slots[i + Hor].nodeType = (PuzzleSlot.NodeType)(int.Parse(puzzleslotList[ListCount].Type));
-                theMoveMap.Slots[i + Hor].nodeColor = NodeColor.Null;
+                theMoveMap.Slots[i + Hor].nodeColor = NodeColor.NC8_Null;
                 if(theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
                 {
                     theMoveMap.Slots[i + Hor].monsterSheet = puzzleslotList[ListCount].monsheet;

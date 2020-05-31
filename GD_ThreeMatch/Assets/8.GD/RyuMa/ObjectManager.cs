@@ -113,7 +113,7 @@ public class ObjectManager : MonoBehaviour
     public void LoadingInit()
     {
         GameObject Cube = CubeEffectEvent(this.gameObject.transform.position,
-            this.gameObject, NodeColor.Black, CubeEffectType.GoEnemy, 0, false, 2000);
+            this.gameObject, NodeColor.NC0_Blue, CubeEffectType.GoEnemy, 0, false, 2000);
         Cube.GetComponent<CubeEffect>().DestroyCount = 1;
 
         SpeechEvent(this.transform.position, "test", 1);

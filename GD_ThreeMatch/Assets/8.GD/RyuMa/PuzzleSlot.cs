@@ -14,16 +14,15 @@ public enum ObjectType
 
 public enum NodeColor
 {
-    Black = 0,
-    Blue,
-    Orange,
-    Pink,
-    Red,
-    Yellow,
-    Blank,
-    Player,
-    Special,
-    Null
+    NC0_Blue = 0,
+    NC1_Orange,
+    NC2_Pink,
+    NC3_Red,
+    NC4_Yellow,
+    NC5_Blank,
+    NC6_Player,
+    NC7_Special,
+    NC8_Null
 }
 
 [System.Serializable]
@@ -403,7 +402,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
 
             nodeType = NodeType.Normal;
-            nodeColor = NodeColor.Null;
+            nodeColor = NodeColor.NC6_Player;
             cube.Resetting();
             cube = null;
         }

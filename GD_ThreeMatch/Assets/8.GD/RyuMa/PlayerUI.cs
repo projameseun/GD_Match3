@@ -142,27 +142,24 @@ public class PlayerUI : MonoBehaviour
         SpinAnim.Initialize(true);
         SpinAnim.state.Event += HandleEvent;
 
-        if (_nodeColor == 0) //검은색
-        {
-            SkillSlider.color = new Color(0.42f, 0.42f, 0.42f);
-        }
-        else if (_nodeColor == 1) //파란색
+
+        if (_nodeColor == 0) //파란색
         {
             SkillSlider.color = new Color(0.56f, 0.78f, 0.9f);
         }
-        else if (_nodeColor == 2) // 주황색
+        else if (_nodeColor == 1) // 초록색
         {
-            SkillSlider.color = new Color(1f, 0.38f, 0.01f);
+            SkillSlider.color = new Color(0.01f, 0.1f, 0.01f);
         }
-        else if (_nodeColor == 3) // 핑크
+        else if (_nodeColor == 2) // 핑크
         {
             SkillSlider.color = new Color(0.95f, 0.3f, 0.57f);
         }
-        else if (_nodeColor == 4) // 빨간색
+        else if (_nodeColor == 3) // 빨간색
         {
             SkillSlider.color = new Color(0.94f, 0.11f, 0.01f);
         }
-        else if (_nodeColor == 5) // 노란색
+        else if (_nodeColor == 4) // 노란색
         {
             SkillSlider.color = new Color(1f, 0.89f, 0.51f);
         }

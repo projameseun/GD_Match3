@@ -216,7 +216,7 @@ public class CubeEffect : MonoBehaviour
             DestroyCount = 10f;
             
             cubeEffectType = CubeEffectType.GoPlayer;
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < thePuzzle.CubeSprites.Length; i++)
             {
                 if (thePuzzle.PlayerCubeUI[i].cubeColor == nodeColor)
                     TargetPos = thePuzzle.PlayerCubeUI[i].gameObject;

@@ -144,11 +144,11 @@ public class Cube : MonoBehaviour
         {
             if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
             {
-                thePuzzle.theMoveMap.Slots[Num].nodeColor = NodeColor.Blank;
+                thePuzzle.theMoveMap.Slots[Num].nodeColor = NodeColor.NC5_Blank;
             }
             else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
             {
-                thePuzzle.theBattleMap.Slots[Num].nodeColor = NodeColor.Blank;
+                thePuzzle.theBattleMap.Slots[Num].nodeColor = NodeColor.NC5_Blank;
             }
         }
 
@@ -177,12 +177,12 @@ public class Cube : MonoBehaviour
     public void SkillEffectEvent(SelectGirl _Girl)
     {
 
-        if (_Girl == SelectGirl.G2_Alice)
+        if (_Girl == SelectGirl.G1_Alice)
         {
             
             theObject.AliceSkillEvent(this.transform.position);
         }
-        else if (_Girl == SelectGirl.G4_Beryl)
+        else if (_Girl == SelectGirl.G3_Beryl)
         { 
             // 베릴 이펙트넣기   
         }
@@ -206,9 +206,9 @@ public class Cube : MonoBehaviour
         GameObject Target = null;
         if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < thePuzzle.CubeSprites.Length; i++)
             {
-                for (int x = 0; x < 6; x++)
+                for (int x = 0; x < thePuzzle.CubeSprites.Length; x++)
                 {
                     if ((int)nodeColor == (int)thePuzzle.PlayerCubeUI[x].cubeColor)
                     {
@@ -230,7 +230,7 @@ public class Cube : MonoBehaviour
             {
                 if (theBattle.EnemyCubeUi[i].gameObject.activeSelf == true)
                 {
-                    for (int x = 0; x < 6; x++)
+                    for (int x = 0; x < thePuzzle.CubeSprites.Length; x++)
                     {
                         if ((int)nodeColor == (int)theBattle.EnemyCubeUi[x].cubeColor)
                         {
@@ -257,9 +257,9 @@ public class Cube : MonoBehaviour
             }
             if (CheckEnemyColor == false)
             {
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < thePuzzle.CubeSprites.Length; i++)
                 {
-                    for (int x = 0; x < 6; x++)
+                    for (int x = 0; x < thePuzzle.CubeSprites.Length; x++)
                     {
                         if ((int)nodeColor == (int)thePuzzle.PlayerCubeUI[x].cubeColor)
                         {

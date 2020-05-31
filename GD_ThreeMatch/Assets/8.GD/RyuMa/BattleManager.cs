@@ -273,8 +273,11 @@ public class BattleManager : MonoBehaviour
         {
             if (i < Enemy[_enemyNum].CubeCount.Length)
             {
+                Debug.Log("i = " + i);
+                Debug.Log("ColorNum.Count = " + ColorNum.Count);
                 EnemyCubeUi[i].transform.parent.gameObject.SetActive(true);
                 int RandColor = Random.Range(0, ColorNum.Count);
+                Debug.Log("RandColor = " + RandColor);
                 EnemyCubeUi[i].SetCubeUi(ColorNum[RandColor], i,
                     thePuzzle.CubeSprites[ColorNum[RandColor]], Enemy[_enemyNum].CubeCount[i]);
 
@@ -283,7 +286,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                EnemyCubeUi[i].cubeColor = NodeColor.Null;
+                EnemyCubeUi[i].cubeColor = NodeColor.NC8_Null;
                 EnemyCubeUi[i].transform.parent.gameObject.SetActive(false);
             }
 
