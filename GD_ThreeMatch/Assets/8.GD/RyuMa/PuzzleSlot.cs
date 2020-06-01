@@ -6,11 +6,7 @@ using UnityEngine.UI;
 using static HappyRyuMa.GameMaker;
 
 
-public enum ObjectType
-{
-    ObjectType0_Ui,
-    ObjectType1_Sprite
-}
+
 
 public enum NodeColor
 {
@@ -45,13 +41,7 @@ public class PortalSheet
     public string MapName = null;
     public int NextPosNum;
 }
-[System.Serializable]
-public class ObjectSheet
-{
-    public ObjectType objectType;
-    public int ObjectNum = 0;
 
-}
 
 
 
@@ -89,16 +79,13 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public PortalSheet portalSheet = null;
 
 
-    public ObjectSheet objectSheet = null;
-
-
     //[HideInInspector] public int[] EnemyIndex = null;
     //[HideInInspector] public int[] EnemyChance = null;
     //[HideInInspector] public bool OnlyOneEnemy = false;
     //[HideInInspector] public int OnlyOneNum;
 
     //포탈 시트
-
+    public SlotObjectSheet SlotSheet;
 
 
 

@@ -7,18 +7,25 @@ public class ObjectManager : MonoBehaviour
 {
 
 
+    public Sprite[] SlotObjectSprites;
+
+
+
 
     //게임오브젝트 리스트
-    public List<GameObject> Cubes; //큐브 리스트
-    public List<GameObject> CubeParticles;
-    public List<GameObject> CubeEfs;
-    public List<GameObject> SpeechBubbles;
-    public List<GameObject> AttackEffects;
-    public List<GameObject> DamageTexts;
-    public List<GameObject> AliceSkills;
-    public List<GameObject> AliceAnimEffects;
-    public List<GameObject> SlimeSkillParticles;
-    public List<GameObject> SlimeAttackParticles;
+    [HideInInspector] public List<GameObject> Cubes; //큐브 리스트
+    [HideInInspector] public List<GameObject> CubeParticles;
+    [HideInInspector] public List<GameObject> CubeEfs;
+    [HideInInspector] public List<GameObject> SpeechBubbles;
+    [HideInInspector] public List<GameObject> AttackEffects;
+    [HideInInspector] public List<GameObject> DamageTexts;
+    [HideInInspector] public List<GameObject> AliceSkills;
+    [HideInInspector] public List<GameObject> AliceAnimEffects;
+    [HideInInspector] public List<GameObject> SlimeSkillParticles;
+    [HideInInspector] public List<GameObject> SlimeAttackParticles;
+    [HideInInspector] public List<GameObject> SlotPanels;
+    [HideInInspector] public List<GameObject> ClickParticles;
+
 
     //게임오브젝트 프리팹
     public GameObject Cube; //큐브 프리팹
@@ -31,6 +38,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject AliceAnimEffect;
     public GameObject SlimeSkillParticle;
     public GameObject SlimeAttackParticle;
+    public GameObject SlotPanel;
+    public GameObject ClickParticle;
 
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
@@ -40,6 +49,8 @@ public class ObjectManager : MonoBehaviour
 
         Init();
         LoadingInit();
+
+
     }
 
 
@@ -106,6 +117,22 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             SlimeAttackParticles.Add(x);
         }
+        for (int i = 0; i < 200; i++)
+        {
+            GameObject x = Instantiate(SlotPanel);
+            x.SetActive(false);
+            SlotPanels.Add(x);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject x = Instantiate(ClickParticle);
+            x.SetActive(false);
+            ClickParticles.Add(x);
+        }
+
+        //ClickParticles
+        //SlotPanel
+
     }
 
 
@@ -185,6 +212,14 @@ public class ObjectManager : MonoBehaviour
                 List = SlimeSkillParticles;
                 Frefab = SlimeSkillParticle;
                 break;
+            case "SlotPanel":
+                List = SlotPanels;
+                Frefab = SlotPanel;
+                break;
+            case "ClickParticle":
+                List = ClickParticles;
+                Frefab = ClickParticle;
+                break;
 
         }
 
@@ -204,6 +239,30 @@ public class ObjectManager : MonoBehaviour
         List.Add(X);
 
         return X;
+    }
+
+    public GameObject SpawnClickP(Vector2 StartPos)
+    {
+        GameObject ClickP = FindObj("ClickParticle");
+        ClickP.transform.position = StartPos;
+        ClickP.GetComponent<ParticleManager>().ParticleSetting(false);
+        return ClickP;
+    }
+
+
+    public GameObject SpawnCube()
+    {
+        GameObject Cube = FindObj("Cube");
+        Cube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        return Cube;
+    }
+
+    public GameObject SpawnSlotPanel(Vector2 Pos,SlotObjectSheet _Sheet)
+    {
+        GameObject Slot = FindObj("SlotPanel");
+        Slot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        Slot.GetComponent<SlotObject>().SetSlotObject(Pos,_Sheet);
+        return Slot;
     }
 
 
@@ -418,6 +477,23 @@ public class ObjectManager : MonoBehaviour
             if (SlimeAttackParticles[i].activeSelf)
             {
                 SlimeAttackParticles[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+
+        for (int i = 0; i < SlotPanels.Count; i++)
+        {
+            if (SlotPanels[i].activeSelf == true)
+            {
+                SlotPanels[i].GetComponent<SlotObject>().Resetting();
+            }
+        }
+
+
+        for (int i = 0; i < ClickParticles.Count; i++)
+        {
+            if (ClickParticles[i].activeSelf == true)
+            {
+                ClickParticles[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 

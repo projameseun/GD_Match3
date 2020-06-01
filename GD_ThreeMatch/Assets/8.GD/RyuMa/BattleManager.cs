@@ -171,7 +171,6 @@ public class BattleManager : MonoBehaviour
         ColorNumList.Add(2);
         ColorNumList.Add(3);
         ColorNumList.Add(4);
-        ColorNumList.Add(5);
     }
 
     private void Update()
@@ -273,13 +272,11 @@ public class BattleManager : MonoBehaviour
         {
             if (i < Enemy[_enemyNum].CubeCount.Length)
             {
-                Debug.Log("i = " + i);
-                Debug.Log("ColorNum.Count = " + ColorNum.Count);
+
                 EnemyCubeUi[i].transform.parent.gameObject.SetActive(true);
                 int RandColor = Random.Range(0, ColorNum.Count);
-                Debug.Log("RandColor = " + RandColor);
                 EnemyCubeUi[i].SetCubeUi(ColorNum[RandColor], i,
-                    thePuzzle.CubeSprites[ColorNum[RandColor]], Enemy[_enemyNum].CubeCount[i]);
+                    thePuzzle.CubeUiSprites[ColorNum[RandColor]], Enemy[_enemyNum].CubeCount[i]);
 
                 MaxHp += Enemy[_enemyNum].CubeCount[i];
                 ColorNum.Remove(RandColor);

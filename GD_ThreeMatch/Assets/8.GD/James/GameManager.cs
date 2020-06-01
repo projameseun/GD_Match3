@@ -35,12 +35,14 @@ public class SlotInfo
     public string Type;
     public MonsterSheet monsheet;
     public PortalSheet portalsheet;
+    public SlotObjectSheet slotObject;
 
-    public SlotInfo(string type, MonsterSheet monsheet, PortalSheet portalsheet)
+    public SlotInfo(string type, MonsterSheet monsheet, PortalSheet portalsheet, SlotObjectSheet _slotObject)
     {
         Type = type;
         this.monsheet = monsheet;
         this.portalsheet = portalsheet;
+        slotObject = _slotObject;
     }
 
     public SlotInfo() { }
@@ -109,7 +111,7 @@ public class GameManager : MonoBehaviour
                 for (int i = 0; i <= _Map.TopRight; i++)
                 {
                     puzzleslotList.Add(new SlotInfo(((int)_Map.Slots[i + Hor].nodeType).ToString(), _Map.Slots[i + Hor].monsterSheet, 
-                                                _Map.Slots[i + Hor].portalSheet));;
+                                                _Map.Slots[i + Hor].portalSheet, _Map.Slots[i + Hor].SlotSheet));;
                     //Debug.Log(puzzleslotList[i + Hor].nodeType);
 
                 }

@@ -42,6 +42,8 @@ public class PlayerUI : MonoBehaviour
     //trunk
     string AnimName;
     int TrakNum;
+    GameObject ClickP;
+    float ClickY;
 
     //데미지 이벤트
     bool DamageEvent;
@@ -173,7 +175,7 @@ public class PlayerUI : MonoBehaviour
         CurrentSkillGauge = 0;
         SkillSlider.fillAmount = 0;
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
-
+        ClickY = theGirl.Girls[_nodeColor].ClickY;
 
         SpineMesh.transform.localPosition = new Vector3(
                 theGirl.Girls[_nodeColor].IllustPosX[_PlayerNum],
@@ -213,12 +215,25 @@ public class PlayerUI : MonoBehaviour
     {
         if (On == true)
         {
+            Vector2 vec = new Vector2(SpinAnim.transform.position.x,
+                SpinAnim.transform.position.y);
+            vec.y += ClickY;
+            ClickP = theObject.SpawnClickP(vec);
             SkillOnEvent = true;
             ImageScale = 1;
             SkillOn = true;
         }
         else
         {
+            if (ClickP != null)
+            {
+                if (ClickP.activeSelf == true)
+                {
+                    ClickP.SetActive(false);
+                    ClickP = null;
+                }
+            }
+           
             SkillOnEvent = false;
             ImageScale = 1;
             GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);

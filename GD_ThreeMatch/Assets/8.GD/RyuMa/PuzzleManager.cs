@@ -59,7 +59,7 @@ public class PuzzleManager : MonoBehaviour
     public MapManager theBattleMap;
 
 
-
+    public Sprite[] CubeUiSprites;
     public Sprite[] CubeSprites;
     public Sprite[] GirlSprites;
     public Sprite[] SpecialSprites;
@@ -430,10 +430,12 @@ public class PuzzleManager : MonoBehaviour
             }
         }
 
-        for (int Hor = _Map.Horizontal; Hor < _Map.BottomLeft; Hor += _Map.Horizontal)
+        for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
         {
-            for (int i = 1; i < _Map.TopRight; i++)
+            for (int i = 0; i <= _Map.TopRight; i++)
             {
+                theObject.SpawnSlotPanel(_Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet);
+                _Map.Slots[i + Hor].TestText.enabled = false;
                 if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
                 {
                     if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
@@ -448,7 +450,7 @@ public class PuzzleManager : MonoBehaviour
                         _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.4f);
                     }
 
-                    _Map.Slots[i + Hor].TestText.enabled = false;
+                    
                 }
             }
         }
@@ -474,6 +476,27 @@ public class PuzzleManager : MonoBehaviour
         }
 
 
+        if (_Map.mapType == MapType.M2_BattleMap)
+        {
+            if (_Map.FirstBattle == false)
+            {
+                _Map.FirstBattle = true;
+
+                for (int i = 0; i < _Map.Slots.Length; i++)
+                {
+                    if (i > _Map.TopRight &&
+                        i < _Map.BottomLeft &&
+                        i % _Map.Horizontal != 0 &&
+                        i % _Map.Horizontal != _Map.TopRight)
+                    {
+
+                        theObject.SpawnSlotPanel(_Map.Slots[i].transform.position,
+                            SlotObjectSheet.S_0_SlotPanel);
+                    }
+                }
+            }
+        }
+
 
 
         for (int i = 0; i < _Map.Slots.Length; i++)
@@ -490,6 +513,9 @@ public class PuzzleManager : MonoBehaviour
 
             _Map.Slots[i].SlotNum = i;
         }
+
+
+
 
 
 
@@ -685,9 +711,9 @@ public class PuzzleManager : MonoBehaviour
         ColorList.Add(3);
         ColorList.Add(4);
 
-        for (int Hor = _Map.Horizontal; Hor < _Map.BottomLeft; Hor += _Map.Horizontal)
+        for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
         {
-            for (int i = 1; i < _Map.TopRight; i++)
+            for (int i = 0; i < _Map.TopRight; i++)
             {
                 if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null &&
                     _Map.Slots[i + Hor].nodeColor == NodeColor.NC8_Null)
@@ -751,10 +777,11 @@ public class PuzzleManager : MonoBehaviour
                     }
 
                     int RandColorNum = Random.Range(0, RandomList.Count);
-                    GameObject Cube = theObject.FindObj("Cube");
+                    GameObject Cube = theObject.SpawnCube();
                     SetCube(Cube, _Map.Slots[i + Hor], RandomList[RandColorNum]);
 
                 }
+               
             }
         }
 
@@ -822,7 +849,7 @@ public class PuzzleManager : MonoBehaviour
         //        }
 
         //        int RandColorNum = Random.Range(0, RandomList.Count);
-        //        GameObject Cube = theObject.FindObj("Cube");
+        //        GameObject Cube = theObject.SpawnCube();
         //        SetCube(Cube, _Map.Slots[i], RandomList[RandColorNum]);
 
         //    }
@@ -1016,7 +1043,7 @@ public class PuzzleManager : MonoBehaviour
                         }
                         else
                         {
-                            GameObject NewCube = theObject.FindObj("Cube");
+                            GameObject NewCube = theObject.SpawnCube();
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i - _Map.Horizontal].transform.position;
@@ -1056,7 +1083,7 @@ public class PuzzleManager : MonoBehaviour
                         }
                         else
                         {
-                            GameObject NewCube = theObject.FindObj("Cube");
+                            GameObject NewCube = theObject.SpawnCube();
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i + _Map.Horizontal].transform.position;
@@ -1095,7 +1122,7 @@ public class PuzzleManager : MonoBehaviour
                         }
                         else
                         {
-                            GameObject NewCube = theObject.FindObj("Cube");
+                            GameObject NewCube = theObject.SpawnCube();
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i + 1].transform.position;
@@ -1134,7 +1161,7 @@ public class PuzzleManager : MonoBehaviour
                         }
                         else
                         {
-                            GameObject NewCube = theObject.FindObj("Cube");
+                            GameObject NewCube = theObject.SpawnCube();
                             NewCube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i - 1].transform.position;
@@ -1486,15 +1513,15 @@ public class PuzzleManager : MonoBehaviour
         ColorList.Add(4);
         ColorList.Remove(FirstHeroNum);
         ColorList.Remove(secondHeroNum);
-        PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeSprites[FirstHeroNum]);
-        PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeSprites[secondHeroNum]);
+        PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeUiSprites[FirstHeroNum]);
+        PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeUiSprites[secondHeroNum]);
         playerUIs[0].SetUi(FirstHeroNum,0);
         playerUIs[1].SetUi(secondHeroNum,1);
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < CubeUiSprites.Length - 2; i++)
         {
 
 
-            PlayerCubeUI[i + 2].SetCubeUi(ColorList[i], i + 2, CubeSprites[ColorList[i]]);
+            PlayerCubeUI[i + 2].SetCubeUi(ColorList[i], i + 2, CubeUiSprites[ColorList[i]]);
         }
 
 
@@ -1512,13 +1539,13 @@ public class PuzzleManager : MonoBehaviour
         ColorList.Add(4);
         ColorList.Remove(FirstHeroNum);
         ColorList.Remove(secondHeroNum);
-        PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeSprites[FirstHeroNum]);
-        PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeSprites[secondHeroNum]);
+        PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeUiSprites[FirstHeroNum]);
+        PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeUiSprites[secondHeroNum]);
         playerUIs[0].SetUi(FirstHeroNum, 0);
         playerUIs[1].SetUi(secondHeroNum, 1);
         for (int i = 0; i < 3; i++)
         {
-            PlayerCubeUI[i + 2].SetCubeUi(ColorList[i], i + 2, CubeSprites[ColorList[i]]);
+            PlayerCubeUI[i + 2].SetCubeUi(ColorList[i], i + 2, CubeUiSprites[ColorList[i]]);
         }
     }
 

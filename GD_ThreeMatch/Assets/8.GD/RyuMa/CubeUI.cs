@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class CubeUI : MonoBehaviour
 {
     public enum UIType
@@ -15,7 +15,7 @@ public class CubeUI : MonoBehaviour
 
 
     public Image CubeSprite;
-    public Text CubeCountText;
+    public TextMeshPro CubeCountText;
     public int UINum;
 
     public UIType uIType;

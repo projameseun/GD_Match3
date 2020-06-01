@@ -25,7 +25,7 @@ public class MapManager : MonoBehaviour
     public PuzzleSlot[] Slots;
 
     public Direction direction;
-
+    public bool FirstBattle = false;
 
 
 
@@ -37,7 +37,7 @@ public class MapManager : MonoBehaviour
     public int BottomRight;
 
 
-    private void Start()
+    private void Awake()
     {
         int Size = Horizontal * Vertical;
         Slots = new PuzzleSlot[Size];
@@ -52,7 +52,5 @@ public class MapManager : MonoBehaviour
             Slots[i].SlotNum = i;
         }
     }
-
-
 
 }

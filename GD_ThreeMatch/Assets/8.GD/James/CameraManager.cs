@@ -29,6 +29,8 @@ public class CameraManager : MonoBehaviour
     public Vector2 MinBound;
     public Vector2 NowPos;
     public Vector3 MoveVec = new Vector3(0,0,-10f);
+    float LerfTime = 0;
+    float CurrentMoveSpeed = 0;
 
     //인게임 3Match 방향대로 플레이어이동 
     //버튼결정안나서 
@@ -37,6 +39,29 @@ public class CameraManager : MonoBehaviour
 
     private PuzzleManager thePuzzle;
     private PuzzleMaker theMaker;
+    private void Awake()
+    {
+        Camera camera = GetComponent<Camera>();
+        Rect rect = camera.rect;
+        float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16);
+        float scalewidth = 1f / scaleheight;
+
+        if (scaleheight < 1)
+        {
+            rect.height = scaleheight;
+            rect.y = (1f - scaleheight) / 2f;
+        }
+        else
+        {
+            rect.width = scalewidth;
+            rect.x = (1f - scalewidth) / 2f;
+        }
+        camera.rect = rect;
+
+
+    }
+
+    void OnPreCull() => GL.Clear(true, true, Color.black);
     void Start()
     {
         theMaker = FindObjectOfType<PuzzleMaker>();
@@ -83,27 +108,51 @@ public class CameraManager : MonoBehaviour
 
         if (state == State.SmoothMove)
         {
+            if (Down == true)
+            {
+                if (LerfTime <= 0.5f)
+                    LerfTime += Time.deltaTime;
+
+                if (LerfTime > 0.25f)
+                {
+                    LerfTime = 1f;
+                    CurrentMoveSpeed = Mathf.Lerp(CurrentMoveSpeed, CameraSpeed, 0.1f);
+                }
+               
+            }
+            else
+            { 
+                if(LerfTime >0)
+                    LerfTime -= Time.deltaTime;
+
+                if (LerfTime < 0.1f)
+                {
+                    LerfTime = 0;
+                    CurrentMoveSpeed = 0;
+                }
+            }
+
             if (Down)
             {
                 if (direction == Direction.Up)
                 {
-                    MoveVec += Vector3.up * Time.deltaTime * CameraSpeed;
+                    MoveVec += Vector3.up * Time.deltaTime * CurrentMoveSpeed;
                     MoveVec.z = -10;
 
                 }
                 else if (direction == Direction.Down)
                 {
-                    MoveVec += Vector3.down * Time.deltaTime * CameraSpeed;
+                    MoveVec += Vector3.down * Time.deltaTime * CurrentMoveSpeed;
                     MoveVec.z = -10;
                 }
                 else if (direction == Direction.Left)
                 {
-                    MoveVec += Vector3.left * Time.deltaTime * CameraSpeed;
+                    MoveVec += Vector3.left * Time.deltaTime * CurrentMoveSpeed;
                     MoveVec.z = -10;
                 }
                 else if (direction == Direction.Right)
                 {
-                    MoveVec += Vector3.right * Time.deltaTime * CameraSpeed;
+                    MoveVec += Vector3.right * Time.deltaTime * CurrentMoveSpeed;
                     MoveVec.z = -10;
                 }
             }

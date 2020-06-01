@@ -17,6 +17,7 @@ public class GirlHero
     public float[] IllustPosX;
     public float IllustPosY;
     public float IllustSize;
+    public float ClickY;
 
     [Space]
     [Header("DB")]
