@@ -269,7 +269,10 @@ public class PuzzleManager : MonoBehaviour
                 if (CubeEvent == true)
                 {
                     CubeEvent = false;
-
+                    if (theMatch.CheckBoom == true)
+                    {
+                        return;
+                    }
                     BT_FillBlank(theMoveMap);
 
 
@@ -394,7 +397,13 @@ public class PuzzleManager : MonoBehaviour
             {
                 if (CubeEvent == true)
                 {
+
                     CubeEvent = false;
+                    if (theMatch.CheckBoom == true)
+                    {
+                        return;
+                    }
+                        
 
                     BT_FillBlank(theBattleMap);
 

@@ -17,7 +17,7 @@ public class FindMatches : MonoBehaviour
     public List<PuzzleSlot> currentMathces = new List<PuzzleSlot>();
     List<int> SpecialCubeList = new List<int>();
 
-
+    public bool CheckBoom;
 
     private PuzzleManager thePuzzle;
     private GirlManager theGirl;
@@ -539,6 +539,10 @@ public class FindMatches : MonoBehaviour
     {
         int HorizonNum =0;
 
+        if (CheckBoom == true)
+        { 
+            CheckBoom = false;
+        }
 
         bool Special = true;
 
@@ -565,7 +569,11 @@ public class FindMatches : MonoBehaviour
 
                 if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
                     _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Horizon)
+                {
+                    CheckBoom = true;
                     Special = false;
+                }
+                    
 
             }
         }
@@ -593,7 +601,10 @@ public class FindMatches : MonoBehaviour
         int Vertical = _SlotNum % _Map.Horizontal;
         _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
         bool Special = true;
-
+        if (CheckBoom == true)
+        {
+            CheckBoom = false;
+        }
         for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
         {
             if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
@@ -605,6 +616,7 @@ public class FindMatches : MonoBehaviour
                 if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
                     _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Vertical)
                 {
+                    CheckBoom = true;
                     Special = false;
                 }
 
@@ -637,6 +649,10 @@ public class FindMatches : MonoBehaviour
        
         int CheckCount = 1;
 
+        if (CheckBoom == true)
+        {
+            CheckBoom = false;
+        }
         bool Special = true;
 
         _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
@@ -662,6 +678,7 @@ public class FindMatches : MonoBehaviour
                     _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
                 {
                     Special = false;
+                    CheckBoom = true;
                     break;
                 }
 
@@ -692,6 +709,7 @@ public class FindMatches : MonoBehaviour
                 if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
                     _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
                 {
+                    CheckBoom = true;
                     Special = false;
                     break;
                 }
@@ -720,6 +738,7 @@ public class FindMatches : MonoBehaviour
                 if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
                     _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
                 {
+                    CheckBoom = true;
                     Special = false;
                     break;
                 }
@@ -749,6 +768,7 @@ public class FindMatches : MonoBehaviour
                 if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
                     _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
                 {
+                    CheckBoom = true;
                     Special = false;
                     break;
                 }
