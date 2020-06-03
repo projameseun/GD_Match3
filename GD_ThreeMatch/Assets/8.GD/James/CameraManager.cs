@@ -184,7 +184,7 @@ public class CameraManager : MonoBehaviour
             {
 
                 MoveVec = new Vector3(
-                    MaxBound.x - HRadious,
+                    MaxBound.x - HRadious -0.01f,
                     this.transform.position.y, -10);
                 Down = false;
             }

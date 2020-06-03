@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 public enum MapType
-{ 
+{
     M1_MoveMap = 0,
     M2_BattleMap,
     M3_Null

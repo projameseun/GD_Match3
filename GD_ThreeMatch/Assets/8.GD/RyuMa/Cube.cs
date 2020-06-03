@@ -312,21 +312,7 @@ public class Cube : MonoBehaviour
             _Map = thePuzzle.theBattleMap;
         }
 
-
-        switch (specialCubeType)
-        {
-            case SpecialCubeType.Horizon:
-                theMatch.FindHorizonCube(_Map, Num);
-                break;
-
-            case SpecialCubeType.Vertical:
-                theMatch.FindVerticalCube(_Map, Num);
-                break;
-
-            case SpecialCubeType.Hanoi:
-                theMatch.FindHanoiCube(_Map, Num);
-                break;
-        }
+        theMatch.SpecialCubeEvent(_Map, Num, specialCubeType);
     }
 
 

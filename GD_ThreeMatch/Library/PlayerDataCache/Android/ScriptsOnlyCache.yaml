@@ -12,6 +12,7 @@ ScriptsOnlyBuild:
     - DamageText
     - FadeManager
     - FindMatches
+    - GameManager
     - GirlManager
     - ItemManager
     - MapManager
@@ -23,6 +24,9 @@ ScriptsOnlyBuild:
     - PuzzleMaker
     - PuzzleManager
     - PuzzleSlot
+    - Reporter
+    - ReporterMessageReceiver
+    - SlotObject
     - SoundManager
     - SoundSource
     - SpeechBubble
@@ -35,6 +39,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -88,96 +93,106 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 84
       Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11266}
+      Script: {instanceID: 676}
     - Class: 114
-      Script: {instanceID: 11284}
+      Script: {instanceID: 11262}
     - Class: 114
-      Script: {instanceID: 11358}
+      Script: {instanceID: 11280}
+    - Class: 114
+      Script: {instanceID: 11346}
+    - Class: 114
+      Script: {instanceID: 11366}
     - Class: 114
       Script: {instanceID: 11378}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11458}
     - Class: 114
-      Script: {instanceID: 11480}
+      Script: {instanceID: 11498}
     - Class: 114
-      Script: {instanceID: 11522}
+      Script: {instanceID: 11556}
     - Class: 114
-      Script: {instanceID: 11582}
+      Script: {instanceID: 11654}
     - Class: 114
-      Script: {instanceID: 11692}
+      Script: {instanceID: 11840}
     - Class: 114
-      Script: {instanceID: 11926}
+      Script: {instanceID: 11878}
     - Class: 114
-      Script: {instanceID: 11944}
+      Script: {instanceID: 11896}
     - Class: 114
-      Script: {instanceID: 11992}
+      Script: {instanceID: 11942}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 11962}
     - Class: 114
-      Script: {instanceID: 12026}
+      Script: {instanceID: 11976}
     - Class: 114
-      Script: {instanceID: 12146}
+      Script: {instanceID: 12092}
     - Class: 114
-      Script: {instanceID: 12176}
+      Script: {instanceID: 12120}
     - Class: 114
-      Script: {instanceID: 12204}
+      Script: {instanceID: 12148}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12160}
     - Class: 114
-      Script: {instanceID: 12242}
+      Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 12282}
+      Script: {instanceID: 12220}
     - Class: 114
-      Script: {instanceID: 12312}
+      Script: {instanceID: 12248}
     - Class: 114
-      Script: {instanceID: 12326}
+      Script: {instanceID: 12260}
     - Class: 114
-      Script: {instanceID: 12418}
+      Script: {instanceID: 12346}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12354}
     - Class: 114
-      Script: {instanceID: 12488}
+      Script: {instanceID: 12414}
     - Class: 114
-      Script: {instanceID: 12502}
+      Script: {instanceID: 12428}
     - Class: 114
-      Script: {instanceID: 12526}
+      Script: {instanceID: 12450}
     - Class: 114
-      Script: {instanceID: 12556}
+      Script: {instanceID: 12478}
+    - Class: 114
+      Script: {instanceID: 12600}
+    - Class: 114
+      Script: {instanceID: 12612}
     - Class: 114
       Script: {instanceID: 12692}
     - Class: 114
-      Script: {instanceID: 12704}
+      Script: {instanceID: 12710}
     - Class: 114
-      Script: {instanceID: 12788}
+      Script: {instanceID: 12898}
     - Class: 114
-      Script: {instanceID: 12806}
+      Script: {instanceID: 13008}
     - Class: 114
-      Script: {instanceID: 13006}
+      Script: {instanceID: 13048}
     - Class: 114
-      Script: {instanceID: 13120}
+      Script: {instanceID: 13134}
     - Class: 114
-      Script: {instanceID: 13160}
+      Script: {instanceID: 13172}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 13176}
     - Class: 114
-      Script: {instanceID: 13294}
+      Script: {instanceID: 13198}
     - Class: 114
-      Script: {instanceID: 13318}
+      Script: {instanceID: 13280}
     - Class: 114
-      Script: {instanceID: 13402}
+      Script: {instanceID: 13282}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 13312}
     - Class: 114
-      Script: {instanceID: 13512}
+      Script: {instanceID: 13380}
     - Class: 114
-      Script: {instanceID: 13554}
+      Script: {instanceID: 13422}
+    - Class: 114
+      Script: {instanceID: 101004}
+    - Class: 114
+      Script: {instanceID: 101006}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -249,7 +264,7 @@ ScriptsOnlyBuild:
     className: BattleResultManager
   - hash:
       serializedVersion: 2
-      Hash: 79eeff4abba94d3981a88653b1b77233
+      Hash: 264c9eb982a1b519a31aa0eeeb90f1eb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ObjectManager
@@ -261,7 +276,7 @@ ScriptsOnlyBuild:
     className: SkeletonRendererCustomMaterials
   - hash:
       serializedVersion: 2
-      Hash: 28cc9432959b3205d045a0c544b5f388
+      Hash: ef9240ab42b65f2236092e350d24772d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GirlManager
@@ -417,19 +432,25 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: cbf2c03266310451b16a41a5dcb9280d
+      Hash: c0808fdd1e50bd82339b252abab8372c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CubeUI
   - hash:
       serializedVersion: 2
-      Hash: a28d943d7414d90016c3c622822d7255
+      Hash: d2cf3da3736c59283203f9fc21e2b6da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleManager
@@ -525,7 +546,7 @@ ScriptsOnlyBuild:
     className: TMP_Asset
   - hash:
       serializedVersion: 2
-      Hash: c60b7f881605cc337b9945c5d488df58
+      Hash: 89bcaa892f232484d08d25f4f440dc82
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PuzzleMaker
@@ -585,13 +606,13 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: 6d73b96ef898a0afc6832fae84e100b5
+      Hash: 3b776dea930ee4ae0ccde41558a3c50e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DamageText
   - hash:
       serializedVersion: 2
-      Hash: b57c590e1af4220011ddecdf2aa3aaa6
+      Hash: a0ae845f16628c4cedc34d040b7072d6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AttackEffect
@@ -603,7 +624,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 1e9ad135f2ec7db174c69df36a330ff6
+      Hash: 857e34949da9c897c101b5146de3cf68
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerCube
@@ -639,7 +660,7 @@ ScriptsOnlyBuild:
     className: SkeletonDataAsset
   - hash:
       serializedVersion: 2
-      Hash: 8cbceb304725e759c7557bc8e719974f
+      Hash: 7ff68740232f1a3806d03207dd2495ae
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PuzzleSlot
@@ -723,7 +744,7 @@ ScriptsOnlyBuild:
     className: BoneFollowerGraphic
   - hash:
       serializedVersion: 2
-      Hash: 1995ff6e496b365c8808ac15969f78af
+      Hash: f3f4c5808798dc9688c9969b3f948f20
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CubeEffect
@@ -765,7 +786,7 @@ ScriptsOnlyBuild:
     className: FollowLocationRigidbody2D
   - hash:
       serializedVersion: 2
-      Hash: 412aa4fc268f5061a5d9a8d80afb128a
+      Hash: df36582a73c41d549dcb00dd0dd82e9b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PuzzleManager
@@ -789,7 +810,13 @@ ScriptsOnlyBuild:
     className: SkeletonPartsRenderer
   - hash:
       serializedVersion: 2
-      Hash: f61da1acca760f7c65ecfe315fd8ddae
+      Hash: 2048cfe5c10eda2f470572549831e72e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SlotObject
+  - hash:
+      serializedVersion: 2
+      Hash: 9ca1bbe4d7264686dee43ea3309caabc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FindMatches
@@ -807,7 +834,7 @@ ScriptsOnlyBuild:
     className: SkeletonUtilityBone
   - hash:
       serializedVersion: 2
-      Hash: cd0fcb592f71c9d2d6eb37d3859cb883
+      Hash: e5de3041d5e7303e558a062ad1513e34
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapManager
@@ -925,7 +952,25 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ReporterGUI
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ReporterMessageReceiver
+  - hash:
+      serializedVersion: 2
+      Hash: e78cd16ebf9601c38819cd2a88afbf1d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Reporter
   platform: 13
   scenePathNames:
   - Assets/1.Scenes/InGame.unity
-  playerPath: C:/Users/admin/Desktop/threematch.apk
+  playerPath: C:/Users/Administrator/Desktop/GD_Game7.apk

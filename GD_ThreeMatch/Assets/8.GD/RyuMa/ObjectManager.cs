@@ -6,9 +6,11 @@ using UnityEngine;
 public class ObjectManager : MonoBehaviour
 {
 
-
-    public Sprite[] SlotObjectSprites;
-
+    // 오브젝트 타일 이미지
+    public Sprite SlotPanelSprite;
+    public Sprite EnemySlotSprite;
+    public Sprite PortalSlotSprite;
+    public Sprite[] ForestSprites;
 
 
 
@@ -156,10 +158,10 @@ public class ObjectManager : MonoBehaviour
             AliceSkillEvent(this.transform.position);
         }
 
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    //AliceSkillEvent(this.transform.position);
-        //}
+        for (int i = 0; i < 10; i++)
+        {
+            SlimePEvent(this.transform.position);
+        }
 
     }
 
@@ -257,11 +259,11 @@ public class ObjectManager : MonoBehaviour
         return Cube;
     }
 
-    public GameObject SpawnSlotPanel(Vector2 Pos,SlotObjectSheet _Sheet)
+    public GameObject SpawnSlotPanel(Vector2 Pos,SlotObjectSheet _Sheet, MapType _mapType)
     {
         GameObject Slot = FindObj("SlotPanel");
         Slot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        Slot.GetComponent<SlotObject>().SetSlotObject(Pos,_Sheet);
+        Slot.GetComponent<SlotObject>().SetSlotObject(Pos,_Sheet, _mapType);
         return Slot;
     }
 

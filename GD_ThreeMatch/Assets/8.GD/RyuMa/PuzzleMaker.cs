@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+public enum MapMainType
+{ 
+    M0_Forest = 0,
+
+}
+
 public enum ChangeMode
 {
     Ch0_Null = 0,
@@ -30,8 +36,11 @@ public class PuzzleMaker : MonoBehaviour
     public GameObject SonMapStartBt;
     public GameObject SaveButton;
     public GameObject LoadButton;
+    public GameObject LoadTestMap;
     public GameObject SonMapBase;
     public bool PuzzleMakerStart;
+
+    public MapMainType mapMainType;
     public ChangeMode changeMode;
 
 
@@ -47,6 +56,7 @@ public class PuzzleMaker : MonoBehaviour
 
     [Header("EnemySetting")]
     public Color EnemyColor;
+    public int MonsterImageIndex;
     public int addEnemyMeet;            //몬스터랑 조우할 확률의 증가량
     [Space]
     public EnemyIndex[] enemyIndex;     //몬스터 정보
@@ -92,7 +102,17 @@ public class PuzzleMaker : MonoBehaviour
                 SonMapStartBt.SetActive(false);
             });
         }
-
+        if (LoadTestMap != null)
+        {
+            LoadTestMap.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                MapName = "TestMap";
+                theGM.LoadBtn();
+                SonMapBase.SetActive(false);
+                SonMapStartBt.SetActive(false);
+            });
+        }
+        
     }
 
 
@@ -121,7 +141,7 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.nodeColor = NodeColor.NC8_Null;
             _Slot.TestText.text = "C"; //string.Format(_SlotNum.ToString());
             _Slot.TestText.color = new Color(0, 0, 0);
-            _Slot.SlotSheet = SlotObjectSheet.S_0_SlotPanel;
+            _Slot.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
         }
         //else if (changeMode == ChangeMode.Player)
         //{
@@ -136,13 +156,14 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.nodeColor = NodeColor.NC8_Null;
             _Slot.TestText.text = "E";
             _Slot.TestText.color = EnemyColor;
-            _Slot.SlotSheet = SlotObjectSheet.NULL;
+            _Slot.SlotSheet = SlotObjectSheet.ST_1_Enemy;
             _Slot.monsterSheet = new MonsterSheet();
 
             _Slot.monsterSheet.OnlyOneEnemy = OnlyOneEnemy;
             if (OnlyOneEnemy == true)
                 _Slot.monsterSheet.OnlyOneNum = DataSheet;
 
+            _Slot.monsterSheet.SlotImageIndex = MonsterImageIndex;
             _Slot.monsterSheet.addEnemyMeet = addEnemyMeet;
             _Slot.monsterSheet.EnemyIndex = new int[enemyIndex.Length];
             _Slot.monsterSheet.EnemyChance = new int[enemyIndex.Length];
@@ -163,6 +184,7 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.portalSheet = new PortalSheet();
             _Slot.portalSheet.MapName = MoveMapName;
             _Slot.portalSheet.NextPosNum = PlayerStartPos;
+            _Slot.SlotSheet = SlotObjectSheet.ST_2_Portal;
         }
         else if (changeMode == ChangeMode.Ch4_Object)
         {
@@ -215,7 +237,7 @@ public class PuzzleMaker : MonoBehaviour
                 theMoveMap.Slots[i].TestText.enabled = true;
                 theMoveMap.Slots[i].TestText.text = i.ToString();
                 theMoveMap.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
-                theMoveMap.Slots[i].SlotSheet = SlotObjectSheet.S_0_SlotPanel;
+                theMoveMap.Slots[i].SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
             }
 
             if ((i <= theMoveMap.TopRight && i >=0) ||

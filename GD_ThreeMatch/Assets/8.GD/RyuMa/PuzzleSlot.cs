@@ -26,6 +26,7 @@ public class MonsterSheet
 {
 
     //몬스터 시트
+    public int SlotImageIndex;
     public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
     public int addEnemyMeet;              //적과 조우할 확률 증가량
     public int[] EnemyIndex = null;       //몬스터 인덱스 번호

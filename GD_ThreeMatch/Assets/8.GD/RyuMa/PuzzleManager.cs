@@ -268,14 +268,37 @@ public class PuzzleManager : MonoBehaviour
             {
                 if (CubeEvent == true)
                 {
-                    CubeEvent = false;
                     if (theMatch.CheckBoom == true)
                     {
-                        return;
+                        if (theMatch.CheckBoomTime > 0)
+                        {
+                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CheckBoomTime = 0.2f;
+                            BT_FillBlank(theMoveMap);
+                            return;
+                        }
                     }
-                    BT_FillBlank(theMoveMap);
-
-
+                    else
+                    {
+                        if (theMatch.CheckBoomTime > 0)
+                        {
+                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CheckBoomTime = 0.2f;
+                            theMatch.CheckBoom = false;
+                            BT_FillBlank(theMoveMap);
+                            return;
+                        }
+                    }
                 }
             }
             else if (state == State.GirlSkillEvent)
@@ -397,17 +420,37 @@ public class PuzzleManager : MonoBehaviour
             {
                 if (CubeEvent == true)
                 {
-
-                    CubeEvent = false;
                     if (theMatch.CheckBoom == true)
                     {
-                        return;
+                        if (theMatch.CheckBoomTime > 0)
+                        {
+                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CheckBoom = false;
+                            theMatch.CheckBoomTime = 0.5f;
+                            BT_FillBlank(theBattleMap);
+                            return;
+                        }
                     }
-                        
-
-                    BT_FillBlank(theBattleMap);
-
-
+                    else
+                    {
+                        if (theMatch.CheckBoomTime > 0)
+                        {
+                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CheckBoomTime = 0.5f;
+                            BT_FillBlank(theBattleMap);
+                            return;
+                        }
+                    }
                 }
             }
 
@@ -443,20 +486,18 @@ public class PuzzleManager : MonoBehaviour
         {
             for (int i = 0; i <= _Map.TopRight; i++)
             {
-                theObject.SpawnSlotPanel(_Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet);
+                theObject.SpawnSlotPanel(_Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet,MapType.M1_MoveMap);
                 _Map.Slots[i + Hor].TestText.enabled = false;
                 if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
                 {
                     if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
                     {
-                        GameObject SlotE = Instantiate(EnemySlotObj);
-                        SlotE.transform.position = _Map.Slots[i + Hor].transform.position;
-
+  
                         //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.4f);
                     }
                     else if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
                     {
-                        _Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.4f);
+                        //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.4f);
                     }
 
                     
@@ -483,7 +524,8 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.Log("처음 리셋을 시작합니다");
         }
-
+        MapType mapType = _Map.mapType;
+        Debug.Log("TEST");
 
         if (_Map.mapType == MapType.M2_BattleMap)
         {
@@ -500,7 +542,7 @@ public class PuzzleManager : MonoBehaviour
                     {
 
                         theObject.SpawnSlotPanel(_Map.Slots[i].transform.position,
-                            SlotObjectSheet.S_0_SlotPanel);
+                            SlotObjectSheet.ST_0_SlotPanel, mapType);
                     }
                 }
             }
@@ -1021,7 +1063,6 @@ public class PuzzleManager : MonoBehaviour
     public void BT_FillBlank(MapManager _Map)
     {
 
-
         state = State.FillBlank;
         bool FirstEvent = true;
         float Speed = 0.01f;
@@ -1469,10 +1510,7 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
-    public void BT_Test()
-    {
-        SetSlot(theMoveMap,true);
-    }
+
 
 
     //MoveCount를 조종한다. 

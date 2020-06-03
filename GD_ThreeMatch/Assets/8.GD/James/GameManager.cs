@@ -82,7 +82,8 @@ public class GameManager : MonoBehaviour
         {
             //MapManager _Map = thePuzzle.theMoveMap;
             mapInfoList = new List<MapInfo>();
-            
+
+            mapInfoList.Add(new MapInfo("MapMainType", ((int)theMaker.mapMainType).ToString()));
             mapInfoList.Add(new MapInfo("MapName", theMaker.MapName));
           
             mapInfoList.Add(new MapInfo("TopRight", thePuzzle.theMoveMap.TopRight.ToString()));
@@ -135,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveBtn()
     {
-        string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
+        string FilePath = Application.streamingAssetsPath + theMaker.MapName + ".json";
 
         //print(FilePath);
         //리스트는 저장이 안되지만 크랠스는 저장이된다
@@ -143,7 +144,7 @@ public class GameManager : MonoBehaviour
         //print(jdata);
         File.WriteAllText(FilePath, jdata);
 
-        string FilePath2 = Application.streamingAssetsPath + "/" + theMaker.MapName + "Son.json";
+        string FilePath2 = Application.streamingAssetsPath + theMaker.MapName + "Son.json";
 
         string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList));
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
@@ -166,8 +167,10 @@ public class GameManager : MonoBehaviour
     public void LoadBtn()
     {
         Debug.Log("로드를 눌렀습니다");
-        string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
+
+        string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
         //복호화
+        Debug.Log("FilePath = " + FilePath);
         string jdata = File.ReadAllText(FilePath);
         // byte[] bytes = System.Convert.FromBase64String(code);
         //string jdata = System.Text.Encoding.UTF8.GetString(bytes);
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
         a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(jdata).Slot;
         mapInfoList = (a_LoadMapList);
 
-        string FilePath2 = Application.streamingAssetsPath + "/" + theMaker.MapName + "Son.json";
+        string FilePath2 = Application.streamingAssetsPath+ "/" + theMaker.MapName + "Son.json";
         string jdata2 = File.ReadAllText(FilePath2);
         // byte[] bytes = System.Convert.FromBase64String(code);
         //string jdata = System.Text.Encoding.UTF8.GetString(bytes);
@@ -185,10 +188,12 @@ public class GameManager : MonoBehaviour
         a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(jdata2).Slot;
         puzzleslotList = (a_LoadSlotList);
 
+        theMaker.mapMainType = (MapMainType)int.Parse(mapInfoList[0].Value);
+        theMaker.MapName = mapInfoList[1].Value;
 
-        theMoveMap.TopRight = int.Parse(mapInfoList[1].Value);
-        theMoveMap.BottomLeft = int.Parse(mapInfoList[2].Value);
-        theMoveMap.BottomRight = int.Parse(mapInfoList[3].Value);
+        theMoveMap.TopRight = int.Parse(mapInfoList[2].Value);
+        theMoveMap.BottomLeft = int.Parse(mapInfoList[3].Value);
+        theMoveMap.BottomRight = int.Parse(mapInfoList[4].Value);
 
         int ListCount = 0;
         for(int i=0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
@@ -209,7 +214,8 @@ public class GameManager : MonoBehaviour
             {
                 theMoveMap.Slots[i + Hor].nodeType = (PuzzleSlot.NodeType)(int.Parse(puzzleslotList[ListCount].Type));
                 theMoveMap.Slots[i + Hor].nodeColor = NodeColor.NC8_Null;
-                if(theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
+                theMoveMap.Slots[i + Hor].SlotSheet = puzzleslotList[ListCount].slotObject;
+                if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
                 {
                     theMoveMap.Slots[i + Hor].monsterSheet = puzzleslotList[ListCount].monsheet;
                 }
