@@ -18,7 +18,8 @@ public class FindMatches : MonoBehaviour
     List<int> SpecialCubeList = new List<int>();
 
     public bool CheckBoom;
-    public float CheckBoomTime;
+    public float CurrentCheckBoomTime;
+    public float MaxCheckBoomTime;
 
     private PuzzleManager thePuzzle;
     private GirlManager theGirl;
@@ -26,7 +27,7 @@ public class FindMatches : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CheckBoomTime = 0.5f;
+        CurrentCheckBoomTime = MaxCheckBoomTime;
         theGirl = FindObjectOfType<GirlManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
@@ -881,10 +882,8 @@ public class FindMatches : MonoBehaviour
 
     public void SpecialCubeEvent(MapManager _Map, int _SlotNum, SpecialCubeType _Type)
     {
-        Debug.Log("test");
-        Debug.Log("CheckBoomTime = " + CheckBoomTime);
-        CheckBoomTime = 0.5f;
-        Debug.Log("CheckBoomTime = " + CheckBoomTime);
+
+        CurrentCheckBoomTime = MaxCheckBoomTime;
         switch (_Type)
         {
             case SpecialCubeType.Horizon:

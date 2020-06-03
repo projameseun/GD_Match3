@@ -955,7 +955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &101562605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10404,7 +10404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMathces: []
   CheckBoom: 0
-  CheckBoomTime: 0
+  CurrentCheckBoomTime: 0
+  MaxCheckBoomTime: 0.37
 --- !u!114 &1703859107
 MonoBehaviour:
   m_ObjectHideFlags: 0

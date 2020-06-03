@@ -270,30 +270,30 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if (theMatch.CheckBoom == true)
                     {
-                        if (theMatch.CheckBoomTime > 0)
+                        if (theMatch.CurrentCheckBoomTime > 0)
                         {
-                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
                             return;
                         }
                         else
                         {
                             CubeEvent = false;
-                            theMatch.CheckBoomTime = 0.2f;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
                             BT_FillBlank(theMoveMap);
                             return;
                         }
                     }
                     else
                     {
-                        if (theMatch.CheckBoomTime > 0)
+                        if (theMatch.CurrentCheckBoomTime > 0)
                         {
-                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
                             return;
                         }
                         else
                         {
                             CubeEvent = false;
-                            theMatch.CheckBoomTime = 0.2f;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
                             theMatch.CheckBoom = false;
                             BT_FillBlank(theMoveMap);
                             return;
@@ -422,31 +422,31 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if (theMatch.CheckBoom == true)
                     {
-                        if (theMatch.CheckBoomTime > 0)
+                        if (theMatch.CurrentCheckBoomTime > 0)
                         {
-                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
                             return;
                         }
                         else
                         {
                             CubeEvent = false;
                             theMatch.CheckBoom = false;
-                            theMatch.CheckBoomTime = 0.5f;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
                             BT_FillBlank(theBattleMap);
                             return;
                         }
                     }
                     else
                     {
-                        if (theMatch.CheckBoomTime > 0)
+                        if (theMatch.CurrentCheckBoomTime > 0)
                         {
-                            theMatch.CheckBoomTime -= Time.deltaTime;
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
                             return;
                         }
                         else
                         {
                             CubeEvent = false;
-                            theMatch.CheckBoomTime = 0.5f;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
                             BT_FillBlank(theBattleMap);
                             return;
                         }

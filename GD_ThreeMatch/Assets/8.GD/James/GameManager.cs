@@ -70,11 +70,14 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+        
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theMoveMap = thePuzzle.theMoveMap;
         //InitSetting();
     }
+
+
 
     public List<MapInfo> MapInfoList
     {
@@ -171,18 +174,32 @@ public class GameManager : MonoBehaviour
         string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
         //복호화
         Debug.Log("FilePath = " + FilePath);
-        string jdata = File.ReadAllText(FilePath);
-        // byte[] bytes = System.Convert.FromBase64String(code);
-        //string jdata = System.Text.Encoding.UTF8.GetString(bytes);
+
+        WWW reader = new WWW(FilePath);
+
+        while (!reader.isDone)
+        { 
+        
+        }
+        
+        //string jdata = File.ReadAllText(FilePath);
+        byte[] bytes = reader.bytes;
+        string jdata = System.Text.Encoding.UTF8.GetString(bytes);
         //PlayerManager.instance.SetItemList();
         List<MapInfo> a_LoadMapList;
         a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(jdata).Slot;
         mapInfoList = (a_LoadMapList);
 
         string FilePath2 = Application.streamingAssetsPath+ "/" + theMaker.MapName + "Son.json";
-        string jdata2 = File.ReadAllText(FilePath2);
-        // byte[] bytes = System.Convert.FromBase64String(code);
-        //string jdata = System.Text.Encoding.UTF8.GetString(bytes);
+        reader = new WWW(FilePath2);
+
+        while (!reader.isDone)
+        {
+
+        }
+        //string jdata2 = File.ReadAllText(FilePath2);
+        byte[] bytes2 = reader.bytes;
+        string jdata2 = System.Text.Encoding.UTF8.GetString(bytes2);
         //PlayerManager.instance.SetItemList();
         List<SlotInfo> a_LoadSlotList;
         a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(jdata2).Slot;
