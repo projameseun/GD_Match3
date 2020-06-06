@@ -36,7 +36,6 @@ public class PuzzleMaker : MonoBehaviour
     public GameObject SonMapStartBt;
     public GameObject SaveButton;
     public GameObject LoadButton;
-    public GameObject LoadTestMap;
     public GameObject SonMapBase;
     public bool PuzzleMakerStart;
 
@@ -97,21 +96,12 @@ public class PuzzleMaker : MonoBehaviour
         {
             LoadButton.GetComponent<Button>().onClick.AddListener(() =>
             {
-                theGM.LoadBtn();
+                theGM.LoadMap();
                 SonMapBase.SetActive(false);
                 SonMapStartBt.SetActive(false);
             });
         }
-        if (LoadTestMap != null)
-        {
-            LoadTestMap.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                MapName = "TestMap";
-                theGM.LoadBtn();
-                SonMapBase.SetActive(false);
-                SonMapStartBt.SetActive(false);
-            });
-        }
+
         
     }
 
@@ -277,6 +267,7 @@ public class PuzzleMaker : MonoBehaviour
         theCam.SetBound(theMoveMap, Player.transform.position, true);
 
     }
+
 
 
 

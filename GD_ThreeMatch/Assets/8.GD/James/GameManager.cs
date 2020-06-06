@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void LoadBtn()
+    public void LoadMap()
     {
         Debug.Log("로드를 눌렀습니다");
 

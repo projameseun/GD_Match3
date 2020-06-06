@@ -180,6 +180,15 @@ public class PuzzleManager : MonoBehaviour
                     CubeEvent = false;
 
                     //매치 조건이 맞는지 확인한다
+
+                    int SlotNum = CheckPlayerSlot(theMoveMap);
+                    if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    {
+                        CheckPortal(theMoveMap, SlotNum);
+                        return;
+                    }
+
+
                     theMatch.FindAllMatches(theMoveMap);
                     if (isMatched)
                     {
@@ -1344,9 +1353,37 @@ public class PuzzleManager : MonoBehaviour
     // 포탈 이밴트
     public void CheckPortal(MapManager _Map, int _Num)
     {
+
+        Player.ChangeAnim("Idle",true);
         //포탈 이밴트
         theMaker.MapName = _Map.Slots[_Num].portalSheet.MapName; //로드할 맵 이름
         theMaker.PlayerStartNum = _Map.Slots[_Num].portalSheet.NextPosNum; //로드 후 플레이어 위치
+
+        // 로딩 화면 넣기
+
+
+        for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
+        {
+            for (int i = 0; i < _Map.TopRight; i++)
+            {
+                if (_Map.Slots[i + Hor].cube != null)
+                {
+                    _Map.Slots[i + Hor].cube.Resetting();
+                    _Map.Slots[i + Hor].cube = null;
+                }
+            }
+        }
+        for (int i = 0; i < theObject.SlotPanels.Count; i++)
+        {
+            if (theObject.SlotPanels[i].activeSelf == true)
+            {
+                theObject.SlotPanels[i].GetComponent<SlotObject>().Resetting();
+            }
+        }
+
+        Debug.Log("맵 로드");
+
+        theGM.LoadMap();
 
     }
 
