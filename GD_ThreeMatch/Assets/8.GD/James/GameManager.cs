@@ -139,19 +139,35 @@ public class GameManager : MonoBehaviour
 
     public void SaveBtn()
     {
-        string FilePath = Application.streamingAssetsPath + theMaker.MapName + ".json";
+        
+        string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
 
+        //byte[] bytes = reader.bytes;
+        //string FileName = System.Text.Encoding.UTF8.GetString(bytes);
         //print(FilePath);
         //리스트는 저장이 안되지만 크랠스는 저장이된다
         string jdata = JsonUtility.ToJson(new Serialization<MapInfo>(MapInfoList));
         //print(jdata);
+        Debug.Log("FilePath = " + FilePath);
+        Debug.Log("jdata = " + jdata);
+
+
+
+
         File.WriteAllText(FilePath, jdata);
 
-        string FilePath2 = Application.streamingAssetsPath + theMaker.MapName + "Son.json";
+     
+
+
+
+        string FilePath2 = Application.streamingAssetsPath +"/" + theMaker.MapName + "Son.json";
 
         string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList));
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         //print(jdata2);
+
+
+
         File.WriteAllText(FilePath2, jdata2);
         //만약에 Json으로 변경할려면 경로를 변경해주면된다
         // string FilePath = Application.persistentDataPath + "/MyItem.json";
@@ -181,8 +197,9 @@ public class GameManager : MonoBehaviour
         { 
         
         }
-        
+
         //string jdata = File.ReadAllText(FilePath);
+ 
         byte[] bytes = reader.bytes;
         string jdata = System.Text.Encoding.UTF8.GetString(bytes);
         //PlayerManager.instance.SetItemList();

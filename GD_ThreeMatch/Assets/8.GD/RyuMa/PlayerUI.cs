@@ -149,29 +149,31 @@ public class PlayerUI : MonoBehaviour
 
         SkillSlider.sprite = thePuzzle.PlayerSkillSprites[_nodeColor];
         SkillBgImage.sprite = thePuzzle.PlayerSkillBGSprites[_nodeColor];
-        //if (_nodeColor == 0) //파란색
-        //{
-
-        //}
-        //else if (_nodeColor == 1) // 초록색
-        //{
-        //    SkillSlider.color = new Color(0.01f, 0.1f, 0.01f);
-        //}
-        //else if (_nodeColor == 2) // 핑크
-        //{
-        //    SkillSlider.color = new Color(0.95f, 0.3f, 0.57f);
-        //}
-        //else if (_nodeColor == 3) // 빨간색
-        //{
-        //    SkillSlider.color = new Color(0.94f, 0.11f, 0.01f);
-        //}
-        //else if (_nodeColor == 4) // 노란색
-        //{
-        //    SkillSlider.color = new Color(1f, 0.89f, 0.51f);
-        //}
+        
+        if (_nodeColor == 0) //파란색
+        {
+            GirlCubeImage.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        }
+        else if (_nodeColor == 1) // 초록색
+        {
+            GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (_nodeColor == 2) // 핑크
+        {
+            GirlCubeImage.transform.localScale = new Vector3(1, 1,1);
+        }
+        else if (_nodeColor == 3) // 빨간색
+        {
+            GirlCubeImage.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        }
+        else if (_nodeColor == 4) // 노란색
+        {
+            GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
+        }
+        GirlCubeImage.sprite = thePuzzle.CubeSprites[_nodeColor];
         nodeColor = (NodeColor)_nodeColor;
         PlayerUINum = _PlayerNum;
-        GirlCubeImage.sprite = thePuzzle.GirlSprites[_nodeColor];
+       
         MaxHp = theGirl.Girls[_nodeColor].Hp;
         CurrentHp = MaxHp;
         MaxSkillGauge = theGirl.Girls[_nodeColor].SkillCount;
@@ -266,7 +268,7 @@ public class PlayerUI : MonoBehaviour
         if (CurrentHp < 0)
             CurrentHp = 0;
         HpSlider.fillAmount = CurrentHp / MaxHp;
-        HpText.text = CurrentHp + "/" + MaxHp;
+        HpText.text = string.Format(("{0:#,###}", CurrentHp) + "/" + ("{0:#,###}", MaxHp));
         if (CurrentHp <= 0)
         {
             PlayerDie();
