@@ -208,10 +208,10 @@ public class CameraManager : MonoBehaviour
         this.transform.position = MoveVec;
         if (_Move == true)
         {
-            MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x+ 0.1f;
-            MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 3.3f;
-            MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x - 0.1f;
-            MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.1f;
+            MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x+ 0.3f;
+            MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 3f;
+            MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x - 0.3f;
+            MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.2f;
 
 
             if (Math.Abs(MaxBound.x - MinBound.x) < 5.8)
@@ -272,7 +272,7 @@ public class CameraManager : MonoBehaviour
     }
 
 
-    public void MoveDonw(int _Direction)
+    public void MoveDown(int _Direction)
     {
         Down = true;
         if (_Direction == 0)  // 위

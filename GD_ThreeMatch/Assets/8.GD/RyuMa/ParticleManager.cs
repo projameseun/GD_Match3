@@ -40,6 +40,7 @@ public class ParticleManager : MonoBehaviour
             this.transform.position = _Parent.transform.position;
 
         }
+        Loop = loop;
         main.loop = loop;
         this.gameObject.SetActive(true);
         particle.Play();

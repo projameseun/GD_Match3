@@ -49,7 +49,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 210360fb672e35b42b8a11d41a04e34d, type: 3}
     - {fileID: 2800000, guid: 850549099cfab374d8ef51b455a13af1, type: 3}
     - {fileID: 2800000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
-    - {fileID: 2800000, guid: 2927444c9f3f68d46b973fa7fdf74f27, type: 3}
     - {fileID: 2800000, guid: b8cac078c04bd54439af49ee6043ce9f, type: 3}
     - {fileID: 2800000, guid: da9a5bd4d7fbc3146a8f8ee9dc110ae8, type: 3}
     - {fileID: 2800000, guid: b9cc604271b80cb4abbce0e02f9c45a7, type: 3}
@@ -74,7 +73,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 78e23f429e8edc44c802149b693eb81a, type: 3}
     - {fileID: 2800000, guid: 117a6a7be9dd44543ba349f638236550, type: 3}
     - {fileID: 2800000, guid: 13e9e185bb2e68c45a0964e38dbd6df2, type: 3}
-    totalSpriteSurfaceArea: 1268870
+    totalSpriteSurfaceArea: 819064
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -99,7 +98,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
   - {fileID: 21300000, guid: 117a6a7be9dd44543ba349f638236550, type: 3}
   - {fileID: 21300000, guid: 210360fb672e35b42b8a11d41a04e34d, type: 3}
-  - {fileID: 21300000, guid: 2927444c9f3f68d46b973fa7fdf74f27, type: 3}
   - {fileID: 21300000, guid: 2c2aed5c3fc8dce4682fd2448a09a55f, type: 3}
   - {fileID: 21300000, guid: f541f76cafcc9344497908c358064553, type: 3}
   - {fileID: 21300000, guid: 174de98d4d34b6f46ba201f6ea48dba4, type: 3}
@@ -129,7 +127,6 @@ SpriteAtlas:
   - 256x256Mask
   - UI_Horizon
   - UI_Cube_Red
-  - UI_Ingame_BarMask
   - HP_Bar_2_in_1
   - Ui_Cube
   - UI_Cube_Blue

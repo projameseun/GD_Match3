@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
-
+using TMPro;
 
 
 
@@ -63,6 +63,8 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] CubeSprites;
     public Sprite[] GirlSprites;
     public Sprite[] SpecialSprites;
+    public Sprite[] PlayerSkillSprites;
+    public Sprite[] PlayerSkillBGSprites;
     public CameraButtonManager[] CameraButton;
 
     public GameObject EnemySlotObj;
@@ -73,14 +75,13 @@ public class PuzzleManager : MonoBehaviour
     //UI 오브젝트
     public CubeUI[] PlayerCubeUI;
     public PlayerUI[] playerUIs; // 0은 왼쪽 캐릭터, 1은 오른쪽 캐릭터
-    public GameObject Goal;
     public GameObject MinimapBase;
     public GameObject MoveUI;
     public GameObject BattleUI;
     public GameObject MovePos;
     public GameObject BattlePos;
     public GameObject IllustSlot;
-    public Text MoveCountText;
+    public TextMeshPro MoveCountText;
     //메치가 되면 true;
     public bool isMatched = false;
 
@@ -125,6 +126,8 @@ public class PuzzleManager : MonoBehaviour
     private PuzzleMaker theMaker;
     private void Start()
     {
+        BT_ChangeDirection(1);
+
         theMaker = FindObjectOfType<PuzzleMaker>();
         theGM = FindObjectOfType<GameManager>();
         theSound = FindObjectOfType<SoundManager>();
@@ -495,7 +498,7 @@ public class PuzzleManager : MonoBehaviour
         {
             for (int i = 0; i <= _Map.TopRight; i++)
             {
-                theObject.SpawnSlotPanel(_Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet,MapType.M1_MoveMap);
+                theObject.SpawnSlotPanel(_Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet,MapType.M1_MoveMap, i + Hor);
                 _Map.Slots[i + Hor].TestText.enabled = false;
                 if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
                 {
@@ -551,7 +554,7 @@ public class PuzzleManager : MonoBehaviour
                     {
 
                         theObject.SpawnSlotPanel(_Map.Slots[i].transform.position,
-                            SlotObjectSheet.ST_0_SlotPanel, mapType);
+                            SlotObjectSheet.ST_0_SlotPanel, mapType, i);
                     }
                 }
             }
@@ -1560,7 +1563,7 @@ public class PuzzleManager : MonoBehaviour
             if (MoveCount < 0)
                 MoveCount = 0;
 
-            MoveCountText.text = "Move" + System.Environment.NewLine + MoveCount;
+            MoveCountText.text = MoveCount.ToString();
         }
         else if (gameMode == GameMode.Battle)
         {

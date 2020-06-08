@@ -7,7 +7,7 @@ public class ObjectManager : MonoBehaviour
 {
 
     // 오브젝트 타일 이미지
-    public Sprite SlotPanelSprite;
+    public Sprite[] SlotPanelSprite;
     public Sprite EnemySlotSprite;
     public Sprite PortalSlotSprite;
     public Sprite[] ForestSprites;
@@ -247,7 +247,7 @@ public class ObjectManager : MonoBehaviour
     {
         GameObject ClickP = FindObj("ClickParticle");
         ClickP.transform.position = StartPos;
-        ClickP.GetComponent<ParticleManager>().ParticleSetting(false);
+        ClickP.GetComponent<ParticleManager>().ParticleSetting(true);
         return ClickP;
     }
 
@@ -259,11 +259,11 @@ public class ObjectManager : MonoBehaviour
         return Cube;
     }
 
-    public GameObject SpawnSlotPanel(Vector2 Pos,SlotObjectSheet _Sheet, MapType _mapType)
+    public GameObject SpawnSlotPanel(Vector2 Pos,SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
     {
         GameObject Slot = FindObj("SlotPanel");
         Slot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        Slot.GetComponent<SlotObject>().SetSlotObject(Pos,_Sheet, _mapType);
+        Slot.GetComponent<SlotObject>().SetSlotObject(Pos,_Sheet, _mapType, _SlotNum);
         return Slot;
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using Spine.Unity;
 using UnityEngine.UI;
 using Spine;
+using TMPro;
 
 public enum PlayerUIState
 { 
@@ -23,9 +24,10 @@ public class PlayerUI : MonoBehaviour
     public GameObject Trigger;
     public Image HpStateImage;
     public Image HpSlider;
-    public Text HpText;
+    public TextMeshPro HpText;
+    public Image SkillBgImage;
     public Image SkillSlider;
-    public Text SkillGaugeText;
+    public TextMeshPro SkillGaugeText;
     public Image GirlCubeImage;
 
     public int PlayerUINum;
@@ -145,26 +147,28 @@ public class PlayerUI : MonoBehaviour
         SpinAnim.state.Event += HandleEvent;
 
 
-        if (_nodeColor == 0) //파란색
-        {
-            SkillSlider.color = new Color(0.56f, 0.78f, 0.9f);
-        }
-        else if (_nodeColor == 1) // 초록색
-        {
-            SkillSlider.color = new Color(0.01f, 0.1f, 0.01f);
-        }
-        else if (_nodeColor == 2) // 핑크
-        {
-            SkillSlider.color = new Color(0.95f, 0.3f, 0.57f);
-        }
-        else if (_nodeColor == 3) // 빨간색
-        {
-            SkillSlider.color = new Color(0.94f, 0.11f, 0.01f);
-        }
-        else if (_nodeColor == 4) // 노란색
-        {
-            SkillSlider.color = new Color(1f, 0.89f, 0.51f);
-        }
+        SkillSlider.sprite = thePuzzle.PlayerSkillSprites[_nodeColor];
+        SkillBgImage.sprite = thePuzzle.PlayerSkillBGSprites[_nodeColor];
+        //if (_nodeColor == 0) //파란색
+        //{
+
+        //}
+        //else if (_nodeColor == 1) // 초록색
+        //{
+        //    SkillSlider.color = new Color(0.01f, 0.1f, 0.01f);
+        //}
+        //else if (_nodeColor == 2) // 핑크
+        //{
+        //    SkillSlider.color = new Color(0.95f, 0.3f, 0.57f);
+        //}
+        //else if (_nodeColor == 3) // 빨간색
+        //{
+        //    SkillSlider.color = new Color(0.94f, 0.11f, 0.01f);
+        //}
+        //else if (_nodeColor == 4) // 노란색
+        //{
+        //    SkillSlider.color = new Color(1f, 0.89f, 0.51f);
+        //}
         nodeColor = (NodeColor)_nodeColor;
         PlayerUINum = _PlayerNum;
         GirlCubeImage.sprite = thePuzzle.GirlSprites[_nodeColor];

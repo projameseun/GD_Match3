@@ -37,7 +37,7 @@ public class SlotObject : MonoBehaviour
     }
 
 
-    public void SetSlotObject(Vector2 StartPos, SlotObjectSheet _Sheet, MapType _mapType)
+    public void SetSlotObject(Vector2 StartPos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
     {
 
         mapType = _mapType;
@@ -64,7 +64,8 @@ public class SlotObject : MonoBehaviour
         }
         else if (_Sheet == SlotObjectSheet.ST_0_SlotPanel)
         {
-            this.GetComponent<SpriteRenderer>().sprite = theObject.SlotPanelSprite;
+            
+            this.GetComponent<SpriteRenderer>().sprite = theObject.SlotPanelSprite[_SlotNum % 2];
         }
         else
         {
