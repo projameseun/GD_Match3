@@ -15,7 +15,7 @@ SpriteAtlas:
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
-      filterMode: 1
+      filterMode: 0
       generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
@@ -85,7 +85,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: e8be7fae5409cfa46a2872a1fbabc7b8, type: 3}
     - {fileID: 2800000, guid: 1b56b3a589f7f0f46939c87c194507e1, type: 3}
     - {fileID: 2800000, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
-    totalSpriteSurfaceArea: 1042420
+    - {fileID: 2800000, guid: d2c446e71f1af9b47aea60db03566c20, type: 3}
+    totalSpriteSurfaceArea: 1083592
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -102,6 +103,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 937dd934ae772a5438f3061a5393e46e, type: 3}
   - {fileID: 21300000, guid: c29512f48d751614abcf193fbc7613c4, type: 3}
   - {fileID: 21300000, guid: 40de0a55dc8feb54080fd48d12994b30, type: 3}
+  - {fileID: -6583690516832658629, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
   - {fileID: 3864813054961301321, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
   - {fileID: 6956997060082674794, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
   - {fileID: 5148436708167999710, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
@@ -124,6 +126,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b16f7337f2d532847a7e29570387dc82, type: 3}
   - {fileID: 21300000, guid: de4148870d3a8634a86433d7b71700e6, type: 3}
   - {fileID: 21300000, guid: 76d354c753cac1c49afeda7b62fe789e, type: 3}
+  - {fileID: 21300000, guid: d2c446e71f1af9b47aea60db03566c20, type: 3}
   - {fileID: 21300000, guid: 4f8d20788dd08e24abca897f20e32cb2, type: 3}
   - {fileID: 21300000, guid: 44659ca9236f6a94bbcc0ce69ca72d7f, type: 3}
   - {fileID: 21300000, guid: bf9b9b2a976804a41a2c31e09136e1ed, type: 3}
@@ -155,6 +158,7 @@ SpriteAtlas:
   - UI_Sblock_horizontal
   - UI_countM_blue
   - UI_Sblock_vertical
+  - "\uC22B\uC790\uD3F0\uD2B8_12"
   - "\uC22B\uC790\uD3F0\uD2B8_8"
   - "\uC22B\uC790\uD3F0\uD2B8_9"
   - "\uC22B\uC790\uD3F0\uD2B8_6"
@@ -177,6 +181,7 @@ SpriteAtlas:
   - UI_countM_red
   - UI_menu_bag
   - UI_hp_circle
+  - UI_attackCount
   - UI_skil_barbg_yellow
   - UI_countM_yellow
   - UI_countM_green

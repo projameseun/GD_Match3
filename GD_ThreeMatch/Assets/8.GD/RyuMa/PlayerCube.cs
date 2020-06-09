@@ -11,9 +11,13 @@ public enum SkillType
     ST0_SpecialCube,
     ST1_GirlSkill
 }
+
+
 public class PlayerCube : MonoBehaviour
 {
+    public MeshRenderer SpinMesh;
     public SkeletonAnimation anim;
+    public SelectGirl selectGirl;
     [SpineSlot]
 
 
@@ -42,8 +46,10 @@ public class PlayerCube : MonoBehaviour
     private FindMatches theMatch;
     private BattleManager theBattle;
     private ObjectManager theObject;
+    private GirlManager theGirl;
     private void Start()
     {
+        theGirl = FindObjectOfType<GirlManager>();
         theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theMatch = FindObjectOfType<FindMatches>();
@@ -70,9 +76,10 @@ public class PlayerCube : MonoBehaviour
     {
         if (e.Data.Name == "Attack")
         {
-            
-            theObject.AliceAnimEvent(this.transform.position, direction);
-
+            if (selectGirl == SelectGirl.G1_Alice)
+            {
+                theObject.AliceAnimEvent(this.transform.position, direction);
+            }
             if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
             {
                 theMatch.SpecialCubeEvent(Map, SlotNum, Type);
@@ -87,8 +94,9 @@ public class PlayerCube : MonoBehaviour
                 {
                     GirlEffect = true;
                     theMatch.GirlSkill(
-                          (SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor,
-                    Map, SlotNum);
+                        selectGirl,
+                        Map, 
+                        SlotNum);
                     theBattle.ReadySkill(SkillUI.UI2_Null);
                     GirlEffect = false;
                 }
@@ -117,7 +125,15 @@ public class PlayerCube : MonoBehaviour
         }
     }
 
-
+    public void SetSpine(int _SelNum, int _SkinNum)
+    {
+        thePuzzle.selectGirl = (SelectGirl)_SelNum;
+        SpinMesh.material = theGirl.Girls[_SelNum].SdMaterials[_SkinNum];
+        anim.skeletonDataAsset = theGirl.Girls[_SelNum].SdDatae;
+        anim.Initialize(true);
+        selectGirl = theGirl.Girls[_SelNum].selectGirl;
+        anim.state.Event += HandleEvent;
+    }
 
 
     public void ChangeDirection(Direction _direction)
@@ -150,7 +166,12 @@ public class PlayerCube : MonoBehaviour
         anim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
         AnimName = _state;
     }
-    public void BattleEvent(Vector2 TargetVec, Direction _Dir, SkillType _Type,SpecialCubeType _CubeType,MapManager _Map, int _SlotNum)
+    public void BattleEvent(Vector2 TargetVec, 
+        Direction _Dir, 
+        SkillType _Type,
+        SpecialCubeType _CubeType,
+        MapManager _Map, 
+        int _SlotNum)
     {
         Map = _Map;
         skillType = _Type;

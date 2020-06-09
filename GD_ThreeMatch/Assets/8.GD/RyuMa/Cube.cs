@@ -154,21 +154,22 @@ public class Cube : MonoBehaviour
 
         if (SpecialEffect == true)
         {
-            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
-            {
-                SkillEffectEvent(thePuzzle.selectGirl);
-            }
-            else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
-            {
-                if (theBattle.CurrentSkillUI == SkillUI.UI2_Null)
-                {
-                    SkillEffectEvent(thePuzzle.selectGirl);
-                }
-                else
-                {
-                    SkillEffectEvent((SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor);
-                }
-            }
+            SkillEffectEvent(thePuzzle.selectGirl);
+            //if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
+            //{
+            //    SkillEffectEvent(thePuzzle.selectGirl);
+            //}
+            //else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+            //{
+            //    if (theBattle.CurrentSkillUI == SkillUI.UI2_Null)
+            //    {
+            //        SkillEffectEvent(thePuzzle.selectGirl);
+            //    }
+            //    else
+            //    {
+            //        SkillEffectEvent((SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor);
+            //    }
+            //}
         }
     }
 
@@ -193,6 +194,7 @@ public class Cube : MonoBehaviour
     //큐브가 터진 후 이밴트
     public void DestroyCubeEvent()
     {
+        Debug.Log("Test");
         for (int i = 0; i < 2; i++)
         {
             if (thePuzzle.playerUIs[i].nodeColor == nodeColor)

@@ -137,12 +137,7 @@ public class PlayerUI : MonoBehaviour
         {
             SpineMesh.material = theGirl.Girls[_nodeColor].IllustMaterials[0];
         }
-
-
-        if (theGirl.Girls[_nodeColor].IllustData.Length > 0)
-        {
-            SpinAnim.skeletonDataAsset = theGirl.Girls[_nodeColor].IllustData[0];
-        }
+        SpinAnim.skeletonDataAsset = theGirl.Girls[_nodeColor].IllustData;
         SpinAnim.Initialize(true);
         SpinAnim.state.Event += HandleEvent;
 
@@ -212,6 +207,7 @@ public class PlayerUI : MonoBehaviour
 
     public void CheckSkill()
     {
+        
         theBattle.ReadySkill((SkillUI)PlayerUINum);
     }
 
@@ -221,6 +217,9 @@ public class PlayerUI : MonoBehaviour
     {
         if (On == true)
         {
+            thePuzzle.Player.SetSpine((int)nodeColor,
+                theGirl.Girls[(int)nodeColor].SkinNum);
+
             Vector2 vec = new Vector2(SpinAnim.transform.position.x,
                 SpinAnim.transform.position.y);
             vec.y += ClickY;

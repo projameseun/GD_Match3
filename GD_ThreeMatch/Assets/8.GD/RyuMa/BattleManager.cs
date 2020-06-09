@@ -90,7 +90,7 @@ public enum BattleState
 public enum SkillUI
 { 
     UI0_FirstGirl = 0,
-    UI1_1SecondGril,
+    UI1_SecondGril,
     UI2_Null
 }
 
@@ -673,6 +673,7 @@ public class BattleManager : MonoBehaviour
             CurrentSkillUI = _Num;
             CheckSkillUI((int)CurrentSkillUI);
         }
+        //이미 선택한 플레이어를 눌러서 취소함
         else if (_Num == SkillUI.UI2_Null)
         {
             CurrentSkillUI = SkillUI.UI2_Null;

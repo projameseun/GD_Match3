@@ -27,6 +27,7 @@ public class PlayerTouchManager : MonoBehaviour, IPointerClickHandler
            playerUI.state != PlayerUIState.Die
            )
         {
+
             playerUI.CheckSkill();
         }
     }
