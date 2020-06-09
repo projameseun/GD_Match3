@@ -84,7 +84,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: fed58e5d51c8ba749877e0a9976a96ea, type: 3}
     - {fileID: 2800000, guid: e8be7fae5409cfa46a2872a1fbabc7b8, type: 3}
     - {fileID: 2800000, guid: 1b56b3a589f7f0f46939c87c194507e1, type: 3}
-    totalSpriteSurfaceArea: 753938
+    - {fileID: 2800000, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+    totalSpriteSurfaceArea: 1042420
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -101,6 +102,16 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 937dd934ae772a5438f3061a5393e46e, type: 3}
   - {fileID: 21300000, guid: c29512f48d751614abcf193fbc7613c4, type: 3}
   - {fileID: 21300000, guid: 40de0a55dc8feb54080fd48d12994b30, type: 3}
+  - {fileID: 3864813054961301321, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: 6956997060082674794, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: 5148436708167999710, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: -2549652320752182578, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: -5812159372769236813, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: 6086742499905671189, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: 6168576884668719598, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: -3590124349751652481, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: 3037979862064610176, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
+  - {fileID: 7139452019123756810, guid: 7f0e1f65fe3124941b5a029b1d712f2b, type: 3}
   - {fileID: 21300000, guid: 1d1dd77547880bc4ab5bfc5d1d6b22ef, type: 3}
   - {fileID: 21300000, guid: 70b3b3952f6c0af44ad8a3383616de50, type: 3}
   - {fileID: 21300000, guid: 1b56b3a589f7f0f46939c87c194507e1, type: 3}
@@ -144,6 +155,16 @@ SpriteAtlas:
   - UI_Sblock_horizontal
   - UI_countM_blue
   - UI_Sblock_vertical
+  - "\uC22B\uC790\uD3F0\uD2B8_8"
+  - "\uC22B\uC790\uD3F0\uD2B8_9"
+  - "\uC22B\uC790\uD3F0\uD2B8_6"
+  - "\uC22B\uC790\uD3F0\uD2B8_7"
+  - "\uC22B\uC790\uD3F0\uD2B8_4"
+  - "\uC22B\uC790\uD3F0\uD2B8_5"
+  - "\uC22B\uC790\uD3F0\uD2B8_2"
+  - "\uC22B\uC790\uD3F0\uD2B8_3"
+  - "\uC22B\uC790\uD3F0\uD2B8_0"
+  - "\uC22B\uC790\uD3F0\uD2B8_1"
   - UI_skil_section
   - UI_block_red
   - UI_Ingame_BarMask

@@ -177,7 +177,7 @@ public class PlayerUI : MonoBehaviour
         MaxHp = theGirl.Girls[_nodeColor].Hp;
         CurrentHp = MaxHp;
         MaxSkillGauge = theGirl.Girls[_nodeColor].SkillCount;
-        HpText.text = CurrentHp + "/" + MaxHp;
+        HpText.text = string.Format("{0:#,###}/{1:#,###}", CurrentHp, MaxHp);
         CurrentSkillGauge = 0;
         SkillSlider.fillAmount = 0;
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
@@ -268,7 +268,7 @@ public class PlayerUI : MonoBehaviour
         if (CurrentHp < 0)
             CurrentHp = 0;
         HpSlider.fillAmount = CurrentHp / MaxHp;
-        HpText.text = string.Format(("{0:#,###}", CurrentHp) + "/" + ("{0:#,###}", MaxHp));
+        HpText.text = string.Format("{0:#,###}/{1:#,###}", CurrentHp, MaxHp);
         if (CurrentHp <= 0)
         {
             PlayerDie();

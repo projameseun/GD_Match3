@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Spine.Unity;
 using Spine;
-//using TMPro;
+using TMPro;
 
 
 [System.Serializable]
@@ -100,18 +100,19 @@ public class BattleManager : MonoBehaviour
 
     public EnemyBase[] Enemy;
     public EnemySkill[] EnemySkill;
+    public Sprite[] EnemyUiSprites;
+    public Sprite[] ComboSprites;
     public BattleState battleState;
     [Space]
     // UI,오브젝트
     public GameObject EnemySpine;
     public SkeletonAnimation EnemyAnim;
     public Text EnemyName;
-    public Image EnemyHpImage;
-    public Text TimeText;
-    public Text EnemyCountText;
+    public TextMeshPro EnemyCountText;
     public CubeUI[] EnemyCubeUi;
     public Image ComboCoolDownImage;
-    public Text ComboText;
+    public Image[] ComboNumImages;
+
     [Space]
 
     // 데이터베이스
@@ -147,7 +148,7 @@ public class BattleManager : MonoBehaviour
     bool AttackEndEvent; // 마지막 공격때 적용
     float Player1CacHp; // 소녀체력계산
     float Player2CacHp; // 소녀체력계산
-    
+    List<int> ComboNumList = new List<int>(); //콤보 숫자 리스트
 
 
 
@@ -250,8 +251,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattle(int _enemyNum)
     {
-        ComboCoolDownImage.fillAmount = 0;
-        ComboText.text = "";
+        //ComboCoolDownImage.fillAmount = 0;
         ComboValue = 1;
         SelectEnemyNum = _enemyNum;
         EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = Enemy[_enemyNum].IllustData;
@@ -272,11 +272,11 @@ public class BattleManager : MonoBehaviour
         {
             if (i < Enemy[_enemyNum].CubeCount.Length)
             {
-
-                EnemyCubeUi[i].transform.parent.gameObject.SetActive(true);
+                EnemyCubeUi[i].CubeSprite.gameObject.SetActive(true);
+  
                 int RandColor = Random.Range(0, ColorNum.Count);
                 EnemyCubeUi[i].SetCubeUi(ColorNum[RandColor], i,
-                    thePuzzle.CubeUiSprites[ColorNum[RandColor]], Enemy[_enemyNum].CubeCount[i]);
+                    EnemyUiSprites[ColorNum[RandColor]], Enemy[_enemyNum].CubeCount[i]);
 
                 MaxHp += Enemy[_enemyNum].CubeCount[i];
                 ColorNum.Remove(RandColor);
@@ -284,12 +284,12 @@ public class BattleManager : MonoBehaviour
             else
             {
                 EnemyCubeUi[i].cubeColor = NodeColor.NC8_Null;
-                EnemyCubeUi[i].transform.parent.gameObject.SetActive(false);
+                EnemyCubeUi[i].CubeSprite.gameObject.SetActive(false);
             }
 
 
         }
-        TimeText.text = "Time : " + ((int)GameTime).ToString();
+
         CurrentHp = MaxHp;
     }
 
@@ -318,8 +318,8 @@ public class BattleManager : MonoBehaviour
         Debug.Log("배틀 승리");
         BattleStart = false;
         ResetCombo();
-        ComboCoolDownImage.fillAmount = 0;
-        ComboText.text = "";
+        //ComboCoolDownImage.fillAmount = 0;
+
         EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
         //theFade.FadeIn();
     }
@@ -328,7 +328,7 @@ public class BattleManager : MonoBehaviour
     public void UILoad()
     {
         //GameTime -= Time.deltaTime;
-        EnemyHpImage.fillAmount = ((float)CurrentHp / (float)MaxHp);
+        //EnemyHpImage.fillAmount = ((float)CurrentHp / (float)MaxHp);
         //if (GameTime < 0)
         //{
 
@@ -342,23 +342,6 @@ public class BattleManager : MonoBehaviour
         //    EndBattle();
 
         //}
-        if (ComboValue > 1)
-        {
-            ComboCoolDownImage.fillAmount = CurrentComboCoolDown / MaxComboCoolDown;
-            ComboText.text = (ComboValue -1) + " 콤보 (" + ComboStack + ")";
-        }
-        else
-        {
-            ComboCoolDownImage.fillAmount = 0;
-            ComboText.text = "";
-        }
-
-
-
-
-
-
-        TimeText.text = "Time : " + ((int)GameTime).ToString();
     }
 
     public void TakeDamage(int DamageCount)
@@ -630,7 +613,37 @@ public class BattleManager : MonoBehaviour
         if (ComboValue > 1)
         {
             ComboStack += ComboValue;
+            ComboNumList.Clear();
+            int ComboNum = ComboValue - 1;
+            if (ComboNum > 999)
+                ComboNum = 999;
+            while (true)
+            {
+                ComboNumList.Add(ComboNum % 10);
+                ComboNum /= 10;
+
+                if (ComboNum <= 0)
+                    break;
+            }
+
+            for (int i = 0; i <3; i++)
+            {
+                if (ComboNumList.Count > 0)
+                {
+                    if (ComboNumImages[i].gameObject.activeSelf == false)
+                        ComboNumImages[i].gameObject.SetActive(true);
+                    ComboNumImages[i].sprite = ComboSprites[ComboNumList[0]];
+                    ComboNumList.RemoveAt(0);
+                }
+                else
+                {
+                    if (ComboNumImages[i].gameObject.activeSelf == true)
+                        ComboNumImages[i].gameObject.SetActive(false);
+                }
+                
+            }
         }
+
     }
     public void ResetCombo()
     {

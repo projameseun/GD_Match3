@@ -33463,6 +33463,7 @@ GameObject:
   - component: {fileID: 146015296611012831}
   - component: {fileID: 4638217100858536944}
   - component: {fileID: 3817743884624176776}
+  - component: {fileID: 9202845082400557465}
   m_Layer: 0
   m_Name: EF_UI_Block_Portal_01
   m_TagString: Untagged
@@ -38214,6 +38215,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &9202845082400557465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6896099708153733868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba64957678875d4419c0e3d10097fe3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 4638217100858536944}
 --- !u!1 &8653335547550341453
 GameObject:
   m_ObjectHideFlags: 0

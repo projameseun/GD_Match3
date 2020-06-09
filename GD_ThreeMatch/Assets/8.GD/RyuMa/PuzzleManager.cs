@@ -67,8 +67,6 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] PlayerSkillBGSprites;
     public CameraButtonManager[] CameraButton;
 
-    public GameObject EnemySlotObj;
-
 
     [Space]
     [Header("UI 오브젝트")]
@@ -81,6 +79,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject MovePos;
     public GameObject BattlePos;
     public GameObject IllustSlot;
+    public GameObject CubeBar;
     public TextMeshPro MoveCountText;
     //메치가 되면 true;
     public bool isMatched = false;
@@ -226,6 +225,15 @@ public class PuzzleManager : MonoBehaviour
                 if (CubeEvent == true)
                 {
                     CubeEvent = false;
+                    int PlayerSlotNum = CheckPlayerSlot(theMoveMap);
+                    if (theMoveMap.Slots[PlayerSlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    {
+                        CheckPortal(theMoveMap, PlayerSlotNum);
+                        return;
+                    }
+
+
+
                     BT_FillBlank(theMoveMap);
                 }
             }
@@ -509,6 +517,7 @@ public class PuzzleManager : MonoBehaviour
                     }
                     else if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
                     {
+                        //theObject.SpawnPortal(_Map.Slots[i + Hor].transform.position);
                         //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.4f);
                     }
 
@@ -537,7 +546,7 @@ public class PuzzleManager : MonoBehaviour
             Debug.Log("처음 리셋을 시작합니다");
         }
         MapType mapType = _Map.mapType;
-        Debug.Log("TEST");
+
 
         if (_Map.mapType == MapType.M2_BattleMap)
         {
@@ -1060,6 +1069,7 @@ public class PuzzleManager : MonoBehaviour
         else if (gameMode == GameMode.Battle)
         {
             IllustSlot.transform.position = MovePos.transform.position;
+            CubeBar.transform.localPosition = new Vector3(0, 2.5f, 0);
             theCamera.SetBound(theMoveMap, theMoveMap.transform.position, true);
             theBattle.Resetting();
             MoveUI.SetActive(true);
@@ -1381,6 +1391,13 @@ public class PuzzleManager : MonoBehaviour
             if (theObject.SlotPanels[i].activeSelf == true)
             {
                 theObject.SlotPanels[i].GetComponent<SlotObject>().Resetting();
+            }
+        }
+        for (int i = 0; i < theObject.Portals.Count; i++)
+        {
+            if (theObject.Portals[i].activeSelf == true)
+            {
+                theObject.Portals[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 

@@ -39,75 +39,78 @@ public class FindMatches : MonoBehaviour
 
 
         currentMathces = new List<PuzzleSlot>();
-        for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
+
+        for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
         {
-
-            if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[i].nodeColor != NodeColor.NC5_Blank &&
-                _Map.Slots[i].cube.specialCubeType == SpecialCubeType.Null)
+            for (int i = 0; i <= _Map.TopRight; i++)
             {
-
-                if (i > _Map.TopRight && i < _Map.BottomLeft)
+                if (_Map.Slots[i+Hor].nodeColor != NodeColor.NC6_Player &&
+                   _Map.Slots[i+Hor].nodeType != PuzzleSlot.NodeType.Null &&
+                   _Map.Slots[i+Hor].nodeColor != NodeColor.NC5_Blank &&
+                   _Map.Slots[i+Hor].cube.specialCubeType == SpecialCubeType.Null)
                 {
 
-                    if (_Map.Slots[i-1].nodeType != PuzzleSlot.NodeType.Null &&
-                        _Map.Slots[i+1].nodeType != PuzzleSlot.NodeType.Null &&
-                        _Map.Slots[i +1].cube.specialCubeType == SpecialCubeType.Null &&
-                        _Map.Slots[i -1].cube.specialCubeType == SpecialCubeType.Null)
+                    if (i + Hor > _Map.TopRight && i + Hor < _Map.BottomLeft)
                     {
 
-                        if (_Map.Slots[i-1].nodeColor == _Map.Slots[i].nodeColor && _Map.Slots[i+1].nodeColor == _Map.Slots[i].nodeColor)
+                        if (_Map.Slots[i+Hor - 1].nodeType != PuzzleSlot.NodeType.Null &&
+                            _Map.Slots[i+Hor + 1].nodeType != PuzzleSlot.NodeType.Null &&
+                            _Map.Slots[i+Hor + 1].cube.specialCubeType == SpecialCubeType.Null &&
+                            _Map.Slots[i+Hor - 1].cube.specialCubeType == SpecialCubeType.Null)
                         {
-                            if (!currentMathces.Contains(_Map.Slots[i-1]))
+
+                            if (_Map.Slots[i+Hor - 1].nodeColor == _Map.Slots[i+Hor].nodeColor && _Map.Slots[i+Hor + 1].nodeColor == _Map.Slots[i+Hor].nodeColor)
                             {
-                               
-                                currentMathces.Add(_Map.Slots[i-1]);
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor - 1]))
+                                {
+
+                                    currentMathces.Add(_Map.Slots[i+Hor - 1]);
+                                }
+                                thePuzzle.isMatched = true;
+
+
+
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor + 1]))
+                                {
+                                    currentMathces.Add(_Map.Slots[i+Hor + 1]);
+                                }
+
+
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor]))
+                                {
+                                    currentMathces.Add(_Map.Slots[i+Hor]);
+                                }
+
+
+
                             }
-                            thePuzzle.isMatched = true;
-                            
-                           
-
-                            if (!currentMathces.Contains(_Map.Slots[i+1]))
-                            {
-                                currentMathces.Add(_Map.Slots[i+1]);
-                            }
-
-
-                            if (!currentMathces.Contains(_Map.Slots[i]))
-                            {
-                                currentMathces.Add(_Map.Slots[i]);
-                            }
-
-                            
-                            
                         }
-                    }
 
-                    if (_Map.Slots[i + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null &&
-                        _Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null &&
-                        _Map.Slots[i + _Map.Horizontal].cube.specialCubeType == SpecialCubeType.Null &&
-                        _Map.Slots[i - _Map.Horizontal].cube.specialCubeType == SpecialCubeType.Null)
-                    {
-                        if (_Map.Slots[i + _Map.Horizontal].nodeColor == _Map.Slots[i].nodeColor &&
-                            _Map.Slots[i - _Map.Horizontal].nodeColor == _Map.Slots[i].nodeColor)
+                        if (_Map.Slots[i+Hor + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null &&
+                            _Map.Slots[i+Hor - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null &&
+                            _Map.Slots[i+Hor + _Map.Horizontal].cube.specialCubeType == SpecialCubeType.Null &&
+                            _Map.Slots[i+Hor - _Map.Horizontal].cube.specialCubeType == SpecialCubeType.Null)
                         {
-
-                            if (!currentMathces.Contains(_Map.Slots[i + _Map.Horizontal]))
+                            if (_Map.Slots[i+Hor + _Map.Horizontal].nodeColor == _Map.Slots[i+Hor].nodeColor &&
+                                _Map.Slots[i+Hor - _Map.Horizontal].nodeColor == _Map.Slots[i+Hor].nodeColor)
                             {
-                                currentMathces.Add(_Map.Slots[i + _Map.Horizontal]);
-                            }
-                            thePuzzle.isMatched = true;
+
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor + _Map.Horizontal]))
+                                {
+                                    currentMathces.Add(_Map.Slots[i+Hor + _Map.Horizontal]);
+                                }
+                                thePuzzle.isMatched = true;
 
 
-                            if (!currentMathces.Contains(_Map.Slots[i - _Map.Horizontal]))
-                            {
-                                currentMathces.Add(_Map.Slots[i - _Map.Horizontal]);
-                            }
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor - _Map.Horizontal]))
+                                {
+                                    currentMathces.Add(_Map.Slots[i+Hor - _Map.Horizontal]);
+                                }
 
-                            if (!currentMathces.Contains(_Map.Slots[i]))
-                            {
-                                currentMathces.Add(_Map.Slots[i]);
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor]))
+                                {
+                                    currentMathces.Add(_Map.Slots[i+Hor]);
+                                }
                             }
                         }
                     }

@@ -9,7 +9,6 @@ public class ObjectManager : MonoBehaviour
     // 오브젝트 타일 이미지
     public Sprite[] SlotPanelSprite;
     public Sprite EnemySlotSprite;
-    public Sprite PortalSlotSprite;
     public Sprite[] ForestSprites;
 
 
@@ -27,6 +26,7 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public List<GameObject> SlimeAttackParticles;
     [HideInInspector] public List<GameObject> SlotPanels;
     [HideInInspector] public List<GameObject> ClickParticles;
+    [HideInInspector] public List<GameObject> Portals;
 
 
     //게임오브젝트 프리팹
@@ -42,6 +42,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject SlimeAttackParticle;
     public GameObject SlotPanel;
     public GameObject ClickParticle;
+    public GameObject Portal;
 
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
@@ -130,6 +131,12 @@ public class ObjectManager : MonoBehaviour
             GameObject x = Instantiate(ClickParticle);
             x.SetActive(false);
             ClickParticles.Add(x);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(Portal);
+            x.SetActive(false);
+            Portals.Add(x);
         }
 
         //ClickParticles
@@ -222,6 +229,10 @@ public class ObjectManager : MonoBehaviour
                 List = ClickParticles;
                 Frefab = ClickParticle;
                 break;
+            case "Portal":
+                List = Portals;
+                Frefab = Portal;
+                break;
 
         }
 
@@ -267,6 +278,13 @@ public class ObjectManager : MonoBehaviour
         return Slot;
     }
 
+    public GameObject SpawnPortal(Vector2 StartVec)
+    {
+        GameObject Portal = FindObj("Portal");
+        Portal.transform.position = StartVec;
+        Portal.GetComponent<ParticleManager>().ParticleSetting(true);
+        return Portal;
+    }
 
     // 큐브 이펙트를 사용하는 함수
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
@@ -399,7 +417,7 @@ public class ObjectManager : MonoBehaviour
     }
 
 
-    public void ResettingObj()
+    public void ResettingAllObj()
     {
         for(int i = 0; i < Cubes.Count; i++)
         {
@@ -499,8 +517,18 @@ public class ObjectManager : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < Portals.Count; i++)
+        {
+            if (Portals[i].activeSelf == true)
+            {
+                Portals[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
 
     }
+
+
+
 
 
 }
