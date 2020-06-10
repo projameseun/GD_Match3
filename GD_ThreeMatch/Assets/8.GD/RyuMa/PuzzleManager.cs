@@ -506,7 +506,7 @@ public class PuzzleManager : MonoBehaviour
         {
             for (int i = 0; i <= _Map.TopRight; i++)
             {
-                theObject.SpawnSlotPanel(_Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet,MapType.M1_MoveMap, i + Hor);
+                theObject.SpawnSlotPanel(_Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet.SlotSheet,MapType.M1_MoveMap, i + Hor);
                 _Map.Slots[i + Hor].TestText.enabled = false;
                 if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
                 {

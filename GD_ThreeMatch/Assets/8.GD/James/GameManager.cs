@@ -35,14 +35,14 @@ public class SlotInfo
     public string Type;
     public MonsterSheet monsheet;
     public PortalSheet portalsheet;
-    public SlotObjectSheet slotObject;
+    public SlotObjectSheets slotObject;
 
-    public SlotInfo(string type, MonsterSheet monsheet, PortalSheet portalsheet, SlotObjectSheet _slotObject)
+    public SlotInfo(string type, MonsterSheet monsheet, PortalSheet portalsheet, SlotObjectSheets _slotObject)
     {
         Type = type;
         this.monsheet = monsheet;
         this.portalsheet = portalsheet;
-        slotObject = _slotObject;
+        this.slotObject = _slotObject;
     }
 
     public SlotInfo() { }

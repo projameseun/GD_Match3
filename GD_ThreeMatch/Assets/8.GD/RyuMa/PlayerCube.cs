@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Spine;
-using UnityEngine.UIElements;
 
 
 public enum SkillType
@@ -23,7 +22,6 @@ public class PlayerCube : MonoBehaviour
 
     
     public string AnimName; // 현재 에니메이션 상태를 저장
-    public int TrakNum;
     public Direction direction;
 
     //특수블럭 사용 변수
@@ -125,11 +123,13 @@ public class PlayerCube : MonoBehaviour
         }
     }
 
-    public void SetSpine(int _SelNum, int _SkinNum)
+    public void SetSpine(int _SelNum, string _SkinName)
     {
         thePuzzle.selectGirl = (SelectGirl)_SelNum;
-        SpinMesh.material = theGirl.Girls[_SelNum].SdMaterials[_SkinNum];
+        SpinMesh.material = theGirl.Girls[_SelNum].SdMaterials;
         anim.skeletonDataAsset = theGirl.Girls[_SelNum].SdDatae;
+        if (_SkinName != "")
+            anim.initialSkinName = _SkinName;
         anim.Initialize(true);
         selectGirl = theGirl.Girls[_SelNum].selectGirl;
         anim.state.Event += HandleEvent;
@@ -163,7 +163,7 @@ public class PlayerCube : MonoBehaviour
     {
         if (_state == AnimName)
             return;
-        anim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
+        anim.AnimationState.SetAnimation(0, _state, _Loop);
         AnimName = _state;
     }
     public void BattleEvent(Vector2 TargetVec, 

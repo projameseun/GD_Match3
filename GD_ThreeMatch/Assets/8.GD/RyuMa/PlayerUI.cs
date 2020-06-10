@@ -133,10 +133,7 @@ public class PlayerUI : MonoBehaviour
     // 캐릭터별 카드색, 0이면 왼쪽 1이면 오른쪽
     public void SetUi(int _nodeColor,int _PlayerNum)
     {
-        if (theGirl.Girls[_nodeColor].IllustMaterials.Length > 0)
-        {
-            SpineMesh.material = theGirl.Girls[_nodeColor].IllustMaterials[0];
-        }
+        SpineMesh.material = theGirl.Girls[_nodeColor].IllustMaterials;
         SpinAnim.skeletonDataAsset = theGirl.Girls[_nodeColor].IllustData;
         SpinAnim.Initialize(true);
         SpinAnim.state.Event += HandleEvent;
@@ -218,7 +215,7 @@ public class PlayerUI : MonoBehaviour
         if (On == true)
         {
             thePuzzle.Player.SetSpine((int)nodeColor,
-                theGirl.Girls[(int)nodeColor].SkinNum);
+                theGirl.Girls[(int)nodeColor].SkinName);
 
             Vector2 vec = new Vector2(SpinAnim.transform.position.x,
                 SpinAnim.transform.position.y);

@@ -43,6 +43,13 @@ public class PortalSheet
     public int NextPosNum;
 }
 
+[System.Serializable]
+public class SlotObjectSheets
+{
+    public SlotObjectSheet SlotSheet;
+    public int ObjectNum;
+    public string SkinName;
+}
 
 
 
@@ -85,8 +92,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     //[HideInInspector] public bool OnlyOneEnemy = false;
     //[HideInInspector] public int OnlyOneNum;
 
-    //포탈 시트
-    public SlotObjectSheet SlotSheet;
+    public SlotObjectSheets SlotSheet;
 
 
 

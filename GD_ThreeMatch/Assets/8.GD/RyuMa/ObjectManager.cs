@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class ObjectManager : MonoBehaviour
     public Sprite[] SlotPanelSprite;
     public Sprite EnemySlotSprite;
     public Sprite[] ForestSprites;
-
+    public Material[] ForestMaterial;
+    public SkeletonDataAsset[] ForestData;
 
 
     //게임오브젝트 리스트
@@ -27,6 +29,7 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public List<GameObject> SlotPanels;
     [HideInInspector] public List<GameObject> ClickParticles;
     [HideInInspector] public List<GameObject> Portals;
+    [HideInInspector] public List<GameObject> ObjectSpines;
 
 
     //게임오브젝트 프리팹
@@ -43,6 +46,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject SlotPanel;
     public GameObject ClickParticle;
     public GameObject Portal;
+    public GameObject ObjectSpine;
 
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
@@ -137,6 +141,12 @@ public class ObjectManager : MonoBehaviour
             GameObject x = Instantiate(Portal);
             x.SetActive(false);
             Portals.Add(x);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(ObjectSpine);
+            x.SetActive(false);
+            ObjectSpines.Add(x);
         }
 
         //ClickParticles
@@ -233,6 +243,10 @@ public class ObjectManager : MonoBehaviour
                 List = Portals;
                 Frefab = Portal;
                 break;
+            case "ObjectSpine":
+                List = ObjectSpines;
+                Frefab = ObjectSpine;
+                break;
 
         }
 
@@ -270,11 +284,28 @@ public class ObjectManager : MonoBehaviour
         return Cube;
     }
 
-    public GameObject SpawnSlotPanel(Vector2 Pos,SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
+    public GameObject SpawnSlotPanel(Vector2 Pos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
     {
+        if (_Sheet == SlotObjectSheet.S_0_Spin)
+        {
+            GameObject ObjectSpin = FindObj("ObjectSpine");
+            ObjectSpin.transform.position = Pos;
+            if (_mapType == MapType.M1_MoveMap)
+            {
+
+                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.ObjectNum,
+                   thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.SkinName);
+            }
+            else if (_mapType == MapType.M2_BattleMap)
+            {
+                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0,"");
+            }
+
+            return ObjectSpin;
+        }
         GameObject Slot = FindObj("SlotPanel");
         Slot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        Slot.GetComponent<SlotObject>().SetSlotObject(Pos,_Sheet, _mapType, _SlotNum);
+        Slot.GetComponent<SlotObject>().SetSlotObject(Pos, _Sheet, _mapType, _SlotNum);
         return Slot;
     }
 

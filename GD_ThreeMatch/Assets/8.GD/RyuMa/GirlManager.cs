@@ -8,18 +8,18 @@ using Spine.Unity;
 public class GirlHero
 {
     public string Name;
-    public int SkinNum;
+    public string SkinName;
 
     [Space]
     [Header("Spine")]
-    public Material[] IllustMaterials;
+    public Material IllustMaterials;
     public SkeletonDataAsset IllustData;
     public Sprite SkillImage;
     public float[] IllustPosX;
     public float IllustPosY;
     public float IllustSize;
     public float ClickY;
-    public Material[] SdMaterials;
+    public Material SdMaterials;
     public SkeletonDataAsset SdDatae;
     [Space]
     [Header("DB")]

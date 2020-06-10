@@ -4811,7 +4811,7 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
 --- !u!1 &4093952625787057453
 GameObject:
   m_ObjectHideFlags: 0
@@ -9623,7 +9623,7 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
 --- !u!1 &5461497951090089696
 GameObject:
   m_ObjectHideFlags: 0
@@ -14435,7 +14435,7 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
 --- !u!1 &5964771058472505650
 GameObject:
   m_ObjectHideFlags: 0
@@ -19247,7 +19247,7 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
 --- !u!1 &6583428656806865327
 GameObject:
   m_ObjectHideFlags: 0
@@ -24059,7 +24059,7 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
 --- !u!1 &8665986790152930951
 GameObject:
   m_ObjectHideFlags: 0

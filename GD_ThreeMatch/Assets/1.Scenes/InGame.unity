@@ -3565,9 +3565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Girls:
   - Name: "\uC5D8\uB9AC\uC2A4"
-    SkinNum: 0
-    IllustMaterials:
-    - {fileID: 2100000, guid: a5fc6f24ba94f174c92ef64346c34887, type: 2}
+    SkinName: 
+    IllustMaterials: {fileID: 0}
     IllustData: {fileID: 11400000, guid: f14f275f87827bf419a5929caea0fca2, type: 2}
     SkillImage: {fileID: 21300000, guid: f541f76cafcc9344497908c358064553, type: 3}
     IllustPosX:
@@ -3576,8 +3575,7 @@ MonoBehaviour:
     IllustPosY: -6.5
     IllustSize: 1
     ClickY: 3
-    SdMaterials:
-    - {fileID: 2100000, guid: 6a32505e7d7ff784cbf44c6a206950e1, type: 2}
+    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 11400000, guid: b9f8572c9973d3b47b931d9d44ef5f8b, type: 2}
     selectGirl: 0
     nodeColor: 0
@@ -3587,15 +3585,15 @@ MonoBehaviour:
     Level: 0
     Exp: 0
   - Name: 111
-    SkinNum: 0
-    IllustMaterials: []
+    SkinName: 
+    IllustMaterials: {fileID: 0}
     IllustData: {fileID: 0}
     SkillImage: {fileID: 21300000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
     IllustPosX: []
     IllustPosY: 0
     IllustSize: 0
     ClickY: 0
-    SdMaterials: []
+    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
     selectGirl: 0
     nodeColor: 3
@@ -3605,9 +3603,8 @@ MonoBehaviour:
     Level: 0
     Exp: 0
   - Name: "\uBCA0\uB9B4"
-    SkinNum: 0
-    IllustMaterials:
-    - {fileID: 2100000, guid: a5fc6f24ba94f174c92ef64346c34887, type: 2}
+    SkinName: 
+    IllustMaterials: {fileID: 0}
     IllustData: {fileID: 11400000, guid: f14f275f87827bf419a5929caea0fca2, type: 2}
     SkillImage: {fileID: 21300000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
     IllustPosX:
@@ -3616,8 +3613,7 @@ MonoBehaviour:
     IllustPosY: -7
     IllustSize: 0.9
     ClickY: 0
-    SdMaterials:
-    - {fileID: 2100000, guid: d23c187aa5747634b90383339eababb6, type: 2}
+    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 11400000, guid: ca95a28e3296cc140a256d88f2c11f7c, type: 2}
     selectGirl: 2
     nodeColor: 2
@@ -3627,15 +3623,15 @@ MonoBehaviour:
     Level: 0
     Exp: 0
   - Name: 333
-    SkinNum: 0
-    IllustMaterials: []
+    SkinName: 
+    IllustMaterials: {fileID: 0}
     IllustData: {fileID: 0}
     SkillImage: {fileID: 21300000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
     IllustPosX: []
     IllustPosY: 0
     IllustSize: 0
     ClickY: 0
-    SdMaterials: []
+    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
     selectGirl: 0
     nodeColor: 3
@@ -3645,15 +3641,15 @@ MonoBehaviour:
     Level: 0
     Exp: 0
   - Name: 444
-    SkinNum: 0
-    IllustMaterials: []
+    SkinName: 
+    IllustMaterials: {fileID: 0}
     IllustData: {fileID: 0}
     SkillImage: {fileID: 21300000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
     IllustPosX: []
     IllustPosY: 0
     IllustSize: 0
     ClickY: 0
-    SdMaterials: []
+    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
     selectGirl: 0
     nodeColor: 3
@@ -3744,7 +3740,7 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 10
+  m_FrontSortingOrder: 60
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
@@ -4986,7 +4982,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 20
 --- !u!33 &1084506283
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5025,7 +5021,6 @@ MonoBehaviour:
   anim: {fileID: 1084506281}
   selectGirl: 0
   AnimName: 
-  TrakNum: 0
   direction: 0
   Map: {fileID: 0}
   SlotNum: 0
@@ -5885,7 +5880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 0}
+  skeletonDataAsset: {fileID: 11400000, guid: f14f275f87827bf419a5929caea0fca2, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -5927,7 +5922,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: a5fc6f24ba94f174c92ef64346c34887, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5947,7 +5942,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 71
 --- !u!33 &1256532554
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8179,7 +8174,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2021313383}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 300
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -8884,6 +8879,8 @@ MonoBehaviour:
   MoveMapName: TestMap
   PlayerStartPos: 123
   objectType: 0
+  SkinObjectNum: 0
+  SkinName: 
   PlayerStartNum: 20
 --- !u!1 &1723246043
 GameObject:
@@ -9435,7 +9432,6 @@ GameObject:
   - component: {fileID: 1836634022}
   - component: {fileID: 1836634021}
   - component: {fileID: 1836634020}
-  - component: {fileID: 1836634023}
   m_Layer: 0
   m_Name: Girl2UiSpine
   m_TagString: Untagged
@@ -9531,7 +9527,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 71
 --- !u!33 &1836634022
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9540,36 +9536,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836634018}
   m_Mesh: {fileID: 0}
---- !u!114 &1836634023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836634018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e115a205b311507439d67d5160476c60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpineMesh: {fileID: 0}
-  SpinAnim: {fileID: 0}
-  state: 0
-  Trigger: {fileID: 0}
-  HpStateImage: {fileID: 0}
-  HpSlider: {fileID: 0}
-  HpText: {fileID: 0}
-  SkillBgImage: {fileID: 0}
-  SkillSlider: {fileID: 0}
-  SkillGaugeText: {fileID: 0}
-  GirlCubeImage: {fileID: 0}
-  PlayerUINum: 0
-  nodeColor: 0
-  MaxHp: 0
-  CurrentHp: 0
-  MaxSkillGauge: 0
-  CurrentSkillGauge: 0
-  SkillOn: 0
 --- !u!1 &1843291417
 GameObject:
   m_ObjectHideFlags: 0
@@ -9805,8 +9771,8 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 20
-  m_BackSortingOrder: 10
+  m_FrontSortingOrder: 72
+  m_BackSortingOrder: 70
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!1 &1924831737
@@ -11313,6 +11279,10 @@ MonoBehaviour:
   ForestSprites:
   - {fileID: 21300000, guid: 7a96ab656ae7a684e88b5f885d28eae7, type: 3}
   - {fileID: 21300000, guid: 1e46b7e64e797e346bd445a27a7a5c1a, type: 3}
+  ForestMaterial:
+  - {fileID: 2100000, guid: 42abc2bf87c6b594fb226e12b054aa4a, type: 2}
+  ForestData:
+  - {fileID: 11400000, guid: 814d5679f3d78f144ae3b8b632101e46, type: 2}
   Cubes: []
   CubeParticles: []
   CubeEfs: []
@@ -11326,6 +11296,7 @@ MonoBehaviour:
   SlotPanels: []
   ClickParticles: []
   Portals: []
+  ObjectSpines: []
   Cube: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
   CubeParticle: {fileID: 4897735274488834851, guid: 99b4a823f56c742419d0760a46041e53,
     type: 3}
@@ -11349,6 +11320,8 @@ MonoBehaviour:
   ClickParticle: {fileID: 8507203080465462627, guid: 542dd44eb50c3994283b5f44f119668e,
     type: 3}
   Portal: {fileID: 6896099708153733868, guid: ac01b9f2040e87f448deb6f8a8f7ef47, type: 3}
+  ObjectSpine: {fileID: 792244233026631838, guid: ef31df3bd9207224eb0b4f539d9712e5,
+    type: 3}
 --- !u!1001 &4632623625184402015
 PrefabInstance:
   m_ObjectHideFlags: 0

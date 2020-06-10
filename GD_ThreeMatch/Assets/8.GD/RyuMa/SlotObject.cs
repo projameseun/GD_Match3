@@ -11,7 +11,8 @@ public enum SlotMapType
 
 public enum SlotObjectSheet
 { 
-    NULL = -1,
+    NULL = -2,
+    S_0_Spin,
     S_1_Object,
     S_2_Object,
     ST_0_SlotPanel = 1000,

@@ -70,6 +70,8 @@ public class PuzzleMaker : MonoBehaviour
 
     [Header("ObjectSetting")]
     public SlotObjectSheet objectType;
+    public int SkinObjectNum;
+    public string SkinName;
 
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
@@ -123,7 +125,8 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.nodeColor = NodeColor.NC8_Null;
             _Slot.TestText.text = ""; //string.Format("N(" + _SlotNum + ")");
             _Slot.TestText.color = new Color(1, 1, 1);
-            _Slot.SlotSheet = SlotObjectSheet.NULL;
+            _Slot.SlotSheet.SlotSheet = SlotObjectSheet.NULL;
+            _Slot.SlotSheet.SkinName = "";
         }
         else if (changeMode == ChangeMode.Ch1_Normal)
         {
@@ -131,7 +134,7 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.nodeColor = NodeColor.NC8_Null;
             _Slot.TestText.text = "C"; //string.Format(_SlotNum.ToString());
             _Slot.TestText.color = new Color(0, 0, 0);
-            _Slot.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
+            _Slot.SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
         }
         //else if (changeMode == ChangeMode.Player)
         //{
@@ -146,7 +149,7 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.nodeColor = NodeColor.NC8_Null;
             _Slot.TestText.text = "E";
             _Slot.TestText.color = EnemyColor;
-            _Slot.SlotSheet = SlotObjectSheet.ST_1_Enemy;
+            _Slot.SlotSheet.SlotSheet = SlotObjectSheet.ST_1_Enemy;
             _Slot.monsterSheet = new MonsterSheet();
 
             _Slot.monsterSheet.OnlyOneEnemy = OnlyOneEnemy;
@@ -174,13 +177,15 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.portalSheet = new PortalSheet();
             _Slot.portalSheet.MapName = MoveMapName;
             _Slot.portalSheet.NextPosNum = PlayerStartPos;
-            _Slot.SlotSheet = SlotObjectSheet.ST_2_Portal;
+            _Slot.SlotSheet.SlotSheet = SlotObjectSheet.ST_2_Portal;
         }
         else if (changeMode == ChangeMode.Ch4_Object)
         {
             _Slot.nodeType = PuzzleSlot.NodeType.Null;
             _Slot.nodeColor = NodeColor.NC8_Null;
-            _Slot.SlotSheet = objectType;
+            _Slot.SlotSheet.SlotSheet = objectType;
+            _Slot.SlotSheet.ObjectNum = SkinObjectNum;
+            _Slot.SlotSheet.SkinName = SkinName;
             _Slot.TestText.text = ((int)objectType).ToString();
 
         }
@@ -218,7 +223,7 @@ public class PuzzleMaker : MonoBehaviour
             {
                 theMoveMap.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
                 theMoveMap.Slots[i].nodeColor = NodeColor.NC8_Null;
-                theMoveMap.Slots[i].SlotSheet = SlotObjectSheet.NULL;
+                theMoveMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.NULL;
                 theMoveMap.Slots[i].TestText.enabled = false; //string.Format("N(" + _SlotNum + ")");
 
             }
@@ -227,7 +232,7 @@ public class PuzzleMaker : MonoBehaviour
                 theMoveMap.Slots[i].TestText.enabled = true;
                 theMoveMap.Slots[i].TestText.text = i.ToString();
                 theMoveMap.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
-                theMoveMap.Slots[i].SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
+                theMoveMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
             }
 
             if ((i <= theMoveMap.TopRight && i >=0) ||
@@ -237,7 +242,7 @@ public class PuzzleMaker : MonoBehaviour
                (i % theMoveMap.Horizontal == theMoveMap.TopRight &&
                i <= theMoveMap.BottomRight))
             {
-                theMoveMap.Slots[i].SlotSheet = objectType;
+                theMoveMap.Slots[i].SlotSheet.SlotSheet = objectType;
                 theMoveMap.Slots[i].TestText.enabled = true;
                 theMoveMap.Slots[i].TestText.text = ((int)objectType).ToString();
             }
