@@ -298,8 +298,6 @@ public class Cube : MonoBehaviour
     {
         if (specialCubeType == SpecialCubeType.Null)
             return;
-
-        theBattle.AddComboValue();
       
         MapManager _Map = null;
         thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;

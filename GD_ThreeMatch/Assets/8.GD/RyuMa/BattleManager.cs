@@ -110,8 +110,9 @@ public class BattleManager : MonoBehaviour
     public Text EnemyName;
     public TextMeshPro EnemyCountText;
     public CubeUI[] EnemyCubeUi;
-    public Image ComboCoolDownImage;
     public Image[] ComboNumImages;
+    public Image ComboBase;
+    public GameObject ComboGrid;
 
     [Space]
 
@@ -127,8 +128,8 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> EnemyAttackEffectList; //몬스터가 공격한 이팩트 리스트
     public int ComboValue = 1;
     public float ComboStack = 10f;
-    [HideInInspector] public float CurrentComboCoolDown = 1;
-    [HideInInspector] public float MaxComboCoolDown = 1f;
+    float CurrentComboCoolDown = 1;
+    public float MaxComboCoolDown = 1.5f;
     [HideInInspector] public SkillUI CurrentSkillUI;  //현재 사용중인 혹은 사용 하려는 스킬의 UI대상
     [HideInInspector] public float AttackEffectEventTime;
     [HideInInspector] public bool SkillEventOnOff = false; //스킬을 하고있는지 아닌지 체크
@@ -151,7 +152,13 @@ public class BattleManager : MonoBehaviour
     float Player2CacHp; // 소녀체력계산
     List<int> ComboNumList = new List<int>(); //콤보 숫자 리스트
 
-
+    bool[] ComboEvent = new bool[3];        //콤보 이밴트
+    
+    float ComboEventTime;   //콤보 이밴트 시간
+    float CurrentNumSize;   //현재 콤보 이미지 사이즈
+    float MaxNumSize;       //마지막 이미지 사이즈
+    float OverNumSize;      //연출용 가장 큰 이미지 사이즈
+    Color ComboColor = new Color(1, 1, 1, 1);
 
 
 
@@ -177,6 +184,60 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
+
+        //콤보 이밴트
+        if (ComboEvent[0] == true)
+        {
+            if (ComboEvent[1] == false)
+            {
+                if (CurrentNumSize < OverNumSize)
+                {
+                    CurrentNumSize += Time.deltaTime*5;
+                }
+                else
+                {
+                    ComboEvent[1] = true;
+                }
+            }
+            else if (ComboEvent[2] == false)
+            {
+                if (CurrentNumSize > MaxNumSize)
+                {
+                    CurrentNumSize -= Time.deltaTime*3;
+                }
+                else
+                {
+                    CurrentNumSize = MaxNumSize;
+                    ComboEvent[0] = false;
+                    ComboEvent[1] = false;
+                }
+            }
+            ComboGrid.transform.localScale = new Vector3(CurrentNumSize, CurrentNumSize, 1);
+        }
+        if (ComboEvent[2] == true)
+        {
+            if (ComboEventTime > 0)
+            {
+                ComboEventTime -= Time.deltaTime*2;
+            }
+            else
+            {
+                ComboEventTime = 0;
+                ComboEvent[0] = false;
+                ComboEvent[1] = false;
+                ComboEvent[2] = false;
+                ComboBase.gameObject.SetActive(false);
+                ComboNumImages[0].gameObject.SetActive(false);
+                ComboNumImages[1].gameObject.SetActive(false);
+                ComboNumImages[2].gameObject.SetActive(false);
+            }
+            ComboColor.a = ComboEventTime;
+            ComboBase.color = ComboColor;
+            for (int i = 0; i < 3; i++)
+            {
+                ComboNumImages[i].color = ComboColor;
+            }
+        }
 
 
         //몬스터가 데미지를 입으면 색을 빨간색으로 해주는 이밴트
@@ -253,6 +314,7 @@ public class BattleManager : MonoBehaviour
     public void SetBattle(int _enemyNum)
     {
         //ComboCoolDownImage.fillAmount = 0;
+        ComboBase.gameObject.SetActive(false);
         ComboValue = 1;
         SelectEnemyNum = _enemyNum;
         EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = Enemy[_enemyNum].IllustData;
@@ -613,28 +675,56 @@ public class BattleManager : MonoBehaviour
         ComboValue++;
         if (ComboValue > 1)
         {
+            ComboEvent[0] = true;
+            ComboEvent[1] = false;
+            ComboEvent[2] = false;
             ComboStack += ComboValue;
             ComboNumList.Clear();
             int ComboNum = ComboValue - 1;
+            if (ComboNum == 1)
+            {
+                ComboBase.gameObject.SetActive(true);
+                ComboBase.color = new Color(1, 1, 1, 1);
+                for (int i = 0; i < 3; i++)
+                {
+                    ComboNumImages[i].color = new Color(1,1,1,1);
+                }
+            }
+            
+            MaxNumSize = 0.7f + (ComboNum * 0.03f);
+            CurrentNumSize = MaxNumSize - 0.2f;
+            OverNumSize = MaxNumSize * 1.5f;
+
             if (ComboNum > 999)
                 ComboNum = 999;
             while (true)
             {
-                ComboNumList.Add(ComboNum % 10);
-                ComboNum /= 10;
 
-                if (ComboNum <= 0)
+
+                ComboNumList.Add(ComboNum % 10);
+
+                if (ComboNum >= 10)
+                {
+                    ComboNum /= 10;
+
+                }
+                else
+                {
                     break;
+                }
+                
             }
 
             for (int i = 0; i <3; i++)
             {
+
                 if (ComboNumList.Count > 0)
                 {
+
                     if (ComboNumImages[i].gameObject.activeSelf == false)
                         ComboNumImages[i].gameObject.SetActive(true);
-                    ComboNumImages[i].sprite = ComboSprites[ComboNumList[0]];
-                    ComboNumList.RemoveAt(0);
+                    ComboNumImages[i].sprite = ComboSprites[ComboNumList[ComboNumList.Count-1]];
+                    ComboNumList.RemoveAt(ComboNumList.Count - 1);
                 }
                 else
                 {
@@ -651,18 +741,26 @@ public class BattleManager : MonoBehaviour
         ComboValue = 1;
         ComboStack = 10;
         CurrentComboCoolDown = 0;
+        ComboEventTime = 1f;
+        ComboEvent[0] = false;
+        ComboEvent[1] = false;
+        ComboEvent[2] = true;
     }
     public void CheckComboCoolDonw()
     {
-        if (CurrentComboCoolDown > 0)
+        if (ComboValue > 1)
         {
-            CurrentComboCoolDown -= Time.deltaTime;
-        }
-        else
-        {
-            ResetCombo();
+            if (CurrentComboCoolDown > 0)
+            {
+                CurrentComboCoolDown -= Time.deltaTime;
+            }
+            else
+            {
+                ResetCombo();
 
+            }
         }
+       
     }
 
 

@@ -298,7 +298,7 @@ public class ObjectManager : MonoBehaviour
             }
             else if (_mapType == MapType.M2_BattleMap)
             {
-                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0,"");
+                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0,"0");
             }
 
             return ObjectSpin;

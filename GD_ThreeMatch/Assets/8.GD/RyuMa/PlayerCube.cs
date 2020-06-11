@@ -84,6 +84,8 @@ public class PlayerCube : MonoBehaviour
             }
             else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
             {
+                theBattle.AddComboValue();
+                thePuzzle.CubeEvent = true;
                 if (skillType == SkillType.ST0_SpecialCube)
                 {
                     theMatch.SpecialCubeEvent(Map, SlotNum, Type);
@@ -112,7 +114,8 @@ public class PlayerCube : MonoBehaviour
             }
             else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
             {
-
+                float Resize = theGirl.Girls[(int)thePuzzle.selectGirl].SdSize;
+                this.transform.localScale = new Vector3(Resize, Resize, 1);
                 ChangeAnim("Idle", true);
                 this.transform.position = VisitVec;
                 theBattle.SkillEventOnOff = false;
@@ -165,6 +168,14 @@ public class PlayerCube : MonoBehaviour
     {
         if (_state == AnimName)
             return;
+        if (_state == "Attack" && thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        {
+            theBattle.SkillEventOnOff = true;
+            float Resize = theGirl.Girls[(int)thePuzzle.selectGirl].SdSize;
+            Resize *= 1.5f;
+            this.transform.localScale = new Vector3(Resize, Resize, 1);
+        }
+            
         anim.AnimationState.SetAnimation(0, _state, _Loop);
         AnimName = _state;
     }

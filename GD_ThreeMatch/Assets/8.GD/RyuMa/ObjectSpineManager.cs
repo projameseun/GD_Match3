@@ -9,7 +9,6 @@ public class ObjectSpineManager : MonoBehaviour
     public SkeletonAnimation anim;
 
     public string AnimName;
-    public string SkinName;
 
     private PuzzleMaker theMaker;
     private ObjectManager theObject;

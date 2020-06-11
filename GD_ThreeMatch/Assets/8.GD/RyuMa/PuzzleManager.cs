@@ -349,6 +349,7 @@ public class PuzzleManager : MonoBehaviour
                     theMatch.FindAllMatches(theBattleMap);
                     if (isMatched)
                     {
+
                         SetMoveCount(-1);
                         DestroyCube(theBattleMap);
                         theMatch.FindSpecialCube(theBattleMap);
@@ -390,7 +391,7 @@ public class PuzzleManager : MonoBehaviour
 
                 if (theBattle.PlayerAttackEffectList.Count > 0 && theBattle.CurrentEnemyCount == 0)
                     return;
-                theBattle.AddComboValue();
+                
                 theMatch.FindAllMatches(theBattleMap);
                 if (isMatched)
                 {
@@ -1272,7 +1273,10 @@ public class PuzzleManager : MonoBehaviour
     // 매치가 된 큐브를 제거하는 기능
     public void DestroyCube(MapManager _Map)
     {
-
+        if (_Map.mapType == MapType.M2_BattleMap)
+        {
+            theBattle.AddComboValue();
+        }
         state = State.DestroyCube;
         isMatched = false;
         bool Event = true;

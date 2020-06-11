@@ -257,6 +257,7 @@ public class PuzzleMaker : MonoBehaviour
 
     public void BT_TestStart()
     {
+        TestStartBt.SetActive(false);
         SaveButton.SetActive(true);
         IngameUi.SetActive(true);
         thePuzzle.SetPlayerUi();

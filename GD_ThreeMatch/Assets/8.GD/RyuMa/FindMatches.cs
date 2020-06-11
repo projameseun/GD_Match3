@@ -23,10 +23,12 @@ public class FindMatches : MonoBehaviour
 
     private PuzzleManager thePuzzle;
     private GirlManager theGirl;
+    private BattleManager theBattle;
+// Start is called before the first frame update
 
-    // Start is called before the first frame update
     void Start()
     {
+        theBattle = FindObjectOfType<BattleManager>();
         CurrentCheckBoomTime = MaxCheckBoomTime;
         theGirl = FindObjectOfType<GirlManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
@@ -885,6 +887,10 @@ public class FindMatches : MonoBehaviour
 
     public void SpecialCubeEvent(MapManager _Map, int _SlotNum, SpecialCubeType _Type)
     {
+        thePuzzle.CubeEvent = true;
+        if (CurrentCheckBoomTime < 0.1f)
+            theBattle.AddComboValue();
+
 
         CurrentCheckBoomTime = MaxCheckBoomTime;
         switch (_Type)

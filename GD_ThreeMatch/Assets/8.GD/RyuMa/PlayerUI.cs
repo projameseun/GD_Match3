@@ -235,7 +235,24 @@ public class PlayerUI : MonoBehaviour
                     ClickP = null;
                 }
             }
-           
+            if (CurrentHp <= 0)
+            {
+                if ((int)thePuzzle.selectGirl == (int)nodeColor)
+                {
+                    if (PlayerUINum == 0)
+                    {
+                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[1].nodeColor,
+                    theGirl.Girls[(int)thePuzzle.playerUIs[1].nodeColor].SkinName);
+                    }
+                    else
+                    {
+                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[0].nodeColor,
+                       theGirl.Girls[(int)thePuzzle.playerUIs[0].nodeColor].SkinName);
+                    }
+                }
+            }
+          
+
             SkillOnEvent = false;
             ImageScale = 1;
             GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
@@ -259,7 +276,7 @@ public class PlayerUI : MonoBehaviour
 
     public void TakeDamage(AttackEffect _Effect)
     {
-        theObject.DamageTextEvent(this.transform.position, _Effect.DamageValue.ToString());
+        theObject.DamageTextEvent(Trigger.transform.position, _Effect.DamageValue.ToString());
         CurrentHp -= _Effect.DamageValue;
         if (CurrentHp < 0)
             CurrentHp = 0;

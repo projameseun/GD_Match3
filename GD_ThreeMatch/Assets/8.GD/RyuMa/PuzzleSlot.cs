@@ -188,18 +188,21 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             else if (DownTime[0] > 0 && DownTime[1] <= 0.4f && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
                 //Debug.Log("더블클릭 성공");
-                
-                // 스킬을 사용할 수 있는지
-                if (theBattle.CurrentSkillUI != SkillUI.UI2_Null)
-                {
-                    SkillEvent();
-                }
-                // 특수블럭인지
-                else if (cube.specialCubeType != SpecialCubeType.Null)
-                {
-                    SpecialCubeEvent();
-                }
 
+                // 스킬을 사용할 수 있는지
+
+                if (theBattle.SkillEventOnOff == false)
+                {
+                    if (theBattle.CurrentSkillUI != SkillUI.UI2_Null)
+                    {
+                        SkillEvent();
+                    }
+                    // 특수블럭인지
+                    else if (cube.specialCubeType != SpecialCubeType.Null)
+                    {
+                        SpecialCubeEvent();
+                    }
+                }
                 DownTime[0] = 0;
                 DownTime[1] = 0;
                 DoubleClick[1] = false;
@@ -323,12 +326,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             {
                 
 
-                StartVec.x -= 1;
+                StartVec.x -= 1.8f;
                 dir = Direction.Right;
             }
             else
             {
-                StartVec.x += 1;
+                StartVec.x += 1.8f;
                 dir = Direction.Left;
             }
             thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, cube.specialCubeType,thePuzzle.theBattleMap,SlotNum);
@@ -363,12 +366,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         // 슬롯이 오른쪽
         if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
         {
-            StartVec.x -= 1;
+            StartVec.x -= 1.8f;
             dir = Direction.Right;
         }
         else
         {
-            StartVec.x += 1;
+            StartVec.x += 1.8f;
             dir = Direction.Left;
         }
         thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, cube.specialCubeType,
