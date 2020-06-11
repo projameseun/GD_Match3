@@ -103,9 +103,6 @@ public class CameraManager : MonoBehaviour
 
             this.transform.position = Vector3.Lerp(this.transform.position, MoveVec, Speed * Time.fixedDeltaTime);
         }
-
-
-
         if (state == State.SmoothMove)
         {
             if (Down == true)

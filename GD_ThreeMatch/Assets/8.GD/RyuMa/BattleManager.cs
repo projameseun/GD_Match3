@@ -185,88 +185,82 @@ public class BattleManager : MonoBehaviour
     private void Update()
     {
 
-        //콤보 이밴트
-        if (ComboEvent[0] == true)
-        {
-            if (ComboEvent[1] == false)
-            {
-                if (CurrentNumSize < OverNumSize)
-                {
-                    CurrentNumSize += Time.deltaTime*5;
-                }
-                else
-                {
-                    ComboEvent[1] = true;
-                }
-            }
-            else if (ComboEvent[2] == false)
-            {
-                if (CurrentNumSize > MaxNumSize)
-                {
-                    CurrentNumSize -= Time.deltaTime*3;
-                }
-                else
-                {
-                    CurrentNumSize = MaxNumSize;
-                    ComboEvent[0] = false;
-                    ComboEvent[1] = false;
-                }
-            }
-            ComboGrid.transform.localScale = new Vector3(CurrentNumSize, CurrentNumSize, 1);
-        }
-        if (ComboEvent[2] == true)
-        {
-            if (ComboEventTime > 0)
-            {
-                ComboEventTime -= Time.deltaTime*2;
-            }
-            else
-            {
-                ComboEventTime = 0;
-                ComboEvent[0] = false;
-                ComboEvent[1] = false;
-                ComboEvent[2] = false;
-                ComboBase.gameObject.SetActive(false);
-                ComboNumImages[0].gameObject.SetActive(false);
-                ComboNumImages[1].gameObject.SetActive(false);
-                ComboNumImages[2].gameObject.SetActive(false);
-            }
-            ComboColor.a = ComboEventTime;
-            ComboBase.color = ComboColor;
-            for (int i = 0; i < 3; i++)
-            {
-                ComboNumImages[i].color = ComboColor;
-            }
-        }
-
-
-        //몬스터가 데미지를 입으면 색을 빨간색으로 해주는 이밴트
-        if (DamageEvent == true)
-        {
-            if (DamageTime <= 1)
-            {
-                DamageTime += Time.deltaTime * 2;
-                DamageColor.g = DamageTime;
-                DamageColor.b = DamageTime;
-                EnemyAnim.skeleton.SetColor(DamageColor);
-            }
-            else
-            {
-                DamageEvent = false;
-                DamageTime = 0f;
-                EnemyAnim.skeleton.SetColor(new Color(1, 1, 1));
-            }
-        }
 
 
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
-            
-            if (BattleStart)
+
+            //콤보 이밴트
+            if (ComboEvent[0] == true)
             {
-                UILoad();
+                if (ComboEvent[1] == false)
+                {
+                    if (CurrentNumSize < OverNumSize)
+                    {
+                        CurrentNumSize += Time.deltaTime * 5;
+                    }
+                    else
+                    {
+                        ComboEvent[1] = true;
+                    }
+                }
+                else if (ComboEvent[2] == false)
+                {
+                    if (CurrentNumSize > MaxNumSize)
+                    {
+                        CurrentNumSize -= Time.deltaTime * 3;
+                    }
+                    else
+                    {
+                        CurrentNumSize = MaxNumSize;
+                        ComboEvent[0] = false;
+                        ComboEvent[1] = false;
+                    }
+                }
+                ComboGrid.transform.localScale = new Vector3(CurrentNumSize, CurrentNumSize, 1);
+            }
+            if (ComboEvent[2] == true)
+            {
+                if (ComboEventTime > 0)
+                {
+                    ComboEventTime -= Time.deltaTime * 2;
+                }
+                else
+                {
+                    ComboEventTime = 0;
+                    ComboEvent[0] = false;
+                    ComboEvent[1] = false;
+                    ComboEvent[2] = false;
+                    ComboBase.gameObject.SetActive(false);
+                    ComboNumImages[0].gameObject.SetActive(false);
+                    ComboNumImages[1].gameObject.SetActive(false);
+                    ComboNumImages[2].gameObject.SetActive(false);
+                }
+                ComboColor.a = ComboEventTime;
+                ComboBase.color = ComboColor;
+                for (int i = 0; i < 3; i++)
+                {
+                    ComboNumImages[i].color = ComboColor;
+                }
+            }
 
 
+            //몬스터가 데미지를 입으면 색을 빨간색으로 해주는 이밴트
+            if (DamageEvent == true)
+            {
+                if (DamageTime <= 1)
+                {
+                    DamageTime += Time.deltaTime * 2;
+                    DamageColor.g = DamageTime;
+                    DamageColor.b = DamageTime;
+                    EnemyAnim.skeleton.SetColor(DamageColor);
+                }
+                else
+                {
+                    DamageEvent = false;
+                    DamageTime = 0f;
+                    EnemyAnim.skeleton.SetColor(new Color(1, 1, 1));
+                }
             }
 
             if (thePuzzle.state == PuzzleManager.State.BattleEvent)
@@ -388,24 +382,6 @@ public class BattleManager : MonoBehaviour
     }
 
 
-    public void UILoad()
-    {
-        //GameTime -= Time.deltaTime;
-        //EnemyHpImage.fillAmount = ((float)CurrentHp / (float)MaxHp);
-        //if (GameTime < 0)
-        //{
-
-        //    Debug.Log("타임 오버");
-        //    BattleStart = false;
-        //    theFade.FadeIn();
-        //}
-        //else if (CurrentHp <= 0)
-        //{
-        //    Debug.Log("배틀 승리");
-        //    EndBattle();
-
-        //}
-    }
 
     public void TakeDamage(int DamageCount)
     {

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CH_Beryl_Ingame_spine_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: d69081f2cea7ad944a2bde9fa44e404b, type: 2}
+  - {fileID: 11400000, guid: 8a83966bde3558145943f976ebea3f9e, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: f97b6024b43afd840a16a62991ed4f7a, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 3044aa9f88c6c7c4789502b14cfada84, type: 3}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

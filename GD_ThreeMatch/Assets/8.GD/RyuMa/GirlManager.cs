@@ -19,7 +19,6 @@ public class GirlHero
     public float IllustPosY;
     public float IllustSize;
     public float ClickY;
-    public Material SdMaterials;
     public SkeletonDataAsset SdDatae;
     public float SdSize;
     [Space]

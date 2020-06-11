@@ -129,7 +129,6 @@ public class PlayerCube : MonoBehaviour
     public void SetSpine(int _SelNum, string _SkinName)
     {
         thePuzzle.selectGirl = (SelectGirl)_SelNum;
-        SpinMesh.material = theGirl.Girls[_SelNum].SdMaterials;
         anim.skeletonDataAsset = theGirl.Girls[_SelNum].SdDatae;
         if (_SkinName != "")
             anim.initialSkinName = _SkinName;

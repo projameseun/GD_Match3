@@ -52,32 +52,31 @@ public class Cube : MonoBehaviour
     }
 
 
-
-    private void FixedUpdate()
+    private void Update()
     {
         if (Move == true)
         {
             this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed);
 
-    
-            if(Vector2.Distance(this.transform.position, TargetVec) <= Speed/2)
+
+            if (Vector2.Distance(this.transform.position, TargetVec) <= Speed / 2)
             {
                 this.transform.position = TargetVec;
                 Move = false;
 
-                if(OnlyOneEvent == true)
+                if (OnlyOneEvent == true)
                 {
                     thePuzzle.CubeEvent = true;
                     OnlyOneEvent = false;
                 }
 
             }
-                
+
         }
 
         if (DestroyEvent == true)
         {
-            DestoryTime -= Time.deltaTime*1.5f;
+            DestoryTime -= Time.deltaTime * 1.5f;
 
             if (DestoryTime < 0.5f)
             {
@@ -102,12 +101,11 @@ public class Cube : MonoBehaviour
                     DestroyCubeEvent();
                 }
 
-               
+
             }
             color.a = DestoryTime;
             SpriteRen.color = color;
         }
-
     }
 
 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CH_Aliec_Ingame_spine_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: a494d99cc51a4ea4c8148f964a17144c, type: 2}
+  - {fileID: 11400000, guid: 2538b149d7644ae44879d15aa5fa6684, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 847d5ef84559cc345862866de4c63f2b, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 559938a6a6d3885448714035fd2e9664, type: 3}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

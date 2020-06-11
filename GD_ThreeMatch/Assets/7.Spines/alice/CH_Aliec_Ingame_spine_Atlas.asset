@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: CH_Aliec_Ingame_spine_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: f8b5a858c6534db40a71b49c9a5599ff, type: 3}
+  atlasFile: {fileID: 4900000, guid: 1e523eefe931fb840862bb98f3a2d202, type: 3}
   materials:
-  - {fileID: 2100000, guid: a4c154bd1af0da84c92013fb15204e9f, type: 2}
+  - {fileID: 2100000, guid: b5c0574347151df478ecff589dc30fe5, type: 2}

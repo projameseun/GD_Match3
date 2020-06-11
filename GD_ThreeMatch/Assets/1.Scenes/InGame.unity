@@ -3567,7 +3567,7 @@ MonoBehaviour:
   Girls:
   - Name: "\uC5D8\uB9AC\uC2A4"
     SkinName: 
-    IllustMaterials: {fileID: 0}
+    IllustMaterials: {fileID: 2100000, guid: a5fc6f24ba94f174c92ef64346c34887, type: 2}
     IllustData: {fileID: 11400000, guid: f14f275f87827bf419a5929caea0fca2, type: 2}
     SkillImage: {fileID: 21300000, guid: f541f76cafcc9344497908c358064553, type: 3}
     IllustPosX:
@@ -3576,8 +3576,7 @@ MonoBehaviour:
     IllustPosY: -6.5
     IllustSize: 1
     ClickY: 3
-    SdMaterials: {fileID: 2100000, guid: a4c154bd1af0da84c92013fb15204e9f, type: 2}
-    SdDatae: {fileID: 11400000, guid: 8dc3ac99e077aa64d8bee69eaead2eb5, type: 2}
+    SdDatae: {fileID: 11400000, guid: d79551e3fcc3a784c973f7582c107f68, type: 2}
     SdSize: 0.2
     selectGirl: 0
     nodeColor: 0
@@ -3595,7 +3594,6 @@ MonoBehaviour:
     IllustPosY: 0
     IllustSize: 0
     ClickY: 0
-    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
     SdSize: 0
     selectGirl: 0
@@ -3616,8 +3614,7 @@ MonoBehaviour:
     IllustPosY: -7
     IllustSize: 0.9
     ClickY: 0
-    SdMaterials: {fileID: 2100000, guid: 739fe450315ce6e4c9cb2e883a0f7bda, type: 2}
-    SdDatae: {fileID: 11400000, guid: ae68ac5c2dd13b244b3be89676b11db7, type: 2}
+    SdDatae: {fileID: 11400000, guid: d4270de70ef25744685e4f81572a0373, type: 2}
     SdSize: 0.12
     selectGirl: 2
     nodeColor: 2
@@ -3635,7 +3632,6 @@ MonoBehaviour:
     IllustPosY: 0
     IllustSize: 0
     ClickY: 0
-    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
     SdSize: 0
     selectGirl: 0
@@ -3654,7 +3650,6 @@ MonoBehaviour:
     IllustPosY: 0
     IllustSize: 0
     ClickY: 0
-    SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
     SdSize: 0
     selectGirl: 0
@@ -4926,7 +4921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 8dc3ac99e077aa64d8bee69eaead2eb5, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: d4270de70ef25744685e4f81572a0373, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -4968,7 +4963,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4c154bd1af0da84c92013fb15204e9f, type: 2}
+  - {fileID: 2100000, guid: 0af47faf2c5801744853dfc00571d74f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5006,7 +5001,7 @@ Transform:
   m_GameObject: {fileID: 1084506280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.602, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7

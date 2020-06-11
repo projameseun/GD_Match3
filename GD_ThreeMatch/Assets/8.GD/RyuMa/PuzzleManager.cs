@@ -30,6 +30,10 @@ public enum Direction
 
 public class PuzzleManager : MonoBehaviour
 {
+
+
+
+
     public enum GameMode
     {
         MoveMap,
@@ -1071,7 +1075,20 @@ public class PuzzleManager : MonoBehaviour
             {
                 EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
             }
-
+            for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
+            {
+                for (int i = 0; i <= theMoveMap.TopRight; i++)
+                {
+                    if (theMoveMap.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
+                    {
+                        if (theMoveMap.Slots[i + Hor].nodeColor != NodeColor.NC6_Player &&
+                            theMoveMap.Slots[i + Hor].cube != null)
+                        {
+                            theMoveMap.Slots[i + Hor].cube.gameObject.SetActive(false);
+                        }
+                    }
+                }
+            }
             state = State.BattleEvent;
             theBattle.battleState = BattleState.BattleInit;
 
