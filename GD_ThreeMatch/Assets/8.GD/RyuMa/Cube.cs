@@ -194,7 +194,6 @@ public class Cube : MonoBehaviour
     //큐브가 터진 후 이밴트
     public void DestroyCubeEvent()
     {
-        Debug.Log("Test");
         for (int i = 0; i < 2; i++)
         {
             if (thePuzzle.playerUIs[i].nodeColor == nodeColor)

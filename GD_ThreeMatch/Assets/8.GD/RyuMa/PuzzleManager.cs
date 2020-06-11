@@ -556,8 +556,17 @@ public class PuzzleManager : MonoBehaviour
 
                 for (int i = 0; i < _Map.Slots.Length; i++)
                 {
-                    if (i > _Map.TopRight &&
-                        i < _Map.BottomLeft &&
+                    if (i >0 && i < _Map.TopRight)
+                    {
+                        theBattleMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
+                        theBattleMap.Slots[i].SlotSheet.ObjectNum = 0;
+                        theBattleMap.Slots[i].SlotSheet.SkinName = "0";
+                        theObject.SpawnSlotPanel(_Map.Slots[i].transform.position,
+                           SlotObjectSheet.S_0_Spin, mapType, i);
+                    }
+
+
+                    if (i < _Map.BottomLeft &&
                         i % _Map.Horizontal != 0 &&
                         i % _Map.Horizontal != _Map.TopRight)
                     {
@@ -1056,7 +1065,7 @@ public class PuzzleManager : MonoBehaviour
             MoveUI.SetActive(false);
             BattleUI.SetActive(true);
             gameMode = GameMode.Battle;
-
+            CubeBar.transform.localPosition = new Vector3(0, 2.5f, 0);
             for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
             {
                 EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
@@ -1069,7 +1078,7 @@ public class PuzzleManager : MonoBehaviour
         else if (gameMode == GameMode.Battle)
         {
             IllustSlot.transform.position = MovePos.transform.position;
-            CubeBar.transform.localPosition = new Vector3(0, 2.5f, 0);
+            CubeBar.transform.localPosition = new Vector3(0, -1.7f, 0);
             theCamera.SetBound(theMoveMap, theMoveMap.transform.position, true);
             theBattle.Resetting();
             MoveUI.SetActive(true);

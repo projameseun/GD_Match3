@@ -131,6 +131,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public float MaxComboCoolDown = 1f;
     [HideInInspector] public SkillUI CurrentSkillUI;  //현재 사용중인 혹은 사용 하려는 스킬의 UI대상
     [HideInInspector] public float AttackEffectEventTime;
+    [HideInInspector] public bool SkillEventOnOff = false; //스킬을 하고있는지 아닌지 체크
 
     //쓰래기통
     List<int> ColorNumList = new List<int>();

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: CH_Beryl_Ingame_spine_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: edf7363ae5b26154b89aea7508fc1895, type: 3}
+  atlasFile: {fileID: 4900000, guid: b6959303141095b4cbcd4618031dfdc7, type: 3}
   materials:
-  - {fileID: 2100000, guid: d23c187aa5747634b90383339eababb6, type: 2}
+  - {fileID: 2100000, guid: 739fe450315ce6e4c9cb2e883a0f7bda, type: 2}

@@ -376,7 +376,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
       
         thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
-      
+        theBattle.SkillEventOnOff = true;
     }
 
 

@@ -115,7 +115,7 @@ public class PlayerCube : MonoBehaviour
 
                 ChangeAnim("Idle", true);
                 this.transform.position = VisitVec;
-
+                theBattle.SkillEventOnOff = false;
             }
 
 
@@ -131,6 +131,8 @@ public class PlayerCube : MonoBehaviour
         if (_SkinName != "")
             anim.initialSkinName = _SkinName;
         anim.Initialize(true);
+        this.transform.localScale = new Vector3(theGirl.Girls[_SelNum].SdSize,
+            theGirl.Girls[_SelNum].SdSize, 1);
         selectGirl = theGirl.Girls[_SelNum].selectGirl;
         anim.state.Event += HandleEvent;
     }

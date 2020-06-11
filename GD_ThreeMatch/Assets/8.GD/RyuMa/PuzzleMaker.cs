@@ -243,6 +243,8 @@ public class PuzzleMaker : MonoBehaviour
                i <= theMoveMap.BottomRight))
             {
                 theMoveMap.Slots[i].SlotSheet.SlotSheet = objectType;
+                theMoveMap.Slots[i].SlotSheet.ObjectNum = SkinObjectNum;
+                theMoveMap.Slots[i].SlotSheet.SkinName = SkinName;
                 theMoveMap.Slots[i].TestText.enabled = true;
                 theMoveMap.Slots[i].TestText.text = ((int)objectType).ToString();
             }

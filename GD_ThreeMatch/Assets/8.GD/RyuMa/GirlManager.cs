@@ -21,6 +21,7 @@ public class GirlHero
     public float ClickY;
     public Material SdMaterials;
     public SkeletonDataAsset SdDatae;
+    public float SdSize;
     [Space]
     [Header("DB")]
 

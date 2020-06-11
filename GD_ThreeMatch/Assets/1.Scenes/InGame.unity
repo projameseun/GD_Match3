@@ -703,6 +703,7 @@ MonoBehaviour:
   MaxComboCoolDown: 2
   CurrentSkillUI: 0
   AttackEffectEventTime: 0
+  SkillEventOnOff: 0
 --- !u!1 &100645579
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &101562605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3575,8 +3576,9 @@ MonoBehaviour:
     IllustPosY: -6.5
     IllustSize: 1
     ClickY: 3
-    SdMaterials: {fileID: 0}
-    SdDatae: {fileID: 11400000, guid: b9f8572c9973d3b47b931d9d44ef5f8b, type: 2}
+    SdMaterials: {fileID: 2100000, guid: a4c154bd1af0da84c92013fb15204e9f, type: 2}
+    SdDatae: {fileID: 11400000, guid: 8dc3ac99e077aa64d8bee69eaead2eb5, type: 2}
+    SdSize: 0.2
     selectGirl: 0
     nodeColor: 0
     Hp: 2500
@@ -3595,6 +3597,7 @@ MonoBehaviour:
     ClickY: 0
     SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
+    SdSize: 0
     selectGirl: 0
     nodeColor: 3
     Hp: 0
@@ -3604,7 +3607,7 @@ MonoBehaviour:
     Exp: 0
   - Name: "\uBCA0\uB9B4"
     SkinName: 
-    IllustMaterials: {fileID: 0}
+    IllustMaterials: {fileID: 2100000, guid: a5fc6f24ba94f174c92ef64346c34887, type: 2}
     IllustData: {fileID: 11400000, guid: f14f275f87827bf419a5929caea0fca2, type: 2}
     SkillImage: {fileID: 21300000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
     IllustPosX:
@@ -3613,8 +3616,9 @@ MonoBehaviour:
     IllustPosY: -7
     IllustSize: 0.9
     ClickY: 0
-    SdMaterials: {fileID: 0}
-    SdDatae: {fileID: 11400000, guid: ca95a28e3296cc140a256d88f2c11f7c, type: 2}
+    SdMaterials: {fileID: 2100000, guid: 739fe450315ce6e4c9cb2e883a0f7bda, type: 2}
+    SdDatae: {fileID: 11400000, guid: ae68ac5c2dd13b244b3be89676b11db7, type: 2}
+    SdSize: 0.12
     selectGirl: 2
     nodeColor: 2
     Hp: 133
@@ -3633,6 +3637,7 @@ MonoBehaviour:
     ClickY: 0
     SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
+    SdSize: 0
     selectGirl: 0
     nodeColor: 3
     Hp: 0
@@ -3651,6 +3656,7 @@ MonoBehaviour:
     ClickY: 0
     SdMaterials: {fileID: 0}
     SdDatae: {fileID: 0}
+    SdSize: 0
     selectGirl: 0
     nodeColor: 3
     Hp: 0
@@ -4673,7 +4679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: 884}
+  m_AnchoredPosition: {x: 341, y: 915}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1044435395
@@ -4920,7 +4926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: b9f8572c9973d3b47b931d9d44ef5f8b, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 8dc3ac99e077aa64d8bee69eaead2eb5, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -4937,8 +4943,10 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 1
   maskMaterials:
-    materialsMaskDisabled: []
-    materialsInsideMask: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: a4c154bd1af0da84c92013fb15204e9f, type: 2}
+    materialsInsideMask:
+    - {fileID: 2100000, guid: b7b6f8d40cca02d4ca3756e579c3d676, type: 2}
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: Idle
@@ -4962,7 +4970,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a32505e7d7ff784cbf44c6a206950e1, type: 2}
+  - {fileID: 2100000, guid: b7b6f8d40cca02d4ca3756e579c3d676, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5062,7 +5070,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 2100}
+  m_SizeDelta: {x: 1200, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091323263
 MonoBehaviour:
@@ -8918,7 +8926,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: 885}
+  m_AnchoredPosition: {x: 167, y: 1183}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1723246045
