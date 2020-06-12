@@ -18,9 +18,9 @@ public class GirlHero
     public float[] IllustPosX;
     public float IllustPosY;
     public float IllustSize;
-    public float ClickY;
     public SkeletonDataAsset SdDatae;
     public float SdSize;
+    public float SkillTime;
     [Space]
     [Header("DB")]
 

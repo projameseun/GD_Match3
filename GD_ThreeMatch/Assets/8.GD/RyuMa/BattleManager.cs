@@ -184,9 +184,6 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-
-
-
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
 
@@ -268,7 +265,8 @@ public class BattleManager : MonoBehaviour
                 //처음 배틀 시작할 때 세팅을 해준다
                 if (battleState == BattleState.BattleInit)
                 {
-                    thePuzzle.CheckEnemyCubeCount();
+                    if(theFade.FadeEnd == true)
+                        thePuzzle.CheckEnemyCubeCount();
                 }
                 // 몬스터가 공격할 때 실행한다
                 else if (battleState == BattleState.EnemyAttack)

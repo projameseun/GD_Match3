@@ -85,7 +85,7 @@ public class PlayerCube : MonoBehaviour
             else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
             {
                 theBattle.AddComboValue();
-                thePuzzle.CubeEvent = true;
+                
                 if (skillType == SkillType.ST0_SpecialCube)
                 {
                     theMatch.SpecialCubeEvent(Map, SlotNum, Type);

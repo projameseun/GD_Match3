@@ -390,25 +390,48 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject AliceSkillEvent(Vector2 _StartPos)
     {
-        GameObject AliceObj = FindObj("AliceSkill",false);
-        AliceObj.transform.position = _StartPos;
-        AliceObj.transform.localScale = new Vector3(1, 1, 1);
-        AliceObj.SetActive(true);
-        AliceObj.GetComponent<ParticleManager>().ParticleSetting(false,
-            null, 1f);
-
         if (thePuzzle.Player.GirlEffect == true)
         {
-            GameObject AliceObj2 = FindObj("AliceSkill", false);
-            AliceObj2.transform.position = _StartPos;
-            AliceObj2.transform.localScale = new Vector3(-1, 1, 1);
-            AliceObj2.SetActive(true);
-            AliceObj2.GetComponent<ParticleManager>().ParticleSetting(false,
+            StartCoroutine(AliceSkillExtra1(_StartPos));
+        }
+        else
+        {
+            GameObject AliceObj = FindObj("AliceSkill", false);
+            AliceObj.transform.position = _StartPos;
+            AliceObj.SetActive(true);
+            AliceObj.transform.eulerAngles = new Vector3(0, 0, 0);
+            AliceObj.GetComponent<ParticleManager>().ParticleSetting(false,
                 null, 1f);
+            return AliceObj;
+        }
+        return null;
+    }
+
+    IEnumerator AliceSkillExtra1(Vector2 _StartPos)
+    {
+        int Count = 5;
+        while (true)
+        {
+            GameObject AliceObj = FindObj("AliceSkill", false);
+            AliceObj.transform.position = _StartPos;
+            AliceObj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0.0f,360.0f));
+            AliceObj.SetActive(true);
+            AliceObj.GetComponent<ParticleManager>().ParticleSetting(false,
+                null, 1f);
+            Count--;
+           
+              
+            yield return new WaitForSeconds(0.1f);
+            if (Count == 0)
+            {
+                thePuzzle.CubeEvent = true;
+                break;
+            }
         }
 
-        return AliceObj;
+
     }
+
 
     public GameObject AliceAnimEvent(Vector2 _StartPos, Direction _Dir)
     {

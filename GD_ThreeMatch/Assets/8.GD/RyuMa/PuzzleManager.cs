@@ -1025,7 +1025,7 @@ public class PuzzleManager : MonoBehaviour
     }
 
     //큐브와 큐브의 위치를 바꾸는 기능
-    public void ChangeCube(MapManager _Map, int _Num, int _OtherNum, bool _Event = false, float Speed = 0.005f)
+    public void ChangeCube(MapManager _Map, int _Num, int _OtherNum, bool _Event = false)
     {
 
         if (_Map.Slots[_Num].nodeColor == NodeColor.NC6_Player ||
@@ -1040,14 +1040,14 @@ public class PuzzleManager : MonoBehaviour
         NodeColor nodeColor = _Map.Slots[_Num].nodeColor;
 
         //_Num의 정보를 _OtherNum의 정보로 덮어쓰기
-        _Map.Slots[_Num].cube.MoveCube(_Map.Slots[_OtherNum].transform.position, false, Speed);
+        _Map.Slots[_Num].cube.MoveCube(_Map.Slots[_OtherNum].transform.position, false);
 
         _Map.Slots[_Num].cube = _Map.Slots[_OtherNum].cube;
         _Map.Slots[_Num].nodeColor = _Map.Slots[_OtherNum].nodeColor;
         _Map.Slots[_Num].cube.nodeColor = _Map.Slots[_OtherNum].cube.nodeColor;
 
         //_OtherNum을 복제정보로 덮어쓰기
-        _Map.Slots[_OtherNum].cube.MoveCube(_Map.Slots[_Num].transform.position, _Event, Speed);
+        _Map.Slots[_OtherNum].cube.MoveCube(_Map.Slots[_Num].transform.position, _Event);
         _Map.Slots[_OtherNum].cube = Cube.GetComponent<Cube>();
         _Map.Slots[_OtherNum].nodeColor = nodeColor;
         _Map.Slots[_OtherNum].cube.nodeColor = nodeColor;
@@ -1114,7 +1114,6 @@ public class PuzzleManager : MonoBehaviour
 
         state = State.FillBlank;
         bool FirstEvent = true;
-        float Speed = 0.01f;
         bool PlayerMove = false; // 플레이어 큐브가 움직였는지 확인 true면 움직임
         if (_Map.direction == Direction.Down)
         {
@@ -1134,7 +1133,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i - _Map.Horizontal, FirstEvent, Speed);
+                            ChangeCube(_Map, Num + i, Num + i - _Map.Horizontal, FirstEvent);
                             if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                                 _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1147,7 +1146,7 @@ public class PuzzleManager : MonoBehaviour
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i - _Map.Horizontal].transform.position;
                             _Map.Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent, Speed);
+                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1174,7 +1173,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i + _Map.Horizontal, FirstEvent, Speed);
+                            ChangeCube(_Map, Num + i, Num + i + _Map.Horizontal, FirstEvent);
                             if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                                 _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1187,7 +1186,7 @@ public class PuzzleManager : MonoBehaviour
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i + _Map.Horizontal].transform.position;
                             _Map.Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent, Speed);
+                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1213,7 +1212,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i + 1, FirstEvent, Speed);
+                            ChangeCube(_Map, Num + i, Num + i + 1, FirstEvent);
                             if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                                 _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1226,7 +1225,7 @@ public class PuzzleManager : MonoBehaviour
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i + 1].transform.position;
                             _Map.Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent, Speed);
+                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1252,7 +1251,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i - 1, FirstEvent, Speed);
+                            ChangeCube(_Map, Num + i, Num + i - 1, FirstEvent);
                             if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                                 _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1265,7 +1264,7 @@ public class PuzzleManager : MonoBehaviour
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i - 1].transform.position;
                             _Map.Slots[Num + i].cube = NewCube.GetComponent<Cube>();
-                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent, Speed);
+                            NewCube.GetComponent<Cube>().MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1694,7 +1693,7 @@ public class PuzzleManager : MonoBehaviour
     // 전투 시작전 적 큐브를 깍는 이밴트
     public void CheckEnemyCubeCount()
     {
-        if (EventTime <= 1)
+        if (EventTime <= 0.5f)
         {
             EventTime += Time.deltaTime;
         }
@@ -1706,7 +1705,7 @@ public class PuzzleManager : MonoBehaviour
                 return;
             }
             else
-                EventTime = 1f;
+                EventTime = 0.5f;
 
             EventEnd = true; // false일 경우 이밴트가 실행 true일 경우 이밴트 종료
             for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
@@ -1757,7 +1756,7 @@ public class PuzzleManager : MonoBehaviour
                 theObject.SpeechEvent(vec, "전투 시작!!!", 3);
                 theBattle.BattleStart = true;
                 theBattle.battleState = BattleState.Null;
-
+                theFade.FadeEnd = false;
             }
 
 

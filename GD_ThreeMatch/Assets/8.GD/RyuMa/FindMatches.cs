@@ -891,7 +891,6 @@ public class FindMatches : MonoBehaviour
         if (CurrentCheckBoomTime < 0.1f)
             theBattle.AddComboValue();
 
-
         CurrentCheckBoomTime = MaxCheckBoomTime;
         switch (_Type)
         {
@@ -939,52 +938,54 @@ public class FindMatches : MonoBehaviour
     //앨리스 스킬
     public void SkillAilce(MapManager _Map, int _SlotNum)
     {
-        bool Special = true;
+        float InvokeTime = theGirl.Girls[(int)thePuzzle.selectGirl].SkillTime;
+
+        //bool Special = true;
         float Damage = theGirl.Girls[(int)SelectGirl.G1_Alice].SkillDamage;
         if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
+            //if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
+            //{
+            //    Special = false;
+            //}
 
-            _Map.Slots[_SlotNum - _Map.Horizontal].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum - _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
 
         if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
+            //if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
+            //{
+            //    Special = false;
+            //}
 
-            _Map.Slots[_SlotNum + _Map.Horizontal].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum + _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
 
         if (_Map.Slots[_SlotNum - 1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum - 1].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
+            //if (_Map.Slots[_SlotNum - 1].nodeColor == NodeColor.NC7_Special)
+            //{
+            //    Special = false;
+            //}
 
-            _Map.Slots[_SlotNum - 1].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
         if (_Map.Slots[_SlotNum + 1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum + 1].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
+            //if (_Map.Slots[_SlotNum + 1].nodeColor == NodeColor.NC7_Special)
+            //{
+            //    Special = false;
+            //}
 
-            _Map.Slots[_SlotNum + 1].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
-        if (_Map.Slots[_SlotNum].nodeColor == NodeColor.NC7_Special)
-        {
-            Special = false;
-        }
+        //if (_Map.Slots[_SlotNum].nodeColor == NodeColor.NC7_Special)
+        //{
+        //    Special = false;
+        //}
 
-        _Map.Slots[_SlotNum].cube.DestroyCube(Special, true, Damage);
+        _Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage, InvokeTime);
 
 
     }

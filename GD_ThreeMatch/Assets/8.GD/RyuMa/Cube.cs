@@ -36,6 +36,7 @@ public class Cube : MonoBehaviour
 
 
 
+
     private PuzzleManager thePuzzle;
     private ObjectManager theObject;
     private BattleManager theBattle;
@@ -50,31 +51,88 @@ public class Cube : MonoBehaviour
         thePuzzle = FindObjectOfType<PuzzleManager>();
         SpriteRen = GetComponent<SpriteRenderer>();
     }
+    //private void Update()
+    //{
+    //    //if (Move == true)
+    //    //{
+    //    //    this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed * Time.deltaTime);
 
 
-    private void Update()
+    //    //    if (Vector2.Distance(this.transform.position, TargetVec) <= (Speed * Time.deltaTime) / 2)
+    //    //    {
+    //    //        this.transform.position = TargetVec;
+    //    //        Move = false;
+
+    //    //        if (OnlyOneEvent == true)
+    //    //        {
+    //    //            thePuzzle.CubeEvent = true;
+    //    //            OnlyOneEvent = false;
+    //    //        }
+
+    //    //    }
+
+    //    //}
+    //    if (DestroyEvent == true)
+    //    {
+    //        DestoryTime -= Time.deltaTime * 1.5f;
+
+    //        if (DestoryTime < 0.5f)
+    //        {
+    //            if (OnlyOneEvent == true)
+    //            {
+    //                OnlyOneEvent = false;
+    //                thePuzzle.CubeEvent = true;
+    //            }
+
+    //            if (SpecialCube == true)
+    //            {
+    //                color.a = 1;
+    //                DestroyEvent = false;
+    //                SpriteRen.color = color;
+    //                SpriteRen.sprite = thePuzzle.SpecialSprites[(int)specialCubeType];
+    //                SpecialCube = false;
+    //                return;
+
+    //            }
+    //            else
+    //            {
+    //                DestroyCubeEvent();
+    //            }
+
+
+    //        }
+    //        color.a = DestoryTime;
+    //        SpriteRen.color = color;
+    //    }
+
+    //}
+
+
+    IEnumerator MoveCor()
     {
-        if (Move == true)
+        while (Move)
         {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed);
+            this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed * Time.deltaTime);
 
 
-            if (Vector2.Distance(this.transform.position, TargetVec) <= Speed / 2)
+            if (Vector2.Distance(this.transform.position, TargetVec) <= (Speed * Time.deltaTime) / 2)
             {
                 this.transform.position = TargetVec;
                 Move = false;
-
-                if (OnlyOneEvent == true)
-                {
-                    thePuzzle.CubeEvent = true;
-                    OnlyOneEvent = false;
-                }
-
             }
-
+            yield return new WaitForFixedUpdate();
+        }
+        if (OnlyOneEvent == true)
+        {
+            thePuzzle.CubeEvent = true;
+            OnlyOneEvent = false;
         }
 
-        if (DestroyEvent == true)
+    }
+    IEnumerator DestroyCor()
+    {
+
+        while (DestroyEvent)
         {
             DestoryTime -= Time.deltaTime * 1.5f;
 
@@ -93,7 +151,7 @@ public class Cube : MonoBehaviour
                     SpriteRen.color = color;
                     SpriteRen.sprite = thePuzzle.SpecialSprites[(int)specialCubeType];
                     SpecialCube = false;
-                    return;
+                    break;
 
                 }
                 else
@@ -105,20 +163,23 @@ public class Cube : MonoBehaviour
             }
             color.a = DestoryTime;
             SpriteRen.color = color;
+
+            yield return new WaitForFixedUpdate();
         }
     }
 
-
-    public void MoveCube(Vector2 _vec, bool _Event = false, float _Speed = 0.5f)
+    public void MoveCube(Vector2 _vec, bool _Event = false, float _Speed = 4f)
     {
         Move = true;
         TargetVec = _vec;
         OnlyOneEvent = _Event;
         Speed = _Speed;
+        if(this.gameObject.activeSelf == true)
+            StartCoroutine(MoveCor());
     }
 
     // 큐브 파괴이밴트, 한번만 true로 할것
-    public void DestroyCube(bool _Event, bool SpecialEffect = false, float Skill = 0)
+    public void DestroyCube(bool _Event, bool SpecialEffect = false, float Skill = 0, float _Invoke = 0)
     {
         OnlyOneEvent = _Event;
         DestroyEvent = true;
@@ -153,22 +214,20 @@ public class Cube : MonoBehaviour
         if (SpecialEffect == true)
         {
             SkillEffectEvent(thePuzzle.selectGirl);
-            //if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
-            //{
-            //    SkillEffectEvent(thePuzzle.selectGirl);
-            //}
-            //else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
-            //{
-            //    if (theBattle.CurrentSkillUI == SkillUI.UI2_Null)
-            //    {
-            //        SkillEffectEvent(thePuzzle.selectGirl);
-            //    }
-            //    else
-            //    {
-            //        SkillEffectEvent((SelectGirl)thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].nodeColor);
-            //    }
-            //}
+
         }
+        if (_Invoke > 0)
+        {
+            Invoke("DestroyCorStart", _Invoke);
+        }
+        else
+        {
+            DestroyCorStart();
+        }
+
+        
+
+
     }
 
 
@@ -312,9 +371,16 @@ public class Cube : MonoBehaviour
         theMatch.SpecialCubeEvent(_Map, Num, specialCubeType);
     }
 
+    void DestroyCorStart()
+    {
+        if (this.gameObject.activeSelf == true)
+            StartCoroutine(DestroyCor());
+    }
+
 
     public void Resetting()
     {
+        StopCoroutine(MoveCor());
         specialCubeType = SpecialCubeType.Null;
         Move = false;
         SpecialCube = false;

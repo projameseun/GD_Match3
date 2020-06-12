@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FadeManager : MonoBehaviour
 {
+    public Sprite[] LoadingSpirtes;
+
     public GameObject FadeBase;
     public Image FadeImage;
+    public SpriteRenderer LoadingImage;
+    public Image LoadingTextImage;
     public bool FadeEvent;
-
-    Color color = new Color();
+    public bool FadeEnd;
+    Color color = new Color(1,1,1,0);
     bool[] FadeE = new bool[2];
     float FadeTime = 0f;
 
@@ -30,14 +34,18 @@ public class FadeManager : MonoBehaviour
                     FadeTime += Time.deltaTime * 2;
                     color.a = FadeTime;
                     FadeImage.color = color;
+                    LoadingTextImage.color = color;
+                    LoadingImage.color = color;
                 }
                 else
                 {
                     FadeE[1] = true;
                     FadeEvent = true;
-                    FadeTime = 1f;
+                    FadeTime = 3f;
                     color.a = FadeTime;
                     FadeImage.color = color;
+                    LoadingTextImage.color = color;
+                    LoadingImage.color = color;
                 }
             }
             else
@@ -47,15 +55,19 @@ public class FadeManager : MonoBehaviour
                     FadeTime -= Time.deltaTime * 2;
                     color.a = FadeTime;
                     FadeImage.color = color;
+                    LoadingTextImage.color = color;
+                    LoadingImage.color = color;
                 }
                 else
                 {
                     FadeE[1] = false;
                     FadeE[0] = false;
-
+                    FadeEnd = true;
                     FadeTime = 0f;
                     color.a = FadeTime;
                     FadeImage.color = color;
+                    LoadingTextImage.color = color;
+                    LoadingImage.color = color;
                     FadeBase.SetActive(false);
                 }
             }
@@ -65,11 +77,14 @@ public class FadeManager : MonoBehaviour
     public void FadeIn()
     {
         FadeBase.SetActive(true);
-        color = new Color(0, 0, 0, 0);
+        color = new Color(1, 1, 1, 0);
         FadeImage.color = color;
+        FadeImage.color = color;
+        LoadingTextImage.color = color;
+        LoadingImage.color = color;
         FadeE[0] = true;
         FadeTime = 0f;
-
+        LoadingImage.sprite = LoadingSpirtes[Random.Range(0, LoadingSpirtes.Length)];
 
     }
 
