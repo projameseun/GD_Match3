@@ -55,6 +55,7 @@ public class SlotObject : MonoBehaviour
         }
         else if (_Sheet == SlotObjectSheet.ST_1_Enemy)
         {
+            theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f,this.transform.position.y +0.07f));
             this.GetComponent<SpriteRenderer>().sprite = theObject.EnemySlotSprite;
 
         }

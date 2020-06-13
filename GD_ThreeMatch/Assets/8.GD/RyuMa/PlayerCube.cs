@@ -171,7 +171,7 @@ public class PlayerCube : MonoBehaviour
         {
             theBattle.SkillEventOnOff = true;
             float Resize = theGirl.Girls[(int)thePuzzle.selectGirl].SdSize;
-            Resize *= 1.5f;
+            Resize *= 2.5f;
             this.transform.localScale = new Vector3(Resize, Resize, 1);
         }
             

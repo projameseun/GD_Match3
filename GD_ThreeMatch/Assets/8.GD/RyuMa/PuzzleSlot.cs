@@ -11,7 +11,7 @@ using static HappyRyuMa.GameMaker;
 public enum NodeColor
 {
     NC0_Blue = 0,
-    NC1_Orange,
+    NC1_Green,
     NC2_Pink,
     NC3_Red,
     NC4_Yellow,

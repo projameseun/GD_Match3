@@ -69,7 +69,7 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] SpecialSprites;
     public Sprite[] PlayerSkillSprites;
     public Sprite[] PlayerSkillBGSprites;
-    public CameraButtonManager[] CameraButton;
+ 
 
 
     [Space]
@@ -117,6 +117,11 @@ public class PuzzleManager : MonoBehaviour
 
 
 
+    public bool Test;
+    public float TestTime;
+
+
+
 
     private ObjectManager theObject;
     private FindMatches theMatch;
@@ -127,10 +132,11 @@ public class PuzzleManager : MonoBehaviour
     private SoundManager theSound;
     private GameManager theGM;
     private PuzzleMaker theMaker;
+    private CameraButtonManager CameraButton;
     private void Start()
     {
-        BT_ChangeDirection(1);
 
+        CameraButton = FindObjectOfType<CameraButtonManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theGM = FindObjectOfType<GameManager>();
         theSound = FindObjectOfType<SoundManager>();
@@ -142,12 +148,21 @@ public class PuzzleManager : MonoBehaviour
         theCamera = FindObjectOfType<CameraManager>();
         theGirl = FindObjectOfType<GirlManager>();
 
+
+        BT_ChangeDirection(1);
     }
+
 
 
 
     private void Update()
     {
+        if (Test == true)
+        {
+            TestTime += Time.deltaTime;
+        }
+
+
         PuzzleUpdate();
 
         //큐브 없이 큐브 이밴트를 사용해야 할 때 사용
@@ -170,9 +185,9 @@ public class PuzzleManager : MonoBehaviour
     {
         if (gameMode == GameMode.MoveMap)
         {
-            if (theFade.FadeEvent == true)
+            if (theFade.FadeOutEnd == true)
             {
-                theFade.FadeEvent = false;
+                theFade.FadeOutEnd = false;
                 SetSlot(theBattleMap, true);
                 theBattle.SetBattle(theBattle.SelectEnemyNum);
                 ChangeGameMode();
@@ -332,9 +347,9 @@ public class PuzzleManager : MonoBehaviour
         }
         else if (gameMode == GameMode.Battle)
         {
-            if (theFade.FadeEvent == true)
+            if (theFade.FadeOutEnd == true)
             {
-                theFade.FadeEvent = false;
+                theFade.FadeOutEnd = false;
                 ChangeGameMode();
 
 
@@ -1091,7 +1106,7 @@ public class PuzzleManager : MonoBehaviour
             }
             state = State.BattleEvent;
             theBattle.battleState = BattleState.BattleInit;
-
+            theFade.FadeInEvent();
         }
         else if (gameMode == GameMode.Battle)
         {
@@ -1371,7 +1386,7 @@ public class PuzzleManager : MonoBehaviour
                 if (rand <= _Map.Slots[i].monsterSheet.EnemyChance[Index])
                 {
                     theBattle.SelectEnemyNum = _Map.Slots[i].monsterSheet.EnemyIndex[Index];
-                    theFade.FadeIn();
+                    theFade.FadeOutEvent();
                     state = State.Ready;
                     return true;
                 }
@@ -1628,7 +1643,7 @@ public class PuzzleManager : MonoBehaviour
             theMoveMap.direction = (Direction)_Num;
             for (int i = 0; i < 4; i++)
             {
-                CameraButton[i].ButtonChange(_Num);
+                CameraButton.ButtonChange(_Num);
             }
             Player.ChangeDirection(theMoveMap.direction);
         }
@@ -1699,14 +1714,7 @@ public class PuzzleManager : MonoBehaviour
         }
         else
         {
-            EventTime += Time.deltaTime;
-            if (EventTime < 1.1f)
-            {
-                return;
-            }
-            else
-                EventTime = 0.5f;
-
+            EventTime =0;
             EventEnd = true; // false일 경우 이밴트가 실행 true일 경우 이밴트 종료
             for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
             {
@@ -1750,13 +1758,14 @@ public class PuzzleManager : MonoBehaviour
 
             if (EventEnd == true)
             {
+                EventEnd = false;
                 state = State.Ready;
                 Vector2 vec = new Vector2(playerUIs[0].transform.position.x,
                     playerUIs[0].transform.position.y + 1.8f);
                 theObject.SpeechEvent(vec, "전투 시작!!!", 3);
                 theBattle.BattleStart = true;
                 theBattle.battleState = BattleState.Null;
-                theFade.FadeEnd = false;
+                theFade.FadeInEnd = false;
             }
 
 

@@ -1,0 +1,104 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HitParticle : MonoBehaviour
+{
+
+    public ParticleSystem[] Particle;
+
+
+    public void SetColor(NodeColor _Nod)
+    {
+
+        if (_Nod == NodeColor.NC0_Blue)
+        {
+            var Par1 = Particle[0].main;
+            Par1.startColor = new Color(1f, 0.258f, 0.82f, 0.611f);
+
+            var Par2 = Particle[1].main;
+            Par2.startColor = new Color(1, 0.58f, 0.9f, 1);
+
+            var Par3 = Particle[2].main;
+            Par3.startColor = new Color(1, 0.6f, 0.9f, 0.61f);
+
+            var Par4 = Particle[3].main;
+            Par4.startColor = new Color(1f, 0.3f, 0.8f, 1);
+
+            var Par5 = Particle[4].main;
+            Par5.startColor = new Color(0.3f, 0.05f, 0.31f, 0.56f);
+        }
+        else if (_Nod == NodeColor.NC1_Green)
+        {
+            var Par1 = Particle[0].main;
+            Par1.startColor = new Color(0.4f, 1, 0.22f, 0.6f);
+
+            var Par2 = Particle[1].main;
+            Par2.startColor = new Color(0.6f, 1, 0.6f, 1);
+
+            var Par3 = Particle[2].main;
+            Par3.startColor = new Color(0.62f, 1, 0.607f, 0.6f);
+
+            var Par4 = Particle[3].main;
+            Par4.startColor = new Color(0.15f, 1, 0.1f,1);
+
+            var Par5 = Particle[4].main;
+            Par5.startColor = new Color(0, 0.31f, 0, 0.56f);
+        }
+        else if (_Nod == NodeColor.NC2_Pink)
+        {
+            var Par1 = Particle[0].main;
+            Par1.startColor = new Color(1, 0.29f, 0.21f, 0.6f);
+
+            var Par2 = Particle[1].main;
+            Par2.startColor = new Color(1, 0.58f, 0.55f, 1);
+
+            var Par3 = Particle[2].main;
+            Par3.startColor = new Color(1, 0.6f, 0.6f, 0.6f);
+
+            var Par4 = Particle[3].main;
+            Par4.startColor = new Color(1, 0.64f, 0.58f, 0.6f);
+
+            var Par5 = Particle[4].main;
+            Par5.startColor = new Color(0.3f, 0, 0, 0.48f);
+
+        }
+        else if (_Nod == NodeColor.NC3_Red)
+        {
+            var Par1 = Particle[0].main;
+            Par1.startColor = new Color(1, 0.15f, 0.18f, 0.6f);
+
+            var Par2 = Particle[1].main;
+            Par2.startColor = new Color(1, 0.3f, 0.31f, 1);
+
+            var Par3 = Particle[2].main;
+            Par3.startColor = new Color(1, 0.6f, 0.6f, 0.6f);
+
+            var Par4 = Particle[3].main;
+            Par4.startColor = new Color(1, 0.12f, 0.18f, 1);
+
+            var Par5 = Particle[4].main;
+            Par5.startColor = new Color(0.3f, 0, 0, 0.56f);
+        }
+        else if (_Nod == NodeColor.NC4_Yellow)
+        {
+            var Par1 = Particle[0].main;
+            Par1.startColor = new Color(1,1, 0.12f, 0.61f);
+
+            var Par2 = Particle[1].main;
+            Par2.startColor = new Color(1, 1, 0.3f, 1);
+
+            var Par3 = Particle[2].main;
+            Par3.startColor = new Color(1, 1, 0.6f, 0.6f);
+
+            var Par4 = Particle[3].main;
+            Par4.startColor = new Color(1, 0.97f, 0.11f, 1);
+
+            var Par5 = Particle[4].main;
+            Par5.startColor = new Color(0.33f, 0.27f, 0, 0.56f);
+        }
+    }
+
+
+
+}

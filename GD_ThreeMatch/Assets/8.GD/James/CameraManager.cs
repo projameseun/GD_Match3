@@ -159,7 +159,6 @@ public class CameraManager : MonoBehaviour
                 MoveVec = new Vector3(
                     this.transform.position.x,
                     MaxBound.y - VRadious, -10);
-                Down = false;
             }
             if (MoveVec.y - VRadious < MinBound.y)
             {
@@ -167,7 +166,6 @@ public class CameraManager : MonoBehaviour
                 MoveVec = new Vector3(
                     this.transform.position.x,
                     MinBound.y + VRadious, -10);
-                Down = false;
             }
             if (MoveVec.x - HRadious < MinBound.x)
             {
@@ -175,7 +173,6 @@ public class CameraManager : MonoBehaviour
                 MoveVec = new Vector3(
                     MinBound.x + HRadious,
                     this.transform.position.y, -10);
-                Down = false;
             }
             if (MoveVec.x + HRadious > MaxBound.x)
             {
@@ -183,12 +180,9 @@ public class CameraManager : MonoBehaviour
                 MoveVec = new Vector3(
                     MaxBound.x - HRadious -0.01f,
                     this.transform.position.y, -10);
-                Down = false;
             }
             this.transform.position = Vector3.Lerp(this.transform.position, MoveVec, Speed * Time.fixedDeltaTime);
         }
-
-       
     }
 
 
@@ -267,49 +261,4 @@ public class CameraManager : MonoBehaviour
 
 
     }
-
-
-    public void MoveDown(int _Direction)
-    {
-        Down = true;
-        if (_Direction == 0)  // 위
-        {
-            direction = Direction.Up;
-
-        }
-        else if (_Direction == 1) //아래
-        {
-            direction = Direction.Down;
-
-        }
-        else if (_Direction == 2) // 왼쪽
-        {
-            direction = Direction.Left;
-      
-        }
-        else if (_Direction == 3) //오른쪽
-        {
-            direction = Direction.Right;
-     
-        }
-
-    }
-
-    public void MoveUp()
-    {
-        Down = false;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

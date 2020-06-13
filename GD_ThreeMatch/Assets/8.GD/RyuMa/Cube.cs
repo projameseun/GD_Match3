@@ -124,6 +124,7 @@ public class Cube : MonoBehaviour
         }
         if (OnlyOneEvent == true)
         {
+          
             thePuzzle.CubeEvent = true;
             OnlyOneEvent = false;
         }
@@ -339,7 +340,7 @@ public class Cube : MonoBehaviour
             {
                 theBattle.PlayerAttackEffectList.Add(CubeEffect);
             }
-            theObject.CubeParticleEvent(this.transform.position);
+            theObject.CubeParticleEvent(this.transform.position, nodeColor);
 
         }
 

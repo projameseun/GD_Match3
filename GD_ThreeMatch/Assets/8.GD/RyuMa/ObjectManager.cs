@@ -30,6 +30,7 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public List<GameObject> ClickParticles;
     [HideInInspector] public List<GameObject> Portals;
     [HideInInspector] public List<GameObject> ObjectSpines;
+    [HideInInspector] public List<GameObject> EnemySkulls;
 
 
     //게임오브젝트 프리팹
@@ -47,7 +48,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject ClickParticle;
     public GameObject Portal;
     public GameObject ObjectSpine;
-
+    public GameObject EnemySkull;
+    
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
     void Start()
@@ -148,6 +150,12 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             ObjectSpines.Add(x);
         }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(EnemySkull);
+            x.SetActive(false);
+            EnemySkulls.Add(x);
+        }
 
         //ClickParticles
         //SlotPanel
@@ -163,11 +171,20 @@ public class ObjectManager : MonoBehaviour
         Cube.GetComponent<CubeEffect>().DestroyCount = 1;
 
         SpeechEvent(this.transform.position, "test", 1);
-        CubeParticleEvent(this.transform.position);
+      
+        
         GameObject AttackEffect = AttackEffectEvent(this.transform.position, this.gameObject, 0, 0, false, AttackEffectType.ET0_Null);
         AttackEffect.GetComponent<AttackEffect>().DestroyCount = 1;
 
         DamageTextEvent(this.transform.position, "test", 1);
+
+
+        for (int i = 0; i < 10; i++)
+        {
+
+            CubeParticleEvent(this.transform.position, NodeColor.NC2_Pink);
+        }
+
 
 
         for (int i = 0; i < 10; i++)
@@ -247,6 +264,10 @@ public class ObjectManager : MonoBehaviour
                 List = ObjectSpines;
                 Frefab = ObjectSpine;
                 break;
+            case "EnemySkull":
+                List = EnemySkulls;
+                Frefab = EnemySkull;
+                break;
 
         }
 
@@ -317,6 +338,15 @@ public class ObjectManager : MonoBehaviour
         return Portal;
     }
 
+
+    public GameObject SpawnEnemySkull(Vector2 StartVec)
+    {
+        GameObject Skull = FindObj("EnemySkull");
+        Skull.transform.position = StartVec;
+        return Skull;
+    }
+
+
     // 큐브 이펙트를 사용하는 함수
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
         CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart,float _Speed = 2000)
@@ -341,10 +371,11 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    public GameObject CubeParticleEvent(Vector2 TargetVec)
+    public GameObject CubeParticleEvent(Vector2 TargetVec,NodeColor _Nod)
     {
         GameObject Paricle = FindObj("CubeP", false);
         Paricle.transform.position = TargetVec;
+        Paricle.GetComponent<HitParticle>().SetColor(_Nod);
         Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 2);
         Paricle.SetActive(true);
         return Paricle;

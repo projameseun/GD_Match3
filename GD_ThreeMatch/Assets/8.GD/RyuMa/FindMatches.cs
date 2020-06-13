@@ -487,7 +487,7 @@ public class FindMatches : MonoBehaviour
                                     {
                                         _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
                                         _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Horizon;
+                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
                                         _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
                                         break;
                                     }
@@ -503,7 +503,7 @@ public class FindMatches : MonoBehaviour
                                     {
                                         _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
                                         _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Horizon;
+                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
                                         _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
                                         break;
                                     }
@@ -517,7 +517,7 @@ public class FindMatches : MonoBehaviour
 
                                 _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
                                 _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
+                                _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
                                 _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
                                 Debug.Log("특수블럭 대각선 생성");
 

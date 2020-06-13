@@ -265,8 +265,12 @@ public class BattleManager : MonoBehaviour
                 //처음 배틀 시작할 때 세팅을 해준다
                 if (battleState == BattleState.BattleInit)
                 {
-                    if(theFade.FadeEnd == true)
+                    if (theFade.FadeInEnd == true)
+                    {
                         thePuzzle.CheckEnemyCubeCount();
+                    }
+                    
+                        
                 }
                 // 몬스터가 공격할 때 실행한다
                 else if (battleState == BattleState.EnemyAttack)
@@ -601,7 +605,7 @@ public class BattleManager : MonoBehaviour
             battleState = BattleState.PlayerDie;
             Debug.Log("전멸");
             BattleStart = false;
-            theFade.FadeIn();
+            theFade.FadeOutEvent();
 
         }
 
@@ -665,7 +669,11 @@ public class BattleManager : MonoBehaviour
                 }
             }
             
-            MaxNumSize = 0.7f + (ComboNum * 0.03f);
+            MaxNumSize = 0.7f + (ComboNum * 0.08f);
+            if (MaxNumSize > 1.5f)
+            {
+                MaxNumSize = 1.5f;
+            }
             CurrentNumSize = MaxNumSize - 0.2f;
             OverNumSize = MaxNumSize * 1.5f;
 
