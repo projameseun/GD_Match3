@@ -53,24 +53,29 @@ public class GameManager : MonoBehaviour
 {
 
     float deltaTime = 0.0f;
+    Color GUIColor = new Color(1, 1, 1, 1);
+    GUIStyle style = new GUIStyle();
+    int w = 0, h = 0;
+    Rect rect;
+    private void Awake()
+    {
+        w = Screen.width;
+        h = Screen.height;
 
+        style = new GUIStyle();
+
+        rect = new Rect(0, 0, w, h * 2 / 100);
+        style.alignment = TextAnchor.UpperLeft;
+        style.fontSize = h * 2 / 100;
+        style.normal.textColor = GUIColor;
+    }
     void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
     }
     void OnGUI()
     {
-        int w = Screen.width, h = Screen.height;
-
-        GUIStyle style = new GUIStyle();
-
-        Rect rect = new Rect(0, 0, w, h * 2 / 100);
-        style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = h * 2 / 100;
-        style.normal.textColor = new Color(1, 1, 1, 1);
-        float msec = deltaTime * 1000.0f;
-        float fps = 1.0f / deltaTime;
-        string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+        string text = string.Format("{0:0.0} ms ({1:0.} fps)", deltaTime * 1000.0f, 1.0f / deltaTime);
         GUI.Label(rect, text, style);
     }
 

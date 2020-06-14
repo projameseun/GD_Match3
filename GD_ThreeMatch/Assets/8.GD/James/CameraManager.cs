@@ -41,8 +41,7 @@ public class CameraManager : MonoBehaviour
     private PuzzleMaker theMaker;
     private void Awake()
     {
-        Camera camera = GetComponent<Camera>();
-        Rect rect = camera.rect;
+        Rect rect = MainCamera.rect;
         float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16);
         float scalewidth = 1f / scaleheight;
 
@@ -56,7 +55,7 @@ public class CameraManager : MonoBehaviour
             rect.width = scalewidth;
             rect.x = (1f - scalewidth) / 2f;
         }
-        camera.rect = rect;
+        MainCamera.rect = rect;
 
 
     }
@@ -65,7 +64,6 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         theMaker = FindObjectOfType<PuzzleMaker>();
-        MainCamera = GetComponent<Camera>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
 

@@ -117,9 +117,6 @@ public class PuzzleManager : MonoBehaviour
     WaitForSeconds Wait = new WaitForSeconds(0.1f);
 
 
-    public bool Test;
-    public float TestTime;
-
 
 
 
@@ -157,12 +154,6 @@ public class PuzzleManager : MonoBehaviour
 
     private void Update()
     {
-        if (Test == true)
-        {
-            TestTime += Time.deltaTime;
-        }
-
-
         PuzzleUpdate();
 
         //큐브 없이 큐브 이밴트를 사용해야 할 때 사용

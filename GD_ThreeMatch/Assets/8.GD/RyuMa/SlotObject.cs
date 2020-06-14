@@ -61,7 +61,6 @@ public class SlotObject : MonoBehaviour
         }
         else if (_Sheet == SlotObjectSheet.ST_2_Portal)
         {
-            //this.GetComponent<SpriteRenderer>().sprite = theObject.PortalSlotSprite;
             theObject.SpawnPortal(this.transform.position);
         }
         else if (_Sheet == SlotObjectSheet.ST_0_SlotPanel)

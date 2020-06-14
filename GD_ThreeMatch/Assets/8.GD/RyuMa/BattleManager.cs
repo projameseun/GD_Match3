@@ -47,7 +47,6 @@ public class EnemyBase
     public string EnemyName;
     public EnemyTribe enemyTribe;
     public EnemyRating enemyRating;
-    public Material IllustMaterials;
     public SkeletonDataAsset IllustData;
     public int MinDamageValue;
     public int MaxDamageValue;
@@ -105,7 +104,6 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
     [Space]
     // UI,오브젝트
-    public GameObject EnemySpine;
     public SkeletonAnimation EnemyAnim;
     public TextMeshPro EnemyCountText;
     public CubeUI[] EnemyCubeUi;
@@ -312,9 +310,7 @@ public class BattleManager : MonoBehaviour
         ComboBase.gameObject.SetActive(false);
         ComboValue = 1;
         SelectEnemyNum = _enemyNum;
-        EnemySpine.GetComponent<SkeletonAnimation>().skeletonDataAsset = Enemy[_enemyNum].IllustData;
-        EnemySpine.GetComponent<MeshRenderer>().material = Enemy[_enemyNum].IllustMaterials;
-        EnemyAnim = EnemySpine.GetComponent<SkeletonAnimation>();
+        EnemyAnim.skeletonDataAsset = Enemy[_enemyNum].IllustData;
         EnemyAnim.Initialize(true);
         EnemyAnim.state.Event += HandleEvent;
         CurrentEnemyCount = 0;

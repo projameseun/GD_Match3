@@ -53,7 +53,7 @@ public class ObjectManager : MonoBehaviour
 
 
     List<GameObject> List = new List<GameObject>();
-
+    Vector2 SpawnVec = new Vector2(100, 0);
 
 
     private PuzzleManager thePuzzle;
@@ -75,90 +75,105 @@ public class ObjectManager : MonoBehaviour
         for (int i = 0; i < 50; i++)
         {
             GameObject x = Instantiate(Cube);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             Cubes.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(CubeParticle);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             CubeParticles.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(CubeEf);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             CubeEfs.Add(x);
         }
         for (int i = 0; i < 5; i++)
         {
             GameObject x = Instantiate(SpeechObj);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             SpeechBubbles.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(AttackEffect);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             AttackEffects.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(DamageText);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             DamageTexts.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(AliceSkill);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             AliceSkills.Add(x);
         }
         for (int i = 0; i < 1; i++)
         {
             GameObject x = Instantiate(AliceAnimEffect);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             AliceAnimEffects.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(SlimeSkillParticle);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             SlimeSkillParticles.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(SlimeAttackParticle);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             SlimeAttackParticles.Add(x);
         }
         for (int i = 0; i < 50; i++)
         {
             GameObject x = Instantiate(SlotPanel);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             SlotPanels.Add(x);
         }
         for (int i = 0; i < 2; i++)
         {
             GameObject x = Instantiate(ClickParticle);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             ClickParticles.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(Portal);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             Portals.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(ObjectSpine);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             ObjectSpines.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(EnemySkull);
+            x.transform.position = SpawnVec;
             x.SetActive(false);
             EnemySkulls.Add(x);
         }
@@ -329,7 +344,6 @@ public class ObjectManager : MonoBehaviour
             return ObjectSpin;
         }
         GameObject Slot = FindObj("SlotPanel");
-        Slot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         Slot.GetComponent<SlotObject>().SetSlotObject(Pos, _Sheet, _mapType, _SlotNum);
         return Slot;
     }

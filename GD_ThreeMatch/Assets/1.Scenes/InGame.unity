@@ -605,7 +605,6 @@ MonoBehaviour:
   - EnemyName: "\uBBF8\uB2C8 \uC2AC\uB77C\uC784"
     enemyTribe: 0
     enemyRating: 0
-    IllustMaterials: {fileID: 2100000, guid: 2649af6209fe5c949a829a547e03162a, type: 2}
     IllustData: {fileID: 11400000, guid: 74cd008a4ba579244a990c21886af83b, type: 2}
     MinDamageValue: 6
     MaxDamageValue: 7
@@ -619,7 +618,6 @@ MonoBehaviour:
   - EnemyName: "\uBBF8\uB2C8\uC5C4 \uC2AC\uB77C\uC784"
     enemyTribe: 1
     enemyRating: 1
-    IllustMaterials: {fileID: 2100000, guid: b24883670bb9409409fdb80645632cef, type: 2}
     IllustData: {fileID: 0}
     MinDamageValue: 9
     MaxDamageValue: 10
@@ -633,7 +631,6 @@ MonoBehaviour:
   - EnemyName: "\uD0B9 \uC2AC\uB77C\uC784"
     enemyTribe: 1
     enemyRating: 2
-    IllustMaterials: {fileID: 0}
     IllustData: {fileID: 0}
     MinDamageValue: 10
     MaxDamageValue: 12
@@ -648,76 +645,6 @@ MonoBehaviour:
       SkillCount: 1
       Percentage: 100
       SkillCoolDown: 0
-  - EnemyName: 
-    enemyTribe: 0
-    enemyRating: 0
-    IllustMaterials: {fileID: 0}
-    IllustData: {fileID: 0}
-    MinDamageValue: 0
-    MaxDamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
-  - EnemyName: 
-    enemyTribe: 0
-    enemyRating: 0
-    IllustMaterials: {fileID: 0}
-    IllustData: {fileID: 0}
-    MinDamageValue: 0
-    MaxDamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
-  - EnemyName: 
-    enemyTribe: 0
-    enemyRating: 0
-    IllustMaterials: {fileID: 0}
-    IllustData: {fileID: 0}
-    MinDamageValue: 0
-    MaxDamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
-  - EnemyName: 
-    enemyTribe: 0
-    enemyRating: 0
-    IllustMaterials: {fileID: 0}
-    IllustData: {fileID: 0}
-    MinDamageValue: 0
-    MaxDamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
-  - EnemyName: 
-    enemyTribe: 0
-    enemyRating: 0
-    IllustMaterials: {fileID: 0}
-    IllustData: {fileID: 0}
-    MinDamageValue: 0
-    MaxDamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
-  - EnemyName: 
-    enemyTribe: 0
-    enemyRating: 0
-    IllustMaterials: {fileID: 0}
-    IllustData: {fileID: 0}
-    MinDamageValue: 0
-    MaxDamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
-  - EnemyName: 
-    enemyTribe: 0
-    enemyRating: 0
-    IllustMaterials: {fileID: 0}
-    IllustData: {fileID: 0}
-    MinDamageValue: 0
-    MaxDamageValue: 0
-    Count: 5
-    CubeCount: 0500000005000000
-    skillSlots: []
   EnemySkill:
   - SkillName: "\uC2AC\uB77C\uC784 \uC5B4\uD0DD"
     MultiplyValue: 1
@@ -747,7 +674,6 @@ MonoBehaviour:
   - {fileID: -7922259505332819902, guid: 729a18456fadac64fb87e7d368e9a0b0, type: 3}
   - {fileID: -3564385159854144882, guid: 729a18456fadac64fb87e7d368e9a0b0, type: 3}
   battleState: 0
-  EnemySpine: {fileID: 1689186297}
   EnemyAnim: {fileID: 1689186299}
   EnemyCountText: {fileID: 2141745053}
   EnemyCubeUi:
@@ -4056,12 +3982,12 @@ PrefabInstance:
     - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
         type: 3}
@@ -8458,7 +8384,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2021313383}
-  m_PlaneDistance: 300
+  m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -9238,8 +9164,6 @@ MonoBehaviour:
   AutoEvent: 0
   SelectNum: 0
   OtherNum: 0
-  Test: 0
-  TestTime: 0
 --- !u!114 &1703859106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10203,7 +10127,7 @@ GameObject:
   - component: {fileID: 1911329563}
   - component: {fileID: 1911329562}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: FrameBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10225,7 +10149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -396.1, y: 950}
+  m_AnchoredPosition: {x: -396.1, y: 930.35}
   m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1911329562
@@ -10695,7 +10619,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 200
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -10743,7 +10667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 1
   direction: 0
-  MainCamera: {fileID: 0}
+  MainCamera: {fileID: 2021313383}
   CameraSpeed: 4
   Speed: 10
   Down: 0
