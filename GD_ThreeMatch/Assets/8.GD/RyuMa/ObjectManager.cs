@@ -72,7 +72,7 @@ public class ObjectManager : MonoBehaviour
 
     public void Init()
     {
-        for (int i = 0; i < 170; i++)
+        for (int i = 0; i < 50; i++)
         {
             GameObject x = Instantiate(Cube);
             x.SetActive(false);
@@ -84,7 +84,7 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             CubeParticles.Add(x);
         }
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(CubeEf);
             x.SetActive(false);
@@ -96,7 +96,7 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             SpeechBubbles.Add(x);
         }
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(AttackEffect);
             x.SetActive(false);
@@ -132,7 +132,7 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             SlimeAttackParticles.Add(x);
         }
-        for (int i = 0; i < 170; i++)
+        for (int i = 0; i < 50; i++)
         {
             GameObject x = Instantiate(SlotPanel);
             x.SetActive(false);
@@ -285,12 +285,11 @@ public class ObjectManager : MonoBehaviour
                 return List[i];
             }
         }
-
+        
         //만약 모든 리스트에 오브젝트들이 활성화되어있다면 오브젝트를 추가하고 넣는다
         GameObject X = Instantiate(Frefab);
         X.SetActive(_Active);
         List.Add(X);
-
         return X;
     }
 

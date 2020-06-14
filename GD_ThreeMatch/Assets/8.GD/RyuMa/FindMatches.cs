@@ -888,7 +888,7 @@ public class FindMatches : MonoBehaviour
     public void SpecialCubeEvent(MapManager _Map, int _SlotNum, SpecialCubeType _Type)
     {
         thePuzzle.CubeEvent = true;
-        if (CurrentCheckBoomTime < 0.1f)
+        if (CurrentCheckBoomTime < MaxCheckBoomTime /2f)
             theBattle.AddComboValue();
 
         CurrentCheckBoomTime = MaxCheckBoomTime;
@@ -939,8 +939,6 @@ public class FindMatches : MonoBehaviour
     public void SkillAilce(MapManager _Map, int _SlotNum)
     {
         float InvokeTime = theGirl.Girls[(int)thePuzzle.selectGirl].SkillTime;
-
-        //bool Special = true;
         float Damage = theGirl.Girls[(int)SelectGirl.G1_Alice].SkillDamage;
         if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
         {
@@ -992,17 +990,15 @@ public class FindMatches : MonoBehaviour
 
     public void SkillBeryl(MapManager _Map, int _SlotNum)
     {
-        bool Special = true;
-        float Damage = theGirl.Girls[(int)SelectGirl.G3_Beryl].SkillDamage;
+        //엘리스 스킬 연출 나오면 지우기
+        thePuzzle.CubeEvent = true;
 
+
+        float Damage = theGirl.Girls[(int)SelectGirl.G3_Beryl].SkillDamage;
+        float InvokeTime = theGirl.Girls[(int)thePuzzle.selectGirl].SkillTime;
         // 11시
         if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
-
             _Map.Slots[_SlotNum - _Map.Horizontal -1].cube.DestroyCube(false, true, Damage);
         }
 
@@ -1011,10 +1007,6 @@ public class FindMatches : MonoBehaviour
 
         if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
 
             _Map.Slots[_SlotNum - _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage);
         }
@@ -1022,11 +1014,6 @@ public class FindMatches : MonoBehaviour
         // 7시
         if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
-
             _Map.Slots[_SlotNum + _Map.Horizontal - 1].cube.DestroyCube(false, true, Damage);
         }
 
@@ -1035,21 +1022,9 @@ public class FindMatches : MonoBehaviour
 
         if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeColor == NodeColor.NC7_Special)
-            {
-                Special = false;
-            }
-
             _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage);
         }
-
-
-        if (_Map.Slots[_SlotNum].nodeColor == NodeColor.NC7_Special)
-        {
-            Special = false;
-        }
-
-        _Map.Slots[_SlotNum].cube.DestroyCube(Special, true, Damage);
+        _Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage);
 
 
 

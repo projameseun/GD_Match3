@@ -199,6 +199,7 @@ public class PuzzleManager : MonoBehaviour
                     int SlotNum = CheckPlayerSlot(theMoveMap);
                     if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
                     {
+                        SetMoveCount(-1);
                         CheckPortal(SlotNum);
                         return;
                     }
@@ -1428,6 +1429,23 @@ public class PuzzleManager : MonoBehaviour
                     theMoveMap.Slots[i + Hor].cube.Resetting();
                     theMoveMap.Slots[i + Hor].cube = null;
                 }
+            }
+        }
+
+        // 맵을 새로 로드할때 엑티브를 꺼야할 오브젝트들
+
+        for (int i = 0; i < theObject.EnemySkulls.Count; i++)
+        {
+            if (theObject.EnemySkulls[i].activeSelf == true)
+            {
+                theObject.EnemySkulls[i].gameObject.SetActive(false);
+            }
+        }
+        for (int i = 0; i < theObject.ObjectSpines.Count; i++)
+        {
+            if (theObject.ObjectSpines[i].activeSelf == true)
+            {
+                theObject.ObjectSpines[i].gameObject.SetActive(false);
             }
         }
         for (int i = 0; i < theObject.SlotPanels.Count; i++)

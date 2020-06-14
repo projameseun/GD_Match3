@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2355358983056873697}
   - component: {fileID: 2403718918242539141}
   - component: {fileID: -5078099660150852196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObjectSpine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 323b0fab827733546a9e03fb2046cfc0, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 814d5679f3d78f144ae3b8b632101e46, type: 2}
+  skeletonDataAsset: {fileID: 0}
   initialSkinName: Map_1_0
   initialFlipX: 0
   initialFlipY: 0
@@ -111,9 +111,9 @@ MonoBehaviour:
   maskInteraction: 1
   maskMaterials:
     materialsMaskDisabled:
-    - {fileID: 2100000, guid: 42abc2bf87c6b594fb226e12b054aa4a, type: 2}
+    - {fileID: 0}
     materialsInsideMask:
-    - {fileID: 2100000, guid: 323b0fab827733546a9e03fb2046cfc0, type: 2}
+    - {fileID: 0}
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: 
@@ -134,4 +134,3 @@ MonoBehaviour:
   mesh: {fileID: 2355358983056873697}
   anim: {fileID: 2403718918242539141}
   AnimName: 
-  SkinName: 
