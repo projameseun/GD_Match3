@@ -115,7 +115,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     void Start()
     {
         DoubleClick = new bool[2] { false, false };
-        DownTime = new float[2] { 0, 0 };
+        DownTime = new float[3] { 0, 0, 0 };
         theBattle = FindObjectOfType<BattleManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theMatch = FindObjectOfType<FindMatches>();
@@ -309,8 +309,17 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     IEnumerator CheckDoubleClick()
     {
+        DownTime[2] = 0;
+
         while (true)
         {
+            DownTime[2] =+Time.deltaTime;
+
+            if (DownTime[2] > 2)
+                CheckCor = false;
+
+
+
             if (CheckCor == false)
                 break;
             if (DoubleClick[0] == true)
@@ -321,8 +330,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                     DownTime[0] = 0;
                     DoubleClick[0] = false;
                     CheckCor = false;
-
-                    Debug.Log("더블클릭 실패");
                 }
 
             }
@@ -333,7 +340,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 {
                     DownTime[0] = 0;
                     CheckCor = false;
-                    Debug.Log("더블클릭 실패");
                 }
             }
 
@@ -345,7 +351,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                     DownTime[1] = 0;
                     DoubleClick[1] = false;
                     CheckCor = false;
-                    Debug.Log("더블클릭 실패");
                 }
 
             }
@@ -356,15 +361,10 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 {
                     DownTime[1] = 0;
                     CheckCor = false;
-                    Debug.Log("더블클릭 실패");
                 }
                     
             }
-            Debug.Log("코르틴 확인");
             yield return new WaitForEndOfFrame();
-
-            
-
         }
     }
 

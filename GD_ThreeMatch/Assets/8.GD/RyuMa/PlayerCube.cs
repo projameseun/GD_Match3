@@ -119,6 +119,7 @@ public class PlayerCube : MonoBehaviour
                 ChangeAnim("Idle", true);
                 this.transform.position = VisitVec;
                 theBattle.SkillEventOnOff = false;
+                anim.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
             }
 
 
@@ -173,6 +174,7 @@ public class PlayerCube : MonoBehaviour
             float Resize = theGirl.Girls[(int)thePuzzle.selectGirl].SdSize;
             Resize *= 2.5f;
             this.transform.localScale = new Vector3(Resize, Resize, 1);
+            anim.maskInteraction = SpriteMaskInteraction.None;
         }
             
         anim.AnimationState.SetAnimation(0, _state, _Loop);

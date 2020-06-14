@@ -200,9 +200,9 @@ public class CameraManager : MonoBehaviour
         if (_Move == true)
         {
             MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x+ 0.3f;
-            MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 3f;
+            MaxBound.y = _Map.Slots[_Map.TopRight].transform.position.y + 2.9f;
             MinBound.x = _Map.Slots[_Map.BottomLeft].transform.position.x - 0.3f;
-            MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.3f;
+            MinBound.y = _Map.Slots[_Map.BottomLeft].transform.position.y - 2.8f;
 
 
             if (Math.Abs(MaxBound.x - MinBound.x) < 5.8)
