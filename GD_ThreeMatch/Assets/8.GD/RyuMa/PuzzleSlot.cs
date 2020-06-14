@@ -111,11 +111,13 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     private FindMatches theMatch;
     private PuzzleMaker theMaker;
     private BattleManager theBattle;
+    private ObjectManager theObject;
     // Start is called before the first frame update
     void Start()
     {
         DoubleClick = new bool[2] { false, false };
         DownTime = new float[3] { 0, 0, 0 };
+        theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theMatch = FindObjectOfType<FindMatches>();
@@ -134,6 +136,8 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         if (thePuzzle.SlotDown == false && thePuzzle.state == PuzzleManager.State.Ready &&
             nodeType != NodeType.Null)
         {
+
+            theObject.SpawnSelectSlot(this.transform.position);
             if (DownTime[0] <= 0)
             {
                 DoubleClick[0] = true;
@@ -172,6 +176,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
         if (thePuzzle.SlotDown == true && Down == true)
         {
+            theObject.SelectSlotP.SetActive(false);
             if (DoubleClick[0] == true && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
             {
                 DoubleClick[0] = false;

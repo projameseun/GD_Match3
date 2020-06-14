@@ -49,7 +49,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject Portal;
     public GameObject ObjectSpine;
     public GameObject EnemySkull;
-    
+    public GameObject SelectSlotP;
+
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
     void Start()
@@ -344,6 +345,13 @@ public class ObjectManager : MonoBehaviour
         GameObject Skull = FindObj("EnemySkull");
         Skull.transform.position = StartVec;
         return Skull;
+    }
+
+    public GameObject SpawnSelectSlot(Vector2 StartVec)
+    {
+        SelectSlotP.SetActive(true);
+        SelectSlotP.transform.position = StartVec;
+        return SelectSlotP;
     }
 
 

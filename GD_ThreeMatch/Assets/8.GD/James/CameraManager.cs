@@ -118,15 +118,9 @@ public class CameraManager : MonoBehaviour
                
             }
             else
-            { 
-                if(LerfTime >0)
-                    LerfTime -= Time.deltaTime;
-
-                if (LerfTime < 0.1f)
-                {
-                    LerfTime = 0;
-                    CurrentMoveSpeed = 0;
-                }
+            {
+                LerfTime = 0;
+                CurrentMoveSpeed = 0;
             }
 
             if (Down)
