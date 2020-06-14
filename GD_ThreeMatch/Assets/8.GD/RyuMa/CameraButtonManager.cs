@@ -6,11 +6,10 @@ using UnityEngine.EventSystems;
 using static HappyRyuMa.GameMaker;
 public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, IDragHandler
 {
-    public Direction direction;
     public Image[] ButtonImages;
     public Sprite[] ButtonSprite;
 
-    Direction CurrentDir;
+    public Direction CurrentDir;
     bool Down;
     public Vector2 CurrentVec;
     public float AngleZ;
@@ -27,6 +26,8 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
 
     public void ButtonChange(int _Dir)
     {
+        CurrentDir = (Direction)_Dir;
+
         for (int i = 0; i < ButtonImages.Length; i++)
         {
             if (i == _Dir)

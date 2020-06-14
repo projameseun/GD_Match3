@@ -749,7 +749,6 @@ MonoBehaviour:
   battleState: 0
   EnemySpine: {fileID: 1689186297}
   EnemyAnim: {fileID: 1689186299}
-  EnemyName: {fileID: 0}
   EnemyCountText: {fileID: 2141745053}
   EnemyCubeUi:
   - {fileID: 833817656}
@@ -829,7 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1277,7 +1276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2296,7 +2295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4810,8 +4809,10 @@ MonoBehaviour:
   calculateTangents: 0
   maskInteraction: 1
   maskMaterials:
-    materialsMaskDisabled: []
-    materialsInsideMask: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: d88e36b99f71f40489ffbbad31369ad3, type: 2}
+    materialsInsideMask:
+    - {fileID: 2100000, guid: b198a2d6641ca4d43850dbf3fad59d96, type: 2}
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
   _animationName: Idle
@@ -4835,7 +4836,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d88e36b99f71f40489ffbbad31369ad3, type: 2}
+  - {fileID: 2100000, guid: b198a2d6641ca4d43850dbf3fad59d96, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4855,7 +4856,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 50
 --- !u!33 &1084506283
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7054,6 +7055,7 @@ GameObject:
   - component: {fileID: 1399482875}
   - component: {fileID: 1399482874}
   - component: {fileID: 1399482873}
+  - component: {fileID: 1399482876}
   m_Layer: 5
   m_Name: ButtonManager
   m_TagString: Untagged
@@ -7092,7 +7094,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc36a3e2f3b2914898ba6745a89aaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
   ButtonImages:
   - {fileID: 100645582}
   - {fileID: 177843455}
@@ -7101,6 +7102,7 @@ MonoBehaviour:
   ButtonSprite:
   - {fileID: -561929279326125695, guid: a4dd33956107ee94c959e791fffc616d, type: 3}
   - {fileID: -537042273115584101, guid: 5ac76917fb85d494d99384f1edb791b3, type: 3}
+  CurrentDir: 0
   CurrentVec: {x: 0, y: 0}
   AngleZ: 0
 --- !u!114 &1399482874
@@ -7116,7 +7118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7139,6 +7141,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399482871}
   m_CullTransparentMesh: 0
+--- !u!114 &1399482876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399482871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
 --- !u!1 &1399807261
 GameObject:
   m_ObjectHideFlags: 0
@@ -10169,7 +10184,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

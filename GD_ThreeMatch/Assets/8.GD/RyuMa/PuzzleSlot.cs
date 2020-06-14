@@ -103,6 +103,10 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     float[] DownTime;
     Vector2 FirstVec;
     Vector2 CurrentVec;
+    bool CheckCor;
+
+
+
     private PuzzleManager thePuzzle;
     private FindMatches theMatch;
     private PuzzleMaker theMaker;
@@ -120,22 +124,14 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
 
     }
-    private void Update()
-    {
-        CheckDoubleClick();
-    }
-
-
-
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (theMaker.PuzzleMakerStart == true)
+        if (theMaker.PuzzleMakerStart == true || Down == true)
         {
             return;
         }
 
-
-        if (thePuzzle.SlotDown == false&& thePuzzle.state == PuzzleManager.State.Ready &&
+        if (thePuzzle.SlotDown == false && thePuzzle.state == PuzzleManager.State.Ready &&
             nodeType != NodeType.Null)
         {
             if (DownTime[0] <= 0)
@@ -144,8 +140,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             }
             else
             {
-
                 DoubleClick[1] = true;
+            }
+            if (CheckCor == false)
+            {
+                CheckCor = true;
+                DoubleClickCor();
             }
             Down = true;
             thePuzzle.SlotDown = true;
@@ -178,10 +178,10 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 if (DownTime[0] >= 0.4f)
                 {
                     DownTime[0] = 0;
+                    CheckCor = false;
                 }
                 else
                 {
-
                     DownTime[0] = 0.4f;
                 }
             }
@@ -190,7 +190,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 //Debug.Log("더블클릭 성공");
 
                 // 스킬을 사용할 수 있는지
-
+                CheckCor = false;
                 if (theBattle.SkillEventOnOff == false)
                 {
                     if (theBattle.CurrentSkillUI != SkillUI.UI2_Null)
@@ -260,46 +260,114 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
 
 
-    public void CheckDoubleClick()
-    {
-        if (DoubleClick[0] == true)
-        {
-            DownTime[0] += Time.deltaTime;
-            if (DownTime[0] > 0.4f)
-            {
-                DownTime[0] = 0;
-                DoubleClick[0] = false;
-            }
+    //public void CheckDoubleClick2()
+    //{
+    //    if (DoubleClick[0] == true)
+    //    {
+    //        DownTime[0] += Time.deltaTime;
+    //        if (DownTime[0] > 0.4f)
+    //        {
+    //            DownTime[0] = 0;
+    //            DoubleClick[0] = false;
+    //        }
                 
-        }
-        else if (DownTime[0] > 0 && DoubleClick[0] == false)
-        {
-            DownTime[0] -= Time.deltaTime;
-            if (DownTime[0] < 0)
-            {
-                DownTime[0] = 0;
-            }
-        }
+    //    }
+    //    else if (DownTime[0] > 0 && DoubleClick[0] == false)
+    //    {
+    //        DownTime[0] -= Time.deltaTime;
+    //        if (DownTime[0] < 0)
+    //        {
+    //            DownTime[0] = 0;
+    //        }
+    //    }
 
-        if (DoubleClick[1] == true)
-        {
-            DownTime[1] += Time.deltaTime;
-            if (DownTime[1] > 0.4f)
-            {
-                DownTime[1] = 0;
-                DoubleClick[1] = false;
-            }
+    //    if (DoubleClick[1] == true)
+    //    {
+    //        DownTime[1] += Time.deltaTime;
+    //        if (DownTime[1] > 0.4f)
+    //        {
+    //            DownTime[1] = 0;
+    //            DoubleClick[1] = false;
+    //        }
                
-        }
-        else if (DoubleClick[1] == false && DownTime[1] > 0)
-        {
-            DownTime[1] -= Time.deltaTime;
-            if (DownTime[1] < 0)
-                DownTime[1] = 0;
-        }
+    //    }
+    //    else if (DoubleClick[1] == false && DownTime[1] > 0)
+    //    {
+    //        DownTime[1] -= Time.deltaTime;
+    //        if (DownTime[1] < 0)
+    //            DownTime[1] = 0;
+    //    }
 
 
+    //}
+
+
+    public void DoubleClickCor()
+    {
+        StartCoroutine(CheckDoubleClick());
     }
+
+    IEnumerator CheckDoubleClick()
+    {
+        while (true)
+        {
+            if (CheckCor == false)
+                break;
+            if (DoubleClick[0] == true)
+            {
+                DownTime[0] += Time.deltaTime;
+                if (DownTime[0] > 0.4f)
+                {
+                    DownTime[0] = 0;
+                    DoubleClick[0] = false;
+                    CheckCor = false;
+
+                    Debug.Log("더블클릭 실패");
+                }
+
+            }
+            else if (DownTime[0] > 0 && DoubleClick[0] == false)
+            {
+                DownTime[0] -= Time.deltaTime;
+                if (DownTime[0] < 0)
+                {
+                    DownTime[0] = 0;
+                    CheckCor = false;
+                    Debug.Log("더블클릭 실패");
+                }
+            }
+
+            if (DoubleClick[1] == true)
+            {
+                DownTime[1] += Time.deltaTime;
+                if (DownTime[1] > 0.4f)
+                {
+                    DownTime[1] = 0;
+                    DoubleClick[1] = false;
+                    CheckCor = false;
+                    Debug.Log("더블클릭 실패");
+                }
+
+            }
+            else if (DoubleClick[1] == false && DownTime[1] > 0)
+            {
+                DownTime[1] -= Time.deltaTime;
+                if (DownTime[1] < 0)
+                {
+                    DownTime[1] = 0;
+                    CheckCor = false;
+                    Debug.Log("더블클릭 실패");
+                }
+                    
+            }
+            Debug.Log("코르틴 확인");
+            yield return new WaitForEndOfFrame();
+
+            
+
+        }
+    }
+
 
 
     public void SpecialCubeEvent()
@@ -318,14 +386,12 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         {
             thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
 
-            // 슬롯이 오른쪽
+
             Direction dir = Direction.Right;
             Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
-
+            // 슬롯이 오른쪽
             if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
             {
-                
-
                 StartVec.x -= 1.8f;
                 dir = Direction.Right;
             }
@@ -333,6 +399,16 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             {
                 StartVec.x += 1.8f;
                 dir = Direction.Left;
+            }
+
+            Debug.Log(SlotNum / thePuzzle.theBattleMap.Horizontal);
+            if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
+            {
+                StartVec.y -= 1f;
+            }
+            else
+            {
+                StartVec.y += 1f;
             }
             thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, cube.specialCubeType,thePuzzle.theBattleMap,SlotNum);
 
@@ -374,6 +450,17 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             StartVec.x += 1.8f;
             dir = Direction.Left;
         }
+
+        Debug.Log(SlotNum / thePuzzle.theBattleMap.Horizontal);
+        if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
+        {
+            StartVec.y -= 1f;
+        }
+        else
+        {
+            StartVec.y += 1f;
+        }
+
         thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, cube.specialCubeType,
             thePuzzle.theBattleMap, SlotNum);
 

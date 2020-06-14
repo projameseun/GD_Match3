@@ -107,7 +107,6 @@ public class BattleManager : MonoBehaviour
     // UI,오브젝트
     public GameObject EnemySpine;
     public SkeletonAnimation EnemyAnim;
-    public Text EnemyName;
     public TextMeshPro EnemyCountText;
     public CubeUI[] EnemyCubeUi;
     public Image[] ComboNumImages;
@@ -319,7 +318,6 @@ public class BattleManager : MonoBehaviour
         EnemyAnim.Initialize(true);
         EnemyAnim.state.Event += HandleEvent;
         CurrentEnemyCount = 0;
-        EnemyName.text = Enemy[SelectEnemyNum].EnemyName;
         SetEnemyCount(Enemy[_enemyNum].Count);
         EnemyCountText.text = Enemy[_enemyNum].Count.ToString();
         MaxHp = 0;

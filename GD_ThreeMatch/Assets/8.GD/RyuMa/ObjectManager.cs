@@ -468,11 +468,11 @@ public class ObjectManager : MonoBehaviour
     {
         GameObject AliceAnim = FindObj("AliceAnimEffect", false);
 
-        AliceAnim.transform.position = new Vector2(_StartPos.x, _StartPos.y +0.1f);
+        AliceAnim.transform.position = new Vector2(_StartPos.x, _StartPos.y +0.2f);
         if (_Dir == Direction.Left)
-            AliceAnim.transform.localScale = new Vector3(-2f, 2f, 1);
+            AliceAnim.transform.localScale = new Vector3(-4f, 4f, 1);
         else
-            AliceAnim.transform.localScale = new Vector3(2f, 2f, 1);
+            AliceAnim.transform.localScale = new Vector3(4f, 4f, 1);
 
         AliceAnim.SetActive(true);
         AliceAnim.GetComponent<ParticleManager>().ParticleSetting(false,
