@@ -42,97 +42,19 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 1e5b93d8aa696ce4c9e52238235d2116, type: 3}
-    - {fileID: 2800000, guid: 174de98d4d34b6f46ba201f6ea48dba4, type: 3}
-    - {fileID: 2800000, guid: afa5c16fbd5faff41baa1a27d1ee91a6, type: 3}
-    - {fileID: 2800000, guid: 94a1d6f7e2d38f9429aaf8135ac35d75, type: 3}
-    - {fileID: 2800000, guid: 210360fb672e35b42b8a11d41a04e34d, type: 3}
-    - {fileID: 2800000, guid: 850549099cfab374d8ef51b455a13af1, type: 3}
     - {fileID: 2800000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
-    - {fileID: 2800000, guid: b8cac078c04bd54439af49ee6043ce9f, type: 3}
-    - {fileID: 2800000, guid: da9a5bd4d7fbc3146a8f8ee9dc110ae8, type: 3}
-    - {fileID: 2800000, guid: b9cc604271b80cb4abbce0e02f9c45a7, type: 3}
-    - {fileID: 2800000, guid: a62f6b0ebdf71b9499a53eeaad346a5c, type: 3}
     - {fileID: 2800000, guid: 1f0d5695ee508af40ba2381104b47884, type: 3}
-    - {fileID: 2800000, guid: b8cac078c04bd54439af49ee6043ce9f, type: 3}
-    - {fileID: 2800000, guid: 12145da708207d34887c5453fd4f22d1, type: 3}
-    - {fileID: 2800000, guid: 8702678ed04c45b42a5dfb74a258c8fe, type: 3}
-    - {fileID: 2800000, guid: 399e3d6422eb51842b82218816c86864, type: 3}
-    - {fileID: 2800000, guid: 0397b0af6f6b43f48a87f52fa56b4cd9, type: 3}
-    - {fileID: 2800000, guid: 9941ab98006136548976be45d4fa69f9, type: 3}
-    - {fileID: 2800000, guid: 2c2aed5c3fc8dce4682fd2448a09a55f, type: 3}
-    - {fileID: 2800000, guid: 22da5324abcbe9d4ea9af1883b00f840, type: 3}
-    - {fileID: 2800000, guid: f541f76cafcc9344497908c358064553, type: 3}
-    - {fileID: 2800000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
-    - {fileID: 2800000, guid: 58040ff02e04dd74fa8609baffb2acc4, type: 3}
-    - {fileID: 2800000, guid: 201182e6dab547046b13a611e4fab4ab, type: 3}
-    - {fileID: 2800000, guid: 22da5324abcbe9d4ea9af1883b00f840, type: 3}
-    - {fileID: 2800000, guid: 2c2aed5c3fc8dce4682fd2448a09a55f, type: 3}
-    - {fileID: 2800000, guid: a8096fb05816f69428918a87578614ba, type: 3}
     - {fileID: 2800000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
-    - {fileID: 2800000, guid: 78e23f429e8edc44c802149b693eb81a, type: 3}
-    - {fileID: 2800000, guid: 117a6a7be9dd44543ba349f638236550, type: 3}
-    - {fileID: 2800000, guid: 13e9e185bb2e68c45a0964e38dbd6df2, type: 3}
-    totalSpriteSurfaceArea: 819064
+    totalSpriteSurfaceArea: 95294
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 01ed54700d6d56f41973f73cb01cef28, type: 3}
-  - {fileID: 21300000, guid: a8096fb05816f69428918a87578614ba, type: 3}
-  - {fileID: 21300000, guid: 58040ff02e04dd74fa8609baffb2acc4, type: 3}
-  - {fileID: 21300000, guid: b9cc604271b80cb4abbce0e02f9c45a7, type: 3}
-  - {fileID: 21300000, guid: 78e23f429e8edc44c802149b693eb81a, type: 3}
-  - {fileID: 21300000, guid: 22da5324abcbe9d4ea9af1883b00f840, type: 3}
-  - {fileID: 21300000, guid: 399e3d6422eb51842b82218816c86864, type: 3}
-  - {fileID: 21300000, guid: da9a5bd4d7fbc3146a8f8ee9dc110ae8, type: 3}
-  - {fileID: 21300000, guid: 13e9e185bb2e68c45a0964e38dbd6df2, type: 3}
   - {fileID: 21300000, guid: 1f0d5695ee508af40ba2381104b47884, type: 3}
-  - {fileID: 21300000, guid: 201182e6dab547046b13a611e4fab4ab, type: 3}
-  - {fileID: 21300000, guid: 12145da708207d34887c5453fd4f22d1, type: 3}
-  - {fileID: 21300000, guid: 94a1d6f7e2d38f9429aaf8135ac35d75, type: 3}
-  - {fileID: 21300000, guid: b8cac078c04bd54439af49ee6043ce9f, type: 3}
-  - {fileID: 21300000, guid: 9941ab98006136548976be45d4fa69f9, type: 3}
-  - {fileID: 21300000, guid: 1e5b93d8aa696ce4c9e52238235d2116, type: 3}
-  - {fileID: 21300000, guid: 850549099cfab374d8ef51b455a13af1, type: 3}
   - {fileID: 21300000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
   - {fileID: 21300000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
-  - {fileID: 21300000, guid: 117a6a7be9dd44543ba349f638236550, type: 3}
-  - {fileID: 21300000, guid: 210360fb672e35b42b8a11d41a04e34d, type: 3}
-  - {fileID: 21300000, guid: 2c2aed5c3fc8dce4682fd2448a09a55f, type: 3}
-  - {fileID: 21300000, guid: f541f76cafcc9344497908c358064553, type: 3}
-  - {fileID: 21300000, guid: 174de98d4d34b6f46ba201f6ea48dba4, type: 3}
-  - {fileID: 21300000, guid: a62f6b0ebdf71b9499a53eeaad346a5c, type: 3}
-  - {fileID: 21300000, guid: 8702678ed04c45b42a5dfb74a258c8fe, type: 3}
-  - {fileID: 21300000, guid: afa5c16fbd5faff41baa1a27d1ee91a6, type: 3}
-  - {fileID: 21300000, guid: 0397b0af6f6b43f48a87f52fa56b4cd9, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Ui_Cube_2
-  - Ui_1
-  - Cube_Bar_1
-  - UI_Arrow_on
-  - UI_Vertical
-  - HP_Bar_2
-  - Ui_Cube_Bar_4
-  - UI_Arrow_off
-  - UI_Hanoi
   - UI_Map
-  - Cube_Bar_1_in_1
-  - Ui_Cube_Bar_2
-  - UI_Cube_Pink
-  - UI_Ingame_Bar
-  - Ui_Cube_Bar_6
-  - UI_Cube_Black
-  - UI_Cube_Yellow
   - Speak_Bar
   - 256x256Mask
-  - UI_Horizon
-  - UI_Cube_Red
-  - HP_Bar_2_in_1
-  - Ui_Cube
-  - UI_Cube_Blue
-  - UI_Goal
-  - Ui_Cube_Bar_3
-  - UI_Cube_Orange
-  - Ui_Cube_Bar_5
   m_Tag: 1UI
   m_IsVariant: 0

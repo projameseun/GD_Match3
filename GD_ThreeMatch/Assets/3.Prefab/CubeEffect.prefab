@@ -218,10 +218,12 @@ MonoBehaviour:
   cubeEffectType: 0
   nodeColor: 0
   CubeCount: 0
-  TargetPos: {x: 0, y: 0}
+  SpriteRen: {fileID: 3906484135751111638}
+  TargetPos: {fileID: 0}
   Speed: 2000
   AngleZ: 0
   AngleSpeed: 0
   AngleAddSpeed: 0.3
   RB2D: {fileID: 3906484135751111639}
   FrontObj: {fileID: 3906484134865387568}
+  DestroyCount: 0

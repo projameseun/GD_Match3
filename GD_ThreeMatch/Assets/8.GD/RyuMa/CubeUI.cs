@@ -37,28 +37,30 @@ public class CubeUI : MonoBehaviour
     {
         if (collision.tag == "CubeEffect")
         {
+            CubeEffect CubeE = collision.GetComponent<CubeEffect>();
+
             if (uIType == UIType.PlayerUI&&
-                collision.GetComponent<CubeEffect>().cubeEffectType == CubeEffectType.GoPlayer)
+                CubeE.cubeEffectType == CubeEffectType.GoPlayer)
             {
-                if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
+                if ((int)CubeE.nodeColor ==
                     (int)cubeColor)
                 {
-                    collision.GetComponent<CubeEffect>().UiSet(this);
+                    CubeE.UiSet(this);
                 }
             }
             else 
             if (uIType == UIType.EnemyUI &&
-              collision.GetComponent<CubeEffect>().cubeEffectType == CubeEffectType.GoEnemy)
+              CubeE.cubeEffectType == CubeEffectType.GoEnemy)
             {
                 if (theBattle.PlayerAttackEffectList.Contains(collision.gameObject))
                 {
                     theBattle.PlayerAttackEffectList.Remove(collision.gameObject);
                 }
 
-                if ((int)collision.GetComponent<CubeEffect>().nodeColor ==
+                if ((int)CubeE.nodeColor ==
                     (int)cubeColor)
                 {
-                    collision.GetComponent<CubeEffect>().UiSet(this);
+                    CubeE.UiSet(this);
                 }
             }
 

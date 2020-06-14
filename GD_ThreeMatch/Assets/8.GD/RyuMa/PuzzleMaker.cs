@@ -80,8 +80,10 @@ public class PuzzleMaker : MonoBehaviour
     private ObjectManager theObject;
     private CameraManager theCam;
     private GameManager theGM;
+    private FadeManager theFade;
     private void Start()
     {
+        theFade = FindObjectOfType<FadeManager>();
         theGM = FindObjectOfType<GameManager>();
         theCam = FindObjectOfType<CameraManager>();
         theObject = FindObjectOfType<ObjectManager>();
@@ -98,7 +100,9 @@ public class PuzzleMaker : MonoBehaviour
         {
             LoadButton.GetComponent<Button>().onClick.AddListener(() =>
             {
-                theGM.LoadMap();
+                thePuzzle.state = PuzzleManager.State.LoadingMap;
+                theFade.FadeOutEvent();
+                StartCoroutine(thePuzzle.PortalCor());
                 SonMapBase.SetActive(false);
                 SonMapStartBt.SetActive(false);
             });
@@ -265,17 +269,15 @@ public class PuzzleMaker : MonoBehaviour
         PuzzleMakerStart = false;
         theMoveMap.Slots[PlayerStartNum].nodeColor = NodeColor.NC6_Player;
         theMoveMap.Slots[PlayerStartNum].cube.nodeColor = NodeColor.NC6_Player;
-        theMoveMap.Slots[PlayerStartNum].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        theMoveMap.Slots[PlayerStartNum].cube.SpriteRen.color = new Color(0, 0, 0, 0);
         Player.transform.position = theMoveMap.Slots[PlayerStartNum].cube.transform.position;
         Player.transform.SetParent(theMoveMap.Slots[PlayerStartNum].cube.transform);
 
         theCam.state = CameraManager.State.SmoothMove;
         thePuzzle.gameMode = PuzzleManager.GameMode.MoveMap;
-        thePuzzle.state = PuzzleManager.State.Ready;
         theCam.SetBound(theMoveMap, Player.transform.position, true);
-
+        theFade.FadeInEvent();
     }
-
 
 
 

@@ -51,6 +51,11 @@ public class ObjectManager : MonoBehaviour
     public GameObject EnemySkull;
     public GameObject SelectSlotP;
 
+
+    List<GameObject> List = new List<GameObject>();
+
+
+
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
     void Start()
@@ -67,19 +72,19 @@ public class ObjectManager : MonoBehaviour
 
     public void Init()
     {
-        for (int i = 0; i < 400; i++)
+        for (int i = 0; i < 170; i++)
         {
             GameObject x = Instantiate(Cube);
             x.SetActive(false);
             Cubes.Add(x);
         }
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(CubeParticle);
             x.SetActive(false);
             CubeParticles.Add(x);
         }
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 20; i++)
         {
             GameObject x = Instantiate(CubeEf);
             x.SetActive(false);
@@ -103,31 +108,31 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             DamageTexts.Add(x);
         }
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(AliceSkill);
             x.SetActive(false);
             AliceSkills.Add(x);
         }
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             GameObject x = Instantiate(AliceAnimEffect);
             x.SetActive(false);
             AliceAnimEffects.Add(x);
         }
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(SlimeSkillParticle);
             x.SetActive(false);
             SlimeSkillParticles.Add(x);
         }
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(SlimeAttackParticle);
             x.SetActive(false);
             SlimeAttackParticles.Add(x);
         }
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 170; i++)
         {
             GameObject x = Instantiate(SlotPanel);
             x.SetActive(false);
@@ -205,7 +210,6 @@ public class ObjectManager : MonoBehaviour
     //사용하고싶은 오브젝트를 찾는 함수(오브젝트 이름, 오브젝트 활성화)
     public GameObject FindObj(string _Name, bool _Active = true)
     {
-        List<GameObject> List = null;
         GameObject Frefab = null;
         switch (_Name)
         {

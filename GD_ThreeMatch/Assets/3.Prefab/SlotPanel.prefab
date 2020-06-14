@@ -95,3 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapType: 0
+  SpriteRen: {fileID: 456519973675704919}

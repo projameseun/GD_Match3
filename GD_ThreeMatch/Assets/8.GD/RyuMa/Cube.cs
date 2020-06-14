@@ -14,7 +14,7 @@ public class Cube : MonoBehaviour
 {
     public SpecialCubeType specialCubeType = SpecialCubeType.Null;
     public NodeColor nodeColor;
-
+    public SpriteRenderer SpriteRen;
 
 
     public int Num;
@@ -31,7 +31,6 @@ public class Cube : MonoBehaviour
     bool DestroyEvent = false;
     float DestoryTime = 1.0f;
     Color color = new Color(1f, 1f, 1f, 1f);
-    SpriteRenderer SpriteRen;
     float SkillDamage = 0;
 
 
@@ -49,7 +48,6 @@ public class Cube : MonoBehaviour
         theBattle = FindObjectOfType<BattleManager>();
         theObject = FindObjectOfType<ObjectManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
-        SpriteRen = GetComponent<SpriteRenderer>();
     }
     //private void Update()
     //{

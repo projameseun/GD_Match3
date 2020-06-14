@@ -25,7 +25,7 @@ public enum SlotObjectSheet
 public class SlotObject : MonoBehaviour
 {
     public MapType mapType;
-
+    public SpriteRenderer SpriteRen;
 
     private ObjectManager theObject;
     private PuzzleMaker theMaker;
@@ -51,12 +51,12 @@ public class SlotObject : MonoBehaviour
         this.transform.position = StartPos;
         if (_Sheet == SlotObjectSheet.NULL)
         {
-            this.GetComponent<SpriteRenderer>().sprite = null;
+            SpriteRen.sprite = null;
         }
         else if (_Sheet == SlotObjectSheet.ST_1_Enemy)
         {
             theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f,this.transform.position.y +0.07f));
-            this.GetComponent<SpriteRenderer>().sprite = theObject.EnemySlotSprite;
+            SpriteRen.sprite = theObject.EnemySlotSprite;
 
         }
         else if (_Sheet == SlotObjectSheet.ST_2_Portal)
@@ -66,15 +66,15 @@ public class SlotObject : MonoBehaviour
         }
         else if (_Sheet == SlotObjectSheet.ST_0_SlotPanel)
         {
-            
-            this.GetComponent<SpriteRenderer>().sprite = theObject.SlotPanelSprite[_SlotNum % 2];
+
+            SpriteRen.sprite = theObject.SlotPanelSprite[_SlotNum % 2];
         }
         else
         {
             switch (theMaker.mapMainType)
             {
                 case MapMainType.M0_Forest:
-                    this.GetComponent<SpriteRenderer>().sprite = theObject.ForestSprites[(int)_Sheet];
+                    SpriteRen.sprite = theObject.ForestSprites[(int)_Sheet];
                     break;
             }
             

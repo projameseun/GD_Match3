@@ -406,7 +406,6 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                 dir = Direction.Left;
             }
 
-            Debug.Log(SlotNum / thePuzzle.theBattleMap.Horizontal);
             if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
             {
                 StartVec.y -= 1f;
