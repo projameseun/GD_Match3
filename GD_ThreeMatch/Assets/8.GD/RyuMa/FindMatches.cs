@@ -215,7 +215,7 @@ public class FindMatches : MonoBehaviour
                                         _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
 
                                     }
-                                    _Map.Slots[Num + i].cube.SpecialCube = true;
+                                    //_Map.Slots[Num + i].cube.SpecialCube = true;
                                     Debug.Log("특수블럭 대각선 생성");
 
                                     break;
@@ -286,7 +286,7 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
 
                                 }
-                                _Map.Slots[Num + i].cube.SpecialCube = true;
+                                //_Map.Slots[Num + i].cube.SpecialCube = true;
                                 Debug.Log("특수블럭 대각선 생성");
 
                                 break;
