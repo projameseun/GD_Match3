@@ -5,13 +5,19 @@ using Spine.Unity;
 
 public class ObjectSpineManager : MonoBehaviour
 {
-    public MeshRenderer mesh;
-    public SkeletonAnimation anim;
-
+    public SkeletonGraphic Anim;
     public string AnimName;
-
     private PuzzleMaker theMaker;
     private ObjectManager theObject;
+
+
+   
+
+
+
+
+
+
 
     private void Start()
     {
@@ -29,17 +35,17 @@ public class ObjectSpineManager : MonoBehaviour
         AnimName = "";
         if (_SkinName != "")
         {
-            anim.initialSkinName = _SkinName;
+            Anim.initialSkinName = _SkinName;
         }
 
         switch (theMaker.mapMainType)
         {
             case MapMainType.M0_Forest:
-                mesh.material = theObject.ForestMaterial[_ObjectNum];
-                anim.skeletonDataAsset = theObject.ForestData[_ObjectNum];
+                Anim.skeletonDataAsset = theObject.ForestData[_ObjectNum];
                 break;
         }
-        anim.Initialize(true);
+
+        Anim.Initialize(true);
         ChangeAnim("Idle", true);
 
     }
@@ -48,7 +54,7 @@ public class ObjectSpineManager : MonoBehaviour
     {
         if (_state == AnimName)
             return;
-        anim.AnimationState.SetAnimation(0, _state, _Loop);
+        Anim.AnimationState.SetAnimation(0, _state, _Loop);
         AnimName = _state;
     }
 

@@ -38,7 +38,7 @@ public class SlotObject : MonoBehaviour
     }
 
 
-    public void SetSlotObject(Vector2 StartPos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
+    public void SetSlotObject(SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
     {
 
         mapType = _mapType;
@@ -47,8 +47,6 @@ public class SlotObject : MonoBehaviour
             theObject = FindObjectOfType<ObjectManager>();
         if (theMaker == null)
             theMaker = FindObjectOfType<PuzzleMaker>();
-
-        this.transform.position = StartPos;
         if (_Sheet == SlotObjectSheet.NULL)
         {
             SpriteRen.sprite = null;

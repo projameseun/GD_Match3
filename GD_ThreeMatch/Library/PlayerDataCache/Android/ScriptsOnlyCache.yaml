@@ -60,6 +60,7 @@ ScriptsOnlyBuild:
     spine-unity.dll:
     - Spine.Unity.SkeletonAnimation
     - Spine.Unity.SkeletonDataAsset
+    - Spine.Unity.SkeletonGraphic
     - Spine.Unity.SpineAtlasAsset
   sceneClasses:
     Assets/1.Scenes/InGame.unity:
@@ -182,6 +183,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12716}
     - Class: 114
+      Script: {instanceID: 12736}
+    - Class: 114
       Script: {instanceID: 12904}
     - Class: 114
       Script: {instanceID: 13014}
@@ -288,7 +291,7 @@ ScriptsOnlyBuild:
     className: BattleResultManager
   - hash:
       serializedVersion: 2
-      Hash: 13455370d45e03ff78452c959d01ed92
+      Hash: 0c27136f736d630702e7122551621222
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ObjectManager
@@ -300,7 +303,7 @@ ScriptsOnlyBuild:
     className: SkeletonRendererCustomMaterials
   - hash:
       serializedVersion: 2
-      Hash: 39e9493864694160dc00af5a1d2d1e3f
+      Hash: 8a5764743dbf71fe51fc7e88bbe90d97
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GirlManager
@@ -510,7 +513,7 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 41b74ac00d8883c935e263927b238cd5
+      Hash: 01daadbbf30adfa132076094238f6c41
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerUI
@@ -582,7 +585,7 @@ ScriptsOnlyBuild:
     className: PuzzleMaker
   - hash:
       serializedVersion: 2
-      Hash: 7442f546c3d76f067dc8a1d413a65f90
+      Hash: 901b08c270d699becd0a995143aee615
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ObjectSpineManager
@@ -997,4 +1000,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/1.Scenes/InGame.unity
-  playerPath: C:/Users/admin/Desktop/GD_Game.apk
+  playerPath: C:/Users/Administrator/Desktop/GD_GAME.apk

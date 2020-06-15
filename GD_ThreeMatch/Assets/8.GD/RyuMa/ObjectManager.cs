@@ -11,7 +11,6 @@ public class ObjectManager : MonoBehaviour
     public Sprite[] SlotPanelSprite;
     public Sprite EnemySlotSprite;
     public Sprite[] ForestSprites;
-    public Material[] ForestMaterial;
     public SkeletonDataAsset[] ForestData;
 
 
@@ -324,27 +323,28 @@ public class ObjectManager : MonoBehaviour
         return Cube;
     }
 
-    public GameObject SpawnSlotPanel(Vector2 Pos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
+    public GameObject SpawnSlotPanel(Transform trans ,Vector2 Pos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
     {
         if (_Sheet == SlotObjectSheet.S_0_Spin)
         {
             GameObject ObjectSpin = FindObj("ObjectSpine");
             ObjectSpin.transform.position = Pos;
+            ObjectSpin.transform.SetParent(trans);
             if (_mapType == MapType.M1_MoveMap)
             {
-
                 ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.ObjectNum,
                    thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.SkinName);
             }
             else if (_mapType == MapType.M2_BattleMap)
             {
-                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0,"0");
+                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0, "0");
             }
 
             return ObjectSpin;
         }
         GameObject Slot = FindObj("SlotPanel");
-        Slot.GetComponent<SlotObject>().SetSlotObject(Pos, _Sheet, _mapType, _SlotNum);
+        Slot.transform.position = Pos;
+        Slot.GetComponent<SlotObject>().SetSlotObject(_Sheet, _mapType, _SlotNum);
         return Slot;
     }
 

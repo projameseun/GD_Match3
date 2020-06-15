@@ -16,7 +16,6 @@ public enum PlayerUIState
 
 public class PlayerUI : MonoBehaviour
 {
-    public MeshRenderer SpineMesh;
     public SkeletonAnimation SpinAnim;
     public PlayerUIState state;
 
@@ -132,7 +131,6 @@ public class PlayerUI : MonoBehaviour
     // 캐릭터별 카드색, 0이면 왼쪽 1이면 오른쪽
     public void SetUi(int _nodeColor,int _PlayerNum)
     {
-        SpineMesh.material = theGirl.Girls[_nodeColor].IllustMaterials;
         SpinAnim.skeletonDataAsset = theGirl.Girls[_nodeColor].IllustData;
         SpinAnim.Initialize(true);
         SpinAnim.state.Event += HandleEvent;
@@ -174,11 +172,11 @@ public class PlayerUI : MonoBehaviour
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
 
 
-        SpineMesh.transform.localPosition = new Vector3(
+        SpinAnim.transform.localPosition = new Vector3(
                 theGirl.Girls[_nodeColor].IllustPosX[_PlayerNum],
                 theGirl.Girls[_nodeColor].IllustPosY,
                 thePuzzle.IllustSlot.transform.position.z);
-        SpineMesh.transform.localScale = new Vector3(
+        SpinAnim.transform.localScale = new Vector3(
             theGirl.Girls[_nodeColor].IllustSize,
             theGirl.Girls[_nodeColor].IllustSize,
             1);
