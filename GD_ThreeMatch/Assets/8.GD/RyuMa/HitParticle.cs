@@ -14,19 +14,19 @@ public class HitParticle : MonoBehaviour
         if (_Nod == NodeColor.NC0_Blue)
         {
             var Par1 = Particle[0].main;
-            Par1.startColor = new Color(1f, 0.258f, 0.82f, 0.611f);
+            Par1.startColor = new Color(0.25f, 0.37f, 1, 0.611f);
 
             var Par2 = Particle[1].main;
-            Par2.startColor = new Color(1, 0.58f, 0.9f, 1);
+            Par2.startColor = new Color(0.36f, 0.33f, 1f, 1);
 
             var Par3 = Particle[2].main;
-            Par3.startColor = new Color(1, 0.6f, 0.9f, 0.61f);
+            Par3.startColor = new Color(0.6f, 0.65f, 1, 0.61f);
 
             var Par4 = Particle[3].main;
-            Par4.startColor = new Color(1f, 0.3f, 0.8f, 1);
+            Par4.startColor = new Color(0.17f, 0.15f, 1, 1);
 
             var Par5 = Particle[4].main;
-            Par5.startColor = new Color(0.3f, 0.05f, 0.31f, 0.56f);
+            Par5.startColor = new Color(0.1f, 0, 0.31f, 0.56f);
         }
         else if (_Nod == NodeColor.NC1_Green)
         {

@@ -51,7 +51,6 @@ public class SlotInfo
 
 public class GameManager : MonoBehaviour
 {
-
     float deltaTime = 0.0f;
     Color GUIColor = new Color(1, 1, 1, 1);
     GUIStyle style = new GUIStyle();
@@ -59,6 +58,7 @@ public class GameManager : MonoBehaviour
     Rect rect;
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         w = Screen.width;
         h = Screen.height;
 

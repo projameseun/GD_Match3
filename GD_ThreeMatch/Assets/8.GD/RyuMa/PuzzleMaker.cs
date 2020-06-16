@@ -116,13 +116,6 @@ public class PuzzleMaker : MonoBehaviour
 
     public void BT_PuzzleMaker(PuzzleSlot _Slot, int _SlotNum)
     {
-        if (_Slot.portalSheet != null)
-            _Slot.portalSheet = null;
-
-        if (_Slot.monsterSheet != null)
-            _Slot.monsterSheet = null;
-
-
         if (changeMode == ChangeMode.Ch0_Null)
         {
             _Slot.nodeType = PuzzleSlot.NodeType.Null;

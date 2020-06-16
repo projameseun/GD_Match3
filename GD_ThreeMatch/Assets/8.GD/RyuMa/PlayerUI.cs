@@ -42,7 +42,6 @@ public class PlayerUI : MonoBehaviour
 
     //trunk
     string AnimName;
-    int TrakNum;
     GameObject ClickP;
 
     //데미지 이벤트
@@ -259,11 +258,11 @@ public class PlayerUI : MonoBehaviour
     {
         if (_state == AnimName)
             return;
-        SpinAnim.AnimationState.SetAnimation(TrakNum, _state, _Loop);
+        SpinAnim.AnimationState.SetAnimation(0, _state, _Loop);
         AnimName = _state;
     }
 
-
+     
 
 
 

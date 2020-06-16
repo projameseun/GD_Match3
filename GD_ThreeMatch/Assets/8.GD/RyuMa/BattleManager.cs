@@ -109,6 +109,8 @@ public class BattleManager : MonoBehaviour
     public CubeUI[] EnemyCubeUi;
     public Image[] ComboNumImages;
     public Image ComboBase;
+    public Image ComboGuageBG;
+    public Image ComboCoolDownImage;
     public GameObject ComboGrid;
 
     [Space]
@@ -217,7 +219,8 @@ public class BattleManager : MonoBehaviour
             {
                 if (ComboEventTime > 0)
                 {
-                    ComboEventTime -= Time.deltaTime * 2;
+                    ComboEventTime -= Time.deltaTime;
+                    
                 }
                 else
                 {
@@ -231,6 +234,7 @@ public class BattleManager : MonoBehaviour
                     ComboNumImages[2].gameObject.SetActive(false);
                 }
                 ComboColor.a = ComboEventTime;
+                ComboGuageBG.color = ComboColor;
                 ComboBase.color = ComboColor;
                 for (int i = 0; i < 3; i++)
                 {
@@ -464,6 +468,7 @@ public class BattleManager : MonoBehaviour
             if (CurrentSkillCoolDown > 0)
             {
                 CurrentSkillCoolDown -= Time.deltaTime;
+                
             }
             else
             {
@@ -644,6 +649,7 @@ public class BattleManager : MonoBehaviour
     public void AddComboValue()
     {
         CurrentComboCoolDown = MaxComboCoolDown;
+        ComboCoolDownImage.fillAmount = 1;
         ComboValue++;
         if (ComboValue > 1)
         {
@@ -656,6 +662,7 @@ public class BattleManager : MonoBehaviour
             if (ComboNum == 1)
             {
                 ComboBase.gameObject.SetActive(true);
+                ComboGuageBG.color = new Color(1, 1, 1, 1);
                 ComboBase.color = new Color(1, 1, 1, 1);
                 for (int i = 0; i < 3; i++)
                 {
@@ -729,6 +736,7 @@ public class BattleManager : MonoBehaviour
             if (CurrentComboCoolDown > 0)
             {
                 CurrentComboCoolDown -= Time.deltaTime;
+                ComboCoolDownImage.fillAmount = CurrentComboCoolDown / MaxComboCoolDown;
             }
             else
             {

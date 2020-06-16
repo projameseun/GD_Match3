@@ -195,14 +195,14 @@ public class FindMatches : MonoBehaviour
                                         _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
                                         _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
                                     }
                                     else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
                                     {
                                         _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                         _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
                                         _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
 
                                     }
                                     else
@@ -212,7 +212,7 @@ public class FindMatches : MonoBehaviour
                                         _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                         _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
                                         _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                        _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
 
                                     }
                                     //_Map.Slots[Num + i].cube.SpecialCube = true;
@@ -267,13 +267,13 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
                                     _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
                                     _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                    _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
                                 }
                                 else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
                                 {
                                     _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                     _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                    _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
                                     _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
                                 }
                                 else
@@ -283,7 +283,7 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                     _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
 
                                 }
                                 //_Map.Slots[Num + i].cube.SpecialCube = true;
@@ -357,12 +357,10 @@ public class FindMatches : MonoBehaviour
                                     {
                                         if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
                                         {
-
                                             _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
                                             _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
                                             _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
                                             _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Horizon;
-
                                             break;
                                         }
                                         else
@@ -388,7 +386,7 @@ public class FindMatches : MonoBehaviour
                                         {
                                             _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
                                             _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                            _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                            _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
                                             _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
                                             break;
                                         }
@@ -404,7 +402,7 @@ public class FindMatches : MonoBehaviour
                                         {
                                             _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
                                             _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                            _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                            _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
                                             _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
                                             break;
                                         }
@@ -413,12 +411,10 @@ public class FindMatches : MonoBehaviour
                                             SpecialCubeList.Remove(thePuzzle.OtherNum);
                                         }
                                     }
-
                                     int rand = Random.Range(0, SpecialCubeList.Count);
-
                                     _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
                                     Debug.Log("특수블럭 대각선 생성");
 
@@ -487,7 +483,7 @@ public class FindMatches : MonoBehaviour
                                     {
                                         _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
                                         _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
                                         _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
                                         break;
                                     }
@@ -503,7 +499,7 @@ public class FindMatches : MonoBehaviour
                                     {
                                         _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
                                         _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
                                         _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
                                         break;
                                     }
@@ -517,7 +513,7 @@ public class FindMatches : MonoBehaviour
 
                                 _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
                                 _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Hanoi;
+                                _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
                                 _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
                                 Debug.Log("특수블럭 대각선 생성");
 
@@ -637,7 +633,7 @@ public class FindMatches : MonoBehaviour
     }
 
     //대각선 특수큐브
-    public void FindHanoiCube(MapManager _Map, int _SlotNum)
+    public void FindDiagonalCube(MapManager _Map, int _SlotNum)
     {
        
         int CheckCount = 1;
@@ -663,7 +659,7 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
                 if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
                 {
                     CheckBoom = true;
                     break;
@@ -694,7 +690,7 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
                 if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
                 {
                     CheckBoom = true;
 
@@ -723,7 +719,7 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
                 if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
                 {
                     CheckBoom = true;
                     break;
@@ -752,7 +748,7 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
                 if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Hanoi)
+                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
                 {
                     CheckBoom = true;
                     break;
@@ -788,7 +784,7 @@ public class FindMatches : MonoBehaviour
                     continue;
 
 
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
                     _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
 
@@ -817,7 +813,7 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
 
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
                     _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
 
@@ -846,7 +842,7 @@ public class FindMatches : MonoBehaviour
             {
 
 
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
                     _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
                 _Map.Slots[Count].cube.DestroyCube(true,true);
@@ -873,7 +869,7 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Hanoi)
+                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
                     _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
                 _Map.Slots[Count].cube.DestroyCube(true,true);
@@ -902,8 +898,8 @@ public class FindMatches : MonoBehaviour
                 FindVerticalCube(_Map, _SlotNum);
                 break;
 
-            case SpecialCubeType.Hanoi:
-                FindHanoiCube(_Map, _SlotNum);
+            case SpecialCubeType.Diagonal:
+                FindDiagonalCube(_Map, _SlotNum);
                 break;
         }
 

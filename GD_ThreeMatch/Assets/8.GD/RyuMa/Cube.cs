@@ -6,7 +6,7 @@ public enum SpecialCubeType
 { 
     Vertical = 0,
     Horizon,
-    Hanoi,
+    Diagonal,
     Null
 }
 
@@ -31,7 +31,7 @@ public class Cube : MonoBehaviour
     bool DestroyEvent = false;
     float DestoryTime = 1.0f;
     Color color = new Color(1f, 1f, 1f, 1f);
-    float SkillDamage = 0;
+    public float SkillDamage = 0;
 
 
 
@@ -167,7 +167,7 @@ public class Cube : MonoBehaviour
         }
     }
 
-    public void MoveCube(Vector2 _vec, bool _Event = false, float _Speed = 4f)
+    public void MoveCube(Vector2 _vec, float _Speed, bool _Event = false)
     {
         Move = true;
         TargetVec = _vec;
@@ -302,7 +302,6 @@ public class Cube : MonoBehaviour
                                 {
                                     CubeNum = (int)(-1 * theBattle.ComboStack);
                                 }
-                                
                                 CubeTarget = 1;
                                 i = 6;
                                 x = 6;
@@ -344,7 +343,7 @@ public class Cube : MonoBehaviour
 
 
         SpecialCubeEvent();
-
+        SkillDamage = 0;
         DestoryTime = 0;
         DestroyEvent = false;
     }

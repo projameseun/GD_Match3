@@ -42,7 +42,7 @@ public class DamageText : MonoBehaviour
     {
         Vector2 StartPos = _StartVec;
         StartPos.x += Random.Range(-0.9f, 0.9f);
-        StartPos.y += Random.Range(-0.3f, 0.9f);
+        StartPos.y += Random.Range(-0.3f, 0.3f);
         this.transform.position = StartPos;
 
 

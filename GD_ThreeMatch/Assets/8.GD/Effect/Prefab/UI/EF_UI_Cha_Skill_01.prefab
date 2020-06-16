@@ -4730,7 +4730,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 18
+  m_SortingOrder: 68
   m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9484,7 +9484,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 19
+  m_SortingOrder: 69
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -14296,7 +14296,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 19
+  m_SortingOrder: 69
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -19108,7 +19108,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 19
+  m_SortingOrder: 69
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -23920,7 +23920,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 65
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -28741,7 +28741,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 18
+  m_SortingOrder: 68
   m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -33553,7 +33553,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 19
+  m_SortingOrder: 69
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -38365,7 +38365,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 63
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

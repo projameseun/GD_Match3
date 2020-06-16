@@ -27,7 +27,6 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
     public void ButtonChange(int _Dir)
     {
         CurrentDir = (Direction)_Dir;
-
         for (int i = 0; i < ButtonImages.Length; i++)
         {
             if (i == _Dir)
@@ -82,22 +81,26 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
 
         if (AngleZ <= 45 || AngleZ > 315)
         {
+            CurrentDir = Direction.Up;
             theCamera.direction = Direction.Up;
         }
         else if (AngleZ > 45 && AngleZ <= 135)
         {
+            CurrentDir = Direction.Left;
             theCamera.direction = Direction.Left;
         }
         else if (AngleZ > 135 && AngleZ <= 225)
         {
+            CurrentDir = Direction.Down;
             theCamera.direction = Direction.Down;
         }
         else
         {
+            CurrentDir = Direction.Right;
             theCamera.direction = Direction.Right;
         }
 
-        if (CurrentDir != theCamera.direction)
+        if (CurrentDir != thePuzzle.theMoveMap.direction)
         {
             CurrentDir = theCamera.direction;
             thePuzzle.BT_ChangeDirection((int)CurrentDir);

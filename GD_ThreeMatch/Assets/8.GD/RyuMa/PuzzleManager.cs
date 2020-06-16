@@ -115,6 +115,7 @@ public class PuzzleManager : MonoBehaviour
     bool EventEnd = false;
     int[] EnemyCubeCount = new int[6];
     WaitForSeconds Wait = new WaitForSeconds(0.1f);
+    float FillSpeed = 9f;
 
 
 
@@ -210,7 +211,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theMoveMap, SelectNum, OtherNum, true);
+                        ChangeCube(theMoveMap, SelectNum, OtherNum,4f, true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -373,7 +374,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theBattleMap, SelectNum, OtherNum, true);
+                        ChangeCube(theBattleMap, SelectNum, OtherNum, 4f,true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -1022,13 +1023,13 @@ public class PuzzleManager : MonoBehaviour
         }
 
         state = State.ChangeMatch;
-        ChangeCube(_Map, _Num, ChangeNum, true);
+        ChangeCube(_Map, _Num, ChangeNum,4f, true);
         SelectNum = _Num;
         OtherNum = ChangeNum;
     }
 
     //큐브와 큐브의 위치를 바꾸는 기능
-    public void ChangeCube(MapManager _Map, int _Num, int _OtherNum, bool _Event = false)
+    public void ChangeCube(MapManager _Map, int _Num, int _OtherNum, float _Speed = 4f, bool _Event = false)
     {
 
         if (_Map.Slots[_Num].nodeColor == NodeColor.NC6_Player ||
@@ -1043,14 +1044,14 @@ public class PuzzleManager : MonoBehaviour
         NodeColor nodeColor = _Map.Slots[_Num].nodeColor;
 
         //_Num의 정보를 _OtherNum의 정보로 덮어쓰기
-        _Map.Slots[_Num].cube.MoveCube(_Map.Slots[_OtherNum].transform.position, false);
+        _Map.Slots[_Num].cube.MoveCube(_Map.Slots[_OtherNum].transform.position, _Speed, false);
 
         _Map.Slots[_Num].cube = _Map.Slots[_OtherNum].cube;
         _Map.Slots[_Num].nodeColor = _Map.Slots[_OtherNum].nodeColor;
         _Map.Slots[_Num].cube.nodeColor = _Map.Slots[_OtherNum].cube.nodeColor;
 
         //_OtherNum을 복제정보로 덮어쓰기
-        _Map.Slots[_OtherNum].cube.MoveCube(_Map.Slots[_Num].transform.position, _Event);
+        _Map.Slots[_OtherNum].cube.MoveCube(_Map.Slots[_Num].transform.position, _Speed, _Event);
         _Map.Slots[_OtherNum].cube = Cube.GetComponent<Cube>();
         _Map.Slots[_OtherNum].nodeColor = nodeColor;
         _Map.Slots[_OtherNum].cube.nodeColor = nodeColor;
@@ -1114,6 +1115,12 @@ public class PuzzleManager : MonoBehaviour
     // 빈칸을 방향에 맞게 채우는 기능
     public void BT_FillBlank(MapManager _Map)
     {
+        if (gameMode == GameMode.Battle)
+        {
+            FillSpeed = 8;
+        }
+        else
+            FillSpeed = 6;
 
         state = State.FillBlank;
         bool FirstEvent = true;
@@ -1136,7 +1143,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i - _Map.Horizontal, FirstEvent);
+                            ChangeCube(_Map, Num + i, Num + i - _Map.Horizontal, FillSpeed, FirstEvent);
                             //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                             //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1147,7 +1154,7 @@ public class PuzzleManager : MonoBehaviour
                             GameObject NewCube = theObject.SpawnCube();
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i - _Map.Horizontal].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
+                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1174,7 +1181,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i + _Map.Horizontal, FirstEvent);
+                            ChangeCube(_Map, Num + i, Num + i + _Map.Horizontal, FillSpeed, FirstEvent);
                             //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                             //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1185,7 +1192,7 @@ public class PuzzleManager : MonoBehaviour
                             GameObject NewCube = theObject.SpawnCube();
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i + _Map.Horizontal].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
+                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1211,7 +1218,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i + 1, FirstEvent);
+                            ChangeCube(_Map, Num + i, Num + i + 1, FillSpeed, FirstEvent);
                             //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                             //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1222,7 +1229,7 @@ public class PuzzleManager : MonoBehaviour
                             GameObject NewCube = theObject.SpawnCube();
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i + 1].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
+                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1248,7 +1255,7 @@ public class PuzzleManager : MonoBehaviour
                             {
                                 PlayerMove = true;
                             }
-                            ChangeCube(_Map, Num + i, Num + i - 1, FirstEvent);
+                            ChangeCube(_Map, Num + i, Num + i - 1, FillSpeed, FirstEvent);
                             //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
                             //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
@@ -1259,7 +1266,7 @@ public class PuzzleManager : MonoBehaviour
                             GameObject NewCube = theObject.SpawnCube();
                             SetCube(NewCube, _Map.Slots[Num + i]);
                             NewCube.transform.position = _Map.Slots[Num + i - 1].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FirstEvent);
+                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
                             FirstEvent = false;
                         }
                     }
@@ -1485,8 +1492,8 @@ public class PuzzleManager : MonoBehaviour
     //현재 매치가 가능한 상태가 있는지 체크 true 면 가능, false 면 불가능
     public bool DeadlockCheck(MapManager _Map)
     {
+        NodeColor CopyColor;
 
-        PuzzleSlot testPuzzle = new PuzzleSlot();
 
         for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
         {
@@ -1503,14 +1510,14 @@ public class PuzzleManager : MonoBehaviour
                 if (_Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = _Map.Slots[i].nodeColor;
+                    CopyColor = _Map.Slots[i].nodeColor;
                     _Map.Slots[i].nodeColor = _Map.Slots[i - _Map.Horizontal].nodeColor;
-                    _Map.Slots[i - _Map.Horizontal].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i - _Map.Horizontal].nodeColor = CopyColor;
 
                     theMatch.FindAllMatches(theMoveMap, false);
 
                     _Map.Slots[i - _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i].nodeColor = CopyColor;
 
                     if (isMatched)
                     {
@@ -1522,14 +1529,14 @@ public class PuzzleManager : MonoBehaviour
                 if (_Map.Slots[i + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = _Map.Slots[i].nodeColor;
+                    CopyColor = _Map.Slots[i].nodeColor;
                     _Map.Slots[i].nodeColor = _Map.Slots[i + _Map.Horizontal].nodeColor;
-                    _Map.Slots[i + _Map.Horizontal].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i + _Map.Horizontal].nodeColor = CopyColor;
 
                     theMatch.FindAllMatches(theMoveMap, false);
 
                     _Map.Slots[i + _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i].nodeColor = CopyColor;
 
                     if (isMatched)
                     {
@@ -1543,14 +1550,14 @@ public class PuzzleManager : MonoBehaviour
                 if (_Map.Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = _Map.Slots[i].nodeColor;
+                    CopyColor = _Map.Slots[i].nodeColor;
                     _Map.Slots[i].nodeColor = _Map.Slots[i - 1].nodeColor;
-                    _Map.Slots[i - 1].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i - 1].nodeColor = CopyColor;
 
                     theMatch.FindAllMatches(_Map, false);
 
                     _Map.Slots[i - 1].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i].nodeColor = CopyColor;
 
                     if (isMatched)
                     {
@@ -1564,14 +1571,14 @@ public class PuzzleManager : MonoBehaviour
                 if (_Map.Slots[i + 1].nodeType != PuzzleSlot.NodeType.Null)
                 {
 
-                    testPuzzle.nodeColor = _Map.Slots[i].nodeColor;
+                    CopyColor = _Map.Slots[i].nodeColor;
                     _Map.Slots[i].nodeColor = _Map.Slots[i + 1].nodeColor;
-                    _Map.Slots[i + 1].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i + 1].nodeColor = CopyColor;
 
                     theMatch.FindAllMatches(_Map, false);
 
                     _Map.Slots[i + 1].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = testPuzzle.nodeColor;
+                    _Map.Slots[i].nodeColor = CopyColor;
 
                     if (isMatched)
                     {
@@ -1642,10 +1649,7 @@ public class PuzzleManager : MonoBehaviour
         if (state == State.Ready)
         {
             theMoveMap.direction = (Direction)_Num;
-            for (int i = 0; i < 4; i++)
-            {
-                CameraButton.ButtonChange(_Num);
-            }
+            CameraButton.ButtonChange(_Num);
             Player.ChangeDirection(theMoveMap.direction);
         }
     }
@@ -1777,7 +1781,7 @@ public class PuzzleManager : MonoBehaviour
     public void BT_HorizonTest(int _SlotNum)
     {
         state = State.FillBlank;
-        theMatch.FindHanoiCube(theMoveMap, _SlotNum);
+        theMatch.FindDiagonalCube(theMoveMap, _SlotNum);
     }
 
 

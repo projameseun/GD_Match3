@@ -95,12 +95,10 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
     - {fileID: 2800000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
     - {fileID: 2800000, guid: 1f0d5695ee508af40ba2381104b47884, type: 3}
-    - {fileID: 2800000, guid: a22265091d2d3b544a1e352ee2aabeae, type: 3}
     - {fileID: 2800000, guid: 166405677eeb6634d8fbe39e549cdff1, type: 3}
     - {fileID: 2800000, guid: 7c404185ba0abc549bac597ca48d8c2b, type: 3}
     - {fileID: 2800000, guid: 1b65281175e1429469ffe026d91c4ca0, type: 3}
-    - {fileID: 2800000, guid: fe867dc2a7ec5364bb9a1700b3cbe0f9, type: 3}
-    totalSpriteSurfaceArea: 4217103
+    totalSpriteSurfaceArea: 1543023
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -117,7 +115,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 94d1269257ab2a24cb6094b4c6285f49, type: 3}
   - {fileID: 21300000, guid: 832cb7a268d2e8d4ebb10e0bc02b49c7, type: 3}
   - {fileID: 21300000, guid: 0f6748a2b3b0b714db65c620abcf3960, type: 3}
-  - {fileID: 21300000, guid: fe867dc2a7ec5364bb9a1700b3cbe0f9, type: 3}
   - {fileID: 21300000, guid: b4a3b843768184b43a62394656fd01f4, type: 3}
   - {fileID: 21300000, guid: e77b3ac3415731f44bac05bed1aa16a5, type: 3}
   - {fileID: 21300000, guid: b0b465e3a8e9d2141869e2ec8dcc0f3b, type: 3}
@@ -154,7 +151,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 76d354c753cac1c49afeda7b62fe789e, type: 3}
   - {fileID: 21300000, guid: d2c446e71f1af9b47aea60db03566c20, type: 3}
   - {fileID: 21300000, guid: 4f8d20788dd08e24abca897f20e32cb2, type: 3}
-  - {fileID: 21300000, guid: a22265091d2d3b544a1e352ee2aabeae, type: 3}
   - {fileID: 21300000, guid: 44659ca9236f6a94bbcc0ce69ca72d7f, type: 3}
   - {fileID: 21300000, guid: bf9b9b2a976804a41a2c31e09136e1ed, type: 3}
   - {fileID: 21300000, guid: ae6a246a5d663e2429546c08a15cc788, type: 3}
@@ -187,7 +183,6 @@ SpriteAtlas:
   - UI_obj_rock
   - UI_countB_red
   - UI_countB_green
-  - UI_puzzleBG_forest
   - UI_block_black_alpha_02
   - Skull
   - UI_menu_setting
@@ -224,7 +219,6 @@ SpriteAtlas:
   - UI_hp_circle
   - UI_attackCount
   - UI_skil_barbg_yellow
-  - BG
   - UI_countM_yellow
   - UI_countM_green
   - Speak_Bar

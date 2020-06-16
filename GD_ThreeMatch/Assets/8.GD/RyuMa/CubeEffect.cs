@@ -79,28 +79,23 @@ public class CubeEffect : MonoBehaviour
             return;
 
 
-        if ((int)_nodeColor == 0) //검은색
+        if (_nodeColor == NodeColor.NC0_Blue)
         {
-            SpriteRen.color = new Color(0.42f, 0.42f, 0.42f);
-
+            SpriteRen.color = new Color(0.1f, 0.52f, 0.9f);
         }
-        else if ((int)_nodeColor == 1) //파란색
+        else if (_nodeColor == NodeColor.NC1_Green)
         {
-            SpriteRen.color = new Color(0.56f, 0.78f, 0.9f);
+            SpriteRen.color = new Color(0.2f, 1f, 0.2f);
         }
-        else if ((int)_nodeColor == 2) // 주황색
-        {
-            SpriteRen.color = new Color(1f, 0.38f, 0.01f);
-        }
-        else if ((int)_nodeColor == 3) // 핑크
+        else if (_nodeColor == NodeColor.NC2_Pink) // 핑크
         {
             SpriteRen.color = new Color(0.95f, 0.3f, 0.57f);
         }
-        else if ((int)_nodeColor == 4) // 빨간색
+        else if (_nodeColor == NodeColor.NC3_Red) // 빨간색
         {
             SpriteRen.color = new Color(0.94f, 0.11f, 0.01f);
         }
-        else if ((int)_nodeColor == 5) // 노란색
+        else if (_nodeColor == NodeColor.NC4_Yellow) // 노란색
         {
             SpriteRen.color = new Color(1f, 0.89f, 0.51f);
         }
