@@ -80,10 +80,9 @@ public class PuzzleManager : MonoBehaviour
     public GameObject MinimapBase;
     public GameObject MoveUI;
     public GameObject BattleUI;
-    public GameObject MovePos;
-    public GameObject BattlePos;
     public GameObject IllustSlot;
     public GameObject CubeBar;
+    public Button HintButton;
     public TextMeshPro MoveCountText;
     //메치가 되면 true;
     public bool isMatched = false;
@@ -113,11 +112,13 @@ public class PuzzleManager : MonoBehaviour
     public int OtherNum = 0;
     float EventTime = 0;
     bool EventEnd = false;
+    int HintNum;
     int[] EnemyCubeCount = new int[6];
     WaitForSeconds Wait = new WaitForSeconds(0.1f);
     float FillSpeed = 9f;
 
-
+    Vector3 MovePos = new Vector3(0, 800, 0); //전투가 끝난후 UI위치
+    Vector3 BattlePos = new Vector3(0, -750, 0); // 전투 시작시 UI위치
 
 
 
@@ -133,6 +134,13 @@ public class PuzzleManager : MonoBehaviour
     private CameraButtonManager CameraButton;
     private void Start()
     {
+        if (HintButton != null)
+        {
+            HintButton.onClick.AddListener(() =>
+            {
+                BT_ShowHint();
+            });
+        }
 
         CameraButton = FindObjectOfType<CameraButtonManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
@@ -177,9 +185,6 @@ public class PuzzleManager : MonoBehaviour
     {
         if (gameMode == GameMode.MoveMap)
         {
-          
-
-
             if (state == State.ChangeMatch) //  큐브를 교환하는 상태
             {
                 if (CubeEvent == true)
@@ -402,7 +407,6 @@ public class PuzzleManager : MonoBehaviour
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
-
                 if (theBattle.PlayerAttackEffectList.Count > 0 && theBattle.CurrentEnemyCount == 0)
                     return;
 
@@ -419,14 +423,8 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if (DeadlockCheck(theBattleMap))
                     {
-                        // 몬스터의 체력이 0이 될 경우
-                        if (theBattle.CurrentHp <= 0)
-                        {
-                            theBattle.EndBattle();
-                            return;
-                        }
                         // 카운트가 0이되어 적이 공격함
-                        else if (theBattle.CurrentEnemyCount <= 0)
+                        if (theBattle.CurrentEnemyCount <= 0)
                         {
                             theBattle.battleState = BattleState.EnemyAttack;
                             state = State.BattleEvent;
@@ -1069,7 +1067,7 @@ public class PuzzleManager : MonoBehaviour
     {
         if (gameMode == GameMode.MoveMap)
         {
-            IllustSlot.transform.position = BattlePos.transform.position;
+            IllustSlot.transform.localPosition = BattlePos;
             //theCamera.SetBound(theBattleMap.Bound, theBattleMap.Bound.transform.position,false);
             MoveUI.SetActive(false);
             BattleUI.SetActive(true);
@@ -1099,9 +1097,9 @@ public class PuzzleManager : MonoBehaviour
         }
         else if (gameMode == GameMode.Battle)
         {
-            IllustSlot.transform.position = MovePos.transform.position;
-            CubeBar.transform.localPosition = new Vector3(0, -1.7f, 0);
-            theCamera.SetBound(theMoveMap, theMoveMap.transform.position, true);
+            IllustSlot.transform.localPosition = MovePos;
+            CubeBar.transform.localPosition = new Vector3(0, -3.3f, 0);
+            theCamera.SetBound(theMoveMap, Player.transform.position, true);
             theBattle.Resetting();
             MoveUI.SetActive(true);
             BattleUI.SetActive(false);
@@ -1120,7 +1118,7 @@ public class PuzzleManager : MonoBehaviour
             FillSpeed = 8;
         }
         else
-            FillSpeed = 6;
+            FillSpeed = 3.5f;
 
         state = State.FillBlank;
         bool FirstEvent = true;
@@ -1503,6 +1501,7 @@ public class PuzzleManager : MonoBehaviour
                 //해당 슬롯의 큐브가 특수블럭인지 확인
                 if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null)
                 {
+                    HintNum = i;
                     return true;
                 }
 
@@ -1522,6 +1521,7 @@ public class PuzzleManager : MonoBehaviour
                     if (isMatched)
                     {
                         isMatched = false;
+                        HintNum = i;
                         return true;
                     }
                 }
@@ -1543,6 +1543,7 @@ public class PuzzleManager : MonoBehaviour
 
 
                         isMatched = false;
+                        HintNum = i;
                         return true;
                     }
                 }
@@ -1564,6 +1565,7 @@ public class PuzzleManager : MonoBehaviour
 
 
                         isMatched = false;
+                        HintNum = i;
                         return true;
                     }
                 }
@@ -1582,9 +1584,8 @@ public class PuzzleManager : MonoBehaviour
 
                     if (isMatched)
                     {
-
-
                         isMatched = false;
+                        HintNum = i;
                         return true;
                     }
                 }
@@ -1597,26 +1598,10 @@ public class PuzzleManager : MonoBehaviour
     }
 
 
-    public void BT_ShowSlotText()
+    public void BT_ShowHint()
     {
-        bool Active = !theMoveMap.Slots[0].GetComponentInChildren<Text>().enabled;
-
-        if (theMoveMap.Slots[0].TestText.text == "")
-        {
-            for (int i = 0; i < theMoveMap.Slots.Length; i++)
-            {
-                theMoveMap.Slots[i].TestText.text = i.ToString();
-            }
-        }
-
-        
-
-
-        for (int i = 0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
-        {
-            theMoveMap.Slots[i].GetComponentInChildren<Text>().enabled = Active;
-        }
-
+        DeadlockCheck(theMoveMap);
+        theObject.SpawnSelectSlot(theMoveMap.Slots[HintNum].transform.position);
     }
 
 
@@ -1775,13 +1760,6 @@ public class PuzzleManager : MonoBehaviour
 
 
         }
-    }
-
-
-    public void BT_HorizonTest(int _SlotNum)
-    {
-        state = State.FillBlank;
-        theMatch.FindDiagonalCube(theMoveMap, _SlotNum);
     }
 
 

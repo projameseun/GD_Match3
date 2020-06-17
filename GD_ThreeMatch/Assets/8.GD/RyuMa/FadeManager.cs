@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FadeManager : MonoBehaviour
 {
+    public GameObject BlackChatBase;
+    public Text TitleText;
+    public Text DesText;
+
+
     public Sprite[] LoadingSpirtes;
 
     public GameObject FadeBase;
@@ -16,7 +21,27 @@ public class FadeManager : MonoBehaviour
     float FadeTime = 0f;
 
 
-    public void FadeOutEvent()
+
+    
+
+    //BlackChat
+    public bool Touch;
+
+
+    private void Start()
+    {
+        if (BlackChatBase != null)
+        {
+            BlackChatBase.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                FadeOutEvent();
+            });
+        }
+    }
+
+
+
+    public void FadeOutEvent(bool Show = true)
     {
         FadeBase.SetActive(true);
         color = new Color(1, 1, 1, 0);
@@ -26,22 +51,38 @@ public class FadeManager : MonoBehaviour
         LoadingImage.color = color;
         FadeTime = 0f;
         LoadingImage.sprite = LoadingSpirtes[Random.Range(0, LoadingSpirtes.Length)];
-        StartCoroutine(FadeOut());
+        StartCoroutine(FadeOut(Show));
     }
 
-    public void FadeInEvent()
+    public void FadeInEvent(bool Show = true)
     {
-
         FadeTime = 3f;
         color.a = FadeTime;
         FadeImage.color = color;
         LoadingTextImage.color = color;
         LoadingImage.color = color;
-        StartCoroutine(FadeIn());
+        StartCoroutine(FadeIn(Show));
     }
 
 
-    IEnumerator FadeOut()
+    public void ShowBlackChat(string _Title, string _Des)
+    {
+        BlackChatBase.SetActive(true);
+        TitleText.text = _Title;
+        DesText.text = _Des;
+
+    }
+
+    public void CloseBlackChat()
+    {
+        BlackChatBase.SetActive(false);
+    }
+
+
+
+
+
+    IEnumerator FadeOut(bool Show)
     {
         while (true)
         {
@@ -57,7 +98,8 @@ public class FadeManager : MonoBehaviour
             }
             else
             {
-                FadeOutEnd = true;
+                if(Show == true)
+                    FadeOutEnd = true;
                 FadeTime = 1f;
                 color.a = FadeTime;
                 FadeImage.color = color;
@@ -69,7 +111,8 @@ public class FadeManager : MonoBehaviour
         }
     }
 
-    IEnumerator FadeIn()
+
+    IEnumerator FadeIn(bool Show)
     {
         while (true)
         {
@@ -84,7 +127,8 @@ public class FadeManager : MonoBehaviour
             }
             else
             {
-                FadeInEnd = true;
+                if(Show == true)
+                    FadeInEnd = true;
                 FadeTime = 0f;
                 color.a = FadeTime;
                 FadeImage.color = color;

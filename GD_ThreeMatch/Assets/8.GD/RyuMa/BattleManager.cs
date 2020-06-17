@@ -159,16 +159,14 @@ public class BattleManager : MonoBehaviour
     float OverNumSize;      //연출용 가장 큰 이미지 사이즈
     Color ComboColor = new Color(1, 1, 1, 1);
 
-
-
-
-
     private ObjectManager theObject;
     private PuzzleManager thePuzzle;
     private FadeManager theFade;
+    private CameraManager theCamera;
     private void Start()
     {
         CurrentSkillUI = SkillUI.UI2_Null;
+        theCamera = FindObjectOfType<CameraManager>();
         theFade = FindObjectOfType<FadeManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theObject = FindObjectOfType<ObjectManager>();
@@ -296,8 +294,14 @@ public class BattleManager : MonoBehaviour
                 }
                 // 몬스터가 죽었을 때 실행한다
                 else if (battleState == BattleState.EnemyDie)
-                { 
-                    
+                {
+                    if (theFade.FadeOutEnd == true)
+                    {
+                        theFade.FadeOutEnd = false;
+                        theFade.CloseBlackChat();
+                        thePuzzle.ChangeGameMode();
+                        theFade.FadeInEvent(false);
+                    }
                 }
 
 
@@ -376,8 +380,8 @@ public class BattleManager : MonoBehaviour
         BattleStart = false;
         ResetCombo();
         //ComboCoolDownImage.fillAmount = 0;
-
         EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
+        theFade.ShowBlackChat("전투 승리","");
         //theFade.FadeIn();
     }
 
@@ -412,6 +416,11 @@ public class BattleManager : MonoBehaviour
         EnemyAnim.skeleton.SetColor(DamageColor);
         
         CurrentHp += DamageCount;
+
+        if (CurrentHp <= 0)
+        {
+            EndBattle();
+        }
 
     }
 

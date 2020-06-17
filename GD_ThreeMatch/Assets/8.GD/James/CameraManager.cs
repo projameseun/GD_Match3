@@ -178,7 +178,7 @@ public class CameraManager : MonoBehaviour
     }
 
 
-
+    // 이동씬일 경우 True
     public void SetBound(MapManager _Map,Vector2 _TargetVec, bool _Move)
     {
 
