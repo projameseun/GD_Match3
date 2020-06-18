@@ -7325,6 +7325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bb98245bd97e0458f2ffca7b5163d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyDataSheet: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1375622184
 GameObject:
   m_ObjectHideFlags: 0
@@ -9746,7 +9747,6 @@ MonoBehaviour:
   isMatched: 0
   SlotDown: 0
   CubeEvent: 0
-  EnemySlotNum: 0
   MoveCount: 30
   CurrentPoint: 0
   FirstHeroNum: 0
@@ -9809,7 +9809,7 @@ MonoBehaviour:
   DataSheet: 0
   MoveMapName: TestMap
   PlayerStartPos: 123
-  objectType: -1
+  objectType: 0
   SkinObjectNum: 0
   SkinName: 2
   PlayerStartNum: 20
@@ -12430,8 +12430,6 @@ MonoBehaviour:
   ForestSprites:
   - {fileID: 21300000, guid: 7a96ab656ae7a684e88b5f885d28eae7, type: 3}
   - {fileID: 21300000, guid: 1e46b7e64e797e346bd445a27a7a5c1a, type: 3}
-  ForestData:
-  - {fileID: 11400000, guid: ff73cc150cf50924fb0408d22e546c1f, type: 2}
   Cubes: []
   CubeParticles: []
   CubeEfs: []
@@ -12445,7 +12443,6 @@ MonoBehaviour:
   SlotPanels: []
   ClickParticles: []
   Portals: []
-  ObjectSpines: []
   EnemySkulls: []
   Cube: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
   CubeParticle: {fileID: 4897735274488834851, guid: 99b4a823f56c742419d0760a46041e53,
@@ -12470,8 +12467,6 @@ MonoBehaviour:
   ClickParticle: {fileID: 8507203080465462627, guid: 542dd44eb50c3994283b5f44f119668e,
     type: 3}
   Portal: {fileID: 6896099708153733868, guid: ac01b9f2040e87f448deb6f8a8f7ef47, type: 3}
-  ObjectSpine: {fileID: 1840854397146689522, guid: 9d2ab41c10bee994e876c004c0ff5f19,
-    type: 3}
   EnemySkull: {fileID: 7657218699614769144, guid: 995ebb9d5ba06934985b4f905e8fb60d,
     type: 3}
   SelectSlotP: {fileID: 197936534}

@@ -300,6 +300,8 @@ public class BattleManager : MonoBehaviour
                         theFade.FadeOutEnd = false;
                         theFade.CloseBlackChat();
                         thePuzzle.ChangeGameMode();
+                        thePuzzle.CheckEnemyData();
+                        thePuzzle.CubeEvent = false;
                         theFade.FadeInEvent(false);
                     }
                 }

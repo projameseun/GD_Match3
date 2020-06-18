@@ -87,6 +87,9 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public PortalSheet portalSheet = null;
 
 
+    public SlotObject slotObject = null;
+
+
     //[HideInInspector] public int[] EnemyIndex = null;
     //[HideInInspector] public int[] EnemyChance = null;
     //[HideInInspector] public bool OnlyOneEnemy = false;
@@ -492,6 +495,9 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             cube.Resetting();
             cube = null;
         }
+
+        slotObject = null;
+
     }
 
 

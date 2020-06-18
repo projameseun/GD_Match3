@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
     GUIStyle style = new GUIStyle();
     int w = 0, h = 0;
     Rect rect;
+
+    public bool[] EnemyDataSheet = new bool[200];
+
+
+
     private void Awake()
     {
         Application.targetFrameRate = 60;

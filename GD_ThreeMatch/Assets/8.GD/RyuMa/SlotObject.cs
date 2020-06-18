@@ -29,16 +29,28 @@ public enum SlotObjectSheet
 public class SlotObject : MonoBehaviour
 {
     public MapType mapType;
+
+    public GameObject EnemySkull;
     public SpriteRenderer SpriteRen;
+
+    int SlotNum;
+
 
     private ObjectManager theObject;
     private PuzzleMaker theMaker;
+    private PuzzleManager thePuzzle;
+    private GameManager theGM;
     private void Start()
     {
         if (theObject == null)
             theObject = FindObjectOfType<ObjectManager>();
         if (theMaker == null)
             theMaker = FindObjectOfType<PuzzleMaker>();
+        if (thePuzzle == null)
+            thePuzzle = FindObjectOfType<PuzzleManager>();
+        if (theGM == null)
+            theGM = FindObjectOfType<GameManager>();
+        
     }
 
 
@@ -46,19 +58,33 @@ public class SlotObject : MonoBehaviour
     {
 
         mapType = _mapType;
-
+        SlotNum = _SlotNum;
         if (theObject == null)
             theObject = FindObjectOfType<ObjectManager>();
         if (theMaker == null)
             theMaker = FindObjectOfType<PuzzleMaker>();
+        if (thePuzzle == null)
+            thePuzzle = FindObjectOfType<PuzzleManager>();
+        if (theGM == null)
+            theGM = FindObjectOfType<GameManager>();
         if (_Sheet == SlotObjectSheet.NULL)
         {
             SpriteRen.sprite = null;
         }
         else if (_Sheet == SlotObjectSheet.ST_1_Enemy)
         {
-            theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f,this.transform.position.y +0.07f));
+            if (thePuzzle.theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneEnemy == true)
+            {
+                if (theGM.EnemyDataSheet[thePuzzle.theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneNum] == true)
+                {
+                    thePuzzle.theMoveMap.Slots[SlotNum].nodeType = PuzzleSlot.NodeType.Normal;
+                    SpriteRen.sprite = theObject.SlotPanelSprite[_SlotNum % 2];
+                    return;
+                }
+            }
+            EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f,this.transform.position.y +0.07f));
             SpriteRen.sprite = theObject.EnemySlotSprite;
+            thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
 
         }
         else if (_Sheet == SlotObjectSheet.ST_2_Portal)
@@ -72,16 +98,32 @@ public class SlotObject : MonoBehaviour
         }
         else
         {
+
+           
             switch (theMaker.mapMainType)
             {
                 case MapMainType.M0_Forest:
                     SpriteRen.sprite = theObject.ForestSprites[(int)_Sheet];
                     break;
             }
-            
         }
-        
+        if ((int)_Sheet < 1000)
+        {
+            SpriteRen.sortingOrder = 11;
+        }
+        else
+        {
+            SpriteRen.sortingOrder = 1;
+        }
     }
+
+    public void ResetEnemy()
+    {
+        EnemySkull.SetActive(false);
+        EnemySkull = null;
+        SpriteRen.sprite = theObject.SlotPanelSprite[SlotNum % 2];
+    }
+
 
 
     public void Resetting()

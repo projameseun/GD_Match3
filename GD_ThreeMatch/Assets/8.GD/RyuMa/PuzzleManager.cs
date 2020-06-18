@@ -95,7 +95,6 @@ public class PuzzleManager : MonoBehaviour
     public bool SlotDown = false;
     public bool CubeEvent = false;
 
-    public int EnemySlotNum; // 현재 몬스터가 있는 슬롯 위치
     public int MoveCount;   //움직임 가능한 횟수
     public int CurrentPoint; // 현재 점수
     // 일러스트에 넣을 소녀들의 번호
@@ -1335,15 +1334,20 @@ public class PuzzleManager : MonoBehaviour
 
         //현재 슬롯이 몬스터인지
 
+        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
+        {
+            return EnemyEvent(theMoveMap, SlotNum);
+        }
+        else
+        {
+            Player.CurrentEnemyMeetChance = 0;
+        }
+
         if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Normal)
         {
             return false;
         }
-        else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
-        {
-            return EnemyEvent(theMoveMap, SlotNum);
-        }
-        else if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
         {
             CheckPortal(SlotNum);
             return true;
@@ -1462,12 +1466,6 @@ public class PuzzleManager : MonoBehaviour
     }
 
 
-
-    public void EnemySlotDestroy(int _Num)
-    {
-        theMoveMap.Slots[EnemySlotNum].nodeType = PuzzleSlot.NodeType.Normal;
-        
-    }
 
     //// 마지막에 멈춘 위치가 골이면 true
     //public bool CheckGoal(MapManager _Map)
@@ -1761,6 +1759,43 @@ public class PuzzleManager : MonoBehaviour
 
         }
     }
+    public void CheckEnemyData()
+    {
+        int SlotNum = CheckPlayerSlot(theMoveMap);
+        
+
+        if (theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneEnemy == true)
+        {
+            int DataNum = theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneNum;
+
+            theGM.EnemyDataSheet[DataNum] = true;
+
+            for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
+            {
+                for (int i = 0; i <= theMoveMap.TopRight; i++)
+                {
+                    if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
+                    {
+                        Debug.Log("test");
+                        if (theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneEnemy == true &&
+                         theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneNum == DataNum)
+                        {
+                            theMoveMap.Slots[i + Hor].slotObject.ResetEnemy();
+                            theMoveMap.Slots[i + Hor].nodeType = PuzzleSlot.NodeType.Normal;
+                        }
+                    }
+                 
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+
+    }
+
+
 
 
 

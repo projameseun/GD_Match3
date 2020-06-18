@@ -11,7 +11,6 @@ public class ObjectManager : MonoBehaviour
     public Sprite[] SlotPanelSprite;
     public Sprite EnemySlotSprite;
     public Sprite[] ForestSprites;
-    public SkeletonDataAsset[] ForestData;
 
 
     //게임오브젝트 리스트
