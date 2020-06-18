@@ -784,8 +784,8 @@ public class FindMatches : MonoBehaviour
                     continue;
 
 
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
 
                 _Map.Slots[Count].cube.DestroyCube(true,true);
@@ -813,8 +813,8 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
 
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
 
                 _Map.Slots[Count].cube.DestroyCube(true,true);
@@ -842,8 +842,8 @@ public class FindMatches : MonoBehaviour
             {
 
 
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
                 _Map.Slots[Count].cube.DestroyCube(true,true);
             }
@@ -869,8 +869,8 @@ public class FindMatches : MonoBehaviour
                 _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
                 _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
             {
-                if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
                 _Map.Slots[Count].cube.DestroyCube(true,true);
             }

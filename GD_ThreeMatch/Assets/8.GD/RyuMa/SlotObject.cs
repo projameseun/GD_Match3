@@ -11,10 +11,14 @@ public enum SlotMapType
 
 public enum SlotObjectSheet
 { 
-    NULL = -2,
-    S_0_Spin,
+    NULL = -1,
+    S_0_Object,
     S_1_Object,
     S_2_Object,
+    S_3_Object,
+    S_4_Object,
+    S_5_Object,
+    S_6_Object,
     ST_0_SlotPanel = 1000,
     ST_1_Enemy,
     ST_2_Portal,

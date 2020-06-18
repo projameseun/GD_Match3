@@ -28,7 +28,7 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public List<GameObject> SlotPanels;
     [HideInInspector] public List<GameObject> ClickParticles;
     [HideInInspector] public List<GameObject> Portals;
-    [HideInInspector] public List<GameObject> ObjectSpines;
+    //[HideInInspector] public List<GameObject> ObjectSpines;
     [HideInInspector] public List<GameObject> EnemySkulls;
 
 
@@ -46,7 +46,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject SlotPanel;
     public GameObject ClickParticle;
     public GameObject Portal;
-    public GameObject ObjectSpine;
+    //public GameObject ObjectSpine;
     public GameObject EnemySkull;
     public GameObject SelectSlotP;
 
@@ -162,13 +162,13 @@ public class ObjectManager : MonoBehaviour
             x.SetActive(false);
             Portals.Add(x);
         }
-        for (int i = 0; i < 10; i++)
-        {
-            GameObject x = Instantiate(ObjectSpine);
-            x.transform.position = SpawnVec;
-            x.SetActive(false);
-            ObjectSpines.Add(x);
-        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    GameObject x = Instantiate(ObjectSpine);
+        //    x.transform.position = SpawnVec;
+        //    x.SetActive(false);
+        //    ObjectSpines.Add(x);
+        //}
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(EnemySkull);
@@ -279,10 +279,10 @@ public class ObjectManager : MonoBehaviour
                 List = Portals;
                 Frefab = Portal;
                 break;
-            case "ObjectSpine":
-                List = ObjectSpines;
-                Frefab = ObjectSpine;
-                break;
+            //case "ObjectSpine":
+            //    List = ObjectSpines;
+            //    Frefab = ObjectSpine;
+            //    break;
             case "EnemySkull":
                 List = EnemySkulls;
                 Frefab = EnemySkull;
@@ -325,23 +325,23 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject SpawnSlotPanel(Transform trans ,Vector2 Pos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
     {
-        if (_Sheet == SlotObjectSheet.S_0_Spin)
-        {
-            GameObject ObjectSpin = FindObj("ObjectSpine");
-            ObjectSpin.transform.position = Pos;
-            ObjectSpin.transform.SetParent(trans);
-            if (_mapType == MapType.M1_MoveMap)
-            {
-                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.ObjectNum,
-                   thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.SkinName);
-            }
-            else if (_mapType == MapType.M2_BattleMap)
-            {
-                ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0, "0");
-            }
+        //if (_Sheet == SlotObjectSheet.S_0_Spin)
+        //{
+        //    GameObject ObjectSpin = FindObj("ObjectSpine");
+        //    ObjectSpin.transform.position = Pos;
+        //    ObjectSpin.transform.SetParent(trans);
+        //    if (_mapType == MapType.M1_MoveMap)
+        //    {
+        //        ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.ObjectNum,
+        //           thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.SkinName);
+        //    }
+        //    else if (_mapType == MapType.M2_BattleMap)
+        //    {
+        //        ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0, "0");
+        //    }
 
-            return ObjectSpin;
-        }
+        //    return ObjectSpin;
+        //}
         GameObject Slot = FindObj("SlotPanel");
         Slot.transform.position = Pos;
         Slot.GetComponent<SlotObject>().SetSlotObject(_Sheet, _mapType, _SlotNum);

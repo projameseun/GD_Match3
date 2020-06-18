@@ -584,7 +584,7 @@ public class PuzzleManager : MonoBehaviour
                         theBattleMap.Slots[i].SlotSheet.ObjectNum = 0;
                         theBattleMap.Slots[i].SlotSheet.SkinName = "0";
                         theObject.SpawnSlotPanel(_Map.transform, _Map.Slots[i].transform.position,
-                           SlotObjectSheet.S_0_Spin, mapType, i);
+                           SlotObjectSheet.S_0_Object, mapType, i);
                     }
 
 
