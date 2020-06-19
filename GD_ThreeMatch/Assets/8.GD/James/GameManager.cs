@@ -11,7 +11,14 @@ public class Serialization<T>
 {
     public Serialization(List<T> _Slot) => Slot = _Slot;
 
+    public Serialization(PlayerSaveData _Data) => Data = _Data;
+
+
     public List<T> Slot;
+
+    public PlayerSaveData Data;
+
+
 }
 
 
@@ -49,6 +56,19 @@ public class SlotInfo
 }
 
 
+[System.Serializable]
+public class PlayerSaveData
+{
+    public List<bool> MonsterDataSheet;
+
+    public PlayerSaveData()
+    {
+        MonsterDataSheet = new List<bool>();
+    }
+
+}
+
+
 public class GameManager : MonoBehaviour
 {
     float deltaTime = 0.0f;
@@ -57,7 +77,7 @@ public class GameManager : MonoBehaviour
     int w = 0, h = 0;
     Rect rect;
 
-    public bool[] EnemyDataSheet = new bool[200];
+    public List<bool> EnemyDataSheet = new List<bool>(200);
 
 
 
@@ -76,6 +96,16 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            SaveGameData();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            LoadGameData();
+        }
+
+
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
     }
     void OnGUI()
@@ -89,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     private List<SlotInfo> puzzleslotList = new List<SlotInfo>();
     private List<MapInfo> mapInfoList = new List<MapInfo>();
-
+    public PlayerSaveData playerSaveData = new PlayerSaveData();
 
 
     private PuzzleManager thePuzzle;
@@ -109,7 +139,20 @@ public class GameManager : MonoBehaviour
         //InitSetting();
     }
 
-
+    // 게임 저장할 데이터
+    public PlayerSaveData SaveData
+    {
+        get
+        {
+            playerSaveData = new PlayerSaveData();
+            playerSaveData.MonsterDataSheet = new List<bool>(EnemyDataSheet);
+            return playerSaveData;
+        }
+        set
+        {
+            playerSaveData = value;
+        }
+    }
 
     public List<MapInfo> MapInfoList
     {
@@ -165,38 +208,55 @@ public class GameManager : MonoBehaviour
         }
     }// public List<MapInfo> MapInfoList
 
-   
+
+
+    public void SaveGameData()
+    {
+        Debug.Log("저장");
+        string FilePath = Path.Combine(Application.persistentDataPath,"PlayerData.json");
+        string jdata = JsonUtility.ToJson(new Serialization<PlayerSaveData>(SaveData), true);
+        Debug.Log(FilePath);
+        File.WriteAllText(FilePath, jdata);
+    }
+
+    public void LoadGameData()
+    {
+        Debug.Log("불러오기");
+        string FilePath = Path.Combine(Application.persistentDataPath, "PlayerData.json");
+        string jdata = File.ReadAllText(FilePath);
+        PlayerSaveData NewData;
+        NewData = JsonUtility.FromJson<Serialization<PlayerSaveData>>(jdata).Data;
+        playerSaveData = (NewData);
+    }
 
 
 
     public void SaveBtn()
     {
-        
-        string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
+        //string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
+        string FilePath = Path.Combine(Application.streamingAssetsPath, theMaker.MapName + ".json");
 
         //byte[] bytes = reader.bytes;
         //string FileName = System.Text.Encoding.UTF8.GetString(bytes);
         //print(FilePath);
         //리스트는 저장이 안되지만 크랠스는 저장이된다
-        string jdata = JsonUtility.ToJson(new Serialization<MapInfo>(MapInfoList));
+        string jdata = JsonUtility.ToJson(new Serialization<MapInfo>(MapInfoList), true);
         //print(jdata);
         Debug.Log("FilePath = " + FilePath);
         Debug.Log("jdata = " + jdata);
 
 
-
-
         File.WriteAllText(FilePath, jdata);
 
-     
 
 
-
-        string FilePath2 = Application.streamingAssetsPath +"/" + theMaker.MapName + "Son.json";
-
-        string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList));
+        //string FilePath2 = Application.streamingAssetsPath +"/" + theMaker.MapName + "Son.json";
+        string FilePath2 = Path.Combine(Application.streamingAssetsPath, theMaker.MapName + "Son.json");
+        string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList) , true);
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         //print(jdata2);
+        Debug.Log("FilePath2 = " + FilePath2);
+        Debug.Log("jdata2 = " + jdata2);
 
 
 
@@ -219,37 +279,37 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("로드를 눌렀습니다");
 
-        string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
+        //string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
+        string FilePath = Path.Combine(Application.streamingAssetsPath, theMaker.MapName + ".json");
+
         //복호화
         Debug.Log("FilePath = " + FilePath);
 
         WWW reader = new WWW(FilePath);
 
         while (!reader.isDone)
-        { 
-        
+        {
+
         }
 
         //string jdata = File.ReadAllText(FilePath);
- 
+
         byte[] bytes = reader.bytes;
         string jdata = System.Text.Encoding.UTF8.GetString(bytes);
-        //PlayerManager.instance.SetItemList();
         List<MapInfo> a_LoadMapList;
         a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(jdata).Slot;
         mapInfoList = (a_LoadMapList);
 
-        string FilePath2 = Application.streamingAssetsPath+ "/" + theMaker.MapName + "Son.json";
+        string FilePath2 = Path.Combine( Application.streamingAssetsPath + "/" + theMaker.MapName + "Son.json");
         reader = new WWW(FilePath2);
 
         while (!reader.isDone)
         {
 
         }
-        //string jdata2 = File.ReadAllText(FilePath2);
+        // string jdata2 = File.ReadAllText(FilePath2);
         byte[] bytes2 = reader.bytes;
         string jdata2 = System.Text.Encoding.UTF8.GetString(bytes2);
-        //PlayerManager.instance.SetItemList();
         List<SlotInfo> a_LoadSlotList;
         a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(jdata2).Slot;
         puzzleslotList = (a_LoadSlotList);

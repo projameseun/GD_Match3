@@ -21,6 +21,8 @@ namespace HappyRyuMa
             Vector2 vec = Target - MyVec;
             vec.Normalize();
             AngleZ = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+            //이미지의 0도 중심이 아래일 경우 +90
+            //이미지의 0도 중심이 위일 경우 -90
             AngleZ -= 90;
             if (AngleZ < 0)
                 AngleZ += 360;
@@ -45,6 +47,18 @@ namespace HappyRyuMa
             float Result = Random.Range(0.0f, 100.0f);
             return Result;
         }
+
+
+        public static bool CheckInternet()
+        {
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
 
 
     }

@@ -1104,7 +1104,7 @@ public class PuzzleManager : MonoBehaviour
             BattleUI.SetActive(false);
             gameMode = GameMode.MoveMap;
             state = State.Ready;
-            AutoEvent = true;
+            CubeEvent = false;
         }
     }
 

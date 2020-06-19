@@ -56,6 +56,7 @@ public class FadeManager : MonoBehaviour
 
     public void FadeInEvent(bool Show = true)
     {
+        
         FadeTime = 3f;
         color.a = FadeTime;
         FadeImage.color = color;

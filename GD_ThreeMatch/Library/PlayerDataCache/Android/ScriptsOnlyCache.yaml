@@ -18,7 +18,6 @@ ScriptsOnlyBuild:
     - ItemManager
     - MapManager
     - ObjectManager
-    - ObjectSpineManager
     - ParticleManager
     - PlayerCube
     - PlayerTouchManager
@@ -60,7 +59,6 @@ ScriptsOnlyBuild:
     spine-unity.dll:
     - Spine.Unity.SkeletonAnimation
     - Spine.Unity.SkeletonDataAsset
-    - Spine.Unity.SkeletonGraphic
     - Spine.Unity.SpineAtlasAsset
   sceneClasses:
     Assets/1.Scenes/InGame.unity:
@@ -155,8 +153,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12196}
-    - Class: 114
       Script: {instanceID: 12226}
     - Class: 114
       Script: {instanceID: 12254}
@@ -182,8 +178,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12698}
     - Class: 114
       Script: {instanceID: 12716}
-    - Class: 114
-      Script: {instanceID: 12736}
     - Class: 114
       Script: {instanceID: 12904}
     - Class: 114
@@ -291,7 +285,7 @@ ScriptsOnlyBuild:
     className: BattleResultManager
   - hash:
       serializedVersion: 2
-      Hash: 0c27136f736d630702e7122551621222
+      Hash: 074fae50834fc27164579b265dbaf8f5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ObjectManager
@@ -405,7 +399,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 1de9b9f9c61eca41ce1e75af0db45b0c
+      Hash: 51f7edf5b37ad3dad0b13c12af492b52
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FadeManager
@@ -465,7 +459,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 19ac620cc54e26fff92db53011a36413
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -483,7 +477,7 @@ ScriptsOnlyBuild:
     className: CubeUI
   - hash:
       serializedVersion: 2
-      Hash: 84c52c780bc19052fea5a886974c2f89
+      Hash: b02a3dc922189c7888e5594ef642ac89
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleManager
@@ -585,7 +579,7 @@ ScriptsOnlyBuild:
     className: PuzzleMaker
   - hash:
       serializedVersion: 2
-      Hash: 901b08c270d699becd0a995143aee615
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ObjectSpineManager
@@ -621,7 +615,7 @@ ScriptsOnlyBuild:
     className: PlayerTouchManager
   - hash:
       serializedVersion: 2
-      Hash: ea04122f2acb0a87f1b1fa75e260dd62
+      Hash: 24e434a4de31f80f801cd7efbe9b6a9f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Cube
@@ -699,7 +693,7 @@ ScriptsOnlyBuild:
     className: SkeletonDataAsset
   - hash:
       serializedVersion: 2
-      Hash: 09fa1a0a0a9551d26b7eba0d034b2537
+      Hash: 630e80929a33cbe82c2556287ca0b0d6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PuzzleSlot
@@ -825,7 +819,7 @@ ScriptsOnlyBuild:
     className: FollowLocationRigidbody2D
   - hash:
       serializedVersion: 2
-      Hash: c6f8d7bbfd651a0918d2c7456608551a
+      Hash: ffafd1e16526d5adb6285ad829cee935
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PuzzleManager
@@ -849,7 +843,7 @@ ScriptsOnlyBuild:
     className: SkeletonPartsRenderer
   - hash:
       serializedVersion: 2
-      Hash: 57342432e792ef15426af32961e5f1ba
+      Hash: 679c46cf72024e3717e036294b5b42b3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SlotObject

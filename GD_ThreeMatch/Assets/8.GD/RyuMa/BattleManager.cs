@@ -297,6 +297,7 @@ public class BattleManager : MonoBehaviour
                 {
                     if (theFade.FadeOutEnd == true)
                     {
+                        Debug.Log(thePuzzle.CubeEvent);
                         theFade.FadeOutEnd = false;
                         theFade.CloseBlackChat();
                         thePuzzle.ChangeGameMode();
