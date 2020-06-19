@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     private List<SlotInfo> puzzleslotList = new List<SlotInfo>();
     private List<MapInfo> mapInfoList = new List<MapInfo>();
-    public PlayerSaveData playerSaveData = new PlayerSaveData();
+    private PlayerSaveData playerSaveData = new PlayerSaveData();
 
 
     private PuzzleManager thePuzzle;

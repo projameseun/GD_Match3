@@ -331,11 +331,12 @@ public class PuzzleManager : MonoBehaviour
                     }
                 }
             }
-            else if (state == State.LoadingMap)
+            else if (state == State.LoadingMap) // 맵을 로딩한 후 페이드 인이 끝났을 때
             {
                 if (theFade.FadeInEnd == true)
                 {
                     theFade.FadeInEnd = false;
+                    theFade.ShowMapNameEvent(theMaker.MapName);
                     state = State.Ready;
                 }
             }

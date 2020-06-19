@@ -1,32 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class FadeManager : MonoBehaviour
 {
+    enum MapNameState
+    {
+        MS0_End = 0,
+        MS1_FadeIn,
+        MS2_FadeOut,
+        
+    }
+
+
+    //UI
+
     public GameObject BlackChatBase;
     public Text TitleText;
     public Text DesText;
-
-
     public Sprite[] LoadingSpirtes;
 
     public GameObject FadeBase;
     public Image FadeImage;
     public SpriteRenderer LoadingImage;
     public Image LoadingTextImage;
+
+    public GameObject MapNameBase;
+    public TextMeshPro TitleNameText;
+
+
+
+
+
+    //DB
+
     public bool FadeInEnd;
     public bool FadeOutEnd;
     Color color = new Color(1,1,1,0);
     float FadeTime = 0f;
 
-
-
-    
-
-    //BlackChat
-    public bool Touch;
-
+    //MapNameDB
+    float MapNameEventTime;
+    MapNameState mapNameState;
+    Color TextColor = new Color(1, 1, 1, 1);
 
     private void Start()
     {
@@ -79,6 +96,23 @@ public class FadeManager : MonoBehaviour
         BlackChatBase.SetActive(false);
     }
 
+
+    public void ShowMapNameEvent(string _string)
+    {
+        TitleNameText.text = _string;
+        MapNameBase.SetActive(true);
+        MapNameEventTime = 0f;
+        if (mapNameState == MapNameState.MS0_End)
+        {
+            mapNameState = MapNameState.MS1_FadeIn;
+            StartCoroutine(ShowMapName());
+        }
+        else
+        {
+            mapNameState = MapNameState.MS1_FadeIn;
+        }
+       
+    }
 
 
 
@@ -135,10 +169,39 @@ public class FadeManager : MonoBehaviour
                 FadeImage.color = color;
                 LoadingTextImage.color = color;
                 LoadingImage.color = color;
+                mapNameState = MapNameState.MS0_End;
                 break;
             }
         }
         FadeBase.SetActive(false);
+    }
+
+
+    IEnumerator ShowMapName()
+    {
+        while (mapNameState != MapNameState.MS0_End)
+        {
+            if (mapNameState == MapNameState.MS1_FadeIn)
+            {
+                MapNameEventTime += Time.deltaTime;
+                if (MapNameEventTime > 2)
+                {
+                    mapNameState = MapNameState.MS2_FadeOut;
+                }
+            }
+            else if (mapNameState == MapNameState.MS2_FadeOut)
+            {
+                MapNameEventTime -= Time.deltaTime;
+                if (MapNameEventTime > 2)
+                {
+                    mapNameState = MapNameState.MS0_End;
+                }
+            }
+            TextColor.a = MapNameEventTime;
+            TitleNameText.color = TextColor;
+            yield return new WaitForEndOfFrame();
+        }
+        MapNameBase.SetActive(false);
     }
 
 

@@ -42,7 +42,7 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
         Rect rect = MainCamera.rect;
-        float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16);
+        float scaleheight = ((float)Screen.width / Screen.height) / ((float)1080 / 1920);
         float scalewidth = 1f / scaleheight;
 
         if (scaleheight < 1)

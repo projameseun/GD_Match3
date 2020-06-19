@@ -256,6 +256,8 @@ public class PuzzleMaker : MonoBehaviour
     {
         TestStartBt.SetActive(false);
         SaveButton.SetActive(true);
+        // 위에껀 나주엥 지워준다
+
         IngameUi.SetActive(true);
         thePuzzle.SetPlayerUi();
         thePuzzle.LoadMap(theMoveMap,false);
