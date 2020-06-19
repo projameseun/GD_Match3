@@ -68,9 +68,19 @@ public class PlayerSaveData
 
 }
 
+public enum GMState
+{ 
+    GM0_Title,
+    GM1_Lobby,
+    GM2_InGame,
+}
+
 
 public class GameManager : MonoBehaviour
 {
+    public GMState state;
+
+
     float deltaTime = 0.0f;
     Color GUIColor = new Color(1, 1, 1, 1);
     GUIStyle style = new GUIStyle();
@@ -96,16 +106,6 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            SaveGameData();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            LoadGameData();
-        }
-
-
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
     }
     void OnGUI()

@@ -12,6 +12,8 @@ public class SpeechBubble : MonoBehaviour
     Color Boxcolor = new Color(1,1,1,1);
     Color Speechcolor = new Color(0, 0, 0, 1);
 
+    private ObjectManager theObject;
+
     private void Update()
     {
         if (LifeTime > 0)
@@ -38,6 +40,9 @@ public class SpeechBubble : MonoBehaviour
 
     public void SetSpeech(Vector2 _vec, string _Speech, float _LifeTime)
     {
+        if (theObject == null)
+            theObject = FindObjectOfType<ObjectManager>();
+
         this.transform.position = _vec;
         Boxcolor = SpeechBox.color;
         Speechcolor = SpeechText.color;
@@ -56,6 +61,9 @@ public class SpeechBubble : MonoBehaviour
         Speechcolor.a = 1;
         SpeechBox.color = Boxcolor;
         SpeechText.color = Speechcolor;
+
+        theObject.SpeechBubbles.Enqueue(this.gameObject);
+
     }
 
 

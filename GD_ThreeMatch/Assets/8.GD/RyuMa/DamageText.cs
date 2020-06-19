@@ -13,6 +13,8 @@ public class DamageText : MonoBehaviour
     Vector2 Target;
     Color color = new Color(0,0,0,1);
 
+    private ObjectManager theObject;
+
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +42,9 @@ public class DamageText : MonoBehaviour
 
     public void SetDamageText(Vector2 _StartVec, string _Value, float _Time = 1.5f)
     {
+        if (theObject == null)
+            theObject = FindObjectOfType<ObjectManager>();
+
         Vector2 StartPos = _StartVec;
         StartPos.x += Random.Range(-0.9f, 0.9f);
         StartPos.y += Random.Range(-0.3f, 0.3f);
@@ -66,6 +71,7 @@ public class DamageText : MonoBehaviour
         FlotingEvent = false;
         
         this.gameObject.SetActive(false);
+        theObject.DamageTexts.Enqueue(this.gameObject);
 
     }
 

@@ -162,7 +162,11 @@ public class PuzzleManager : MonoBehaviour
 
     private void Update()
     {
-        PuzzleUpdate();
+        if (theGM.state == GMState.GM2_InGame)
+        {
+            PuzzleUpdate();
+        }
+        
 
         //큐브 없이 큐브 이밴트를 사용해야 할 때 사용
         if (AutoEvent == true)
@@ -1434,11 +1438,12 @@ public class PuzzleManager : MonoBehaviour
 
         // 맵을 새로 로드할때 엑티브를 꺼야할 오브젝트들
 
-        for (int i = 0; i < theObject.EnemySkulls.Count; i++)
+        for (int i = 0; i < theObject.EnemySkullList.Count; i++)
         {
-            if (theObject.EnemySkulls[i].activeSelf == true)
+            if (theObject.EnemySkullList[i].activeSelf == true)
             {
-                theObject.EnemySkulls[i].gameObject.SetActive(false);
+                theObject.EnemySkullList[i].gameObject.SetActive(false);
+                theObject.EnemySkulls.Enqueue(theObject.EnemySkullList[i]);
             }
         }
         //for (int i = 0; i < theObject.ObjectSpines.Count; i++)
@@ -1448,18 +1453,18 @@ public class PuzzleManager : MonoBehaviour
         //        theObject.ObjectSpines[i].gameObject.SetActive(false);
         //    }
         //}
-        for (int i = 0; i < theObject.SlotPanels.Count; i++)
+        for (int i = 0; i < theObject.SlotPanelList.Count; i++)
         {
-            if (theObject.SlotPanels[i].activeSelf == true)
+            if (theObject.SlotPanelList[i].activeSelf == true)
             {
-                theObject.SlotPanels[i].GetComponent<SlotObject>().Resetting();
+                theObject.SlotPanelList[i].GetComponent<SlotObject>().Resetting();
             }
         }
-        for (int i = 0; i < theObject.Portals.Count; i++)
+        for (int i = 0; i < theObject.PortalList.Count; i++)
         {
-            if (theObject.Portals[i].activeSelf == true)
+            if (theObject.PortalList[i].activeSelf == true)
             {
-                theObject.Portals[i].GetComponent<ParticleManager>().Resetting();
+                theObject.PortalList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 

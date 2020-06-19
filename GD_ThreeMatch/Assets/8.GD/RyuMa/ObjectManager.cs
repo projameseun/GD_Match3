@@ -4,6 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
+public enum ParticleName
+{ 
+    PN0_CubeP,
+    PN1_AliceSkill,
+    PN2_AliceAnimEffect,
+    PN3_SlimeSkill,
+    PN3_SlimeSkill2,
+    PN4_ClickP,
+    PN5_Portal,
+
+
+}
+
+
 public class ObjectManager : MonoBehaviour
 {
 
@@ -14,25 +28,53 @@ public class ObjectManager : MonoBehaviour
 
 
     //게임오브젝트 리스트
-    [HideInInspector] public List<GameObject> Cubes; //큐브 리스트
-    [HideInInspector] public List<GameObject> CubeParticles;
-    [HideInInspector] public List<GameObject> CubeEfs;
-    [HideInInspector] public List<GameObject> SpeechBubbles;
-    [HideInInspector] public List<GameObject> AttackEffects;
-    [HideInInspector] public List<GameObject> DamageTexts;
-    [HideInInspector] public List<GameObject> AliceSkills;
-    [HideInInspector] public List<GameObject> AliceAnimEffects;
-    [HideInInspector] public List<GameObject> SlimeSkillParticles;
-    [HideInInspector] public List<GameObject> SlimeAttackParticles;
-    [HideInInspector] public List<GameObject> SlotPanels;
-    [HideInInspector] public List<GameObject> ClickParticles;
-    [HideInInspector] public List<GameObject> Portals;
+    [HideInInspector] public Queue<GameObject> Cubes = new Queue<GameObject>(); //큐브 리스트
+    [HideInInspector] public List<GameObject> CubeList;
+
+    [HideInInspector] public Queue<GameObject> CubeParticles = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> CubeParticleList;
+
+    [HideInInspector] public Queue<GameObject> CubeEfs = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> CubeEfList;
+
+    [HideInInspector] public Queue<GameObject> SpeechBubbles = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> SpeechBubbleList;
+
+    [HideInInspector] public Queue<GameObject> AttackEffects = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> AttackEffectList;
+
+    [HideInInspector] public Queue<GameObject> DamageTexts = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> DamageTextList;
+
+    [HideInInspector] public Queue<GameObject> AliceSkills = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> AliceSkillList;
+
+    [HideInInspector] public Queue<GameObject> AliceAnimEffects = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> AliceAnimEffectList;
+
+    [HideInInspector] public Queue<GameObject> SlimeSkillParticles = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> SlimeSkillParticleList;
+
+    [HideInInspector] public Queue<GameObject> SlimeAttackParticles = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> SlimeAttackParticleList;
+
+    [HideInInspector] public Queue<GameObject> SlotPanels = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> SlotPanelList;
+
+    [HideInInspector] public Queue<GameObject> ClickParticles = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> ClickParticleList;
+
+    [HideInInspector] public Queue<GameObject> Portals = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> PortalList;
     //[HideInInspector] public List<GameObject> ObjectSpines;
-    [HideInInspector] public List<GameObject> EnemySkulls;
+    [HideInInspector] public Queue<GameObject> EnemySkulls = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> EnemySkullList;
+
+
 
 
     //게임오브젝트 프리팹
-    public GameObject Cube; //큐브 프리팹
+    public GameObject CubePrefab; //큐브 프리팹
     public GameObject CubeParticle;
     public GameObject CubeEf;
     public GameObject SpeechObj;
@@ -50,7 +92,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject SelectSlotP;
 
 
-    List<GameObject> List = new List<GameObject>();
+    Queue<GameObject> ObjectQueue = new Queue<GameObject>();
+    List<GameObject> ObjectList = new List<GameObject>();
     Vector2 SpawnVec = new Vector2(100, 0);
 
 
@@ -62,8 +105,6 @@ public class ObjectManager : MonoBehaviour
 
         Init();
         LoadingInit();
-
-
     }
 
 
@@ -72,94 +113,107 @@ public class ObjectManager : MonoBehaviour
     {
         for (int i = 0; i < 50; i++)
         {
-            GameObject x = Instantiate(Cube);
+            GameObject x = Instantiate(CubePrefab);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            Cubes.Add(x);
+            Cubes.Enqueue(x);
+            CubeList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(CubeParticle);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            CubeParticles.Add(x);
+            CubeParticles.Enqueue(x);
+            CubeParticleList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(CubeEf);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            CubeEfs.Add(x);
+            CubeEfs.Enqueue(x);
+            CubeEfList.Add(x);
         }
         for (int i = 0; i < 5; i++)
         {
             GameObject x = Instantiate(SpeechObj);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            SpeechBubbles.Add(x);
+            SpeechBubbles.Enqueue(x);
+            SpeechBubbleList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(AttackEffect);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            AttackEffects.Add(x);
+            AttackEffects.Enqueue(x);
+            AttackEffectList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(DamageText);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            DamageTexts.Add(x);
+            DamageTexts.Enqueue(x);
+            DamageTextList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(AliceSkill);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            AliceSkills.Add(x);
+            AliceSkills.Enqueue(x);
+            AliceSkillList.Add(x);
         }
         for (int i = 0; i < 1; i++)
         {
             GameObject x = Instantiate(AliceAnimEffect);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            AliceAnimEffects.Add(x);
+            AliceAnimEffects.Enqueue(x);
+            AliceAnimEffectList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(SlimeSkillParticle);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            SlimeSkillParticles.Add(x);
+            SlimeSkillParticles.Enqueue(x);
+            SlimeSkillParticleList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(SlimeAttackParticle);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            SlimeAttackParticles.Add(x);
+            SlimeAttackParticles.Enqueue(x);
+            SlimeAttackParticleList.Add(x);
         }
         for (int i = 0; i < 50; i++)
         {
             GameObject x = Instantiate(SlotPanel);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            SlotPanels.Add(x);
+            SlotPanels.Enqueue(x);
+            SlotPanelList.Add(x);
         }
         for (int i = 0; i < 2; i++)
         {
             GameObject x = Instantiate(ClickParticle);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            ClickParticles.Add(x);
+            ClickParticles.Enqueue(x);
+            ClickParticleList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject x = Instantiate(Portal);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            Portals.Add(x);
+            Portals.Enqueue(x);
+            PortalList.Add(x);
         }
         //for (int i = 0; i < 10; i++)
         //{
@@ -173,7 +227,8 @@ public class ObjectManager : MonoBehaviour
             GameObject x = Instantiate(EnemySkull);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            EnemySkulls.Add(x);
+            EnemySkulls.Enqueue(x);
+            EnemySkullList.Add(x);
         }
 
         //ClickParticles
@@ -227,55 +282,68 @@ public class ObjectManager : MonoBehaviour
         switch (_Name)
         {
             case "Cube":
-                List = Cubes;
-                Frefab = Cube;
+                ObjectQueue = Cubes;
+                ObjectList = CubeList;
+                Frefab = CubePrefab;
                 break;
             case "CubeP":
-                List = CubeParticles;
+                ObjectQueue = CubeParticles;
+                ObjectList = CubeParticleList;
                 Frefab = CubeParticle;
                 break;
             case "CubeE":
-                List = CubeEfs;
+                ObjectQueue = CubeEfs;
+                ObjectList = CubeEfList;
                 Frefab = CubeEf;
                 break;
             case "Speech":
-                List = SpeechBubbles;
+                ObjectQueue = SpeechBubbles;
+                ObjectList = SpeechBubbleList;
                 Frefab = SpeechObj;
                 break;
             case "AttackEffect":
-                List = AttackEffects;
+                ObjectQueue = AttackEffects;
+                ObjectList = AttackEffectList;
                 Frefab = AttackEffect;
                 break;
             case "DamageText":
-                List = DamageTexts;
+                ObjectQueue = DamageTexts;
+                ObjectList = DamageTextList;
                 Frefab = DamageText;
                 break;
             case "AliceSkill":
-                List = AliceSkills;
+                ObjectQueue = AliceSkills;
+                ObjectList = AliceSkillList;
                 Frefab = AliceSkill;
                 break;
             case "AliceAnimEffect":
-                List = AliceAnimEffects;
+                ObjectQueue = AliceAnimEffects;
+                ObjectList = AliceAnimEffectList;
                 Frefab = AliceAnimEffect;
                 break;
             case "SlimeP":
-                List = SlimeAttackParticles;
+                ObjectQueue = SlimeAttackParticles;
+                ObjectList = SlimeAttackParticleList;
                 Frefab = SlimeAttackParticle;
                 break;
             case "SlimeSkillParticle":
-                List = SlimeSkillParticles;
+                ObjectQueue = SlimeSkillParticles;
+                ObjectList = SlimeSkillParticleList;
                 Frefab = SlimeSkillParticle;
                 break;
             case "SlotPanel":
-                List = SlotPanels;
+                ObjectQueue = SlotPanels;
+                ObjectList = SlotPanelList;
                 Frefab = SlotPanel;
                 break;
             case "ClickParticle":
-                List = ClickParticles;
+                ObjectQueue = ClickParticles;
+                ObjectList = ClickParticleList;
                 Frefab = ClickParticle;
                 break;
             case "Portal":
-                List = Portals;
+                ObjectQueue = Portals;
+                ObjectList = PortalList;
                 Frefab = Portal;
                 break;
             //case "ObjectSpine":
@@ -283,26 +351,26 @@ public class ObjectManager : MonoBehaviour
             //    Frefab = ObjectSpine;
             //    break;
             case "EnemySkull":
-                List = EnemySkulls;
+                ObjectQueue = EnemySkulls;
+                ObjectList = EnemySkullList;
                 Frefab = EnemySkull;
                 break;
 
         }
 
-
-        for (int i = 0; i < List.Count; i++)
+        if (ObjectQueue.Count > 0)
         {
-            if (List[i].activeSelf == false)
-            {
-                List[i].SetActive(_Active);
-                return List[i];
-            }
+            GameObject Obj = ObjectQueue.Dequeue();
+            if (_Active == true)
+                Obj.SetActive(true);
+            return Obj;
         }
-        
+
+
         //만약 모든 리스트에 오브젝트들이 활성화되어있다면 오브젝트를 추가하고 넣는다
         GameObject X = Instantiate(Frefab);
         X.SetActive(_Active);
-        List.Add(X);
+        ObjectList.Add(X);
         return X;
     }
 
@@ -528,109 +596,109 @@ public class ObjectManager : MonoBehaviour
 
     public void ResettingAllObj()
     {
-        for(int i = 0; i < Cubes.Count; i++)
+        for (int i = 0; i < CubeList.Count; i++)
         {
-            if(Cubes[i].activeSelf)
+            if(CubeList[i].activeSelf)
             {
-                Cubes[i].GetComponent<Cube>().Resetting();
+                CubeList[i].GetComponent<Cube>().Resetting();
             }
         }
 
-        for(int i = 0; i < CubeParticles.Count; i++)
+        for(int i = 0; i < CubeParticleList.Count; i++)
         {
-            if(CubeParticles[i].activeSelf)
+            if(CubeParticleList[i].activeSelf)
             {
-                CubeParticles[i].GetComponent<ParticleManager>().Resetting();
+                CubeParticleList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 
-        for (int i = 0; i < CubeEfs.Count; i++)
+        for (int i = 0; i < CubeEfList.Count; i++)
         {
-            if (CubeEfs[i].activeSelf)
+            if (CubeEfList[i].activeSelf)
             {
-                CubeEfs[i].GetComponent<CubeEffect>().Resetting();
+                CubeEfList[i].GetComponent<CubeEffect>().Resetting();
             }
         }
 
-        for (int i = 0; i < SpeechBubbles.Count; i++)
+        for (int i = 0; i < SpeechBubbleList.Count; i++)
         {
-            if (SpeechBubbles[i].activeSelf)
+            if (SpeechBubbleList[i].activeSelf)
             {
-                SpeechBubbles[i].GetComponent<SpeechBubble>().Resetting();
+                SpeechBubbleList[i].GetComponent<SpeechBubble>().Resetting();
             }
         }
 
-        for (int i = 0; i < AttackEffects.Count; i++)
+        for (int i = 0; i < AttackEffectList.Count; i++)
         {
-            if (AttackEffects[i].activeSelf)
+            if (AttackEffectList[i].activeSelf)
             {
-                AttackEffects[i].GetComponent<AttackEffect>().Resetting();
-            }
-
-
-        }
-        for (int i = 0; i < DamageTexts.Count; i++)
-        {
-            if (DamageTexts[i].activeSelf)
-            {
-                DamageTexts[i].GetComponent<DamageText>().Resetting();
+                AttackEffectList[i].GetComponent<AttackEffect>().Resetting();
             }
 
 
         }
-        for (int i = 0; i < AliceSkills.Count; i++)
+        for (int i = 0; i < DamageTextList.Count; i++)
         {
-            if (AliceSkills[i].activeSelf)
+            if (DamageTextList[i].activeSelf)
             {
-                AliceSkills[i].GetComponent<ParticleManager>().Resetting();
+                DamageTextList[i].GetComponent<DamageText>().Resetting();
+            }
+
+
+        }
+        for (int i = 0; i < AliceSkillList.Count; i++)
+        {
+            if (AliceSkillList[i].activeSelf)
+            {
+                AliceSkillList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 
-        for (int i = 0; i < AliceAnimEffects.Count; i++)
+        for (int i = 0; i < AliceAnimEffectList.Count; i++)
         {
-            if (AliceAnimEffects[i].activeSelf)
+            if (AliceAnimEffectList[i].activeSelf)
             {
-                AliceAnimEffects[i].GetComponent<ParticleManager>().Resetting();
+                AliceAnimEffectList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
-        for (int i = 0; i < SlimeSkillParticles.Count; i++)
+        for (int i = 0; i < SlimeSkillParticleList.Count; i++)
         {
-            if (SlimeSkillParticles[i].activeSelf)
+            if (SlimeSkillParticleList[i].activeSelf)
             {
-                SlimeSkillParticles[i].GetComponent<ParticleManager>().Resetting();
+                SlimeSkillParticleList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
         
-        for (int i = 0; i < SlimeAttackParticles.Count; i++)
+        for (int i = 0; i < SlimeAttackParticleList.Count; i++)
         {
-            if (SlimeAttackParticles[i].activeSelf)
+            if (SlimeAttackParticleList[i].activeSelf)
             {
-                SlimeAttackParticles[i].GetComponent<ParticleManager>().Resetting();
+                SlimeAttackParticleList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 
-        for (int i = 0; i < SlotPanels.Count; i++)
+        for (int i = 0; i < SlotPanelList.Count; i++)
         {
-            if (SlotPanels[i].activeSelf == true)
+            if (SlotPanelList[i].activeSelf == true)
             {
-                SlotPanels[i].GetComponent<SlotObject>().Resetting();
+                SlotPanelList[i].GetComponent<SlotObject>().Resetting();
             }
         }
 
 
-        for (int i = 0; i < ClickParticles.Count; i++)
+        for (int i = 0; i < ClickParticleList.Count; i++)
         {
-            if (ClickParticles[i].activeSelf == true)
+            if (ClickParticleList[i].activeSelf == true)
             {
-                ClickParticles[i].GetComponent<ParticleManager>().Resetting();
+                ClickParticleList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 
-        for (int i = 0; i < Portals.Count; i++)
+        for (int i = 0; i < PortalList.Count; i++)
         {
-            if (Portals[i].activeSelf == true)
+            if (PortalList[i].activeSelf == true)
             {
-                Portals[i].GetComponent<ParticleManager>().Resetting();
+                PortalList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 

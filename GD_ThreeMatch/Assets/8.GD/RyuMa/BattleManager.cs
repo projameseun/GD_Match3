@@ -163,6 +163,7 @@ public class BattleManager : MonoBehaviour
     private PuzzleManager thePuzzle;
     private FadeManager theFade;
     private CameraManager theCamera;
+    private GameManager theGM;
     private void Start()
     {
         CurrentSkillUI = SkillUI.UI2_Null;
@@ -170,7 +171,7 @@ public class BattleManager : MonoBehaviour
         theFade = FindObjectOfType<FadeManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theObject = FindObjectOfType<ObjectManager>();
-
+        theGM = FindObjectOfType<GameManager>();
 
         ColorNumList.Add(0);
         ColorNumList.Add(1);
@@ -181,9 +182,16 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
+        if (theGM.state == GMState.GM2_InGame)
+        {
+            BattleUpdate();
+        }
+    }
+
+    public void BattleUpdate()
+    {
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
-
             //콤보 이밴트
             if (ComboEvent[0] == true)
             {
@@ -218,7 +226,7 @@ public class BattleManager : MonoBehaviour
                 if (ComboEventTime > 0)
                 {
                     ComboEventTime -= Time.deltaTime;
-                    
+
                 }
                 else
                 {
@@ -268,8 +276,8 @@ public class BattleManager : MonoBehaviour
                     {
                         thePuzzle.CheckEnemyCubeCount();
                     }
-                    
-                        
+
+
                 }
                 // 몬스터가 공격할 때 실행한다
                 else if (battleState == BattleState.EnemyAttack)
@@ -277,7 +285,7 @@ public class BattleManager : MonoBehaviour
                     if (PlayerAttackEffectList.Count > 0 || DamageEvent == true)
                         return;
 
-                    if (BattleEvent == true && EnemyAttackEffectList.Count ==0)
+                    if (BattleEvent == true && EnemyAttackEffectList.Count == 0)
                     {
                         EnemyAttackEnd();
                         return;
@@ -310,8 +318,6 @@ public class BattleManager : MonoBehaviour
 
             }
         }
-
-
     }
 
 

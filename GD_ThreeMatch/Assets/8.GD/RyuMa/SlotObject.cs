@@ -129,6 +129,7 @@ public class SlotObject : MonoBehaviour
     public void Resetting()
     {
         this.gameObject.SetActive(false);
+        theObject.SlotPanels.Enqueue(this.gameObject);
     }
 
 

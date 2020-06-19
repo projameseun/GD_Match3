@@ -239,6 +239,7 @@ public class CubeEffect : MonoBehaviour
         this.transform.eulerAngles = new Vector3(0, 0, 0);
         Rotation = new Vector3(0, 0, 0);
         gameObject.SetActive(false);
+        theObject.CubeEfs.Enqueue(this.gameObject);
     }
 
 

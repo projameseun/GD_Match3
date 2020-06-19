@@ -388,6 +388,7 @@ public class Cube : MonoBehaviour
         SkillDamage = 0;
         SpriteRen.color = new Color(1, 1, 1, 1);
         this.gameObject.SetActive(false);
+        theObject.Cubes.Enqueue(this.gameObject);
     }
 
 

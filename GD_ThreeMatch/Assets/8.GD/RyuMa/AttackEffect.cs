@@ -44,9 +44,11 @@ public class AttackEffect : MonoBehaviour
 
 
     private BattleManager theBattle;
+    private ObjectManager theObject;
     private void Start()
     {
         theBattle = FindObjectOfType<BattleManager>();
+        theObject = FindObjectOfType<ObjectManager>();
     }
 
 
@@ -54,9 +56,6 @@ public class AttackEffect : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-
-
         if (Move == true)
         {
             if(MoveEvent == true)
@@ -256,6 +255,7 @@ public class AttackEffect : MonoBehaviour
         this.transform.eulerAngles = new Vector3(0, 0, 0);
         Rotation = new Vector3(0, 0, 0);
         gameObject.SetActive(false);
+        theObject.AttackEffects.Enqueue(this.gameObject);
     }
 
 
