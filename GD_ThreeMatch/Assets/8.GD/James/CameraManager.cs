@@ -32,6 +32,8 @@ public class CameraManager : MonoBehaviour
     float LerfTime = 0;
     float CurrentMoveSpeed = 0;
 
+
+
     //인게임 3Match 방향대로 플레이어이동 
     //버튼결정안나서 
     //전투씬 3Match 
@@ -189,6 +191,7 @@ public class CameraManager : MonoBehaviour
         HRadious /= 2;
         MoveVec = new Vector3(_TargetVec.x, _TargetVec.y, -10);
         this.transform.position = MoveVec;
+
         if (_Move == true)
         {
             MaxBound.x = _Map.Slots[_Map.TopRight].transform.position.x+ 0.3f;
@@ -200,8 +203,8 @@ public class CameraManager : MonoBehaviour
             if (Math.Abs(MaxBound.x - MinBound.x) < 5.8)
             {
                 MoveVec.x = (MaxBound.x + MinBound.x) / 2;
-                MinBound.x = MoveVec.x - HRadious;
-                MaxBound.x = MoveVec.x + HRadious;
+                MinBound.x = MoveVec.x - HRadious - 0.001f;
+                MaxBound.x = MoveVec.x + HRadious + 0.001f;
 
             }
             
@@ -209,8 +212,8 @@ public class CameraManager : MonoBehaviour
             {
                 MoveVec.y = (MaxBound.y + MinBound.y) / 2;
 
-                MinBound.y = MoveVec.y - VRadious;
-                MaxBound.y = MoveVec.y + VRadious;
+                MinBound.y = MoveVec.y - VRadious - 0.001f;
+                MaxBound.y = MoveVec.y + VRadious + 0.001f;
             }
 
 

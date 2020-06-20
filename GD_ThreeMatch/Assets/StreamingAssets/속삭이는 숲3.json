@@ -1,0 +1,27 @@
+{
+    "Slot": [
+        {
+            "Name": "MapMainType",
+            "Value": "0"
+        },
+        {
+            "Name": "MapName",
+            "Value": "속삭이는 숲3"
+        },
+        {
+            "Name": "TopRight",
+            "Value": "8"
+        },
+        {
+            "Name": "BottomLeft",
+            "Value": "266"
+        },
+        {
+            "Name": "BottomRight",
+            "Value": "274"
+        }
+    ],
+    "Data": {
+        "MonsterDataSheet": []
+    }
+}

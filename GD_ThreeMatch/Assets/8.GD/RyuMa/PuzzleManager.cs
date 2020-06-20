@@ -170,7 +170,7 @@ public class PuzzleManager : MonoBehaviour
                 theFade.FadeOutEnd = false;
                 theTitle.TitleAnim.gameObject.SetActive(false);
                 theGM.state = GMState.GM2_InGame;
-                state = State.Ready;
+                state = State.LoadingMap;
                 theGM.LoadMap();
 
 
