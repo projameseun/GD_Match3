@@ -47,8 +47,6 @@ public class PortalSheet
 public class SlotObjectSheets
 {
     public SlotObjectSheet SlotSheet;
-    public int ObjectNum;
-    public string SkinName;
 }
 
 
@@ -86,16 +84,11 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     // 포탈 시트
     public PortalSheet portalSheet = null;
 
+    public SlotObjectSheets SlotSheet;
 
+    //몬스터일 경우 넣는다
     public SlotObject slotObject = null;
 
-
-    //[HideInInspector] public int[] EnemyIndex = null;
-    //[HideInInspector] public int[] EnemyChance = null;
-    //[HideInInspector] public bool OnlyOneEnemy = false;
-    //[HideInInspector] public int OnlyOneNum;
-
-    public SlotObjectSheets SlotSheet;
 
 
 

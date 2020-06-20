@@ -17,7 +17,9 @@ public class PlayerCube : MonoBehaviour
     public MeshRenderer SpinMesh;
     public SkeletonAnimation anim;
     public SelectGirl selectGirl;
-    [SpineSlot]
+    public GameObject SdPlayer;
+    public GameObject PlayerDirObj;
+
 
 
     
@@ -33,7 +35,7 @@ public class PlayerCube : MonoBehaviour
     SkillType skillType;
     Vector2 VisitVec;
     public bool GirlEffect = false; // 스킬 효과
-    
+    Direction Lastdir;
 
 
 
@@ -76,7 +78,7 @@ public class PlayerCube : MonoBehaviour
         {
             if (selectGirl == SelectGirl.G1_Alice)
             {
-                theObject.AliceAnimEvent(this.transform.position, direction);
+                theObject.AliceAnimEvent(SdPlayer.transform.position, direction);
             }
             if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
             {
@@ -115,12 +117,13 @@ public class PlayerCube : MonoBehaviour
             else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
             {
                 float Resize = theGirl.Girls[(int)thePuzzle.selectGirl].SdSize;
-                this.transform.localScale = new Vector3(Resize, Resize, 1);
+                SdPlayer.transform.localScale = new Vector3(Resize, Resize, 1);
                 ChangeAnim("Idle", true);
-                this.transform.position = VisitVec;
+                SdPlayer.transform.position = VisitVec;
                 theBattle.SkillEventOnOff = false;
 
                 anim.GetComponent<MeshRenderer>().sortingOrder = 50;
+                ChangeDirection(Lastdir);
             }
 
 
@@ -135,7 +138,7 @@ public class PlayerCube : MonoBehaviour
         if (_SkinName != "")
             anim.initialSkinName = _SkinName;
         anim.Initialize(true);
-        this.transform.localScale = new Vector3(theGirl.Girls[_SelNum].SdSize,
+        SdPlayer.transform.localScale = new Vector3(theGirl.Girls[_SelNum].SdSize,
             theGirl.Girls[_SelNum].SdSize, 1);
         selectGirl = theGirl.Girls[_SelNum].selectGirl;
         anim.state.Event += HandleEvent;
@@ -144,23 +147,28 @@ public class PlayerCube : MonoBehaviour
 
     public void ChangeDirection(Direction _direction)
     {
+        if (direction == _direction)
+            return;
+
         direction = _direction;
 
         if (direction == Direction.Up)
-        { 
-            
+        {
+            PlayerDirObj.transform.eulerAngles = new Vector3(0, 0, 90);
         }
         else if (direction == Direction.Down)
         {
-
+            PlayerDirObj.transform.eulerAngles = new Vector3(0, 0, 270);
         }
         else if (direction == Direction.Left)
         {
-            this.transform.eulerAngles = new Vector3(0, 180, 0);
+            PlayerDirObj.transform.eulerAngles = new Vector3(0, 0, 180);
+            SdPlayer.transform.eulerAngles = new Vector3(0, 180, 0);
         }
         else if (direction == Direction.Right)
         {
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
+            PlayerDirObj.transform.eulerAngles = new Vector3(0, 0, 0);
+            SdPlayer.transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
     }
@@ -174,7 +182,7 @@ public class PlayerCube : MonoBehaviour
             theBattle.SkillEventOnOff = true;
             float Resize = theGirl.Girls[(int)thePuzzle.selectGirl].SdSize;
             Resize *= 2.5f;
-            this.transform.localScale = new Vector3(Resize, Resize, 1);
+            SdPlayer.transform.localScale = new Vector3(Resize, Resize, 1);
             anim.GetComponent<MeshRenderer>().sortingOrder = 202;
         }
             
@@ -194,7 +202,8 @@ public class PlayerCube : MonoBehaviour
         Type = _CubeType;
         VisitVec = this.transform.position;
         ChangeAnim("Attack");
-        this.transform.position = TargetVec;
+        SdPlayer.transform.position = TargetVec;
+        Lastdir = direction;
         ChangeDirection(_Dir);
     }
 

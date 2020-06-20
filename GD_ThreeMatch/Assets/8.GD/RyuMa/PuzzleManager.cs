@@ -599,8 +599,6 @@ public class PuzzleManager : MonoBehaviour
                     if (i >0 && i < _Map.TopRight)
                     {
                         theBattleMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
-                        theBattleMap.Slots[i].SlotSheet.ObjectNum = 0;
-                        theBattleMap.Slots[i].SlotSheet.SkinName = "0";
                         theObject.SpawnSlotPanel(_Map.transform, _Map.Slots[i].transform.position,
                            SlotObjectSheet.S_0_Object, mapType, i);
                     }
@@ -770,25 +768,7 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
-    //플레이어 위치에 SD케릭터 넣기
-    public void SetPlayer(MapManager _Map)
-    {
-        for (int i = _Map.TopLeft; i < _Map.BottomLeft; i++)
-        {
-            if (_Map.Slots[i].nodeColor == NodeColor.NC6_Player)
-            {
-                _Map.Slots[i].cube.SpriteRen.color = new Color(0, 0, 0);
-                _Map.Slots[i].cube.nodeColor = NodeColor.NC6_Player;
-
-                Player.transform.position = _Map.Slots[i].transform.position;
-                Transform Parent = _Map.Slots[i].cube.transform;
-                Player.transform.parent = Parent;
-                Player.ChangeDirection(_Map.direction);
-                break;
-            }
-        }
-       
-    }
+   
     //몬스터 슬롯에 UI 배치
     public void SetEnemy(MapManager _Map)
     {
@@ -1702,7 +1682,7 @@ public class PuzzleManager : MonoBehaviour
     // 전투 시작전 적 큐브를 깍는 이밴트
     public void CheckEnemyCubeCount()
     {
-        if (EventTime <= 1.5f)
+        if (EventTime <= 1.0f)
         {
             EventTime += Time.deltaTime;
         }

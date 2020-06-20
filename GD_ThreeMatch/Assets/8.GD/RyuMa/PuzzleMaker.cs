@@ -70,8 +70,6 @@ public class PuzzleMaker : MonoBehaviour
 
     [Header("ObjectSetting")]
     public SlotObjectSheet objectType;
-    public int SkinObjectNum;
-    public string SkinName;
 
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
@@ -123,7 +121,6 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.TestText.text = ""; //string.Format("N(" + _SlotNum + ")");
             _Slot.TestText.color = new Color(1, 1, 1);
             _Slot.SlotSheet.SlotSheet = SlotObjectSheet.NULL;
-            _Slot.SlotSheet.SkinName = "";
         }
         else if (changeMode == ChangeMode.Ch1_Normal)
         {
@@ -181,8 +178,6 @@ public class PuzzleMaker : MonoBehaviour
             _Slot.nodeType = PuzzleSlot.NodeType.Null;
             _Slot.nodeColor = NodeColor.NC8_Null;
             _Slot.SlotSheet.SlotSheet = objectType;
-            _Slot.SlotSheet.ObjectNum = SkinObjectNum;
-            _Slot.SlotSheet.SkinName = SkinName;
             _Slot.TestText.text = ((int)objectType).ToString();
 
         }
@@ -242,8 +237,6 @@ public class PuzzleMaker : MonoBehaviour
                i <= theMoveMap.BottomRight))
             {
                 theMoveMap.Slots[i].SlotSheet.SlotSheet = objectType;
-                theMoveMap.Slots[i].SlotSheet.ObjectNum = SkinObjectNum;
-                theMoveMap.Slots[i].SlotSheet.SkinName = SkinName;
                 theMoveMap.Slots[i].TestText.enabled = true;
                 theMoveMap.Slots[i].TestText.text = ((int)objectType).ToString();
             }
@@ -259,7 +252,7 @@ public class PuzzleMaker : MonoBehaviour
     {
         TestStartBt.SetActive(false);
         SaveButton.SetActive(true);
-        // 위에껀 나주엥 지워준다
+        // 위에껀 나중에 지워준다
 
         IngameUi.SetActive(true);
         thePuzzle.SetPlayerUi();

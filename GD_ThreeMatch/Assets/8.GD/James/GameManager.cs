@@ -200,11 +200,7 @@ public class GameManager : MonoBehaviour
 
         set
         {
-
             puzzleslotList = value;
-            
-
-
         }
     }// public List<MapInfo> MapInfoList
 
@@ -326,7 +322,8 @@ public class GameManager : MonoBehaviour
         {
             theMoveMap.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
             theMoveMap.Slots[i].nodeColor = NodeColor.NC8_Null;
-            if(theMoveMap.Slots[i].cube != null)
+            theMoveMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.NULL; 
+            if (theMoveMap.Slots[i].cube != null)
             {
                 theMoveMap.Slots[i].cube.Resetting();
                 theMoveMap.Slots[i].cube = null;

@@ -1,0 +1,4995 @@
+{
+    "Slot": [
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "3",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲3",
+                "NextPosNum": 41
+            },
+            "slotObject": {
+                "SlotSheet": 1002,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "3",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲3",
+                "NextPosNum": 42
+            },
+            "slotObject": {
+                "SlotSheet": 1002,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "3",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲3",
+                "NextPosNum": 43
+            },
+            "slotObject": {
+                "SlotSheet": 1002,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "3",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲3",
+                "NextPosNum": 44
+            },
+            "slotObject": {
+                "SlotSheet": 1002,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "3",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲1",
+                "NextPosNum": 64
+            },
+            "slotObject": {
+                "SlotSheet": 1002,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "2",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1001,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "3",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲1",
+                "NextPosNum": 83
+            },
+            "slotObject": {
+                "SlotSheet": 1002,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "3",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲1",
+                "NextPosNum": 102
+            },
+            "slotObject": {
+                "SlotSheet": 1002,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000,
+                "ObjectNum": 0,
+                "SkinName": ""
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 0,
+                "ObjectNum": 0,
+                "SkinName": "2"
+            }
+        }
+    ],
+    "Data": {
+        "MonsterDataSheet": []
+    }
+}
