@@ -103,7 +103,8 @@ public class SlotObject : MonoBehaviour
             switch (theMaker.mapMainType)
             {
                 case MapMainType.M0_Forest:
-                    SpriteRen.sprite = theObject.ForestSprites[(int)_Sheet];
+                    if((int)_Sheet < theObject.ForestSprites.Length)
+                        SpriteRen.sprite = theObject.ForestSprites[(int)_Sheet];
                     break;
             }
         }

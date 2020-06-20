@@ -3406,7 +3406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45, y: 658.0001}
+  m_AnchoredPosition: {x: 45, y: 610}
   m_SizeDelta: {x: 800, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654750821
@@ -13008,8 +13008,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b4a3b843768184b43a62394656fd01f4, type: 3}
   EnemySlotSprite: {fileID: 21300000, guid: b65760507af786440aad3af37a0f4389, type: 3}
   ForestSprites:
-  - {fileID: 21300000, guid: 7a96ab656ae7a684e88b5f885d28eae7, type: 3}
   - {fileID: 21300000, guid: 1e46b7e64e797e346bd445a27a7a5c1a, type: 3}
+  - {fileID: 21300000, guid: 36c405f905497b444b25a773e897f1f7, type: 3}
+  - {fileID: 21300000, guid: 7a96ab656ae7a684e88b5f885d28eae7, type: 3}
   CubeList: []
   CubeParticleList: []
   CubeEfList: []

@@ -109,7 +109,7 @@ public class PuzzleManager : MonoBehaviour
     float AutoEventTime = 0;
     public int SelectNum = 0;
     public int OtherNum = 0;
-    float EventTime = 0;
+    float EventTime = 0f;
     bool EventEnd = false;
     int HintNum;
     int[] EnemyCubeCount = new int[6];
@@ -131,6 +131,7 @@ public class PuzzleManager : MonoBehaviour
     private GameManager theGM;
     private PuzzleMaker theMaker;
     private CameraButtonManager CameraButton;
+    private TitleManager theTitle;
     private void Start()
     {
         if (HintButton != null)
@@ -140,7 +141,7 @@ public class PuzzleManager : MonoBehaviour
                 BT_ShowHint();
             });
         }
-
+        theTitle = FindObjectOfType<TitleManager>();
         CameraButton = FindObjectOfType<CameraButtonManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theGM = FindObjectOfType<GameManager>();
@@ -162,7 +163,20 @@ public class PuzzleManager : MonoBehaviour
 
     private void Update()
     {
-        if (theGM.state == GMState.GM2_InGame)
+        if (theGM.state == GMState.GM0_Title)
+        {
+            if (theFade.FadeOutEnd == true)
+            {
+                theFade.FadeOutEnd = false;
+                theTitle.TitleAnim.gameObject.SetActive(false);
+                theGM.state = GMState.GM2_InGame;
+                state = State.Ready;
+                theGM.LoadMap();
+
+
+            }
+        }
+        else if (theGM.state == GMState.GM2_InGame)
         {
             PuzzleUpdate();
         }
@@ -1081,20 +1095,6 @@ public class PuzzleManager : MonoBehaviour
             {
                 EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
             }
-            //for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
-            //{
-            //    for (int i = 0; i <= theMoveMap.TopRight; i++)
-            //    {
-            //        if (theMoveMap.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
-            //        {
-            //            if (theMoveMap.Slots[i + Hor].nodeColor != NodeColor.NC6_Player &&
-            //                theMoveMap.Slots[i + Hor].cube != null)
-            //            {
-            //                theMoveMap.Slots[i + Hor].cube.gameObject.SetActive(false);
-            //            }
-            //        }
-            //    }
-            //}
             state = State.BattleEvent;
             theBattle.battleState = BattleState.BattleInit;
             theFade.FadeInEvent();
@@ -1702,13 +1702,12 @@ public class PuzzleManager : MonoBehaviour
     // 전투 시작전 적 큐브를 깍는 이밴트
     public void CheckEnemyCubeCount()
     {
-        if (EventTime <= 0.5f)
+        if (EventTime <= 1.5f)
         {
             EventTime += Time.deltaTime;
         }
         else
         {
-            EventTime =0;
             EventEnd = true; // false일 경우 이밴트가 실행 true일 경우 이밴트 종료
             for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
             {
@@ -1752,6 +1751,7 @@ public class PuzzleManager : MonoBehaviour
 
             if (EventEnd == true)
             {
+                EventTime = 0;
                 EventEnd = false;
                 state = State.Ready;
                 Vector2 vec = new Vector2(playerUIs[0].transform.position.x,
