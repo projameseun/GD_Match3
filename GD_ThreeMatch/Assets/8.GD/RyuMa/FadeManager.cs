@@ -29,6 +29,10 @@ public class FadeManager : MonoBehaviour
     public GameObject MapNameBase;
     public TextMeshPro TitleNameText;
 
+    public GameObject BattleBase;
+    public Animator BattleAnim;
+    public Image EnemyImage;
+    public Image PlayerImage;
 
 
 
@@ -37,6 +41,7 @@ public class FadeManager : MonoBehaviour
 
     public bool FadeInEnd;
     public bool FadeOutEnd;
+    public bool BattleAnimEnd;
     Color color = new Color(1,1,1,0);
     float FadeTime = 0f;
 
@@ -116,6 +121,18 @@ public class FadeManager : MonoBehaviour
     }
 
 
+    public void ShowBattleInit(Sprite _Player, Sprite _Enemy)
+    {
+        PlayerImage.sprite = _Player;
+        EnemyImage.sprite = _Enemy;
+        BattleBase.SetActive(true);
+        BattleAnim.Play("Idle");
+    }
+    public void ShowBattleAnim()
+    {
+        BattleAnim.Play("Show");
+        StartCoroutine(CheckBattleAnim());
+    }
 
 
     IEnumerator FadeOut(bool Show)
@@ -206,6 +223,11 @@ public class FadeManager : MonoBehaviour
         MapNameBase.SetActive(false);
     }
 
-
+    IEnumerator CheckBattleAnim()
+    {
+        yield return new WaitForSeconds(3.0f);
+        BattleAnimEnd = true;
+        BattleBase.SetActive(false);
+    }
 
 }

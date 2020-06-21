@@ -20,6 +20,7 @@ public class GirlHero
     public SkeletonDataAsset SdDatae;
     public float SdSize;
     public float SkillTime;
+    public Sprite BattlePortrait;
     [Space]
     [Header("DB")]
 

@@ -1077,6 +1077,8 @@ public class PuzzleManager : MonoBehaviour
             }
             state = State.BattleEvent;
             theBattle.battleState = BattleState.BattleInit;
+            theFade.ShowBattleInit(theGirl.Girls[(int)selectGirl].BattlePortrait,
+                theBattle.Enemy[theBattle.SelectEnemyNum].BattlePortrait);
             theFade.FadeInEvent();
         }
         else if (gameMode == GameMode.Battle)
@@ -1682,7 +1684,7 @@ public class PuzzleManager : MonoBehaviour
     // 전투 시작전 적 큐브를 깍는 이밴트
     public void CheckEnemyCubeCount()
     {
-        if (EventTime <= 1.0f)
+        if (EventTime <= 0.5f)
         {
             EventTime += Time.deltaTime;
         }
@@ -1739,7 +1741,8 @@ public class PuzzleManager : MonoBehaviour
                 theObject.SpeechEvent(vec, "전투 시작!!!", 3);
                 theBattle.BattleStart = true;
                 theBattle.battleState = BattleState.Null;
-                theFade.FadeInEnd = false;
+                theFade.BattleAnimEnd = false;
+
             }
 
 

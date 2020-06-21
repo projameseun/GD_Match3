@@ -47,6 +47,7 @@ public class EnemyBase
     public string EnemyName;
     public EnemyTribe enemyTribe;
     public EnemyRating enemyRating;
+    public Sprite BattlePortrait;
     public SkeletonDataAsset IllustData;
     public int MinDamageValue;
     public int MaxDamageValue;
@@ -274,9 +275,13 @@ public class BattleManager : MonoBehaviour
                 {
                     if (theFade.FadeInEnd == true)
                     {
+                        theFade.FadeInEnd = false;
+                        theFade.ShowBattleAnim();
+                    }
+                    if (theFade.BattleAnimEnd == true)
+                    {
                         thePuzzle.CheckEnemyCubeCount();
                     }
-
 
                 }
                 // 몬스터가 공격할 때 실행한다

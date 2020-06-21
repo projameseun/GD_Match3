@@ -87,6 +87,13 @@ public class PuzzleMaker : MonoBehaviour
         theCam = FindObjectOfType<CameraManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
 
+        if (TestStartBt != null)
+        {
+            TestStartBt.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                BT_TestStart(false);
+            });
+        }
         if (SaveButton != null)
         {
             SaveButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -248,7 +255,7 @@ public class PuzzleMaker : MonoBehaviour
 
 
    
-    public void BT_TestStart()
+    public void BT_TestStart(bool Fade = true)
     {
         TestStartBt.SetActive(false);
         SaveButton.SetActive(true);
@@ -267,7 +274,8 @@ public class PuzzleMaker : MonoBehaviour
         theCam.state = CameraManager.State.SmoothMove;
         thePuzzle.gameMode = PuzzleManager.GameMode.MoveMap;
         theCam.SetBound(theMoveMap, Player.transform.position, true);
-        theFade.FadeInEvent();
+        if(Fade == true)
+            theFade.FadeInEvent();
     }
 
 
