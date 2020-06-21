@@ -5736,16 +5736,16 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.7442858
-          inSlope: 0.6173849
-          outSlope: 0.6173849
+          value: 1
+          inSlope: -0.23567471
+          outSlope: -0.23567471
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.19230768
+          outWeight: 0.15497075
         - serializedVersion: 3
           time: 1
-          value: 1
+          value: 0.65753365
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -9491,7 +9491,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 1
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 3
+  m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
