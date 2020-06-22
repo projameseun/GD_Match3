@@ -38400,7 +38400,7 @@ GameObject:
   - component: {fileID: 3151031165052831568}
   - component: {fileID: 7629722178975278207}
   - component: {fileID: 2109707524555714823}
-  - component: {fileID: 2383677566940160476}
+  - component: {fileID: 715037544479245146}
   m_Layer: 0
   m_Name: EF_UI_Cha_Skill_01
   m_TagString: Untagged
@@ -43152,7 +43152,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &2383677566940160476
+--- !u!114 &715037544479245146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43161,8 +43161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8507203080465462627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba64957678875d4419c0e3d10097fe3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b74ed8c3ceba2440accb0034e1eafa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleName: 5
   particle: {fileID: 7629722178975278207}

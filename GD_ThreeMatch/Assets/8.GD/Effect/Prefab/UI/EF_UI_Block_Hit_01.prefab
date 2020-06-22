@@ -14447,7 +14447,6 @@ GameObject:
   - component: {fileID: 2183505087096609040}
   - component: {fileID: 6635455424163461695}
   - component: {fileID: 2932062951874670407}
-  - component: {fileID: 6556690910246257534}
   - component: {fileID: 6396008766766531858}
   m_Layer: 0
   m_Name: EF_UI_Block_Hit_01
@@ -19198,19 +19197,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6556690910246257534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897735274488834851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba64957678875d4419c0e3d10097fe3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 6635455424163461695}
 --- !u!114 &6396008766766531858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19223,7 +19209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a46e3f111bf1d45a1c49804402bb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Particle:
+  particle: {fileID: 6635455424163461695}
+  Particles:
   - {fileID: 2837832226669540402}
   - {fileID: 357980434875205288}
   - {fileID: 3562191804487558125}

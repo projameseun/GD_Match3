@@ -131,12 +131,11 @@ public class PlayerCube : MonoBehaviour
         }
     }
 
-    public void SetSpine(int _SelNum, string _SkinName)
+    public void SetSpine(int _SelNum)
     {
         thePuzzle.selectGirl = (SelectGirl)_SelNum;
         anim.skeletonDataAsset = theGirl.Girls[_SelNum].SdDatae;
-        if (_SkinName != "")
-            anim.initialSkinName = _SkinName;
+        anim.initialSkinName = theGirl.Girls[_SelNum].SkinName;
         anim.Initialize(true);
         SdPlayer.transform.localScale = new Vector3(theGirl.Girls[_SelNum].SdSize,
             theGirl.Girls[_SelNum].SdSize, 1);

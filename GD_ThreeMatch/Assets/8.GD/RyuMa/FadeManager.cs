@@ -107,7 +107,6 @@ public class FadeManager : MonoBehaviour
         TitleNameText.text = _string;
         MapNameBase.SetActive(true);
         MapNameEventTime = 0f;
-        Debug.Log("Test");
         if (mapNameState == MapNameState.MS0_End)
         {
             mapNameState = MapNameState.MS1_FadeIn;
@@ -204,14 +203,14 @@ public class FadeManager : MonoBehaviour
                 MapNameEventTime += Time.deltaTime;
                 if (MapNameEventTime > 2)
                 {
-                    MapNameEventTime = 3f;
+                    MapNameEventTime = 2f;
                     mapNameState = MapNameState.MS2_FadeOut;
                 }
             }
             else if (mapNameState == MapNameState.MS2_FadeOut)
             {
                 MapNameEventTime -= Time.deltaTime;
-                if (MapNameEventTime > 2)
+                if (MapNameEventTime <0)
                 {
                     mapNameState = MapNameState.MS0_End;
                 }

@@ -120,6 +120,9 @@ public class PuzzleManager : MonoBehaviour
     Vector3 BattlePos = new Vector3(0, -750, 0); // 전투 시작시 UI위치
 
 
+    [HideInInspector] public List<string> PortalName;
+
+
 
     private ObjectManager theObject;
     private FindMatches theMatch;
@@ -524,6 +527,9 @@ public class PuzzleManager : MonoBehaviour
 
     public void LoadMap(MapManager _Map, bool ReLoadMap) //맵을 다시 불러온다면 true, 처음이면 false
     {
+        PortalName.Clear();
+
+
         if (ReLoadMap == true)
         {
 
@@ -1089,6 +1095,7 @@ public class PuzzleManager : MonoBehaviour
             theBattle.Resetting();
             MoveUI.SetActive(true);
             BattleUI.SetActive(false);
+            theBattle.ReadySkill(SkillUI.UI2_Null);
             gameMode = GameMode.MoveMap;
             state = State.Ready;
             CubeEvent = false;
@@ -1784,7 +1791,15 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
+    public void ChangePlayer(SelectGirl _Girl)
+    {
+        if (selectGirl != _Girl)
+        {
+            selectGirl = _Girl;
 
+            Player.SetSpine((int)selectGirl);
+        }
+    }
 
 
 

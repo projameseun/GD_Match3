@@ -16,7 +16,7 @@ public class CubeEffect : MonoBehaviour
     public CubeEffectType cubeEffectType;
     public NodeColor nodeColor;
     public int CubeCount;
-    public SpriteRenderer SpriteRen;
+    CubeEffectP CubeP;
 
 
     public GameObject TargetPos; //목표 좌표
@@ -35,14 +35,6 @@ public class CubeEffect : MonoBehaviour
     private PuzzleManager thePuzzle;
     private BattleManager theBattle;
     private ObjectManager theObject;
-    private void Start()
-    {
-        Move = true;
-        theObject = FindObjectOfType<ObjectManager>();
-        theBattle = FindObjectOfType<BattleManager>();
-        thePuzzle = FindObjectOfType<PuzzleManager>();
-    }
-
 
 
     private void FixedUpdate()
@@ -71,7 +63,12 @@ public class CubeEffect : MonoBehaviour
         bool RandomStart,
         float _Speed = 2000)
     {
-
+        if (theObject == null)
+            theObject = FindObjectOfType<ObjectManager>();
+        if (theBattle == null)
+            theBattle = FindObjectOfType<BattleManager>();
+        if (thePuzzle == null)
+            thePuzzle = FindObjectOfType<PuzzleManager>();
         RandomStart = false;
 
 
@@ -81,24 +78,27 @@ public class CubeEffect : MonoBehaviour
 
         if (_nodeColor == NodeColor.NC0_Blue)
         {
-            SpriteRen.color = new Color(0.1f, 0.52f, 0.9f);
+            CubeP = theObject.FindObj("CubeBlue", false).GetComponent<CubeEffectP>();
         }
         else if (_nodeColor == NodeColor.NC1_Green)
         {
-            SpriteRen.color = new Color(0.2f, 1f, 0.2f);
+            CubeP = theObject.FindObj("CubeGreen", false).GetComponent<CubeEffectP>();
         }
         else if (_nodeColor == NodeColor.NC2_Pink) // 핑크
         {
-            SpriteRen.color = new Color(0.95f, 0.3f, 0.57f);
+            CubeP = theObject.FindObj("CubePink", false).GetComponent<CubeEffectP>();
         }
         else if (_nodeColor == NodeColor.NC3_Red) // 빨간색
         {
-            SpriteRen.color = new Color(0.94f, 0.11f, 0.01f);
+            CubeP = theObject.FindObj("CubeRed", false).GetComponent<CubeEffectP>();
         }
         else if (_nodeColor == NodeColor.NC4_Yellow) // 노란색
         {
-            SpriteRen.color = new Color(1f, 0.89f, 0.51f);
+            CubeP = theObject.FindObj("CubeYellow", false).GetComponent<CubeEffectP>();
         }
+        CubeP.ParticleSetting(true, this.gameObject);
+        CubeP.gameObject.SetActive(true);
+
 
         Speed = 4000;
 
@@ -240,6 +240,9 @@ public class CubeEffect : MonoBehaviour
         Rotation = new Vector3(0, 0, 0);
         gameObject.SetActive(false);
         theObject.CubeEfs.Enqueue(this.gameObject);
+        CubeP.transform.SetParent(null);
+        CubeP.Resetting();
+        CubeP = null;
     }
 
 

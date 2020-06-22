@@ -24,10 +24,19 @@ public class PlayerTouchManager : MonoBehaviour, IPointerClickHandler
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle &&
            theBattle.battleState != BattleState.BattleInit &&
            playerUI.GetSkillGauge() >= 1 &&
-           playerUI.state != PlayerUIState.Die&&
+           playerUI.state != PlayerUIState.Die &&
            theBattle.SkillEventOnOff == false)
         {
             playerUI.CheckSkill();
         }
+        else 
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap &&
+            thePuzzle.state == PuzzleManager.State.Ready &&
+            playerUI.state != PlayerUIState.Die)
+        {
+            playerUI.ChangeSelectGirl();
+        }
+
+
     }
 }

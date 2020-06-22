@@ -24071,7 +24071,7 @@ GameObject:
   - component: {fileID: 2311026509159184043}
   - component: {fileID: 7082732428391142788}
   - component: {fileID: 1652807504717267196}
-  - component: {fileID: 1473595872446914539}
+  - component: {fileID: 4167559668472304419}
   m_Layer: 0
   m_Name: Monster_Stage_01_Slime_01_Hit
   m_TagString: Untagged
@@ -28820,7 +28820,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &1473595872446914539
+--- !u!114 &4167559668472304419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28829,8 +28829,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9054333510555911320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba64957678875d4419c0e3d10097fe3e, type: 3}
+  m_Script: {fileID: 11500000, guid: ba282323513f9374e869503a0d8876d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleName: 4
   particle: {fileID: 7082732428391142788}

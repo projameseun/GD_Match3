@@ -4,19 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
-public enum ParticleName
-{ 
-    PN0_CubeP,
-    PN1_AliceSkill,
-    PN2_AliceAnimEffect,
-    PN3_SlimeSkill,
-    PN3_SlimeSkill2,
-    PN4_ClickP,
-    PN5_Portal,
-
-
-}
-
 
 public class ObjectManager : MonoBehaviour
 {
@@ -70,8 +57,26 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public Queue<GameObject> EnemySkulls = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> EnemySkullList;
 
+    [HideInInspector] public Queue<GameObject> CubeEffectBlues = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> CubeEffectBlueList;
 
+    [HideInInspector] public Queue<GameObject> CubeEffectYellows = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> CubeEffectYellowList;
 
+    [HideInInspector] public Queue<GameObject> CubeEffectGreens = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> CubeEffectGreenList;
+
+    [HideInInspector] public Queue<GameObject> CubeEffectPinks = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> CubeEffectPinkList;
+
+    [HideInInspector] public Queue<GameObject> CubeEffectReds = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> CubeEffectRedList;
+
+    [HideInInspector] public Queue<GameObject> BerylSkills = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> BerylSkillList;
+
+    [HideInInspector] public Queue<GameObject> PortalArrows = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> PortalArrowList;
 
     //게임오브젝트 프리팹
     public GameObject CubePrefab; //큐브 프리팹
@@ -91,6 +96,13 @@ public class ObjectManager : MonoBehaviour
     public GameObject EnemySkull;
     public GameObject SelectSlotP;
 
+    public GameObject CubeEffectBlue;
+    public GameObject CubeEffectGreen;
+    public GameObject CubeEffectRed;
+    public GameObject CubeEffectPink;
+    public GameObject CubeEffectYellow;
+    public GameObject BerylSkill;
+    public GameObject PortalArrow;
 
     Queue<GameObject> ObjectQueue = new Queue<GameObject>();
     List<GameObject> ObjectList = new List<GameObject>();
@@ -230,7 +242,54 @@ public class ObjectManager : MonoBehaviour
             EnemySkulls.Enqueue(x);
             EnemySkullList.Add(x);
         }
-
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(CubeEffectBlue);
+            x.transform.position = SpawnVec;
+            x.SetActive(false);
+            CubeEffectBlues.Enqueue(x);
+            CubeEffectBlueList.Add(x);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(CubeEffectGreen);
+            x.transform.position = SpawnVec;
+            x.SetActive(false);
+            CubeEffectGreens.Enqueue(x);
+            CubeEffectGreenList.Add(x);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(CubeEffectYellow);
+            x.transform.position = SpawnVec;
+            x.SetActive(false);
+            CubeEffectYellows.Enqueue(x);
+            CubeEffectYellowList.Add(x);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(CubeEffectPink);
+            x.transform.position = SpawnVec;
+            x.SetActive(false);
+            CubeEffectPinks.Enqueue(x);
+            CubeEffectPinkList.Add(x);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(CubeEffectRed);
+            x.transform.position = SpawnVec;
+            x.SetActive(false);
+            CubeEffectReds.Enqueue(x);
+            CubeEffectRedList.Add(x);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject x = Instantiate(BerylSkill);
+            x.transform.position = SpawnVec;
+            x.SetActive(false);
+            BerylSkills.Enqueue(x);
+            BerylSkillList.Add(x);
+        }
         //ClickParticles
         //SlotPanel
 
@@ -346,16 +405,46 @@ public class ObjectManager : MonoBehaviour
                 ObjectList = PortalList;
                 Frefab = Portal;
                 break;
-            //case "ObjectSpine":
-            //    List = ObjectSpines;
-            //    Frefab = ObjectSpine;
-            //    break;
             case "EnemySkull":
                 ObjectQueue = EnemySkulls;
                 ObjectList = EnemySkullList;
                 Frefab = EnemySkull;
                 break;
-
+            case "CubeBlue":
+                ObjectQueue = CubeEffectBlues;
+                ObjectList = CubeEffectBlueList;
+                Frefab = CubeEffectBlue;
+                break;
+            case "CubeRed":
+                ObjectQueue = CubeEffectReds;
+                ObjectList = CubeEffectRedList;
+                Frefab = CubeEffectRed;
+                break;
+            case "CubeYellow":
+                ObjectQueue = CubeEffectYellows;
+                ObjectList = CubeEffectYellowList;
+                Frefab = CubeEffectYellow;
+                break;
+            case "CubePink":
+                ObjectQueue = CubeEffectPinks;
+                ObjectList = CubeEffectPinkList;
+                Frefab = CubeEffectPink;
+                break;
+            case "CubeGreen":
+                ObjectQueue = CubeEffectGreens;
+                ObjectList = CubeEffectGreenList;
+                Frefab = CubeEffectGreen;
+                break;
+            case "BerylSkill":
+                ObjectQueue = BerylSkills;
+                ObjectList = BerylSkillList;
+                Frefab = BerylSkill;
+                break;
+            case "PortalArrow":
+                ObjectQueue = PortalArrows;
+                ObjectList = PortalArrowList;
+                Frefab = PortalArrow;
+                break;
         }
 
         if (ObjectQueue.Count > 0)
@@ -438,6 +527,12 @@ public class ObjectManager : MonoBehaviour
         return SelectSlotP;
     }
 
+    public GameObject PortalArrowEvent(Vector2 _PortalVec)
+    {
+        GameObject Arrow = FindObj("PortalArrow");
+        Arrow.GetComponent<PortalArrowManager>().SetPortalArrow(_PortalVec);
+        return Arrow;
+    }
 
     // 큐브 이펙트를 사용하는 함수
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
@@ -449,6 +544,9 @@ public class ObjectManager : MonoBehaviour
                    _Target,
                    _NodeColor, _CubeTarget, _CubeCount, _RandStart, _Speed
                    );
+
+
+
         return CubeEffect;
 
     }
@@ -530,6 +628,25 @@ public class ObjectManager : MonoBehaviour
         return null;
     }
 
+    public GameObject BerylSkillEvent(Vector2 _StartPos)
+    {
+        if (thePuzzle.Player.GirlEffect == true)
+        {
+            StartCoroutine(BerylSkillExtra1(_StartPos));
+        }
+        else
+        {
+            GameObject BerylObj = FindObj("BerylSkill", false);
+            BerylObj.transform.position = _StartPos;
+            BerylObj.SetActive(true);
+            BerylObj.transform.eulerAngles = new Vector3(0, 0, 0);
+            BerylObj.GetComponent<ParticleManager>().ParticleSetting(false,
+                null, 1f);
+            return BerylObj;
+        }
+        return null;
+    }
+
     IEnumerator AliceSkillExtra1(Vector2 _StartPos)
     {
         int Count = 5;
@@ -545,6 +662,32 @@ public class ObjectManager : MonoBehaviour
            
               
             yield return new WaitForSeconds(0.1f);
+            if (Count == 0)
+            {
+                thePuzzle.CubeEvent = true;
+                break;
+            }
+        }
+
+
+    }
+
+    IEnumerator BerylSkillExtra1(Vector2 _StartPos)
+    {
+        int Count = 3;
+        while (true)
+        {
+            GameObject BerylObj = FindObj("BerylSkill", false);
+            BerylObj.transform.position = new Vector2(_StartPos.x + Random.Range(-0.1f,0.1f),
+                _StartPos.y + Random.Range(-0.1f, 0.1f));
+            BerylObj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0.0f, 360.0f));
+            BerylObj.SetActive(true);
+            BerylObj.GetComponent<ParticleManager>().ParticleSetting(false,
+                null, 1f);
+            Count--;
+
+
+            yield return new WaitForSeconds(0.2f);
             if (Count == 0)
             {
                 thePuzzle.CubeEvent = true;
@@ -701,6 +844,44 @@ public class ObjectManager : MonoBehaviour
                 PortalList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
+
+        for (int i = 0; i < CubeEffectBlueList.Count; i++)
+        {
+            if (CubeEffectBlueList[i].activeSelf == true)
+            {
+                CubeEffectBlueList[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+        for (int i = 0; i < CubeEffectRedList.Count; i++)
+        {
+            if (CubeEffectRedList[i].activeSelf == true)
+            {
+                CubeEffectRedList[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+        for (int i = 0; i < CubeEffectGreenList.Count; i++)
+        {
+            if (CubeEffectGreenList[i].activeSelf == true)
+            {
+                CubeEffectGreenList[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+        for (int i = 0; i < CubeEffectYellowList.Count; i++)
+        {
+            if (CubeEffectYellowList[i].activeSelf == true)
+            {
+                CubeEffectYellowList[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+        for (int i = 0; i < CubeEffectRedList.Count; i++)
+        {
+            if (CubeEffectRedList[i].activeSelf == true)
+            {
+                CubeEffectRedList[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+
+        //베릴 이펙트 없음
 
     }
 

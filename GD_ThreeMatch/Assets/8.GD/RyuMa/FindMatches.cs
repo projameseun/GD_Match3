@@ -986,16 +986,12 @@ public class FindMatches : MonoBehaviour
 
     public void SkillBeryl(MapManager _Map, int _SlotNum)
     {
-        //엘리스 스킬 연출 나오면 지우기
-        thePuzzle.CubeEvent = true;
-
-
         float Damage = theGirl.Girls[(int)SelectGirl.G3_Beryl].SkillDamage;
         float InvokeTime = theGirl.Girls[(int)thePuzzle.selectGirl].SkillTime;
         // 11시
         if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            _Map.Slots[_SlotNum - _Map.Horizontal -1].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum - _Map.Horizontal -1].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
 
 
@@ -1004,13 +1000,13 @@ public class FindMatches : MonoBehaviour
         if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
         {
 
-            _Map.Slots[_SlotNum - _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum - _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
 
         // 7시
         if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            _Map.Slots[_SlotNum + _Map.Horizontal - 1].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum + _Map.Horizontal - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
 
 
@@ -1018,7 +1014,7 @@ public class FindMatches : MonoBehaviour
 
         if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
         {
-            _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage);
+            _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
         _Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage);
 

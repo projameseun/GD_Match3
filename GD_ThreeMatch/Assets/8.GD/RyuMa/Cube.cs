@@ -236,11 +236,11 @@ public class Cube : MonoBehaviour
 
         if (_Girl == SelectGirl.G1_Alice)
         {
-            
             theObject.AliceSkillEvent(this.transform.position);
         }
         else if (_Girl == SelectGirl.G3_Beryl)
-        { 
+        {
+            theObject.BerylSkillEvent(this.transform.position);
             // 베릴 이펙트넣기   
         }
     }

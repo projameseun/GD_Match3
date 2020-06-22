@@ -815,7 +815,7 @@ MonoBehaviour:
     MinDamageValue: 6
     MaxDamageValue: 7
     Count: 5
-    CubeCount: 14000000
+    CubeCount: 50c30000
     skillSlots:
     - SkillNum: 0
       SkillCount: 15
@@ -4651,7 +4651,7 @@ MonoBehaviour:
     IllustSize: 0.9
     SdDatae: {fileID: 11400000, guid: f900891e6809fee4aace01039cf57631, type: 2}
     SdSize: 0.12
-    SkillTime: 0
+    SkillTime: 0.6
     BattlePortrait: {fileID: 21300000, guid: 2ac2e8185017c6442a6e2add1d94461c, type: 3}
     selectGirl: 2
     nodeColor: 2
@@ -10879,6 +10879,7 @@ MonoBehaviour:
   AutoEvent: 0
   SelectNum: 0
   OtherNum: 0
+  PortalName: []
 --- !u!114 &1703859106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13722,6 +13723,13 @@ MonoBehaviour:
   ClickParticleList: []
   PortalList: []
   EnemySkullList: []
+  CubeEffectBlueList: []
+  CubeEffectYellowList: []
+  CubeEffectGreenList: []
+  CubeEffectPinkList: []
+  CubeEffectRedList: []
+  BerylSkillList: []
+  PortalArrowList: []
   CubePrefab: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a,
     type: 3}
   CubeParticle: {fileID: 4897735274488834851, guid: 99b4a823f56c742419d0760a46041e53,
@@ -13749,6 +13757,20 @@ MonoBehaviour:
   EnemySkull: {fileID: 7657218699614769144, guid: 995ebb9d5ba06934985b4f905e8fb60d,
     type: 3}
   SelectSlotP: {fileID: 197936534}
+  CubeEffectBlue: {fileID: 8842413510983498683, guid: 501230a353a729446a46dfc4c392da52,
+    type: 3}
+  CubeEffectGreen: {fileID: 4184070734191707795, guid: 818091e3634e20e4c801e9bb45f30ade,
+    type: 3}
+  CubeEffectRed: {fileID: 8595625379991625575, guid: 83f9f5b871fb6dd44a50eba4dc6111d4,
+    type: 3}
+  CubeEffectPink: {fileID: 6811716395319727013, guid: 0ed3786ce2475aa4fabacad29add58dd,
+    type: 3}
+  CubeEffectYellow: {fileID: 7676520698508967156, guid: b5f685686accc3d46bd6600fde8c892c,
+    type: 3}
+  BerylSkill: {fileID: 3800689733813327059, guid: 107e8702fd4523647ba56436a5921762,
+    type: 3}
+  PortalArrow: {fileID: 7599312650573559684, guid: 4305241a718144b47a69e681d6aa72da,
+    type: 3}
 --- !u!1001 &4632623625184402015
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -184,7 +184,6 @@ public class PlayerUI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.tag == "AttackEffect")
         {
 
@@ -192,9 +191,6 @@ public class PlayerUI : MonoBehaviour
 
 
         }
-
-
-
     }
 
 
@@ -203,6 +199,10 @@ public class PlayerUI : MonoBehaviour
         
         theBattle.ReadySkill((SkillUI)PlayerUINum);
     }
+    public void ChangeSelectGirl()
+    {
+        thePuzzle.ChangePlayer((SelectGirl)((int)nodeColor));
+    }
 
 
     // 스킬 활성화 여부, true일 경우 스킬 활성화 이펙트
@@ -210,8 +210,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (On == true)
         {
-            thePuzzle.Player.SetSpine((int)nodeColor,
-                theGirl.Girls[(int)nodeColor].SkinName);
+            thePuzzle.Player.SetSpine((int)nodeColor);
 
    
             ClickP = theObject.SpawnClickP(Trigger.transform.position);
@@ -235,13 +234,11 @@ public class PlayerUI : MonoBehaviour
                 {
                     if (PlayerUINum == 0)
                     {
-                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[1].nodeColor,
-                    theGirl.Girls[(int)thePuzzle.playerUIs[1].nodeColor].SkinName);
+                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[1].nodeColor);
                     }
                     else
                     {
-                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[0].nodeColor,
-                       theGirl.Girls[(int)thePuzzle.playerUIs[0].nodeColor].SkinName);
+                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[0].nodeColor);
                     }
                 }
             }
