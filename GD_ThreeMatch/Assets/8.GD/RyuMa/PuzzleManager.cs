@@ -38,7 +38,8 @@ public class PuzzleManager : MonoBehaviour
     {
         MoveMap,
         Battle,
-        Null
+        Null,
+        GameOver,
     }
 
     public enum State

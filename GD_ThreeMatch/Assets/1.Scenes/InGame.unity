@@ -14010,7 +14010,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6018015545204557881, guid: c967bbdc0199c704493b194a0e7be51a, type: 2}
+  - {fileID: -4743428257325471717, guid: 20cb1e2dc0313464686da7c7b55c8923, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14096,10 +14096,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[\uBCA0\uB9B4]\n\n\uB098\uB798\uB2D8 \uBBF8\uC0DD\uCCB4\uC785\uB2C8\uB2E4\n"
+  m_text: "[\uBCA0\uB9B4]\n\uB098\uB294 \uB125\uC2A8\uC774\uB2E4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c967bbdc0199c704493b194a0e7be51a, type: 2}
-  m_sharedMaterial: {fileID: -6018015545204557881, guid: c967bbdc0199c704493b194a0e7be51a,
+  m_fontAsset: {fileID: 11400000, guid: 20cb1e2dc0313464686da7c7b55c8923, type: 2}
+  m_sharedMaterial: {fileID: -4743428257325471717, guid: 20cb1e2dc0313464686da7c7b55c8923,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14166,12 +14166,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2916221451127844235}
-    characterCount: 17
+    characterCount: 12
     spriteCount: 0
-    spaceCount: 4
+    spaceCount: 2
     wordCount: 3
     linkCount: 0
-    lineCount: 3
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -14204,7 +14204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2916221451436421613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14711,7 +14711,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f664188f9bf04747b010ddd33951c82, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0

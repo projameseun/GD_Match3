@@ -125,16 +125,14 @@ public class GameManager : MonoBehaviour
 
 
     private PuzzleManager thePuzzle;
-
-    //string FilePath = Application.streamingAssetsPath + "/MapInfo.json";
-    
-
     private PuzzleMaker theMaker;
     private MapManager theMoveMap;
-    
+    private TitleManager theTitle;
+    private ObjectManager theObject;
     private void Start()
     {
-        
+        theObject = FindObjectOfType<ObjectManager>();
+        theTitle = FindObjectOfType<TitleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theMoveMap = thePuzzle.theMoveMap;
@@ -357,4 +355,13 @@ public class GameManager : MonoBehaviour
         theMaker.BT_TestStart();
     }
 
+    public void GameOver()
+    {
+        theTitle.TitleAnim.gameObject.SetActive(true);
+        state = GMState.GM00_Title;
+        thePuzzle.state = PuzzleManager.State.Ready;
+        thePuzzle.gameMode = PuzzleManager.GameMode.Null;
+        theObject.ResettingAllObj();
+
+    }
 }
