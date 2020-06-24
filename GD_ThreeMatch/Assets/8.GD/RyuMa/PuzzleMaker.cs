@@ -197,7 +197,7 @@ public class PuzzleMaker : MonoBehaviour
         SonMapStartBt.SetActive(false);
         TestStartBt.SetActive(true);
         theTitle.TitleAnim.gameObject.SetActive(false);
-        theGM.state = GMState.GM2_InGame;
+        theGM.state = GMState.GM02_InGame;
         theCam.MoveVec = theCam.gameObject.transform.position;
         theCam.MoveVec.z = -10;
         theCam.state = CameraManager.State.SonMap;

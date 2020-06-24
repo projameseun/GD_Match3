@@ -42,10 +42,12 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
+    - {fileID: 2800000, guid: 76c58849379844e40a44e2de5126a8f2, type: 3}
     - {fileID: 2800000, guid: d8932914bf2130640a74afab3bb526b8, type: 3}
     - {fileID: 2800000, guid: 08c03a4060b1f85428ad223224af84ab, type: 3}
     - {fileID: 2800000, guid: 087cacc79998483439c7a78b8d5c80fc, type: 3}
     - {fileID: 2800000, guid: e7fcd5c65c77644499420eeb25e1b418, type: 3}
+    - {fileID: 21300000, guid: e7fcd5c65c77644499420eeb25e1b418, type: 3}
     - {fileID: 2800000, guid: d6cd36afff7670149b88de4e6fb1a9a1, type: 3}
     - {fileID: 2800000, guid: 7c404185ba0abc549bac597ca48d8c2b, type: 3}
     - {fileID: 2800000, guid: 166405677eeb6634d8fbe39e549cdff1, type: 3}
@@ -53,14 +55,16 @@ SpriteAtlas:
     - {fileID: 2800000, guid: b79fcd3f4fcca25468aced22770562d5, type: 3}
     - {fileID: 2800000, guid: fc3ddb63d67863f4db1289cf54e8aae0, type: 3}
     - {fileID: 2800000, guid: 644b8fbebbb40bc4eb3a3474a509da56, type: 3}
+    - {fileID: 2800000, guid: ffe6ecbf9f41eeb4eac0a537826eb93b, type: 3}
     - {fileID: 2800000, guid: eb6e5e5429bdb364c94a8dc099d912d0, type: 3}
     - {fileID: 2800000, guid: 2ac2e8185017c6442a6e2add1d94461c, type: 3}
     - {fileID: 2800000, guid: d2999fd35b6c8154fb6de85644f5193f, type: 3}
     - {fileID: 2800000, guid: a4d3f4823c398a0419f26d3dea536037, type: 3}
     - {fileID: 2800000, guid: 673084c8907295a4aa0eb65e25e275b7, type: 3}
     - {fileID: 2800000, guid: 9aa22d0a2fd80ef4faee30ee9688144b, type: 3}
-    - {fileID: 2800000, guid: ffe6ecbf9f41eeb4eac0a537826eb93b, type: 3}
-    totalSpriteSurfaceArea: 9362744
+    - {fileID: 2800000, guid: c3a5657679e7dd24990a930f89e2ff77, type: 3}
+    - {fileID: 2800000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
+    totalSpriteSurfaceArea: 10121604
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -74,12 +78,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d8932914bf2130640a74afab3bb526b8, type: 3}
   - {fileID: 21300000, guid: eb6e5e5429bdb364c94a8dc099d912d0, type: 3}
   - {fileID: 21300000, guid: 7c404185ba0abc549bac597ca48d8c2b, type: 3}
+  - {fileID: 21300000, guid: c3a5657679e7dd24990a930f89e2ff77, type: 3}
   - {fileID: 21300000, guid: e7fcd5c65c77644499420eeb25e1b418, type: 3}
   - {fileID: 21300000, guid: 166405677eeb6634d8fbe39e549cdff1, type: 3}
   - {fileID: 21300000, guid: 087cacc79998483439c7a78b8d5c80fc, type: 3}
   - {fileID: 21300000, guid: 2ac2e8185017c6442a6e2add1d94461c, type: 3}
   - {fileID: 21300000, guid: 673084c8907295a4aa0eb65e25e275b7, type: 3}
+  - {fileID: 21300000, guid: 76c58849379844e40a44e2de5126a8f2, type: 3}
   - {fileID: 21300000, guid: 9aa22d0a2fd80ef4faee30ee9688144b, type: 3}
+  - {fileID: 21300000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
   - {fileID: 21300000, guid: 644b8fbebbb40bc4eb3a3474a509da56, type: 3}
   - {fileID: 21300000, guid: b79fcd3f4fcca25468aced22770562d5, type: 3}
   - {fileID: 21300000, guid: d6cd36afff7670149b88de4e6fb1a9a1, type: 3}
@@ -95,12 +102,15 @@ SpriteAtlas:
   - BattleDown
   - Portrait_Alice
   - BlackBox
+  - TextBox
   - BG_M
   - CubeBar0
   - BG_B
   - Portrait_Beryl
   - Title
+  - 540x960
   - V
+  - 256x256Mask
   - PlayerPos
   - Logo
   - BG_T

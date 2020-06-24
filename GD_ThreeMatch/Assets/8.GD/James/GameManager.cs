@@ -60,19 +60,21 @@ public class SlotInfo
 public class PlayerSaveData
 {
     public List<bool> MonsterDataSheet;
+    public int CurrentProgressNum;
 
     public PlayerSaveData()
     {
         MonsterDataSheet = new List<bool>();
+        CurrentProgressNum = 0;
     }
 
 }
 
 public enum GMState
 { 
-    GM0_Title,
-    GM1_Lobby,
-    GM2_InGame,
+    GM00_Title = 0,
+    GM01_Lobby,
+    GM02_InGame,
 }
 
 
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
     Rect rect;
 
     public List<bool> EnemyDataSheet = new List<bool>(200);
-
+    public int CurrentProgressNum = 0;
 
 
     private void Awake()
@@ -146,6 +148,7 @@ public class GameManager : MonoBehaviour
         {
             playerSaveData = new PlayerSaveData();
             playerSaveData.MonsterDataSheet = new List<bool>(EnemyDataSheet);
+            playerSaveData.CurrentProgressNum = CurrentProgressNum;
             return playerSaveData;
         }
         set

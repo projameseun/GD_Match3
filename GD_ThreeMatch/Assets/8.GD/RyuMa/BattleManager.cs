@@ -183,7 +183,7 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-        if (theGM.state == GMState.GM2_InGame)
+        if (theGM.state == GMState.GM02_InGame)
         {
             BattleUpdate();
         }

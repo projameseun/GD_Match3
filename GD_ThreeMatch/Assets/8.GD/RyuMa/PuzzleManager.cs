@@ -135,6 +135,8 @@ public class PuzzleManager : MonoBehaviour
     private PuzzleMaker theMaker;
     private CameraButtonManager CameraButton;
     private TitleManager theTitle;
+    private MessageManager theMessage;
+
     private void Start()
     {
         if (HintButton != null)
@@ -144,6 +146,7 @@ public class PuzzleManager : MonoBehaviour
                 BT_ShowHint();
             });
         }
+        theMessage = FindObjectOfType<MessageManager>();
         theTitle = FindObjectOfType<TitleManager>();
         CameraButton = FindObjectOfType<CameraButtonManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
@@ -166,20 +169,20 @@ public class PuzzleManager : MonoBehaviour
 
     private void Update()
     {
-        if (theGM.state == GMState.GM0_Title)
+        if (theGM.state == GMState.GM00_Title)
         {
             if (theFade.FadeOutEnd == true)
             {
                 theFade.FadeOutEnd = false;
                 theTitle.TitleAnim.gameObject.SetActive(false);
-                theGM.state = GMState.GM2_InGame;
+                theGM.state = GMState.GM02_InGame;
                 state = State.LoadingMap;
                 theGM.LoadMap();
 
 
             }
         }
-        else if (theGM.state == GMState.GM2_InGame)
+        else if (theGM.state == GMState.GM02_InGame)
         {
             PuzzleUpdate();
         }
@@ -358,6 +361,12 @@ public class PuzzleManager : MonoBehaviour
                 {
                     theFade.FadeInEnd = false;
                     theFade.ShowMapNameEvent(theMaker.MapName);
+
+                    if (theGM.CurrentProgressNum == 0)
+                    {
+                        theGM.CurrentProgressNum = 1;
+                        theMessage.ShowMessageText(0);
+                    }
                     state = State.Ready;
                 }
             }
@@ -1454,6 +1463,14 @@ public class PuzzleManager : MonoBehaviour
             if (theObject.PortalList[i].activeSelf == true)
             {
                 theObject.PortalList[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+
+        for (int i = 0; i < theObject.PortalArrowList.Count; i++)
+        {
+            if (theObject.PortalArrowList[i].activeSelf == true)
+            {
+                theObject.PortalArrowList[i].GetComponent<PortalArrowManager>().Resetting();
             }
         }
 

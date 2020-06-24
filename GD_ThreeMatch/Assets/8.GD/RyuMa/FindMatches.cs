@@ -1016,7 +1016,7 @@ public class FindMatches : MonoBehaviour
         {
             _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         }
-        _Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage);
+        _Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage, InvokeTime);
 
 
 
