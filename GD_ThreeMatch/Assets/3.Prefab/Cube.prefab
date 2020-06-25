@@ -94,9 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9aa754740bba0343abe2ba319967c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialCubeType: 3
+  specialCubeType: -1
   nodeColor: 0
   SpriteRen: {fileID: 5068438941194658850}
   Num: 0
   Size: 0
   SpecialCube: 0
+  SkillDamage: 0

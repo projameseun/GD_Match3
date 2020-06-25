@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum SpecialCubeType
-{ 
+{
+    Null = -1,
     Vertical = 0,
     Horizon,
     Diagonal,
-    Null
 }
 
 public class Cube : MonoBehaviour
@@ -18,7 +18,6 @@ public class Cube : MonoBehaviour
 
 
     public int Num;
-    public float Size;
     //public SpriteRenderer MinimapSprite;
     public bool SpecialCube = false; // 특수블럭으로 바꾸기 위해 사용하는 값
 
@@ -49,62 +48,6 @@ public class Cube : MonoBehaviour
         theObject = FindObjectOfType<ObjectManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
     }
-    //private void Update()
-    //{
-    //    //if (Move == true)
-    //    //{
-    //    //    this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed * Time.deltaTime);
-
-
-    //    //    if (Vector2.Distance(this.transform.position, TargetVec) <= (Speed * Time.deltaTime) / 2)
-    //    //    {
-    //    //        this.transform.position = TargetVec;
-    //    //        Move = false;
-
-    //    //        if (OnlyOneEvent == true)
-    //    //        {
-    //    //            thePuzzle.CubeEvent = true;
-    //    //            OnlyOneEvent = false;
-    //    //        }
-
-    //    //    }
-
-    //    //}
-    //    if (DestroyEvent == true)
-    //    {
-    //        DestoryTime -= Time.deltaTime * 1.5f;
-
-    //        if (DestoryTime < 0.5f)
-    //        {
-    //            if (OnlyOneEvent == true)
-    //            {
-    //                OnlyOneEvent = false;
-    //                thePuzzle.CubeEvent = true;
-    //            }
-
-    //            if (SpecialCube == true)
-    //            {
-    //                color.a = 1;
-    //                DestroyEvent = false;
-    //                SpriteRen.color = color;
-    //                SpriteRen.sprite = thePuzzle.SpecialSprites[(int)specialCubeType];
-    //                SpecialCube = false;
-    //                return;
-
-    //            }
-    //            else
-    //            {
-    //                DestroyCubeEvent();
-    //            }
-
-
-    //        }
-    //        color.a = DestoryTime;
-    //        SpriteRen.color = color;
-    //    }
-
-    //}
-
 
     IEnumerator MoveCor()
     {

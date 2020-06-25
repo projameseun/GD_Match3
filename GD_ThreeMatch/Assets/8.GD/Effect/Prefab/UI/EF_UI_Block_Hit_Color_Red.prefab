@@ -4788,7 +4788,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 31
+  m_SortingOrder: 231
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9609,7 +9609,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 34
+  m_SortingOrder: 234
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -14363,7 +14363,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 31
+  m_SortingOrder: 231
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -19117,7 +19117,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 31
+  m_SortingOrder: 231
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -23929,7 +23929,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 34
+  m_SortingOrder: 234
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -28741,7 +28741,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 34
+  m_SortingOrder: 234
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -28778,7 +28778,7 @@ GameObject:
   - component: {fileID: 2017978005441714947}
   - component: {fileID: 2615772942121294912}
   m_Layer: 0
-  m_Name: EF_UI_Block_Hit_Color_05
+  m_Name: EF_UI_Block_Hit_Color_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

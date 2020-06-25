@@ -133,8 +133,6 @@ public class FindMatches : MonoBehaviour
     //특수 큐브를 만들 수 있는지 확인
     public void FindSpecialCube(MapManager _Map)
     {
-
-
         for (int i = 0; i < _Map.TopRight - _Map.TopLeft; i++)
         {
             for (int Num = _Map.TopLeft + _Map.Horizontal; Num < _Map.BottomLeft;)
@@ -148,7 +146,9 @@ public class FindMatches : MonoBehaviour
                     {
                         if (_Map.Slots[Num + i + (_Map.Horizontal * Count)].cube != null)
                         {
-                            if (_Map.Slots[Num + i].cube.nodeColor == _Map.Slots[Num + i + (_Map.Horizontal * Count)].cube.nodeColor)
+                            if (_Map.Slots[Num + i].cube.nodeColor == _Map.Slots[Num + i + (_Map.Horizontal * Count)].cube.nodeColor &&
+                                _Map.Slots[Num + i].cube.nodeColor < NodeColor.NC5_Blank &&
+                                _Map.Slots[Num + i + (_Map.Horizontal * Count)].cube.nodeColor < NodeColor.NC5_Blank)
                             {
                                 SpecialCubeList.Add(Num + i + (_Map.Horizontal * Count));
                                 Count++;
@@ -321,7 +321,9 @@ public class FindMatches : MonoBehaviour
                         if (_Map.Slots[Num + i + Count].cube != null)
                         {
 
-                            if (_Map.Slots[Num + i].cube.nodeColor == _Map.Slots[Num + i + Count].cube.nodeColor)
+                            if (_Map.Slots[Num + i].cube.nodeColor == _Map.Slots[Num + i + Count].cube.nodeColor &&
+                                _Map.Slots[Num + i].cube.nodeColor < NodeColor.NC5_Blank &&
+                                _Map.Slots[Num + i + Count].cube.nodeColor < NodeColor.NC5_Blank)
                             {
                                 SpecialCubeList.Add(Num + i + Count);
                                 Count++;
@@ -541,6 +543,7 @@ public class FindMatches : MonoBehaviour
     //가로 특수큐브
     public void FindHorizonCube(MapManager _Map,int _SlotNum)
     {
+
         int HorizonNum =0;
 
 
