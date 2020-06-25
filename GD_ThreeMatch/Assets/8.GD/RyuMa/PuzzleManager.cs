@@ -122,7 +122,7 @@ public class PuzzleManager : MonoBehaviour
 
 
     [HideInInspector] public List<string> PortalName;
-
+    List<GameObject> StartEffect = new List<GameObject>();
 
 
     private ObjectManager theObject;
@@ -363,11 +363,8 @@ public class PuzzleManager : MonoBehaviour
                     theFade.FadeInEnd = false;
                     theFade.ShowMapNameEvent(theMaker.MapName);
 
-                    if (theGM.CurrentProgressNum == 0)
-                    {
-                        theGM.CurrentProgressNum = 1;
-                        theMessage.ShowMessageText(0);
-                    }
+                    CheckMessage();
+
                     state = State.Ready;
                 }
             }
@@ -1709,6 +1706,23 @@ public class PuzzleManager : MonoBehaviour
     // 전투 시작전 적 큐브를 깍는 이밴트
     public void CheckEnemyCubeCount()
     {
+        if (StartEffect.Count > 0)
+        {
+            int Count = StartEffect.Count;
+            for (int i = 0; i < StartEffect.Count;)
+            {
+                if (StartEffect[i].activeSelf == false)
+                {
+                    StartEffect.RemoveAt(i);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+
+
         if (EventTime <= 0.5f)
         {
             EventTime += Time.deltaTime;
@@ -1746,17 +1760,17 @@ public class PuzzleManager : MonoBehaviour
                         {
                             PlayerCubeUI[UINum].AddCount(-CubeCount);
                             EventEnd = false;
-                            theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
+                            GameObject Effect = theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
                                 theBattle.EnemyCubeUi[i].gameObject, PlayerCubeUI[UINum].cubeColor,
                                 (CubeEffectType)1, -CubeCount, false, 6000);
-
+                            StartEffect.Add(Effect);
                         }
 
                     }
                 }
             }
 
-            if (EventEnd == true)
+            if (EventEnd == true && StartEffect.Count > 0)
             {
                 EventTime = 0;
                 EventEnd = false;
@@ -1833,6 +1847,16 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
+
+
+    public void CheckMessage()
+    {
+        if (theGM.CurrentProgressNum == 0)
+        {
+            theGM.CurrentProgressNum = 1;
+            theMessage.ShowMessageText(0);
+        }
+    }
 
 
 

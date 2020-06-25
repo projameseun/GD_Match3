@@ -99,7 +99,6 @@ public class MessageManager : MonoBehaviour
         int Num = 0;
         int Count = 0;
         string Dec = "";
-        
         while (DecQ.Count > 0)
         {
             WhiteBox.transform.localPosition = Messages[CurrentProgress].Decs[Num].WhitePos;
