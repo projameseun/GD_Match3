@@ -13,7 +13,6 @@ public class GirlHero
     [Space]
     [Header("Spine")]
     public SkeletonDataAsset IllustData;
-    public Sprite SkillImage;
     public float[] IllustPosX;
     public float IllustPosY;
     public float IllustSize;

@@ -9,7 +9,9 @@ public enum FaceType
     FT0_NULL = -1,
     FT1_ALICE,
     FT2_Beryl,
-    FT3_Slime
+    FT3_Slime,
+    FT4_Slime_Angry,
+
 
 }
 
@@ -20,6 +22,7 @@ public class MessageDec
 {
     public Vector2 WhitePos;
     public Vector2 WhiteSize;
+    public string Name;
     [TextArea]
     public string Dec;
     public FaceType faceType;
@@ -45,16 +48,20 @@ public class MessageManager : MonoBehaviour
     public GameObject DecBase;
     public GameObject WhiteBox;
     public GameObject FaceBox;
+    public GameObject NameBox;
     public Button TouchPanel;
+    public TextMeshPro NameText;
     public TextMeshPro MessageText;
+    
     public SpriteRenderer FaceSpriteRen;
 
     public Sprite[] FaceSprite;
-    
 
 
+    Queue<string> NameQ = new Queue<string>();
     Queue<string> DecQ = new Queue<string>();
     public bool TutoTouch;
+    public bool MessageEnd;
 
     public int CurrentProgress = 0;
 
@@ -62,12 +69,8 @@ public class MessageManager : MonoBehaviour
     WaitForSeconds wait = new WaitForSeconds(0.01f);
     Vector4 TextSize = new Vector4(0, 0, 0, 0);
 
-
-
-    private GameManager theGM;
     private void Start()
     {
-        theGM = FindObjectOfType<GameManager>();
         if (TouchPanel != null)
         {
             TouchPanel.onClick.AddListener(() =>
@@ -79,22 +82,23 @@ public class MessageManager : MonoBehaviour
 
 
 
-    public void ShowMessageText(int _Progress)
+    public void ShowMessageText(int _Progress, bool CheckEnd = false)
     {
         CurrentProgress = _Progress;
         MessageBase.SetActive(true);
         DecQ.Clear();
-
+        NameQ.Clear();
         for (int i = 0; i < Messages[CurrentProgress].Decs.Length; i++)
         {
+            NameQ.Enqueue(Messages[CurrentProgress].Decs[i].Name);
             DecQ.Enqueue(Messages[CurrentProgress].Decs[i].Dec);
         }
-        StartCoroutine(ShowMessageCor());
+        StartCoroutine(ShowMessageCor(CheckEnd));
 
     }
 
 
-    IEnumerator ShowMessageCor()
+    IEnumerator ShowMessageCor(bool CheckEnd)
     {
         int Num = 0;
         int Count = 0;
@@ -108,8 +112,9 @@ public class MessageManager : MonoBehaviour
             {
                 if (FaceBox.activeSelf == true)
                 {
+                    NameBox.SetActive(false);
                     FaceBox.SetActive(false);
-                    TextSize.x = -23;
+                    TextSize.x = -20;
                     MessageText.margin = TextSize;
                 }
               
@@ -118,6 +123,7 @@ public class MessageManager : MonoBehaviour
             {
                 if (FaceBox.activeSelf == false)
                 {
+                    NameBox.SetActive(true);
                     FaceBox.SetActive(true);
                     TextSize.x = 0;
                     MessageText.margin = TextSize;
@@ -125,7 +131,7 @@ public class MessageManager : MonoBehaviour
                 
                 FaceSpriteRen.sprite = FaceSprite[(int)Messages[CurrentProgress].Decs[Num].faceType];
             }
-
+            NameText.text = NameQ.Dequeue();
             Dec = DecQ.Dequeue();
             Count = 0;
             Num++;
@@ -153,6 +159,10 @@ public class MessageManager : MonoBehaviour
             yield return null;
             Dec = "";
             MessageText.text = "";
+        }
+        if (CheckEnd == true)
+        {
+            MessageEnd = true;
         }
 
         MessageBase.SetActive(false);

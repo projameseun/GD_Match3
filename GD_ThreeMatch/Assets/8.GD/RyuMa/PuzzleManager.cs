@@ -268,6 +268,11 @@ public class PuzzleManager : MonoBehaviour
                     int PlayerSlotNum = CheckPlayerSlot(theMoveMap);
                     if (theMoveMap.Slots[PlayerSlotNum].nodeType == PuzzleSlot.NodeType.Portal)
                     {
+                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                        {
+                            GameOver();
+                            return;
+                        }
                         CheckPortal(PlayerSlotNum);
                         return;
                     }
@@ -1279,6 +1284,8 @@ public class PuzzleManager : MonoBehaviour
     {
         int SlotNum = CheckPlayerSlot(theMoveMap);
 
+        //마을에 도착했는가?
+
 
         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
         {
@@ -1764,8 +1771,7 @@ public class PuzzleManager : MonoBehaviour
                 // theObject.SpeechEvent(vec, "전투 시작!!!", 3);
                 theBattle.BattleStart = true;
                 theBattle.battleState = BattleState.Null;
-                theFade.BattleAnimEnd = false;
-                CheckBattleMessage();
+                theMessage.MessageEnd = false;
             }
 
 
@@ -1849,14 +1855,6 @@ public class PuzzleManager : MonoBehaviour
     }
 
 
-    public void CheckBattleMessage()
-    {
-        if (theGM.CurrentProgressNum == 1)
-        {
-            theGM.CurrentProgressNum = 2;
-            theMessage.ShowMessageText(1);
-        }
-    }
 
 
 

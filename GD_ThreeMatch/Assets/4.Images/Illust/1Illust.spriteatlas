@@ -44,14 +44,26 @@ SpriteAtlas:
     packables:
     - {fileID: 2800000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
     - {fileID: 2800000, guid: 4e7c023fcf5f4ce4fb739dc75d7e56b3, type: 3}
-    totalSpriteSurfaceArea: 1071320
+    - {fileID: 2800000, guid: 52feba937295bcd47a939692ea5ea741, type: 3}
+    - {fileID: 2800000, guid: 8ff2afe44e0ef3f43a768074bece5b85, type: 3}
+    - {fileID: 2800000, guid: b3bf46433b99da340b609a0212143f9b, type: 3}
+    - {fileID: 2800000, guid: 137e91ba5d706c749912fb5168322b6a, type: 3}
+    totalSpriteSurfaceArea: 1282920
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b960d6508f2d119419b977a820cf8047, type: 3}
+  - {fileID: 21300000, guid: b3bf46433b99da340b609a0212143f9b, type: 3}
+  - {fileID: 21300000, guid: 52feba937295bcd47a939692ea5ea741, type: 3}
+  - {fileID: 21300000, guid: 8ff2afe44e0ef3f43a768074bece5b85, type: 3}
+  - {fileID: 21300000, guid: 137e91ba5d706c749912fb5168322b6a, type: 3}
   - {fileID: 21300000, guid: 4e7c023fcf5f4ce4fb739dc75d7e56b3, type: 3}
   m_PackedSpriteNamesToIndex:
   - Alice
+  - SlimeUpper
+  - AliceUpper
+  - BerylUpper
+  - SlimeUpper2
   - Beryl
   m_Tag: 1Illust
   m_IsVariant: 0

@@ -54,6 +54,11 @@ public class EnemyBase
     public int Count;
     public int[] CubeCount;
     public SkillSlot[] skillSlots;
+    [TextArea]
+    public string WinDec;
+    [TextArea]
+    public string LoseDec;
+
 }
 
 
@@ -151,6 +156,7 @@ public class BattleManager : MonoBehaviour
     float Player1CacHp; // 소녀체력계산
     float Player2CacHp; // 소녀체력계산
     List<int> ComboNumList = new List<int>(); //콤보 숫자 리스트
+    bool MessageEnd;            //메세지가 있는지 확인한다
 
     bool[] ComboEvent = new bool[3];        //콤보 이밴트
     
@@ -165,6 +171,7 @@ public class BattleManager : MonoBehaviour
     private FadeManager theFade;
     private CameraManager theCamera;
     private GameManager theGM;
+    private MessageManager theMessage;
     private void Start()
     {
         CurrentSkillUI = SkillUI.UI2_Null;
@@ -173,6 +180,8 @@ public class BattleManager : MonoBehaviour
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theObject = FindObjectOfType<ObjectManager>();
         theGM = FindObjectOfType<GameManager>();
+        theMessage = FindObjectOfType<MessageManager>();
+
 
         ColorNumList.Add(0);
         ColorNumList.Add(1);
@@ -279,6 +288,11 @@ public class BattleManager : MonoBehaviour
                         theFade.ShowBattleAnim();
                     }
                     if (theFade.BattleAnimEnd == true)
+                    {
+                        theFade.BattleAnimEnd = false;
+                        CheckBattleMessage();
+                    }
+                    if (theMessage.MessageEnd == true)
                     {
                         thePuzzle.CheckEnemyCubeCount();
                     }
@@ -823,7 +837,20 @@ public class BattleManager : MonoBehaviour
             CurrentEnemyCount = 0;
         EnemyCountText.text = CurrentEnemyCount.ToString();
     }
+    public void CheckBattleMessage()
+    {
+        if (theGM.CurrentProgressNum == 1)
+        {
+            theGM.CurrentProgressNum = 2;
+            theMessage.ShowMessageText(1, true);
+            return;
+        }
 
+
+
+
+        theMessage.MessageEnd = true;
+    }
 
     public void Resetting()
     {

@@ -60,6 +60,7 @@ public class SlotInfo
 public class PlayerSaveData
 {
     public List<bool> MonsterDataSheet;
+    public List<bool> ProgressDataSheet;
     public int CurrentProgressNum;
 
     public PlayerSaveData()
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour
     Rect rect;
 
     public List<bool> EnemyDataSheet = new List<bool>(200);
+    public List<bool> ProgressDataSheet = new List<bool>(200);
     public int CurrentProgressNum = 0;
 
 
@@ -146,6 +148,7 @@ public class GameManager : MonoBehaviour
         {
             playerSaveData = new PlayerSaveData();
             playerSaveData.MonsterDataSheet = new List<bool>(EnemyDataSheet);
+            playerSaveData.ProgressDataSheet = new List<bool>(ProgressDataSheet);
             playerSaveData.CurrentProgressNum = CurrentProgressNum;
             return playerSaveData;
         }

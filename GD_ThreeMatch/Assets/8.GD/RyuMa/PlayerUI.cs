@@ -325,8 +325,6 @@ public class PlayerUI : MonoBehaviour
 
         SkillSlider.fillAmount = CurrentSkillGauge / MaxSkillGauge;
 
-        if (CurrentSkillGauge == MaxSkillGauge)
-            GirlCubeImage.color = new Color(1, 1, 1, 1);
 
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
 
@@ -340,7 +338,6 @@ public class PlayerUI : MonoBehaviour
         SkillOn = false;
         ChangeAnim("Attack");
         CurrentSkillGauge = 0;
-        GirlCubeImage.color = new Color(1, 1, 1, 0);
         SkillSlider.fillAmount = CurrentSkillGauge / MaxSkillGauge;
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
     }
