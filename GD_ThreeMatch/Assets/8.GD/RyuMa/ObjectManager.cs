@@ -300,7 +300,7 @@ public class ObjectManager : MonoBehaviour
     public void LoadingInit()
     {
         GameObject Cube = CubeEffectEvent(this.gameObject.transform.position,
-            this.gameObject, NodeColor.NC0_Blue, CubeEffectType.GoEnemy, 0, false, 2000);
+            this.gameObject, NodeColor.NC0_Blue, CubeEffectType.GoEnemy, 0, false);
         Cube.GetComponent<CubeEffect>().DestroyCount = 1;
 
         SpeechEvent(this.transform.position, "test", 1);
@@ -536,7 +536,7 @@ public class ObjectManager : MonoBehaviour
 
     // 큐브 이펙트를 사용하는 함수
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
-        CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart,float _Speed = 2000)
+        CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart,float _Speed = 4000)
     {
 
         GameObject CubeEffect = FindObj("CubeE");

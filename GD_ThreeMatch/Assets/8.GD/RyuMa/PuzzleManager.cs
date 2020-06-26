@@ -221,6 +221,11 @@ public class PuzzleManager : MonoBehaviour
                     if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
                     {
                         SetMoveCount(-1);
+                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                        {
+                            GameOver();
+                            return;
+                        }
                         CheckPortal(SlotNum);
                         return;
                     }
@@ -363,7 +368,7 @@ public class PuzzleManager : MonoBehaviour
                     theFade.FadeInEnd = false;
                     theFade.ShowMapNameEvent(theMaker.MapName);
 
-                    CheckMessage();
+                    CheckMoveMessage();
 
                     state = State.Ready;
                 }
@@ -708,65 +713,6 @@ public class PuzzleManager : MonoBehaviour
         NotMatchSetCube(_Map);
 
 
-
-        //if (Reset == false)
-        //{
-        //    //SetPlayer(_Map);
-        //    //맵에서 플레이어의 위치를 지정시킨다
-
-        //    //SetEnemy(_Map);
-        //    //맵에서 몬스터의 위치를 지정시킨다
-
-        //    //SetGoal(_Map);
-        //    //맵에서 골의 위치를 지정시킨다
-
-        //    while (true)
-        //    {
-        //        int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
-        //        rand = 43;
-        //        if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null)
-        //        {
-        //            _Map.Slots[rand].nodeColor = NodeColor.Player;
-        //            _Map.Slots[rand].cube.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-        //            _Map.Slots[rand].cube.nodeColor = NodeColor.Player;
-        //            Player.transform.position = _Map.Slots[rand].transform.position;
-
-        //            Transform Parent = _Map.Slots[rand].cube.transform;
-
-        //            Player.transform.parent = Parent;
-        //            Player.ChangeDirection(_Map.direction);
-
-        //            break;
-        //        }
-        //    }
-        //    while (true)
-        //    {
-        //        int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
-        //        rand = 44;
-        //        if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
-        //            _Map.Slots[rand].nodeColor != NodeColor.Player)
-        //        {
-        //            _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Enemy;
-        //            _Map.Slots[rand].GetComponent<Image>().color = new Color(1, 0, 0, 1);
-        //            break;
-        //        }
-        //    }
-        //    while (true)
-        //    {
-        //        int rand = Random.Range(0, _Map.Horizontal * _Map.Vertical);
-
-        //        if (_Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Null &&
-        //            _Map.Slots[rand].nodeColor != NodeColor.Player &&
-        //            _Map.Slots[rand].nodeType != PuzzleSlot.NodeType.Enemy)
-        //        {
-        //            _Map.Slots[rand].nodeType = PuzzleSlot.NodeType.Goal;
-        //            Goal.transform.position = _Map.Slots[rand].transform.position;
-        //            Transform Parent = _Map.Slots[rand].transform;
-        //            Goal.transform.parent = Parent;
-        //            break;
-        //        }
-        //    }
-        //}
 
         if (gameMode == GameMode.MoveMap)
         {
@@ -1333,7 +1279,22 @@ public class PuzzleManager : MonoBehaviour
     {
         int SlotNum = CheckPlayerSlot(theMoveMap);
 
+
+        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+        {
+            GameOver();
+            return true;
+        }
+
+
         //현재 슬롯이 몬스터인지
+        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+        {
+            CheckPortal(SlotNum);
+            return true;
+        }
+
+
 
         if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
         {
@@ -1348,11 +1309,7 @@ public class PuzzleManager : MonoBehaviour
         {
             return false;
         }
-        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
-        {
-            CheckPortal(SlotNum);
-            return true;
-        }
+       
 
         return false;
 
@@ -1623,7 +1580,33 @@ public class PuzzleManager : MonoBehaviour
             MoveCount += _Count;
 
             if (MoveCount < 0)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    if (playerUIs[i].CurrentHp > 0)
+                    {
+                        playerUIs[i].TakeDamageEvent(playerUIs[i].MaxHp / 10);
+                    }
+                }
+
                 MoveCount = 0;
+
+
+                if (selectGirl == playerUIs[0].selectGirl && 
+                    playerUIs[0].state == PlayerUIState.Die && 
+                    playerUIs[1].state != PlayerUIState.Die)
+                {
+                    Player.SetSpine((int)playerUIs[1].selectGirl);
+                }
+                else if (selectGirl == playerUIs[1].selectGirl &&
+                    playerUIs[1].state == PlayerUIState.Die &&
+                    playerUIs[0].state != PlayerUIState.Die)
+                {
+                    Player.SetSpine((int)playerUIs[0].selectGirl);
+                }
+
+            }
+                
 
             MoveCountText.text = MoveCount.ToString();
         }
@@ -1634,6 +1617,7 @@ public class PuzzleManager : MonoBehaviour
 
 
     }
+
 
 
     // 이동맵에서 방향을 바꾼다
@@ -1708,7 +1692,6 @@ public class PuzzleManager : MonoBehaviour
     {
         if (StartEffect.Count > 0)
         {
-            int Count = StartEffect.Count;
             for (int i = 0; i < StartEffect.Count;)
             {
                 if (StartEffect[i].activeSelf == false)
@@ -1723,13 +1706,14 @@ public class PuzzleManager : MonoBehaviour
         }
 
 
-        if (EventTime <= 0.5f)
+        if (EventTime <= 0.1f)
         {
             EventTime += Time.deltaTime;
         }
         else
         {
             EventEnd = true; // false일 경우 이밴트가 실행 true일 경우 이밴트 종료
+            EventTime = 0.1f;
             for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
             {
                 for (int UINum = 0; UINum < CubeSprites.Length; UINum++)
@@ -1762,7 +1746,7 @@ public class PuzzleManager : MonoBehaviour
                             EventEnd = false;
                             GameObject Effect = theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
                                 theBattle.EnemyCubeUi[i].gameObject, PlayerCubeUI[UINum].cubeColor,
-                                (CubeEffectType)1, -CubeCount, false, 6000);
+                                (CubeEffectType)1, -CubeCount, false, 10000);
                             StartEffect.Add(Effect);
                         }
 
@@ -1770,18 +1754,18 @@ public class PuzzleManager : MonoBehaviour
                 }
             }
 
-            if (EventEnd == true && StartEffect.Count > 0)
+            if (EventEnd == true && StartEffect.Count == 0)
             {
                 EventTime = 0;
                 EventEnd = false;
                 state = State.Ready;
                 Vector2 vec = new Vector2(playerUIs[0].transform.position.x,
                     playerUIs[0].transform.position.y + 1.8f);
-                theObject.SpeechEvent(vec, "전투 시작!!!", 3);
+                // theObject.SpeechEvent(vec, "전투 시작!!!", 3);
                 theBattle.BattleStart = true;
                 theBattle.battleState = BattleState.Null;
                 theFade.BattleAnimEnd = false;
-
+                CheckBattleMessage();
             }
 
 
@@ -1804,7 +1788,6 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
                     {
-                        Debug.Log("test");
                         if (theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneEnemy == true &&
                          theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneNum == DataNum)
                         {
@@ -1834,6 +1817,12 @@ public class PuzzleManager : MonoBehaviour
     }
 
 
+    public void GameOver()
+    { 
+        
+    }
+
+
 
     // 퍼즐 슬롯을 모두 리셋(초기화)시키는 이밴트
     public void PuzzleResetting(MapManager _Map)
@@ -1849,15 +1838,25 @@ public class PuzzleManager : MonoBehaviour
 
 
 
-    public void CheckMessage()
+    public void CheckMoveMessage()
     {
         if (theGM.CurrentProgressNum == 0)
         {
             theGM.CurrentProgressNum = 1;
             theMessage.ShowMessageText(0);
         }
+        
     }
 
+
+    public void CheckBattleMessage()
+    {
+        if (theGM.CurrentProgressNum == 1)
+        {
+            theGM.CurrentProgressNum = 2;
+            theMessage.ShowMessageText(1);
+        }
+    }
 
 
 

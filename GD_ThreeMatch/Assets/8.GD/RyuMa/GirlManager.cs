@@ -23,8 +23,6 @@ public class GirlHero
     public Sprite BattlePortrait;
     [Space]
     [Header("DB")]
-
-    public SelectGirl selectGirl;
     public NodeColor nodeColor;
     public float Hp;
     public float SkillCount;

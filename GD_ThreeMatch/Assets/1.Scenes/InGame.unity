@@ -4855,7 +4855,6 @@ MonoBehaviour:
     SdSize: 0.2
     SkillTime: 0.5
     BattlePortrait: {fileID: 21300000, guid: eb6e5e5429bdb364c94a8dc099d912d0, type: 3}
-    selectGirl: 0
     nodeColor: 0
     Hp: 2500
     SkillCount: 12
@@ -4873,7 +4872,6 @@ MonoBehaviour:
     SdSize: 0
     SkillTime: 0
     BattlePortrait: {fileID: 0}
-    selectGirl: 0
     nodeColor: 3
     Hp: 0
     SkillCount: 0
@@ -4893,7 +4891,6 @@ MonoBehaviour:
     SdSize: 0.12
     SkillTime: 0.6
     BattlePortrait: {fileID: 21300000, guid: 2ac2e8185017c6442a6e2add1d94461c, type: 3}
-    selectGirl: 2
     nodeColor: 2
     Hp: 133
     SkillCount: 12
@@ -4911,7 +4908,6 @@ MonoBehaviour:
     SdSize: 0
     SkillTime: 0
     BattlePortrait: {fileID: 0}
-    selectGirl: 0
     nodeColor: 3
     Hp: 0
     SkillCount: 0
@@ -4929,7 +4925,6 @@ MonoBehaviour:
     SdSize: 0
     SkillTime: 0
     BattlePortrait: {fileID: 0}
-    selectGirl: 0
     nodeColor: 3
     Hp: 0
     SkillCount: 0
@@ -9101,7 +9096,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpinMesh: {fileID: 1084506282}
   anim: {fileID: 1084506281}
-  selectGirl: 0
   SdPlayer: {fileID: 1084506280}
   PlayerDirObj: {fileID: 2080616487}
   AnimName: 

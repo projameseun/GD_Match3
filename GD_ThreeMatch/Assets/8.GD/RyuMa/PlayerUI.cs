@@ -23,6 +23,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject Trigger;
     public Image HpStateImage;
     public Image HpSlider;
+    public Image HpRedSlider;
     public TextMeshPro HpText;
     public Image SkillBgImage;
     public Image SkillSlider;
@@ -30,15 +31,17 @@ public class PlayerUI : MonoBehaviour
     public Image GirlCubeImage;
 
     public int PlayerUINum;
-    public NodeColor nodeColor;
+    public SelectGirl selectGirl;
     public float MaxHp;
     public float CurrentHp;
     public float MaxSkillGauge;
     public float CurrentSkillGauge;
 
     public bool SkillOn;
+    
 
-
+    bool HpRedEventOnOff = false;
+    float HpRedEventTime;
 
     //trunk
     string AnimName;
@@ -159,12 +162,14 @@ public class PlayerUI : MonoBehaviour
             GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
         }
         GirlCubeImage.sprite = thePuzzle.CubeSprites[_nodeColor];
-        nodeColor = (NodeColor)_nodeColor;
+        selectGirl = (SelectGirl)_nodeColor;
         PlayerUINum = _PlayerNum;
        
         MaxHp = theGirl.Girls[_nodeColor].Hp;
         CurrentHp = MaxHp;
+        HpRedSlider.fillAmount = 1;
         MaxSkillGauge = theGirl.Girls[_nodeColor].SkillCount;
+
         HpText.text = string.Format("{0:#,###}/{1:#,###}", CurrentHp, MaxHp);
         CurrentSkillGauge = 0;
         SkillSlider.fillAmount = 0;
@@ -201,7 +206,7 @@ public class PlayerUI : MonoBehaviour
     }
     public void ChangeSelectGirl()
     {
-        thePuzzle.ChangePlayer((SelectGirl)((int)nodeColor));
+        thePuzzle.ChangePlayer((SelectGirl)((int)selectGirl));
     }
 
 
@@ -210,7 +215,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (On == true)
         {
-            thePuzzle.Player.SetSpine((int)nodeColor);
+            thePuzzle.Player.SetSpine((int)selectGirl);
 
    
             ClickP = theObject.SpawnClickP(Trigger.transform.position);
@@ -228,22 +233,6 @@ public class PlayerUI : MonoBehaviour
                     ClickP = null;
                 }
             }
-            if (CurrentHp <= 0)
-            {
-                if ((int)thePuzzle.selectGirl == (int)nodeColor)
-                {
-                    if (PlayerUINum == 0)
-                    {
-                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[1].nodeColor);
-                    }
-                    else
-                    {
-                        thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[0].nodeColor);
-                    }
-                }
-            }
-          
-
             SkillOnEvent = false;
             ImageScale = 1;
             GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
@@ -268,24 +257,8 @@ public class PlayerUI : MonoBehaviour
     public void TakeDamage(AttackEffect _Effect)
     {
         theObject.DamageTextEvent(Trigger.transform.position, _Effect.DamageValue.ToString());
-        CurrentHp -= _Effect.DamageValue;
-        if (CurrentHp < 0)
-            CurrentHp = 0;
-        HpSlider.fillAmount = CurrentHp / MaxHp;
-        HpText.text = string.Format("{0:#,###}/{1:#,###}", CurrentHp, MaxHp);
-        if (CurrentHp <= 0)
-        {
-            PlayerDie();
-        }
-        else
-        {
-            if(PlayerUINum == 0)
-                ChangeAnim("Hit");
-            DamageEvent = true;
-            DamageTime = 0f;
+        TakeDamageEvent(_Effect.DamageValue);
 
-            //데미지 애니메이션 추가하기
-        }
 
         if (_Effect.AttackEvent == true)
         {
@@ -297,6 +270,7 @@ public class PlayerUI : MonoBehaviour
             theBattle.EnemyAttackEffectList.Remove(_Effect.gameObject);
         }
 
+        //몬스터 파티클
         theBattle.EnemyPEvent(this.transform.position);
 
 
@@ -305,6 +279,38 @@ public class PlayerUI : MonoBehaviour
 
 
     }
+
+    public void TakeDamageEvent(float _Value)
+    {
+        CurrentHp -= (int)_Value;
+        if (CurrentHp < 0)
+            CurrentHp = 0;
+        HpSlider.fillAmount = CurrentHp / MaxHp;
+        HpText.text = string.Format("{0:#,###}/{1:#,###}", CurrentHp, MaxHp);
+
+        HpRedEventTime = 1f;
+        if (HpRedEventOnOff == false)
+        {
+            
+            HpRedEventOnOff = true;
+            StartCoroutine(HpRedEvent());
+        }
+
+
+        if (CurrentHp <= 0)
+        {
+            PlayerDie();
+        }
+        else
+        {
+            ChangeAnim("Hit");
+            DamageEvent = true;
+            DamageTime = 0f;
+
+            //데미지 애니메이션 추가하기
+        }
+    }
+
 
 
     public void AddSkillGauge(int _CubeCount)
@@ -353,15 +359,65 @@ public class PlayerUI : MonoBehaviour
         DamageEvent = false;
         DamageTime = 0f;
         SpinAnim.skeleton.SetColor(new Color(1, 1, 1));
-
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        {
+            if (thePuzzle.selectGirl == selectGirl)
+            {
+                if (PlayerUINum == 0)
+                {
+                    thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[1].selectGirl);
+                }
+                else
+                {
+                    thePuzzle.Player.SetSpine((int)thePuzzle.playerUIs[0].selectGirl);
+                }
+            }
+        }
+      
         if ((int)theBattle.CurrentSkillUI == PlayerUINum)
         {
             theBattle.ReadySkill(SkillUI.UI2_Null);
         }
 
         state = PlayerUIState.Die;
-        
+
+        //if ((int)thePuzzle.selectGirl == (int)selectGirl)
+        //{
+        //    if (PlayerUINum == 0)
+        //    {
+        //        if(thePuzzle.playerUIs[1].state != PlayerUIState.Die)
+        //        thePuzzle.selectGirl = (SelectGirl)thePuzzle.playerUIs[1].selectGirl;
+        //    }
+        //    else if (PlayerUINum == 1)
+        //    {
+        //        if (thePuzzle.playerUIs[0].state != PlayerUIState.Die)
+        //            thePuzzle.selectGirl = (SelectGirl)thePuzzle.playerUIs[0].selectGirl;
+        //    }
+        //}
+
+
     }
+
+
+    IEnumerator HpRedEvent()
+    {
+        while (HpRedSlider.fillAmount >= (CurrentHp / MaxHp))
+        {
+            if (HpRedEventTime > 0)
+            {
+                HpRedEventTime -= Time.deltaTime;
+            }
+            else
+            {
+                HpRedSlider.fillAmount -= Time.deltaTime;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        HpRedEventTime = 0;
+        HpRedSlider.fillAmount = (CurrentHp / MaxHp);
+        HpRedEventOnOff = false;
+    }
+
 
 
 }

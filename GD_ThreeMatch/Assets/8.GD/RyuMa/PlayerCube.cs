@@ -16,7 +16,6 @@ public class PlayerCube : MonoBehaviour
 {
     public MeshRenderer SpinMesh;
     public SkeletonAnimation anim;
-    public SelectGirl selectGirl;
     public GameObject SdPlayer;
     public GameObject PlayerDirObj;
 
@@ -76,7 +75,7 @@ public class PlayerCube : MonoBehaviour
     {
         if (e.Data.Name == "Attack")
         {
-            if (selectGirl == SelectGirl.G1_Alice)
+            if (thePuzzle.selectGirl == SelectGirl.G1_Alice)
             {
                 theObject.AliceAnimEvent(SdPlayer.transform.position, direction);
             }
@@ -96,7 +95,7 @@ public class PlayerCube : MonoBehaviour
                 {
                     GirlEffect = true;
                     theMatch.GirlSkill(
-                        selectGirl,
+                        thePuzzle.selectGirl,
                         Map, 
                         SlotNum);
                     theBattle.ReadySkill(SkillUI.UI2_Null);
@@ -139,7 +138,7 @@ public class PlayerCube : MonoBehaviour
         anim.Initialize(true);
         SdPlayer.transform.localScale = new Vector3(theGirl.Girls[_SelNum].SdSize,
             theGirl.Girls[_SelNum].SdSize, 1);
-        selectGirl = theGirl.Girls[_SelNum].selectGirl;
+        thePuzzle.selectGirl = (SelectGirl)_SelNum;
         anim.state.Event += HandleEvent;
     }
 

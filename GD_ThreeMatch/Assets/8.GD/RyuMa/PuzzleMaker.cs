@@ -273,6 +273,7 @@ public class PuzzleMaker : MonoBehaviour
 
         theCam.state = CameraManager.State.SmoothMove;
         thePuzzle.gameMode = PuzzleManager.GameMode.MoveMap;
+        thePuzzle.SetMoveCount();
         theCam.SetBound(theMoveMap, Player.transform.position, true);
         if(Fade == true)
             theFade.FadeInEvent();

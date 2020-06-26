@@ -624,10 +624,10 @@ public class BattleManager : MonoBehaviour
         }
         else // 플레이어 2명 모두 죽음
         {
+            thePuzzle.GameOver();
             battleState = BattleState.PlayerDie;
             Debug.Log("전멸");
             BattleStart = false;
-            theFade.FadeOutEvent();
 
         }
 

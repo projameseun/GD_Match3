@@ -61,7 +61,7 @@ public class CubeEffect : MonoBehaviour
         CubeEffectType _Type,
         int _CubeCount,
         bool RandomStart,
-        float _Speed = 2000)
+        float _Speed)
     {
         if (theObject == null)
             theObject = FindObjectOfType<ObjectManager>();
@@ -100,7 +100,7 @@ public class CubeEffect : MonoBehaviour
         CubeP.gameObject.SetActive(true);
 
 
-        Speed = 4000;
+        Speed = _Speed;
 
         this.transform.position = StartVec;
         nodeColor = _nodeColor;

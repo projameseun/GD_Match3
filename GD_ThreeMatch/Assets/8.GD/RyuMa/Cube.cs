@@ -195,7 +195,7 @@ public class Cube : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            if (thePuzzle.playerUIs[i].nodeColor == nodeColor)
+            if (thePuzzle.playerUIs[i].selectGirl == (SelectGirl)nodeColor)
             {
                 thePuzzle.playerUIs[i].AddSkillGauge(1);
             }
