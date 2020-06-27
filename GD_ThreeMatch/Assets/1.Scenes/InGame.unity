@@ -5282,7 +5282,7 @@ MonoBehaviour:
     - 3.2
     IllustPosY: -6.5
     IllustSize: 1
-    SdDatae: {fileID: 11400000, guid: d79551e3fcc3a784c973f7582c107f68, type: 2}
+    SdDatae: {fileID: 11400000, guid: 0187580ae71e5b947846095805b45b3d, type: 2}
     SdSize: 0.2
     SkillTime: 0.5
     BattlePortrait: {fileID: 21300000, guid: eb6e5e5429bdb364c94a8dc099d912d0, type: 3}
@@ -5313,10 +5313,10 @@ MonoBehaviour:
     IllustData: {fileID: 11400000, guid: 2d94abfcde62cb345983ab468d44e533, type: 2}
     IllustPosX:
     - -4.1
-    - 3.4
+    - 3.8
     IllustPosY: -6
     IllustSize: 1.5
-    SdDatae: {fileID: 11400000, guid: f900891e6809fee4aace01039cf57631, type: 2}
+    SdDatae: {fileID: 11400000, guid: 0cfd8d27fee55834497f7501d9915518, type: 2}
     SdSize: 0.12
     SkillTime: 0.6
     BattlePortrait: {fileID: 21300000, guid: 2ac2e8185017c6442a6e2add1d94461c, type: 3}
@@ -6838,7 +6838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: d79551e3fcc3a784c973f7582c107f68, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 0187580ae71e5b947846095805b45b3d, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -6880,7 +6880,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5c0574347151df478ecff589dc30fe5, type: 2}
+  - {fileID: 2100000, guid: bbb42d873d331484cab8581dc5c798c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
