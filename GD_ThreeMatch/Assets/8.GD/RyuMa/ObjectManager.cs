@@ -110,13 +110,15 @@ public class ObjectManager : MonoBehaviour
 
 
     private PuzzleManager thePuzzle;
+    private SoundManager theSound;
     // Start is called before the first frame update
     void Start()
     {
         thePuzzle = FindObjectOfType<PuzzleManager>();
-
+        theSound = FindObjectOfType<SoundManager>();
         Init();
         LoadingInit();
+        
     }
 
 
@@ -623,6 +625,7 @@ public class ObjectManager : MonoBehaviour
             AliceObj.transform.eulerAngles = new Vector3(0, 0, 0);
             AliceObj.GetComponent<ParticleManager>().ParticleSetting(false,
                 null, 1f);
+            theSound.PlaySE("AliceSkillHit");
             return AliceObj;
         }
         return null;
@@ -642,6 +645,7 @@ public class ObjectManager : MonoBehaviour
             BerylObj.transform.eulerAngles = new Vector3(0, 0, 0);
             BerylObj.GetComponent<ParticleManager>().ParticleSetting(false,
                 null, 1f);
+            theSound.PlaySE("BerylSkillHit");
             return BerylObj;
         }
         return null;
@@ -658,6 +662,7 @@ public class ObjectManager : MonoBehaviour
             AliceObj.SetActive(true);
             AliceObj.GetComponent<ParticleManager>().ParticleSetting(false,
                 null, 1f);
+            theSound.PlaySE("AliceSkillHit");
             Count--;
            
               
@@ -685,7 +690,7 @@ public class ObjectManager : MonoBehaviour
             BerylObj.GetComponent<ParticleManager>().ParticleSetting(false,
                 null, 1f);
             Count--;
-
+            theSound.PlaySE("BerylSkillHit");
 
             yield return new WaitForSeconds(0.2f);
             if (Count == 0)
@@ -703,11 +708,16 @@ public class ObjectManager : MonoBehaviour
     {
         GameObject AliceAnim = FindObj("AliceAnimEffect", false);
 
+        int Size = 2;
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        {
+            Size = 4;
+        }
         AliceAnim.transform.position = new Vector2(_StartPos.x, _StartPos.y +0.2f);
         if (_Dir == Direction.Left)
-            AliceAnim.transform.localScale = new Vector3(-4f, 4f, 1);
+            AliceAnim.transform.localScale = new Vector3(-Size, Size, 1);
         else
-            AliceAnim.transform.localScale = new Vector3(4f, 4f, 1);
+            AliceAnim.transform.localScale = new Vector3(Size, Size, 1);
 
         AliceAnim.SetActive(true);
         AliceAnim.GetComponent<ParticleManager>().ParticleSetting(false,

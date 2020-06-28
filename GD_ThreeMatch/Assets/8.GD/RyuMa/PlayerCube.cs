@@ -46,8 +46,10 @@ public class PlayerCube : MonoBehaviour
     private BattleManager theBattle;
     private ObjectManager theObject;
     private GirlManager theGirl;
+    private SoundManager theSound;
     private void Start()
     {
+        theSound = FindObjectOfType<SoundManager>();
         theGirl = FindObjectOfType<GirlManager>();
         theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
@@ -73,6 +75,18 @@ public class PlayerCube : MonoBehaviour
 
     public void HandleEvent(TrackEntry trackEntry, Spine.Event e)
     {
+        if (e.Data.Name == "Attack_Sound")
+        {
+
+            if (thePuzzle.selectGirl == SelectGirl.G1_Alice)
+            {
+                theSound.PlaySE("AliceSkillOn");
+            }
+            if (thePuzzle.selectGirl == SelectGirl.G3_Beryl)
+            {
+                theSound.PlaySE("BerylSkillOn");
+            }
+        }
         if (e.Data.Name == "Attack")
         {
             if (thePuzzle.selectGirl == SelectGirl.G1_Alice)

@@ -50,8 +50,11 @@ public class FadeManager : MonoBehaviour
     MapNameState mapNameState;
     Color TextColor = new Color(1, 1, 1, 1);
 
+    private SoundManager theSound;
+
     private void Start()
     {
+        theSound = FindObjectOfType<SoundManager>();
         if (BlackChatBase != null)
         {
             BlackChatBase.GetComponent<Button>().onClick.AddListener(() =>
@@ -126,10 +129,12 @@ public class FadeManager : MonoBehaviour
         EnemyImage.sprite = _Enemy;
         BattleBase.SetActive(true);
         BattleAnim.Play("Idle");
+        
     }
     public void ShowBattleAnim()
     {
         BattleAnim.Play("Show");
+        theSound.PlaySE("VS");
         StartCoroutine(CheckBattleAnim());
     }
 

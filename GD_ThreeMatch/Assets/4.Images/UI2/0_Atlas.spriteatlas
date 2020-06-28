@@ -65,7 +65,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 491e5172e465a674896943e932ee8a53, type: 3}
     - {fileID: 2800000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
     - {fileID: 2800000, guid: 260e727f855ac0444a65962102c2b96b, type: 3}
-    totalSpriteSurfaceArea: 10143228
+    - {fileID: 2800000, guid: dab597313c1b30748ba5614a7bdf98d9, type: 3}
+    totalSpriteSurfaceArea: 10160389
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -73,6 +74,7 @@ SpriteAtlas:
   - {fileID: 6227268332911937742, guid: 1b65281175e1429469ffe026d91c4ca0, type: 3}
   - {fileID: 7390912310517212417, guid: 1b65281175e1429469ffe026d91c4ca0, type: 3}
   - {fileID: -6243849756960920627, guid: 1b65281175e1429469ffe026d91c4ca0, type: 3}
+  - {fileID: 21300000, guid: dab597313c1b30748ba5614a7bdf98d9, type: 3}
   - {fileID: 21300000, guid: 491e5172e465a674896943e932ee8a53, type: 3}
   - {fileID: 21300000, guid: a4d3f4823c398a0419f26d3dea536037, type: 3}
   - {fileID: 21300000, guid: fc3ddb63d67863f4db1289cf54e8aae0, type: 3}
@@ -98,6 +100,7 @@ SpriteAtlas:
   - LoadingImages_4
   - LoadingImages_0
   - LoadingImages_1
+  - UI_MoveCount
   - TextBox
   - S
   - PlayerDir

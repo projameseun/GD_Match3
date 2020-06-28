@@ -62,9 +62,10 @@ public class PlayerUI : MonoBehaviour
     private GirlManager theGirl;
     private BattleManager theBattle;
     private ObjectManager theObject;
-
+    private SoundManager theSound;
     private void Start()
     {
+        theSound = FindObjectOfType<SoundManager>();
         theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
@@ -215,6 +216,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (On == true)
         {
+            theSound.PlayUISE("SkillOnOff");
             thePuzzle.Player.SetSpine((int)selectGirl);
 
    

@@ -6,11 +6,9 @@ public class SoundSource : MonoBehaviour
 {
     
     public AudioSource audioSource = null;
-    public string SoundName;
 
     float SoundValue = 1f;
     float EventTime = 0;
-    bool FadeIn = false;
     bool FadeOut = false;
 
     private SoundManager theSound;
@@ -20,25 +18,37 @@ public class SoundSource : MonoBehaviour
     }
 
 
-    private void Update()
+
+
+
+    public void PlaySound(AudioClip _clip,float _Value, bool _Loop = false)
     {
-        if (FadeIn == true)
+
+        audioSource.clip = _clip;
+        audioSource.loop = _Loop;
+        SoundValue = 1f;
+        audioSource.volume = SoundValue * _Value;
+        audioSource.Play();
+
+    }
+
+
+
+    public void FadeOutEvent()
+    {
+
+        if (FadeOut == false)
         {
-            if (EventTime < 1)
-            {
-                EventTime += Time.deltaTime;
-                audioSource.volume = EventTime * SoundValue;
-            }
-            else
-            {
-                EventTime = 1;
-                FadeIn = false;
-                audioSource.volume = EventTime * SoundValue;
-
-            }
+            FadeOut = true;
+            EventTime = 1f;
+            StartCoroutine(FadeOutCor());
         }
+    }
 
-        if (FadeOut == true)
+
+    IEnumerator FadeOutCor()
+    {
+        while (FadeOut == true)
         {
             if (EventTime > 0)
             {
@@ -51,43 +61,10 @@ public class SoundSource : MonoBehaviour
                 FadeOut = false;
                 audioSource.Stop();
             }
+            yield return new WaitForEndOfFrame();
         }
     }
 
-
-
-    public void PlaySound(AudioClip _clip, string _Name,float _Value, bool _Loop = false)
-    {
-
-        audioSource.clip = _clip;
-        SoundName = _Name;
-        audioSource.loop = _Loop;
-        SoundValue = 1f;
-        audioSource.volume = SoundValue * _Value;
-        audioSource.Play();
-
-    }
-
-    public void FadeInSound(AudioClip _clip, string _Name, float _Value, bool _Loop = false)
-    {
-        audioSource.clip = _clip;
-        SoundName = _Name;
-        audioSource.loop = _Loop;
-        SoundValue = _Value;
-        EventTime = 0;
-        audioSource.volume = 0;
-        audioSource.Play();
-    }
-    public void FadeOutSound(AudioClip _clip, string _Name, float _Value, bool _Loop = false)
-    {
-        audioSource.clip = _clip;
-        SoundName = _Name;
-        audioSource.loop = _Loop;
-        SoundValue = _Value;
-        EventTime = 1;
-        audioSource.volume = SoundValue;
-        audioSource.Play();
-    }
 
 
 

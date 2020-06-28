@@ -25,6 +25,12 @@ public enum Direction
     Right
 }
 
+public enum FoodState
+{ 
+    FS0_Full = 0,
+    FS1_Half,
+    FS2_Null,
+}
 
 
 
@@ -70,7 +76,7 @@ public class PuzzleManager : MonoBehaviour
     public Sprite[] SpecialSprites;
     public Sprite[] PlayerSkillSprites;
     public Sprite[] PlayerSkillBGSprites;
- 
+    public Sprite[] FoodSprites;
 
 
     [Space]
@@ -85,6 +91,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject CubeBar;
     public Button HintButton;
     public TextMeshPro MoveCountText;
+    public Image FoodImage;
     //메치가 되면 true;
     public bool isMatched = false;
 
@@ -116,6 +123,8 @@ public class PuzzleManager : MonoBehaviour
     int[] EnemyCubeCount = new int[6];
     WaitForSeconds Wait = new WaitForSeconds(0.1f);
     float FillSpeed = 9f;
+    FoodState foodState;
+
 
     Vector3 MovePos = new Vector3(0, 800, 0); //전투가 끝난후 UI위치
     Vector3 BattlePos = new Vector3(0, -750, 0); // 전투 시작시 UI위치
@@ -137,7 +146,6 @@ public class PuzzleManager : MonoBehaviour
     private CameraButtonManager CameraButton;
     private TitleManager theTitle;
     private MessageManager theMessage;
-
     private void Start()
     {
         if (HintButton != null)
@@ -223,7 +231,7 @@ public class PuzzleManager : MonoBehaviour
                         SetMoveCount(-1);
                         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
                         {
-                            GameOver();
+                            GameOverMove();
                             return;
                         }
                         CheckPortal(SlotNum);
@@ -270,7 +278,7 @@ public class PuzzleManager : MonoBehaviour
                     {
                         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
                         {
-                            GameOver();
+                            GameOverMove();
                             return;
                         }
                         CheckPortal(PlayerSlotNum);
@@ -372,6 +380,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     theFade.FadeInEnd = false;
                     theFade.ShowMapNameEvent(theMaker.MapName);
+                    CheckMoveBGM();
 
                     CheckMoveMessage();
 
@@ -1289,12 +1298,12 @@ public class PuzzleManager : MonoBehaviour
 
         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
         {
-            GameOver();
+            GameOverMove();
             return true;
         }
 
 
-        //현재 슬롯이 몬스터인지
+        //현재 슬롯이 포탈인지
         if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
         {
             CheckPortal(SlotNum);
@@ -1302,7 +1311,7 @@ public class PuzzleManager : MonoBehaviour
         }
 
 
-
+        //현재 슬롯이 몬스터인지
         if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
         {
             return EnemyEvent(theMoveMap, SlotNum);
@@ -1332,7 +1341,7 @@ public class PuzzleManager : MonoBehaviour
         //몬스터와 만날 확률을 계산, true면 적과 조우
         if (CheckEnemyMeet(_Map) == true)
         {
-            Debug.Log("몬스터 출현");
+            theSound.FadeOutBGM();
             float rand = Random.Range(0.0f, 100.0f);
 
             for (int Index = 0; Index < _Map.Slots[i].monsterSheet.EnemyIndex.Length; i++)
@@ -1346,7 +1355,6 @@ public class PuzzleManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log("몬스터 출현 안함");
         return false;
 
     }
@@ -1586,6 +1594,23 @@ public class PuzzleManager : MonoBehaviour
         {
             MoveCount += _Count;
 
+            if (MoveCount > 50 && foodState != FoodState.FS0_Full)
+            {
+                foodState = FoodState.FS0_Full;
+                FoodImage.sprite = FoodSprites[(int)foodState];
+            }
+            else if (MoveCount <= 50 && MoveCount > 0&& foodState != FoodState.FS1_Half)
+            {
+                foodState = FoodState.FS1_Half;
+                FoodImage.sprite = FoodSprites[(int)foodState];
+            }
+            else if (MoveCount <=0 && foodState != FoodState.FS2_Null)
+            {
+                foodState = FoodState.FS2_Null;
+                FoodImage.sprite = FoodSprites[(int)foodState];
+            }
+
+
             if (MoveCount < 0)
             {
                 for (int i = 0; i < 2; i++)
@@ -1638,33 +1663,6 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    // 맨처음 이동맵을 세팅하는 함수
-    public void BT_SetSlot()
-    {
-        theSound.PlayBGM("MoveMap");
-        List<int> ColorList = new List<int>();
-        ColorList.Add(0);
-        ColorList.Add(1);
-        ColorList.Add(2);
-        ColorList.Add(3);
-        ColorList.Add(4);
-        ColorList.Remove(FirstHeroNum);
-        ColorList.Remove(secondHeroNum);
-        PlayerCubeUI[0].SetCubeUi(FirstHeroNum, 0, CubeUiSprites[FirstHeroNum]);
-        PlayerCubeUI[1].SetCubeUi(secondHeroNum, 1, CubeUiSprites[secondHeroNum]);
-        playerUIs[0].SetUi(FirstHeroNum,0);
-        playerUIs[1].SetUi(secondHeroNum,1);
-        for (int i = 0; i < CubeUiSprites.Length - 2; i++)
-        {
-
-
-            PlayerCubeUI[i + 2].SetCubeUi(ColorList[i], i + 2, CubeUiSprites[ColorList[i]]);
-        }
-
-
-        SetSlot(theMoveMap);
-
-    }
     // 플레이어 UI를 세팅한다
     public void SetPlayerUi()
     {
@@ -1823,6 +1821,30 @@ public class PuzzleManager : MonoBehaviour
     }
 
 
+    public void GameOverMove()
+    {
+        gameMode = GameMode.GameOver;
+
+        string Dec = "";
+        switch (theMaker.mapMainType)
+        {
+            case MapMainType.M0_Forest:
+                Dec = "우리는 배고픔에 지쳐 바닥과 하나가 되었다.";
+                break;
+        }
+
+
+        theFade.ShowBlackChat("패배", Dec);
+    }
+
+    public void GameOverBattle()
+    {
+        gameMode = GameMode.GameOver;
+
+
+        theFade.ShowBlackChat("패배", theBattle.Enemy[theBattle.CurrentEnemyCount].LoseDec);
+    }
+
     public void GameOver()
     { 
         
@@ -1842,7 +1864,18 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-
+    public void CheckMoveBGM()
+    {
+        if (!theSound.BGMSound.audioSource.isPlaying)
+        {
+            switch (theMaker.mapMainType)
+            {
+                case MapMainType.M0_Forest:
+                    theSound.PlayBGM("ForestMove");
+                    break;
+            }
+        }
+    }
 
     public void CheckMoveMessage()
     {

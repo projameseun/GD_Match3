@@ -48,8 +48,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 5ac76917fb85d494d99384f1edb791b3, type: 3}
     - {fileID: 2800000, guid: a4dd33956107ee94c959e791fffc616d, type: 3}
     - {fileID: 2800000, guid: d2c446e71f1af9b47aea60db03566c20, type: 3}
-    - {fileID: 2800000, guid: cbecdb2cc32122c42bd14944016a9df7, type: 3}
-    - {fileID: 2800000, guid: b4a3b843768184b43a62394656fd01f4, type: 3}
     - {fileID: 2800000, guid: e230ae41ed9648440bf7155fcac4656d, type: 3}
     - {fileID: 2800000, guid: d2c1d256edd5eee4096743fd44b488f7, type: 3}
     - {fileID: 2800000, guid: 70b3b3952f6c0af44ad8a3383616de50, type: 3}
@@ -91,7 +89,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 0fdb5d91caa7dc44cb1299847c5995eb, type: 3}
     - {fileID: 2800000, guid: fed58e5d51c8ba749877e0a9976a96ea, type: 3}
     - {fileID: 2800000, guid: e8be7fae5409cfa46a2872a1fbabc7b8, type: 3}
-    totalSpriteSurfaceArea: 1128125
+    totalSpriteSurfaceArea: 1115325
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -105,7 +103,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 94d1269257ab2a24cb6094b4c6285f49, type: 3}
   - {fileID: 21300000, guid: 832cb7a268d2e8d4ebb10e0bc02b49c7, type: 3}
   - {fileID: 21300000, guid: 0f6748a2b3b0b714db65c620abcf3960, type: 3}
-  - {fileID: 21300000, guid: b4a3b843768184b43a62394656fd01f4, type: 3}
   - {fileID: 21300000, guid: e77b3ac3415731f44bac05bed1aa16a5, type: 3}
   - {fileID: 21300000, guid: b0b465e3a8e9d2141869e2ec8dcc0f3b, type: 3}
   - {fileID: 21300000, guid: 937dd934ae772a5438f3061a5393e46e, type: 3}
@@ -144,7 +141,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8eb3119a0b7027443b26edbcf82b3fc8, type: 3}
   - {fileID: 21300000, guid: 519ca3da611bf6249b8af096e31573d4, type: 3}
   - {fileID: 21300000, guid: 583b092c304bdef49830582dab727e89, type: 3}
-  - {fileID: 21300000, guid: cbecdb2cc32122c42bd14944016a9df7, type: 3}
   - {fileID: 21300000, guid: 29c09bbcd69a8454d82c190ba0c47da2, type: 3}
   - {fileID: 21300000, guid: 195b8d0d304c52c4a835cb5821577db3, type: 3}
   - {fileID: 21300000, guid: fed58e5d51c8ba749877e0a9976a96ea, type: 3}
@@ -165,7 +161,6 @@ SpriteAtlas:
   - UI_obj_rock
   - UI_countB_red
   - UI_countB_green
-  - UI_block_black_alpha_02
   - Skull
   - UI_menu_setting
   - UI_Sblock_horizontal
@@ -204,7 +199,6 @@ SpriteAtlas:
   - UI_block_yellow
   - UI_skill_bar_green
   - UI_block_sky
-  - UI_block_black_alpha_01
   - UI_moveCount
   - UI_countB_pink
   - UI_skill_bar_red

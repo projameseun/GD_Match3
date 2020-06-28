@@ -16,9 +16,15 @@ public class SoundManager : MonoBehaviour
     public SoundSlot[] SESoundslots;
 
 
-    private SoundSource BGMSound = null;
-    private List<SoundSource> SESound = new List<SoundSource>();
-    private List<SoundSource> AutoSeSound = new List<SoundSource>();
+    [HideInInspector] public SoundSource BGMSound = null;
+    [HideInInspector] public List<SoundSource> SESound = new List<SoundSource>();
+    [HideInInspector] public List<SoundSource> UISeSound = new List<SoundSource>();
+
+
+    Dictionary<string, AudioClip> BGMList =new Dictionary<string, AudioClip>();
+    Dictionary<string, AudioClip> SEList = new Dictionary<string, AudioClip>();
+
+
 
     public float BGMValue = 1f;
     public float SEValue = 1f;
@@ -26,17 +32,28 @@ public class SoundManager : MonoBehaviour
 
     public GameObject SoundFrefab;
 
+    string CurrentSeName;
+    int SeCount = 0;
     bool AutoPlay = false;
+    bool CheckSe;
+    float CheckSeTime;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         Init();
     }
-
     public void Init()
     {
+        for (int i = 0; i < BGMSoundslots.Length; i++)
+        {
+            BGMList.Add(BGMSoundslots[i].SoundName, BGMSoundslots[i].clip);
+        }
+        for (int i = 0; i < SESoundslots.Length; i++)
+        {
+            SEList.Add(SESoundslots[i].SoundName, SESoundslots[i].clip);
+        }
+
         GameObject SoundObj = Instantiate(SoundFrefab);
         BGMSound = SoundObj.GetComponent<SoundSource>();
         SoundObj.transform.SetParent(this.gameObject.transform);
@@ -54,9 +71,9 @@ public class SoundManager : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             GameObject SoundSEObj = Instantiate(SoundFrefab);
-            AutoSeSound.Add(SoundSEObj.GetComponent<SoundSource>());
+            UISeSound.Add(SoundSEObj.GetComponent<SoundSource>());
             SoundSEObj.transform.SetParent(this.gameObject.transform);
-            SoundSEObj.name = "AutoSE";
+            SoundSEObj.name = "UISE";
 
         }
     }
@@ -65,43 +82,37 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(string _Name)
     {
-        for (int i = 0; i < BGMSoundslots.Length; i++)
-        {
-            if (BGMSoundslots[i].SoundName == _Name)
-            {
-                BGMSound.PlaySound(BGMSoundslots[i].clip, _Name, BGMValue, true);
-                return;
-            }
-        }
+
+        BGMSound.PlaySound(BGMList[_Name], BGMValue, true);
         
+    }
+    public void FadeOutBGM()
+    {
+        BGMSound.FadeOutEvent();
     }
 
 
     public void PlaySE(string _Name)
     {
-        for (int i = 0; i < SESoundslots.Length; i++)
+        if (CurrentSeName == _Name && CheckSe == true)
         {
-            if (SESoundslots[i].SoundName == _Name)
-            {
-                for (int x = 0; x < SESound.Count; x++)
-                {
-                    if (SESound[x].audioSource.isPlaying == false)
-                    {
-                        SESound[x].PlaySound(SESoundslots[i].clip, _Name, SEValue);
-                        return;
-                    }
-                    if (x == SESound.Count - 1)
-                    {
-                        GameObject SoundSEObj = Instantiate(SoundFrefab);
-                        SESound.Add(SoundSEObj.GetComponent<SoundSource>());
-                        SoundSEObj.transform.SetParent(this.gameObject.transform);
-                        SoundSEObj.name = "SE";
-                        SoundSEObj.GetComponent<SoundSource>().PlaySound(SESoundslots[i].clip, _Name, SEValue);
-                        return;
-                    }
-                }
-            }
+            return;
         }
+        CurrentSeName = _Name;
+        CheckSeTime = 0.08f;
+        if (CheckSe == false)
+        {
+            CheckSe = true;
+            StartCoroutine(CheckSeCor());
+        }
+
+        SESound[SeCount].PlaySound(SEList[_Name], SEValue);
+        SeCount++;
+        if (SeCount >= SESound.Count)
+        {
+            SeCount = 0;
+        }
+
     }
 
     public void StopAllSE(string _Name)
@@ -109,28 +120,38 @@ public class SoundManager : MonoBehaviour
         for (int i = 0; i < SESound.Count; i++)
         {
             SESound[i].audioSource.Stop();
-            SESound[i].SoundName = "";
         }
     }
 
 
-    public void AutoSE(string _Name)
+    public void PlayUISE(string _Name)
     {
-        for (int i = 0; i < SESoundslots.Length; i++)
+        AutoPlay = !AutoPlay;
+        if (AutoPlay == false)
         {
-            if (SESoundslots[i].SoundName == _Name)
-            {
-                AutoPlay = !AutoPlay;
-                if (AutoPlay == false)
-                {
-                    AutoSeSound[0].PlaySound(SESoundslots[i].clip, _Name, SEValue);
-                }
-                else
-                {
-                    AutoSeSound[1].PlaySound(SESoundslots[i].clip, _Name, SEValue);
-                }
-            }
+            UISeSound[0].PlaySound(SEList[_Name], SEValue);
+        }
+        else
+        {
+            UISeSound[1].PlaySound(SEList[_Name], SEValue);
         }
     }
 
+
+    IEnumerator CheckSeCor()
+    {
+        while (CheckSe == true)
+        {
+            if (CheckSeTime > 0)
+            {
+                CheckSeTime -= Time.deltaTime;
+            }
+            else
+            {
+                CheckSeTime = 0;
+                CheckSe = false;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }

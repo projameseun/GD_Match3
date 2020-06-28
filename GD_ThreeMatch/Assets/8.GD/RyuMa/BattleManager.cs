@@ -172,6 +172,9 @@ public class BattleManager : MonoBehaviour
     private CameraManager theCamera;
     private GameManager theGM;
     private MessageManager theMessage;
+    private SoundManager theSound;
+    private PuzzleMaker theMaker;
+
     private void Start()
     {
         CurrentSkillUI = SkillUI.UI2_Null;
@@ -181,6 +184,8 @@ public class BattleManager : MonoBehaviour
         theObject = FindObjectOfType<ObjectManager>();
         theGM = FindObjectOfType<GameManager>();
         theMessage = FindObjectOfType<MessageManager>();
+        theSound = FindObjectOfType<SoundManager>();
+        theMaker = FindObjectOfType<PuzzleMaker>();
 
 
         ColorNumList.Add(0);
@@ -290,6 +295,7 @@ public class BattleManager : MonoBehaviour
                     if (theFade.BattleAnimEnd == true)
                     {
                         theFade.BattleAnimEnd = false;
+                        CheckBattleBGM();
                         CheckBattleMessage();
                     }
                     if (theMessage.MessageEnd == true)
@@ -409,7 +415,7 @@ public class BattleManager : MonoBehaviour
         ResetCombo();
         //ComboCoolDownImage.fillAmount = 0;
         EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
-        theFade.ShowBlackChat("전투 승리","");
+        theFade.ShowBlackChat("전투 승리",Enemy[CurrentEnemyCount].WinDec);
         //theFade.FadeIn();
     }
 
@@ -417,38 +423,33 @@ public class BattleManager : MonoBehaviour
 
     public void TakeDamage(int DamageCount)
     {
-        
+        theSound.PlaySE("MonsterHit");
+
         if (DamageCount > 0)
         {
             Debug.Log("데미지가 플러스로 나옴");
             return;
         }
-
-        if (DamageTime > 0)
-        {
-            
-            EnemyAnim.AnimationState.SetAnimation(0, "Hit", false);
-        }
+        CurrentHp += DamageCount;
         if (CurrentHp <= 0)
         {
             EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
+            EndBattle();
         }
-
-
-
+        else
+        {
+            if (DamageTime > 0)
+            {
+                EnemyAnim.AnimationState.SetAnimation(0, "Hit", false);
+            }
+        }
         DamageEvent = true;
         DamageTime = 0f;
         DamageColor.r = 1f;
         DamageColor.g = 0f;
         DamageColor.b = 0f;
         EnemyAnim.skeleton.SetColor(DamageColor);
-        
-        CurrentHp += DamageCount;
 
-        if (CurrentHp <= 0)
-        {
-            EndBattle();
-        }
 
     }
 
@@ -638,7 +639,7 @@ public class BattleManager : MonoBehaviour
         }
         else // 플레이어 2명 모두 죽음
         {
-            thePuzzle.GameOver();
+            thePuzzle.GameOverBattle();
             battleState = BattleState.PlayerDie;
             Debug.Log("전멸");
             BattleStart = false;
@@ -837,6 +838,21 @@ public class BattleManager : MonoBehaviour
             CurrentEnemyCount = 0;
         EnemyCountText.text = CurrentEnemyCount.ToString();
     }
+
+    public void CheckBattleBGM()
+    {
+        if (!theSound.BGMSound.audioSource.isPlaying)
+        {
+            switch (theMaker.mapMainType)
+            {
+                case MapMainType.M0_Forest:
+                    theSound.PlayBGM("ForestBattle");
+                    break;
+            }
+        }
+    }
+
+
     public void CheckBattleMessage()
     {
         if (theGM.CurrentProgressNum == 1)
@@ -845,10 +861,6 @@ public class BattleManager : MonoBehaviour
             theMessage.ShowMessageText(1, true);
             return;
         }
-
-
-
-
         theMessage.MessageEnd = true;
     }
 

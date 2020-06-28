@@ -40,8 +40,10 @@ public class Cube : MonoBehaviour
     private BattleManager theBattle;
     private BattleResultManager theBattleResult;
     private FindMatches theMatch;
+    private SoundManager theSound;
     private void Start()
     {
+        theSound = FindObjectOfType<SoundManager>();
         theMatch = FindObjectOfType<FindMatches>();
         theBattleResult = FindObjectOfType<BattleResultManager>();
         theBattle = FindObjectOfType<BattleManager>();
@@ -193,6 +195,8 @@ public class Cube : MonoBehaviour
     //큐브가 터진 후 이밴트
     public void DestroyCubeEvent()
     {
+        theSound.PlaySE("BlockHit");
+
         for (int i = 0; i < 2; i++)
         {
             if (thePuzzle.playerUIs[i].selectGirl == (SelectGirl)nodeColor)

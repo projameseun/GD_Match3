@@ -27,7 +27,7 @@ public class MessageDec
     public string Dec;
     public FaceType faceType;
     public float TextBoxPosy;
-
+    public string SeName;
 }
 
 
@@ -60,6 +60,7 @@ public class MessageManager : MonoBehaviour
 
     Queue<string> NameQ = new Queue<string>();
     Queue<string> DecQ = new Queue<string>();
+    Queue<string> SoundQ = new Queue<string>();
     public bool TutoTouch;
     public bool MessageEnd;
 
@@ -69,8 +70,11 @@ public class MessageManager : MonoBehaviour
     WaitForSeconds wait = new WaitForSeconds(0.01f);
     Vector4 TextSize = new Vector4(0, 0, 0, 0);
 
+
+    private SoundManager theSound;
     private void Start()
     {
+        theSound = FindObjectOfType<SoundManager>();
         if (TouchPanel != null)
         {
             TouchPanel.onClick.AddListener(() =>
@@ -88,10 +92,12 @@ public class MessageManager : MonoBehaviour
         MessageBase.SetActive(true);
         DecQ.Clear();
         NameQ.Clear();
+        SoundQ.Clear();
         for (int i = 0; i < Messages[CurrentProgress].Decs.Length; i++)
         {
             NameQ.Enqueue(Messages[CurrentProgress].Decs[i].Name);
             DecQ.Enqueue(Messages[CurrentProgress].Decs[i].Dec);
+            SoundQ.Enqueue(Messages[CurrentProgress].Decs[i].SeName);
         }
         StartCoroutine(ShowMessageCor(CheckEnd));
 
@@ -103,6 +109,7 @@ public class MessageManager : MonoBehaviour
         int Num = 0;
         int Count = 0;
         string Dec = "";
+        string SoundName = "";
         while (DecQ.Count > 0)
         {
             WhiteBox.transform.localPosition = Messages[CurrentProgress].Decs[Num].WhitePos;
@@ -133,6 +140,12 @@ public class MessageManager : MonoBehaviour
             }
             NameText.text = NameQ.Dequeue();
             Dec = DecQ.Dequeue();
+            SoundName = SoundQ.Dequeue();
+            if (SoundName != "")
+            {
+                theSound.PlaySE(SoundName);
+            }
+
             Count = 0;
             Num++;
             MessageText.text = "";
