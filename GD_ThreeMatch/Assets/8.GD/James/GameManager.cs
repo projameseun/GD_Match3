@@ -87,33 +87,33 @@ public class GameManager : MonoBehaviour
     public List<bool> ProgressDataSheet = new List<bool>(200);
     public int CurrentProgressNum = 0;
 
-    float deltaTime = 0.0f;
-    Color GUIColor = new Color(1, 1, 1, 1);
-    GUIStyle style = new GUIStyle();
-    int w = 0, h = 0;
-    Rect rect;
-    private void Awake()
-    {
-        Application.targetFrameRate = 60;
-        w = Screen.width;
-        h = Screen.height;
+    //float deltaTime = 0.0f;
+    //Color GUIColor = new Color(1, 1, 1, 1);
+    //GUIStyle style = new GUIStyle();
+    //int w = 0, h = 0;
+    //Rect rect;
+    //private void Awake()
+    //{
+    //    Application.targetFrameRate = 60;
+    //    w = Screen.width;
+    //    h = Screen.height;
 
-        style = new GUIStyle();
+    //    style = new GUIStyle();
 
-        rect = new Rect(0, 0, w, h * 2 / 100);
-        style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = h * 2 / 100;
-        style.normal.textColor = GUIColor;
-    }
-    void Update()
-    {
-        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-    }
-    void OnGUI()
-    {
-        string text = string.Format("{0:0.0} ms ({1:0.} fps)", deltaTime * 1000.0f, 1.0f / deltaTime);
-        GUI.Label(rect, text, style);
-    }
+    //    rect = new Rect(0, 0, w, h * 2 / 100);
+    //    style.alignment = TextAnchor.UpperLeft;
+    //    style.fontSize = h * 2 / 100;
+    //    style.normal.textColor = GUIColor;
+    //}
+    //void Update()
+    //{
+    //    deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+    //}
+    //void OnGUI()
+    //{
+    //    string text = string.Format("{0:0.0} ms ({1:0.} fps)", deltaTime * 1000.0f, 1.0f / deltaTime);
+    //    GUI.Label(rect, text, style);
+    //}
 
 
     //public TextAsset MapBase;
@@ -274,13 +274,13 @@ public class GameManager : MonoBehaviour
 
     public void LoadMap()
     {
-        Debug.Log("로드를 눌렀습니다");
+        //Debug.Log("로드를 눌렀습니다");
 
         //string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
         string FilePath = Path.Combine(Application.streamingAssetsPath, theMaker.MapName + ".json");
 
         //복호화
-        Debug.Log("FilePath = " + FilePath);
+        //Debug.Log("FilePath = " + FilePath);
 
         WWW reader = new WWW(FilePath);
 

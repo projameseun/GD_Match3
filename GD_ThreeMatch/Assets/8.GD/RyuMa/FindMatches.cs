@@ -216,7 +216,7 @@ public class FindMatches : MonoBehaviour
 
                                     }
                                     //_Map.Slots[Num + i].cube.SpecialCube = true;
-                                    Debug.Log("특수블럭 대각선 생성");
+                                    //Debug.Log("특수블럭 대각선 생성");
 
                                     break;
                                 }
@@ -256,7 +256,7 @@ public class FindMatches : MonoBehaviour
 
 
 
-                                Debug.Log("특수블럭 세로 생성");
+                                //Debug.Log("특수블럭 세로 생성");
                                 //if()
                                 break;
                             }
@@ -287,7 +287,7 @@ public class FindMatches : MonoBehaviour
 
                                 }
                                 //_Map.Slots[Num + i].cube.SpecialCube = true;
-                                Debug.Log("특수블럭 대각선 생성");
+                                //Debug.Log("특수블럭 대각선 생성");
 
                                 break;
                             }
@@ -418,7 +418,7 @@ public class FindMatches : MonoBehaviour
                                     _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                     _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
                                     _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                    Debug.Log("특수블럭 대각선 생성");
+                                    //Debug.Log("특수블럭 대각선 생성");
 
                                     break;
                                 }
@@ -473,7 +473,7 @@ public class FindMatches : MonoBehaviour
                                 _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                 _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
                                 _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                Debug.Log("특수블럭 가로 생성");
+                                //Debug.Log("특수블럭 가로 생성");
 
                                 break;
                             }
@@ -517,7 +517,7 @@ public class FindMatches : MonoBehaviour
                                 _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
                                 _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
                                 _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                Debug.Log("특수블럭 대각선 생성");
+                                //Debug.Log("특수블럭 대각선 생성");
 
                                 break;
                             }
