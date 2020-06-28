@@ -22,6 +22,8 @@
         }
     ],
     "Data": {
-        "MonsterDataSheet": []
+        "MonsterDataSheet": [],
+        "ProgressDataSheet": [],
+        "CurrentProgressNum": 0
     }
 }

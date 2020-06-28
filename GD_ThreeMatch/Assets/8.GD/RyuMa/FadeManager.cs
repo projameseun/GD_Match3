@@ -12,8 +12,6 @@ public class FadeManager : MonoBehaviour
         MS2_FadeOut,
         
     }
-
-
     //UI
 
     public GameObject BlackChatBase;
@@ -59,6 +57,7 @@ public class FadeManager : MonoBehaviour
         {
             BlackChatBase.GetComponent<Button>().onClick.AddListener(() =>
             {
+                theSound.FadeOutBGM();
                 FadeOutEvent();
             });
         }

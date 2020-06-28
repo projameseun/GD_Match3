@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b27f1df00302f6459c579209c5d6abb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c8f2e6a4b7aa66489d684873bdf2958, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -94,6 +94,7 @@ MonoBehaviour:
   Down: 0
   cube: {fileID: 0}
   monsterSheet:
+    SlotImageIndex: 0
     OnlyOneEnemy: 0
     addEnemyMeet: 0
     EnemyIndex: 
@@ -102,9 +103,9 @@ MonoBehaviour:
   portalSheet:
     MapName: 
     NextPosNum: 0
-  objectSheet:
-    objectType: 0
-    ObjectNum: 0
+  SlotSheet:
+    SlotSheet: 0
+  slotObject: {fileID: 0}
 --- !u!1 &5128103956733077694
 GameObject:
   m_ObjectHideFlags: 0

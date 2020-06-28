@@ -70,11 +70,13 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 2fc5fdd6364d23f429baf1683caae9d9, type: 3}
     - {fileID: 2800000, guid: 99790d78ab4f1234cb3534017c16385a, type: 3}
     - {fileID: 2800000, guid: 1c623bff31c690d4490990372013ab1c, type: 3}
-    totalSpriteSurfaceArea: 10252474
+    - {fileID: 2800000, guid: 2a4e4ec0d5a5e3e46a0b5f9e10018a19, type: 3}
+    totalSpriteSurfaceArea: 11383354
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 08c03a4060b1f85428ad223224af84ab, type: 3}
+  - {fileID: 21300000, guid: 2a4e4ec0d5a5e3e46a0b5f9e10018a19, type: 3}
   - {fileID: 6227268332911937742, guid: 1b65281175e1429469ffe026d91c4ca0, type: 3}
   - {fileID: 7390912310517212417, guid: 1b65281175e1429469ffe026d91c4ca0, type: 3}
   - {fileID: -6243849756960920627, guid: 1b65281175e1429469ffe026d91c4ca0, type: 3}
@@ -105,6 +107,7 @@ SpriteAtlas:
   - {fileID: -5743571644891650387, guid: 1c623bff31c690d4490990372013ab1c, type: 3}
   m_PackedSpriteNamesToIndex:
   - BattleUp
+  - Portrait_PosionSlime
   - LoadingImages_4
   - LoadingImages_0
   - LoadingImages_1

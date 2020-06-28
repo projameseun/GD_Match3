@@ -193,7 +193,7 @@ public class PlayerCube : MonoBehaviour
         {
             theBattle.SkillEventOnOff = true;
             float Resize = theGirl.Girls[(int)thePuzzle.selectGirl].SdSize;
-            Resize *= 2.5f;
+            Resize *= 1.8f;
             SdPlayer.transform.localScale = new Vector3(Resize, Resize, 1);
             anim.GetComponent<MeshRenderer>().sortingOrder = 202;
         }

@@ -14,9 +14,11 @@ public class TitleManager : MonoBehaviour
     private GameManager theGM;
     private FadeManager theFade;
     private SoundManager theSound;
+    private PuzzleManager thePuzzle;
     // Start is called before the first frame update
     void Start()
     {
+        thePuzzle = FindObjectOfType<PuzzleManager>();
         theSound = FindObjectOfType<SoundManager>();
         theGM = FindObjectOfType<GameManager>();
         theFade = FindObjectOfType<FadeManager>();
@@ -30,9 +32,19 @@ public class TitleManager : MonoBehaviour
             TitleAnim.Play("Close");
             theSound.FadeOutBGM();
             Invoke("FadeOutInvoke", 0.5f);
+            thePuzzle.SetPlayerUi();
+
         });
         theSound.PlayBGM("TitleBGM");
     }
+
+    public void ReturnTitle()
+    {
+        TouchOnOff = false;
+        TitleAnim.gameObject.SetActive(true);
+        TitleAnim.Play("Return");
+    }
+
 
 
     void FadeOutInvoke()

@@ -262,7 +262,6 @@ public class PuzzleMaker : MonoBehaviour
         // 위에껀 나중에 지워준다
 
         IngameUi.SetActive(true);
-        thePuzzle.SetPlayerUi();
         thePuzzle.LoadMap(theMoveMap,false);
         PuzzleMakerStart = false;
         theMoveMap.Slots[PlayerStartNum].nodeColor = NodeColor.NC6_Player;

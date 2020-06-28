@@ -53,7 +53,7 @@ public class ObjectManager : MonoBehaviour
 
     [HideInInspector] public Queue<GameObject> Portals = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> PortalList;
-    //[HideInInspector] public List<GameObject> ObjectSpines;
+
     [HideInInspector] public Queue<GameObject> EnemySkulls = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> EnemySkullList;
 
@@ -77,6 +77,12 @@ public class ObjectManager : MonoBehaviour
 
     [HideInInspector] public Queue<GameObject> PortalArrows = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> PortalArrowList;
+
+    [HideInInspector] public Queue<GameObject> PoisonSlimeSkills = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> PoisonSlimeSkillList;
+
+    [HideInInspector] public Queue<GameObject> PoisonSlimePs = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> PoisonSlimePList;
 
     //게임오브젝트 프리팹
     public GameObject CubePrefab; //큐브 프리팹
@@ -103,6 +109,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject CubeEffectYellow;
     public GameObject BerylSkill;
     public GameObject PortalArrow;
+    public GameObject PoisonSlimeSkill;
+    public GameObject PoisonSlimeP;
 
     Queue<GameObject> ObjectQueue = new Queue<GameObject>();
     List<GameObject> ObjectList = new List<GameObject>();
@@ -447,6 +455,16 @@ public class ObjectManager : MonoBehaviour
                 ObjectList = PortalArrowList;
                 Frefab = PortalArrow;
                 break;
+            case "PoisonSkill":
+                ObjectQueue = PoisonSlimeSkills;
+                ObjectList = PoisonSlimeSkillList;
+                Frefab = PoisonSlimeSkill;
+                break;
+            case "PoisonP":
+                ObjectQueue = PoisonSlimePs;
+                ObjectList = PoisonSlimePList;
+                Frefab = PoisonSlimeP;
+                break;
         }
 
         if (ObjectQueue.Count > 0)
@@ -591,6 +609,9 @@ public class ObjectManager : MonoBehaviour
         {
             case 0:
                 EffectP = FindObj("SlimeSkillParticle");
+                break;
+            case 1:
+                EffectP = FindObj("PoisonSkill");
                 break;
         }
         EffectP.GetComponent<ParticleManager>().ParticleSetting(true, Effect, 10);
@@ -745,7 +766,21 @@ public class ObjectManager : MonoBehaviour
         Paricle.SetActive(true);
         return Paricle;
     }
+    public GameObject PosionSlimePEvent(Vector2 TargetVec)
+    {
+        //SlimeAttackParticle
+        GameObject Paricle = FindObj("PoisonP", false);
 
+        Vector2 RandVec = TargetVec;
+        float RandX = Random.Range(-0.5f, 0.5f);
+        float RandY = Random.Range(-0.3f, 1f);
+        RandVec.x += RandX;
+        RandVec.y += RandY;
+        Paricle.transform.position = RandVec;
+        Paricle.GetComponent<ParticleManager>().ParticleSetting(false, null, 2);
+        Paricle.SetActive(true);
+        return Paricle;
+    }
 
     public void ResettingAllObj()
     {

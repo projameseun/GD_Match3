@@ -14,14 +14,16 @@
         },
         {
             "Name": "BottomLeft",
-            "Value": "266"
+            "Value": "285"
         },
         {
             "Name": "BottomRight",
-            "Value": "274"
+            "Value": "293"
         }
     ],
     "Data": {
-        "MonsterDataSheet": []
+        "MonsterDataSheet": [],
+        "ProgressDataSheet": [],
+        "CurrentProgressNum": 0
     }
 }

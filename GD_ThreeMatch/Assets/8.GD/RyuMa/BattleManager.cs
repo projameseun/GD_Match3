@@ -145,6 +145,7 @@ public class BattleManager : MonoBehaviour
     Color DamageColor = new Color(1, 1, 1);
     bool AttackInit;
     [HideInInspector] public int SkillNum = 0;   //선택된 enemyskill 의 인덱스 넘버
+    int SelectSkillNum;
     int damage = 0;     //선택된 몬스터의 대미지 계산 결과값
     Vector2 StartVec;    // 파티클 시작지점 적용 나중에 추가할것
     GameObject TargetVec = null;
@@ -336,7 +337,8 @@ public class BattleManager : MonoBehaviour
                         thePuzzle.ChangeGameMode();
                         thePuzzle.CheckEnemyData();
                         thePuzzle.CubeEvent = false;
-                        theFade.FadeInEvent(false);
+                        thePuzzle.state = PuzzleManager.State.LoadingMap;
+                        theFade.FadeInEvent();
                     }
                 }
 
@@ -410,12 +412,11 @@ public class BattleManager : MonoBehaviour
     {
         battleState = BattleState.EnemyDie;
         thePuzzle.state = PuzzleManager.State.BattleEvent;
-        Debug.Log("배틀 승리");
         BattleStart = false;
         ResetCombo();
         //ComboCoolDownImage.fillAmount = 0;
         EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
-        theFade.ShowBlackChat("전투 승리",Enemy[CurrentEnemyCount].WinDec);
+        theFade.ShowBlackChat("전투 승리",Enemy[SelectEnemyNum].WinDec);
         //theFade.FadeIn();
     }
 
@@ -467,27 +468,30 @@ public class BattleManager : MonoBehaviour
             EnemyAnim.AnimationState.SetAnimation(0, "Attack", false);
 
             float rand = Random.Range(0.0f, 100.0f);
+
             SkillNum = 0;
+           
             Player1CacHp = thePuzzle.playerUIs[0].CurrentHp;
             Player2CacHp = thePuzzle.playerUIs[1].CurrentHp;
 
-            if (Enemy[SelectEnemyNum].skillSlots.Length > 1)
+            if (Enemy[SelectEnemyNum].skillSlots.Length > 0)
             {
                 for (int i = 0; i < Enemy[SelectEnemyNum].skillSlots.Length; i++)
                 {
                     if (Enemy[SelectEnemyNum].skillSlots[i].Percentage >= rand)
                     {
                         SkillNum = Enemy[SelectEnemyNum].skillSlots[i].SkillNum;
+                        SelectSkillNum = i;
                         break;
                     }
                 }
             }
 
             AttackInit = true;
-            CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCount;
+            CurrentAttackCount = Enemy[SelectEnemyNum].skillSlots[SelectSkillNum].SkillCount;
             if (CurrentAttackCount == 0)
                 CurrentAttackCount = 1;
-            MaxSkillCoolDown = Enemy[SelectEnemyNum].skillSlots[SkillNum].SkillCoolDown;
+            MaxSkillCoolDown = Enemy[SelectEnemyNum].skillSlots[SelectSkillNum].SkillCoolDown;
             CurrentSkillCoolDown = 0;
             AttackEndEvent = false;
 
@@ -660,9 +664,13 @@ public class BattleManager : MonoBehaviour
         switch (EnemySkill[SkillNum].SkillEffectNum)
         {
            case 0:
-            theSound.PlaySE("SlimeSkillHit");
-            theObject.SlimePEvent(vec);
+                theSound.PlaySE("SlimeSkillHit");
+                theObject.SlimePEvent(vec);
             break;
+            case 1:
+                theSound.PlaySE("SlimeSkillHit");
+                theObject.PosionSlimePEvent(vec);
+                break;
         }
     }
 
@@ -877,7 +885,6 @@ public class BattleManager : MonoBehaviour
         CurrentHp = 0;
         CurrentEnemyCount = 0;
         GameTime = 0;
-        CurrentEnemyCount = 0;
         thePuzzle.Player.CurrentEnemyMeetChance = 0;
         BattleStart = false;
         DamageEvent = false;

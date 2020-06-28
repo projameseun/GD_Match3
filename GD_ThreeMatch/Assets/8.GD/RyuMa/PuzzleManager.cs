@@ -168,8 +168,6 @@ public class PuzzleManager : MonoBehaviour
         theObject = FindObjectOfType<ObjectManager>();
         theCamera = FindObjectOfType<CameraManager>();
         theGirl = FindObjectOfType<GirlManager>();
-
-
         BT_ChangeDirection(1);
     }
 
@@ -186,6 +184,8 @@ public class PuzzleManager : MonoBehaviour
                 theTitle.TitleAnim.gameObject.SetActive(false);
                 theGM.state = GMState.GM02_InGame;
                 state = State.LoadingMap;
+                MoveCount = 100;
+                SetMoveCount(0);
                 theGM.LoadMap();
 
 
@@ -194,8 +194,10 @@ public class PuzzleManager : MonoBehaviour
         else if (theGM.state == GMState.GM02_InGame)
         {
             PuzzleUpdate();
+
+
         }
-        
+
 
         //큐브 없이 큐브 이밴트를 사용해야 할 때 사용
         if (AutoEvent == true)
@@ -253,7 +255,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theMoveMap, SelectNum, OtherNum,4f, true);
+                        ChangeCube(theMoveMap, SelectNum, OtherNum, 4f, true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -381,9 +383,7 @@ public class PuzzleManager : MonoBehaviour
                     theFade.FadeInEnd = false;
                     theFade.ShowMapNameEvent(theMaker.MapName);
                     CheckMoveBGM();
-
                     CheckMoveMessage();
-
                     state = State.Ready;
                 }
             }
@@ -426,7 +426,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theBattleMap, SelectNum, OtherNum, 4f,true);
+                        ChangeCube(theBattleMap, SelectNum, OtherNum, 4f, true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -544,6 +544,23 @@ public class PuzzleManager : MonoBehaviour
                 }
             }
 
+
+        }
+        else if (gameMode == GameMode.GameOver)
+        {
+            if (theFade.FadeOutEnd == true)
+            {
+                theFade.FadeOutEnd = false;
+                GameOver(); 
+            }
+            if (theFade.FadeInEnd == true)
+            {
+                theFade.FadeInEnd = false;
+                theGM.state = GMState.GM00_Title;
+                state = State.Ready;
+                theSound.PlayBGM("TitleBGM");
+                theTitle.TitleAnim.Play("Start1");
+            }
 
         }
 
@@ -1392,80 +1409,10 @@ public class PuzzleManager : MonoBehaviour
             yield return Wait;
         }
         theFade.FadeOutEnd = false;
-        for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
-        {
-            for (int i = 0; i < theMoveMap.TopRight; i++)
-            {
-                if (theMoveMap.Slots[i + Hor].cube != null)
-                {
-                    theMoveMap.Slots[i + Hor].cube.Resetting();
-                    theMoveMap.Slots[i + Hor].cube = null;
-                }
-            }
-        }
-
-        // 맵을 새로 로드할때 엑티브를 꺼야할 오브젝트들
-
-        for (int i = 0; i < theObject.EnemySkullList.Count; i++)
-        {
-            if (theObject.EnemySkullList[i].activeSelf == true)
-            {
-                theObject.EnemySkullList[i].gameObject.SetActive(false);
-                theObject.EnemySkulls.Enqueue(theObject.EnemySkullList[i]);
-            }
-        }
-        //for (int i = 0; i < theObject.ObjectSpines.Count; i++)
-        //{
-        //    if (theObject.ObjectSpines[i].activeSelf == true)
-        //    {
-        //        theObject.ObjectSpines[i].gameObject.SetActive(false);
-        //    }
-        //}
-        for (int i = 0; i < theObject.SlotPanelList.Count; i++)
-        {
-            if (theObject.SlotPanelList[i].activeSelf == true)
-            {
-                theObject.SlotPanelList[i].GetComponent<SlotObject>().Resetting();
-            }
-        }
-        for (int i = 0; i < theObject.PortalList.Count; i++)
-        {
-            if (theObject.PortalList[i].activeSelf == true)
-            {
-                theObject.PortalList[i].GetComponent<ParticleManager>().Resetting();
-            }
-        }
-
-        for (int i = 0; i < theObject.PortalArrowList.Count; i++)
-        {
-            if (theObject.PortalArrowList[i].activeSelf == true)
-            {
-                theObject.PortalArrowList[i].GetComponent<PortalArrowManager>().Resetting();
-            }
-        }
+        ResetMoveMap();
 
         theGM.LoadMap();
     }
-
-
-
-    //// 마지막에 멈춘 위치가 골이면 true
-    //public bool CheckGoal(MapManager _Map)
-    //{
-    //    for (int i = 0; i < _Map.Vertical * _Map.Horizontal; i++)
-    //    {
-    //        if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Goal &&
-    //            _Map.Slots[i].nodeColor == NodeColor.Player)
-    //        {
-    //            return true;
-    //        }
-    //    }
-
-
-    //    return false;
-    //}
-
-
 
     //현재 매치가 가능한 상태가 있는지 체크 true 면 가능, false 면 불가능
     public bool DeadlockCheck(MapManager _Map)
@@ -1832,22 +1779,39 @@ public class PuzzleManager : MonoBehaviour
                 Dec = "우리는 배고픔에 지쳐 바닥과 하나가 되었다.";
                 break;
         }
-
-
         theFade.ShowBlackChat("패배", Dec);
     }
 
     public void GameOverBattle()
     {
         gameMode = GameMode.GameOver;
-
-
         theFade.ShowBlackChat("패배", theBattle.Enemy[theBattle.CurrentEnemyCount].LoseDec);
     }
 
     public void GameOver()
-    { 
-        
+    {
+        ResetMoveMap();
+
+
+        if (BattleUI.activeSelf == true)
+        {
+            IllustSlot.transform.localPosition = MovePos;
+            CubeBar.transform.localPosition = new Vector3(0, -3.3f, 0);
+            theBattle.Resetting();
+            MoveUI.SetActive(true);
+            BattleUI.SetActive(false);
+            theBattle.ReadySkill(SkillUI.UI2_Null);
+            CubeEvent = false;
+        }
+            
+
+        theMaker.MapName = "속삭이는 숲1";
+        theMaker.PlayerStartNum = 20;
+        MoveCount = 0;
+        SetMoveCount(100);
+        theFade.CloseBlackChat();
+        theFade.FadeInEvent();
+        theTitle.ReturnTitle();
     }
 
 
@@ -1887,6 +1851,49 @@ public class PuzzleManager : MonoBehaviour
         
     }
 
+
+    public void ResetMoveMap()
+    {
+        for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
+        {
+            for (int i = 0; i < theMoveMap.TopRight; i++)
+            {
+                theMoveMap.Slots[i + Hor].Resetting();
+            }
+        }
+
+        for (int i = 0; i < theObject.EnemySkullList.Count; i++)
+        {
+            if (theObject.EnemySkullList[i].activeSelf == true)
+            {
+                theObject.EnemySkullList[i].gameObject.SetActive(false);
+                theObject.EnemySkulls.Enqueue(theObject.EnemySkullList[i]);
+            }
+        }
+        for (int i = 0; i < theObject.SlotPanelList.Count; i++)
+        {
+            if (theObject.SlotPanelList[i].activeSelf == true)
+            {
+                theObject.SlotPanelList[i].GetComponent<SlotObject>().Resetting();
+            }
+        }
+        for (int i = 0; i < theObject.PortalList.Count; i++)
+        {
+            if (theObject.PortalList[i].activeSelf == true)
+            {
+                theObject.PortalList[i].GetComponent<ParticleManager>().Resetting();
+            }
+        }
+
+        for (int i = 0; i < theObject.PortalArrowList.Count; i++)
+        {
+            if (theObject.PortalArrowList[i].activeSelf == true)
+            {
+                theObject.PortalArrowList[i].GetComponent<PortalArrowManager>().Resetting();
+            }
+        }
+
+    }
 
 
 

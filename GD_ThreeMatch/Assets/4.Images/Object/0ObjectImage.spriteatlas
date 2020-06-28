@@ -57,10 +57,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 28fb1c6b36d57ec4cb9d37cce7ed881c, type: 3}
   - {fileID: 21300000, guid: 61accb8cd6345d04293bce8d4d2a5690, type: 3}
   m_PackedSpriteNamesToIndex:
-  - UI_Forest3
+  - UI_Forest0
   - UI_Forest2
   - UI_Forest1
   - UI_Forest4
-  - UI_Forest0
+  - UI_Forest3
   m_Tag: 0ObjectImage
   m_IsVariant: 0

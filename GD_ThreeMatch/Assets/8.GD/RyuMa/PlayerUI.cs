@@ -165,9 +165,11 @@ public class PlayerUI : MonoBehaviour
         GirlCubeImage.sprite = thePuzzle.CubeSprites[_nodeColor];
         selectGirl = (SelectGirl)_nodeColor;
         PlayerUINum = _PlayerNum;
-       
+
+        state = PlayerUIState.Idle;
         MaxHp = theGirl.Girls[_nodeColor].Hp;
         CurrentHp = MaxHp;
+        HpSlider.fillAmount = 1;
         HpRedSlider.fillAmount = 1;
         MaxSkillGauge = theGirl.Girls[_nodeColor].SkillCount;
 

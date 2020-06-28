@@ -470,26 +470,30 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void Resetting()
     {
-        if (nodeType != NodeType.Null)
+        if (nodeType == NodeType.Enemy)
         {
+            monsterSheet = null;
+        }
+        else if (nodeType == NodeType.Portal)
+        {
+            portalSheet = null;
+        }
 
-            if (nodeType == NodeType.Enemy)
-            {
-                monsterSheet = null;
-            }
-            else if (nodeType == NodeType.Portal)
-            {
-                portalSheet = null;
-            }
-
-
-            nodeType = NodeType.Normal;
-            nodeColor = NodeColor.NC6_Player;
+        SlotSheet.SlotSheet = SlotObjectSheet.NULL;
+        if (cube != null)
+        {
             cube.Resetting();
             cube = null;
         }
 
-        slotObject = null;
+        nodeType = NodeType.Null;
+        nodeColor = NodeColor.NC8_Null;
+        if (slotObject != null)
+        {
+            slotObject.Resetting();
+            slotObject = null;
+        }
+
 
     }
 
