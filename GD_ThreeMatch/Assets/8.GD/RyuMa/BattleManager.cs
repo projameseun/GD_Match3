@@ -144,7 +144,7 @@ public class BattleManager : MonoBehaviour
     float DamageTime;
     Color DamageColor = new Color(1, 1, 1);
     bool AttackInit;
-    int SkillNum = 0;   //선택된 enemyskill 의 인덱스 넘버
+    [HideInInspector] public int SkillNum = 0;   //선택된 enemyskill 의 인덱스 넘버
     int damage = 0;     //선택된 몬스터의 대미지 계산 결과값
     Vector2 StartVec;    // 파티클 시작지점 적용 나중에 추가할것
     GameObject TargetVec = null;
@@ -496,6 +496,9 @@ public class BattleManager : MonoBehaviour
                 AttackEffectEventTime = 1.5f;
             }
 
+            
+            theSound.PlaySE(EnemySkill[SkillNum].SkillName);
+
 
         }
         else
@@ -656,9 +659,10 @@ public class BattleManager : MonoBehaviour
     {
         switch (EnemySkill[SkillNum].SkillEffectNum)
         {
-            case 0:
-               theObject.SlimePEvent(vec);
-               break;
+           case 0:
+            theSound.PlaySE("SlimeSkillHit");
+            theObject.SlimePEvent(vec);
+            break;
         }
     }
 

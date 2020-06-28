@@ -240,9 +240,13 @@ public class CubeEffect : MonoBehaviour
         Rotation = new Vector3(0, 0, 0);
         gameObject.SetActive(false);
         theObject.CubeEfs.Enqueue(this.gameObject);
-        CubeP.transform.SetParent(null);
-        CubeP.Resetting();
-        CubeP = null;
+        if (CubeP != null)
+        {
+            CubeP.transform.SetParent(null);
+            CubeP.Resetting();
+            CubeP = null;
+        }
+           
     }
 
 

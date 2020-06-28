@@ -8,12 +8,16 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
 {
     public Image[] ButtonImages;
     public Sprite[] ButtonSprite;
+    public GameObject JoyStickObj;
+
 
     public Direction CurrentDir;
     bool Down;
-    public Vector2 CurrentVec;
-    public float AngleZ;
-
+    Vector2 CurrentVec;
+    float AngleZ;
+    public float Radio;
+    Vector2 JoyStickVec;
+    Vector2 StartVec;
     private CameraManager theCamera;
     private PuzzleManager thePuzzle;
     // Start is called before the first frame update
@@ -34,7 +38,10 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
                 ButtonImages[i].sprite = ButtonSprite[0];
             }
             else
+            {
                 ButtonImages[i].sprite = ButtonSprite[1];
+
+            }
         }
         
        
@@ -58,6 +65,11 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
         {
             CurrentVec = eventData.position;
             CurrentVec = Camera.main.ScreenToWorldPoint(CurrentVec);
+            JoyStickVec = CurrentVec;
+            StartVec = this.transform.position;
+            JoyStickVec = JoyStickVec - StartVec;
+            JoyStickVec = Vector2.ClampMagnitude(JoyStickVec, Radio);
+            JoyStickObj.transform.position = JoyStickVec + StartVec;
             CheckDir();
         }
     }
@@ -65,6 +77,7 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
     {
         if (Down == true)
         {
+            JoyStickObj.transform.position = this.transform.position;
             theCamera.Down = false;
             Down = false;
         }

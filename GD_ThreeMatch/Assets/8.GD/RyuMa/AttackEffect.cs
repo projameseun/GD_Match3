@@ -45,8 +45,10 @@ public class AttackEffect : MonoBehaviour
 
     private BattleManager theBattle;
     private ObjectManager theObject;
+    private SoundManager theSound;
     private void Start()
     {
+        theSound = FindObjectOfType<SoundManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theObject = FindObjectOfType<ObjectManager>();
     }
@@ -188,6 +190,11 @@ public class AttackEffect : MonoBehaviour
                 }
                 else
                 {
+                    if (theBattle.EnemySkill[theBattle.SkillNum].SkillName == "SlimeAttack")
+                    {
+                        theSound.PlaySE("SlimeSkillMove");
+                    }
+
                     MoveEvent = true;
                     AngleZ = GetAngleZ(TargetPos.transform.position, this.transform.position);
                     Rotation.z = AngleZ;
