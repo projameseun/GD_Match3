@@ -33,7 +33,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -69,7 +69,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -105,7 +105,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -141,7 +141,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -177,7 +177,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -196,6 +196,208 @@
             },
             "slotObject": {
                 "SlotSheet": 0
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 100,
+                "EnemyIndex": [
+                    0
+                ],
+                "EnemyChance": [
+                    100
+                ],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 4
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 2
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 4
             }
         },
         {
@@ -307,7 +509,7 @@
             }
         },
         {
-            "Type": "0",
+            "Type": "1",
             "monsheet": {
                 "SlotImageIndex": 0,
                 "OnlyOneEnemy": false,
@@ -321,7 +523,25 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 1000
+            }
+        },
+        {
+            "Type": "1",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 1000
             }
         },
         {
@@ -339,7 +559,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 2
             }
         },
         {
@@ -357,25 +577,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 1
             }
         },
         {
@@ -411,205 +613,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
-            }
-        },
-        {
-            "Type": "1",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 1000
-            }
-        },
-        {
-            "Type": "1",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 1000
-            }
-        },
-        {
-            "Type": "1",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 1000
-            }
-        },
-        {
-            "Type": "1",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 1000
-            }
-        },
-        {
-            "Type": "1",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 1000
-            }
-        },
-        {
-            "Type": "1",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 1000
-            }
-        },
-        {
-            "Type": "1",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 1000
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 3
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 3
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 0
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -789,7 +793,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1005,7 +1009,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1185,7 +1189,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1343,11 +1347,11 @@
                 "OnlyOneNum": 0
             },
             "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
+                "MapName": "속삭이는 숲2",
+                "NextPosNum": 117
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 1
             }
         },
         {
@@ -1365,25 +1369,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 2
             }
         },
         {
@@ -1402,6 +1388,24 @@
             },
             "slotObject": {
                 "SlotSheet": 0
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 4
             }
         },
         {
@@ -1527,7 +1531,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 1
             }
         },
         {
@@ -1545,7 +1549,25 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 2
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "속삭이는 숲2",
+                "NextPosNum": 117
+            },
+            "slotObject": {
+                "SlotSheet": 1
             }
         },
         {
@@ -1563,25 +1585,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1707,7 +1711,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 1
             }
         },
         {
@@ -1725,7 +1729,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 2
             }
         },
         {
@@ -1743,7 +1747,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
+                "SlotSheet": 1
             }
         },
         {
@@ -1761,25 +1765,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 3
-            }
-        },
-        {
-            "Type": "0",
-            "monsheet": {
-                "SlotImageIndex": 0,
-                "OnlyOneEnemy": false,
-                "addEnemyMeet": 0,
-                "EnemyIndex": [],
-                "EnemyChance": [],
-                "OnlyOneNum": 0
-            },
-            "portalsheet": {
-                "MapName": "",
-                "NextPosNum": 0
-            },
-            "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 2
             }
         },
         {
@@ -1815,7 +1801,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1851,7 +1837,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1887,7 +1873,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1923,7 +1909,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1959,7 +1945,7 @@
                 "NextPosNum": 0
             },
             "slotObject": {
-                "SlotSheet": 0
+                "SlotSheet": 4
             }
         },
         {
@@ -1978,6 +1964,24 @@
             },
             "slotObject": {
                 "SlotSheet": 0
+            }
+        },
+        {
+            "Type": "0",
+            "monsheet": {
+                "SlotImageIndex": 0,
+                "OnlyOneEnemy": false,
+                "addEnemyMeet": 0,
+                "EnemyIndex": [],
+                "EnemyChance": [],
+                "OnlyOneNum": 0
+            },
+            "portalsheet": {
+                "MapName": "",
+                "NextPosNum": 0
+            },
+            "slotObject": {
+                "SlotSheet": 4
             }
         }
     ],
