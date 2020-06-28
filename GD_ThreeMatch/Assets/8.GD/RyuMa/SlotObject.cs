@@ -119,7 +119,7 @@ public class SlotObject : MonoBehaviour
         }
         if ((int)_Sheet < 1000)
         {
-            SpriteRen.sortingOrder = 11;
+            SpriteRen.sortingOrder = 19;
         }
         else
         {

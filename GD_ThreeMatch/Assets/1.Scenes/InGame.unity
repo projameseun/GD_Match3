@@ -818,27 +818,27 @@ MonoBehaviour:
     CubeCount: c8000000c8000000c8000000c8000000c8000000
     skillSlots:
     - SkillNum: 0
-      SkillCount: 15
+      SkillCount: 10
       Percentage: 100
       SkillCoolDown: 0.04
     WinDec: "\uBBF8\uB2C8 \uC2AC\uB77C\uC784\uC740 \uB208\uBB3C\uC744 \uD758\uB9AC\uBA70
       \uAE4A\uC740 \uC232\uC18D\uC73C\uB85C \uB3C4\uB9DD\uAC14\uC2B5\uB2C8\uB2E4."
     LoseDec: "\uBBF8\uB2C8 \uC2AC\uB77C\uC784\uC758 \uBB34\uC2DC\uBB34\uC2DC\uD55C
       \uC810\uC561 \uACF5\uACA9\uC73C\uB85C \uD30C\uD2F0\uC6D0\uB4E4\uC774 \uC804\uBA78\uD588\uB2E4."
-  - EnemyName: "\uBBF8\uB2C8\uC5C4 \uC2AC\uB77C\uC784"
+  - EnemyName: "\uD3EC\uC774\uC98C \uC2AC\uB77C\uC784"
     enemyTribe: 1
     enemyRating: 1
-    BattlePortrait: {fileID: 0}
-    IllustData: {fileID: 0}
+    BattlePortrait: {fileID: 21300000, guid: d2999fd35b6c8154fb6de85644f5193f, type: 3}
+    IllustData: {fileID: 11400000, guid: 0cc00a621aa19c34fb7fb5e45c56bf17, type: 2}
     MinDamageValue: 9
     MaxDamageValue: 10
-    Count: 2
-    CubeCount: 460000003200000050000000
+    Count: 5
+    CubeCount: fa000000fa000000fa000000fa000000fa000000
     skillSlots:
     - SkillNum: 0
-      SkillCount: 1
+      SkillCount: 10
       Percentage: 100
-      SkillCoolDown: 0
+      SkillCoolDown: 0.04
     WinDec: 
     LoseDec: 
   - EnemyName: "\uD0B9 \uC2AC\uB77C\uC784"
@@ -2880,21 +2880,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3657917269363046424, guid: 75005654f9d98f74198e720826f74356,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7110776415681652843, guid: 75005654f9d98f74198e720826f74356,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7110776415681652843, guid: 75005654f9d98f74198e720826f74356,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2949,16 +2934,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75005654f9d98f74198e720826f74356, type: 3}
@@ -5027,7 +5002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &733026560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13093,7 +13068,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 397, y: 1087}
+  m_AnchoredPosition: {x: 303, y: 892}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1924831739
@@ -14783,13 +14758,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotPanelSprite:
-  - {fileID: 21300000, guid: cbecdb2cc32122c42bd14944016a9df7, type: 3}
-  - {fileID: 21300000, guid: b4a3b843768184b43a62394656fd01f4, type: 3}
+  - {fileID: 21300000, guid: c83c56499d118004ea2b2b9cbf956fb4, type: 3}
+  - {fileID: 21300000, guid: 67ef7baac65811947bb2a44edfe5eef6, type: 3}
   EnemySlotSprite: {fileID: 21300000, guid: b65760507af786440aad3af37a0f4389, type: 3}
   ForestSprites:
-  - {fileID: 21300000, guid: 1e46b7e64e797e346bd445a27a7a5c1a, type: 3}
-  - {fileID: 21300000, guid: 36c405f905497b444b25a773e897f1f7, type: 3}
-  - {fileID: 21300000, guid: 7a96ab656ae7a684e88b5f885d28eae7, type: 3}
+  - {fileID: 21300000, guid: 61accb8cd6345d04293bce8d4d2a5690, type: 3}
+  - {fileID: 21300000, guid: c959b08a985025c479e9a4138e0b94cb, type: 3}
+  - {fileID: 21300000, guid: ebb847c80089c9440860259fe179e99e, type: 3}
+  - {fileID: 21300000, guid: 5559f7b1995d2f54cad0e8f75b98f05a, type: 3}
+  - {fileID: 21300000, guid: 28fb1c6b36d57ec4cb9d37cce7ed881c, type: 3}
   CubeList: []
   CubeParticleList: []
   CubeEfList: []

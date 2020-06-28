@@ -374,7 +374,7 @@ public class BattleManager : MonoBehaviour
                     EnemyUiSprites[ColorNum[RandColor]], Enemy[_enemyNum].CubeCount[i]);
 
                 MaxHp += Enemy[_enemyNum].CubeCount[i];
-                ColorNum.Remove(RandColor);
+                ColorNum.RemoveAt(RandColor);
             }
             else
             {

@@ -83,18 +83,15 @@ public class GameManager : MonoBehaviour
 {
     public GMState state;
 
+    public List<bool> EnemyDataSheet = new List<bool>(200);
+    public List<bool> ProgressDataSheet = new List<bool>(200);
+    public int CurrentProgressNum = 0;
 
     float deltaTime = 0.0f;
     Color GUIColor = new Color(1, 1, 1, 1);
     GUIStyle style = new GUIStyle();
     int w = 0, h = 0;
     Rect rect;
-
-    public List<bool> EnemyDataSheet = new List<bool>(200);
-    public List<bool> ProgressDataSheet = new List<bool>(200);
-    public int CurrentProgressNum = 0;
-
-
     private void Awake()
     {
         Application.targetFrameRate = 60;
