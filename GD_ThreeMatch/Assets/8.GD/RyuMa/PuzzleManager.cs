@@ -533,16 +533,7 @@ public class PuzzleManager : MonoBehaviour
                     }
                 }
             }
-            else if (state == State.ChangeMode)
-            {
-                if (theFade.FadeOutEnd == true)
-                {
-                    theFade.FadeOutEnd = false;
-                    ChangeGameMode();
 
-
-                }
-            }
 
 
         }
@@ -624,7 +615,6 @@ public class PuzzleManager : MonoBehaviour
 
     public void SetSlot(MapManager _Map, bool Reset = false)
     {
-        SetMoveCount();
 
         if (Reset == true)
         {
@@ -729,12 +719,7 @@ public class PuzzleManager : MonoBehaviour
                             _Map.Slots[i].cube = null;
                         }
                     }
-                    _Map.Slots[i].TestText.text = i.ToString();
-                }
-                else
-                {
-                    _Map.Slots[i].TestText.text = i.ToString();
-                    _Map.Slots[i].TestText.color = new Color(1, 1, 1);
+
                 }
             }
         }
@@ -861,77 +846,6 @@ public class PuzzleManager : MonoBehaviour
                
             }
         }
-
-        //for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomRight - _Map.Horizontal; i++)
-        //{
-        //    if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[i].nodeColor == NodeColor.Null)
-        //    {
-        //        List<int> RandomList = new List<int>(ColorList);
-        //        if (_Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-        //        {
-        //            if (_Map.Slots[i - _Map.Horizontal - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-        //            {
-        //                if (_Map.Slots[i - _Map.Horizontal].nodeColor == _Map.Slots[i - _Map.Horizontal - _Map.Horizontal].nodeColor)
-        //                {
-        //                    RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
-        //                }
-        //                else
-        //                {
-        //                    int rand = Random.Range(0, 2);
-        //                    if (rand == 0)
-        //                    {
-        //                        RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
-        //                    }
-        //                }
-        //            }
-        //            else
-        //            {
-        //                int rand = Random.Range(0, 2);
-        //                if (rand == 0)
-        //                {
-        //                    RandomList.Remove((int)_Map.Slots[i - _Map.Horizontal].nodeColor);
-        //                }
-        //            }
-
-
-        //        }
-        //        if (_Map.Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
-        //        {
-        //            if (_Map.Slots[i - 2].nodeType != PuzzleSlot.NodeType.Null)
-        //            {
-        //                if (_Map.Slots[i - 1].nodeColor == _Map.Slots[i - 2].nodeColor)
-        //                {
-        //                    RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
-        //                }
-        //                else
-        //                {
-        //                    int rand = Random.Range(0, 2);
-        //                    if (rand == 0)
-        //                    {
-        //                        RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
-        //                    }
-        //                }
-        //            }
-        //            else
-        //            {
-        //                int rand = Random.Range(0, 2);
-        //                if (rand == 0)
-        //                {
-        //                    RandomList.Remove((int)_Map.Slots[i - 1].nodeColor);
-        //                }
-        //            }
-
-
-        //        }
-
-        //        int RandColorNum = Random.Range(0, RandomList.Count);
-        //        GameObject Cube = theObject.SpawnCube();
-        //        SetCube(Cube, _Map.Slots[i], RandomList[RandColorNum]);
-
-        //    }
-        //}
-
 
     }
 
@@ -1845,6 +1759,8 @@ public class PuzzleManager : MonoBehaviour
 
     public void ResetMoveMap()
     {
+        theBattleMap.FirstBattle = false;
+
         for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
         {
             for (int i = 0; i < theMoveMap.TopRight; i++)

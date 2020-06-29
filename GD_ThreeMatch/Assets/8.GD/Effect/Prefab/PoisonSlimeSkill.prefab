@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5612478753497290103}
   - component: {fileID: 1133506822913095256}
   - component: {fileID: 8871561602560058144}
-  - component: {fileID: 976442542306336422}
+  - component: {fileID: 3869487374235583193}
   m_Layer: 0
-  m_Name: p
+  m_Name: PoisonSlimeSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4760,7 +4760,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &976442542306336422
+--- !u!114 &3869487374235583193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4769,7 +4769,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177297359932647236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d54ae22b6498e459d81112e9062978, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c1bc7c2a8c00a64db55a1bffe54eac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 1133506822913095256}

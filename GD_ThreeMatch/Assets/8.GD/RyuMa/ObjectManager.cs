@@ -43,11 +43,11 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public Queue<GameObject> AliceAnimEffects = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> AliceAnimEffectList;
 
-    [HideInInspector] public Queue<GameObject> SlimeSkillParticles = new Queue<GameObject>();
-    [HideInInspector] public List<GameObject> SlimeSkillParticleList;
+    [HideInInspector] public Queue<GameObject> SlimeSkillAttacks = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> SlimeSkillAttackList;
 
-    [HideInInspector] public Queue<GameObject> SlimeAttackParticles = new Queue<GameObject>();
-    [HideInInspector] public List<GameObject> SlimeAttackParticleList;
+    [HideInInspector] public Queue<GameObject> SlimeSkillHits = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> SlimeSkillHitList;
 
     [HideInInspector] public Queue<GameObject> SlotPanels = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> SlotPanelList;
@@ -99,8 +99,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject DamageText;
     public GameObject AliceSkill;
     public GameObject AliceAnimEffect;
-    public GameObject SlimeSkillParticle;
-    public GameObject SlimeAttackParticle;
+    public GameObject SlimeSkillAttack;
+    public GameObject SlimeSkillHit;
     public GameObject SlotPanel;
     public GameObject ClickParticle;
     public GameObject Portal;
@@ -205,19 +205,19 @@ public class ObjectManager : MonoBehaviour
         }
         for (int i = 0; i < 10; i++)
         {
-            GameObject x = Instantiate(SlimeSkillParticle);
+            GameObject x = Instantiate(SlimeSkillHit);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            SlimeSkillParticles.Enqueue(x);
-            SlimeSkillParticleList.Add(x);
+            SlimeSkillHits.Enqueue(x);
+            SlimeSkillHitList.Add(x);
         }
         for (int i = 0; i < 10; i++)
         {
-            GameObject x = Instantiate(SlimeAttackParticle);
+            GameObject x = Instantiate(SlimeSkillHit);
             x.transform.position = SpawnVec;
             x.SetActive(false);
-            SlimeAttackParticles.Enqueue(x);
-            SlimeAttackParticleList.Add(x);
+            SlimeSkillHits.Enqueue(x);
+            SlimeSkillHitList.Add(x);
         }
         for (int i = 0; i < 50; i++)
         {
@@ -397,14 +397,14 @@ public class ObjectManager : MonoBehaviour
                 Frefab = AliceAnimEffect;
                 break;
             case "SlimeP":
-                ObjectQueue = SlimeAttackParticles;
-                ObjectList = SlimeAttackParticleList;
-                Frefab = SlimeAttackParticle;
+                ObjectQueue = SlimeSkillHits;
+                ObjectList = SlimeSkillHitList;
+                Frefab = SlimeSkillHit;
                 break;
             case "SlimeSkillParticle":
-                ObjectQueue = SlimeSkillParticles;
-                ObjectList = SlimeSkillParticleList;
-                Frefab = SlimeSkillParticle;
+                ObjectQueue = SlimeSkillAttacks;
+                ObjectList = SlimeSkillAttackList;
+                Frefab = SlimeSkillAttack;
                 break;
             case "SlotPanel":
                 ObjectQueue = SlotPanels;
@@ -860,19 +860,19 @@ public class ObjectManager : MonoBehaviour
                 AliceAnimEffectList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
-        for (int i = 0; i < SlimeSkillParticleList.Count; i++)
+        for (int i = 0; i < SlimeSkillAttackList.Count; i++)
         {
-            if (SlimeSkillParticleList[i].activeSelf)
+            if (SlimeSkillAttackList[i].activeSelf)
             {
-                SlimeSkillParticleList[i].GetComponent<ParticleManager>().Resetting();
+                SlimeSkillAttackList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
         
-        for (int i = 0; i < SlimeAttackParticleList.Count; i++)
+        for (int i = 0; i < SlimeSkillHitList.Count; i++)
         {
-            if (SlimeAttackParticleList[i].activeSelf)
+            if (SlimeSkillHitList[i].activeSelf)
             {
-                SlimeAttackParticleList[i].GetComponent<ParticleManager>().Resetting();
+                SlimeSkillHitList[i].GetComponent<ParticleManager>().Resetting();
             }
         }
 
