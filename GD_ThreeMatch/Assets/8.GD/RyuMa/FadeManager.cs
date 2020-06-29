@@ -43,6 +43,7 @@ public class FadeManager : MonoBehaviour
     Color color = new Color(1,1,1,0);
     float FadeTime = 0f;
 
+    private Animator BlackAnim;
     //MapNameDB
     float MapNameEventTime;
     MapNameState mapNameState;
@@ -55,8 +56,11 @@ public class FadeManager : MonoBehaviour
         theSound = FindObjectOfType<SoundManager>();
         if (BlackChatBase != null)
         {
+            BlackAnim = BlackChatBase.GetComponent<Animator>();
+
             BlackChatBase.GetComponent<Button>().onClick.AddListener(() =>
             {
+                BlackAnim.Play("Idle");
                 theSound.FadeOutBGM();
                 FadeOutEvent();
             });
@@ -95,6 +99,7 @@ public class FadeManager : MonoBehaviour
         BlackChatBase.SetActive(true);
         TitleText.text = _Title;
         DesText.text = _Des;
+        BlackAnim.Play("Show");
 
     }
 

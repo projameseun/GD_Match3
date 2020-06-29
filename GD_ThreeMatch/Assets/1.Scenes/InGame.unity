@@ -5655,7 +5655,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5724,13 +5724,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 855786369}
-    characterCount: 2
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -7694,7 +7694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 583}
+  m_AnchoredPosition: {x: 0, y: 580}
   m_SizeDelta: {x: 900, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202748578
@@ -7722,13 +7722,13 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 100
     m_MaxSize: 200
-    m_Alignment: 4
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 11
+  m_Text: "\uD328\uBC30"
 --- !u!222 &1202748579
 CanvasRenderer:
   m_ObjectHideFlags: 2
@@ -9785,6 +9785,7 @@ GameObject:
   - component: {fileID: 1480670442}
   - component: {fileID: 1480670441}
   - component: {fileID: 1480670443}
+  - component: {fileID: 1480670444}
   m_Layer: 5
   m_Name: BlackChat
   m_TagString: Untagged
@@ -9893,6 +9894,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &1480670444
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480670439}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6e6d196abd35874a8eeeeb4e7b30978, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1512835995
 GameObject:
   m_ObjectHideFlags: 0
@@ -14786,10 +14806,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 67ef7baac65811947bb2a44edfe5eef6, type: 3}
   EnemySlotSprite: {fileID: 21300000, guid: b65760507af786440aad3af37a0f4389, type: 3}
   ForestSprites:
-  - {fileID: 21300000, guid: 5559f7b1995d2f54cad0e8f75b98f05a, type: 3}
+  - {fileID: 21300000, guid: 61accb8cd6345d04293bce8d4d2a5690, type: 3}
   - {fileID: 21300000, guid: c959b08a985025c479e9a4138e0b94cb, type: 3}
   - {fileID: 21300000, guid: ebb847c80089c9440860259fe179e99e, type: 3}
-  - {fileID: 21300000, guid: 61accb8cd6345d04293bce8d4d2a5690, type: 3}
+  - {fileID: 21300000, guid: 5559f7b1995d2f54cad0e8f75b98f05a, type: 3}
   - {fileID: 21300000, guid: 28fb1c6b36d57ec4cb9d37cce7ed881c, type: 3}
   WorldCanvasObj: {fileID: 1760207628}
   CubeList: []
