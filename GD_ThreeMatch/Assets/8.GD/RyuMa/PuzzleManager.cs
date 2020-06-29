@@ -1779,12 +1779,14 @@ public class PuzzleManager : MonoBehaviour
                 Dec = "우리는 배고픔에 지쳐 바닥과 하나가 되었다.";
                 break;
         }
+        theSound.PlaySE("Lose");
         theFade.ShowBlackChat("패배", Dec);
     }
 
     public void GameOverBattle()
     {
         gameMode = GameMode.GameOver;
+        theSound.PlaySE("Lose");
         theFade.ShowBlackChat("패배", theBattle.Enemy[theBattle.CurrentEnemyCount].LoseDec);
     }
 

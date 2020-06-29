@@ -66,6 +66,7 @@ public class PlayerSaveData
     public PlayerSaveData()
     {
         MonsterDataSheet = new List<bool>();
+        ProgressDataSheet = new List<bool>();
         CurrentProgressNum = 0;
     }
 

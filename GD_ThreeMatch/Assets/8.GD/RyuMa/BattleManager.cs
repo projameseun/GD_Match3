@@ -416,6 +416,7 @@ public class BattleManager : MonoBehaviour
         ResetCombo();
         //ComboCoolDownImage.fillAmount = 0;
         EnemyAnim.AnimationState.SetAnimation(0, "Die", true);
+        theSound.PlaySE("Win");
         theFade.ShowBlackChat("전투 승리",Enemy[SelectEnemyNum].WinDec);
         //theFade.FadeIn();
     }

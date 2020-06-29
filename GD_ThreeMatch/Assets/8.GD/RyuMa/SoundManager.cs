@@ -82,7 +82,11 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(string _Name)
     {
-
+        if (BGMList.ContainsKey(_Name) == false)
+        {
+            Debug.Log("해당 이름이 없습니다");
+            return;
+        }
         BGMSound.PlaySound(BGMList[_Name], BGMValue, true);
         
     }
@@ -94,6 +98,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySE(string _Name)
     {
+        if (SEList.ContainsKey(_Name) == false)
+        {
+            Debug.Log("해당 이름이 없습니다");
+            return;
+        }
+
         if (CurrentSeName == _Name && CheckSe == true)
         {
             return;
