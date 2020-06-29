@@ -9,10 +9,14 @@ public class ObjectManager : MonoBehaviour
 {
 
     // 오브젝트 타일 이미지
+    [Header("Sprite")]
     public Sprite[] SlotPanelSprite;
     public Sprite EnemySlotSprite;
     public Sprite[] ForestSprites;
 
+
+    [Header("UI")]
+    public GameObject WorldCanvasObj;
 
     //게임오브젝트 리스트
     [HideInInspector] public Queue<GameObject> Cubes = new Queue<GameObject>(); //큐브 리스트
@@ -83,6 +87,8 @@ public class ObjectManager : MonoBehaviour
 
     [HideInInspector] public Queue<GameObject> PoisonSlimePs = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> PoisonSlimePList;
+
+    [Header("Prefab")]
 
     //게임오브젝트 프리팹
     public GameObject CubePrefab; //큐브 프리팹
@@ -625,7 +631,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject DamageTextEvent(Vector2 _startPos, string _Value,float _Time = 1.5f)
     {
         GameObject TextOBJ = FindObj("DamageText");
-
+        TextOBJ.transform.SetParent(WorldCanvasObj.transform);
         TextOBJ.GetComponent<DamageText>().SetDamageText(_startPos, _Value, _Time);
 
 

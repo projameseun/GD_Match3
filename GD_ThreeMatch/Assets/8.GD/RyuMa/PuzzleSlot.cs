@@ -479,7 +479,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             portalSheet = null;
         }
 
-        SlotSheet.SlotSheet = SlotObjectSheet.NULL;
+        SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
         if (cube != null)
         {
             cube.Resetting();

@@ -9,8 +9,12 @@ public class DamageText : MonoBehaviour
 
     bool FlotingEvent;
     float FlotingTime;
-    float Speed = 0.2f;
+    float Speed = 0.3f;
     Vector2 Target;
+
+    bool Punch;
+    Vector3 SizeVec = new Vector3(1,1,1);
+    float PunchTime;
     Color color = new Color(0,0,0,1);
 
     private ObjectManager theObject;
@@ -23,6 +27,37 @@ public class DamageText : MonoBehaviour
             this.transform.position = Vector2.MoveTowards(
                 this.transform.position,
                 Target, Speed * Time.deltaTime);
+
+            if (Punch == true)
+            {
+                PunchTime += Time.deltaTime * 12;
+                if (PunchTime < 2)
+                {
+                    SizeVec.x = PunchTime;
+                    SizeVec.y = PunchTime;
+                }
+                else
+                {
+                    PunchTime = 2;
+                    Punch = false;
+                }
+                this.transform.localScale = SizeVec;
+            }
+            else if (Punch == false && PunchTime > 1)
+            {
+                PunchTime -= Time.deltaTime * 12;
+                if (PunchTime > 1)
+                {
+                    SizeVec.x = PunchTime;
+                    SizeVec.y = PunchTime;
+                }
+                else
+                {
+                    PunchTime = 1;
+                }
+                this.transform.localScale = SizeVec;
+            }
+
             if (FlotingTime > 0)
             {
                 FlotingTime -= Time.deltaTime;
@@ -50,8 +85,8 @@ public class DamageText : MonoBehaviour
         StartPos.y += Random.Range(-0.3f, 0.3f);
         this.transform.position = StartPos;
 
-
-
+        Punch = true;
+        PunchTime = 1;
 
 
 

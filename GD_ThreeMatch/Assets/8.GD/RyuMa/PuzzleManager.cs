@@ -758,18 +758,7 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
-   
-    //몬스터 슬롯에 UI 배치
-    public void SetEnemy(MapManager _Map)
-    {
-        for (int i = _Map.TopLeft; i < _Map.BottomLeft; i++)
-        {
-            if (_Map.Slots[i].nodeType == PuzzleSlot.NodeType.Enemy)
-            {
-                
-            }
-        }
-    }
+  
 
     //골 슬롯에 UI 배치
     //public void SetGoal(MapManager _Map)

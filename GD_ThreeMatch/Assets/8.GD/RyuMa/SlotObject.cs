@@ -79,12 +79,22 @@ public class SlotObject : MonoBehaviour
                 {
                     thePuzzle.theMoveMap.Slots[SlotNum].nodeType = PuzzleSlot.NodeType.Normal;
                     SpriteRen.sprite = theObject.SlotPanelSprite[_SlotNum % 2];
-                    return;
+
+                }
+                else
+                {
+                    EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f));
+                    SpriteRen.sprite = theObject.EnemySlotSprite;
+                    thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
                 }
             }
-            EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f,this.transform.position.y +0.07f));
-            SpriteRen.sprite = theObject.EnemySlotSprite;
-            thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
+            else
+            {
+                EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f));
+                SpriteRen.sprite = theObject.EnemySlotSprite;
+                thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
+            }
+            
 
         }
         else if (_Sheet == SlotObjectSheet.ST_2_Portal)
@@ -107,8 +117,6 @@ public class SlotObject : MonoBehaviour
         }
         else
         {
-
-           
             switch (theMaker.mapMainType)
             {
                 case MapMainType.M0_Forest:
@@ -139,6 +147,7 @@ public class SlotObject : MonoBehaviour
     public void Resetting()
     {
         this.gameObject.SetActive(false);
+        SpriteRen.sortingOrder = 1;
         theObject.SlotPanels.Enqueue(this.gameObject);
     }
 

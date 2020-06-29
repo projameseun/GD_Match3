@@ -33,18 +33,10 @@ public class CameraManager : MonoBehaviour
     float CurrentMoveSpeed = 0;
 
 
-
-    //인게임 3Match 방향대로 플레이어이동 
-    //버튼결정안나서 
-    //전투씬 3Match 
-    //
-
-    private PuzzleManager thePuzzle;
-    private PuzzleMaker theMaker;
-    private void Awake()
+    private void Start()
     {
         Rect rect = MainCamera.rect;
-        float scaleheight = ((float)Screen.width / Screen.height) / ((float)1080 / 1920);
+        float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16);
         float scalewidth = 1f / scaleheight;
 
         if (scaleheight < 1)
@@ -63,11 +55,7 @@ public class CameraManager : MonoBehaviour
     }
 
     void OnPreCull() => GL.Clear(true, true, Color.black);
-    void Start()
-    {
-        theMaker = FindObjectOfType<PuzzleMaker>();
-        thePuzzle = FindObjectOfType<PuzzleManager>();
-    }
+
 
     // Update is called once per frame
 
@@ -183,8 +171,6 @@ public class CameraManager : MonoBehaviour
     // 이동씬일 경우 True
     public void SetBound(MapManager _Map,Vector2 _TargetVec, bool _Move)
     {
-
-
         VRadious = 2 * Camera.main.orthographicSize; 
         HRadious = VRadious * Camera.main.aspect;
         VRadious /= 2;
