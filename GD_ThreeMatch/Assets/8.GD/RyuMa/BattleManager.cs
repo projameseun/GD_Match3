@@ -331,7 +331,6 @@ public class BattleManager : MonoBehaviour
                 {
                     if (theFade.FadeOutEnd == true)
                     {
-                        Debug.Log(thePuzzle.CubeEvent);
                         theFade.FadeOutEnd = false;
                         theFade.CloseBlackChat();
                         thePuzzle.ChangeGameMode();
@@ -589,7 +588,8 @@ public class BattleManager : MonoBehaviour
                 else if (EnemySkill[SkillNum].attackType == AttackType.FullAttack)
                 {
                     TargetVec = thePuzzle.playerUIs[0].Trigger.gameObject;
-                    EnemyAttackEffectList.Add(theObject.AttackEffectEvent(StartVec,
+                    EnemyAttackEffectList.Add(
+                        theObject.AttackEffectEvent(StartVec,
                   TargetVec, damage, EnemySkill[SkillNum].SkillEffectNum, false, EnemySkill[SkillNum].attackEffectType)
                         );
                     Player1CacHp -= damage;
@@ -662,6 +662,9 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyPEvent(Vector2 vec)
     {
+
+
+
         switch (EnemySkill[SkillNum].SkillEffectNum)
         {
            case 0:
@@ -688,12 +691,6 @@ public class BattleManager : MonoBehaviour
         return Retire;
     }
 
-
-
-    public void EnemyDieEvent()
-    { 
-    
-    }
 
 
 

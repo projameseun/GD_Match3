@@ -325,7 +325,7 @@ public class ObjectManager : MonoBehaviour
         GameObject AttackEffect = AttackEffectEvent(this.transform.position, this.gameObject, 0, 0, false, AttackEffectType.ET0_Null);
         AttackEffect.GetComponent<AttackEffect>().DestroyCount = 1;
 
-        DamageTextEvent(this.transform.position, "test", 1);
+        DamageTextEvent(this.transform.position, "test",true, 1);
 
 
         for (int i = 0; i < 10; i++)
@@ -603,14 +603,11 @@ public class ObjectManager : MonoBehaviour
         float _Speed = 2000)
     {
         GameObject Effect = FindObj("AttackEffect");
-
-        Effect.GetComponent<AttackEffect>()
-            .SetCubeEffect(StartVec, _TargetVec , _DamageValue,
-            _EffectNum, _AttackEvent,
-            AttackType, _Speed);
+        Effect.transform.position = StartVec;
 
         GameObject EffectP = null;
 
+        Debug.Log(_EffectNum);
         switch (_EffectNum)
         {
             case 0:
@@ -620,7 +617,14 @@ public class ObjectManager : MonoBehaviour
                 EffectP = FindObj("PoisonSkill");
                 break;
         }
+
+
+        Effect.GetComponent<AttackEffect>()
+            .SetCubeEffect(_TargetVec , _DamageValue,
+            _EffectNum, _AttackEvent,
+            AttackType, EffectP, _Speed);
         EffectP.GetComponent<ParticleManager>().ParticleSetting(true, Effect, 10);
+
 
 
         return Effect;
@@ -628,11 +632,11 @@ public class ObjectManager : MonoBehaviour
     }
 
 
-    public GameObject DamageTextEvent(Vector2 _startPos, string _Value,float _Time = 1.5f)
+    public GameObject DamageTextEvent(Vector2 _startPos, string _Value, bool EnemyHit= true,float _Time = 1.5f)
     {
         GameObject TextOBJ = FindObj("DamageText");
         TextOBJ.transform.SetParent(WorldCanvasObj.transform);
-        TextOBJ.GetComponent<DamageText>().SetDamageText(_startPos, _Value, _Time);
+        TextOBJ.GetComponent<DamageText>().SetDamageText(_startPos, _Value, EnemyHit, _Time);
 
 
         return TextOBJ;
@@ -759,6 +763,7 @@ public class ObjectManager : MonoBehaviour
     //SlimeAttackParticle
     public GameObject SlimePEvent(Vector2 TargetVec)
     {
+        Debug.Log("Test");
         //SlimeAttackParticle
         GameObject Paricle = FindObj("SlimeP", false);
 

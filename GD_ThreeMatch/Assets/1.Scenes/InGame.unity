@@ -14850,7 +14850,7 @@ MonoBehaviour:
     type: 3}
   AliceAnimEffect: {fileID: 6657167000452720840, guid: 4b6b6db0119e2b847b38e5a8c1905fae,
     type: 3}
-  SlimeSkillParticle: {fileID: 5211329100685249317, guid: 0f2088caab797dc47befce24fe19ac92,
+  SlimeSkillParticle: {fileID: 5211329100685249317, guid: 85cc634d69a41c14e945a10425adec39,
     type: 3}
   SlimeAttackParticle: {fileID: 9054333510555911320, guid: 8e52c11075d08a54a9dbbdc00318f237,
     type: 3}
@@ -14876,7 +14876,7 @@ MonoBehaviour:
     type: 3}
   PortalArrow: {fileID: 7599312650573559684, guid: 4305241a718144b47a69e681d6aa72da,
     type: 3}
-  PoisonSlimeSkill: {fileID: 3950475581362407758, guid: 7b30570fd4ab2384a8928eaa0f51b7fd,
+  PoisonSlimeSkill: {fileID: 1177297359932647236, guid: e5cbf4bb862548f478bc28835ed6a266,
     type: 3}
   PoisonSlimeP: {fileID: 312826270763100771, guid: f65bbb97ad843a24ba163580169aa7d8,
     type: 3}

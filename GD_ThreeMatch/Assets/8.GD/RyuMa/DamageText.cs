@@ -6,6 +6,8 @@ using TMPro;
 public class DamageText : MonoBehaviour
 {
     public TextMeshPro damageText;
+    public GameObject EnemyHitObj;
+
 
     bool FlotingEvent;
     float FlotingTime;
@@ -24,8 +26,8 @@ public class DamageText : MonoBehaviour
     {
         if (FlotingEvent == true)
         {
-            this.transform.position = Vector2.MoveTowards(
-                this.transform.position,
+            damageText.transform.position = Vector2.MoveTowards(
+                damageText.transform.position,
                 Target, Speed * Time.deltaTime);
 
             if (Punch == true)
@@ -33,29 +35,29 @@ public class DamageText : MonoBehaviour
                 PunchTime += Time.deltaTime * 12;
                 if (PunchTime < 2)
                 {
-                    SizeVec.x = PunchTime;
-                    SizeVec.y = PunchTime;
+                    SizeVec.x = PunchTime/10;
+                    SizeVec.y = PunchTime/10;
                 }
                 else
                 {
                     PunchTime = 2;
                     Punch = false;
                 }
-                this.transform.localScale = SizeVec;
+                damageText.transform.localScale = SizeVec;
             }
             else if (Punch == false && PunchTime > 1)
             {
                 PunchTime -= Time.deltaTime * 12;
                 if (PunchTime > 1)
                 {
-                    SizeVec.x = PunchTime;
-                    SizeVec.y = PunchTime;
+                    SizeVec.x = PunchTime/10;
+                    SizeVec.y = PunchTime/10;
                 }
                 else
                 {
                     PunchTime = 1;
                 }
-                this.transform.localScale = SizeVec;
+                damageText.transform.localScale = SizeVec;
             }
 
             if (FlotingTime > 0)
@@ -75,10 +77,13 @@ public class DamageText : MonoBehaviour
     }
 
 
-    public void SetDamageText(Vector2 _StartVec, string _Value, float _Time = 1.5f)
+    public void SetDamageText(Vector2 _StartVec, string _Value,bool EnemyHit , float _Time = 1.5f)
     {
         if (theObject == null)
             theObject = FindObjectOfType<ObjectManager>();
+
+        EnemyHitObj.SetActive(EnemyHit);
+
 
         Vector2 StartPos = _StartVec;
         StartPos.x += Random.Range(-0.9f, 0.9f);
@@ -104,7 +109,7 @@ public class DamageText : MonoBehaviour
     {
 
         FlotingEvent = false;
-        
+        damageText.transform.position = this.transform.position;
         this.gameObject.SetActive(false);
         theObject.DamageTexts.Enqueue(this.gameObject);
 

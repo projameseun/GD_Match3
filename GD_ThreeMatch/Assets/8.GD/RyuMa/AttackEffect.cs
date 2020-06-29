@@ -38,6 +38,7 @@ public class AttackEffect : MonoBehaviour
     bool MoveEvent;
     bool FindEvnet;
 
+    GameObject EffectObj;
 
     Vector2 FrontPos;
     Vector3 Rotation = new Vector3(0, 0, 0);
@@ -75,10 +76,11 @@ public class AttackEffect : MonoBehaviour
     }
 
 
-    public void SetCubeEffect(Vector2 StartVec, GameObject _TargetVec, int _DamageValue,
+    public void SetCubeEffect(GameObject _TargetVec, int _DamageValue,
         int _EffectNum,
         bool _AttackEvent,
         AttackEffectType AttackType,
+        GameObject _EffectObj,
         float _Speed = 2000)
     {
         if (_TargetVec == null)
@@ -87,13 +89,18 @@ public class AttackEffect : MonoBehaviour
         if (theBattle == null)
             theBattle = FindObjectOfType<BattleManager>();
 
+        if (_EffectObj != null)
+        {
+            EffectObj = _EffectObj;
+            EffectObj.transform.position = this.transform.position;
+        }
+
 
         DestroyCount = 10;
         CurrentSpeed = _Speed;
         AttackEvent = _AttackEvent;
         EffectNum = _EffectNum;
         DamageValue = _DamageValue;
-        this.transform.position = StartVec;
  
         Move = true;
         MoveEvent = true;
@@ -261,6 +268,15 @@ public class AttackEffect : MonoBehaviour
         CurrentSpeed = 0;
         this.transform.eulerAngles = new Vector3(0, 0, 0);
         Rotation = new Vector3(0, 0, 0);
+
+        if (EffectObj != null)
+        {
+            EffectObj.transform.SetParent(null);
+            EffectObj.GetComponent<ParticleManager>().Resetting();
+            EffectObj = null;
+        }
+
+
         gameObject.SetActive(false);
         theObject.AttackEffects.Enqueue(this.gameObject);
     }

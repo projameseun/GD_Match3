@@ -260,7 +260,7 @@ public class PlayerUI : MonoBehaviour
 
     public void TakeDamage(AttackEffect _Effect)
     {
-        theObject.DamageTextEvent(Trigger.transform.position, _Effect.DamageValue.ToString());
+        theObject.DamageTextEvent(Trigger.transform.position, _Effect.DamageValue.ToString(), false);
         TakeDamageEvent(_Effect.DamageValue);
 
 
