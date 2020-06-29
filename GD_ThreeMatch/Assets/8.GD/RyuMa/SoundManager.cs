@@ -92,7 +92,7 @@ public class SoundManager : MonoBehaviour
     }
     public void FadeOutBGM()
     {
-        BGMSound.FadeOutEvent();
+        BGMSound.FadeOutEvent(BGMValue);
     }
 
 

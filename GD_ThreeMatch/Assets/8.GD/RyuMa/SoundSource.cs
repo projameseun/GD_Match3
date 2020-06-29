@@ -26,7 +26,7 @@ public class SoundSource : MonoBehaviour
 
         audioSource.clip = _clip;
         audioSource.loop = _Loop;
-        SoundValue = 1f;
+        SoundValue = _Value;
         audioSource.volume = SoundValue * _Value;
         audioSource.Play();
 
@@ -34,9 +34,9 @@ public class SoundSource : MonoBehaviour
 
 
 
-    public void FadeOutEvent()
+    public void FadeOutEvent(float _Value)
     {
-
+        SoundValue = _Value;
         if (FadeOut == false)
         {
             FadeOut = true;
