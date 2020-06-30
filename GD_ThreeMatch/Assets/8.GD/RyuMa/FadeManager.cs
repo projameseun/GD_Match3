@@ -50,9 +50,10 @@ public class FadeManager : MonoBehaviour
     Color TextColor = new Color(1, 1, 1, 1);
 
     private SoundManager theSound;
-
+    private CameraButtonManager theCameraButton;
     private void Start()
     {
+        theCameraButton = FindObjectOfType<CameraButtonManager>();
         theSound = FindObjectOfType<SoundManager>();
         if (BlackChatBase != null)
         {
@@ -84,7 +85,7 @@ public class FadeManager : MonoBehaviour
 
     public void FadeInEvent(bool Show = true)
     {
-        
+        theCameraButton.TouchUp();
         FadeTime = 3f;
         color.a = FadeTime;
         FadeImage.color = color;

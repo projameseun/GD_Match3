@@ -75,12 +75,7 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (Down == true)
-        {
-            JoyStickObj.transform.position = this.transform.position;
-            theCamera.Down = false;
-            Down = false;
-        }
+        TouchUp();
     }
 
 
@@ -117,6 +112,17 @@ public class CameraButtonManager : MonoBehaviour, IPointerDownHandler,IPointerUp
         {
             CurrentDir = theCamera.direction;
             thePuzzle.BT_ChangeDirection((int)CurrentDir);
+        }
+    }
+
+
+    public void TouchUp()
+    {
+        if (Down == true)
+        {
+            JoyStickObj.transform.position = this.transform.position;
+            theCamera.Down = false;
+            Down = false;
         }
     }
 
