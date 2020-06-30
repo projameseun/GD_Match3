@@ -27,7 +27,7 @@ public class SoundSource : MonoBehaviour
         audioSource.clip = _clip;
         audioSource.loop = _Loop;
         SoundValue = _Value;
-        audioSource.volume = SoundValue * _Value;
+        audioSource.volume = SoundValue;
         audioSource.Play();
 
     }

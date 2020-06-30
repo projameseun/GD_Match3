@@ -20,14 +20,23 @@ public enum FaceType
 [System.Serializable]
 public class MessageDec
 {
+
+
+    [Header("화이트 박스")]
     public Vector2 WhitePos;
     public Vector2 WhiteSize;
+    [Header("대화창")]
     public string Name;
     [TextArea]
     public string Dec;
     public FaceType faceType;
     public float TextBoxPosy;
+    [Header("효과음")]
     public string SeName;
+    [Header("설명 이미지")]
+    public int DecImageNum = -1;
+    public Vector2 DecImagePos;
+
 }
 
 
@@ -42,8 +51,6 @@ public class MessageManager : MonoBehaviour
 {
 
     public Message[] Messages;
-
-
     public GameObject MessageBase;
     public GameObject DecBase;
     public GameObject WhiteBox;
@@ -54,13 +61,12 @@ public class MessageManager : MonoBehaviour
     public TextMeshPro MessageText;
     
     public SpriteRenderer FaceSpriteRen;
+    public SpriteRenderer DecImage;
 
     public Sprite[] FaceSprite;
+    public Sprite[] DecSprites;
 
-
-    Queue<string> NameQ = new Queue<string>();
     Queue<string> DecQ = new Queue<string>();
-    Queue<string> SoundQ = new Queue<string>();
     public bool TutoTouch;
     public bool MessageEnd;
 
@@ -69,6 +75,15 @@ public class MessageManager : MonoBehaviour
 
     WaitForSeconds wait = new WaitForSeconds(0.01f);
     Vector4 TextSize = new Vector4(0, 0, 0, 0);
+    int Num = 0;
+    int Count = 0;
+    string Dec = "";
+    string SoundName = "";
+    int DecImageNum = 0;
+
+
+
+
 
 
     private SoundManager theSound;
@@ -91,13 +106,9 @@ public class MessageManager : MonoBehaviour
         CurrentProgress = _Progress;
         MessageBase.SetActive(true);
         DecQ.Clear();
-        NameQ.Clear();
-        SoundQ.Clear();
         for (int i = 0; i < Messages[CurrentProgress].Decs.Length; i++)
         {
-            NameQ.Enqueue(Messages[CurrentProgress].Decs[i].Name);
             DecQ.Enqueue(Messages[CurrentProgress].Decs[i].Dec);
-            SoundQ.Enqueue(Messages[CurrentProgress].Decs[i].SeName);
         }
         StartCoroutine(ShowMessageCor(CheckEnd));
 
@@ -106,14 +117,18 @@ public class MessageManager : MonoBehaviour
 
     IEnumerator ShowMessageCor(bool CheckEnd)
     {
-        int Num = 0;
-        int Count = 0;
-        string Dec = "";
-        string SoundName = "";
+
+        Num = 0;
+        Dec = "";
+        SoundName = "";
+        DecImageNum = -1;
         while (DecQ.Count > 0)
         {
+            //화이트박스
             WhiteBox.transform.localPosition = Messages[CurrentProgress].Decs[Num].WhitePos;
             WhiteBox.transform.localScale = Messages[CurrentProgress].Decs[Num].WhiteSize;
+
+            //대화창
             DecBase.transform.localPosition = new Vector3(0, Messages[CurrentProgress].Decs[Num].TextBoxPosy, 0);
             if (Messages[CurrentProgress].Decs[Num].faceType == FaceType.FT0_NULL)
             {
@@ -124,7 +139,6 @@ public class MessageManager : MonoBehaviour
                     TextSize.x = -20;
                     MessageText.margin = TextSize;
                 }
-              
             }
             else
             {
@@ -135,16 +149,35 @@ public class MessageManager : MonoBehaviour
                     TextSize.x = 0;
                     MessageText.margin = TextSize;
                 }
-                
+                NameText.text = Messages[CurrentProgress].Decs[Num].Name;
                 FaceSpriteRen.sprite = FaceSprite[(int)Messages[CurrentProgress].Decs[Num].faceType];
             }
-            NameText.text = NameQ.Dequeue();
             Dec = DecQ.Dequeue();
-            SoundName = SoundQ.Dequeue();
+
+            //효과음
+            SoundName = Messages[CurrentProgress].Decs[Num].SeName;
             if (SoundName != "")
             {
                 theSound.PlaySE(SoundName);
             }
+
+
+
+            
+
+            // 설명 이미지
+            DecImageNum = Messages[CurrentProgress].Decs[Num].DecImageNum;
+            if (DecImageNum != -1)
+            {
+                DecImage.enabled = false;
+            }
+            else
+            {
+                DecImage.enabled = true;
+                DecImage.sprite = DecSprites[DecImageNum];
+                DecImage.transform.localPosition = Messages[CurrentProgress].Decs[Num].DecImagePos;
+            }
+
 
             Count = 0;
             Num++;
@@ -177,9 +210,6 @@ public class MessageManager : MonoBehaviour
         {
             MessageEnd = true;
         }
-
         MessageBase.SetActive(false);
-
-
     }
 }

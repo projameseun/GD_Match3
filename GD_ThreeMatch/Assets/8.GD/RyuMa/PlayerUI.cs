@@ -141,26 +141,30 @@ public class PlayerUI : MonoBehaviour
 
         SkillSlider.sprite = thePuzzle.PlayerSkillSprites[_nodeColor];
         SkillBgImage.sprite = thePuzzle.PlayerSkillBGSprites[_nodeColor];
-        
+
+        int Size = 1;
+        if (_PlayerNum == 1)
+            Size = -1;
+
         if (_nodeColor == 0) //파란색
         {
-            GirlCubeImage.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+            GirlCubeImage.transform.localScale = new Vector3(0.9f* Size, 0.9f, 0.9f);
         }
         else if (_nodeColor == 1) // 초록색
         {
-            GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
+            GirlCubeImage.transform.localScale = new Vector3(1* Size, 1, 1);
         }
         else if (_nodeColor == 2) // 핑크
         {
-            GirlCubeImage.transform.localScale = new Vector3(1, 1,1);
+            GirlCubeImage.transform.localScale = new Vector3(1*Size, 1,1);
         }
         else if (_nodeColor == 3) // 빨간색
         {
-            GirlCubeImage.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            GirlCubeImage.transform.localScale = new Vector3(0.8f* Size, 0.8f, 0.8f);
         }
         else if (_nodeColor == 4) // 노란색
         {
-            GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
+            GirlCubeImage.transform.localScale = new Vector3(1 * Size, 1, 1);
         }
         GirlCubeImage.sprite = thePuzzle.CubeSprites[_nodeColor];
         selectGirl = (SelectGirl)_nodeColor;

@@ -607,7 +607,6 @@ public class ObjectManager : MonoBehaviour
 
         GameObject EffectP = null;
 
-        Debug.Log(_EffectNum);
         switch (_EffectNum)
         {
             case 0:
@@ -688,7 +687,8 @@ public class ObjectManager : MonoBehaviour
         while (true)
         {
             GameObject AliceObj = FindObj("AliceSkill", false);
-            AliceObj.transform.position = _StartPos;
+            AliceObj.transform.position = new Vector2(_StartPos.x + Random.Range(-0.1f, 0.1f),
+                _StartPos.y + Random.Range(-0.1f, 0.1f));
             AliceObj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0.0f,360.0f));
             AliceObj.SetActive(true);
             AliceObj.GetComponent<ParticleManager>().ParticleSetting(false,
@@ -714,8 +714,8 @@ public class ObjectManager : MonoBehaviour
         while (true)
         {
             GameObject BerylObj = FindObj("BerylSkill", false);
-            BerylObj.transform.position = new Vector2(_StartPos.x + Random.Range(-0.1f,0.1f),
-                _StartPos.y + Random.Range(-0.1f, 0.1f));
+            BerylObj.transform.position = new Vector2(_StartPos.x + Random.Range(-0.15f,0.15f),
+                _StartPos.y + Random.Range(-0.15f, 0.15f));
             BerylObj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0.0f, 360.0f));
             BerylObj.SetActive(true);
             BerylObj.GetComponent<ParticleManager>().ParticleSetting(false,
@@ -763,7 +763,6 @@ public class ObjectManager : MonoBehaviour
     //SlimeAttackParticle
     public GameObject SlimePEvent(Vector2 TargetVec)
     {
-        Debug.Log("Test");
         //SlimeAttackParticle
         GameObject Paricle = FindObj("SlimeP", false);
 
