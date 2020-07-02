@@ -167,7 +167,7 @@ public class MessageManager : MonoBehaviour
 
             // 설명 이미지
             DecImageNum = Messages[CurrentProgress].Decs[Num].DecImageNum;
-            if (DecImageNum != -1)
+            if (DecImageNum == -1)
             {
                 DecImage.enabled = false;
             }

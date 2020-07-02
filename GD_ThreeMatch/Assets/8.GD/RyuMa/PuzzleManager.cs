@@ -61,6 +61,7 @@ public class PuzzleManager : MonoBehaviour
         SpecialCubeEvent,
         BattleEvent,
         LoadingMap,
+        Tutorial,
 
     }
     public GameMode gameMode = GameMode.MoveMap;
@@ -182,7 +183,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 theFade.FadeOutEnd = false;
                 theTitle.TitleAnim.gameObject.SetActive(false);
-                theGM.state = GMState.GM02_InGame;
+                theGM.state = GMState.GM00_Tutorial;
                 state = State.LoadingMap;
                 MoveCount = 100;
                 SetMoveCount(0);
@@ -2107,6 +2108,7 @@ public class PuzzleManager : MonoBehaviour
         {
             theGM.CurrentProgressNum = 2;
             theMessage.ShowMessageText(1);
+            state = State.Tutorial;
         }
     }
 
