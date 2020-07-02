@@ -147,6 +147,8 @@ public class PuzzleManager : MonoBehaviour
     private CameraButtonManager CameraButton;
     private TitleManager theTitle;
     private MessageManager theMessage;
+    private TutorialManager theTuto;
+    private CameraButtonManager theCameraButton;
     private void Start()
     {
         if (HintButton != null)
@@ -156,6 +158,8 @@ public class PuzzleManager : MonoBehaviour
                 BT_ShowHint();
             });
         }
+        theCameraButton = FindObjectOfType<CameraButtonManager>();
+        theTuto = FindObjectOfType<TutorialManager>();
         theMessage = FindObjectOfType<MessageManager>();
         theTitle = FindObjectOfType<TitleManager>();
         CameraButton = FindObjectOfType<CameraButtonManager>();
@@ -743,6 +747,10 @@ public class PuzzleManager : MonoBehaviour
                     theBattle.SetBattle(theBattle.SelectEnemyNum);
                     ChangeGameMode();
                 }
+            }
+            else if (state == State.Tutorial)
+            {
+                CheckTutorialMessage();
             }
         }
         else if (gameMode == GameMode.Battle)
@@ -1860,6 +1868,12 @@ public class PuzzleManager : MonoBehaviour
             CameraButton.ButtonChange(_Num);
             Player.ChangeDirection(theMoveMap.direction);
         }
+        else if (state == State.Tutorial)
+        {
+            theMoveMap.direction = (Direction)_Num;
+            CameraButton.ButtonChange(_Num);
+            Player.ChangeDirection(theMoveMap.direction);
+        }
     }
 
     // 플레이어 UI를 세팅한다
@@ -2109,6 +2123,15 @@ public class PuzzleManager : MonoBehaviour
             theGM.CurrentProgressNum = 2;
             theMessage.ShowMessageText(1);
             state = State.Tutorial;
+            theTuto.TutoDir = theMoveMap.direction;
+        }
+        else if (theGM.CurrentProgressNum == 2 && theTuto.TutoDir != theMoveMap.direction)
+        {
+            theCameraButton.TouchUp();
+            theGM.CurrentProgressNum = 3;
+            theMessage.ShowMessageText(2);
+            state = State.Ready;
+
         }
     }
 

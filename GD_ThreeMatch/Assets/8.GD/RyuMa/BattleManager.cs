@@ -156,7 +156,7 @@ public class BattleManager : MonoBehaviour
     bool AttackEndEvent; // 마지막 공격때 적용
     float Player1CacHp; // 소녀체력계산
     float Player2CacHp; // 소녀체력계산
-    List<int> ComboNumList = new List<int>(); //콤보 숫자 리스트
+    Queue<int> ComboNumList = new Queue<int>(); //콤보 숫자 리스트
     bool MessageEnd;            //메세지가 있는지 확인한다
 
     bool[] ComboEvent = new bool[3];        //콤보 이밴트
@@ -297,7 +297,15 @@ public class BattleManager : MonoBehaviour
                     {
                         theFade.BattleAnimEnd = false;
                         CheckBattleBGM();
-                        CheckBattleMessage();
+                        if (theGM.state == GMState.GM02_InGame)
+                        {
+                            CheckBattleMessage();
+                        }
+                        else if(theGM.state == GMState.GM00_Tutorial)
+                        {
+                            CheckBattleTutoMessage();
+                        }
+
                     }
                     if (theMessage.MessageEnd == true)
                     {
@@ -732,7 +740,7 @@ public class BattleManager : MonoBehaviour
             {
 
 
-                ComboNumList.Add(ComboNum % 10);
+                ComboNumList.Enqueue(ComboNum % 10);
 
                 if (ComboNum >= 10)
                 {
@@ -754,8 +762,8 @@ public class BattleManager : MonoBehaviour
 
                     if (ComboNumImages[i].gameObject.activeSelf == false)
                         ComboNumImages[i].gameObject.SetActive(true);
-                    ComboNumImages[i].sprite = ComboSprites[ComboNumList[ComboNumList.Count-1]];
-                    ComboNumList.RemoveAt(ComboNumList.Count - 1);
+                    ComboNumImages[i].sprite = ComboSprites[ComboNumList.Dequeue()];
+                    
                 }
                 else
                 {
@@ -864,6 +872,16 @@ public class BattleManager : MonoBehaviour
 
 
     public void CheckBattleMessage()
+    {
+        if (theGM.CurrentProgressNum == 1)
+        {
+            theGM.CurrentProgressNum = 2;
+            theMessage.ShowMessageText(1, true);
+            return;
+        }
+        theMessage.MessageEnd = true;
+    }
+    public void CheckBattleTutoMessage()
     {
         if (theGM.CurrentProgressNum == 1)
         {
