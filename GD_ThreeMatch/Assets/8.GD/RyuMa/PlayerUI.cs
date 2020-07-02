@@ -176,7 +176,6 @@ public class PlayerUI : MonoBehaviour
         HpSlider.fillAmount = 1;
         HpRedSlider.fillAmount = 1;
         MaxSkillGauge = theGirl.Girls[_nodeColor].SkillCount;
-
         HpText.text = string.Format("{0:#,###}/{1:#,###}", CurrentHp, MaxHp);
         CurrentSkillGauge = 0;
         SkillSlider.fillAmount = 0;

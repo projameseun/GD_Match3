@@ -84,11 +84,11 @@ public class PuzzleManager : MonoBehaviour
     //UI 오브젝트
     public CubeUI[] PlayerCubeUI;
     public PlayerUI[] playerUIs; // 0은 왼쪽 캐릭터, 1은 오른쪽 캐릭터
-    public GameObject MinimapBase;
+
     public GameObject MoveUI;
     public GameObject BattleUI;
     public GameObject IllustSlot;
-    public GameObject CubeBar;
+    public Image CubeBar;
     public Button HintButton;
     public TextMeshPro MoveCountText;
     public Image FoodImage;
@@ -194,8 +194,10 @@ public class PuzzleManager : MonoBehaviour
         else if (theGM.state == GMState.GM02_InGame)
         {
             PuzzleUpdate();
-
-
+        }
+        else if (theGM.state == GMState.GM00_Tutorial)
+        {
+            PuzzleTutorialUpdate();
         }
 
 
@@ -557,10 +559,356 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
+    //튜토리얼에서만 사용할 업데이트
+    public void PuzzleTutorialUpdate()
+    {
+        if (gameMode == GameMode.MoveMap)
+        {
+            if (state == State.ChangeMatch) //  큐브를 교환하는 상태
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+
+                    //매치 조건이 맞는지 확인한다
+
+                    int SlotNum = CheckPlayerSlot(theMoveMap);
+                    if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    {
+                        SetMoveCount(-1);
+                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                        {
+                            GameOverMove();
+                            return;
+                        }
+                        CheckPortal(SlotNum);
+                        return;
+                    }
+
+
+                    theMatch.FindAllMatches(theMoveMap);
+                    if (isMatched)
+                    {
+
+                        SetMoveCount(-1);
+                        DestroyCube(theMoveMap);
+                        theMatch.FindSpecialCube(theMoveMap);
+                        return;
+                    }
+
+
+                    //매치가 안될경우
+                    if (!isMatched)
+                    {
+                        ChangeCube(theMoveMap, SelectNum, OtherNum, 4f, true);
+                        state = State.ChangeMatchRetrun;
+                    }
+
+                }
+            }
+            else if (state == State.ChangeMatchRetrun)// 매치조건이 없어서 다시 원위치
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+                    Player.ChangeAnim("Idle", true);
+                    state = State.Ready;
+                }
+            }
+            else if (state == State.FillBlank)// 빈칸을 채우는 상태
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+                    int PlayerSlotNum = CheckPlayerSlot(theMoveMap);
+                    if (theMoveMap.Slots[PlayerSlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    {
+                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                        {
+                            GameOverMove();
+                            return;
+                        }
+                        CheckPortal(PlayerSlotNum);
+                        return;
+                    }
+
+
+
+                    BT_FillBlank(theMoveMap);
+                }
+            }
+            else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
+            {
+                theMatch.FindAllMatches(theMoveMap);
+                if (isMatched)
+                {
+
+                    DestroyCube(theMoveMap);
+                    theMatch.FindSpecialCube(theMoveMap);
+                    return;
+                }
+
+
+                //매치가 안될경우
+                if (!isMatched)
+                {
+                    Player.ChangeAnim("Idle", true);
+
+                    if (CheckEndMatchEvent() == true)
+                    {
+                        return;
+                    }
+
+                    //if (CheckGoal(theMoveMap) == true)
+                    //{
+                    //    state = State.Ready;
+                    //    return;
+                    //}
+                    if (DeadlockCheck(theMoveMap))
+                    {
+                        state = State.Ready;
+                    }
+                    else
+                    {
+                        SetSlot(theMoveMap, true);
+                        state = State.Ready;
+                    }
+                    CheckTutorialMessage();
+
+                }
+            }
+            else if (state == State.DestroyCube)//매치된 큐브 제거
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+                    BT_FillBlank(theMoveMap);
+                }
+            }
+            else if (state == State.SpecialCubeEvent) // 특수블럭 깨지는 상황
+            {
+                if (CubeEvent == true)
+                {
+                    if (theMatch.CheckBoom == true)
+                    {
+                        if (theMatch.CurrentCheckBoomTime > 0)
+                        {
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
+                            BT_FillBlank(theMoveMap);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (theMatch.CurrentCheckBoomTime > 0)
+                        {
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
+                            theMatch.CheckBoom = false;
+                            BT_FillBlank(theMoveMap);
+                            return;
+                        }
+                    }
+                }
+            }
+            else if (state == State.LoadingMap) // 맵을 로딩한 후 페이드 인이 끝났을 때
+            {
+                if (theFade.FadeInEnd == true)
+                {
+                    theFade.FadeInEnd = false;
+                    theFade.ShowMapNameEvent(theMaker.MapName);
+                    CheckMoveBGM();
+                    CheckMoveMessage();
+                    state = State.Ready;
+                }
+            }
+            else if (state == State.ChangeMode)
+            {
+                if (theFade.FadeOutEnd == true)
+                {
+                    theFade.FadeOutEnd = false;
+                    SetSlot(theBattleMap, true);
+                    theBattle.SetBattle(theBattle.SelectEnemyNum);
+                    ChangeGameMode();
+                }
+            }
+        }
+        else if (gameMode == GameMode.Battle)
+        {
+
+            if (state == State.Ready)
+            {
+                theBattle.CheckComboCoolDonw();
+            }
+            else if (state == State.ChangeMatch) //  큐브를 교환하는 상태
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+
+                    //매치 조건이 맞는지 확인한다
+                    theMatch.FindAllMatches(theBattleMap);
+                    if (isMatched)
+                    {
+
+                        SetMoveCount(-1);
+                        DestroyCube(theBattleMap);
+                        theMatch.FindSpecialCube(theBattleMap);
+                        return;
+                    }
+
+
+                    //매치가 안될경우
+                    if (!isMatched)
+                    {
+                        ChangeCube(theBattleMap, SelectNum, OtherNum, 4f, true);
+                        state = State.ChangeMatchRetrun;
+                    }
+
+                }
+            }
+            else if (state == State.ChangeMatchRetrun)// 매치조건이 없어서 다시 원위치
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+                    theBattle.ResetCombo();
+                    state = State.Ready;
+                }
+            }
+            else if (state == State.FillBlank)// 빈칸을 채우는 상태
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+                    BT_FillBlank(theBattleMap);
+
+                }
+
+
+            }
+            else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
+            {
+                if (theBattle.PlayerAttackEffectList.Count > 0 && theBattle.CurrentEnemyCount == 0)
+                    return;
+
+                theMatch.FindAllMatches(theBattleMap);
+                if (isMatched)
+                {
+
+                    DestroyCube(theBattleMap);
+                    theMatch.FindSpecialCube(theBattleMap);
+                    return;
+                }
+                //매치가 안될경우
+                if (!isMatched)
+                {
+                    if (DeadlockCheck(theBattleMap))
+                    {
+                        // 카운트가 0이되어 적이 공격함
+                        if (theBattle.CurrentEnemyCount <= 0)
+                        {
+                            theBattle.battleState = BattleState.EnemyAttack;
+                            state = State.BattleEvent;
+                            return;
+                        }
+
+
+                        state = State.Ready;
+                    }
+                    else
+                    {
+                        SetSlot(theBattleMap, true);
+                        state = State.Ready;
+                    }
+                }
+            }
+            else if (state == State.DestroyCube)//매치된 큐브 제거
+            {
+                if (CubeEvent == true)
+                {
+                    CubeEvent = false;
+                    BT_FillBlank(theBattleMap);
+                }
+            }
+            else if (state == State.SpecialCubeEvent) // 특수블럭 깨지는 상황
+            {
+                if (CubeEvent == true)
+                {
+                    if (theMatch.CheckBoom == true)
+                    {
+                        if (theMatch.CurrentCheckBoomTime > 0)
+                        {
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CheckBoom = false;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
+                            BT_FillBlank(theBattleMap);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (theMatch.CurrentCheckBoomTime > 0)
+                        {
+                            theMatch.CurrentCheckBoomTime -= Time.deltaTime;
+                            return;
+                        }
+                        else
+                        {
+                            CubeEvent = false;
+                            theMatch.CurrentCheckBoomTime = theMatch.MaxCheckBoomTime;
+                            BT_FillBlank(theBattleMap);
+                            return;
+                        }
+                    }
+                }
+            }
+
+
+
+        }
+        else if (gameMode == GameMode.GameOver)
+        {
+            if (theFade.FadeOutEnd == true)
+            {
+                theFade.FadeOutEnd = false;
+                GameOver();
+            }
+            if (theFade.FadeInEnd == true)
+            {
+                theFade.FadeInEnd = false;
+                theGM.state = GMState.GM00_Title;
+                state = State.Ready;
+                theSound.PlayBGM("TitleBGM");
+                theTitle.TitleAnim.Play("Start1");
+            }
+
+        }
+
+    }
+
     //슬롯을 채운다. false일 경우 최초실행, true일 경우 현재 맵에서 리셋
 
     public void LoadMap(MapManager _Map, bool ReLoadMap) //맵을 다시 불러온다면 true, 처음이면 false
     {
+        CubeBar.sprite = theObject.CubeBarSpirte[(int)theMaker.mapMainType];
+
         PortalName.Clear();
 
 
@@ -1535,10 +1883,6 @@ public class PuzzleManager : MonoBehaviour
     }
 
 
-    public void BT_Minimap()
-    {
-        MinimapBase.SetActive(!MinimapBase.activeSelf);
-    }
 
 
 
@@ -1755,6 +2099,17 @@ public class PuzzleManager : MonoBehaviour
         }
         
     }
+
+    public void CheckTutorialMessage()
+    {
+        // 처음으로 매치를 했다
+        if (theGM.CurrentProgressNum == 1)
+        {
+            theGM.CurrentProgressNum = 2;
+            theMessage.ShowMessageText(1);
+        }
+    }
+
 
 
     public void ResetMoveMap()

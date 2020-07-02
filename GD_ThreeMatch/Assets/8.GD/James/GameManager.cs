@@ -75,8 +75,10 @@ public class PlayerSaveData
 public enum GMState
 { 
     GM00_Title = 0,
+    GM00_Tutorial,
     GM01_Lobby,
     GM02_InGame,
+    
 }
 
 

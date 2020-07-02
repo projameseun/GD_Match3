@@ -12,7 +12,13 @@ public class ObjectManager : MonoBehaviour
     [Header("Sprite")]
     public Sprite[] SlotPanelSprite;
     public Sprite EnemySlotSprite;
-    public Sprite[] ForestSprites;
+    public Sprite[] CubeBarSpirte;
+
+
+    [Header("ObjectSprite")]
+    public Sprite[] ForestObjectSprites;
+
+
 
 
     [Header("UI")]
