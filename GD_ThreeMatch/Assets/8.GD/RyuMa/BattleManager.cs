@@ -305,10 +305,6 @@ public class BattleManager : MonoBehaviour
                         {
                             CheckBattleMessage();
                         }
-                        else if(theGM.state == GMState.GM00_Tutorial)
-                        {
-                            CheckBattleTutoMessage();
-                        }
 
                     }
                     if (theMessage.MessageEnd == true)
@@ -451,11 +447,8 @@ public class BattleManager : MonoBehaviour
                     {
                         theFade.BattleAnimEnd = false;
                         CheckBattleBGM();
-                        if (theGM.state == GMState.GM02_InGame)
-                        {
-                            CheckBattleMessage();
-                        }
-                        else if (theGM.state == GMState.GM00_Tutorial)
+                        
+                        if (theGM.state == GMState.GM00_Tutorial)
                         {
                             CheckBattleTutoMessage();
                         }
