@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8736846741950948279}
   - component: {fileID: 5068438941194658850}
   - component: {fileID: 8831005911744009131}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,5 @@ MonoBehaviour:
   nodeColor: 0
   SpriteRen: {fileID: 5068438941194658850}
   Num: 0
-  Size: 0
   SpecialCube: 0
   SkillDamage: 0

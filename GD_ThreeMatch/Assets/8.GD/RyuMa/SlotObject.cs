@@ -32,7 +32,7 @@ public class SlotObject : MonoBehaviour
 
     public GameObject EnemySkull;
     public SpriteRenderer SpriteRen;
-
+    public SpriteRenderer MiniMap;
     int SlotNum;
 
 
@@ -122,6 +122,7 @@ public class SlotObject : MonoBehaviour
                 case MapMainType.M0_Forest:
                     if((int)_Sheet < theObject.ForestObjectSprites.Length)
                         SpriteRen.sprite = theObject.ForestObjectSprites[(int)_Sheet];
+                    MiniMap.sprite = theObject.EnemySlotSprite;
                     break;
             }
         }
