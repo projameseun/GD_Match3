@@ -58,7 +58,7 @@ public class Cube : MonoBehaviour
             this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed * Time.deltaTime);
 
 
-            if (Vector2.Distance(this.transform.position, TargetVec) <= (Speed * Time.deltaTime) / 2)
+            if (Vector2.Distance(this.transform.position, TargetVec) <= (Speed * Time.fixedDeltaTime) / 2)
             {
                 this.transform.position = TargetVec;
                 Move = false;

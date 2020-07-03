@@ -202,6 +202,10 @@ public class BattleManager : MonoBehaviour
         {
             BattleUpdate();
         }
+        else if (theGM.state == GMState.GM00_Tutorial)
+        {
+            TutoBattleUpdate();
+        }
     }
 
     public void BattleUpdate()
@@ -353,6 +357,157 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    public void TutoBattleUpdate()
+    {
+        if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        {
+            //콤보 이밴트
+            if (ComboEvent[0] == true)
+            {
+                if (ComboEvent[1] == false)
+                {
+                    if (CurrentNumSize < OverNumSize)
+                    {
+                        CurrentNumSize += Time.deltaTime * 5;
+                    }
+                    else
+                    {
+                        ComboEvent[1] = true;
+                    }
+                }
+                else if (ComboEvent[2] == false)
+                {
+                    if (CurrentNumSize > MaxNumSize)
+                    {
+                        CurrentNumSize -= Time.deltaTime * 3;
+                    }
+                    else
+                    {
+                        CurrentNumSize = MaxNumSize;
+                        ComboEvent[0] = false;
+                        ComboEvent[1] = false;
+                    }
+                }
+                ComboGrid.transform.localScale = new Vector3(CurrentNumSize, CurrentNumSize, 1);
+            }
+            if (ComboEvent[2] == true)
+            {
+                if (ComboEventTime > 0)
+                {
+                    ComboEventTime -= Time.deltaTime;
+
+                }
+                else
+                {
+                    ComboEventTime = 0;
+                    ComboEvent[0] = false;
+                    ComboEvent[1] = false;
+                    ComboEvent[2] = false;
+                    ComboBase.gameObject.SetActive(false);
+                    ComboNumImages[0].gameObject.SetActive(false);
+                    ComboNumImages[1].gameObject.SetActive(false);
+                    ComboNumImages[2].gameObject.SetActive(false);
+                }
+                ComboColor.a = ComboEventTime;
+                ComboGuageBG.color = ComboColor;
+                ComboBase.color = ComboColor;
+                for (int i = 0; i < 3; i++)
+                {
+                    ComboNumImages[i].color = ComboColor;
+                }
+            }
+
+
+            //몬스터가 데미지를 입으면 색을 빨간색으로 해주는 이밴트
+            if (DamageEvent == true)
+            {
+                if (DamageTime <= 1)
+                {
+                    DamageTime += Time.deltaTime * 2;
+                    DamageColor.g = DamageTime;
+                    DamageColor.b = DamageTime;
+                    EnemyAnim.skeleton.SetColor(DamageColor);
+                }
+                else
+                {
+                    DamageEvent = false;
+                    DamageTime = 0f;
+                    EnemyAnim.skeleton.SetColor(new Color(1, 1, 1));
+                }
+            }
+
+            if (thePuzzle.state == PuzzleManager.State.BattleEvent)
+            {
+                //처음 배틀 시작할 때 세팅을 해준다
+                if (battleState == BattleState.BattleInit)
+                {
+                    if (theFade.FadeInEnd == true)
+                    {
+                        theFade.FadeInEnd = false;
+                        theFade.ShowBattleAnim();
+                    }
+                    if (theFade.BattleAnimEnd == true)
+                    {
+                        theFade.BattleAnimEnd = false;
+                        CheckBattleBGM();
+                        if (theGM.state == GMState.GM02_InGame)
+                        {
+                            CheckBattleMessage();
+                        }
+                        else if (theGM.state == GMState.GM00_Tutorial)
+                        {
+                            CheckBattleTutoMessage();
+                        }
+
+                    }
+                    if (theMessage.MessageEnd == true)
+                    {
+                        thePuzzle.CheckEnemyCubeCount();
+                    }
+
+                }
+                // 몬스터가 공격할 때 실행한다
+                else if (battleState == BattleState.EnemyAttack)
+                {
+                    if (PlayerAttackEffectList.Count > 0 || DamageEvent == true)
+                        return;
+
+                    if (BattleEvent == true && EnemyAttackEffectList.Count == 0)
+                    {
+                        EnemyAttackEnd();
+                        return;
+                    }
+
+                    EnemyAttackEvent();
+                    if (AttackEffectEventTime > 0)
+                    {
+                        AttackEffectEventTime -= Time.deltaTime;
+                    }
+
+
+                    //몬스터 공격 이밴트
+                }
+                // 몬스터가 죽었을 때 실행한다
+                else if (battleState == BattleState.EnemyDie)
+                {
+                    if (theFade.FadeOutEnd == true)
+                    {
+                        theFade.FadeOutEnd = false;
+                        theFade.CloseBlackChat();
+                        thePuzzle.ChangeGameMode();
+                        thePuzzle.CheckEnemyData();
+                        thePuzzle.CubeEvent = false;
+                        thePuzzle.state = PuzzleManager.State.LoadingMap;
+                        theFade.FadeInEvent();
+                    }
+                }
+
+
+            }
+        }
+    }
+
 
 
     public void SetBattle(int _enemyNum)

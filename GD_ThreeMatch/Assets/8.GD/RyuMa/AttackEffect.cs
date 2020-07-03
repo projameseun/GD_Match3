@@ -159,7 +159,7 @@ public class AttackEffect : MonoBehaviour
     {
         FrontPos = FrontObj.transform.position - this.transform.position;
         FrontPos.Normalize();
-        RB2D.velocity = FrontPos * CurrentSpeed * Time.deltaTime;
+        RB2D.velocity = FrontPos * CurrentSpeed * Time.fixedDeltaTime;
     }
 
 
