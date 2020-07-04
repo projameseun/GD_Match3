@@ -19,8 +19,8 @@ public class ObjectManager : MonoBehaviour
     [Header("ObjectSprite")]
     public Sprite[] ForestObjectSprites;
 
-
-
+    [Header("OtherSprite")]
+    public Sprite[] DamageSprites;
 
     [Header("UI")]
     public GameObject WorldCanvasObj;
@@ -332,7 +332,7 @@ public class ObjectManager : MonoBehaviour
         GameObject AttackEffect = AttackEffectEvent(this.transform.position, this.gameObject, 0, 0, false, AttackEffectType.ET0_Null);
         AttackEffect.GetComponent<AttackEffect>().DestroyCount = 1;
 
-        DamageTextEvent(this.transform.position, "test",true, 1);
+        DamageTextEvent(this.transform.position, 999,true, 1);
 
 
         for (int i = 0; i < 10; i++)
@@ -640,7 +640,7 @@ public class ObjectManager : MonoBehaviour
     }
 
 
-    public GameObject DamageTextEvent(Vector2 _startPos, string _Value, bool EnemyHit= true,float _Time = 1.5f)
+    public GameObject DamageTextEvent(Vector2 _startPos, int _Value, bool EnemyHit= true,float _Time = 1.5f)
     {
         GameObject TextOBJ = FindObj("DamageText");
         TextOBJ.transform.SetParent(WorldCanvasObj.transform);

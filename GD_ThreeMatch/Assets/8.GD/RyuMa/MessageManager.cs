@@ -20,8 +20,6 @@ public enum FaceType
 [System.Serializable]
 public class MessageDec
 {
-
-
     [Header("화이트 박스")]
     public Vector2 WhitePos;
     public Vector2 WhiteSize;
@@ -51,6 +49,9 @@ public class MessageManager : MonoBehaviour
 {
 
     public Message[] Messages;
+    public Sprite[] FaceSprite;
+    public Sprite[] DecSprites;
+
     public GameObject MessageBase;
     public GameObject DecBase;
     public GameObject WhiteBox;
@@ -63,8 +64,7 @@ public class MessageManager : MonoBehaviour
     public SpriteRenderer FaceSpriteRen;
     public SpriteRenderer DecImage;
 
-    public Sprite[] FaceSprite;
-    public Sprite[] DecSprites;
+
 
     Queue<string> DecQ = new Queue<string>();
     public bool TutoTouch;

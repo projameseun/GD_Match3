@@ -18,7 +18,7 @@ public class PlayerUI : MonoBehaviour
 {
     public SkeletonAnimation SpinAnim;
     public PlayerUIState state;
-
+    
 
     public GameObject Trigger;
     public Image HpStateImage;
@@ -29,6 +29,7 @@ public class PlayerUI : MonoBehaviour
     public Image SkillSlider;
     public TextMeshPro SkillGaugeText;
     public Image GirlCubeImage;
+    public GameObject SkillGaugeOn;
 
     public int PlayerUINum;
     public SelectGirl selectGirl;
@@ -263,7 +264,7 @@ public class PlayerUI : MonoBehaviour
 
     public void TakeDamage(AttackEffect _Effect)
     {
-        theObject.DamageTextEvent(Trigger.transform.position, _Effect.DamageValue.ToString(), false);
+        theObject.DamageTextEvent(Trigger.transform.position, (int)_Effect.DamageValue, false);
         TakeDamageEvent(_Effect.DamageValue);
 
 

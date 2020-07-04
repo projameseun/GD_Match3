@@ -5,10 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 public class DamageText : MonoBehaviour
 {
-    public TextMeshPro damageText;
+    public GameObject DamageObj;
     public GameObject EnemyHitObj;
+    public Image[] NumImages;
 
 
+    int NumCount;
+    Stack<int> DamageList = new Stack<int>();
     bool FlotingEvent;
     float FlotingTime;
     float Speed = 0.3f;
@@ -26,8 +29,8 @@ public class DamageText : MonoBehaviour
     {
         if (FlotingEvent == true)
         {
-            damageText.transform.position = Vector2.MoveTowards(
-                damageText.transform.position,
+            DamageObj.transform.position = Vector2.MoveTowards(
+                DamageObj.transform.position,
                 Target, Speed * Time.deltaTime);
 
             if (Punch == true)
@@ -35,29 +38,29 @@ public class DamageText : MonoBehaviour
                 PunchTime += Time.deltaTime * 12;
                 if (PunchTime < 2)
                 {
-                    SizeVec.x = PunchTime/10;
-                    SizeVec.y = PunchTime/10;
+                    SizeVec.x = PunchTime;
+                    SizeVec.y = PunchTime;
                 }
                 else
                 {
                     PunchTime = 2;
                     Punch = false;
                 }
-                damageText.transform.localScale = SizeVec;
+                DamageObj.transform.localScale = SizeVec;
             }
             else if (Punch == false && PunchTime > 1)
             {
                 PunchTime -= Time.deltaTime * 12;
                 if (PunchTime > 1)
                 {
-                    SizeVec.x = PunchTime/10;
-                    SizeVec.y = PunchTime/10;
+                    SizeVec.x = PunchTime;
+                    SizeVec.y = PunchTime;
                 }
                 else
                 {
                     PunchTime = 1;
                 }
-                damageText.transform.localScale = SizeVec;
+                DamageObj.transform.localScale = SizeVec;
             }
 
             if (FlotingTime > 0)
@@ -66,7 +69,10 @@ public class DamageText : MonoBehaviour
                 if (FlotingTime < 1)
                 {
                     color.a = FlotingTime;
-                    damageText.color = color;
+                    for (int i = 0; i < NumCount; i++)
+                    {
+                        NumImages[i].color = color;
+                    }
                 }
             }
             else
@@ -77,7 +83,7 @@ public class DamageText : MonoBehaviour
     }
 
 
-    public void SetDamageText(Vector2 _StartVec, string _Value,bool EnemyHit , float _Time = 1.5f)
+    public void SetDamageText(Vector2 _StartVec, int _Value,bool EnemyHit , float _Time = 1.5f)
     {
         if (theObject == null)
             theObject = FindObjectOfType<ObjectManager>();
@@ -92,13 +98,52 @@ public class DamageText : MonoBehaviour
 
         Punch = true;
         PunchTime = 1;
+        int Damage = _Value;
+        Debug.Log(Damage);
+        while (true)
+        {
+            DamageList.Push(Damage % 10);
 
+            if (Damage >= 10)
+            {
+                Damage /= 10;
 
+            }
+            else
+            {
+                break;
+            }
+        }
 
-        damageText.text = _Value;
-        color = damageText.color;
+        NumCount = DamageList.Count;
+
+        for (int i = 0; i < NumCount; i++)
+        {
+
+            if (DamageList.Count > 0)
+            {
+
+                if (NumImages[i].gameObject.activeSelf == false)
+                    NumImages[i].gameObject.SetActive(true);
+                NumImages[i].sprite = theObject.DamageSprites[DamageList.Pop()];
+
+            }
+            else
+            {
+                if (NumImages[i].gameObject.activeSelf == true)
+                    NumImages[i].gameObject.SetActive(false);
+            }
+
+        }
+
+        color.r = 1;
+        color.g = 1;
+        color.b = 1;
         color.a = 1;
-        damageText.color = color;
+        for (int i = 0; i < NumCount; i++)
+        {
+            NumImages[i].color = color;
+        }
         FlotingTime = _Time;
         FlotingEvent = true;
         Target = this.transform.position;
@@ -107,11 +152,15 @@ public class DamageText : MonoBehaviour
 
     public void Resetting()
     {
-
+        for (int i = 0; i < NumImages.Length; i++)
+        {
+            NumImages[i].gameObject.SetActive(false);
+        }
         FlotingEvent = false;
-        damageText.transform.position = this.transform.position;
+        DamageObj.transform.position = this.transform.position;
         this.gameObject.SetActive(false);
         theObject.DamageTexts.Enqueue(this.gameObject);
+
 
     }
 

@@ -156,7 +156,7 @@ public class BattleManager : MonoBehaviour
     bool AttackEndEvent; // 마지막 공격때 적용
     float Player1CacHp; // 소녀체력계산
     float Player2CacHp; // 소녀체력계산
-    Queue<int> ComboNumList = new Queue<int>(); //콤보 숫자 리스트
+    Stack<int> ComboNumList = new Stack<int>(); //콤보 숫자 리스트
     bool MessageEnd;            //메세지가 있는지 확인한다
 
     bool[] ComboEvent = new bool[3];        //콤보 이밴트
@@ -888,7 +888,7 @@ public class BattleManager : MonoBehaviour
             {
 
 
-                ComboNumList.Enqueue(ComboNum % 10);
+                ComboNumList.Push(ComboNum % 10);
 
                 if (ComboNum >= 10)
                 {
@@ -910,7 +910,7 @@ public class BattleManager : MonoBehaviour
 
                     if (ComboNumImages[i].gameObject.activeSelf == false)
                         ComboNumImages[i].gameObject.SetActive(true);
-                    ComboNumImages[i].sprite = ComboSprites[ComboNumList.Dequeue()];
+                    ComboNumImages[i].sprite = ComboSprites[ComboNumList.Pop()];
                     
                 }
                 else

@@ -180,7 +180,7 @@ public class CubeEffect : MonoBehaviour
             if (_UI.CubeCount + CubeCount >= 0)
             {
                 if (CubeCount < 0)
-                    theObject.DamageTextEvent(this.transform.position, (-CubeCount).ToString());
+                    theObject.DamageTextEvent(this.transform.position, (int)(-CubeCount));
                 theBattle.TakeDamage(CubeCount);
             }
             else
@@ -190,7 +190,7 @@ public class CubeEffect : MonoBehaviour
                 {
                     if (_UI.CubeCount != 0)
                     {
-                        theObject.DamageTextEvent(this.transform.position, (_UI.CubeCount).ToString());
+                        theObject.DamageTextEvent(this.transform.position, (int)(_UI.CubeCount));
                         theBattle.TakeDamage(-_UI.CubeCount);
                     }
                 }

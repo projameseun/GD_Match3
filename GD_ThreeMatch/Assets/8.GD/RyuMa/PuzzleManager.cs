@@ -1984,6 +1984,8 @@ public class PuzzleManager : MonoBehaviour
 
         }
     }
+
+    //몬스터가 죽으면 해당 몬스터 데이터시트 확인한다
     public void CheckEnemyData()
     {
         int SlotNum = CheckPlayerSlot(theMoveMap);
@@ -2146,6 +2148,11 @@ public class PuzzleManager : MonoBehaviour
             theGM.CurrentProgressNum = 4;
             theMessage.ShowMessageText(3);
             state = State.Ready;
+        }
+        else if (theGM.CurrentProgressNum == 4 && theGM.EnemyDataSheet[1] == true)
+        {
+            theGM.CurrentProgressNum = 5;
+            Debug.Log("Test");
         }
     }
 
