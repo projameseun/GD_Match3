@@ -83,15 +83,41 @@ public class SlotObject : MonoBehaviour
                 }
                 else
                 {
-                    EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f));
-                    SpriteRen.sprite = theObject.EnemySlotSprite;
+                    EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f),
+                        thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.SlotImageIndex);
+
+                    if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 10)
+                    {
+                        SpriteRen.sprite = theObject.EnemySlotSprite[0];
+                    }
+                    else if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 20)
+                    {
+                        SpriteRen.sprite = theObject.EnemySlotSprite[1];
+                    }
+                    else
+                    {
+                        SpriteRen.sprite = theObject.EnemySlotSprite[2];
+                    }
+                   
                     thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
                 }
             }
             else
             {
-                EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f));
-                SpriteRen.sprite = theObject.EnemySlotSprite;
+                EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f),
+                    thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.SlotImageIndex);
+                if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 10)
+                {
+                    SpriteRen.sprite = theObject.EnemySlotSprite[0];
+                }
+                else if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 20)
+                {
+                    SpriteRen.sprite = theObject.EnemySlotSprite[1];
+                }
+                else
+                {
+                    SpriteRen.sprite = theObject.EnemySlotSprite[2];
+                }
                 thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
             }
             
@@ -122,7 +148,7 @@ public class SlotObject : MonoBehaviour
                 case MapMainType.M0_Forest:
                     if((int)_Sheet < theObject.ForestObjectSprites.Length)
                         SpriteRen.sprite = theObject.ForestObjectSprites[(int)_Sheet];
-                    MiniMap.sprite = theObject.EnemySlotSprite;
+                    //MiniMap.sprite = theObject.EnemySlotSprite;
                     break;
             }
         }

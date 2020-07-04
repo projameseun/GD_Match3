@@ -734,7 +734,7 @@ public class PuzzleManager : MonoBehaviour
                     theFade.FadeInEnd = false;
                     theFade.ShowMapNameEvent(theMaker.MapName);
                     CheckMoveBGM();
-                    CheckMoveMessage();
+                    CheckTutorialMessage();
                     state = State.Ready;
                 }
             }
@@ -2107,31 +2107,45 @@ public class PuzzleManager : MonoBehaviour
 
     public void CheckMoveMessage()
     {
-        if (theGM.CurrentProgressNum == 0)
-        {
-            theGM.CurrentProgressNum = 1;
-            theMessage.ShowMessageText(0);
-        }
+        //if (theGM.CurrentProgressNum == 0)
+        //{
+        //    theGM.CurrentProgressNum = 1;
+        //    theMessage.ShowMessageText(0);
+        //}
         
     }
 
     public void CheckTutorialMessage()
     {
+
+        // 타이틀을 누르고 처음 시작했을때
+        if (theGM.CurrentProgressNum == 0)
+        {
+            theGM.CurrentProgressNum = 1;
+            theMessage.ShowMessageText(0);
+        }
         // 처음으로 매치를 했다
-        if (theGM.CurrentProgressNum == 1)
+        else if (theGM.CurrentProgressNum == 1)
         {
             theGM.CurrentProgressNum = 2;
             theMessage.ShowMessageText(1);
             state = State.Tutorial;
             theTuto.TutoDir = theMoveMap.direction;
         }
+        // 방향키를 바꿨다
         else if (theGM.CurrentProgressNum == 2 && theTuto.TutoDir != theMoveMap.direction)
         {
             theCameraButton.TouchUp();
             theGM.CurrentProgressNum = 3;
             theMessage.ShowMessageText(2);
             state = State.Ready;
-
+        }
+        //속삭이는 숲2에 도착했다
+        else if (theGM.CurrentProgressNum == 3 && theMaker.MapName == "속삭이는 숲2")
+        {
+            theGM.CurrentProgressNum = 4;
+            theMessage.ShowMessageText(3);
+            state = State.Ready;
         }
     }
 

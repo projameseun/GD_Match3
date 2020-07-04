@@ -11,7 +11,8 @@ public class ObjectManager : MonoBehaviour
     // 오브젝트 타일 이미지
     [Header("Sprite")]
     public Sprite[] SlotPanelSprite;
-    public Sprite EnemySlotSprite;
+    public Sprite[] SkullSprite;
+    public Sprite[] EnemySlotSprite;
     public Sprite[] CubeBarSpirte;
 
 
@@ -545,9 +546,11 @@ public class ObjectManager : MonoBehaviour
     }
 
 
-    public GameObject SpawnEnemySkull(Vector2 StartVec)
+    public GameObject SpawnEnemySkull(Vector2 StartVec, int SkullNum)
     {
+
         GameObject Skull = FindObj("EnemySkull");
+        Skull.GetComponent<SpriteRenderer>().sprite = SkullSprite[SkullNum];
         Skull.transform.position = StartVec;
         return Skull;
     }

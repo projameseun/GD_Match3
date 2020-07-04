@@ -24,7 +24,6 @@ public enum NodeColor
 [System.Serializable]
 public class MonsterSheet
 {
-
     //몬스터 시트
     public int SlotImageIndex;
     public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
