@@ -15,9 +15,11 @@ public class TitleManager : MonoBehaviour
     private FadeManager theFade;
     private SoundManager theSound;
     private PuzzleManager thePuzzle;
+    private GameEndManager theEnd;
     // Start is called before the first frame update
     void Start()
     {
+        theEnd = FindObjectOfType<GameEndManager>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theSound = FindObjectOfType<SoundManager>();
         theGM = FindObjectOfType<GameManager>();
@@ -26,6 +28,7 @@ public class TitleManager : MonoBehaviour
         {
             if (TouchOnOff == true)
                 return;
+            theEnd.GameEndOn = false;
             theSound.SEValue = 1;
             theSound.PlaySE("ButtonSE");
             TouchOnOff = true;

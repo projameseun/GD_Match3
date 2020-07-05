@@ -16,6 +16,7 @@ ScriptsOnlyBuild:
     - DamageText
     - FadeManager
     - FindMatches
+    - GameEndManager
     - GameManager
     - GirlManager
     - HitParticle
@@ -247,6 +248,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13458}
     - Class: 114
       Script: {instanceID: 13464}
+    - Class: 114
+      Script: {instanceID: 24444}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -462,7 +465,7 @@ ScriptsOnlyBuild:
     className: FadeManager
   - hash:
       serializedVersion: 2
-      Hash: 373e662e14bdd2a47d15966b4cb72082
+      Hash: d0e5518b284188a8121eee8f2b3e5d77
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MessageManager
@@ -1120,6 +1123,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b2a2e021581bc7a0fe32a6a0215adb94
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameEndManager
   platform: 13
   scenePathNames:
   - Assets/1.Scenes/InGame.unity

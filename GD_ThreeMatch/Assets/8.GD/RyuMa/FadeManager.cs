@@ -51,8 +51,10 @@ public class FadeManager : MonoBehaviour
 
     private SoundManager theSound;
     private CameraButtonManager theCameraButton;
+    private GameEndManager theEnd;
     private void Start()
     {
+        theEnd = FindObjectOfType<GameEndManager>();
         theCameraButton = FindObjectOfType<CameraButtonManager>();
         theSound = FindObjectOfType<SoundManager>();
         if (BlackChatBase != null)
@@ -72,6 +74,8 @@ public class FadeManager : MonoBehaviour
 
     public void FadeOutEvent(bool Show = true)
     {
+        theEnd.BT_No();
+        theEnd.GameEndOn = false;
         FadeBase.SetActive(true);
         color = new Color(1, 1, 1, 0);
         FadeImage.color = color;
@@ -97,6 +101,8 @@ public class FadeManager : MonoBehaviour
 
     public void ShowBlackChat(string _Title, string _Des)
     {
+        theEnd.BT_No();
+        theEnd.GameEndOn = false;
         BlackChatBase.SetActive(true);
         TitleText.text = _Title;
         DesText.text = _Des;

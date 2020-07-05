@@ -73,6 +73,8 @@ public class MessageManager : MonoBehaviour
     public int CurrentProgress = 0;
 
 
+    [HideInInspector] public bool MessageOn;
+
     WaitForSeconds wait = new WaitForSeconds(0.01f);
     Vector4 TextSize = new Vector4(0, 0, 0, 0);
     int Num = 0;
@@ -87,8 +89,10 @@ public class MessageManager : MonoBehaviour
 
 
     private SoundManager theSound;
+    private GameEndManager theGameEnd;
     private void Start()
     {
+        theGameEnd = FindObjectOfType<GameEndManager>();
         theSound = FindObjectOfType<SoundManager>();
         if (TouchPanel != null)
         {
@@ -103,6 +107,9 @@ public class MessageManager : MonoBehaviour
 
     public void ShowMessageText(int _Progress, bool CheckEnd = false)
     {
+        theGameEnd.BT_No();
+        theGameEnd.GameEndOn = false;
+        MessageOn = true;
         CurrentProgress = _Progress;
         MessageBase.SetActive(true);
         DecQ.Clear();
@@ -210,6 +217,7 @@ public class MessageManager : MonoBehaviour
         {
             MessageEnd = true;
         }
+        theGameEnd.GameEndOn = true;
         MessageBase.SetActive(false);
     }
 }

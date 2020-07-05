@@ -142,10 +142,12 @@ public class PlayerUI : MonoBehaviour
 
         SkillSlider.sprite = thePuzzle.PlayerSkillSprites[_nodeColor];
         SkillBgImage.sprite = thePuzzle.PlayerSkillBGSprites[_nodeColor];
-
+        
         int Size = 1;
         if (_PlayerNum == 1)
             Size = -1;
+
+        SkillGaugeOn.SetActive(false);
 
         if (_nodeColor == 0) //파란색
         {

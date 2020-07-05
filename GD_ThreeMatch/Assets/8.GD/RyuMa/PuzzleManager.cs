@@ -149,6 +149,7 @@ public class PuzzleManager : MonoBehaviour
     private MessageManager theMessage;
     private TutorialManager theTuto;
     private CameraButtonManager theCameraButton;
+    private GameEndManager theEnd;
     private void Start()
     {
         if (HintButton != null)
@@ -158,6 +159,7 @@ public class PuzzleManager : MonoBehaviour
                 BT_ShowHint();
             });
         }
+        theEnd = FindObjectOfType<GameEndManager>();
         theCameraButton = FindObjectOfType<CameraButtonManager>();
         theTuto = FindObjectOfType<TutorialManager>();
         theMessage = FindObjectOfType<MessageManager>();
@@ -1980,6 +1982,7 @@ public class PuzzleManager : MonoBehaviour
                 theBattle.BattleStart = true;
                 theBattle.battleState = BattleState.Null;
                 theMessage.MessageEnd = false;
+                theEnd.GameEndOn = true;
             }
 
 
@@ -2175,6 +2178,10 @@ public class PuzzleManager : MonoBehaviour
             SetMoveCount(999);
             theMessage.ShowMessageText(6);
 
+        }
+        else
+        {
+            theEnd.GameEndOn = true;
         }
 
     }
