@@ -1031,10 +1031,10 @@ public class BattleManager : MonoBehaviour
     }
     public void CheckBattleTutoMessage()
     {
-        if (theGM.CurrentProgressNum == 1)
+        if (theGM.CurrentProgressNum == 4)
         {
-            theGM.CurrentProgressNum = 2;
-            theMessage.ShowMessageText(1, true);
+            theGM.CurrentProgressNum = 5;
+            theMessage.ShowMessageText(4, true);
             return;
         }
         theMessage.MessageEnd = true;

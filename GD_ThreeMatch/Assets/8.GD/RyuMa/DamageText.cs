@@ -99,7 +99,6 @@ public class DamageText : MonoBehaviour
         Punch = true;
         PunchTime = 1;
         int Damage = _Value;
-        Debug.Log(Damage);
         while (true)
         {
             DamageList.Push(Damage % 10);
