@@ -245,6 +245,7 @@ MonoBehaviour:
   SkillSlider: {fileID: 7011241085853864104}
   SkillGaugeText: {fileID: 7011241085493943576}
   GirlCubeImage: {fileID: 7011241085784809882}
+  SkillGaugeOn: {fileID: 0}
   PlayerUINum: 0
   selectGirl: 0
   MaxHp: 0

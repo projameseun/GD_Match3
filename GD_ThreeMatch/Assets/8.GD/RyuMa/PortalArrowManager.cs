@@ -124,7 +124,7 @@ public class PortalArrowManager : MonoBehaviour
     {
 
         this.gameObject.SetActive(false);
-        theObject.PortalArrows.Enqueue(this.gameObject);
+        //theObject.PortalArrows.Enqueue(this.gameObject);
     }
 
 }

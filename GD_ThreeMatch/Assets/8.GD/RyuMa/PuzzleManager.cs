@@ -131,7 +131,7 @@ public class PuzzleManager : MonoBehaviour
     Vector3 BattlePos = new Vector3(0, -750, 0); // 전투 시작시 UI위치
 
 
-    [HideInInspector] public List<string> PortalName;
+    //[HideInInspector] public List<string> PortalName;
     List<GameObject> StartEffect = new List<GameObject>();
 
 
@@ -732,10 +732,11 @@ public class PuzzleManager : MonoBehaviour
                 if (theFade.FadeInEnd == true)
                 {
                     theFade.FadeInEnd = false;
+                    state = State.Ready;
                     theFade.ShowMapNameEvent(theMaker.MapName);
                     CheckMoveBGM();
                     CheckTutorialMessage();
-                    state = State.Ready;
+                    
                 }
             }
             else if (state == State.ChangeMode)
@@ -918,7 +919,7 @@ public class PuzzleManager : MonoBehaviour
     {
         CubeBar.sprite = theObject.CubeBarSpirte[(int)theMaker.mapMainType];
 
-        PortalName.Clear();
+        //PortalName.Clear();
 
 
         if (ReLoadMap == true)
@@ -2069,7 +2070,9 @@ public class PuzzleManager : MonoBehaviour
             theBattle.ReadySkill(SkillUI.UI2_Null);
             CubeEvent = false;
         }
-            
+        theGM.EnemyDataSheet[0] = false;
+        theGM.EnemyDataSheet[1] = false;
+        theGM.CurrentProgressNum = 0;
 
         theMaker.MapName = "속삭이는 숲1";
         theMaker.PlayerStartNum = 20;
@@ -2149,11 +2152,31 @@ public class PuzzleManager : MonoBehaviour
             theMessage.ShowMessageText(3);
             state = State.Ready;
         }
-        else if (theGM.CurrentProgressNum == 4 && theGM.EnemyDataSheet[1] == true)
+        //포이즌 슬라임을 처치
+        else if (theGM.CurrentProgressNum == 5 && theGM.EnemyDataSheet[1] == true)
         {
-            theGM.CurrentProgressNum = 5;
-            Debug.Log("Test");
+            state = State.Tutorial;
+            theGM.CurrentProgressNum = 6;
+            theMessage.ShowMessageText(5, true);
         }
+        else if (theGM.CurrentProgressNum == 6 && theMessage.MessageEnd == true)
+        {
+            theMessage.MessageEnd = false;
+            gameMode = GameMode.GameOver;
+
+            string Dec = "플레이해 주셔서 감사합니다.";
+
+            theSound.PlaySE("Win");
+            theFade.ShowBlackChat("튜토리얼 완료", Dec);
+        }
+        // 식량이 0이 됬다
+        else if (MoveCount == 0)
+        {
+            SetMoveCount(999);
+            theMessage.ShowMessageText(6);
+
+        }
+
     }
 
 
@@ -2193,13 +2216,13 @@ public class PuzzleManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < theObject.PortalArrowList.Count; i++)
-        {
-            if (theObject.PortalArrowList[i].activeSelf == true)
-            {
-                theObject.PortalArrowList[i].GetComponent<PortalArrowManager>().Resetting();
-            }
-        }
+        //for (int i = 0; i < theObject.PortalArrowList.Count; i++)
+        //{
+        //    if (theObject.PortalArrowList[i].activeSelf == true)
+        //    {
+        //        theObject.PortalArrowList[i].GetComponent<PortalArrowManager>().Resetting();
+        //    }
+        //}
 
     }
 

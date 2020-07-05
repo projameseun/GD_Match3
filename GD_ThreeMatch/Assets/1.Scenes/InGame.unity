@@ -2976,7 +2976,7 @@ PrefabInstance:
     - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8594094459425870434, guid: 75005654f9d98f74198e720826f74356,
         type: 3}
@@ -3986,6 +3986,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 201
+--- !u!1 &591726058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2892419059357503935, guid: 197827e3fbf56784ea44ea5e67807e81,
+    type: 3}
+  m_PrefabInstance: {fileID: 7011241084658877265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &624463247
 GameObject:
   m_ObjectHideFlags: 0
@@ -4687,6 +4693,66 @@ MonoBehaviour:
       Dec: "\uC774\uAC78\uB85C \uC774\uBC88 \uD1A0\uBC8C \uD018\uC2A4\uD2B8\uB294
         \uC131\uACF5\uC774\uC57C."
       faceType: 1
+      TextBoxPosy: 0
+      SeName: 
+      DecImageNum: -1
+      DecImagePos: {x: 0, y: 0}
+    - WhitePos: {x: 0, y: 0}
+      WhiteSize: {x: 500, y: 800}
+      Name: "\uC5D8\uB9AC\uC2A4"
+      Dec: "\uC774\uC81C \uB9C8\uC744\uB85C \uB3CC\uC544\uAC00\uC11C \uB9DB\uC788\uB294
+        \uBC25\uC744 \uBA39\uC73C\uB7EC \uAC00\uC790\r."
+      faceType: 0
+      TextBoxPosy: 0
+      SeName: 
+      DecImageNum: -1
+      DecImagePos: {x: 0, y: 0}
+    - WhitePos: {x: 0, y: 0}
+      WhiteSize: {x: 500, y: 800}
+      Name: "\uC5D8\uB9AC\uC2A4"
+      Dec: "\uD018\uC2A4\uD2B8\uB97C \uB3C4\uC640\uC918\uC11C \uACE0\uB9C8\uC6CC.
+        \uB2E4\uC74C \uD018\uC2A4\uD2B8 \uB54C\uB3C4 \uC798 \uBD80\uD0C1\uD560\uAC8C."
+      faceType: 0
+      TextBoxPosy: 0
+      SeName: 
+      DecImageNum: -1
+      DecImagePos: {x: 0, y: 0}
+  - Decs:
+    - WhitePos: {x: 0, y: 0}
+      WhiteSize: {x: 500, y: 800}
+      Name: 
+      Dec: "\uAE38\uC5D0\uC11C \uC6B0\uC5F0\uD788 \uD070 \uBCF4\uB530\uB9AC\uB97C
+        \uBC1C\uACAC\uD588\uB2E4."
+      faceType: -1
+      TextBoxPosy: 0
+      SeName: 
+      DecImageNum: -1
+      DecImagePos: {x: 0, y: 0}
+    - WhitePos: {x: 0, y: 0}
+      WhiteSize: {x: 500, y: 800}
+      Name: "\uC5D8\uB9AC\uC2A4"
+      Dec: "\uC640 \uC774\uAC83 \uBD10! \uC548\uC5D0 \uBCF4\uC874 \uC2DD\uB7C9\uC774
+        \uC794\uB729 \uC788\uC5B4!"
+      faceType: 0
+      TextBoxPosy: 0
+      SeName: 
+      DecImageNum: -1
+      DecImagePos: {x: 0, y: 0}
+    - WhitePos: {x: 0, y: 0}
+      WhiteSize: {x: 500, y: 800}
+      Name: "\uBCA0\uB9B4"
+      Dec: "\uC548\uC5D0 \uD3B8\uC9C0\uB3C4 \uAC19\uC774 \uC788\uB294\uB370?"
+      faceType: 1
+      TextBoxPosy: 0
+      SeName: 
+      DecImageNum: -1
+      DecImagePos: {x: 0, y: 0}
+    - WhitePos: {x: 0, y: 0}
+      WhiteSize: {x: 500, y: 800}
+      Name: 
+      Dec: "\uD798\uB4E0 \uC5EC\uD589\uC744 \uD558\uACE0 \uC788\uB294 \uC5EC\uD589\uC790\uBD84\uC744
+        \uC704\uD574 \uC5EC\uAE30 \uC2DD\uB7C9\uC744 \uB450\uACE0 \uAC10.\n-K-"
+      faceType: -1
       TextBoxPosy: 0
       SeName: 
       DecImageNum: -1
@@ -6614,7 +6680,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940816157
 GameObject:
@@ -7975,7 +8041,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 580}
-  m_SizeDelta: {x: 900, y: 50}
+  m_SizeDelta: {x: 800, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202748578
 MonoBehaviour:
@@ -8000,15 +8066,15 @@ MonoBehaviour:
     m_FontSize: 200
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 100
+    m_MinSize: 180
     m_MaxSize: 200
     m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD328\uBC30"
+  m_Text: "\uC644\uB8CC"
 --- !u!222 &1202748579
 CanvasRenderer:
   m_ObjectHideFlags: 2
@@ -11630,7 +11696,6 @@ MonoBehaviour:
   AutoEvent: 0
   SelectNum: 0
   OtherNum: 0
-  PortalName: []
 --- !u!114 &1703859106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13114,6 +13179,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924831737}
   m_CullTransparentMesh: 0
+--- !u!1 &1962472705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2892419059357503935, guid: 197827e3fbf56784ea44ea5e67807e81,
+    type: 3}
+  m_PrefabInstance: {fileID: 4632623625184402015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1992849515
 GameObject:
   m_ObjectHideFlags: 0
@@ -14725,7 +14796,6 @@ MonoBehaviour:
   CubeEffectPinkList: []
   CubeEffectRedList: []
   BerylSkillList: []
-  PortalArrowList: []
   PoisonSlimeSkillList: []
   PoisonSlimePList: []
   CubePrefab: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a,
@@ -15565,6 +15635,11 @@ PrefabInstance:
       propertyPath: SpinAnim
       value: 
       objectReference: {fileID: 1836634020}
+    - target: {fileID: 7011241084969527738, guid: 197827e3fbf56784ea44ea5e67807e81,
+        type: 3}
+      propertyPath: SkillGaugeOn
+      value: 
+      objectReference: {fileID: 1962472705}
     - target: {fileID: 7011241084969527739, guid: 197827e3fbf56784ea44ea5e67807e81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15794,6 +15869,11 @@ PrefabInstance:
       propertyPath: SpinAnim
       value: 
       objectReference: {fileID: 1256532552}
+    - target: {fileID: 7011241084969527738, guid: 197827e3fbf56784ea44ea5e67807e81,
+        type: 3}
+      propertyPath: SkillGaugeOn
+      value: 
+      objectReference: {fileID: 591726058}
     - target: {fileID: 7011241084969527739, guid: 197827e3fbf56784ea44ea5e67807e81,
         type: 3}
       propertyPath: m_LocalPosition.x

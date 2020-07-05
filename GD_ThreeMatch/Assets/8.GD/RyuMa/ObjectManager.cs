@@ -86,8 +86,8 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public Queue<GameObject> BerylSkills = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> BerylSkillList;
 
-    [HideInInspector] public Queue<GameObject> PortalArrows = new Queue<GameObject>();
-    [HideInInspector] public List<GameObject> PortalArrowList;
+    //[HideInInspector] public Queue<GameObject> PortalArrows = new Queue<GameObject>();
+    //[HideInInspector] public List<GameObject> PortalArrowList;
 
     [HideInInspector] public Queue<GameObject> PoisonSlimeSkills = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> PoisonSlimeSkillList;
@@ -463,11 +463,11 @@ public class ObjectManager : MonoBehaviour
                 ObjectList = BerylSkillList;
                 Frefab = BerylSkill;
                 break;
-            case "PortalArrow":
-                ObjectQueue = PortalArrows;
-                ObjectList = PortalArrowList;
-                Frefab = PortalArrow;
-                break;
+            //case "PortalArrow":
+            //    ObjectQueue = PortalArrows;
+            //    ObjectList = PortalArrowList;
+            //    Frefab = PortalArrow;
+            //    break;
             case "PoisonSkill":
                 ObjectQueue = PoisonSlimeSkills;
                 ObjectList = PoisonSlimeSkillList;
@@ -562,12 +562,12 @@ public class ObjectManager : MonoBehaviour
         return SelectSlotP;
     }
 
-    public GameObject PortalArrowEvent(Vector2 _PortalVec)
-    {
-        GameObject Arrow = FindObj("PortalArrow");
-        Arrow.GetComponent<PortalArrowManager>().SetPortalArrow(_PortalVec);
-        return Arrow;
-    }
+    //public GameObject PortalArrowEvent(Vector2 _PortalVec)
+    //{
+    //    GameObject Arrow = FindObj("PortalArrow");
+    //    Arrow.GetComponent<PortalArrowManager>().SetPortalArrow(_PortalVec);
+    //    return Arrow;
+    //}
 
     // 큐브 이펙트를 사용하는 함수
     public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,

@@ -241,6 +241,8 @@ public class PlayerUI : MonoBehaviour
                     ClickP = null;
                 }
             }
+            if(CurrentSkillGauge < MaxSkillGauge)
+                SkillGaugeOn.SetActive(false);
             SkillOnEvent = false;
             ImageScale = 1;
             GirlCubeImage.transform.localScale = new Vector3(1, 1, 1);
@@ -335,6 +337,11 @@ public class PlayerUI : MonoBehaviour
 
 
         SkillGaugeText.text = CurrentSkillGauge + "/" + MaxSkillGauge;
+    
+        if (CurrentSkillGauge == MaxSkillGauge)
+        {
+            SkillGaugeOn.SetActive(true);
+        }
 
     }
 
@@ -364,6 +371,7 @@ public class PlayerUI : MonoBehaviour
         DamageEvent = false;
         DamageTime = 0f;
         SpinAnim.skeleton.SetColor(new Color(1, 1, 1));
+        SkillGaugeOn.SetActive(false);
         if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
         {
             if (thePuzzle.selectGirl == selectGirl)

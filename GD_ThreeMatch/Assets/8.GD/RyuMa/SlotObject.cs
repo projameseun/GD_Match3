@@ -128,11 +128,11 @@ public class SlotObject : MonoBehaviour
             SpriteRen.sprite = theObject.SlotPanelSprite[_SlotNum % 2];
             theObject.SpawnPortal(this.transform.position);
             // 포탈 이름이 겹치는지 확인
-            if (thePuzzle.PortalName.Contains(thePuzzle.theMoveMap.Slots[SlotNum].portalSheet.MapName) == false)
-            {
-                thePuzzle.PortalName.Add(thePuzzle.theMoveMap.Slots[SlotNum].portalSheet.MapName);
-                theObject.PortalArrowEvent(this.transform.position);
-            }
+            //if (thePuzzle.PortalName.Contains(thePuzzle.theMoveMap.Slots[SlotNum].portalSheet.MapName) == false)
+            //{
+            //    thePuzzle.PortalName.Add(thePuzzle.theMoveMap.Slots[SlotNum].portalSheet.MapName);
+            //    theObject.PortalArrowEvent(this.transform.position);
+            //}
 
 
         }
