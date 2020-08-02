@@ -115,6 +115,7 @@ public class PuzzleManager : MonoBehaviour
 
     //쓰래기통
     public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
+    [HideInInspector] public float CubeMoveSpeed = 0.2f;
     float AutoEventTime = 0;
     public int SelectNum = 0;
     public int OtherNum = 0;
@@ -123,7 +124,7 @@ public class PuzzleManager : MonoBehaviour
     int HintNum;
     int[] EnemyCubeCount = new int[6];
     WaitForSeconds Wait = new WaitForSeconds(0.1f);
-    float FillSpeed = 9f;
+    float FillSpeed = 0.1f;
     FoodState foodState;
 
 
@@ -264,7 +265,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theMoveMap, SelectNum, OtherNum, 4f, true);
+                        ChangeCube(theMoveMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -435,7 +436,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theBattleMap, SelectNum, OtherNum, 4f, true);
+                        ChangeCube(theBattleMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -607,7 +608,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theMoveMap, SelectNum, OtherNum, 4f, true);
+                        ChangeCube(theMoveMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -784,7 +785,7 @@ public class PuzzleManager : MonoBehaviour
                     //매치가 안될경우
                     if (!isMatched)
                     {
-                        ChangeCube(theBattleMap, SelectNum, OtherNum, 4f, true);
+                        ChangeCube(theBattleMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
                     }
 
@@ -1272,13 +1273,13 @@ public class PuzzleManager : MonoBehaviour
         }
 
         state = State.ChangeMatch;
-        ChangeCube(_Map, _Num, ChangeNum,4f, true);
+        ChangeCube(_Map, _Num, ChangeNum, CubeMoveSpeed, true);
         SelectNum = _Num;
         OtherNum = ChangeNum;
     }
 
     //큐브와 큐브의 위치를 바꾸는 기능
-    public void ChangeCube(MapManager _Map, int _Num, int _OtherNum, float _Speed = 4f, bool _Event = false)
+    public void ChangeCube(MapManager _Map, int _Num, int _OtherNum, float _Speed = 0.2f, bool _Event = false)
     {
 
         if (_Map.Slots[_Num].nodeColor == NodeColor.NC6_Player ||
@@ -1355,10 +1356,10 @@ public class PuzzleManager : MonoBehaviour
     {
         if (gameMode == GameMode.Battle)
         {
-            FillSpeed = 8;
+            FillSpeed = 0.2f;
         }
         else
-            FillSpeed = 3.5f;
+            FillSpeed = 0.15f;
 
         state = State.FillBlank;
         bool FirstEvent = true;

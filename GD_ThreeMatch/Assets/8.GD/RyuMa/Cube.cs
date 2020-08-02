@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum SpecialCubeType
 {
@@ -53,24 +54,40 @@ public class Cube : MonoBehaviour
 
     IEnumerator MoveCor()
     {
-        while (Move)
+        Sequence seq = DOTween.Sequence();
+
+
+        seq.Append(this.transform.DOMove(TargetVec, Speed)).SetEase(Ease.Linear);
+
+        seq.AppendCallback(() =>
         {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed * Time.deltaTime);
-
-
-            if (Vector2.Distance(this.transform.position, TargetVec) <= (Speed * Time.fixedDeltaTime) / 2)
+            Move = false;
+            if (OnlyOneEvent == true)
             {
-                this.transform.position = TargetVec;
-                Move = false;
+
+                thePuzzle.CubeEvent = true;
+                OnlyOneEvent = false;
             }
-            yield return new WaitForFixedUpdate();
-        }
-        if (OnlyOneEvent == true)
-        {
+        });
+        yield return null;
+        //while (Move)
+        //{
+        //    this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed * Time.deltaTime);
+
+
+        //    if (Vector2.Distance(this.transform.position, TargetVec) <= (Speed * Time.fixedDeltaTime) / 2)
+        //    {
+        //        this.transform.position = TargetVec;
+        //        Move = false;
+        //    }
+        //    yield return new WaitForFixedUpdate();
+        //}
+        //if (OnlyOneEvent == true)
+        //{
           
-            thePuzzle.CubeEvent = true;
-            OnlyOneEvent = false;
-        }
+        //    thePuzzle.CubeEvent = true;
+        //    OnlyOneEvent = false;
+        //}
 
     }
     IEnumerator DestroyCor()

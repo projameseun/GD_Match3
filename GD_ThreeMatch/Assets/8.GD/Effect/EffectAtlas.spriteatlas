@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EffectAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2c3f09df7468e524d9626fe1bedf5fe0, type: 3}
+    totalSpriteSurfaceArea: 2637824
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 06022b901612a054da3d7107567365f2, type: 3}
+  - {fileID: 21300000, guid: f5b6e8b068e9c0f419657c9ffff467a5, type: 3}
+  - {fileID: 21300000, guid: 77799cc0b72a5f34a8e86aa8b67a58de, type: 3}
+  - {fileID: 21300000, guid: 95ee73d0a8fa72e40b059828b2a69707, type: 3}
+  - {fileID: 21300000, guid: 73db92d2875f60a4fb6ff8a435a6bc06, type: 3}
+  - {fileID: 21300000, guid: ccd17bd259106c0458feb6404f633fbd, type: 3}
+  - {fileID: 21300000, guid: cae312c3f0451f4488f7dbc795933453, type: 3}
+  - {fileID: 21300000, guid: 2eb6e38478de0c248bf460662debcbb7, type: 3}
+  - {fileID: 21300000, guid: b2d2e99452250514294c48881fca7588, type: 3}
+  - {fileID: 21300000, guid: d60bc9a4ca8eed144aa127f5cc602399, type: 3}
+  - {fileID: 21300000, guid: 5b3224e44b66e994ea49fa86b5d41555, type: 3}
+  - {fileID: 21300000, guid: a8acda35459eff3458cfd1e9bcbf9494, type: 3}
+  - {fileID: 21300000, guid: a8d15b55c563b834ba9c1dd55ccbfc9f, type: 3}
+  - {fileID: 21300000, guid: 7e810e85431914e45812a1263ebb6020, type: 3}
+  - {fileID: 21300000, guid: 5f16709597d00484499ebbf5f9bfba7b, type: 3}
+  - {fileID: 21300000, guid: 5b6fd4e5ecd524544a29ed045354b332, type: 3}
+  - {fileID: 21300000, guid: 89464d86a4ffe794d9f8672bd1427ade, type: 3}
+  - {fileID: 21300000, guid: 1e8d9cf6afbf6944194b322c75bdb99f, type: 3}
+  - {fileID: 21300000, guid: d278ddf6a96ceaa42a7cc79cdf33c929, type: 3}
+  - {fileID: 21300000, guid: cda7ca67f4aecd248a77f20c958dbebc, type: 3}
+  - {fileID: 21300000, guid: 3f8f29a7c95d2934fbe0c79af79fd85f, type: 3}
+  - {fileID: 21300000, guid: 832cd9082bd173a4dad9a914dd02a5f1, type: 3}
+  - {fileID: 21300000, guid: fe296e482b8a9a049bd7ebce3eda41ee, type: 3}
+  - {fileID: 21300000, guid: 129849586a356ee418e32633c240a6aa, type: 3}
+  - {fileID: 21300000, guid: 039a16b8e0650d04d90de48776942ed0, type: 3}
+  - {fileID: 21300000, guid: 581f43c86a2c40243ae83f993dcd7b1f, type: 3}
+  - {fileID: 21300000, guid: 346e7979568aafe4781cd8b340bc80dc, type: 3}
+  - {fileID: 21300000, guid: a6951b89377859f49bd0308088b714fa, type: 3}
+  - {fileID: 21300000, guid: d2d1ca6a476986b4cbe8902ef034e068, type: 3}
+  - {fileID: 21300000, guid: 5d94ea9a8bc136f4cbec2553195cda1b, type: 3}
+  - {fileID: 21300000, guid: 4474f81b3ce25534da8230c30672fc05, type: 3}
+  - {fileID: 21300000, guid: 4a34f55bc328865449c9c62253e5abc4, type: 3}
+  - {fileID: 21300000, guid: db4b610cb8de6b548bbe1667f0725e33, type: 3}
+  - {fileID: 21300000, guid: daed511c057e93948afe7cacdb818cc3, type: 3}
+  - {fileID: 21300000, guid: d2d6f7bc417c9ea4c84cc201f9e06131, type: 3}
+  - {fileID: 21300000, guid: a3dbf6dc6658d7f429bd64868efaa9bf, type: 3}
+  - {fileID: 21300000, guid: 884b65ecfe19d1b4c9e152d878dcff4b, type: 3}
+  - {fileID: 21300000, guid: 79d8e70de318be14ab101dee69fbb3fd, type: 3}
+  - {fileID: 21300000, guid: c044086de174aac4a93f32fbae01bbc7, type: 3}
+  - {fileID: 21300000, guid: a9c107ad25d46c347ac2fe7bf09bd27a, type: 3}
+  - {fileID: 21300000, guid: 7f621ecfe16f92c43b2558efd36963a3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Slash_02
+  - Debris_02
+  - Glow_08
+  - Slash_03
+  - Debris_01
+  - Ray_04
+  - Smoke_01
+  - slime_01
+  - Glow_02
+  - slime_02
+  - Debris_04
+  - Debris_feather_02
+  - Glow_07
+  - Block_04
+  - Glow_05
+  - Glow_03
+  - Glow_04
+  - Mark_Eagle_01
+  - Square_03
+  - Debris_feather_01
+  - lightning_02
+  - lightning_01
+  - Ray_05
+  - Block_01
+  - Block_03
+  - slime_04
+  - Block_05
+  - Ray_06
+  - Glow_01
+  - Debris_03
+  - fire_01
+  - Glow_06
+  - Square_02
+  - Ray_01
+  - slime_03
+  - Ray_02
+  - Block_02
+  - Slash_04
+  - Slash_01
+  - Square_01
+  - Ray_03
+  m_Tag: EffectAtlas
+  m_IsVariant: 0
