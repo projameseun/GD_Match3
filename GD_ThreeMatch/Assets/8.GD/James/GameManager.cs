@@ -82,7 +82,7 @@ public enum GMState
 }
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : G_Singleton<GameManager>
 {
     public bool CheatMode;
     public GMState state;

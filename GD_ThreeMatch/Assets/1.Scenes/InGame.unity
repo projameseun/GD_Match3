@@ -15202,6 +15202,7 @@ MonoBehaviour:
   BerylSkillList: []
   PoisonSlimeSkillList: []
   PoisonSlimePList: []
+  BlockBreakList: []
   CubePrefab: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a,
     type: 3}
   CubeParticle: {fileID: 4897735274488834851, guid: 99b4a823f56c742419d0760a46041e53,
@@ -15246,6 +15247,8 @@ MonoBehaviour:
   PoisonSlimeSkill: {fileID: 1177297359932647236, guid: e5cbf4bb862548f478bc28835ed6a266,
     type: 3}
   PoisonSlimeP: {fileID: 312826270763100771, guid: f65bbb97ad843a24ba163580169aa7d8,
+    type: 3}
+  BlockBreak: {fileID: 3610355444638892795, guid: 219c8725501959649878c890637933c5,
     type: 3}
 --- !u!222 &2916221451127844228
 CanvasRenderer:
@@ -16263,6 +16266,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1296781775}
     m_Modifications:
+    - target: {fileID: 2892419059357503935, guid: 197827e3fbf56784ea44ea5e67807e81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7011241084969527736, guid: 197827e3fbf56784ea44ea5e67807e81,
         type: 3}
       propertyPath: m_Name

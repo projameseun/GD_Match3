@@ -5,12 +5,18 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour
 {
 
-    public ParticleSystem particle;
+    private ParticleSystem particle;
     GameObject parent;
     bool Loop = false;
     float ParticleTime = 0;
 
     protected ObjectManager theObject;
+    private void Awake()
+    {
+        particle = GetComponent<ParticleSystem>();
+    }
+
+
 
     // Update is called once per frame
     void Update()

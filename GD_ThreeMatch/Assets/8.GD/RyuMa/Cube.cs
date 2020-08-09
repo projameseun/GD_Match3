@@ -59,17 +59,19 @@ public class Cube : MonoBehaviour
 
         seq.Append(this.transform.DOMove(TargetVec, Speed)).SetEase(Ease.Linear);
 
-        seq.AppendCallback(() =>
+        while (Vector2.Distance(transform.position, TargetVec) >= 0.05f)
         {
-            Move = false;
-            if (OnlyOneEvent == true)
-            {
+            yield return null;
+        }
+        transform.position = TargetVec;
+        Move = false;
+        if (OnlyOneEvent == true)
+        {
 
-                thePuzzle.CubeEvent = true;
-                OnlyOneEvent = false;
-            }
-        });
-        yield return null;
+            thePuzzle.CubeEvent = true;
+            OnlyOneEvent = false;
+        }
+
         //while (Move)
         //{
         //    this.transform.position = Vector2.MoveTowards(this.transform.position, TargetVec, Speed * Time.deltaTime);
@@ -84,7 +86,7 @@ public class Cube : MonoBehaviour
         //}
         //if (OnlyOneEvent == true)
         //{
-          
+
         //    thePuzzle.CubeEvent = true;
         //    OnlyOneEvent = false;
         //}
@@ -92,7 +94,7 @@ public class Cube : MonoBehaviour
     }
     IEnumerator DestroyCor()
     {
-
+        
         while (DestroyEvent)
         {
             DestoryTime -= Time.deltaTime * 1.5f;
@@ -122,10 +124,10 @@ public class Cube : MonoBehaviour
 
 
             }
-            color.a = DestoryTime;
-            SpriteRen.color = color;
+            //color.a = DestoryTime;
+            //SpriteRen.color = color;
 
-            yield return new WaitForFixedUpdate();
+            yield return null;
         }
     }
 
@@ -213,7 +215,7 @@ public class Cube : MonoBehaviour
     public void DestroyCubeEvent()
     {
         theSound.PlaySE("BlockHit");
-
+        
         for (int i = 0; i < 2; i++)
         {
             if (thePuzzle.playerUIs[i].selectGirl == (SelectGirl)nodeColor)
@@ -336,13 +338,18 @@ public class Cube : MonoBehaviour
     void DestroyCorStart()
     {
         if (this.gameObject.activeSelf == true)
+        {
+            ObjectManager.Instance.SpawnBlockBreak(this.transform.position);
             StartCoroutine(DestroyCor());
+        }
+           
     }
 
 
     public void Resetting()
     {
-        StopCoroutine(MoveCor());
+        StopAllCoroutines();
+        Debug.Log("Test");
         specialCubeType = SpecialCubeType.Null;
         Move = false;
         SpecialCube = false;

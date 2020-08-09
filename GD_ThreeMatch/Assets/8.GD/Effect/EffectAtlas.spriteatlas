@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: Android
-      m_MaxTextureSize: 4096
+      m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: 47
       m_TextureCompression: 1
@@ -38,12 +38,12 @@ SpriteAtlas:
       padding: 2
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 1
+      enableRotation: 0
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 2c3f09df7468e524d9626fe1bedf5fe0, type: 3}
-    totalSpriteSurfaceArea: 2637824
+    totalSpriteSurfaceArea: 1736704
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -77,7 +77,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a6951b89377859f49bd0308088b714fa, type: 3}
   - {fileID: 21300000, guid: d2d1ca6a476986b4cbe8902ef034e068, type: 3}
   - {fileID: 21300000, guid: 5d94ea9a8bc136f4cbec2553195cda1b, type: 3}
-  - {fileID: 21300000, guid: 4474f81b3ce25534da8230c30672fc05, type: 3}
   - {fileID: 21300000, guid: 4a34f55bc328865449c9c62253e5abc4, type: 3}
   - {fileID: 21300000, guid: db4b610cb8de6b548bbe1667f0725e33, type: 3}
   - {fileID: 21300000, guid: daed511c057e93948afe7cacdb818cc3, type: 3}
@@ -119,7 +118,6 @@ SpriteAtlas:
   - Ray_06
   - Glow_01
   - Debris_03
-  - fire_01
   - Glow_06
   - Square_02
   - Ray_01

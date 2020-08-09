@@ -5,7 +5,9 @@ using UnityEngine;
 using Spine.Unity;
 
 
-public class ObjectManager : MonoBehaviour
+
+
+public class ObjectManager : G_Singleton<ObjectManager>
 {
 
     // 오브젝트 타일 이미지
@@ -24,6 +26,7 @@ public class ObjectManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject WorldCanvasObj;
+
 
     //게임오브젝트 리스트
     [HideInInspector] public Queue<GameObject> Cubes = new Queue<GameObject>(); //큐브 리스트
@@ -95,6 +98,9 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector] public Queue<GameObject> PoisonSlimePs = new Queue<GameObject>();
     [HideInInspector] public List<GameObject> PoisonSlimePList;
 
+    [HideInInspector] public Queue<GameObject> BlockBreaks = new Queue<GameObject>();
+    [HideInInspector] public List<GameObject> BlockBreakList;
+
     [Header("Prefab")]
 
     //게임오브젝트 프리팹
@@ -125,6 +131,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject PoisonSlimeSkill;
     public GameObject PoisonSlimeP;
 
+    public GameObject BlockBreak;
+
     Queue<GameObject> ObjectQueue = new Queue<GameObject>();
     List<GameObject> ObjectList = new List<GameObject>();
     Vector2 SpawnVec = new Vector2(100, 0);
@@ -137,14 +145,27 @@ public class ObjectManager : MonoBehaviour
     {
         thePuzzle = FindObjectOfType<PuzzleManager>();
         theSound = FindObjectOfType<SoundManager>();
-        Init();
+        ObjectPool();
         LoadingInit();
         
     }
 
 
 
-    public void Init()
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            for (int i = 0; i < 200; i++)
+            {
+                Vector2 vec = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+                AliceSkillEvent(vec);
+            }
+        }
+    }
+
+
+    public void ObjectPool()
     {
         for (int i = 0; i < 50; i++)
         {
@@ -478,22 +499,39 @@ public class ObjectManager : MonoBehaviour
                 ObjectList = PoisonSlimePList;
                 Frefab = PoisonSlimeP;
                 break;
+            case "BlockBreak":
+                ObjectQueue = BlockBreaks;
+                ObjectList = BlockBreakList;
+                Frefab = BlockBreak;
+                break;
         }
 
-        if (ObjectQueue.Count > 0)
+        if (Frefab == null)
         {
-            GameObject Obj = ObjectQueue.Dequeue();
-            if (_Active == true)
-                Obj.SetActive(true);
-            return Obj;
+            Debug.LogError(_Name + " 은 없습니다");
+        }
+
+        GameObject Obj = null;
+
+        while (ObjectQueue.Count > 0)
+        {
+
+            Obj = ObjectQueue.Dequeue();
+            if (Obj != null)
+            {
+                if (_Active == true)
+                    Obj.SetActive(true);
+                return Obj;
+            }
+           
         }
 
 
         //만약 모든 리스트에 오브젝트들이 활성화되어있다면 오브젝트를 추가하고 넣는다
-        GameObject X = Instantiate(Frefab);
-        X.SetActive(_Active);
-        ObjectList.Add(X);
-        return X;
+        Obj = Instantiate(Frefab);
+        Obj.SetActive(_Active);
+        ObjectList.Add(Obj);
+        return Obj;
     }
 
     public GameObject SpawnClickP(Vector2 StartPos)
@@ -510,6 +548,14 @@ public class ObjectManager : MonoBehaviour
         GameObject Cube = FindObj("Cube");
         Cube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         return Cube;
+    }
+
+    public GameObject SpawnBlockBreak(Vector2 _Vec)
+    {
+        GameObject Break = FindObj("BlockBreak");
+        Break.transform.position = _Vec;
+        Break.GetComponent<ParticleManager>().ParticleSetting(false,null,1f);
+        return Break;
     }
 
     public GameObject SpawnSlotPanel(Transform trans ,Vector2 Pos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
