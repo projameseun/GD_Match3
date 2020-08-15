@@ -205,7 +205,7 @@ public class GameManager : G_Singleton<GameManager>
             {
                 for (int i = 0; i <= _Map.TopRight; i++)
                 {
-                    puzzleslotList.Add(new SlotInfo(((int)_Map.Slots[i + Hor].nodeType).ToString(), _Map.Slots[i + Hor].monsterSheet, 
+                    puzzleslotList.Add(new SlotInfo(((int)_Map.Slots[i + Hor].block.blockType).ToString(), _Map.Slots[i + Hor].monsterSheet, 
                                                 _Map.Slots[i + Hor].portalSheet, _Map.Slots[i + Hor].SlotSheet));;
                     //Debug.Log(puzzleslotList[i + Hor].nodeType);
 
@@ -334,38 +334,40 @@ public class GameManager : G_Singleton<GameManager>
         theMoveMap.BottomRight = int.Parse(mapInfoList[4].Value);
 
         int ListCount = 0;
-        for(int i=0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
-        {
-            theMoveMap.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
-            theMoveMap.Slots[i].nodeColor = NodeColor.NC8_Null;
-            theMoveMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.NULL; 
-            if (theMoveMap.Slots[i].cube != null)
-            {
-                theMoveMap.Slots[i].cube.Resetting();
-                theMoveMap.Slots[i].cube = null;
-            }
+
+        //TODO
+        //for(int i=0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
+        //{
+        //    theMoveMap.Slots[i].block. = PuzzleSlot.NodeType.Null;
+        //    theMoveMap.Slots[i].nodeColor = NodeColor.NC8_Null;
+        //    theMoveMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.NULL; 
+        //    if (theMoveMap.Slots[i].cube != null)
+        //    {
+        //        theMoveMap.Slots[i].cube.Resetting();
+        //        theMoveMap.Slots[i].cube = null;
+        //    }
             
-        }
+        //}
 
-        for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor+=thePuzzle.theMoveMap.Horizontal)
-        {
-            for(int i=0; i<=theMoveMap.TopRight; i++)
-            {
-                theMoveMap.Slots[i + Hor].nodeType = (PuzzleSlot.NodeType)(int.Parse(puzzleslotList[ListCount].Type));
-                theMoveMap.Slots[i + Hor].nodeColor = NodeColor.NC8_Null;
-                theMoveMap.Slots[i + Hor].SlotSheet = puzzleslotList[ListCount].slotObject;
-                if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
-                {
-                    theMoveMap.Slots[i + Hor].monsterSheet = puzzleslotList[ListCount].monsheet;
-                }
-                else if(theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
-                {
-                    theMoveMap.Slots[i + Hor].portalSheet = puzzleslotList[ListCount].portalsheet;
-                }
+        //for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor+=thePuzzle.theMoveMap.Horizontal)
+        //{
+        //    for(int i=0; i<=theMoveMap.TopRight; i++)
+        //    {
+        //        theMoveMap.Slots[i + Hor].nodeType = (PuzzleSlot.NodeType)(int.Parse(puzzleslotList[ListCount].Type));
+        //        theMoveMap.Slots[i + Hor].nodeColor = NodeColor.NC8_Null;
+        //        theMoveMap.Slots[i + Hor].SlotSheet = puzzleslotList[ListCount].slotObject;
+        //        if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
+        //        {
+        //            theMoveMap.Slots[i + Hor].monsterSheet = puzzleslotList[ListCount].monsheet;
+        //        }
+        //        else if(theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
+        //        {
+        //            theMoveMap.Slots[i + Hor].portalSheet = puzzleslotList[ListCount].portalsheet;
+        //        }
 
-                ListCount++;
-            }
-        }
+        //        ListCount++;
+        //    }
+        //}
 
         theMaker.BT_TestStart();
     }

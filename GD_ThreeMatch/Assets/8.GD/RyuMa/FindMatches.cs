@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FindMatches : MonoBehaviour
+public class FindMatches : A_Singleton<FindMatches>
 {
 
     // 큐브를 터트릴 경우 조건을 통합적으로 표시해주는 구간
@@ -46,8 +46,8 @@ public class FindMatches : MonoBehaviour
         {
             for (int i = 0; i <= _Map.TopRight; i++)
             {
-                if (_Map.Slots[i+Hor].nodeColor != NodeColor.NC6_Player &&
-                   _Map.Slots[i+Hor].nodeType != PuzzleSlot.NodeType.Null &&
+                if (_Map.Slots[i+Hor].block.nodeColor != NodeColor.NC6_Player &&
+                   _Map.Slots[i+Hor].block.blockType != BlockType.Cube &&
                    _Map.Slots[i+Hor].nodeColor != NodeColor.NC5_Blank &&
                    _Map.Slots[i+Hor].cube.specialCubeType == SpecialCubeType.Null)
                 {

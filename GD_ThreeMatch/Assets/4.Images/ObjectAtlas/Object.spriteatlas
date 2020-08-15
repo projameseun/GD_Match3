@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Object
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 9d16b038ff602c5408be4b389cd87375, type: 3}
+    totalSpriteSurfaceArea: 131258
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b65760507af786440aad3af37a0f4389, type: 3}
+  - {fileID: 21300000, guid: e230ae41ed9648440bf7155fcac4656d, type: 3}
+  - {fileID: 21300000, guid: 4d37b0b197fb861479df92c2eaf6b7bd, type: 3}
+  - {fileID: 21300000, guid: 5559f7b1995d2f54cad0e8f75b98f05a, type: 3}
+  - {fileID: 21300000, guid: e77b3ac3415731f44bac05bed1aa16a5, type: 3}
+  - {fileID: 21300000, guid: a347e204ba698c64bba009ca174f4464, type: 3}
+  - {fileID: 21300000, guid: 937dd934ae772a5438f3061a5393e46e, type: 3}
+  - {fileID: 21300000, guid: ecf4cd35da35e074b939d25396c717ff, type: 3}
+  - {fileID: 21300000, guid: 40de0a55dc8feb54080fd48d12994b30, type: 3}
+  - {fileID: 21300000, guid: 70b3b3952f6c0af44ad8a3383616de50, type: 3}
+  - {fileID: 21300000, guid: 3e6507f5f4485054e8f2385454e48e46, type: 3}
+  - {fileID: 21300000, guid: d2c1d256edd5eee4096743fd44b488f7, type: 3}
+  - {fileID: 21300000, guid: ebb847c80089c9440860259fe179e99e, type: 3}
+  - {fileID: 21300000, guid: 9c0ea789d82150541bfd068515147dfb, type: 3}
+  - {fileID: 21300000, guid: c959b08a985025c479e9a4138e0b94cb, type: 3}
+  - {fileID: 21300000, guid: 8eb3119a0b7027443b26edbcf82b3fc8, type: 3}
+  - {fileID: 21300000, guid: 28fb1c6b36d57ec4cb9d37cce7ed881c, type: 3}
+  - {fileID: 21300000, guid: 583b092c304bdef49830582dab727e89, type: 3}
+  - {fileID: 21300000, guid: 61accb8cd6345d04293bce8d4d2a5690, type: 3}
+  - {fileID: 21300000, guid: 21d21dfcd334e4b42849a882b20cc72d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - EnemySlot
+  - UI_block_green
+  - UI_Sblock_diagonal
+  - UI_Forest3
+  - Skull
+  - EnemySlot1
+  - UI_Sblock_horizontal
+  - EnemySlot2
+  - UI_Sblock_vertical
+  - UI_block_red
+  - EnemySlot3
+  - UI_block_pink
+  - UI_Forest2
+  - Nomal
+  - UI_Forest1
+  - UI_block_yellow
+  - UI_Forest4
+  - UI_block_sky
+  - UI_Forest0
+  - Middle
+  m_Tag: Object
+  m_IsVariant: 0

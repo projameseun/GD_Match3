@@ -5,8 +5,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static HappyRyuMa.GameMaker;
 
+public enum BlockType
+{
+    Null = 0,
+    Cube,
+    SpecialCube
 
-
+}
 
 public enum NodeColor
 {
@@ -52,28 +57,13 @@ public class SlotObjectSheets
 
 public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    public enum NodeType
-    {
-        Null = 0,
-        Normal,
-        Enemy,
-        Portal,
-        Object,
-    
-
-    }
-
-
-
-    public NodeType nodeType;
-    public NodeColor nodeColor;
     public int SlotNum;
 
     public Text TestText;
 
     //DB
     public bool Down;
-    public Cube cube;
+    public Block block;
 
 
     ////몬스터 시트
@@ -128,8 +118,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             return;
         }
 
-        if (thePuzzle.SlotDown == false && thePuzzle.state == PuzzleManager.State.Ready &&
-            nodeType != NodeType.Null)
+        if (thePuzzle.SlotDown == false && thePuzzle.state == PuzzleManager.State.Ready)
         {
 
             theObject.SpawnSelectSlot(this.transform.position);
@@ -198,7 +187,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
                         SkillEvent();
                     }
                     // 특수블럭인지
-                    else if (cube.specialCubeType != SpecialCubeType.Null)
+                    else if (block.blockType != BlockType.SpecialCube)
                     {
                         SpecialCubeEvent();
                     }

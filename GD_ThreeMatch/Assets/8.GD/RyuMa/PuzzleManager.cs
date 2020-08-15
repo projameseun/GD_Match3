@@ -34,9 +34,8 @@ public enum FoodState
 
 
 
-public class PuzzleManager : MonoBehaviour
+public class PuzzleManager : A_Singleton<PuzzleManager>
 {
-
 
 
 
