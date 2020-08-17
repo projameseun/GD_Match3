@@ -47,6 +47,7 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     //DB
     public bool Down;
     public Block block;
+    public Panel panel;
 
 
     ////몬스터 시트

@@ -113,6 +113,10 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
 
     //쓰래기통
+
+    //이밴트 발동중인 시간을 체크
+    [HideInInspector] public float EventEndTime; 
+
     public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
     [HideInInspector] public float CubeMoveSpeed = 0.2f;
     float AutoEventTime = 0;
@@ -254,8 +258,9 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     if (theMatch.FindAllMatches(theMoveMap))
                     {
                         SetMoveCount(-1);
+                        FindMatches.Instance.FindSpecialCube(theMoveMap);
                         DestroyCube(theMoveMap);
-                        theMatch.FindSpecialCube(theMoveMap);
+                        
                         return;
                     }
                     else
@@ -888,6 +893,16 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         }
 
     }
+
+    public void EventUpdate(float _EventTime)
+    {
+        if (EventEndTime < _EventTime)
+        {
+            EventEndTime = _EventTime;
+        }
+    }
+
+
 
     //슬롯을 채운다. false일 경우 최초실행, true일 경우 현재 맵에서 리셋
 

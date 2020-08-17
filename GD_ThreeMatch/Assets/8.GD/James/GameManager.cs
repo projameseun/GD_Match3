@@ -87,6 +87,11 @@ public class GameManager : G_Singleton<GameManager>
     public bool CheatMode;
     public GMState state;
 
+    public int MaxHorizon;
+    public int MaxVertical;
+
+
+
     public List<bool> EnemyDataSheet = new List<bool>(200);
     public List<bool> ProgressDataSheet = new List<bool>(200);
     public int CurrentProgressNum = 0;

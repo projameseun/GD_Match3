@@ -2,6 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class SpecialData
+{
+    public int Num;
+    SpecialCubeType Type;
+
+    public SpecialData(int _Num, SpecialCubeType _Type)
+    {
+        Num = _Num;
+        Type = _Type;
+    }
+
+
+}
+
+
+
+
 public class FindMatches : A_Singleton<FindMatches>
 {
 
@@ -16,12 +34,12 @@ public class FindMatches : A_Singleton<FindMatches>
 
     public List<Block> currentMathces = new List<Block>();
     List<int> SpecialCubeList = new List<int>();
-
+    List<SpecialData> SpecialList = new List<SpecialData>();
     public bool CheckBoom;
     public float CurrentCheckBoomTime;
     public float MaxCheckBoomTime;
 
-    private PuzzleManager thePuzzle;
+
     private GirlManager theGirl;
     private BattleManager theBattle;
 // Start is called before the first frame update
@@ -31,7 +49,7 @@ public class FindMatches : A_Singleton<FindMatches>
         theBattle = FindObjectOfType<BattleManager>();
         CurrentCheckBoomTime = MaxCheckBoomTime;
         theGirl = FindObjectOfType<GirlManager>();
-        thePuzzle = FindObjectOfType<PuzzleManager>();
+
     }
 
 
@@ -39,9 +57,9 @@ public class FindMatches : A_Singleton<FindMatches>
     public bool FindAllMatches(MapManager _Map,bool _ChangeBlank = true)
     {
 
-        for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
+        for (int Hor = 0; Hor < _Map.BottomRight; Hor += GameManager.Instance.MaxHorizon)
         {
-            for (int i = 0; i <= _Map.TopRight; i++)
+            for (int i = 1; i <= _Map.TopRight; i++)
             {
                 if (_Map.Slots[i+Hor].block.nodeColor != NodeColor.NC5_Blank)
                 {
@@ -116,22 +134,23 @@ public class FindMatches : A_Singleton<FindMatches>
     //특수 큐브를 만들 수 있는지 확인
     public void FindSpecialCube(MapManager _Map)
     {
-        for (int i = 0; i < _Map.TopRight - _Map.TopLeft; i++)
+
+
+        for (int i = 1; i < _Map.TopRight; i++)
         {
             for (int Num = _Map.TopLeft + _Map.Horizontal; Num < _Map.BottomLeft;)
             {
-                if (_Map.Slots[Num + i].nodeColor != NodeColor.NC8_Null)
+                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC5_Blank)
                 {
                     int Count = 1;
                     SpecialCubeList.Add(Num + i);
 
                     while (true)
                     {
-                        if (_Map.Slots[Num + i + (_Map.Horizontal * Count)].cube != null)
+                        if (_Map.Slots[Num + i + (_Map.Horizontal * Count)].block != null)
                         {
-                            if (_Map.Slots[Num + i].cube.nodeColor == _Map.Slots[Num + i + (_Map.Horizontal * Count)].cube.nodeColor &&
-                                _Map.Slots[Num + i].cube.nodeColor < NodeColor.NC5_Blank &&
-                                _Map.Slots[Num + i + (_Map.Horizontal * Count)].cube.nodeColor < NodeColor.NC5_Blank)
+                            if (_Map.Slots[Num + i].block.nodeColor == 
+                                _Map.Slots[Num + i + (_Map.Horizontal * Count)].block.nodeColor)
                             {
                                 SpecialCubeList.Add(Num + i + (_Map.Horizontal * Count));
                                 Count++;
@@ -145,27 +164,29 @@ public class FindMatches : A_Singleton<FindMatches>
                                 }
                                 else if (Count < 5)
                                 {
-                                    if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+
+
+                                    if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                     {
-                                        _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Vertical;
-                                        _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Vertical));
                                     }
-                                    else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
+                                    else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
                                     {
-                                        _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Vertical;
-                                        _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Vertical));
                                     }
                                     else
                                     {
+
+                                        for (int x = 0; x < SpecialList.Count; x++)
+                                        {
+                                            if (SpecialCubeList.Contains(SpecialList[i].Num))
+                                            {
+                                                SpecialCubeList.Remove(SpecialList[i].Num);
+                                            }
+                                        }
                                         int rand = Random.Range(0, SpecialCubeList.Count);
-                                        _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                        _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Vertical;
+
+                                        SpecialList.Add(new SpecialData(SpecialCubeList[rand], SpecialCubeType.Vertical));
                                     }
 
                                     //if()
@@ -173,30 +194,27 @@ public class FindMatches : A_Singleton<FindMatches>
                                 }
                                 else
                                 {
-                                    if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+                                    if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                     {
-                                        _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Diagonal));
                                     }
-                                    else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
+                                    else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
                                     {
-                                        _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
-
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Diagonal));
                                     }
                                     else
                                     {
+
+                                        for (int x = 0; x < SpecialList.Count; x++)
+                                        {
+                                            if (SpecialCubeList.Contains(SpecialList[i].Num))
+                                            {
+                                                SpecialCubeList.Remove(SpecialList[i].Num);
+                                            }
+                                        }
                                         int rand = Random.Range(0, SpecialCubeList.Count);
 
-                                        _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                        _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
-
+                                        SpecialList.Add(new SpecialData(SpecialCubeList[rand], SpecialCubeType.Diagonal));
                                     }
                                     //_Map.Slots[Num + i].cube.SpecialCube = true;
                                     //Debug.Log("특수블럭 대각선 생성");
@@ -214,27 +232,27 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else if (Count < 5)
                             {
-                                if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+                                if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                 {
-                                    _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                    _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Vertical;
-                                    _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
+                                    SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Vertical));
                                 }
-                                else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
+                                else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
                                 {
-                                    _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                    _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Vertical;
-                                    _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
+                                    SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Vertical));
                                 }
                                 else
                                 {
+
+                                    for (int x = 0; x < SpecialList.Count; x++)
+                                    {
+                                        if (SpecialCubeList.Contains(SpecialList[i].Num))
+                                        {
+                                            SpecialCubeList.Remove(SpecialList[i].Num);
+                                        }
+                                    }
                                     int rand = Random.Range(0, SpecialCubeList.Count);
-                                    _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Vertical;
+
+                                    SpecialList.Add(new SpecialData(SpecialCubeList[rand], SpecialCubeType.Vertical));
                                 }
 
 
@@ -245,29 +263,27 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else
                             {
-                                if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+                                if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                 {
-                                    _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                    _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
+                                    SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Diagonal));
                                 }
-                                else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
+                                else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
                                 {
-                                    _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                    _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
-                                    _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
+                                    SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Diagonal));
                                 }
                                 else
                                 {
+
+                                    for (int x = 0; x < SpecialList.Count; x++)
+                                    {
+                                        if (SpecialCubeList.Contains(SpecialList[i].Num))
+                                        {
+                                            SpecialCubeList.Remove(SpecialList[i].Num);
+                                        }
+                                    }
                                     int rand = Random.Range(0, SpecialCubeList.Count);
 
-                                    _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
-
+                                    SpecialList.Add(new SpecialData(SpecialCubeList[rand], SpecialCubeType.Diagonal));
                                 }
                                 //_Map.Slots[Num + i].cube.SpecialCube = true;
                                 //Debug.Log("특수블럭 대각선 생성");
@@ -278,35 +294,33 @@ public class FindMatches : A_Singleton<FindMatches>
                        
                     }
 
-                    Num += (Count * _Map.Horizontal);
+                    Num += (Count * GameManager.Instance.MaxHorizon);
                     SpecialCubeList.Clear();
                 }
                 else
                 {
-                    Num += _Map.Horizontal;
+                    Num += GameManager.Instance.MaxHorizon;
                 }
             }
 
         }
 
 
-        for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomLeft; i += _Map.Horizontal)
+        for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomLeft; i += GameManager.Instance.MaxHorizon)
         {
             for (int Num = 0; Num < _Map.TopRight;)
             {
-                if (_Map.Slots[Num + i].nodeColor != NodeColor.NC8_Null)
+                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC5_Blank)
                 {
                     int Count = 1;
                     SpecialCubeList.Add(Num + i);
 
                     while (true)
                     {
-                        if (_Map.Slots[Num + i + Count].cube != null)
+                        if (_Map.Slots[Num + i + Count].block != null)
                         {
 
-                            if (_Map.Slots[Num + i].cube.nodeColor == _Map.Slots[Num + i + Count].cube.nodeColor &&
-                                _Map.Slots[Num + i].cube.nodeColor < NodeColor.NC5_Blank &&
-                                _Map.Slots[Num + i + Count].cube.nodeColor < NodeColor.NC5_Blank)
+                            if (_Map.Slots[Num + i].block.nodeColor == _Map.Slots[Num + i + Count].block.nodeColor)
                             {
                                 SpecialCubeList.Add(Num + i + Count);
                                 Count++;
@@ -321,88 +335,104 @@ public class FindMatches : A_Singleton<FindMatches>
                                 }
                                 else if (Count < 5)
                                 {
-                                    if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+                                    bool Cross = false;
+                                    if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                     {
-                                        if (_Map.Slots[thePuzzle.SelectNum].cube.SpecialCube == false)
+                                        for (int z = 0; z < SpecialList.Count; z++)
                                         {
-                                            _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                            _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Horizon;
-                                            _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                            _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
+                                            if (SpecialList[z].Num == PuzzleManager.Instance.SelectNum)
+                                            {
+                                                Cross = true;
+                                                break;
+                                            }
+                                        }
+                                        if (Cross == false)
+                                        {
+                                            SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Horizon));
 
                                             break;
                                         }
                                         else
                                         {
-                                            SpecialCubeList.Remove(thePuzzle.SelectNum);
+                                            SpecialCubeList.Remove(PuzzleManager.Instance.SelectNum);
                                         }
 
                                     }
-                                    else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
+                                    else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
                                     {
-                                        if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
+
+                                        for (int z = 0; z < SpecialList.Count; z++)
                                         {
-                                            _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                            _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
-                                            _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
-                                            _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Horizon;
+                                            if (SpecialList[z].Num == PuzzleManager.Instance.OtherNum)
+                                            {
+                                                Cross = true;
+                                                break;
+                                            }
+                                        }
+                                        if (Cross == false)
+                                        {
+                                            SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Horizon));
+
                                             break;
                                         }
                                         else
                                         {
-                                            SpecialCubeList.Remove(thePuzzle.OtherNum);
+                                            SpecialCubeList.Remove(PuzzleManager.Instance.OtherNum);
                                         }
+
                                     }
+                                    
 
                                     int rand = Random.Range(0, SpecialCubeList.Count);
-
-                                    _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
-                                    _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-
+                                    SpecialList.Add(new SpecialData(SpecialCubeList[rand], SpecialCubeType.Horizon));
                                     break;
                                 }
                                 else
                                 {
-                                    if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+                                    bool Cross = false;
+                                    if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                     {
-                                        if (_Map.Slots[thePuzzle.SelectNum].cube.SpecialCube == false)
+                                        for (int z = 0; z < SpecialList.Count; z++)
                                         {
-                                            _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                            _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                            _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
-                                            _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
-                                            break;
+                                            if (SpecialList[z].Num == PuzzleManager.Instance.SelectNum)
+                                            {
+                                                Cross = true;
+                                                break;
+                                            }
                                         }
-                                        else
+                                        if (Cross == false)
                                         {
-                                            SpecialCubeList.Remove(thePuzzle.SelectNum);
-                                        }
+                                            SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Diagonal));
 
-                                    }
-                                    else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
-                                    {
-                                        if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
-                                        {
-                                            _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
-                                            _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                            _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
-                                            _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
                                             break;
                                         }
                                         else
                                         {
-                                            SpecialCubeList.Remove(thePuzzle.OtherNum);
+                                            SpecialCubeList.Remove(PuzzleManager.Instance.SelectNum);
+                                        }
+                                    }
+                                    else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
+                                    {
+                                        for (int z = 0; z < SpecialList.Count; z++)
+                                        {
+                                            if (SpecialList[z].Num == PuzzleManager.Instance.OtherNum)
+                                            {
+                                                Cross = true;
+                                                break;
+                                            }
+                                        }
+                                        if (Cross == false)
+                                        {
+                                            SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Diagonal));
+
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            SpecialCubeList.Remove(PuzzleManager.Instance.OtherNum);
                                         }
                                     }
                                     int rand = Random.Range(0, SpecialCubeList.Count);
-                                    _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                    _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
-                                    _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                    //Debug.Log("특수블럭 대각선 생성");
-
                                     break;
                                 }
                             }
@@ -416,92 +446,104 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else if (Count < 5)
                             {
-                                if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+                                bool Cross = false;
+                                if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                 {
-                                    if (_Map.Slots[thePuzzle.SelectNum].cube.SpecialCube == false)
+                                    for (int z = 0; z < SpecialList.Count; z++)
                                     {
-                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Horizon;
-                                        _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
+                                        if (SpecialList[z].Num == PuzzleManager.Instance.SelectNum)
+                                        {
+                                            Cross = true;
+                                            break;
+                                        }
+                                    }
+                                    if (Cross == false)
+                                    {
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Horizon));
 
                                         break;
                                     }
                                     else
                                     {
-                                        SpecialCubeList.Remove(thePuzzle.SelectNum);
+                                        SpecialCubeList.Remove(PuzzleManager.Instance.SelectNum);
                                     }
 
                                 }
-                                else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
+                                else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
                                 {
-                                    if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
+
+                                    for (int z = 0; z < SpecialList.Count; z++)
                                     {
-                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Horizon;
+                                        if (SpecialList[z].Num == PuzzleManager.Instance.OtherNum)
+                                        {
+                                            Cross = true;
+                                            break;
+                                        }
+                                    }
+                                    if (Cross == false)
+                                    {
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Horizon));
 
                                         break;
                                     }
                                     else
                                     {
-                                        SpecialCubeList.Remove(thePuzzle.OtherNum);
+                                        SpecialCubeList.Remove(PuzzleManager.Instance.OtherNum);
                                     }
+
                                 }
+
 
                                 int rand = Random.Range(0, SpecialCubeList.Count);
-
-                                _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Horizon;
-                                _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                //Debug.Log("특수블럭 가로 생성");
-
+                                SpecialList.Add(new SpecialData(SpecialCubeList[rand], SpecialCubeType.Horizon));
                                 break;
                             }
                             else
                             {
-                                if (SpecialCubeList.Contains(thePuzzle.SelectNum))
+                                bool Cross = false;
+                                if (SpecialCubeList.Contains(PuzzleManager.Instance.SelectNum))
                                 {
-                                    if (_Map.Slots[thePuzzle.SelectNum].cube.SpecialCube == false)
+                                    for (int z = 0; z < SpecialList.Count; z++)
                                     {
-                                        _Map.Slots[thePuzzle.SelectNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.SelectNum].cube.specialCubeType = SpecialCubeType.Diagonal;
-                                        _Map.Slots[thePuzzle.SelectNum].nodeColor = NodeColor.NC7_Special;
+                                        if (SpecialList[z].Num == PuzzleManager.Instance.SelectNum)
+                                        {
+                                            Cross = true;
+                                            break;
+                                        }
+                                    }
+                                    if (Cross == false)
+                                    {
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.SelectNum, SpecialCubeType.Diagonal));
+
                                         break;
                                     }
                                     else
                                     {
-                                        SpecialCubeList.Remove(thePuzzle.SelectNum);
+                                        SpecialCubeList.Remove(PuzzleManager.Instance.SelectNum);
                                     }
-
                                 }
-                                else if (SpecialCubeList.Contains(thePuzzle.OtherNum))
+                                else if (SpecialCubeList.Contains(PuzzleManager.Instance.OtherNum))
                                 {
-                                    if (_Map.Slots[thePuzzle.OtherNum].cube.SpecialCube == false)
+                                    for (int z = 0; z < SpecialList.Count; z++)
                                     {
-                                        _Map.Slots[thePuzzle.OtherNum].cube.nodeColor = NodeColor.NC7_Special;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.SpecialCube = true;
-                                        _Map.Slots[thePuzzle.OtherNum].cube.specialCubeType = SpecialCubeType.Diagonal;
-                                        _Map.Slots[thePuzzle.OtherNum].nodeColor = NodeColor.NC7_Special;
+                                        if (SpecialList[z].Num == PuzzleManager.Instance.OtherNum)
+                                        {
+                                            Cross = true;
+                                            break;
+                                        }
+                                    }
+                                    if (Cross == false)
+                                    {
+                                        SpecialList.Add(new SpecialData(PuzzleManager.Instance.OtherNum, SpecialCubeType.Diagonal));
+
                                         break;
                                     }
                                     else
                                     {
-                                        SpecialCubeList.Remove(thePuzzle.OtherNum);
+                                        SpecialCubeList.Remove(PuzzleManager.Instance.OtherNum);
                                     }
                                 }
-
                                 int rand = Random.Range(0, SpecialCubeList.Count);
-
-                                _Map.Slots[SpecialCubeList[rand]].cube.nodeColor = NodeColor.NC7_Special;
-                                _Map.Slots[SpecialCubeList[rand]].cube.SpecialCube = true;
-                                _Map.Slots[SpecialCubeList[rand]].cube.specialCubeType = SpecialCubeType.Diagonal;
-                                _Map.Slots[SpecialCubeList[rand]].nodeColor = NodeColor.NC7_Special;
-                                //Debug.Log("특수블럭 대각선 생성");
-
                                 break;
                             }
                         }
@@ -530,7 +572,7 @@ public class FindMatches : A_Singleton<FindMatches>
         int HorizonNum =0;
 
 
-        _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
+        _Map.Slots[_SlotNum].block.GetComponent<SpecialCube>().specialCubeType = SpecialCubeType.Null;
 
         for (int i = 0; i < _Map.Vertical; i++)
         {
@@ -869,7 +911,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
     public void SpecialCubeEvent(MapManager _Map, int _SlotNum, SpecialCubeType _Type)
     {
-        thePuzzle.CubeEvent = true;
+        PuzzleManager.Instance.CubeEvent = true;
         if (CurrentCheckBoomTime < MaxCheckBoomTime /2f)
             theBattle.AddComboValue();
 
@@ -920,7 +962,7 @@ public class FindMatches : A_Singleton<FindMatches>
     //앨리스 스킬
     public void SkillAilce(MapManager _Map, int _SlotNum)
     {
-        float InvokeTime = theGirl.Girls[(int)thePuzzle.selectGirl].SkillTime;
+        float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
         float Damage = theGirl.Girls[(int)SelectGirl.G1_Alice].SkillDamage;
         if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
         {
@@ -973,7 +1015,7 @@ public class FindMatches : A_Singleton<FindMatches>
     public void SkillBeryl(MapManager _Map, int _SlotNum)
     {
         float Damage = theGirl.Girls[(int)SelectGirl.G3_Beryl].SkillDamage;
-        float InvokeTime = theGirl.Girls[(int)thePuzzle.selectGirl].SkillTime;
+        float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
         // 11시
         if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeType != PuzzleSlot.NodeType.Null)
         {

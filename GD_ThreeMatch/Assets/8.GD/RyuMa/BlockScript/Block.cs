@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public enum BlockType
 {
+    Blank = -1,
     Null = 0,
     Cube,
     SpecialCube,
@@ -59,6 +60,18 @@ public class Block : MonoBehaviour
     }
 
 
+    //처음 생성시 연출 및 시작 부분
+    virtual public void Init()
+    { 
+    
+    }
+
+
+    virtual public void BurstEvent(MapManager _map, int _num, float DelayTime = 0)
+    {
+
+    }
+
     // 기본적으로 블럭을 움직이게 하는 함수
     virtual public void MoveEvent(Vector2 _vec, float _Speed, bool _Event = false)
     {
@@ -86,28 +99,9 @@ public class Block : MonoBehaviour
     }
 
 
-    // 블럭이 파괴하는 
-    virtual public void DestroyCube()
-    {
-
-
-    }
-
-
     virtual public void Resetting()
     { 
     
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
