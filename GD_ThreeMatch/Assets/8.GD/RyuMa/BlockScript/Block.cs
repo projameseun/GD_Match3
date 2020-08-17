@@ -3,18 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum BlockType
+{
+    Null = 0,
+    Cube,
+    SpecialCube,
+    Player,
 
 
+}
 
+public enum NodeColor
+{
+    NC0_Blue = 0,
+    NC1_Green,
+    NC2_Pink,
+    NC3_Red,
+    NC4_Yellow,
+    NC5_Blank,
+    
+}
 
 
 
 
 public class Block : MonoBehaviour
 {
+    //블럭이 무슨 블럭인지
     public BlockType blockType;
+
+    //블럭의 색
     public NodeColor nodeColor;
 
+    // 연계시 폭발하는지
+    public bool Burst;
+
+    // 반칸을 채우는지
+    public bool Gravity;
+
+    // 이동이 가능한지
+    public bool CanMove;
+
+
+
+
+    //Trunk
     public int Num;
     bool OnlyOneEvent;
     Vector2 TargetVec;

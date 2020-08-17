@@ -93,7 +93,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public TextMeshPro MoveCountText;
     public Image FoodImage;
     //메치가 되면 true;
-    public bool isMatched = false;
+
 
 
     [Space]
@@ -250,23 +250,20 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     }
 
 
-                    theMatch.FindAllMatches(theMoveMap);
-                    if (isMatched)
-                    {
 
+                    if (theMatch.FindAllMatches(theMoveMap))
+                    {
                         SetMoveCount(-1);
                         DestroyCube(theMoveMap);
                         theMatch.FindSpecialCube(theMoveMap);
                         return;
                     }
-
-
-                    //매치가 안될경우
-                    if (!isMatched)
+                    else
                     {
                         ChangeCube(theMoveMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
                     }
+
 
                 }
             }
@@ -303,18 +300,14 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
-                theMatch.FindAllMatches(theMoveMap);
-                if (isMatched)
-                {
 
+                if (theMatch.FindAllMatches(theMoveMap))
+                {
                     DestroyCube(theMoveMap);
                     theMatch.FindSpecialCube(theMoveMap);
                     return;
                 }
-
-
-                //매치가 안될경우
-                if (!isMatched)
+                else
                 {
                     Player.ChangeAnim("Idle", true);
 
@@ -337,7 +330,6 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                         SetSlot(theMoveMap, true);
                         state = State.Ready;
                     }
-
                 }
             }
             else if (state == State.DestroyCube)//매치된 큐브 제거
@@ -421,8 +413,8 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     CubeEvent = false;
 
                     //매치 조건이 맞는지 확인한다
-                    theMatch.FindAllMatches(theBattleMap);
-                    if (isMatched)
+
+                    if (theMatch.FindAllMatches(theBattleMap))
                     {
 
                         SetMoveCount(-1);
@@ -430,10 +422,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                         theMatch.FindSpecialCube(theBattleMap);
                         return;
                     }
-
-
-                    //매치가 안될경우
-                    if (!isMatched)
+                    else
                     {
                         ChangeCube(theBattleMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
@@ -466,16 +455,15 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 if (theBattle.PlayerAttackEffectList.Count > 0 && theBattle.CurrentEnemyCount == 0)
                     return;
 
-                theMatch.FindAllMatches(theBattleMap);
-                if (isMatched)
+
+                if (theMatch.FindAllMatches(theBattleMap))
                 {
 
                     DestroyCube(theBattleMap);
                     theMatch.FindSpecialCube(theBattleMap);
                     return;
                 }
-                //매치가 안될경우
-                if (!isMatched)
+                else
                 {
                     if (DeadlockCheck(theBattleMap))
                     {
@@ -593,8 +581,8 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     }
 
 
-                    theMatch.FindAllMatches(theMoveMap);
-                    if (isMatched)
+
+                    if (theMatch.FindAllMatches(theMoveMap))
                     {
 
                         SetMoveCount(-1);
@@ -602,15 +590,11 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                         theMatch.FindSpecialCube(theMoveMap);
                         return;
                     }
-
-
-                    //매치가 안될경우
-                    if (!isMatched)
+                    else
                     {
                         ChangeCube(theMoveMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
                     }
-
                 }
             }
             else if (state == State.ChangeMatchRetrun)// 매치조건이 없어서 다시 원위치
@@ -646,18 +630,14 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
             }
             else if (state == State.CheckMatch)// 빈칸을 채운 후 매치 확인
             {
-                theMatch.FindAllMatches(theMoveMap);
-                if (isMatched)
-                {
 
+                if (theMatch.FindAllMatches(theMoveMap))
+                {
                     DestroyCube(theMoveMap);
                     theMatch.FindSpecialCube(theMoveMap);
                     return;
                 }
-
-
-                //매치가 안될경우
-                if (!isMatched)
+                else
                 {
                     Player.ChangeAnim("Idle", true);
 
@@ -681,8 +661,8 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                         state = State.Ready;
                     }
                     CheckTutorialMessage();
-
                 }
+
             }
             else if (state == State.DestroyCube)//매치된 큐브 제거
             {
@@ -770,8 +750,8 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     CubeEvent = false;
 
                     //매치 조건이 맞는지 확인한다
-                    theMatch.FindAllMatches(theBattleMap);
-                    if (isMatched)
+
+                    if (theMatch.FindAllMatches(theBattleMap))
                     {
 
                         SetMoveCount(-1);
@@ -779,15 +759,11 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                         theMatch.FindSpecialCube(theBattleMap);
                         return;
                     }
-
-
-                    //매치가 안될경우
-                    if (!isMatched)
+                    else
                     {
                         ChangeCube(theBattleMap, SelectNum, OtherNum, CubeMoveSpeed, true);
                         state = State.ChangeMatchRetrun;
                     }
-
                 }
             }
             else if (state == State.ChangeMatchRetrun)// 매치조건이 없어서 다시 원위치
@@ -815,16 +791,14 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 if (theBattle.PlayerAttackEffectList.Count > 0 && theBattle.CurrentEnemyCount == 0)
                     return;
 
-                theMatch.FindAllMatches(theBattleMap);
-                if (isMatched)
+                if (theMatch.FindAllMatches(theBattleMap))
                 {
 
                     DestroyCube(theBattleMap);
                     theMatch.FindSpecialCube(theBattleMap);
                     return;
                 }
-                //매치가 안될경우
-                if (!isMatched)
+                else //매치가 안될경우
                 {
                     if (DeadlockCheck(theBattleMap))
                     {
@@ -1534,18 +1508,15 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
             theBattle.AddComboValue();
         }
         state = State.DestroyCube;
-        isMatched = false;
-        bool Event = true;
-        for (int i = 0; i < _Map.Slots.Length; i++)
-        {
-            if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[i].nodeColor == NodeColor.NC5_Blank)
-            {
-                _Map.Slots[i].cube.DestroyCube(Event);
 
-                Event = false;
-            }
+
+
+
+        for (int i = 0; i < FindMatches.Instance.currentMathces.Count; i++)
+        {
+            FindMatches.Instance.currentMathces[i].BurstEvent();
         }
+        FindMatches.Instance.currentMathces.Clear();
     }
 
 
@@ -1703,17 +1674,16 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     _Map.Slots[i].nodeColor = _Map.Slots[i - _Map.Horizontal].nodeColor;
                     _Map.Slots[i - _Map.Horizontal].nodeColor = CopyColor;
 
-                    theMatch.FindAllMatches(theMoveMap, false);
-
-                    _Map.Slots[i - _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = CopyColor;
-
-                    if (isMatched)
+                    if (theMatch.FindAllMatches(theMoveMap, false))
                     {
                         isMatched = false;
                         HintNum = i;
                         return true;
                     }
+
+
+                    _Map.Slots[i - _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
+                    _Map.Slots[i].nodeColor = CopyColor;
                 }
                 // 하
                 if (_Map.Slots[i + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)

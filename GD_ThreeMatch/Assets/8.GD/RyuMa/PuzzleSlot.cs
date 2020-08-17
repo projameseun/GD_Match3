@@ -5,26 +5,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static HappyRyuMa.GameMaker;
 
-public enum BlockType
-{
-    Null = 0,
-    Cube,
-    SpecialCube
 
-}
 
-public enum NodeColor
-{
-    NC0_Blue = 0,
-    NC1_Green,
-    NC2_Pink,
-    NC3_Red,
-    NC4_Yellow,
-    NC5_Blank,
-    NC6_Player,
-    NC7_Special,
-    NC8_Null
-}
+
 
 [System.Serializable]
 public class MonsterSheet
