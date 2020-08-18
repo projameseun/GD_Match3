@@ -345,61 +345,45 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void SpecialCubeEvent()
     {
-        thePuzzle.SetMoveCount(-1);
-        if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
-        {
-            thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
-            thePuzzle.Player.ChangeAnim("Attack");
-            thePuzzle.Player.Map = thePuzzle.theMoveMap;
-            thePuzzle.Player.SlotNum = SlotNum;
-            thePuzzle.Player.Type = cube.specialCubeType;
-            
-        }
-        else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
-        {
-            thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
-
-
-            Direction dir = Direction.Right;
-            Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
-            // 슬롯이 오른쪽
-            if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
-            {
-                StartVec.x -= 1.8f;
-                dir = Direction.Right;
-            }
-            else
-            {
-                StartVec.x += 1.8f;
-                dir = Direction.Left;
-            }
-
-            if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
-            {
-                StartVec.y -= 1f;
-            }
-            else
-            {
-                StartVec.y += 1f;
-            }
-            thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, cube.specialCubeType,thePuzzle.theBattleMap,SlotNum);
-
-        }
-
-
-        //switch (cube.specialCubeType)
+        //thePuzzle.SetMoveCount(-1);
+        //if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
         //{
-        //    case SpecialCubeType.Horizon:
-        //        theMatch.FindHorizonCube(_Map, SlotNum);
-        //        break;
+        //    thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+        //    thePuzzle.Player.ChangeAnim("Attack");
+        //    thePuzzle.Player.Map = thePuzzle.theMoveMap;
+        //    thePuzzle.Player.SlotNum = SlotNum;
+        //    thePuzzle.Player.Type = cube.specialCubeType;
+            
+        //}
+        //else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
+        //{
+        //    thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
 
-        //    case SpecialCubeType.Vertical:
-        //        theMatch.FindVerticalCube(_Map, SlotNum);
-        //        break;
 
-        //    case SpecialCubeType.Hanoi:
-        //        theMatch.FindHanoiCube(_Map, SlotNum);
-        //        break;
+        //    Direction dir = Direction.Right;
+        //    Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
+        //    // 슬롯이 오른쪽
+        //    if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
+        //    {
+        //        StartVec.x -= 1.8f;
+        //        dir = Direction.Right;
+        //    }
+        //    else
+        //    {
+        //        StartVec.x += 1.8f;
+        //        dir = Direction.Left;
+        //    }
+
+        //    if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
+        //    {
+        //        StartVec.y -= 1f;
+        //    }
+        //    else
+        //    {
+        //        StartVec.y += 1f;
+        //    }
+        //    thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, cube.specialCubeType,thePuzzle.theBattleMap,SlotNum);
+
         //}
 
     }
@@ -431,8 +415,9 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             StartVec.y += 1f;
         }
 
-        thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, cube.specialCubeType,
-            thePuzzle.theBattleMap, SlotNum);
+        //수정 확인
+        //thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, block.specialCubeType,
+        //    thePuzzle.theBattleMap, SlotNum);
 
       
         thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
@@ -440,36 +425,22 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     }
 
 
-    public void Resetting()
+
+
+    public void BlockBurst(float _Delay = 0f)
     {
-        if (nodeType == NodeType.Enemy)
-        {
-            monsterSheet = null;
-        }
-        else if (nodeType == NodeType.Portal)
-        {
-            portalSheet = null;
-        }
-
-        SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
-        if (cube != null)
-        {
-            cube.Resetting();
-            cube = null;
-        }
-
-        nodeType = NodeType.Null;
-        nodeColor = NodeColor.NC8_Null;
-        if (slotObject != null)
-        {
-            slotObject.Resetting();
-            slotObject = null;
-        }
-
-
+        if (block == null)
+            return;
+        if (block.Burst == false || block.Bursting == true)
+            return;
     }
 
 
+
+
+    public void Resetting()
+    { 
+    }
 
 
 }

@@ -39,6 +39,9 @@ public class Block : MonoBehaviour
     // 연계시 폭발하는지
     public bool Burst;
 
+    // burst중인지 아닌지 체크
+    public bool Bursting;
+
     // 반칸을 채우는지
     public bool Gravity;
 
@@ -67,7 +70,14 @@ public class Block : MonoBehaviour
     }
 
 
-    virtual public void BurstEvent(MapManager _map, int _num, float DelayTime = 0)
+    virtual public void ChangeState(int _Num)
+    { 
+        
+    }
+
+
+    //매치및 이펙트로 터지는 이밴트
+    virtual public void BurstEvent(MapManager _map, int _num)
     {
 
     }

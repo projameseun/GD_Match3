@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PanelType
+{ 
+    NULL,
+    Portal
+}
+
+
+
 public class Panel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    public PanelType panelType;
+
+    int Num;
+
+
+    virtual public void Init()
+    { 
+    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
+
+
 }

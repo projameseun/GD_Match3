@@ -101,7 +101,8 @@ public class GameManager : G_Singleton<GameManager>
     GUIStyle style = new GUIStyle();
     int w = 0, h = 0;
     Rect rect;
-    private void Awake()
+
+    protected override void Init()
     {
         Application.targetFrameRate = 60;
         if (CheatMode == true)

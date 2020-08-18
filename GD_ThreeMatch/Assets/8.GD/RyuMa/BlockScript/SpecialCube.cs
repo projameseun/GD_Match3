@@ -11,12 +11,23 @@ public enum SpecialCubeType
 public class SpecialCube : Block
 {
     public SpecialCubeType specialCubeType;
+    public float DelayTime;
+
+    public override void ChangeState(int _Num)
+    {
+        specialCubeType = (SpecialCubeType)_Num;
+    }
 
 
-
-    public override void BurstEvent(MapManager _map, int _num, float DelayTime = 0)
+    public override void BurstEvent(MapManager _map, int _num)
     {
         //base.BurstEvent(_map, _num);
+
+        if (specialCubeType != SpecialCubeType.Null)
+        {
+            PuzzleManager.Instance.EventUpdate();
+        }
+
 
         switch (specialCubeType)
         {
@@ -24,7 +35,7 @@ public class SpecialCube : Block
                 HorizonEvent(_map, _num);
                 break;
             case SpecialCubeType.Vertical:
-                HorizonEvent(_map, _num);
+                VerticalEvent(_map, _num);
                 break;
             case SpecialCubeType.Diagonal:
                 HorizonEvent(_map, _num);
@@ -39,7 +50,7 @@ public class SpecialCube : Block
         int HorizonNum = 0;
 
 
-        _Map.Slots[_SlotNum].block.GetComponent<SpecialCube>().specialCubeType = SpecialCubeType.Null;
+        specialCubeType = SpecialCubeType.Null;
 
         for (int i = 0; i < _Map.Vertical; i++)
         {
@@ -52,42 +63,157 @@ public class SpecialCube : Block
 
         for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
         {
-            if (_Map.Slots[i].block.Burst == false)
+            if (i == _SlotNum)
+                continue;
+            if (_Map.Slots[i].block.blockType == BlockType.SpecialCube)
             {
-                if (i == _SlotNum)
-                    continue;
-
-                if (_Map.Slots[i].block.blockType == BlockType.SpecialCube)
+                if (_Map.Slots[i].block.GetComponent<SpecialCube>().specialCubeType == SpecialCubeType.Horizon)
                 {
-                    if(_Map.Slots[i].block.GetComponent<SpecialCube>().specialCubeType != SpecialCubeType.Horizon)
-                    {
-                        CheckBoom = true;
-                    }
+                    _Map.Slots[i].block.ChangeState(-1);
                 }
-
-
-
             }
-        }
 
-        for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
-        {
-            if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Horizon)
-                    _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
-                _Map.Slots[i].cube.DestroyCube(true, true);
+            _Map.Slots[i].BlockBurst(DelayTime);
 
-            }
         }
 
 
     }
 
 
+    public void VerticalEvent(MapManager _Map, int _SlotNum)
+    {
+        int Vertical = _SlotNum % GameManager.Instance.MaxHorizon;
+        specialCubeType = SpecialCubeType.Null;
 
+
+        for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
+        {
+            if (i == _SlotNum)
+                continue;
+            if (_Map.Slots[i].block.blockType == BlockType.SpecialCube)
+            {
+                if (_Map.Slots[i].block.GetComponent<SpecialCube>().specialCubeType == SpecialCubeType.Horizon)
+                {
+                    _Map.Slots[i].block.ChangeState(-1);
+                }
+            }
+
+            _Map.Slots[i].BlockBurst(DelayTime);
+
+        }
+    }
+
+
+
+
+    public void DiagonalEvent(MapManager _Map, int _SlotNum)
+    {
+
+        int CheckCount = 1;
+
+
+        specialCubeType = SpecialCubeType.Null;
+
+
+
+        // 11시 방향 확인
+        while (true)
+        {
+            int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
+
+            if (Count < _Map.TopRight ||
+                Count % _Map.Horizontal == 0)
+            {
+                break;
+            }
+            if (_Map.Slots[Count].block.blockType == BlockType.SpecialCube)
+            {
+                if (_Map.Slots[Count].block.GetComponent<SpecialCube>().specialCubeType == SpecialCubeType.Horizon)
+                {
+                    _Map.Slots[Count].block.ChangeState(-1);
+                }
+            }
+            _Map.Slots[Count].BlockBurst(DelayTime);
+            CheckCount++;
+
+        }
+
+
+        CheckCount = 1;
+        // 1시 방향 확인
+        while (true)
+        {
+
+            int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
+
+            if (Count <= _Map.TopRight ||
+                Count % _Map.Horizontal == _Map.Horizontal - 1)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].block.blockType == BlockType.SpecialCube)
+            {
+                if (_Map.Slots[Count].block.GetComponent<SpecialCube>().specialCubeType == SpecialCubeType.Horizon)
+                {
+                    _Map.Slots[Count].block.ChangeState(-1);
+                }
+            }
+            _Map.Slots[Count].BlockBurst(DelayTime);
+            CheckCount++;
+        }
+
+        CheckCount = 1;
+
+        // 7시 방향 확인
+        while (true)
+        {
+            int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
+
+            if (Count >= _Map.BottomLeft ||
+                Count % _Map.Horizontal == 0)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].block.blockType == BlockType.SpecialCube)
+            {
+                if (_Map.Slots[Count].block.GetComponent<SpecialCube>().specialCubeType == SpecialCubeType.Horizon)
+                {
+                    _Map.Slots[Count].block.ChangeState(-1);
+                }
+            }
+            _Map.Slots[Count].BlockBurst(DelayTime);
+            CheckCount++;
+        }
+
+
+        CheckCount = 1;
+
+        // 5시 방향
+        while (true)
+        {
+            int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
+
+            if (Count >= _Map.BottomLeft ||
+                Count % _Map.Horizontal == _Map.Horizontal - 1)
+            {
+                break;
+            }
+
+            if (_Map.Slots[Count].block.blockType == BlockType.SpecialCube)
+            {
+                if (_Map.Slots[Count].block.GetComponent<SpecialCube>().specialCubeType == SpecialCubeType.Horizon)
+                {
+                    _Map.Slots[Count].block.ChangeState(-1);
+                }
+            }
+            _Map.Slots[Count].BlockBurst(DelayTime);
+            CheckCount++;
+        }
+
+    }
 
 
 

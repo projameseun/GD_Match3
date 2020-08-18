@@ -569,50 +569,50 @@ public class FindMatches : A_Singleton<FindMatches>
     public void FindHorizonCube(MapManager _Map,int _SlotNum)
     {
 
-        int HorizonNum =0;
+        //int HorizonNum =0;
 
 
-        _Map.Slots[_SlotNum].block.GetComponent<SpecialCube>().specialCubeType = SpecialCubeType.Null;
+        //_Map.Slots[_SlotNum].block.GetComponent<SpecialCube>().specialCubeType = SpecialCubeType.Null;
 
-        for (int i = 0; i < _Map.Vertical; i++)
-        {
-            if (_SlotNum < i * _Map.Horizontal)
-            {
-                HorizonNum = (i - 1) * _Map.Horizontal;
-                break;
-            }
-        }
-        for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
-        {
-            if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (i == _SlotNum)
-                    continue;
+        //for (int i = 0; i < _Map.Vertical; i++)
+        //{
+        //    if (_SlotNum < i * _Map.Horizontal)
+        //    {
+        //        HorizonNum = (i - 1) * _Map.Horizontal;
+        //        break;
+        //    }
+        //}
+        //for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
+        //{
+        //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (i == _SlotNum)
+        //            continue;
 
-                if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Horizon)
-                {
-                    CheckBoom = true;
-                }
+        //        if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
+        //            _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Horizon)
+        //        {
+        //            CheckBoom = true;
+        //        }
                     
 
-            }
-        }
+        //    }
+        //}
 
-        for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
-        {
-            if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Horizon)
-                    _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
-                _Map.Slots[i].cube.DestroyCube(true,true);
+        //for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
+        //{
+        //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Horizon)
+        //            _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
+        //        _Map.Slots[i].cube.DestroyCube(true,true);
 
-            }
-        }
+        //    }
+        //}
 
  
     }
@@ -620,41 +620,41 @@ public class FindMatches : A_Singleton<FindMatches>
     //세로 특수큐브
     public void FindVerticalCube(MapManager _Map, int _SlotNum)
     {
-        int Vertical = _SlotNum % _Map.Horizontal;
-        _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
+        //int Vertical = _SlotNum % _Map.Horizontal;
+        //_Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
 
 
-        for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
-        {
-            if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
-                 _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                 _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (i == _SlotNum)
-                    continue;
-                if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Vertical)
-                {
-                    CheckBoom = true;
-                }
+        //for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
+        //{
+        //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
+        //         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+        //         _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (i == _SlotNum)
+        //            continue;
+        //        if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null &&
+        //            _Map.Slots[i].cube.specialCubeType != SpecialCubeType.Vertical)
+        //        {
+        //            CheckBoom = true;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
-        for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
-        {
-            if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
-                 _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-                 _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
-            {
+        //for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
+        //{
+        //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
+        //         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
+        //         _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //    {
 
-                if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Vertical)
-                    _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
+        //        if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Vertical)
+        //            _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
 
-                _Map.Slots[i].cube.DestroyCube(true,true);
+        //        _Map.Slots[i].cube.DestroyCube(true,true);
 
-            }
-        }
+        //    }
+        //}
 
        
 
@@ -664,249 +664,249 @@ public class FindMatches : A_Singleton<FindMatches>
     public void FindDiagonalCube(MapManager _Map, int _SlotNum)
     {
        
-        int CheckCount = 1;
+        //int CheckCount = 1;
 
 
-        _Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
+        //_Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
 
-
-
-        // 11시 방향 확인
-        while (true && CheckBoom == false)
-        {
-            int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
-
-            if (Count < _Map.TopRight ||
-                Count % _Map.Horizontal == 0)
-            {
-                break;
-            }
-
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
-                {
-                    CheckBoom = true;
-                    break;
-                }
+
+
+        //// 11시 방향 확인
+        //while (true && CheckBoom == false)
+        //{
+        //    int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
+
+        //    if (Count < _Map.TopRight ||
+        //        Count % _Map.Horizontal == 0)
+        //    {
+        //        break;
+        //    }
+
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+        //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
+        //        {
+        //            CheckBoom = true;
+        //            break;
+        //        }
 
-            }
+        //    }
 
-            CheckCount++;
+        //    CheckCount++;
 
-        }
+        //}
 
 
-        CheckCount = 1;
-        // 1시 방향 확인
-        while (true && CheckBoom == false)
-        {
+        //CheckCount = 1;
+        //// 1시 방향 확인
+        //while (true && CheckBoom == false)
+        //{
 
-            int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
+        //    int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
 
-            if (Count <= _Map.TopRight ||
-                Count % _Map.Horizontal == _Map.Horizontal - 1)
-            {
-                break;
-            }
+        //    if (Count <= _Map.TopRight ||
+        //        Count % _Map.Horizontal == _Map.Horizontal - 1)
+        //    {
+        //        break;
+        //    }
 
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
-                {
-                    CheckBoom = true;
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+        //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
+        //        {
+        //            CheckBoom = true;
 
-                    break;
-                }
-            }
+        //            break;
+        //        }
+        //    }
 
-            CheckCount++;
-        }
+        //    CheckCount++;
+        //}
 
-        CheckCount = 1;
+        //CheckCount = 1;
 
-        // 7시 방향 확인
-        while (true && CheckBoom == false)
-        {
-            int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
+        //// 7시 방향 확인
+        //while (true && CheckBoom == false)
+        //{
+        //    int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
 
-            if (Count >= _Map.BottomLeft ||
-                Count % _Map.Horizontal == 0)
-            {
-                break;
-            }
+        //    if (Count >= _Map.BottomLeft ||
+        //        Count % _Map.Horizontal == 0)
+        //    {
+        //        break;
+        //    }
 
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
-                {
-                    CheckBoom = true;
-                    break;
-                }
-            }
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+        //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
+        //        {
+        //            CheckBoom = true;
+        //            break;
+        //        }
+        //    }
 
-            CheckCount++;
-        }
+        //    CheckCount++;
+        //}
 
 
-        CheckCount = 1;
+        //CheckCount = 1;
 
-        // 5시 방향
-        while (true && CheckBoom == false)
-        {
-            int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
+        //// 5시 방향
+        //while (true && CheckBoom == false)
+        //{
+        //    int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
 
-            if (Count >= _Map.BottomLeft ||
-                Count % _Map.Horizontal == _Map.Horizontal - 1)
-            {
-                break;
-            }
+        //    if (Count >= _Map.BottomLeft ||
+        //        Count % _Map.Horizontal == _Map.Horizontal - 1)
+        //    {
+        //        break;
+        //    }
 
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
-                    _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
-                {
-                    CheckBoom = true;
-                    break;
-                }
-            }
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
+        //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
+        //        {
+        //            CheckBoom = true;
+        //            break;
+        //        }
+        //    }
 
-            CheckCount++;
-        }
+        //    CheckCount++;
+        //}
 
 
 
 
-        CheckCount = 1;
+        //CheckCount = 1;
 
 
 
-        // 11시 방향
-        while (true)
-        {
-            int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
+        //// 11시 방향
+        //while (true)
+        //{
+        //    int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
 
-            if (Count < _Map.TopRight ||
-                Count % _Map.Horizontal == 0)
-            {
-                break;
-            }
+        //    if (Count < _Map.TopRight ||
+        //        Count % _Map.Horizontal == 0)
+        //    {
+        //        break;
+        //    }
 
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
-                if (Count == _SlotNum)
-                    continue;
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        if (Count == _SlotNum)
+        //            continue;
 
 
-                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+        //        //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+        //        //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
 
-                _Map.Slots[Count].cube.DestroyCube(true,true);
-            }
+        //        _Map.Slots[Count].cube.DestroyCube(true,true);
+        //    }
 
-            CheckCount++;
+        //    CheckCount++;
 
-        }
+        //}
 
 
-        CheckCount = 1;
-        // 1시 방향
-        while (true)
-        {
-            int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
+        //CheckCount = 1;
+        //// 1시 방향
+        //while (true)
+        //{
+        //    int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
 
-            if (Count <= _Map.TopRight ||
-                Count % _Map.Horizontal == _Map.Horizontal - 1)
-            {
-                break;
-            }
+        //    if (Count <= _Map.TopRight ||
+        //        Count % _Map.Horizontal == _Map.Horizontal - 1)
+        //    {
+        //        break;
+        //    }
 
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
 
-                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+        //        //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+        //        //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
 
-                _Map.Slots[Count].cube.DestroyCube(true,true);
-            }
+        //        _Map.Slots[Count].cube.DestroyCube(true,true);
+        //    }
 
-            CheckCount++;
-        }
+        //    CheckCount++;
+        //}
 
-        CheckCount = 1;
+        //CheckCount = 1;
 
-        // 7시 방향
-        while (true)
-        {
-            int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
+        //// 7시 방향
+        //while (true)
+        //{
+        //    int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
 
-            if (Count >= _Map.BottomLeft ||
-                Count % _Map.Horizontal == 0)
-            {
-                break;
-            }
+        //    if (Count >= _Map.BottomLeft ||
+        //        Count % _Map.Horizontal == 0)
+        //    {
+        //        break;
+        //    }
 
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
 
 
-                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+        //        //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+        //        //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
-                _Map.Slots[Count].cube.DestroyCube(true,true);
-            }
+        //        _Map.Slots[Count].cube.DestroyCube(true,true);
+        //    }
 
-            CheckCount++;
-        }
+        //    CheckCount++;
+        //}
 
 
-        CheckCount = 1;
+        //CheckCount = 1;
 
-        // 5시 방향
-        while (true)
-        {
-            int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
+        //// 5시 방향
+        //while (true)
+        //{
+        //    int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
 
-            if (Count >= _Map.BottomLeft ||
-                Count % _Map.Horizontal == _Map.Horizontal -1)
-            {
-                break;
-            }
+        //    if (Count >= _Map.BottomLeft ||
+        //        Count % _Map.Horizontal == _Map.Horizontal -1)
+        //    {
+        //        break;
+        //    }
 
-            if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
-                _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-                _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
-            {
-                //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
-                //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
+        //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
+        //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //    {
+        //        //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
+        //        //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;
 
-                _Map.Slots[Count].cube.DestroyCube(true,true);
-            }
+        //        _Map.Slots[Count].cube.DestroyCube(true,true);
+        //    }
 
-            CheckCount++;
-        }
+        //    CheckCount++;
+        //}
 
-        _Map.Slots[_SlotNum].cube.DestroyCube(true,true);
+        //_Map.Slots[_SlotNum].cube.DestroyCube(true,true);
     }
 
     public void SpecialCubeEvent(MapManager _Map, int _SlotNum, SpecialCubeType _Type)
@@ -962,89 +962,89 @@ public class FindMatches : A_Singleton<FindMatches>
     //앨리스 스킬
     public void SkillAilce(MapManager _Map, int _SlotNum)
     {
-        float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
-        float Damage = theGirl.Girls[(int)SelectGirl.G1_Alice].SkillDamage;
-        if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-        {
-            //if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
-            //{
-            //    Special = false;
-            //}
-
-            _Map.Slots[_SlotNum - _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
-
-        if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-        {
-            //if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
-            //{
-            //    Special = false;
-            //}
-
-            _Map.Slots[_SlotNum + _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
-
-        if (_Map.Slots[_SlotNum - 1].nodeType != PuzzleSlot.NodeType.Null)
-        {
-            //if (_Map.Slots[_SlotNum - 1].nodeColor == NodeColor.NC7_Special)
-            //{
-            //    Special = false;
-            //}
-
-            _Map.Slots[_SlotNum - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
-        if (_Map.Slots[_SlotNum + 1].nodeType != PuzzleSlot.NodeType.Null)
-        {
-            //if (_Map.Slots[_SlotNum + 1].nodeColor == NodeColor.NC7_Special)
-            //{
-            //    Special = false;
-            //}
-
-            _Map.Slots[_SlotNum + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
-        //if (_Map.Slots[_SlotNum].nodeColor == NodeColor.NC7_Special)
+        //float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
+        //float Damage = theGirl.Girls[(int)SelectGirl.G1_Alice].SkillDamage;
+        //if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
         //{
-        //    Special = false;
+        //    //if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
+        //    //{
+        //    //    Special = false;
+        //    //}
+
+        //    _Map.Slots[_SlotNum - _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
         //}
 
-        _Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //{
+        //    //if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
+        //    //{
+        //    //    Special = false;
+        //    //}
+
+        //    _Map.Slots[_SlotNum + _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //}
+
+        //if (_Map.Slots[_SlotNum - 1].nodeType != PuzzleSlot.NodeType.Null)
+        //{
+        //    //if (_Map.Slots[_SlotNum - 1].nodeColor == NodeColor.NC7_Special)
+        //    //{
+        //    //    Special = false;
+        //    //}
+
+        //    _Map.Slots[_SlotNum - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //}
+        //if (_Map.Slots[_SlotNum + 1].nodeType != PuzzleSlot.NodeType.Null)
+        //{
+        //    //if (_Map.Slots[_SlotNum + 1].nodeColor == NodeColor.NC7_Special)
+        //    //{
+        //    //    Special = false;
+        //    //}
+
+        //    _Map.Slots[_SlotNum + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //}
+        ////if (_Map.Slots[_SlotNum].nodeColor == NodeColor.NC7_Special)
+        ////{
+        ////    Special = false;
+        ////}
+
+        //_Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage, InvokeTime);
 
 
     }
 
     public void SkillBeryl(MapManager _Map, int _SlotNum)
     {
-        float Damage = theGirl.Girls[(int)SelectGirl.G3_Beryl].SkillDamage;
-        float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
-        // 11시
-        if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeType != PuzzleSlot.NodeType.Null)
-        {
-            _Map.Slots[_SlotNum - _Map.Horizontal -1].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
+        //float Damage = theGirl.Girls[(int)SelectGirl.G3_Beryl].SkillDamage;
+        //float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
+        //// 11시
+        //if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeType != PuzzleSlot.NodeType.Null)
+        //{
+        //    _Map.Slots[_SlotNum - _Map.Horizontal -1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //}
 
 
-        //1시
+        ////1시
 
-        if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
-        {
+        //if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
+        //{
 
-            _Map.Slots[_SlotNum - _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
+        //    _Map.Slots[_SlotNum - _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //}
 
-        // 7시
-        if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeType != PuzzleSlot.NodeType.Null)
-        {
-            _Map.Slots[_SlotNum + _Map.Horizontal - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
+        //// 7시
+        //if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeType != PuzzleSlot.NodeType.Null)
+        //{
+        //    _Map.Slots[_SlotNum + _Map.Horizontal - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //}
 
 
-        // 5시
+        //// 5시
 
-        if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
-        {
-            _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
-        }
-        _Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
+        //{
+        //    _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //}
+        //_Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage, InvokeTime);
 
 
 

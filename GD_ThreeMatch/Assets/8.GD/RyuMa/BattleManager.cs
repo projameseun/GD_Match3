@@ -535,7 +535,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                EnemyCubeUi[i].cubeColor = NodeColor.NC8_Null;
+                EnemyCubeUi[i].cubeColor = NodeColor.NC5_Blank;
                 EnemyCubeUi[i].CubeSprite.gameObject.SetActive(false);
             }
 

@@ -241,7 +241,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     //매치 조건이 맞는지 확인한다
 
                     int SlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    if (theMoveMap.Slots[SlotNum].panel.panelType == PanelType.Portal)
                     {
                         SetMoveCount(-1);
                         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
@@ -287,7 +287,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 {
                     CubeEvent = false;
                     int PlayerSlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[PlayerSlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    if (theMoveMap.Slots[PlayerSlotNum].panel.panelType == PanelType.Portal)
                     {
                         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
                         {
@@ -573,7 +573,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     //매치 조건이 맞는지 확인한다
 
                     int SlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    if (theMoveMap.Slots[SlotNum].panel.panelType == PanelType.Portal)
                     {
                         SetMoveCount(-1);
                         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
@@ -617,7 +617,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 {
                     CubeEvent = false;
                     int PlayerSlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[PlayerSlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+                    if (theMoveMap.Slots[PlayerSlotNum].panel.panelType == PanelType.Portal)
                     {
                         if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
                         {
@@ -894,7 +894,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     }
 
-    public void EventUpdate(float _EventTime)
+    public void EventUpdate(float _EventTime = 1f)
     {
         if (EventEndTime < _EventTime)
         {
@@ -908,55 +908,55 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     public void LoadMap(MapManager _Map, bool ReLoadMap) //맵을 다시 불러온다면 true, 처음이면 false
     {
-        CubeBar.sprite = theObject.CubeBarSpirte[(int)theMaker.mapMainType];
+        //CubeBar.sprite = theObject.CubeBarSpirte[(int)theMaker.mapMainType];
 
-        //PortalName.Clear();
+        ////PortalName.Clear();
 
 
-        if (ReLoadMap == true)
-        {
+        //if (ReLoadMap == true)
+        //{
 
-            for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.Slots.Length; i++)
-            {
-                if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
-                {
-                    _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
-                    _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
-                    if (_Map.Slots[i].cube != null)
-                    {
-                        _Map.Slots[i].cube.Resetting();
+        //    for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.Slots.Length; i++)
+        //    {
+        //        if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+        //            _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
+        //            _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
+        //            if (_Map.Slots[i].cube != null)
+        //            {
+        //                _Map.Slots[i].cube.Resetting();
                         
-                    }
-                }
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //}
 
-        for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
-        {
-            for (int i = 0; i <= _Map.TopRight; i++)
-            {
-                theObject.SpawnSlotPanel(_Map.transform, _Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet.SlotSheet,MapType.M1_MoveMap, i + Hor);
-                _Map.Slots[i + Hor].TestText.enabled = false;
-                if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
-                {
-                    if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
-                    {
+        //for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
+        //{
+        //    for (int i = 0; i <= _Map.TopRight; i++)
+        //    {
+        //        theObject.SpawnSlotPanel(_Map.transform, _Map.Slots[i + Hor].transform.position, _Map.Slots[i + Hor].SlotSheet.SlotSheet,MapType.M1_MoveMap, i + Hor);
+        //        _Map.Slots[i + Hor].TestText.enabled = false;
+        //        if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+        //            if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
+        //            {
   
-                        //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.4f);
-                    }
-                    else if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
-                    {
-                        //theObject.SpawnPortal(_Map.Slots[i + Hor].transform.position);
-                        //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.4f);
-                    }
+        //                //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(1, 0, 0, 0.4f);
+        //            }
+        //            else if (_Map.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
+        //            {
+        //                //theObject.SpawnPortal(_Map.Slots[i + Hor].transform.position);
+        //                //_Map.Slots[i + Hor].GetComponent<Image>().color = new Color(0, 0, 1, 0.4f);
+        //            }
 
                     
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
 
-        NotMatchSetCube(_Map);
+        //NotMatchSetCube(_Map);
        
     }
 
@@ -965,130 +965,130 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public void SetSlot(MapManager _Map, bool Reset = false)
     {
 
-        if (Reset == true)
-        {
-            Debug.Log("더이상 매치를 할 수 없어서 리셋을 시작합니다");
-        }
-        else
-        {
-            Debug.Log("처음 리셋을 시작합니다");
-        }
-        MapType mapType = _Map.mapType;
+        //if (Reset == true)
+        //{
+        //    Debug.Log("더이상 매치를 할 수 없어서 리셋을 시작합니다");
+        //}
+        //else
+        //{
+        //    Debug.Log("처음 리셋을 시작합니다");
+        //}
+        //MapType mapType = _Map.mapType;
 
 
-        if (_Map.mapType == MapType.M2_BattleMap)
-        {
-            if (_Map.FirstBattle == false)
-            {
-                _Map.FirstBattle = true;
+        //if (_Map.mapType == MapType.M2_BattleMap)
+        //{
+        //    if (_Map.FirstBattle == false)
+        //    {
+        //        _Map.FirstBattle = true;
 
-                for (int i = 0; i < _Map.Slots.Length; i++)
-                {
-                    if (i >0 && i < _Map.TopRight)
-                    {
-                        theBattleMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
-                        theObject.SpawnSlotPanel(_Map.transform, _Map.Slots[i].transform.position,
-                           SlotObjectSheet.S_0_Object, mapType, i);
-                    }
-
-
-                    if (i < _Map.BottomLeft &&
-                        i % _Map.Horizontal != 0 &&
-                        i % _Map.Horizontal != _Map.TopRight)
-                    {
-
-                        theObject.SpawnSlotPanel(_Map.transform ,_Map.Slots[i].transform.position,
-                            SlotObjectSheet.ST_0_SlotPanel, mapType, i);
-                    }
-                }
-            }
-        }
+        //        for (int i = 0; i < _Map.Slots.Length; i++)
+        //        {
+        //            if (i >0 && i < _Map.TopRight)
+        //            {
+        //                theBattleMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
+        //                theObject.SpawnSlotPanel(_Map.transform, _Map.Slots[i].transform.position,
+        //                   SlotObjectSheet.S_0_Object, mapType, i);
+        //            }
 
 
+        //            if (i < _Map.BottomLeft &&
+        //                i % _Map.Horizontal != 0 &&
+        //                i % _Map.Horizontal != _Map.TopRight)
+        //            {
 
-        for (int i = 0; i < _Map.Slots.Length; i++)
-        {
-            if (i <= _Map.TopRight ||
-                i >= _Map.BottomLeft ||
-                i % _Map.Horizontal <= 0 ||
-                i % _Map.Horizontal >= _Map.TopRight)
-            {
-                _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
-                _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
-
-            }
-
-            _Map.Slots[i].SlotNum = i;
-        }
+        //                theObject.SpawnSlotPanel(_Map.transform ,_Map.Slots[i].transform.position,
+        //                    SlotObjectSheet.ST_0_SlotPanel, mapType, i);
+        //            }
+        //        }
+        //    }
+        //}
 
 
 
+        //for (int i = 0; i < _Map.Slots.Length; i++)
+        //{
+        //    if (i <= _Map.TopRight ||
+        //        i >= _Map.BottomLeft ||
+        //        i % _Map.Horizontal <= 0 ||
+        //        i % _Map.Horizontal >= _Map.TopRight)
+        //    {
+        //        _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Null;
+        //        _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
+
+        //    }
+
+        //    _Map.Slots[i].SlotNum = i;
+        //}
 
 
 
-        if (Reset == false)
-        {
-            for (int i = 0; i < _Map.Slots.Length; i++)
-            {
-                if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
-                {
-                    _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
-                    _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
-                    if (_Map.Slots[i].cube != null)
-                    {
-                        _Map.Slots[i].cube.Resetting();
-                        _Map.Slots[i].cube = null;
-                    }
+
+
+
+        //if (Reset == false)
+        //{
+        //    for (int i = 0; i < _Map.Slots.Length; i++)
+        //    {
+        //        if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+        //            _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
+        //            _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
+        //            if (_Map.Slots[i].cube != null)
+        //            {
+        //                _Map.Slots[i].cube.Resetting();
+        //                _Map.Slots[i].cube = null;
+        //            }
                     
-                    _Map.Slots[i].TestText.text = i.ToString();
-                }
-                else
-                {
-                    _Map.Slots[i].TestText.text = i.ToString();
-                    _Map.Slots[i].TestText.color = new Color(1, 1, 1);
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < _Map.Slots.Length; i++)
-            {
-                if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
-                {
-                    //변경하지 않을 큐브를 넣는다
-                    if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Enemy &&
-                        _Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
-                        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Object)
-                    {
-                        _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
-                        _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
-                        if (_Map.Slots[i].cube != null)
-                        {
-                            _Map.Slots[i].cube.Resetting();
-                            _Map.Slots[i].cube = null;
-                        }
-                    }
+        //            _Map.Slots[i].TestText.text = i.ToString();
+        //        }
+        //        else
+        //        {
+        //            _Map.Slots[i].TestText.text = i.ToString();
+        //            _Map.Slots[i].TestText.color = new Color(1, 1, 1);
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    for (int i = 0; i < _Map.Slots.Length; i++)
+        //    {
+        //        if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+        //            //변경하지 않을 큐브를 넣는다
+        //            if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Enemy &&
+        //                _Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
+        //                _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Object)
+        //            {
+        //                _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
+        //                _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
+        //                if (_Map.Slots[i].cube != null)
+        //                {
+        //                    _Map.Slots[i].cube.Resetting();
+        //                    _Map.Slots[i].cube = null;
+        //                }
+        //            }
 
-                }
-            }
-        }
-
-
-
-        NotMatchSetCube(_Map);
+        //        }
+        //    }
+        //}
 
 
 
-        if (gameMode == GameMode.MoveMap)
-        {
-            //Vector2 vec = new Vector2(Player.transform.position.x, Player.transform.position.y + 0.5f);
-            theCamera.SetBound(_Map, _Map.transform.position, true);
-        }
-        else if (gameMode == GameMode.Battle)
-        {
+        //NotMatchSetCube(_Map);
 
-            theCamera.SetBound(_Map, _Map.transform.position, false);
-        }
+
+
+        //if (gameMode == GameMode.MoveMap)
+        //{
+        //    //Vector2 vec = new Vector2(Player.transform.position.x, Player.transform.position.y + 0.5f);
+        //    theCamera.SetBound(_Map, _Map.transform.position, true);
+        //}
+        //else if (gameMode == GameMode.Battle)
+        //{
+
+        //    theCamera.SetBound(_Map, _Map.transform.position, false);
+        //}
 
     }
 
@@ -1115,86 +1115,86 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public void NotMatchSetCube(MapManager _Map)
     {
 
-        List<int> ColorList = new List<int>();
-        ColorList.Add(0);
-        ColorList.Add(1);
-        ColorList.Add(2);
-        ColorList.Add(3);
-        ColorList.Add(4);
+        //List<int> ColorList = new List<int>();
+        //ColorList.Add(0);
+        //ColorList.Add(1);
+        //ColorList.Add(2);
+        //ColorList.Add(3);
+        //ColorList.Add(4);
 
-        for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
-        {
-            for (int i = 0; i < _Map.TopRight; i++)
-            {
-                if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null &&
-                    _Map.Slots[i + Hor].nodeColor == NodeColor.NC8_Null)
-                {
-                    List<int> RandomList = new List<int>(ColorList);
-                    if (_Map.Slots[i + Hor - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-                    {
-                        if (_Map.Slots[i + Hor - _Map.Horizontal - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-                        {
-                            if (_Map.Slots[i + Hor - _Map.Horizontal].nodeColor == _Map.Slots[i + Hor - _Map.Horizontal - _Map.Horizontal].nodeColor)
-                            {
-                                RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
-                            }
-                            else
-                            {
-                                int rand = Random.Range(0, 2);
-                                if (rand == 0)
-                                {
-                                    RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            int rand = Random.Range(0, 2);
-                            if (rand == 0)
-                            {
-                                RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
-                            }
-                        }
-
-
-                    }
-                    if (_Map.Slots[i + Hor - 1].nodeType != PuzzleSlot.NodeType.Null)
-                    {
-                        if (_Map.Slots[i + Hor - 2].nodeType != PuzzleSlot.NodeType.Null)
-                        {
-                            if (_Map.Slots[i + Hor - 1].nodeColor == _Map.Slots[i + Hor - 2].nodeColor)
-                            {
-                                RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
-                            }
-                            else
-                            {
-                                int rand = Random.Range(0, 2);
-                                if (rand == 0)
-                                {
-                                    RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            int rand = Random.Range(0, 2);
-                            if (rand == 0)
-                            {
-                                RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
-                            }
-                        }
+        //for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
+        //{
+        //    for (int i = 0; i < _Map.TopRight; i++)
+        //    {
+        //        if (_Map.Slots[i + Hor].nodeType != PuzzleSlot.NodeType.Null &&
+        //            _Map.Slots[i + Hor].nodeColor == NodeColor.NC8_Null)
+        //        {
+        //            List<int> RandomList = new List<int>(ColorList);
+        //            if (_Map.Slots[i + Hor - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //            {
+        //                if (_Map.Slots[i + Hor - _Map.Horizontal - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //                {
+        //                    if (_Map.Slots[i + Hor - _Map.Horizontal].nodeColor == _Map.Slots[i + Hor - _Map.Horizontal - _Map.Horizontal].nodeColor)
+        //                    {
+        //                        RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
+        //                    }
+        //                    else
+        //                    {
+        //                        int rand = Random.Range(0, 2);
+        //                        if (rand == 0)
+        //                        {
+        //                            RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    int rand = Random.Range(0, 2);
+        //                    if (rand == 0)
+        //                    {
+        //                        RandomList.Remove((int)_Map.Slots[i + Hor - _Map.Horizontal].nodeColor);
+        //                    }
+        //                }
 
 
-                    }
+        //            }
+        //            if (_Map.Slots[i + Hor - 1].nodeType != PuzzleSlot.NodeType.Null)
+        //            {
+        //                if (_Map.Slots[i + Hor - 2].nodeType != PuzzleSlot.NodeType.Null)
+        //                {
+        //                    if (_Map.Slots[i + Hor - 1].nodeColor == _Map.Slots[i + Hor - 2].nodeColor)
+        //                    {
+        //                        RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
+        //                    }
+        //                    else
+        //                    {
+        //                        int rand = Random.Range(0, 2);
+        //                        if (rand == 0)
+        //                        {
+        //                            RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    int rand = Random.Range(0, 2);
+        //                    if (rand == 0)
+        //                    {
+        //                        RandomList.Remove((int)_Map.Slots[i + Hor - 1].nodeColor);
+        //                    }
+        //                }
 
-                    int RandColorNum = Random.Range(0, RandomList.Count);
-                    GameObject Cube = theObject.SpawnCube();
-                    SetCube(Cube, _Map.Slots[i + Hor], RandomList[RandColorNum]);
 
-                }
+        //            }
+
+        //            int RandColorNum = Random.Range(0, RandomList.Count);
+        //            GameObject Cube = theObject.SpawnCube();
+        //            SetCube(Cube, _Map.Slots[i + Hor], RandomList[RandColorNum]);
+
+        //        }
                
-            }
-        }
+        //    }
+        //}
 
     }
 
@@ -1202,25 +1202,25 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     // 최초 한번만 실행해서 NULL이 아닌 슬롯에 큐브를 설치
     public void SetCube(GameObject _Cube, PuzzleSlot _Slot, int _Num = -1)
     {
-        int ColorNum = _Num;
+        //int ColorNum = _Num;
 
-        Cube cube = _Cube.GetComponent<Cube>();
-        _Slot.cube = cube;
-        if (ColorNum == -1)
-        {
-            ColorNum = Random.Range(0, 5);
-        }
-        _Slot.cube.SpriteRen.sprite = CubeSprites[ColorNum];
-        _Slot.nodeColor = (NodeColor)ColorNum;
-        //if (_Cube.GetComponent<SpriteRenderer>().color.a < 1)
+        //Cube cube = _Cube.GetComponent<Cube>();
+        //_Slot.cube = cube;
+        //if (ColorNum == -1)
         //{
-        //    Debug.Log("투명한 상태로 받아옴");
-        //    _Slot.cube.SpriteRen.color = new Color(1, 1, 1, 1);
+        //    ColorNum = Random.Range(0, 5);
         //}
+        //_Slot.cube.SpriteRen.sprite = CubeSprites[ColorNum];
+        //_Slot.nodeColor = (NodeColor)ColorNum;
+        ////if (_Cube.GetComponent<SpriteRenderer>().color.a < 1)
+        ////{
+        ////    Debug.Log("투명한 상태로 받아옴");
+        ////    _Slot.cube.SpriteRen.color = new Color(1, 1, 1, 1);
+        ////}
 
-        cube.nodeColor = (NodeColor)ColorNum;
-        cube.Num = _Slot.SlotNum;
-        _Cube.transform.position = _Slot.transform.position;
+        //cube.nodeColor = (NodeColor)ColorNum;
+        //cube.Num = _Slot.SlotNum;
+        //_Cube.transform.position = _Slot.transform.position;
 
     }
 
@@ -1229,74 +1229,74 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public void CheckMoveCube(MapManager _Map, Direction _Direction, int _Num)
     {
 
-        int ChangeNum = 0;
+        //int ChangeNum = 0;
 
-        if (_Direction == Direction.Up)
-        {
-            if (_Map.Slots[_Num - _Map.Horizontal].nodeType == PuzzleSlot.NodeType.Null)
-                return;
-            else
-                ChangeNum = _Num - _Map.Horizontal;
-        }
-        else if (_Direction == Direction.Down)
-        {
-            if (_Map.Slots[_Num + _Map.Horizontal].nodeType == PuzzleSlot.NodeType.Null)
-                return;
-            else
-                ChangeNum = _Num + _Map.Horizontal;
-        }
-        else if (_Direction == Direction.Left)
-        {
-            if (_Map.Slots[_Num - 1].nodeType == PuzzleSlot.NodeType.Null)
-                return;
-            else
-                ChangeNum = _Num - 1;
-        }
-        else if (_Direction == Direction.Right)
-        {
-            if (_Map.Slots[_Num + 1].nodeType == PuzzleSlot.NodeType.Null)
-                return;
-            else
-                ChangeNum = _Num + 1;
-        }
+        //if (_Direction == Direction.Up)
+        //{
+        //    if (_Map.Slots[_Num - _Map.Horizontal].nodeType == PuzzleSlot.NodeType.Null)
+        //        return;
+        //    else
+        //        ChangeNum = _Num - _Map.Horizontal;
+        //}
+        //else if (_Direction == Direction.Down)
+        //{
+        //    if (_Map.Slots[_Num + _Map.Horizontal].nodeType == PuzzleSlot.NodeType.Null)
+        //        return;
+        //    else
+        //        ChangeNum = _Num + _Map.Horizontal;
+        //}
+        //else if (_Direction == Direction.Left)
+        //{
+        //    if (_Map.Slots[_Num - 1].nodeType == PuzzleSlot.NodeType.Null)
+        //        return;
+        //    else
+        //        ChangeNum = _Num - 1;
+        //}
+        //else if (_Direction == Direction.Right)
+        //{
+        //    if (_Map.Slots[_Num + 1].nodeType == PuzzleSlot.NodeType.Null)
+        //        return;
+        //    else
+        //        ChangeNum = _Num + 1;
+        //}
 
-        state = State.ChangeMatch;
-        ChangeCube(_Map, _Num, ChangeNum, CubeMoveSpeed, true);
-        SelectNum = _Num;
-        OtherNum = ChangeNum;
+        //state = State.ChangeMatch;
+        //ChangeCube(_Map, _Num, ChangeNum, CubeMoveSpeed, true);
+        //SelectNum = _Num;
+        //OtherNum = ChangeNum;
     }
 
     //큐브와 큐브의 위치를 바꾸는 기능
     public void ChangeCube(MapManager _Map, int _Num, int _OtherNum, float _Speed = 0.2f, bool _Event = false)
     {
 
-        if (_Map.Slots[_Num].nodeColor == NodeColor.NC6_Player ||
-            _Map.Slots[_OtherNum].nodeColor == NodeColor.NC6_Player)
-        {
-            if (gameMode == GameMode.MoveMap)
-                Player.ChangeAnim("Run", true);
-        }
-        //_Num의 큐브정보 복제
-        Vector2 Vec = _Map.Slots[_Num].cube.transform.position;
-        GameObject Cube = _Map.Slots[_Num].cube.gameObject;
-        NodeColor nodeColor = _Map.Slots[_Num].nodeColor;
+        //if (_Map.Slots[_Num].nodeColor == NodeColor.NC6_Player ||
+        //    _Map.Slots[_OtherNum].nodeColor == NodeColor.NC6_Player)
+        //{
+        //    if (gameMode == GameMode.MoveMap)
+        //        Player.ChangeAnim("Run", true);
+        //}
+        ////_Num의 큐브정보 복제
+        //Vector2 Vec = _Map.Slots[_Num].cube.transform.position;
+        //GameObject Cube = _Map.Slots[_Num].cube.gameObject;
+        //NodeColor nodeColor = _Map.Slots[_Num].nodeColor;
 
-        //_Num의 정보를 _OtherNum의 정보로 덮어쓰기
-        _Map.Slots[_Num].cube.MoveCube(_Map.Slots[_OtherNum].transform.position, _Speed, false);
+        ////_Num의 정보를 _OtherNum의 정보로 덮어쓰기
+        //_Map.Slots[_Num].cube.MoveCube(_Map.Slots[_OtherNum].transform.position, _Speed, false);
 
-        _Map.Slots[_Num].cube = _Map.Slots[_OtherNum].cube;
-        _Map.Slots[_Num].nodeColor = _Map.Slots[_OtherNum].nodeColor;
-        _Map.Slots[_Num].cube.nodeColor = _Map.Slots[_OtherNum].cube.nodeColor;
+        //_Map.Slots[_Num].cube = _Map.Slots[_OtherNum].cube;
+        //_Map.Slots[_Num].nodeColor = _Map.Slots[_OtherNum].nodeColor;
+        //_Map.Slots[_Num].cube.nodeColor = _Map.Slots[_OtherNum].cube.nodeColor;
 
-        //_OtherNum을 복제정보로 덮어쓰기
-        _Map.Slots[_OtherNum].cube.MoveCube(_Map.Slots[_Num].transform.position, _Speed, _Event);
-        _Map.Slots[_OtherNum].cube = Cube.GetComponent<Cube>();
-        _Map.Slots[_OtherNum].nodeColor = nodeColor;
-        _Map.Slots[_OtherNum].cube.nodeColor = nodeColor;
+        ////_OtherNum을 복제정보로 덮어쓰기
+        //_Map.Slots[_OtherNum].cube.MoveCube(_Map.Slots[_Num].transform.position, _Speed, _Event);
+        //_Map.Slots[_OtherNum].cube = Cube.GetComponent<Cube>();
+        //_Map.Slots[_OtherNum].nodeColor = nodeColor;
+        //_Map.Slots[_OtherNum].cube.nodeColor = nodeColor;
 
 
-        _Map.Slots[_Num].cube.Num = _Map.Slots[_Num].SlotNum;
-        _Map.Slots[_OtherNum].cube.Num = _Map.Slots[_OtherNum].SlotNum;
+        //_Map.Slots[_Num].cube.Num = _Map.Slots[_Num].SlotNum;
+        //_Map.Slots[_OtherNum].cube.Num = _Map.Slots[_OtherNum].SlotNum;
 
 
     }
@@ -1305,233 +1305,233 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     // 이동에서 전투, 전투에서 이동으로 바꾸는 기능
     public void ChangeGameMode()
     {
-        if (gameMode == GameMode.MoveMap)
-        {
-            IllustSlot.transform.localPosition = BattlePos;
-            //theCamera.SetBound(theBattleMap.Bound, theBattleMap.Bound.transform.position,false);
-            MoveUI.SetActive(false);
-            BattleUI.SetActive(true);
-            gameMode = GameMode.Battle;
-            CubeBar.transform.localPosition = new Vector3(0, 2.5f, 0);
-            for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
-            {
-                EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
-            }
-            state = State.BattleEvent;
-            theBattle.battleState = BattleState.BattleInit;
-            theFade.ShowBattleInit(theGirl.Girls[(int)selectGirl].BattlePortrait,
-                theBattle.Enemy[theBattle.SelectEnemyNum].BattlePortrait);
-            theFade.FadeInEvent();
-        }
-        else if (gameMode == GameMode.Battle)
-        {
-            IllustSlot.transform.localPosition = MovePos;
-            CubeBar.transform.localPosition = new Vector3(0, -3.3f, 0);
-            theCamera.SetBound(theMoveMap, Player.transform.position, true);
-            theBattle.Resetting();
-            MoveUI.SetActive(true);
-            BattleUI.SetActive(false);
-            theBattle.ReadySkill(SkillUI.UI2_Null);
-            gameMode = GameMode.MoveMap;
-            state = State.Ready;
-            CubeEvent = false;
-        }
+        //if (gameMode == GameMode.MoveMap)
+        //{
+        //    IllustSlot.transform.localPosition = BattlePos;
+        //    //theCamera.SetBound(theBattleMap.Bound, theBattleMap.Bound.transform.position,false);
+        //    MoveUI.SetActive(false);
+        //    BattleUI.SetActive(true);
+        //    gameMode = GameMode.Battle;
+        //    CubeBar.transform.localPosition = new Vector3(0, 2.5f, 0);
+        //    for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
+        //    {
+        //        EnemyCubeCount[i] = theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount[i];
+        //    }
+        //    state = State.BattleEvent;
+        //    theBattle.battleState = BattleState.BattleInit;
+        //    theFade.ShowBattleInit(theGirl.Girls[(int)selectGirl].BattlePortrait,
+        //        theBattle.Enemy[theBattle.SelectEnemyNum].BattlePortrait);
+        //    theFade.FadeInEvent();
+        //}
+        //else if (gameMode == GameMode.Battle)
+        //{
+        //    IllustSlot.transform.localPosition = MovePos;
+        //    CubeBar.transform.localPosition = new Vector3(0, -3.3f, 0);
+        //    theCamera.SetBound(theMoveMap, Player.transform.position, true);
+        //    theBattle.Resetting();
+        //    MoveUI.SetActive(true);
+        //    BattleUI.SetActive(false);
+        //    theBattle.ReadySkill(SkillUI.UI2_Null);
+        //    gameMode = GameMode.MoveMap;
+        //    state = State.Ready;
+        //    CubeEvent = false;
+        //}
     }
 
 
     // 빈칸을 방향에 맞게 채우는 기능
     public void BT_FillBlank(MapManager _Map)
     {
-        if (gameMode == GameMode.Battle)
-        {
-            FillSpeed = 0.2f;
-        }
-        else
-            FillSpeed = 0.15f;
+        //if (gameMode == GameMode.Battle)
+        //{
+        //    FillSpeed = 0.2f;
+        //}
+        //else
+        //    FillSpeed = 0.15f;
 
-        state = State.FillBlank;
-        bool FirstEvent = true;
-        bool PlayerMove = false; // 플레이어 큐브가 움직였는지 확인 true면 움직임
-        if (_Map.direction == Direction.Down)
-        {
-            for (int i = 0; i < _Map.TopRight - _Map.TopLeft; i++)
-            {
-                for (int Num = _Map.BottomLeft - _Map.Horizontal; Num > _Map.TopRight; Num -= _Map.Horizontal)
-                {
-                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                    {
+        //state = State.FillBlank;
+        //bool FirstEvent = true;
+        //bool PlayerMove = false; // 플레이어 큐브가 움직였는지 확인 true면 움직임
+        //if (_Map.direction == Direction.Down)
+        //{
+        //    for (int i = 0; i < _Map.TopRight - _Map.TopLeft; i++)
+        //    {
+        //        for (int Num = _Map.BottomLeft - _Map.Horizontal; Num > _Map.TopRight; Num -= _Map.Horizontal)
+        //        {
+        //            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //            {
 
-                        _Map.Slots[Num + i].cube.gameObject.SetActive(false);
+        //                _Map.Slots[Num + i].cube.gameObject.SetActive(false);
 
-                        if (_Map.Slots[Num + i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-                        {
-                            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
-                                _Map.Slots[Num + i - _Map.Horizontal].nodeColor == NodeColor.NC6_Player)
-                            {
-                                PlayerMove = true;
-                            }
-                            ChangeCube(_Map, Num + i, Num + i - _Map.Horizontal, FillSpeed, FirstEvent);
-                            //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                            //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //                if (_Map.Slots[Num + i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //                {
+        //                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
+        //                        _Map.Slots[Num + i - _Map.Horizontal].nodeColor == NodeColor.NC6_Player)
+        //                    {
+        //                        PlayerMove = true;
+        //                    }
+        //                    ChangeCube(_Map, Num + i, Num + i - _Map.Horizontal, FillSpeed, FirstEvent);
+        //                    //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //                    //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
-                            FirstEvent = false;
-                        }
-                        else
-                        {
-                            GameObject NewCube = theObject.SpawnCube();
-                            SetCube(NewCube, _Map.Slots[Num + i]);
-                            NewCube.transform.position = _Map.Slots[Num + i - _Map.Horizontal].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
-                            FirstEvent = false;
-                        }
-                    }
-                }
+        //                    FirstEvent = false;
+        //                }
+        //                else
+        //                {
+        //                    GameObject NewCube = theObject.SpawnCube();
+        //                    SetCube(NewCube, _Map.Slots[Num + i]);
+        //                    NewCube.transform.position = _Map.Slots[Num + i - _Map.Horizontal].transform.position;
+        //                    _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
+        //                    FirstEvent = false;
+        //                }
+        //            }
+        //        }
 
-            }
+        //    }
 
-        }
-        else if (_Map.direction == Direction.Up)
-        {
-            for (int i = 0; i < _Map.TopRight - _Map.TopLeft; i++)
-            {
-                for (int Num = _Map.TopLeft + _Map.Horizontal; Num < _Map.BottomRight; Num += _Map.Horizontal)
-                {
-                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                    {
+        //}
+        //else if (_Map.direction == Direction.Up)
+        //{
+        //    for (int i = 0; i < _Map.TopRight - _Map.TopLeft; i++)
+        //    {
+        //        for (int Num = _Map.TopLeft + _Map.Horizontal; Num < _Map.BottomRight; Num += _Map.Horizontal)
+        //        {
+        //            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //            {
 
-                        _Map.Slots[Num + i].cube.gameObject.SetActive(false);
+        //                _Map.Slots[Num + i].cube.gameObject.SetActive(false);
 
-                        if (_Map.Slots[Num + i + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-                        {
-                            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
-                               _Map.Slots[Num + i + _Map.Horizontal].nodeColor == NodeColor.NC6_Player)
-                            {
-                                PlayerMove = true;
-                            }
-                            ChangeCube(_Map, Num + i, Num + i + _Map.Horizontal, FillSpeed, FirstEvent);
-                            //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                            //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //                if (_Map.Slots[Num + i + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //                {
+        //                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
+        //                       _Map.Slots[Num + i + _Map.Horizontal].nodeColor == NodeColor.NC6_Player)
+        //                    {
+        //                        PlayerMove = true;
+        //                    }
+        //                    ChangeCube(_Map, Num + i, Num + i + _Map.Horizontal, FillSpeed, FirstEvent);
+        //                    //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //                    //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
-                            FirstEvent = false;
-                        }
-                        else
-                        {
-                            GameObject NewCube = theObject.SpawnCube();
-                            SetCube(NewCube, _Map.Slots[Num + i]);
-                            NewCube.transform.position = _Map.Slots[Num + i + _Map.Horizontal].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
-                            FirstEvent = false;
-                        }
-                    }
-                }
+        //                    FirstEvent = false;
+        //                }
+        //                else
+        //                {
+        //                    GameObject NewCube = theObject.SpawnCube();
+        //                    SetCube(NewCube, _Map.Slots[Num + i]);
+        //                    NewCube.transform.position = _Map.Slots[Num + i + _Map.Horizontal].transform.position;
+        //                    _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
+        //                    FirstEvent = false;
+        //                }
+        //            }
+        //        }
 
-            }
-        }
-        else if (_Map.direction == Direction.Left)
-        {
-            for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomLeft; i += _Map.Horizontal)
-            {
-                for (int Num = 0; Num < _Map.TopRight - _Map.TopLeft; Num++)
-                {
-                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                    {
+        //    }
+        //}
+        //else if (_Map.direction == Direction.Left)
+        //{
+        //    for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomLeft; i += _Map.Horizontal)
+        //    {
+        //        for (int Num = 0; Num < _Map.TopRight - _Map.TopLeft; Num++)
+        //        {
+        //            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //            {
 
-                        _Map.Slots[Num + i].cube.gameObject.SetActive(false);
+        //                _Map.Slots[Num + i].cube.gameObject.SetActive(false);
 
-                        if (_Map.Slots[Num + i + 1].nodeType != PuzzleSlot.NodeType.Null)
-                        {
-                            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
-                              _Map.Slots[Num + i + 1].nodeColor == NodeColor.NC6_Player)
-                            {
-                                PlayerMove = true;
-                            }
-                            ChangeCube(_Map, Num + i, Num + i + 1, FillSpeed, FirstEvent);
-                            //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                            //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //                if (_Map.Slots[Num + i + 1].nodeType != PuzzleSlot.NodeType.Null)
+        //                {
+        //                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
+        //                      _Map.Slots[Num + i + 1].nodeColor == NodeColor.NC6_Player)
+        //                    {
+        //                        PlayerMove = true;
+        //                    }
+        //                    ChangeCube(_Map, Num + i, Num + i + 1, FillSpeed, FirstEvent);
+        //                    //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //                    //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
-                            FirstEvent = false;
-                        }
-                        else
-                        {
-                            GameObject NewCube = theObject.SpawnCube();
-                            SetCube(NewCube, _Map.Slots[Num + i]);
-                            NewCube.transform.position = _Map.Slots[Num + i + 1].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
-                            FirstEvent = false;
-                        }
-                    }
-                }
+        //                    FirstEvent = false;
+        //                }
+        //                else
+        //                {
+        //                    GameObject NewCube = theObject.SpawnCube();
+        //                    SetCube(NewCube, _Map.Slots[Num + i]);
+        //                    NewCube.transform.position = _Map.Slots[Num + i + 1].transform.position;
+        //                    _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
+        //                    FirstEvent = false;
+        //                }
+        //            }
+        //        }
 
-            }
-        }
-        else if (_Map.direction == Direction.Right)
-        {
-            for (int i = _Map.TopRight + _Map.Horizontal; i < _Map.BottomLeft; i += _Map.Horizontal)
-            {
-                for (int Num = 0; Num > -(_Map.TopRight - _Map.TopLeft); Num--)
-                {
-                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                    {
+        //    }
+        //}
+        //else if (_Map.direction == Direction.Right)
+        //{
+        //    for (int i = _Map.TopRight + _Map.Horizontal; i < _Map.BottomLeft; i += _Map.Horizontal)
+        //    {
+        //        for (int Num = 0; Num > -(_Map.TopRight - _Map.TopLeft); Num--)
+        //        {
+        //            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //            {
 
-                        _Map.Slots[Num + i].cube.gameObject.SetActive(false);
+        //                _Map.Slots[Num + i].cube.gameObject.SetActive(false);
 
-                        if (_Map.Slots[Num + i - 1].nodeType != PuzzleSlot.NodeType.Null)
-                        {
-                            if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
-                              _Map.Slots[Num + i - 1].nodeColor == NodeColor.NC6_Player)
-                            {
-                                PlayerMove = true;
-                            }
-                            ChangeCube(_Map, Num + i, Num + i - 1, FillSpeed, FirstEvent);
-                            //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
-                            //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //                if (_Map.Slots[Num + i - 1].nodeType != PuzzleSlot.NodeType.Null)
+        //                {
+        //                    if (_Map.Slots[Num + i].nodeColor == NodeColor.NC6_Player ||
+        //                      _Map.Slots[Num + i - 1].nodeColor == NodeColor.NC6_Player)
+        //                    {
+        //                        PlayerMove = true;
+        //                    }
+        //                    ChangeCube(_Map, Num + i, Num + i - 1, FillSpeed, FirstEvent);
+        //                    //if (_Map.Slots[Num + i].nodeColor == NodeColor.NC5_Blank)
+        //                    //    _Map.Slots[Num + i].cube.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
-                            FirstEvent = false;
-                        }
-                        else
-                        {
-                            GameObject NewCube = theObject.SpawnCube();
-                            SetCube(NewCube, _Map.Slots[Num + i]);
-                            NewCube.transform.position = _Map.Slots[Num + i - 1].transform.position;
-                            _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
-                            FirstEvent = false;
-                        }
-                    }
-                }
+        //                    FirstEvent = false;
+        //                }
+        //                else
+        //                {
+        //                    GameObject NewCube = theObject.SpawnCube();
+        //                    SetCube(NewCube, _Map.Slots[Num + i]);
+        //                    NewCube.transform.position = _Map.Slots[Num + i - 1].transform.position;
+        //                    _Map.Slots[Num + i].cube.MoveCube(_Map.Slots[Num + i].transform.position, FillSpeed, FirstEvent);
+        //                    FirstEvent = false;
+        //                }
+        //            }
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
 
-        if (PlayerMove == false && gameMode == GameMode.MoveMap)
-        {
-            if (gameMode == GameMode.MoveMap)
-                Player.ChangeAnim("Idle",true);
-        }
+        //if (PlayerMove == false && gameMode == GameMode.MoveMap)
+        //{
+        //    if (gameMode == GameMode.MoveMap)
+        //        Player.ChangeAnim("Idle",true);
+        //}
 
-        if (FirstEvent == true)
-        {
-            state = State.CheckMatch;
-        }
+        //if (FirstEvent == true)
+        //{
+        //    state = State.CheckMatch;
+        //}
     }
 
     // 매치가 된 큐브를 제거하는 기능
     public void DestroyCube(MapManager _Map)
     {
-        if (_Map.mapType == MapType.M2_BattleMap)
-        {
-            theBattle.AddComboValue();
-        }
-        state = State.DestroyCube;
+        //if (_Map.mapType == MapType.M2_BattleMap)
+        //{
+        //    theBattle.AddComboValue();
+        //}
+        //state = State.DestroyCube;
 
 
 
 
-        for (int i = 0; i < FindMatches.Instance.currentMathces.Count; i++)
-        {
-            FindMatches.Instance.currentMathces[i].BurstEvent();
-        }
-        FindMatches.Instance.currentMathces.Clear();
+        //for (int i = 0; i < FindMatches.Instance.currentMathces.Count; i++)
+        //{
+        //    FindMatches.Instance.currentMathces[i].BurstEvent();
+        //}
+        //FindMatches.Instance.currentMathces.Clear();
     }
 
 
@@ -1541,56 +1541,56 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     // 플레이어가 있는 슬롯의 넘버를 가져온다
     public int CheckPlayerSlot(MapManager _Map)
     {
-        for (int i = 0; i < _Map.TopRight; i++)
-        {
-            for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
-            {
-                if (_Map.Slots[i + Hor].nodeColor == NodeColor.NC6_Player)
-                {
-                    return i + Hor;
-                }
-            }
-        }
+        //for (int i = 0; i < _Map.TopRight; i++)
+        //{
+        //    for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
+        //    {
+        //        if (_Map.Slots[i + Hor].nodeColor == NodeColor.NC6_Player)
+        //        {
+        //            return i + Hor;
+        //        }
+        //    }
+        //}
         return 0;
     }
 
     //매치가 끝난 다음에 이밴트 확인
     public bool CheckEndMatchEvent()
     {
-        int SlotNum = CheckPlayerSlot(theMoveMap);
+        //int SlotNum = CheckPlayerSlot(theMoveMap);
 
-        //마을에 도착했는가?
-
-
-        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
-        {
-            GameOverMove();
-            return true;
-        }
+        ////마을에 도착했는가?
 
 
-        //현재 슬롯이 포탈인지
-        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
-        {
-            CheckPortal(SlotNum);
-            return true;
-        }
+        //if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+        //{
+        //    GameOverMove();
+        //    return true;
+        //}
 
 
-        //현재 슬롯이 몬스터인지
-        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
-        {
-            return EnemyEvent(theMoveMap, SlotNum);
-        }
-        else
-        {
-            Player.CurrentEnemyMeetChance = 0;
-        }
+        ////현재 슬롯이 포탈인지
+        //if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Portal)
+        //{
+        //    CheckPortal(SlotNum);
+        //    return true;
+        //}
 
-        if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Normal)
-        {
-            return false;
-        }
+
+        ////현재 슬롯이 몬스터인지
+        //if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Enemy)
+        //{
+        //    return EnemyEvent(theMoveMap, SlotNum);
+        //}
+        //else
+        //{
+        //    Player.CurrentEnemyMeetChance = 0;
+        //}
+
+        //if (theMoveMap.Slots[SlotNum].nodeType == PuzzleSlot.NodeType.Normal)
+        //{
+        //    return false;
+        //}
        
 
         return false;
@@ -1669,104 +1669,104 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         NodeColor CopyColor;
 
 
-        for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
-        {
-            if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
-            {
+        //for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
+        //{
+        //    if (_Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null)
+        //    {
 
-                //해당 슬롯의 큐브가 특수블럭인지 확인
-                if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null)
-                {
-                    HintNum = i;
-                    return true;
-                }
+        //        //해당 슬롯의 큐브가 특수블럭인지 확인
+        //        if (_Map.Slots[i].cube.specialCubeType != SpecialCubeType.Null)
+        //        {
+        //            HintNum = i;
+        //            return true;
+        //        }
 
-                // 상
-                if (_Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-                {
+        //        // 상
+        //        if (_Map.Slots[i - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
 
-                    CopyColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = _Map.Slots[i - _Map.Horizontal].nodeColor;
-                    _Map.Slots[i - _Map.Horizontal].nodeColor = CopyColor;
+        //            CopyColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = _Map.Slots[i - _Map.Horizontal].nodeColor;
+        //            _Map.Slots[i - _Map.Horizontal].nodeColor = CopyColor;
 
-                    if (theMatch.FindAllMatches(theMoveMap, false))
-                    {
-                        isMatched = false;
-                        HintNum = i;
-                        return true;
-                    }
-
-
-                    _Map.Slots[i - _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = CopyColor;
-                }
-                // 하
-                if (_Map.Slots[i + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
-                {
-
-                    CopyColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = _Map.Slots[i + _Map.Horizontal].nodeColor;
-                    _Map.Slots[i + _Map.Horizontal].nodeColor = CopyColor;
-
-                    theMatch.FindAllMatches(theMoveMap, false);
-
-                    _Map.Slots[i + _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = CopyColor;
-
-                    if (isMatched)
-                    {
+        //            if (theMatch.FindAllMatches(theMoveMap, false))
+        //            {
+        //                isMatched = false;
+        //                HintNum = i;
+        //                return true;
+        //            }
 
 
-                        isMatched = false;
-                        HintNum = i;
-                        return true;
-                    }
-                }
-                // 좌
-                if (_Map.Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
-                {
+        //            _Map.Slots[i - _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = CopyColor;
+        //        }
+        //        // 하
+        //        if (_Map.Slots[i + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
 
-                    CopyColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = _Map.Slots[i - 1].nodeColor;
-                    _Map.Slots[i - 1].nodeColor = CopyColor;
+        //            CopyColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = _Map.Slots[i + _Map.Horizontal].nodeColor;
+        //            _Map.Slots[i + _Map.Horizontal].nodeColor = CopyColor;
 
-                    theMatch.FindAllMatches(_Map, false);
+        //            theMatch.FindAllMatches(theMoveMap, false);
 
-                    _Map.Slots[i - 1].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = CopyColor;
+        //            _Map.Slots[i + _Map.Horizontal].nodeColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = CopyColor;
 
-                    if (isMatched)
-                    {
+        //            if (isMatched)
+        //            {
 
 
-                        isMatched = false;
-                        HintNum = i;
-                        return true;
-                    }
-                }
-                // 우
-                if (_Map.Slots[i + 1].nodeType != PuzzleSlot.NodeType.Null)
-                {
+        //                isMatched = false;
+        //                HintNum = i;
+        //                return true;
+        //            }
+        //        }
+        //        // 좌
+        //        if (_Map.Slots[i - 1].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
 
-                    CopyColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = _Map.Slots[i + 1].nodeColor;
-                    _Map.Slots[i + 1].nodeColor = CopyColor;
+        //            CopyColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = _Map.Slots[i - 1].nodeColor;
+        //            _Map.Slots[i - 1].nodeColor = CopyColor;
 
-                    theMatch.FindAllMatches(_Map, false);
+        //            theMatch.FindAllMatches(_Map, false);
 
-                    _Map.Slots[i + 1].nodeColor = _Map.Slots[i].nodeColor;
-                    _Map.Slots[i].nodeColor = CopyColor;
+        //            _Map.Slots[i - 1].nodeColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = CopyColor;
 
-                    if (isMatched)
-                    {
-                        isMatched = false;
-                        HintNum = i;
-                        return true;
-                    }
-                }
+        //            if (isMatched)
+        //            {
 
-            }
-        }
+
+        //                isMatched = false;
+        //                HintNum = i;
+        //                return true;
+        //            }
+        //        }
+        //        // 우
+        //        if (_Map.Slots[i + 1].nodeType != PuzzleSlot.NodeType.Null)
+        //        {
+
+        //            CopyColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = _Map.Slots[i + 1].nodeColor;
+        //            _Map.Slots[i + 1].nodeColor = CopyColor;
+
+        //            theMatch.FindAllMatches(_Map, false);
+
+        //            _Map.Slots[i + 1].nodeColor = _Map.Slots[i].nodeColor;
+        //            _Map.Slots[i].nodeColor = CopyColor;
+
+        //            if (isMatched)
+        //            {
+        //                isMatched = false;
+        //                HintNum = i;
+        //                return true;
+        //            }
+        //        }
+
+        //    }
+        //}
 
         return false;
 
@@ -1977,36 +1977,36 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     //몬스터가 죽으면 해당 몬스터 데이터시트 확인한다
     public void CheckEnemyData()
     {
-        int SlotNum = CheckPlayerSlot(theMoveMap);
+        //int SlotNum = CheckPlayerSlot(theMoveMap);
         
 
-        if (theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneEnemy == true)
-        {
-            int DataNum = theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneNum;
+        //if (theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneEnemy == true)
+        //{
+        //    int DataNum = theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneNum;
 
-            theGM.EnemyDataSheet[DataNum] = true;
+        //    theGM.EnemyDataSheet[DataNum] = true;
 
-            for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
-            {
-                for (int i = 0; i <= theMoveMap.TopRight; i++)
-                {
-                    if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
-                    {
-                        if (theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneEnemy == true &&
-                         theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneNum == DataNum)
-                        {
-                            theMoveMap.Slots[i + Hor].slotObject.ResetEnemy();
-                            theMoveMap.Slots[i + Hor].nodeType = PuzzleSlot.NodeType.Normal;
-                        }
-                    }
+        //    for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
+        //    {
+        //        for (int i = 0; i <= theMoveMap.TopRight; i++)
+        //        {
+        //            if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
+        //            {
+        //                if (theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneEnemy == true &&
+        //                 theMoveMap.Slots[i + Hor].monsterSheet.OnlyOneNum == DataNum)
+        //                {
+        //                    theMoveMap.Slots[i + Hor].slotObject.ResetEnemy();
+        //                    theMoveMap.Slots[i + Hor].nodeType = PuzzleSlot.NodeType.Normal;
+        //                }
+        //            }
                  
-                }
-            }
-        }
-        else
-        {
-            return;
-        }
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    return;
+        //}
 
     }
 
@@ -2076,13 +2076,13 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     // 퍼즐 슬롯을 모두 리셋(초기화)시키는 이밴트
     public void PuzzleResetting(MapManager _Map)
     {
-        for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
-        {
-            _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
-            _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
-            _Map.Slots[i].cube.Resetting();
-            _Map.Slots[i].cube = null;
-        }
+        //for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
+        //{
+        //    _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;
+        //    _Map.Slots[i].nodeColor = NodeColor.NC8_Null;
+        //    _Map.Slots[i].cube.Resetting();
+        //    _Map.Slots[i].cube = null;
+        //}
     }
 
     public void CheckMoveBGM()

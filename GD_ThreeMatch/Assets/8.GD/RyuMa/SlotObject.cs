@@ -26,7 +26,7 @@ public enum SlotObjectSheet
 }
 
 
-public class SlotObject : MonoBehaviour
+public class SlotObject : Panel
 {
     public MapType mapType;
 
@@ -77,7 +77,7 @@ public class SlotObject : MonoBehaviour
             {
                 if (theGM.EnemyDataSheet[thePuzzle.theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneNum] == true)
                 {
-                    thePuzzle.theMoveMap.Slots[SlotNum].nodeType = PuzzleSlot.NodeType.Normal;
+                   
                     SpriteRen.sprite = theObject.SlotPanelSprite[_SlotNum % 2];
 
                 }
