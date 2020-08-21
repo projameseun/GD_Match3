@@ -69,6 +69,19 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     public MapManager theMoveMap;
     public MapManager theBattleMap;
+    public MapManager GetMap()
+    {
+
+        if (gameMode == GameMode.MoveMap)
+        {
+            return theMoveMap;
+        }
+        else
+        {
+            return theBattleMap;
+        }
+    }
+
 
 
     public Sprite[] CubeUiSprites;
@@ -187,6 +200,8 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     private void Update()
     {
+        return;
+
         if (theGM.state == GMState.GM00_Title)
         {
             if (theFade.FadeOutEnd == true)
