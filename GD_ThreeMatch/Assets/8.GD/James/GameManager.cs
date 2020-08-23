@@ -40,17 +40,17 @@ public class MapInfo
 public class SlotInfo
 {
     public string Type;
-    public MonsterSheet monsheet;
-    public PortalSheet portalsheet;
-    public SlotObjectSheets slotObject;
+    //public MonsterSheet monsheet;
+    //public PortalSheet portalsheet;
+    //public SlotObjectSheets slotObject;
 
-    public SlotInfo(string type, MonsterSheet monsheet, PortalSheet portalsheet, SlotObjectSheets _slotObject)
-    {
-        Type = type;
-        this.monsheet = monsheet;
-        this.portalsheet = portalsheet;
-        this.slotObject = _slotObject;
-    }
+    //public SlotInfo(string type, MonsterSheet monsheet, PortalSheet portalsheet, SlotObjectSheets _slotObject)
+    //{
+    //    Type = type;
+    //    this.monsheet = monsheet;
+    //    this.portalsheet = portalsheet;
+    //    this.slotObject = _slotObject;
+    //}
 
     public SlotInfo() { }
 }
@@ -87,8 +87,8 @@ public class GameManager : G_Singleton<GameManager>
     public bool CheatMode;
     public GMState state;
 
-    public int MaxHorizon;
-    public int MaxVertical;
+    public int MaxHorizon = 31;
+    public int MaxVertical = 30;
 
 
 
@@ -143,19 +143,9 @@ public class GameManager : G_Singleton<GameManager>
     private List<MapInfo> mapInfoList = new List<MapInfo>();
     private PlayerSaveData playerSaveData = new PlayerSaveData();
 
-
-    private PuzzleManager thePuzzle;
-    private PuzzleMaker theMaker;
-    private MapManager theMoveMap;
-    private TitleManager theTitle;
-    private ObjectManager theObject;
     private void Start()
     {
-        theObject = FindObjectOfType<ObjectManager>();
-        theTitle = FindObjectOfType<TitleManager>();
-        thePuzzle = FindObjectOfType<PuzzleManager>();
-        theMaker = FindObjectOfType<PuzzleMaker>();
-        theMoveMap = thePuzzle.theMoveMap;
+
         //InitSetting();
     }
 
@@ -183,12 +173,12 @@ public class GameManager : G_Singleton<GameManager>
             //MapManager _Map = thePuzzle.theMoveMap;
             mapInfoList = new List<MapInfo>();
 
-            mapInfoList.Add(new MapInfo("MapMainType", ((int)theMaker.mapMainType).ToString()));
-            mapInfoList.Add(new MapInfo("MapName", theMaker.MapName));
+            mapInfoList.Add(new MapInfo("MapMainType", ((int)PuzzleMaker.Instance.mapMainType).ToString()));
+            mapInfoList.Add(new MapInfo("MapName", PuzzleMaker.Instance.MapName));
           
-            mapInfoList.Add(new MapInfo("TopRight", thePuzzle.theMoveMap.TopRight.ToString()));
-            mapInfoList.Add(new MapInfo("BottomLeft", thePuzzle.theMoveMap.BottomLeft.ToString()));
-            mapInfoList.Add(new MapInfo("BottomRight", thePuzzle.theMoveMap.BottomRight.ToString()));
+            //mapInfoList.Add(new MapInfo("TopRight", thePuzzle.theMoveMap.TopRight.ToString()));
+            //mapInfoList.Add(new MapInfo("BottomLeft", thePuzzle.theMoveMap.BottomLeft.ToString()));
+            //mapInfoList.Add(new MapInfo("BottomRight", thePuzzle.theMoveMap.BottomRight.ToString()));
 
             return mapInfoList;
 
@@ -204,15 +194,15 @@ public class GameManager : G_Singleton<GameManager>
     {
         get
         {
-            MapManager _Map = thePuzzle.theMoveMap;
+            MapManager _Map = PuzzleMaker.Instance.theMoveMap;
 
             puzzleslotList = new List<SlotInfo>();
-            for (int Hor = 0; Hor < _Map.BottomRight; Hor += _Map.Horizontal)
+            for (int Hor = 0; Hor < _Map.BottomRight; Hor += MaxHorizon)
             {
                 for (int i = 0; i <= _Map.TopRight; i++)
                 {
-                    puzzleslotList.Add(new SlotInfo(((int)_Map.Slots[i + Hor].block.blockType).ToString(), _Map.Slots[i + Hor].monsterSheet, 
-                                                _Map.Slots[i + Hor].portalSheet, _Map.Slots[i + Hor].SlotSheet));;
+                    //puzzleslotList.Add(new SlotInfo(((int)_Map.Slots[i + Hor].block.blockType).ToString(), _Map.Slots[i + Hor].monsterSheet, 
+                    //                            _Map.Slots[i + Hor].portalSheet, _Map.Slots[i + Hor].SlotSheet));;
                     //Debug.Log(puzzleslotList[i + Hor].nodeType);
 
                 }
@@ -252,7 +242,7 @@ public class GameManager : G_Singleton<GameManager>
     public void SaveBtn()
     {
         //string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, theMaker.MapName + ".json");
+        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.MapName + ".json");
 
         //byte[] bytes = reader.bytes;
         //string FileName = System.Text.Encoding.UTF8.GetString(bytes);
@@ -269,7 +259,7 @@ public class GameManager : G_Singleton<GameManager>
 
 
         //string FilePath2 = Application.streamingAssetsPath +"/" + theMaker.MapName + "Son.json";
-        string FilePath2 = Path.Combine(Application.streamingAssetsPath, theMaker.MapName + "Son.json");
+        string FilePath2 = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.MapName + "Son.json");
         string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList) , true);
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         //print(jdata2);
@@ -298,7 +288,7 @@ public class GameManager : G_Singleton<GameManager>
         //Debug.Log("로드를 눌렀습니다");
 
         //string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, theMaker.MapName + ".json");
+        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.MapName + ".json");
 
         //복호화
         //Debug.Log("FilePath = " + FilePath);
@@ -318,7 +308,7 @@ public class GameManager : G_Singleton<GameManager>
         a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(jdata).Slot;
         mapInfoList = (a_LoadMapList);
 
-        string FilePath2 = Path.Combine( Application.streamingAssetsPath + "/" + theMaker.MapName + "Son.json");
+        string FilePath2 = Path.Combine( Application.streamingAssetsPath + "/" + PuzzleMaker.Instance.MapName + "Son.json");
         reader = new WWW(FilePath2);
 
         while (!reader.isDone)
@@ -332,12 +322,12 @@ public class GameManager : G_Singleton<GameManager>
         a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(jdata2).Slot;
         puzzleslotList = (a_LoadSlotList);
 
-        theMaker.mapMainType = (MapMainType)int.Parse(mapInfoList[0].Value);
-        theMaker.MapName = mapInfoList[1].Value;
+        PuzzleMaker.Instance.mapMainType = (MapMainType)int.Parse(mapInfoList[0].Value);
+        PuzzleMaker.Instance.MapName = mapInfoList[1].Value;
 
-        theMoveMap.TopRight = int.Parse(mapInfoList[2].Value);
-        theMoveMap.BottomLeft = int.Parse(mapInfoList[3].Value);
-        theMoveMap.BottomRight = int.Parse(mapInfoList[4].Value);
+        //theMoveMap.TopRight = int.Parse(mapInfoList[2].Value);
+        //theMoveMap.BottomLeft = int.Parse(mapInfoList[3].Value);
+        //theMoveMap.BottomRight = int.Parse(mapInfoList[4].Value);
 
         int ListCount = 0;
 
@@ -352,7 +342,7 @@ public class GameManager : G_Singleton<GameManager>
         //        theMoveMap.Slots[i].cube.Resetting();
         //        theMoveMap.Slots[i].cube = null;
         //    }
-            
+
         //}
 
         //for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor+=thePuzzle.theMoveMap.Horizontal)
@@ -375,16 +365,16 @@ public class GameManager : G_Singleton<GameManager>
         //    }
         //}
 
-        theMaker.BT_TestStart();
+        PuzzleMaker.Instance.BT_TestStart();
     }
 
     public void GameOver()
     {
-        theTitle.TitleAnim.gameObject.SetActive(true);
-        state = GMState.GM00_Title;
-        thePuzzle.state = PuzzleManager.State.Ready;
-        thePuzzle.gameMode = PuzzleManager.GameMode.Null;
-        theObject.ResettingAllObj();
+        //theTitle.TitleAnim.gameObject.SetActive(true);
+        //state = GMState.GM00_Title;
+        //thePuzzle.state = PuzzleManager.State.Ready;
+        //thePuzzle.gameMode = PuzzleManager.GameMode.Null;
+        //theObject.ResettingAllObj();
 
     }
 }

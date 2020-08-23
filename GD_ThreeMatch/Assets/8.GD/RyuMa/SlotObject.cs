@@ -73,53 +73,53 @@ public class SlotObject : Panel
         }
         else if (_Sheet == SlotObjectSheet.ST_1_Enemy)
         {
-            if (thePuzzle.theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneEnemy == true)
-            {
-                if (theGM.EnemyDataSheet[thePuzzle.theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneNum] == true)
-                {
+            //if (thePuzzle.theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneEnemy == true)
+            //{
+            //    if (theGM.EnemyDataSheet[thePuzzle.theMoveMap.Slots[SlotNum].monsterSheet.OnlyOneNum] == true)
+            //    {
                    
-                    SpriteRen.sprite = theObject.SlotPanelSprite[_SlotNum % 2];
+            //        SpriteRen.sprite = theObject.SlotPanelSprite[_SlotNum % 2];
 
-                }
-                else
-                {
-                    EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f),
-                        thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.SlotImageIndex);
+            //    }
+            //    else
+            //    {
+            //        EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f),
+            //            thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.SlotImageIndex);
 
-                    if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 10)
-                    {
-                        SpriteRen.sprite = theObject.EnemySlotSprite[0];
-                    }
-                    else if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 20)
-                    {
-                        SpriteRen.sprite = theObject.EnemySlotSprite[1];
-                    }
-                    else
-                    {
-                        SpriteRen.sprite = theObject.EnemySlotSprite[2];
-                    }
+            //        if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 10)
+            //        {
+            //            SpriteRen.sprite = theObject.EnemySlotSprite[0];
+            //        }
+            //        else if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 20)
+            //        {
+            //            SpriteRen.sprite = theObject.EnemySlotSprite[1];
+            //        }
+            //        else
+            //        {
+            //            SpriteRen.sprite = theObject.EnemySlotSprite[2];
+            //        }
                    
-                    thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
-                }
-            }
-            else
-            {
-                EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f),
-                    thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.SlotImageIndex);
-                if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 10)
-                {
-                    SpriteRen.sprite = theObject.EnemySlotSprite[0];
-                }
-                else if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 20)
-                {
-                    SpriteRen.sprite = theObject.EnemySlotSprite[1];
-                }
-                else
-                {
-                    SpriteRen.sprite = theObject.EnemySlotSprite[2];
-                }
-                thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
-            }
+            //        thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
+            //    }
+            //}
+            //else
+            //{
+            //    EnemySkull = theObject.SpawnEnemySkull(new Vector2(this.transform.position.x + 0.17f, this.transform.position.y + 0.07f),
+            //        thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.SlotImageIndex);
+            //    if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 10)
+            //    {
+            //        SpriteRen.sprite = theObject.EnemySlotSprite[0];
+            //    }
+            //    else if (thePuzzle.theMoveMap.Slots[_SlotNum].monsterSheet.addEnemyMeet <= 20)
+            //    {
+            //        SpriteRen.sprite = theObject.EnemySlotSprite[1];
+            //    }
+            //    else
+            //    {
+            //        SpriteRen.sprite = theObject.EnemySlotSprite[2];
+            //    }
+            //    thePuzzle.theMoveMap.Slots[_SlotNum].slotObject = this;
+            //}
             
 
         }

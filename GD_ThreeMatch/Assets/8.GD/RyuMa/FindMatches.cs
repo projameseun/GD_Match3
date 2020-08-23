@@ -92,21 +92,21 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                         }
 
-                        if (_Map.Slots[i+Hor + _Map.Horizontal].block.nodeColor != NodeColor.NC5_Blank &&
-                            _Map.Slots[i+Hor - _Map.Horizontal].block.nodeColor != NodeColor.NC5_Blank)
+                        if (_Map.Slots[i+Hor + GameManager.Instance.MaxHorizon].block.nodeColor != NodeColor.NC5_Blank &&
+                            _Map.Slots[i+Hor - GameManager.Instance.MaxHorizon].block.nodeColor != NodeColor.NC5_Blank)
                         {
-                            if (_Map.Slots[i+Hor + _Map.Horizontal].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor &&
-                                _Map.Slots[i+Hor - _Map.Horizontal].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor)
+                            if (_Map.Slots[i+Hor + GameManager.Instance.MaxHorizon].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor &&
+                                _Map.Slots[i+Hor - GameManager.Instance.MaxHorizon].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor)
                             {
 
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor + _Map.Horizontal].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor + GameManager.Instance.MaxHorizon].block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor + _Map.Horizontal].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor + GameManager.Instance.MaxHorizon].block);
                                 }
 
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor - _Map.Horizontal].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor - GameManager.Instance.MaxHorizon].block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor - _Map.Horizontal].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor - GameManager.Instance.MaxHorizon].block);
                                 }
 
                                 if (!currentMathces.Contains(_Map.Slots[i+Hor].block))
@@ -138,7 +138,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         for (int i = 1; i < _Map.TopRight; i++)
         {
-            for (int Num = _Map.TopLeft + _Map.Horizontal; Num < _Map.BottomLeft;)
+            for (int Num = _Map.TopLeft + GameManager.Instance.MaxHorizon; Num < _Map.BottomLeft;)
             {
                 if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC5_Blank)
                 {
@@ -147,12 +147,12 @@ public class FindMatches : A_Singleton<FindMatches>
 
                     while (true)
                     {
-                        if (_Map.Slots[Num + i + (_Map.Horizontal * Count)].block != null)
+                        if (_Map.Slots[Num + i + (GameManager.Instance.MaxHorizon * Count)].block != null)
                         {
                             if (_Map.Slots[Num + i].block.nodeColor == 
-                                _Map.Slots[Num + i + (_Map.Horizontal * Count)].block.nodeColor)
+                                _Map.Slots[Num + i + (GameManager.Instance.MaxHorizon * Count)].block.nodeColor)
                             {
-                                SpecialCubeList.Add(Num + i + (_Map.Horizontal * Count));
+                                SpecialCubeList.Add(Num + i + (GameManager.Instance.MaxHorizon * Count));
                                 Count++;
                             }
                             else
@@ -306,7 +306,7 @@ public class FindMatches : A_Singleton<FindMatches>
         }
 
 
-        for (int i = _Map.TopLeft + _Map.Horizontal; i < _Map.BottomLeft; i += GameManager.Instance.MaxHorizon)
+        for (int i = _Map.TopLeft + GameManager.Instance.MaxHorizon; i < _Map.BottomLeft; i += GameManager.Instance.MaxHorizon)
         {
             for (int Num = 0; Num < _Map.TopRight;)
             {
@@ -576,13 +576,13 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //for (int i = 0; i < _Map.Vertical; i++)
         //{
-        //    if (_SlotNum < i * _Map.Horizontal)
+        //    if (_SlotNum < i * GameManager.Instance.MaxHorizon)
         //    {
-        //        HorizonNum = (i - 1) * _Map.Horizontal;
+        //        HorizonNum = (i - 1) * GameManager.Instance.MaxHorizon;
         //        break;
         //    }
         //}
-        //for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
+        //for (int i = HorizonNum; i < HorizonNum + GameManager.Instance.MaxHorizon; i++)
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
@@ -601,7 +601,7 @@ public class FindMatches : A_Singleton<FindMatches>
         //    }
         //}
 
-        //for (int i = HorizonNum; i < HorizonNum + _Map.Horizontal; i++)
+        //for (int i = HorizonNum; i < HorizonNum + GameManager.Instance.MaxHorizon; i++)
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
@@ -620,11 +620,11 @@ public class FindMatches : A_Singleton<FindMatches>
     //세로 특수큐브
     public void FindVerticalCube(MapManager _Map, int _SlotNum)
     {
-        //int Vertical = _SlotNum % _Map.Horizontal;
+        //int Vertical = _SlotNum % GameManager.Instance.MaxHorizon;
         //_Map.Slots[_SlotNum].cube.specialCubeType = SpecialCubeType.Null;
 
 
-        //for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
+        //for (int i = Vertical; i < _Map.BottomLeft; i += GameManager.Instance.MaxHorizon)
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
@@ -641,7 +641,7 @@ public class FindMatches : A_Singleton<FindMatches>
         //    }
         //}
 
-        //for (int i = Vertical; i < _Map.BottomLeft; i += _Map.Horizontal)
+        //for (int i = Vertical; i < _Map.BottomLeft; i += GameManager.Instance.MaxHorizon)
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
@@ -674,10 +674,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //// 11시 방향 확인
         //while (true && CheckBoom == false)
         //{
-        //    int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
+        //    int Count = _SlotNum - ((GameManager.Instance.MaxHorizon + 1) * CheckCount);
 
         //    if (Count < _Map.TopRight ||
-        //        Count % _Map.Horizontal == 0)
+        //        Count % GameManager.Instance.MaxHorizon == 0)
         //    {
         //        break;
         //    }
@@ -705,10 +705,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //while (true && CheckBoom == false)
         //{
 
-        //    int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
+        //    int Count = _SlotNum - ((GameManager.Instance.MaxHorizon - 1) * CheckCount);
 
         //    if (Count <= _Map.TopRight ||
-        //        Count % _Map.Horizontal == _Map.Horizontal - 1)
+        //        Count % GameManager.Instance.MaxHorizon == GameManager.Instance.MaxHorizon - 1)
         //    {
         //        break;
         //    }
@@ -734,10 +734,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //// 7시 방향 확인
         //while (true && CheckBoom == false)
         //{
-        //    int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
+        //    int Count = _SlotNum + ((GameManager.Instance.MaxHorizon - 1) * CheckCount);
 
         //    if (Count >= _Map.BottomLeft ||
-        //        Count % _Map.Horizontal == 0)
+        //        Count % GameManager.Instance.MaxHorizon == 0)
         //    {
         //        break;
         //    }
@@ -763,10 +763,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //// 5시 방향
         //while (true && CheckBoom == false)
         //{
-        //    int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
+        //    int Count = _SlotNum + ((GameManager.Instance.MaxHorizon + 1) * CheckCount);
 
         //    if (Count >= _Map.BottomLeft ||
-        //        Count % _Map.Horizontal == _Map.Horizontal - 1)
+        //        Count % GameManager.Instance.MaxHorizon == GameManager.Instance.MaxHorizon - 1)
         //    {
         //        break;
         //    }
@@ -796,10 +796,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //// 11시 방향
         //while (true)
         //{
-        //    int Count = _SlotNum - ((_Map.Horizontal + 1) * CheckCount);
+        //    int Count = _SlotNum - ((GameManager.Instance.MaxHorizon + 1) * CheckCount);
 
         //    if (Count < _Map.TopRight ||
-        //        Count % _Map.Horizontal == 0)
+        //        Count % GameManager.Instance.MaxHorizon == 0)
         //    {
         //        break;
         //    }
@@ -828,10 +828,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //// 1시 방향
         //while (true)
         //{
-        //    int Count = _SlotNum - ((_Map.Horizontal - 1) * CheckCount);
+        //    int Count = _SlotNum - ((GameManager.Instance.MaxHorizon - 1) * CheckCount);
 
         //    if (Count <= _Map.TopRight ||
-        //        Count % _Map.Horizontal == _Map.Horizontal - 1)
+        //        Count % GameManager.Instance.MaxHorizon == GameManager.Instance.MaxHorizon - 1)
         //    {
         //        break;
         //    }
@@ -856,10 +856,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //// 7시 방향
         //while (true)
         //{
-        //    int Count = _SlotNum + ((_Map.Horizontal - 1) * CheckCount);
+        //    int Count = _SlotNum + ((GameManager.Instance.MaxHorizon - 1) * CheckCount);
 
         //    if (Count >= _Map.BottomLeft ||
-        //        Count % _Map.Horizontal == 0)
+        //        Count % GameManager.Instance.MaxHorizon == 0)
         //    {
         //        break;
         //    }
@@ -885,10 +885,10 @@ public class FindMatches : A_Singleton<FindMatches>
         //// 5시 방향
         //while (true)
         //{
-        //    int Count = _SlotNum + ((_Map.Horizontal + 1) * CheckCount);
+        //    int Count = _SlotNum + ((GameManager.Instance.MaxHorizon + 1) * CheckCount);
 
         //    if (Count >= _Map.BottomLeft ||
-        //        Count % _Map.Horizontal == _Map.Horizontal -1)
+        //        Count % GameManager.Instance.MaxHorizon == GameManager.Instance.MaxHorizon -1)
         //    {
         //        break;
         //    }
@@ -964,24 +964,24 @@ public class FindMatches : A_Singleton<FindMatches>
     {
         //float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
         //float Damage = theGirl.Girls[(int)SelectGirl.G1_Alice].SkillDamage;
-        //if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //if (_Map.Slots[_SlotNum - GameManager.Instance.MaxHorizon].nodeType != PuzzleSlot.NodeType.Null)
         //{
-        //    //if (_Map.Slots[_SlotNum - _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
+        //    //if (_Map.Slots[_SlotNum - GameManager.Instance.MaxHorizon].nodeColor == NodeColor.NC7_Special)
         //    //{
         //    //    Special = false;
         //    //}
 
-        //    _Map.Slots[_SlotNum - _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //    _Map.Slots[_SlotNum - GameManager.Instance.MaxHorizon].cube.DestroyCube(false, true, Damage, InvokeTime);
         //}
 
-        //if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeType != PuzzleSlot.NodeType.Null)
+        //if (_Map.Slots[_SlotNum + GameManager.Instance.MaxHorizon].nodeType != PuzzleSlot.NodeType.Null)
         //{
-        //    //if (_Map.Slots[_SlotNum + _Map.Horizontal].nodeColor == NodeColor.NC7_Special)
+        //    //if (_Map.Slots[_SlotNum + GameManager.Instance.MaxHorizon].nodeColor == NodeColor.NC7_Special)
         //    //{
         //    //    Special = false;
         //    //}
 
-        //    _Map.Slots[_SlotNum + _Map.Horizontal].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //    _Map.Slots[_SlotNum + GameManager.Instance.MaxHorizon].cube.DestroyCube(false, true, Damage, InvokeTime);
         //}
 
         //if (_Map.Slots[_SlotNum - 1].nodeType != PuzzleSlot.NodeType.Null)
@@ -1017,32 +1017,32 @@ public class FindMatches : A_Singleton<FindMatches>
         //float Damage = theGirl.Girls[(int)SelectGirl.G3_Beryl].SkillDamage;
         //float InvokeTime = theGirl.Girls[(int)PuzzleManager.Instance.selectGirl].SkillTime;
         //// 11시
-        //if (_Map.Slots[_SlotNum - _Map.Horizontal -1].nodeType != PuzzleSlot.NodeType.Null)
+        //if (_Map.Slots[_SlotNum - GameManager.Instance.MaxHorizon -1].nodeType != PuzzleSlot.NodeType.Null)
         //{
-        //    _Map.Slots[_SlotNum - _Map.Horizontal -1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //    _Map.Slots[_SlotNum - GameManager.Instance.MaxHorizon -1].cube.DestroyCube(false, true, Damage, InvokeTime);
         //}
 
 
         ////1시
 
-        //if (_Map.Slots[_SlotNum - _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
+        //if (_Map.Slots[_SlotNum - GameManager.Instance.MaxHorizon + 1].nodeType != PuzzleSlot.NodeType.Null)
         //{
 
-        //    _Map.Slots[_SlotNum - _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //    _Map.Slots[_SlotNum - GameManager.Instance.MaxHorizon + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         //}
 
         //// 7시
-        //if (_Map.Slots[_SlotNum + _Map.Horizontal - 1].nodeType != PuzzleSlot.NodeType.Null)
+        //if (_Map.Slots[_SlotNum + GameManager.Instance.MaxHorizon - 1].nodeType != PuzzleSlot.NodeType.Null)
         //{
-        //    _Map.Slots[_SlotNum + _Map.Horizontal - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //    _Map.Slots[_SlotNum + GameManager.Instance.MaxHorizon - 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         //}
 
 
         //// 5시
 
-        //if (_Map.Slots[_SlotNum + _Map.Horizontal + 1].nodeType != PuzzleSlot.NodeType.Null)
+        //if (_Map.Slots[_SlotNum + GameManager.Instance.MaxHorizon + 1].nodeType != PuzzleSlot.NodeType.Null)
         //{
-        //    _Map.Slots[_SlotNum + _Map.Horizontal + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
+        //    _Map.Slots[_SlotNum + GameManager.Instance.MaxHorizon + 1].cube.DestroyCube(false, true, Damage, InvokeTime);
         //}
         //_Map.Slots[_SlotNum].cube.DestroyCube(false, true, Damage, InvokeTime);
 

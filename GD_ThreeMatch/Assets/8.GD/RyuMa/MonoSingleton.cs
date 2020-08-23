@@ -4,8 +4,8 @@ using UnityEngine;
 
 
 
-
-public class G_Singleton<T> : MonoBehaviour where T : G_Singleton<T> //Scene 이 넘어가더라도 사라지지 않는 싱글턴
+//Scene 이 넘어가더라도 사라지지 않는 싱글턴
+public class G_Singleton<T> : MonoBehaviour where T : G_Singleton<T> 
 {
 	private static T m_Instance = null;
 	private static object _syncobj = new object();
@@ -78,8 +78,8 @@ public class G_Singleton<T> : MonoBehaviour where T : G_Singleton<T> //Scene 이
 		appIsClosing = true;
 	}
 }
-
-public class A_Singleton<T> : MonoBehaviour where T : A_Singleton<T>  //Scene 이 넘어갈 때 사라지는 싱글턴 
+//Scene 이 넘어갈 때 사라지는 싱글턴 
+public class A_Singleton<T> : MonoBehaviour where T : A_Singleton<T> 
 {
 	private static T m_Instance = null;
 	private static object _syncobj = new object();

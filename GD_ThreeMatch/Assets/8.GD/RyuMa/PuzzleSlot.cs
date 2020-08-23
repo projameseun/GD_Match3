@@ -9,67 +9,64 @@ using static HappyRyuMa.GameMaker;
 
 
 
-[System.Serializable]
-public class MonsterSheet
-{
-    //몬스터 시트
-    public int SlotImageIndex;
-    public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
-    public int addEnemyMeet;              //적과 조우할 확률 증가량
-    public int[] EnemyIndex = null;       //몬스터 인덱스 번호
-    public int[] EnemyChance = null;      //몬스터별 확률
-    public int OnlyOneNum;                //데이터 시트에 저장할 번호
+//[System.Serializable]
+//public class MonsterSheet
+//{
+//    //몬스터 시트
+//    public int SlotImageIndex;
+//    public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
+//    public int addEnemyMeet;              //적과 조우할 확률 증가량
+//    public int[] EnemyIndex = null;       //몬스터 인덱스 번호
+//    public int[] EnemyChance = null;      //몬스터별 확률
+//    public int OnlyOneNum;                //데이터 시트에 저장할 번호
 
 
-}
+//}
 
-[System.Serializable]
-public class PortalSheet
-{
-    public string MapName = null;
-    public int NextPosNum;
-}
+//[System.Serializable]
+//public class PortalSheet
+//{
+//    public string MapName = null;
+//    public int NextPosNum;
+//}
 
-[System.Serializable]
-public class SlotObjectSheets
-{
-    public SlotObjectSheet SlotSheet;
-}
+//[System.Serializable]
+//public class SlotObjectSheets
+//{
+//    public SlotObjectSheet SlotSheet;
+//}
 
 
 
-public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class PuzzleSlot : MonoBehaviour
 {
     public int SlotNum;
 
     public Text TestText;
-
     //DB
+    public Vector2 Vec;
+
     public bool Down;
     public Block block;
-    public Panel panel;
+    public List<Panel> panel;
 
 
     ////몬스터 시트
 
-    public MonsterSheet monsterSheet = null;
+
 
     // 포탈 시트
-    public PortalSheet portalSheet = null;
 
-    public SlotObjectSheets SlotSheet;
+
 
     //몬스터일 경우 넣는다
-    public SlotObject slotObject = null;
+
 
 
 
 
 
     //trunk
-
-    bool[] DoubleClick;
-    float[] DownTime;
     Vector2 FirstVec;
     Vector2 CurrentVec;
     bool CheckCor;
@@ -84,262 +81,17 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     // Start is called before the first frame update
     void Start()
     {
-        DoubleClick = new bool[2] { false, false };
-        DownTime = new float[3] { 0, 0, 0 };
         theObject = FindObjectOfType<ObjectManager>();
         theBattle = FindObjectOfType<BattleManager>();
         theMaker = FindObjectOfType<PuzzleMaker>();
         theMatch = FindObjectOfType<FindMatches>();
         thePuzzle = FindObjectOfType<PuzzleManager>();
-        monsterSheet = null;
 
 
     }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (theMaker.PuzzleMakerStart == true || Down == true)
-        {
-            return;
-        }
-
-        if (thePuzzle.SlotDown == false && thePuzzle.state == PuzzleManager.State.Ready)
-        {
-
-            theObject.SpawnSelectSlot(this.transform.position);
-            if (DownTime[0] <= 0)
-            {
-                DoubleClick[0] = true;
-            }
-            else
-            {
-                DoubleClick[1] = true;
-            }
-            if (CheckCor == false)
-            {
-                CheckCor = true;
-                DoubleClickCor();
-            }
-            Down = true;
-            thePuzzle.SlotDown = true;
-            FirstVec = this.gameObject.transform.position;
-            CurrentVec = this.gameObject.transform.position;
-        }
-    }
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (thePuzzle.SlotDown == true && Down == true)
-        {
-            CurrentVec = eventData.position;
-            CurrentVec = Camera.main.ScreenToWorldPoint(CurrentVec);
-        }
-    }
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (theMaker.PuzzleMakerStart == true)
-        {
-            theMaker.BT_PuzzleMaker(this, SlotNum);
-            return;
-        }
-
-
-        if (thePuzzle.SlotDown == true && Down == true)
-        {
-            theObject.SelectSlotP.SetActive(false);
-            if (DoubleClick[0] == true && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
-            {
-                DoubleClick[0] = false;
-                if (DownTime[0] >= 0.4f)
-                {
-                    DownTime[0] = 0;
-                    CheckCor = false;
-                }
-                else
-                {
-                    DownTime[0] = 0.4f;
-                }
-            }
-            else if (DownTime[0] > 0 && DownTime[1] <= 0.4f && Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
-            {
-                //Debug.Log("더블클릭 성공");
-
-                // 스킬을 사용할 수 있는지
-                CheckCor = false;
-                if (theBattle.SkillEventOnOff == false)
-                {
-                    if (theBattle.CurrentSkillUI != SkillUI.UI2_Null)
-                    {
-                        SkillEvent();
-                    }
-                    // 특수블럭인지
-                    else if (block.blockType != BlockType.SpecialCube)
-                    {
-                        SpecialCubeEvent();
-                    }
-                }
-                DownTime[0] = 0;
-                DownTime[1] = 0;
-                DoubleClick[1] = false;
-
-
-            }
-
-            if (DoubleClick[1] == true)
-            {
-                DoubleClick[1] = false;
-            }
-
-
-            if (Vector2.Distance(CurrentVec, FirstVec) < 0.3f)
-            {
-                thePuzzle.SlotDown = false;
-                Down = false;
-                return;
-            }
-            float AngleZ = GetAngleZ(CurrentVec, FirstVec);
-            Direction direction = Direction.Down;
-            if (AngleZ <= 45 || AngleZ >= 315) // 위
-            {
-                direction = Direction.Up;
-
-            }
-            else if (AngleZ > 45 && AngleZ < 135) // 왼쪽
-            {
-                direction = Direction.Left;
-
-            }
-            else if (AngleZ >= 135 && AngleZ <= 225) // 아래
-            {
-                direction = Direction.Down;
-
-            }
-            else if (AngleZ > 225 && AngleZ < 315) // 오른쪽
-            {
-                direction = Direction.Right;
-
-            }
-            if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
-            {
-                thePuzzle.CheckMoveCube(thePuzzle.theMoveMap, direction, SlotNum);
-            } 
-            else if(thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
-            {
-                thePuzzle.CheckMoveCube(thePuzzle.theBattleMap, direction, SlotNum);
-            }
-            //findMatches.FindAllMatches();
-            thePuzzle.SlotDown = false;
-            Down = false;
-        }
-    }
 
 
 
-    //public void CheckDoubleClick2()
-    //{
-    //    if (DoubleClick[0] == true)
-    //    {
-    //        DownTime[0] += Time.deltaTime;
-    //        if (DownTime[0] > 0.4f)
-    //        {
-    //            DownTime[0] = 0;
-    //            DoubleClick[0] = false;
-    //        }
-                
-    //    }
-    //    else if (DownTime[0] > 0 && DoubleClick[0] == false)
-    //    {
-    //        DownTime[0] -= Time.deltaTime;
-    //        if (DownTime[0] < 0)
-    //        {
-    //            DownTime[0] = 0;
-    //        }
-    //    }
-
-    //    if (DoubleClick[1] == true)
-    //    {
-    //        DownTime[1] += Time.deltaTime;
-    //        if (DownTime[1] > 0.4f)
-    //        {
-    //            DownTime[1] = 0;
-    //            DoubleClick[1] = false;
-    //        }
-               
-    //    }
-    //    else if (DoubleClick[1] == false && DownTime[1] > 0)
-    //    {
-    //        DownTime[1] -= Time.deltaTime;
-    //        if (DownTime[1] < 0)
-    //            DownTime[1] = 0;
-    //    }
-
-
-    //}
-
-
-    public void DoubleClickCor()
-    {
-        StartCoroutine(CheckDoubleClick());
-    }
-
-    IEnumerator CheckDoubleClick()
-    {
-        DownTime[2] = 0;
-
-        while (true)
-        {
-            DownTime[2] =+Time.deltaTime;
-
-            if (DownTime[2] > 2)
-                CheckCor = false;
-
-
-
-            if (CheckCor == false)
-                break;
-            if (DoubleClick[0] == true)
-            {
-                DownTime[0] += Time.deltaTime;
-                if (DownTime[0] > 0.4f)
-                {
-                    DownTime[0] = 0;
-                    DoubleClick[0] = false;
-                    CheckCor = false;
-                }
-
-            }
-            else if (DownTime[0] > 0 && DoubleClick[0] == false)
-            {
-                DownTime[0] -= Time.deltaTime;
-                if (DownTime[0] < 0)
-                {
-                    DownTime[0] = 0;
-                    CheckCor = false;
-                }
-            }
-
-            if (DoubleClick[1] == true)
-            {
-                DownTime[1] += Time.deltaTime;
-                if (DownTime[1] > 0.4f)
-                {
-                    DownTime[1] = 0;
-                    DoubleClick[1] = false;
-                    CheckCor = false;
-                }
-
-            }
-            else if (DoubleClick[1] == false && DownTime[1] > 0)
-            {
-                DownTime[1] -= Time.deltaTime;
-                if (DownTime[1] < 0)
-                {
-                    DownTime[1] = 0;
-                    CheckCor = false;
-                }
-                    
-            }
-            yield return new WaitForEndOfFrame();
-        }
-    }
 
 
 
@@ -391,37 +143,37 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public void SkillEvent()
     {
        
-        Direction dir = Direction.Right;
-        thePuzzle.SetMoveCount(-1);
-        Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
-        thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
-        // 슬롯이 오른쪽
-        if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
-        {
-            StartVec.x -= 1.8f;
-            dir = Direction.Right;
-        }
-        else
-        {
-            StartVec.x += 1.8f;
-            dir = Direction.Left;
-        }
-        if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
-        {
-            StartVec.y -= 1f;
-        }
-        else
-        {
-            StartVec.y += 1f;
-        }
+        //Direction dir = Direction.Right;
+        //thePuzzle.SetMoveCount(-1);
+        //Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
+        //thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
+        //// 슬롯이 오른쪽
+        //if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
+        //{
+        //    StartVec.x -= 1.8f;
+        //    dir = Direction.Right;
+        //}
+        //else
+        //{
+        //    StartVec.x += 1.8f;
+        //    dir = Direction.Left;
+        //}
+        //if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
+        //{
+        //    StartVec.y -= 1f;
+        //}
+        //else
+        //{
+        //    StartVec.y += 1f;
+        //}
 
-        //수정 확인
-        //thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, block.specialCubeType,
-        //    thePuzzle.theBattleMap, SlotNum);
+        ////수정 확인
+        ////thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, block.specialCubeType,
+        ////    thePuzzle.theBattleMap, SlotNum);
 
       
-        thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
-        theBattle.SkillEventOnOff = true;
+        //thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
+        //theBattle.SkillEventOnOff = true;
     }
 
 
@@ -437,6 +189,17 @@ public class PuzzleSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
 
 
+
+
+
+
+
+    public void SetSlot(int _Num)
+    {
+        Vec = this.transform.position;
+        SlotNum = _Num;
+        TestText.text = _Num.ToString();
+    }
 
     public void Resetting()
     { 

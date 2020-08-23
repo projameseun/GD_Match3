@@ -26,7 +26,7 @@ public class EnemyIndex
     public int ChanceMeet;
 }
 
-public class PuzzleMaker : MonoBehaviour
+public class PuzzleMaker : G_Singleton<PuzzleMaker>
 {
 
     public MapManager theMoveMap;
@@ -74,44 +74,12 @@ public class PuzzleMaker : MonoBehaviour
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
 
-    private PuzzleManager thePuzzle;
-    private CameraManager theCam;
-    private GameManager theGM;
-    private FadeManager theFade;
-    private TitleManager theTitle;
+
+
     private void Start()
     {
-        theTitle = FindObjectOfType<TitleManager>();
-        theFade = FindObjectOfType<FadeManager>();
-        theGM = FindObjectOfType<GameManager>();
-        theCam = FindObjectOfType<CameraManager>();
-        thePuzzle = FindObjectOfType<PuzzleManager>();
 
-        if (TestStartBt != null)
-        {
-            TestStartBt.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                BT_TestStart(false);
-            });
-        }
-        if (SaveButton != null)
-        {
-            SaveButton.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                theGM.SaveBtn();
-            });
-        }
-        if (LoadButton != null)
-        {
-            LoadButton.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                thePuzzle.state = PuzzleManager.State.LoadingMap;
-                theFade.FadeOutEvent();
-                StartCoroutine(thePuzzle.PortalCor());
-                SonMapBase.SetActive(false);
-                SonMapStartBt.SetActive(false);
-            });
-        }
+
 
         
     }
@@ -196,11 +164,11 @@ public class PuzzleMaker : MonoBehaviour
         LoadButton.SetActive(false);
         SonMapStartBt.SetActive(false);
         TestStartBt.SetActive(true);
-        theTitle.TitleAnim.gameObject.SetActive(false);
-        theGM.state = GMState.GM02_InGame;
-        theCam.MoveVec = theCam.gameObject.transform.position;
-        theCam.MoveVec.z = -10;
-        theCam.state = CameraManager.State.SonMap;
+        //theTitle.TitleAnim.gameObject.SetActive(false);
+        //theGM.state = GMState.GM02_InGame;
+        //theCam.MoveVec = theCam.gameObject.transform.position;
+        //theCam.MoveVec.z = -10;
+        //theCam.state = CameraManager.State.SonMap;
         PuzzleMakerStart = true;
         IngameUi.SetActive(false);
         ShowSlotNum();

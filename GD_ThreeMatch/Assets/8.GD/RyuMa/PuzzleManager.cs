@@ -256,17 +256,17 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     //매치 조건이 맞는지 확인한다
 
                     int SlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[SlotNum].panel.panelType == PanelType.Portal)
-                    {
-                        SetMoveCount(-1);
-                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
-                        {
-                            GameOverMove();
-                            return;
-                        }
-                        CheckPortal(SlotNum);
-                        return;
-                    }
+                    //if (theMoveMap.Slots[SlotNum].panel.panelType == PanelType.Portal)
+                    //{
+                    //    SetMoveCount(-1);
+                    //    if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                    //    {
+                    //        GameOverMove();
+                    //        return;
+                    //    }
+                    //    CheckPortal(SlotNum);
+                    //    return;
+                    //}
 
 
 
@@ -302,16 +302,16 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 {
                     CubeEvent = false;
                     int PlayerSlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[PlayerSlotNum].panel.panelType == PanelType.Portal)
-                    {
-                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
-                        {
-                            GameOverMove();
-                            return;
-                        }
-                        CheckPortal(PlayerSlotNum);
-                        return;
-                    }
+                    //if (theMoveMap.Slots[PlayerSlotNum].panel.panelType == PanelType.Portal)
+                    //{
+                    //    if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                    //    {
+                    //        GameOverMove();
+                    //        return;
+                    //    }
+                    //    CheckPortal(PlayerSlotNum);
+                    //    return;
+                    //}
 
 
 
@@ -588,17 +588,17 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     //매치 조건이 맞는지 확인한다
 
                     int SlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[SlotNum].panel.panelType == PanelType.Portal)
-                    {
-                        SetMoveCount(-1);
-                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
-                        {
-                            GameOverMove();
-                            return;
-                        }
-                        CheckPortal(SlotNum);
-                        return;
-                    }
+                    //if (theMoveMap.Slots[SlotNum].panel.panelType == PanelType.Portal)
+                    //{
+                    //    SetMoveCount(-1);
+                    //    if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                    //    {
+                    //        GameOverMove();
+                    //        return;
+                    //    }
+                    //    CheckPortal(SlotNum);
+                    //    return;
+                    //}
 
 
 
@@ -632,16 +632,16 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 {
                     CubeEvent = false;
                     int PlayerSlotNum = CheckPlayerSlot(theMoveMap);
-                    if (theMoveMap.Slots[PlayerSlotNum].panel.panelType == PanelType.Portal)
-                    {
-                        if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
-                        {
-                            GameOverMove();
-                            return;
-                        }
-                        CheckPortal(PlayerSlotNum);
-                        return;
-                    }
+                    //if (theMoveMap.Slots[PlayerSlotNum].panel.panelType == PanelType.Portal)
+                    //{
+                    //    if (playerUIs[0].state == PlayerUIState.Die && playerUIs[1].state == PlayerUIState.Die)
+                    //    {
+                    //        GameOverMove();
+                    //        return;
+                    //    }
+                    //    CheckPortal(PlayerSlotNum);
+                    //    return;
+                    //}
 
 
 
@@ -1617,25 +1617,25 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     // 몬스터 이밴트
     public bool EnemyEvent(MapManager _Map, int i)
     {
-        Player.CurrentEnemyMeetChance += _Map.Slots[i].monsterSheet.addEnemyMeet;
+        //Player.CurrentEnemyMeetChance += _Map.Slots[i].monsterSheet.addEnemyMeet;
 
-        //몬스터와 만날 확률을 계산, true면 적과 조우
-        if (CheckEnemyMeet(_Map) == true)
-        {
-            theSound.FadeOutBGM();
-            float rand = Random.Range(0.0f, 100.0f);
+        ////몬스터와 만날 확률을 계산, true면 적과 조우
+        //if (CheckEnemyMeet(_Map) == true)
+        //{
+        //    theSound.FadeOutBGM();
+        //    float rand = Random.Range(0.0f, 100.0f);
 
-            for (int Index = 0; Index < _Map.Slots[i].monsterSheet.EnemyIndex.Length; i++)
-            {
-                if (rand <= _Map.Slots[i].monsterSheet.EnemyChance[Index])
-                {
-                    theBattle.SelectEnemyNum = _Map.Slots[i].monsterSheet.EnemyIndex[Index];
-                    theFade.FadeOutEvent();
-                    state = State.ChangeMode;
-                    return true;
-                }
-            }
-        }
+        //    for (int Index = 0; Index < _Map.Slots[i].monsterSheet.EnemyIndex.Length; i++)
+        //    {
+        //        if (rand <= _Map.Slots[i].monsterSheet.EnemyChance[Index])
+        //        {
+        //            theBattle.SelectEnemyNum = _Map.Slots[i].monsterSheet.EnemyIndex[Index];
+        //            theFade.FadeOutEvent();
+        //            state = State.ChangeMode;
+        //            return true;
+        //        }
+        //    }
+        //}
         return false;
 
     }
@@ -1654,8 +1654,8 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public void CheckPortal(int _Num)
     {
         // 로딩 화면 넣기
-        theMaker.MapName = theMoveMap.Slots[_Num].portalSheet.MapName; //로드할 맵 이름
-        theMaker.PlayerStartNum = theMoveMap.Slots[_Num].portalSheet.NextPosNum; //로드 후 플레이어 위치
+        //theMaker.MapName = theMoveMap.Slots[_Num].portalSheet.MapName; //로드할 맵 이름
+        //theMaker.PlayerStartNum = theMoveMap.Slots[_Num].portalSheet.NextPosNum; //로드 후 플레이어 위치
         state = State.LoadingMap;
         Player.ChangeAnim("Idle",true);
         theFade.FadeOutEvent();
@@ -2192,7 +2192,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     {
         theBattleMap.FirstBattle = false;
 
-        for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += theMoveMap.Horizontal)
+        for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += GameManager.Instance.MaxHorizon)
         {
             for (int i = 0; i < theMoveMap.TopRight; i++)
             {

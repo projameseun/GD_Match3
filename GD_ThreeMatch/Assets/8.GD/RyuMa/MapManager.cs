@@ -27,29 +27,37 @@ public class MapManager : MonoBehaviour
     public Direction direction;
     public bool FirstBattle = false;
 
+    public Vector2 CellSize = new Vector2(0.6f,0.6f);
 
 
-    public int Horizontal;
+
+    public int Horizon;
     public int Vertical;
+
+
     public int TopLeft;
     public int TopRight;
     public int BottomLeft;
     public int BottomRight;
 
 
-    private void Awake()
+    private void Start()
     {
-        int Size = Horizontal * Vertical;
+
+        int Size = GameManager.Instance.MaxHorizon * GameManager.Instance.MaxVertical;
         Slots = new PuzzleSlot[Size];
-        //GameObject SlotObj = Instantiate(SlotPrefab);
+
         for (int i = 0; i < Size; i++)
         {
             GameObject SlotObj = Instantiate(SlotPrefab);
+            SlotObj.transform.position = new Vector2(0.3f + CellSize.x * (i % GameManager.Instance.MaxHorizon),
+                -0.3f + -CellSize.y * (int)(i / GameManager.Instance.MaxHorizon));
             SlotObj.transform.SetParent(SlotBase.transform);
             //SlotObj.transform.parent = SlotBase.transform;
             SlotObj.gameObject.name = string.Format("Slot" + i);
+           //SlotObj.gameObject.SetActive(false);
             Slots[i] = SlotObj.GetComponent<PuzzleSlot>();
-            Slots[i].SlotNum = i;
+            Slots[i].SetSlot(i);
         }
     }
 
