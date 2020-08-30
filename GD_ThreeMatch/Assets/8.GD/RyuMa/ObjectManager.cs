@@ -10,20 +10,6 @@ using Spine.Unity;
 public class ObjectManager : G_Singleton<ObjectManager>
 {
 
-    // 오브젝트 타일 이미지
-    [Header("Sprite")]
-    public Sprite[] SlotPanelSprite;
-    public Sprite[] SkullSprite;
-    public Sprite[] EnemySlotSprite;
-    public Sprite[] CubeBarSpirte;
-
-
-    [Header("ObjectSprite")]
-    public Sprite[] ForestObjectSprites;
-
-    [Header("OtherSprite")]
-    public Sprite[] DamageSprites;
-
     [Header("UI")]
     public GameObject WorldCanvasObj;
 
@@ -558,30 +544,6 @@ public class ObjectManager : G_Singleton<ObjectManager>
         return Break;
     }
 
-    public GameObject SpawnSlotPanel(Transform trans ,Vector2 Pos, SlotObjectSheet _Sheet, MapType _mapType, int _SlotNum)
-    {
-        //if (_Sheet == SlotObjectSheet.S_0_Spin)
-        //{
-        //    GameObject ObjectSpin = FindObj("ObjectSpine");
-        //    ObjectSpin.transform.position = Pos;
-        //    ObjectSpin.transform.SetParent(trans);
-        //    if (_mapType == MapType.M1_MoveMap)
-        //    {
-        //        ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.ObjectNum,
-        //           thePuzzle.theMoveMap.Slots[_SlotNum].SlotSheet.SkinName);
-        //    }
-        //    else if (_mapType == MapType.M2_BattleMap)
-        //    {
-        //        ObjectSpin.GetComponent<ObjectSpineManager>().SetObjectSpine(0, "0");
-        //    }
-
-        //    return ObjectSpin;
-        //}
-        GameObject Slot = FindObj("SlotPanel");
-        Slot.transform.position = Pos;
-        Slot.GetComponent<SlotObject>().SetSlotObject(_Sheet, _mapType, _SlotNum);
-        return Slot;
-    }
 
     public GameObject SpawnPortal(Vector2 StartVec)
     {
@@ -592,14 +554,7 @@ public class ObjectManager : G_Singleton<ObjectManager>
     }
 
 
-    public GameObject SpawnEnemySkull(Vector2 StartVec, int SkullNum)
-    {
 
-        GameObject Skull = FindObj("EnemySkull");
-        Skull.GetComponent<SpriteRenderer>().sprite = SkullSprite[SkullNum];
-        Skull.transform.position = StartVec;
-        return Skull;
-    }
 
     public GameObject SpawnSelectSlot(Vector2 StartVec)
     {

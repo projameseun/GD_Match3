@@ -2192,7 +2192,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     {
         theBattleMap.FirstBattle = false;
 
-        for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += GameManager.Instance.MaxHorizon)
+        for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor += MatchBase.MaxHorizon)
         {
             for (int i = 0; i < theMoveMap.TopRight; i++)
             {

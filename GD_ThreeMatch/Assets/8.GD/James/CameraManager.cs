@@ -66,24 +66,24 @@ public class CameraManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                MoveVec += Vector3.up * Time.deltaTime * CameraSpeed;
+                MoveVec += Vector3.up * Time.fixedDeltaTime * CameraSpeed;
                 MoveVec.z = -10;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                MoveVec += Vector3.down * Time.deltaTime * CameraSpeed;
+                MoveVec += Vector3.down * Time.fixedDeltaTime * CameraSpeed;
                 MoveVec.z = -10;
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                MoveVec += Vector3.left * Time.deltaTime * CameraSpeed;
+                MoveVec += Vector3.left * Time.fixedDeltaTime * CameraSpeed;
                 MoveVec.z = -10;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                MoveVec += Vector3.right * Time.deltaTime * CameraSpeed;
+                MoveVec += Vector3.right * Time.fixedDeltaTime * CameraSpeed;
                 MoveVec.z = -10;
             }
 
@@ -91,7 +91,7 @@ public class CameraManager : MonoBehaviour
 
             this.transform.position = Vector3.Lerp(this.transform.position, MoveVec, Speed * Time.fixedDeltaTime);
         }
-        if (state == State.SmoothMove)
+        else if (state == State.SmoothMove)
         {
             if (Down == true)
             {

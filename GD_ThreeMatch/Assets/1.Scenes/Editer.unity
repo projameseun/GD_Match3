@@ -220,8 +220,8 @@ MonoBehaviour:
   state: 2
   direction: 0
   MainCamera: {fileID: 334650142}
-  CameraSpeed: 1
-  Speed: 0
+  CameraSpeed: 5
+  Speed: 10
   Down: 0
   HRadious: 0
   VRadious: 0
@@ -260,8 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CheatMode: 0
   state: 0
-  MaxHorizon: 25
-  MaxVertical: 25
+  gameMode: 0
   EnemyDataSheet: 
   ProgressDataSheet: 
   CurrentProgressNum: 0
@@ -277,7 +276,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1156045658
 GameObject:
@@ -305,12 +304,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156045658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.55, y: 4.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1461559500742705582}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1156045660
 MonoBehaviour:
@@ -324,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ef893eb2ea36a4a9a600cf1f71ef1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapType: 0
+  mapType: 2
   SlotPrefab: {fileID: 3475048422943842450, guid: 15b6770109ac04f43a8a9f313944aa52,
     type: 3}
   CameraPos: {x: 0, y: 0}
@@ -418,18 +417,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8d81a62389cce498f62797831b718d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theMoveMap: {fileID: 0}
-  Player: {fileID: 0}
-  TestStartBt: {fileID: 0}
-  IngameUi: {fileID: 0}
-  SonMapStartBt: {fileID: 0}
-  SaveButton: {fileID: 0}
-  LoadButton: {fileID: 0}
-  SonMapBase: {fileID: 0}
-  PuzzleMakerStart: 0
   mapMainType: 0
   changeMode: 0
+  EditorMap: {fileID: 0}
+  SelectBlock: {fileID: 0}
+  SelectPanel: {fileID: 0}
   MapName: 
+  Horizon: 10
+  Vertical: 10
   TopLeft: 0
   TopRight: 0
   BottomLeft: 0
@@ -456,7 +451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587229594
 GameObject:
@@ -471,7 +466,7 @@ GameObject:
   - component: {fileID: 1587229597}
   - component: {fileID: 1587229596}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SlotManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,7 +500,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1587229594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de6f0ce21d99034594a3a4076bc7dfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ad45127df16f784b9379ea4a1004986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SlotDown: 0
@@ -513,6 +508,7 @@ MonoBehaviour:
   ClickVec: {x: 0, y: 0}
   CurrentVec: {x: 0, y: 0}
   BaseVec: {x: 0, y: 0}
+  BaseObj: {fileID: 1156045658}
 --- !u!114 &1587229597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,7 +558,7 @@ GameObject:
   - component: {fileID: 1618105633}
   - component: {fileID: 1618105632}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: EditerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,7 +642,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!1 &1693011502
 GameObject:

@@ -51,17 +51,17 @@ public class SpecialCube : Block
 
 
         specialCubeType = SpecialCubeType.Null;
-
-        for (int i = 0; i < GameManager.Instance.MaxVertical; i++)
+        
+        for (int i = 0; i < MatchBase.MaxVertical; i++)
         {
-            if (_SlotNum < i * GameManager.Instance.MaxHorizon)
+            if (_SlotNum < i * MatchBase.MaxHorizon)
             {
-                HorizonNum = (i - 1) * GameManager.Instance.MaxHorizon;
+                HorizonNum = (i - 1) * MatchBase.MaxHorizon;
                 break;
             }
         }
 
-        for (int i = HorizonNum; i < HorizonNum + GameManager.Instance.MaxHorizon; i++)
+        for (int i = HorizonNum; i < HorizonNum + MatchBase.MaxHorizon; i++)
         {
             if (i == _SlotNum)
                 continue;
@@ -83,11 +83,11 @@ public class SpecialCube : Block
 
     public void VerticalEvent(MapManager _Map, int _SlotNum)
     {
-        int Vertical = _SlotNum % GameManager.Instance.MaxHorizon;
+        int Vertical = _SlotNum % MatchBase.MaxHorizon;
         specialCubeType = SpecialCubeType.Null;
 
 
-        for (int i = Vertical; i < _Map.BottomLeft; i += GameManager.Instance.MaxHorizon)
+        for (int i = Vertical; i < _Map.BottomLeft; i += MatchBase.MaxHorizon)
         {
             if (i == _SlotNum)
                 continue;
@@ -120,10 +120,10 @@ public class SpecialCube : Block
         // 11시 방향 확인
         while (true)
         {
-            int Count = _SlotNum - ((GameManager.Instance.MaxHorizon + 1) * CheckCount);
+            int Count = _SlotNum - ((MatchBase.MaxHorizon + 1) * CheckCount);
 
             if (Count < _Map.TopRight ||
-                Count % GameManager.Instance.MaxHorizon == 0)
+                Count % MatchBase.MaxHorizon == 0)
             {
                 break;
             }
@@ -145,10 +145,10 @@ public class SpecialCube : Block
         while (true)
         {
 
-            int Count = _SlotNum - ((GameManager.Instance.MaxHorizon - 1) * CheckCount);
+            int Count = _SlotNum - ((MatchBase.MaxHorizon - 1) * CheckCount);
 
             if (Count <= _Map.TopRight ||
-                Count % GameManager.Instance.MaxHorizon == GameManager.Instance.MaxHorizon - 1)
+                Count % MatchBase.MaxHorizon == MatchBase.MaxHorizon - 1)
             {
                 break;
             }
@@ -169,10 +169,10 @@ public class SpecialCube : Block
         // 7시 방향 확인
         while (true)
         {
-            int Count = _SlotNum + ((GameManager.Instance.MaxHorizon - 1) * CheckCount);
+            int Count = _SlotNum + ((MatchBase.MaxHorizon - 1) * CheckCount);
 
             if (Count >= _Map.BottomLeft ||
-                Count % GameManager.Instance.MaxHorizon == 0)
+                Count % MatchBase.MaxHorizon == 0)
             {
                 break;
             }
@@ -194,10 +194,10 @@ public class SpecialCube : Block
         // 5시 방향
         while (true)
         {
-            int Count = _SlotNum + ((GameManager.Instance.MaxHorizon + 1) * CheckCount);
+            int Count = _SlotNum + ((MatchBase.MaxHorizon + 1) * CheckCount);
 
             if (Count >= _Map.BottomLeft ||
-                Count % GameManager.Instance.MaxHorizon == GameManager.Instance.MaxHorizon - 1)
+                Count % MatchBase.MaxHorizon == MatchBase.MaxHorizon - 1)
             {
                 break;
             }

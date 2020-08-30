@@ -71,6 +71,12 @@ public class PlayerSaveData
     }
 
 }
+public enum GameMode
+{ 
+    Gaming = 0,
+    Editor
+}
+
 
 public enum GMState
 { 
@@ -86,10 +92,7 @@ public class GameManager : G_Singleton<GameManager>
 {
     public bool CheatMode;
     public GMState state;
-
-    public int MaxHorizon = 31;
-    public int MaxVertical = 30;
-
+    public GameMode gameMode;
 
 
     public List<bool> EnemyDataSheet = new List<bool>(200);
@@ -194,10 +197,10 @@ public class GameManager : G_Singleton<GameManager>
     {
         get
         {
-            MapManager _Map = PuzzleMaker.Instance.theMoveMap;
+            MapManager _Map = PuzzleMaker.Instance.EditorMap;
 
             puzzleslotList = new List<SlotInfo>();
-            for (int Hor = 0; Hor < _Map.BottomRight; Hor += MaxHorizon)
+            for (int Hor = 0; Hor < _Map.BottomRight; Hor += MatchBase.MaxHorizon)
             {
                 for (int i = 0; i <= _Map.TopRight; i++)
                 {

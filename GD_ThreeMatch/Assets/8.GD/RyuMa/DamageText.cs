@@ -124,7 +124,7 @@ public class DamageText : MonoBehaviour
 
                 if (NumImages[i].gameObject.activeSelf == false)
                     NumImages[i].gameObject.SetActive(true);
-                NumImages[i].sprite = theObject.DamageSprites[DamageList.Pop()];
+                //NumImages[i].sprite = theObject.DamageSprites[DamageList.Pop()];
 
             }
             else

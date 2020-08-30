@@ -4042,8 +4042,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de6f0ce21d99034594a3a4076bc7dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlotDown: 0
+  SelectNum: 0
   ClickVec: {x: 0, y: 0}
   CurrentVec: {x: 0, y: 0}
+  BaseVec: {x: 0, y: 0}
 --- !u!114 &594927107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9505,8 +9508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CheatMode: 1
   state: 0
-  MaxHorizon: 0
-  MaxVertical: 0
+  gameMode: 0
   EnemyDataSheet: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   ProgressDataSheet: 
   CurrentProgressNum: 0
@@ -10518,7 +10520,8 @@ MonoBehaviour:
   Slots: []
   direction: 1
   FirstBattle: 0
-  Horizontal: 11
+  CellSize: {x: 0.6, y: 0.6}
+  Horizon: 0
   Vertical: 10
   TopLeft: 0
   TopRight: 10
@@ -11950,18 +11953,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8d81a62389cce498f62797831b718d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theMoveMap: {fileID: 2117506427}
-  Player: {fileID: 1456947069}
-  TestStartBt: {fileID: 1044435393}
-  IngameUi: {fileID: 1992849515}
-  SonMapStartBt: {fileID: 1924831737}
-  SaveButton: {fileID: 1723246043}
-  LoadButton: {fileID: 1557375042}
-  SonMapBase: {fileID: 1787852083}
-  PuzzleMakerStart: 0
   mapMainType: 0
   changeMode: 2
+  EditorMap: {fileID: 0}
+  SelectBlock: {fileID: 0}
+  SelectPanel: {fileID: 0}
   MapName: "\uC18D\uC0AD\uC774\uB294 \uC2321"
+  Horizon: 0
+  Vertical: 0
   TopLeft: 0
   TopRight: 10
   BottomLeft: 247
@@ -14968,36 +14967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2942b8c0c91341f48ad14fc1df3d2759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlotPanelSprite:
-  - {fileID: 21300000, guid: c83c56499d118004ea2b2b9cbf956fb4, type: 3}
-  - {fileID: 21300000, guid: 67ef7baac65811947bb2a44edfe5eef6, type: 3}
-  SkullSprite:
-  - {fileID: 21300000, guid: 9c0ea789d82150541bfd068515147dfb, type: 3}
-  - {fileID: 21300000, guid: 21d21dfcd334e4b42849a882b20cc72d, type: 3}
-  - {fileID: 21300000, guid: 37ddc0b1be533e045b957fa99d582b3b, type: 3}
-  EnemySlotSprite:
-  - {fileID: 21300000, guid: ecf4cd35da35e074b939d25396c717ff, type: 3}
-  - {fileID: 21300000, guid: 3e6507f5f4485054e8f2385454e48e46, type: 3}
-  - {fileID: 21300000, guid: a347e204ba698c64bba009ca174f4464, type: 3}
-  CubeBarSpirte:
-  - {fileID: 21300000, guid: 166405677eeb6634d8fbe39e549cdff1, type: 3}
-  ForestObjectSprites:
-  - {fileID: 21300000, guid: 61accb8cd6345d04293bce8d4d2a5690, type: 3}
-  - {fileID: 21300000, guid: c959b08a985025c479e9a4138e0b94cb, type: 3}
-  - {fileID: 21300000, guid: ebb847c80089c9440860259fe179e99e, type: 3}
-  - {fileID: 21300000, guid: 5559f7b1995d2f54cad0e8f75b98f05a, type: 3}
-  - {fileID: 21300000, guid: 28fb1c6b36d57ec4cb9d37cce7ed881c, type: 3}
-  DamageSprites:
-  - {fileID: 1645673615619837238, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: 5573672537201383218, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: 5313376519608081466, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: 8923849037146373131, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: -927782352645164423, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: 6912279995693763979, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: 3124927496669222006, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: -1470124161311722062, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: 7840935760760977060, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
-  - {fileID: 2487218798450635905, guid: 615ef484465489149be7b5427b2ded2d, type: 3}
   WorldCanvasObj: {fileID: 0}
   CubeList: []
   CubeParticleList: []
@@ -15185,6 +15154,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf2ac42a78f18574f87bdf958a123ab4, type: 3}

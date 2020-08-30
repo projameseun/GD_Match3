@@ -42,7 +42,7 @@ public class PuzzleSlot : MonoBehaviour
 {
     public int SlotNum;
 
-    public Text TestText;
+ 
     //DB
     public Vector2 Vec;
 
@@ -50,6 +50,11 @@ public class PuzzleSlot : MonoBehaviour
     public Block block;
     public List<Panel> panel;
 
+
+    [HideInInspector]
+    public Image m_Image;
+    [HideInInspector]
+    public Text m_Text;
 
     ////몬스터 시트
 
@@ -72,23 +77,12 @@ public class PuzzleSlot : MonoBehaviour
     bool CheckCor;
 
 
-
-    private PuzzleManager thePuzzle;
-    private FindMatches theMatch;
-    private PuzzleMaker theMaker;
-    private BattleManager theBattle;
-    private ObjectManager theObject;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        theObject = FindObjectOfType<ObjectManager>();
-        theBattle = FindObjectOfType<BattleManager>();
-        theMaker = FindObjectOfType<PuzzleMaker>();
-        theMatch = FindObjectOfType<FindMatches>();
-        thePuzzle = FindObjectOfType<PuzzleManager>();
-
-
+        m_Image = GetComponent<Image>();
+        m_Text = GetComponentInChildren<Text>();
     }
+
 
 
 
@@ -198,7 +192,7 @@ public class PuzzleSlot : MonoBehaviour
     {
         Vec = this.transform.position;
         SlotNum = _Num;
-        TestText.text = _Num.ToString();
+        m_Text.text = _Num.ToString();
     }
 
     public void Resetting()

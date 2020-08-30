@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.PlayerLoop;
 using static HappyRyuMa.GameMaker;
+
+
 
 public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
+
+
 
 
     public bool SlotDown;
@@ -17,7 +22,15 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public Vector2 BaseVec;
 
 
-    public void OnPointerDown(PointerEventData eventData)
+    virtual protected void Start()
+    {
+        
+    }
+
+
+
+
+    virtual public void OnPointerDown(PointerEventData eventData)
     {
         if (SlotDown)
             return;
@@ -29,17 +42,13 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    virtual public void OnDrag(PointerEventData eventData)
     {
-        if (PuzzleManager.Instance.SlotDown == true)
-        {
-            CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
-        }
-            
+        CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
     }
 
 
-    public void OnPointerUp(PointerEventData eventData)
+    virtual public void OnPointerUp(PointerEventData eventData)
     {
         if (SlotDown)
         {
@@ -55,7 +64,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
 
 
-    public bool CheckClickVec(Vector2 CllicVec)
+    virtual public bool CheckClickVec(Vector2 CllicVec)
     {
         ClickVec = CllicVec - BaseVec;
         if (ClickVec.x < 0 || ClickVec.y > 0)
@@ -66,7 +75,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         }
         X = (int)(ClickVec.x / 0.6f);
         Y = (int)(ClickVec.y / 0.6f);
-        SelectNum = X -(Y * GameManager.Instance.MaxHorizon);
+        SelectNum = X -(Y * MatchBase.MaxHorizon);
 
         ClickVec.x = 0.3f + 0.6f * X;
         ClickVec.y = -0.3f + 0.6f * Y;

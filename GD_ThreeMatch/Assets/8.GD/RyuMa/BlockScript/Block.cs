@@ -30,6 +30,11 @@ public enum NodeColor
 
 public class Block : MonoBehaviour
 {
+
+    public List<SpriteRenderer> m_spriteRen;
+
+
+
     //블럭이 무슨 블럭인지
     public BlockType blockType;
 
@@ -47,6 +52,9 @@ public class Block : MonoBehaviour
 
     // 이동이 가능한지
     public bool CanMove;
+
+
+
 
 
 

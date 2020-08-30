@@ -19,6 +19,9 @@ public enum ChangeMode
     Ch4_Object
 }
 
+
+
+
 [System.Serializable]
 public class EnemyIndex
 {
@@ -29,25 +32,32 @@ public class EnemyIndex
 public class PuzzleMaker : G_Singleton<PuzzleMaker>
 {
 
-    public MapManager theMoveMap;
-    public PlayerCube Player;
-    public GameObject TestStartBt;
-    public GameObject IngameUi;
-    public GameObject SonMapStartBt;
-    public GameObject SaveButton;
-    public GameObject LoadButton;
-    public GameObject SonMapBase;
-    public bool PuzzleMakerStart;
 
     public MapMainType mapMainType;
     public ChangeMode changeMode;
+    [HideInInspector]
+    public MapManager EditorMap;
 
+
+    [HideInInspector]
+    public Block SelectBlock;
+
+
+    [HideInInspector]
+    public Panel SelectPanel;
 
     [Header("MapSetting")]
     public string MapName;
+
+    public int Horizon;
+    public int Vertical;
+    [HideInInspector]
     public int TopLeft;
+    [HideInInspector]
     public int TopRight;
+    [HideInInspector]
     public int BottomLeft;
+    [HideInInspector]
     public int BottomRight;
 
 
@@ -79,11 +89,20 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     private void Start()
     {
 
+        EditorMap = FindObjectOfType<MapManager>();
 
 
-        
+
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SettingMap();
+        }
+    }
 
 
 
@@ -161,16 +180,16 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     public void BT_SonMapStart()
     {
-        LoadButton.SetActive(false);
-        SonMapStartBt.SetActive(false);
-        TestStartBt.SetActive(true);
+        //LoadButton.SetActive(false);
+        //SonMapStartBt.SetActive(false);
+        //TestStartBt.SetActive(true);
         //theTitle.TitleAnim.gameObject.SetActive(false);
         //theGM.state = GMState.GM02_InGame;
         //theCam.MoveVec = theCam.gameObject.transform.position;
         //theCam.MoveVec.z = -10;
         //theCam.state = CameraManager.State.SonMap;
-        PuzzleMakerStart = true;
-        IngameUi.SetActive(false);
+        //PuzzleMakerStart = true;
+        //IngameUi.SetActive(false);
         ShowSlotNum();
     }
 
@@ -246,6 +265,48 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
         //    theFade.FadeInEvent();
     }
 
+
+
+
+
+
+
+
+    // 맵의 처음값을 넣고 세팅해준다
+    public void SettingMap()
+    {
+
+
+        TopLeft = 0;
+        TopRight = Horizon - 1;
+        BottomLeft = MatchBase.MaxHorizon * (Vertical + 1);
+        BottomRight = BottomLeft + TopRight;
+
+
+        for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y+= MatchBase.MaxHorizon)
+        {
+            for (int x = 0; x < MatchBase.MaxHorizon; x++)
+            {
+
+                EditorMap.Slots[x + y].m_Image.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
+                EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
+            }
+        }
+
+    }
+
+
+    public void SelectItem(Block _block = null, Panel _panel = null)
+    {
+        if (_block != null)
+        {
+            SelectPanel = null;
+        }
+        else if (_panel != null)
+        {
+            SelectBlock = null;
+        }
+    }
 
 
 }
