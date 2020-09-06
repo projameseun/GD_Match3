@@ -279,7 +279,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
         TopLeft = 0;
         TopRight = Horizon - 1;
-        BottomLeft = MatchBase.MaxHorizon * (Vertical + 1);
+        BottomLeft = MatchBase.MaxHorizon * (Vertical-1);
         BottomRight = BottomLeft + TopRight;
 
 

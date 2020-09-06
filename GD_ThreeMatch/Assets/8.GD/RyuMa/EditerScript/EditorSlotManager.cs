@@ -18,8 +18,8 @@ public class EditorSlotManager : SlotManager
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        base.OnPointerDown(eventData);
-
+       base.OnPointerDown(eventData);
+        Debug.Log("Test");
         
 
     }
@@ -39,6 +39,9 @@ public class EditorSlotManager : SlotManager
     public void CheckSlot()
     { 
         
+
+
+
     }
 
 

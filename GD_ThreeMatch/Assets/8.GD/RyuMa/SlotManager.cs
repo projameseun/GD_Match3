@@ -19,7 +19,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
     public Vector2 ClickVec;
     public Vector2 CurrentVec;
-    public Vector2 BaseVec;
+    public Vector2 BaseVec; // 매니저의 위치값을 빼서 0, 0 좌표 기준으로 잡는다
 
 
     virtual protected void Start()
@@ -36,18 +36,29 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
             return;
         if (CheckClickVec(Camera.main.ScreenToWorldPoint(eventData.position)))
             return;
-
-   
-
         CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
+        DownAction();
     }
+
+    virtual public void DownAction()
+    { 
+    
+    }
+
 
     virtual public void OnDrag(PointerEventData eventData)
     {
+        if (SlotDown == false)
+            return;
+
         CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
+        DragAction();
     }
 
+    virtual public void DragAction()
+    {
 
+    }
     virtual public void OnPointerUp(PointerEventData eventData)
     {
         if (SlotDown)
@@ -57,10 +68,14 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
             CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
         }
 
-       
+        UpAction();
+
     }
 
-
+    virtual public void UpAction()
+    { 
+    
+    }
 
 
 
@@ -79,10 +94,6 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
         ClickVec.x = 0.3f + 0.6f * X;
         ClickVec.y = -0.3f + 0.6f * Y;
-
-
-
-
         return false;
     }
 

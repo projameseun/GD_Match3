@@ -36,30 +36,13 @@ public class SlotObject : Panel
     int SlotNum;
 
 
-    private ObjectManager theObject;
-    private PuzzleMaker theMaker;
-    private PuzzleManager thePuzzle;
-    private GameManager theGM;
-    private void Start()
-    {
-        if (theObject == null)
-            theObject = FindObjectOfType<ObjectManager>();
-        if (theMaker == null)
-            theMaker = FindObjectOfType<PuzzleMaker>();
-        if (thePuzzle == null)
-            thePuzzle = FindObjectOfType<PuzzleManager>();
-        if (theGM == null)
-            theGM = FindObjectOfType<GameManager>();
-        
-    }
-
 
 
     public void Resetting()
     {
         this.gameObject.SetActive(false);
         SpriteRen.sortingOrder = 1;
-        theObject.SlotPanels.Enqueue(this.gameObject);
+        //theObject.SlotPanels.Enqueue(this.gameObject);
     }
 
 
