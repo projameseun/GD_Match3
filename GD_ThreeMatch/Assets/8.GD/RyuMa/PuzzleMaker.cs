@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public enum MapMainType
 { 
@@ -32,6 +35,8 @@ public class EnemyIndex
 public class PuzzleMaker : G_Singleton<PuzzleMaker>
 {
 
+    public int Test;
+
 
     public MapMainType mapMainType;
     public ChangeMode changeMode;
@@ -46,11 +51,11 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     [HideInInspector]
     public Panel SelectPanel;
 
-    [Header("MapSetting")]
-    public string MapName;
 
-    public int Horizon;
-    public int Vertical;
+    public string m_MapName;
+
+    public int m_Horizon;
+    public int m_Vertical;
     [HideInInspector]
     public int TopLeft;
     [HideInInspector]
@@ -278,8 +283,8 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
 
         TopLeft = 0;
-        TopRight = Horizon - 1;
-        BottomLeft = MatchBase.MaxHorizon * (Vertical-1);
+        TopRight = m_Horizon - 1;
+        BottomLeft = MatchBase.MaxHorizon * (m_Vertical-1);
         BottomRight = BottomLeft + TopRight;
 
 

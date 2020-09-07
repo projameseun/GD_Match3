@@ -402,7 +402,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 if (theFade.FadeInEnd == true)
                 {
                     theFade.FadeInEnd = false;
-                    theFade.ShowMapNameEvent(theMaker.MapName);
+                    theFade.ShowMapNameEvent(theMaker.m_MapName);
                     CheckMoveBGM();
                     CheckMoveMessage();
                     state = State.Ready;
@@ -735,7 +735,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 {
                     theFade.FadeInEnd = false;
                     state = State.Ready;
-                    theFade.ShowMapNameEvent(theMaker.MapName);
+                    theFade.ShowMapNameEvent(theMaker.m_MapName);
                     CheckMoveBGM();
                     CheckTutorialMessage();
                     
@@ -2077,7 +2077,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         theGM.EnemyDataSheet[1] = false;
         theGM.CurrentProgressNum = 0;
 
-        theMaker.MapName = "속삭이는 숲1";
+        theMaker.m_MapName = "속삭이는 숲1";
         theMaker.PlayerStartNum = 20;
         MoveCount = 0;
         SetMoveCount(100);
@@ -2149,7 +2149,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
             state = State.Ready;
         }
         //속삭이는 숲2에 도착했다
-        else if (theGM.CurrentProgressNum == 3 && theMaker.MapName == "속삭이는 숲2")
+        else if (theGM.CurrentProgressNum == 3 && theMaker.m_MapName == "속삭이는 숲2")
         {
             theGM.CurrentProgressNum = 4;
             theMessage.ShowMessageText(3);

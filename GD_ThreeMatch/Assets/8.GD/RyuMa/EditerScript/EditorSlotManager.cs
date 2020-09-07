@@ -16,23 +16,21 @@ public class EditorSlotManager : SlotManager
 
 
 
-    public override void OnPointerDown(PointerEventData eventData)
+    public override void DownAction()
     {
-       base.OnPointerDown(eventData);
-        Debug.Log("Test");
-        
-
-    }
-    public override void OnDrag(PointerEventData eventData)
-    {
-        base.OnDrag(eventData);
+        base.DownAction();
     }
 
-    public override void OnPointerUp(PointerEventData eventData)
+    public override void DragAction()
     {
-        base.OnPointerUp(eventData);
+        base.DragAction();
     }
 
+
+    public override void UpAction()
+    {
+        base.UpAction();
+    }
 
 
 

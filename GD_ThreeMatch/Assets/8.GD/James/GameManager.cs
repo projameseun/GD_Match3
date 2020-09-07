@@ -177,7 +177,7 @@ public class GameManager : G_Singleton<GameManager>
             mapInfoList = new List<MapInfo>();
 
             mapInfoList.Add(new MapInfo("MapMainType", ((int)PuzzleMaker.Instance.mapMainType).ToString()));
-            mapInfoList.Add(new MapInfo("MapName", PuzzleMaker.Instance.MapName));
+            mapInfoList.Add(new MapInfo("MapName", PuzzleMaker.Instance.m_MapName));
           
             //mapInfoList.Add(new MapInfo("TopRight", thePuzzle.theMoveMap.TopRight.ToString()));
             //mapInfoList.Add(new MapInfo("BottomLeft", thePuzzle.theMoveMap.BottomLeft.ToString()));
@@ -245,7 +245,7 @@ public class GameManager : G_Singleton<GameManager>
     public void SaveBtn()
     {
         //string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.MapName + ".json");
+        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
 
         //byte[] bytes = reader.bytes;
         //string FileName = System.Text.Encoding.UTF8.GetString(bytes);
@@ -262,7 +262,7 @@ public class GameManager : G_Singleton<GameManager>
 
 
         //string FilePath2 = Application.streamingAssetsPath +"/" + theMaker.MapName + "Son.json";
-        string FilePath2 = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.MapName + "Son.json");
+        string FilePath2 = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + "Son.json");
         string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList) , true);
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         //print(jdata2);
@@ -291,7 +291,7 @@ public class GameManager : G_Singleton<GameManager>
         //Debug.Log("로드를 눌렀습니다");
 
         //string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.MapName + ".json");
+        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
 
         //복호화
         //Debug.Log("FilePath = " + FilePath);
@@ -311,7 +311,7 @@ public class GameManager : G_Singleton<GameManager>
         a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(jdata).Slot;
         mapInfoList = (a_LoadMapList);
 
-        string FilePath2 = Path.Combine( Application.streamingAssetsPath + "/" + PuzzleMaker.Instance.MapName + "Son.json");
+        string FilePath2 = Path.Combine( Application.streamingAssetsPath + "/" + PuzzleMaker.Instance.m_MapName + "Son.json");
         reader = new WWW(FilePath2);
 
         while (!reader.isDone)
@@ -326,7 +326,7 @@ public class GameManager : G_Singleton<GameManager>
         puzzleslotList = (a_LoadSlotList);
 
         PuzzleMaker.Instance.mapMainType = (MapMainType)int.Parse(mapInfoList[0].Value);
-        PuzzleMaker.Instance.MapName = mapInfoList[1].Value;
+        PuzzleMaker.Instance.m_MapName = mapInfoList[1].Value;
 
         //theMoveMap.TopRight = int.Parse(mapInfoList[2].Value);
         //theMoveMap.BottomLeft = int.Parse(mapInfoList[3].Value);
