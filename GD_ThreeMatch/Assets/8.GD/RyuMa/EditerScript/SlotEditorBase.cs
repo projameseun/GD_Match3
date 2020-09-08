@@ -7,46 +7,92 @@ using UnityEngine.UI;
 public enum SlotBaseType
 { 
     Block,
-    Panel
+    Panel,
+    Null
 }
 
 
-public class SlotEditorBase : MonoBehaviour
+public class SlotEditorBase : A_Singleton<SlotEditorBase>
 {
 
-    public Image[] ImageList;
+    public ItemBase[] BlockImageList;
+    public Image[] BlockSetList;
+    public ItemBase[] PanelImageList;
+    public Image[] PanelSetList;
 
 
-    [HideInInspector]
-    public Block m_Block = null;
-    [HideInInspector]
-    public Panel m_Panel = null;
-
-    public SlotBaseType BaseType;
-    public GameObject m_BaseFrefab;
+    public SlotBaseType SelectType;
+    public int SelectNum;
 
 
-    private void Awake()
+    public List<GameObject> BlockList;
+    public List<GameObject> PanelList;
+
+    Block CopyBlock;
+    Panel CopyPanel;
+
+
+    private void Start()
     {
+        for (int i = 0; i < 10; i++)
+        {
+            if (i < BlockList.Count)
+            {
+                CopyBlock = BlockList[i].GetComponent<Block>();
+                BlockImageList[i].SetItem(CopyBlock.m_spriteRen[0].sprite, i,
+                   SlotBaseType.Block);
+            }
+            else
+            {
+                BlockImageList[i].SetItem(null, i, SlotBaseType.Null);
+            }
 
-        if (BaseType == SlotBaseType.Block)
-        { 
-        
+            if (i < PanelList.Count)
+            {
+                CopyPanel = PanelList[i].GetComponent<Panel>();
+                PanelImageList[i].SetItem(CopyBlock.m_spriteRen[0].sprite, i,
+                   SlotBaseType.Panel);
+            }
+            else
+            {
+                PanelImageList[i].SetItem(null, i, SlotBaseType.Null);
+            }
+
         }
-
-
+        PuzzleMaker.Instance.m_Block[SelectNum] = true;
+        BlockImageList[0].ItemOnOff(true);
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SelectItem(int _Num, SlotBaseType _Type)
     {
-        
+        if (SelectNum == _Num && _Type == SelectType)
+            return;
+
+        if (SelectType == SlotBaseType.Block)
+        {
+            PuzzleMaker.Instance.m_Block[SelectNum] = false;
+            BlockImageList[SelectNum % 10].ItemOnOff(false);
+        }
+        else if (SelectType == SlotBaseType.Panel)
+        {
+            PuzzleMaker.Instance.m_Panel[SelectNum] = false;
+            PanelImageList[SelectNum % 10].ItemOnOff(false);
+        }
+        SelectNum = _Num;
+        SelectType = _Type;
+
+        if (SelectType == SlotBaseType.Block)
+        {
+            PuzzleMaker.Instance.m_Block[SelectNum] = true;
+            BlockImageList[SelectNum % 10].ItemOnOff(true);
+        }
+        else if (SelectType == SlotBaseType.Panel)
+        {
+            PuzzleMaker.Instance.m_Panel[SelectNum] = true;
+            PanelImageList[SelectNum % 10].ItemOnOff(true);
+        }
     }
 }

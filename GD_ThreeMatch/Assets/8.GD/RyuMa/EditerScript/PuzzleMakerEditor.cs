@@ -13,6 +13,9 @@ public class PuzzleMakerEditor : Editor
     string[] Test = { "Test" };
 
 
+
+
+
     bool MapSetting = false;
     public void OnEnable()
     {
@@ -27,6 +30,12 @@ public class PuzzleMakerEditor : Editor
         MapSetting = EditorGUILayout.Toggle("맵 설정", MapSetting);
         if (MapSetting == false)
         {
+            EditorGUILayout.BeginHorizontal(); // 가로축 시작
+            EditorUtil.DrawLabel("맵 이름", false, GUILayout.Width(50f));
+            EditorUtil.DrawProperty("", serializedObject, "m_MapName", false, GUILayout.Width(150f));
+            EditorGUILayout.EndHorizontal(); // 가로축 종료
+
+
             EditorGUILayout.BeginHorizontal(); // 가로축 시작
             EditorUtil.DrawLabel("가로 길이", false, GUILayout.Width(60f));
             EditorUtil.DrawProperty("", serializedObject, "m_Horizon", false, GUILayout.Width(50f));

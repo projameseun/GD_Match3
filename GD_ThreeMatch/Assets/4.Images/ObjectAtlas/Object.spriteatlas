@@ -69,7 +69,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 21d21dfcd334e4b42849a882b20cc72d, type: 3}
   m_PackedSpriteNamesToIndex:
   - EnemySlot
-  - UI_block_green
+  - UI_block_02_green
   - UI_Sblock_diagonal
   - UI_Forest3
   - Skull
@@ -77,15 +77,15 @@ SpriteAtlas:
   - UI_Sblock_horizontal
   - EnemySlot2
   - UI_Sblock_vertical
-  - UI_block_red
+  - UI_block_04_red
   - EnemySlot3
-  - UI_block_pink
+  - UI_block_03_pink
   - UI_Forest2
   - Nomal
   - UI_Forest1
-  - UI_block_yellow
+  - UI_block_05_yellow
   - UI_Forest4
-  - UI_block_sky
+  - UI_block_01_sky
   - UI_Forest0
   - Middle
   m_Tag: Object

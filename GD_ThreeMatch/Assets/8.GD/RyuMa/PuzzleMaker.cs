@@ -37,6 +37,10 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     public int Test;
 
+    public bool[] m_Block;
+    public bool[] m_Panel;
+
+
 
     public MapMainType mapMainType;
     public ChangeMode changeMode;
@@ -89,14 +93,17 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
 
-
+    private void Awake()
+    {
+        m_Block = new bool[SlotEditorBase.Instance.BlockList.Count];
+        m_Panel = new bool[SlotEditorBase.Instance.PanelList.Count];
+    }
 
     private void Start()
     {
 
         EditorMap = FindObjectOfType<MapManager>();
-
-
+       
 
     }
 

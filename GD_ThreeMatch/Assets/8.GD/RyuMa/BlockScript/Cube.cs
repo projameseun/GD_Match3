@@ -6,21 +6,12 @@ using DG.Tweening;
 
 public class Cube : Block
 {
-    public SpecialCubeType specialCubeType = SpecialCubeType.Null;
-    public SpriteRenderer SpriteRen;
 
-    //public SpriteRenderer MinimapSprite;
-    public bool SpecialCube = false; // 특수블럭으로 바꾸기 위해 사용하는 값
+
 
 
     // trunk
-    Vector2 TargetVec;
-    float Speed;
-    bool OnlyOneEvent = false;
-    bool DestroyEvent = false;
-    float DestoryTime = 1.0f;
-    Color color = new Color(1f, 1f, 1f, 1f);
-    public float SkillDamage = 0;
+
 
 
 

@@ -30,7 +30,7 @@ public enum NodeColor
 
 public class Block : MonoBehaviour
 {
-
+    public List<Sprite> m_BasicSprite;
     public List<SpriteRenderer> m_spriteRen;
 
 
@@ -40,6 +40,9 @@ public class Block : MonoBehaviour
 
     //블럭의 색
     public NodeColor nodeColor;
+
+    // 매치가 가능한지
+    public bool Match;
 
     // 연계시 폭발하는지
     public bool Burst;
