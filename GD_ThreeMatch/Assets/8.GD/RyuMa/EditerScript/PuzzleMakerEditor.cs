@@ -60,13 +60,28 @@ public class PuzzleMakerEditor : Editor
 
         if (EditorUtil.DrawButton_Click("맵 불러오기", GUILayout.Width(85f)))
         {
+            EditorGUILayout.BeginHorizontal(); // 가로축 시작
 
+
+
+            EditorGUILayout.EndHorizontal(); // 가로축 종료
         }
         EditorGUILayout.EndHorizontal();
 
 
+        //기본 블럭
+        if (theMaker.m_BlockCh[0] == true)
+        {
+            if (EditorUtil.DrawButton_Click("색 랜덤", GUILayout.Width(85f)))
+            {
+                EditorGUILayout.BeginHorizontal(); // 가로축 시작
+
+                theMaker.m_Block.nodeColor = (NodeColor)Random.Range(0,5);
 
 
+                EditorGUILayout.EndHorizontal(); // 가로축 종료
+            }
+        }
 
 
 

@@ -6,7 +6,13 @@ using UnityEngine.EventSystems;
 public class EditorSlotManager : SlotManager
 {
     public GameObject BaseObj;
+    [HideInInspector]
+    public MapManager EditMap;
 
+    private void Awake()
+    {
+        EditMap = BaseObj.GetComponent<MapManager>();
+    }
 
     protected override void Start()
     {
@@ -19,6 +25,10 @@ public class EditorSlotManager : SlotManager
     public override void DownAction()
     {
         base.DownAction();
+
+        SlotEditorBase.Instance.ClickItem(EditMap.Slots[m_SelectNum]);
+
+
     }
 
     public override void DragAction()

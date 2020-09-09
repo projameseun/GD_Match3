@@ -61,14 +61,14 @@ public class FindMatches : A_Singleton<FindMatches>
         {
             for (int i = 1; i <= _Map.TopRight; i++)
             {
-                if (_Map.Slots[i+Hor].block.nodeColor != NodeColor.NC5_Blank)
+                if (_Map.Slots[i+Hor].block.nodeColor != NodeColor.NC6_Null)
                 {
 
                     if (i + Hor > _Map.TopRight && i + Hor < _Map.BottomLeft)
                     {
 
-                        if (_Map.Slots[i+Hor - 1].block.nodeColor != NodeColor.NC5_Blank &&
-                            _Map.Slots[i+Hor + 1].block.nodeColor != NodeColor.NC5_Blank)
+                        if (_Map.Slots[i+Hor - 1].block.nodeColor != NodeColor.NC6_Null &&
+                            _Map.Slots[i+Hor + 1].block.nodeColor != NodeColor.NC6_Null)
                         {
 
                             if (_Map.Slots[i+Hor - 1].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor &&
@@ -92,8 +92,8 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                         }
 
-                        if (_Map.Slots[i+Hor + MatchBase.MaxHorizon].block.nodeColor != NodeColor.NC5_Blank &&
-                            _Map.Slots[i+Hor - MatchBase.MaxHorizon].block.nodeColor != NodeColor.NC5_Blank)
+                        if (_Map.Slots[i+Hor + MatchBase.MaxHorizon].block.nodeColor != NodeColor.NC6_Null &&
+                            _Map.Slots[i+Hor - MatchBase.MaxHorizon].block.nodeColor != NodeColor.NC6_Null)
                         {
                             if (_Map.Slots[i+Hor + MatchBase.MaxHorizon].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor &&
                                 _Map.Slots[i+Hor - MatchBase.MaxHorizon].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor)
@@ -140,7 +140,7 @@ public class FindMatches : A_Singleton<FindMatches>
         {
             for (int Num = _Map.TopLeft + MatchBase.MaxHorizon; Num < _Map.BottomLeft;)
             {
-                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC5_Blank)
+                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC6_Null)
                 {
                     int Count = 1;
                     SpecialCubeList.Add(Num + i);
@@ -310,7 +310,7 @@ public class FindMatches : A_Singleton<FindMatches>
         {
             for (int Num = 0; Num < _Map.TopRight;)
             {
-                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC5_Blank)
+                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC6_Null)
                 {
                     int Count = 1;
                     SpecialCubeList.Add(Num + i);
@@ -586,7 +586,7 @@ public class FindMatches : A_Singleton<FindMatches>
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[i].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (i == _SlotNum)
         //            continue;
@@ -605,7 +605,7 @@ public class FindMatches : A_Singleton<FindMatches>
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[i].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Horizon)
         //            _Map.Slots[i].cube.specialCubeType = SpecialCubeType.Null;
@@ -628,7 +628,7 @@ public class FindMatches : A_Singleton<FindMatches>
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-        //         _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //         _Map.Slots[i].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (i == _SlotNum)
         //            continue;
@@ -645,7 +645,7 @@ public class FindMatches : A_Singleton<FindMatches>
         //{
         //    if (_Map.Slots[i].nodeColor != NodeColor.NC6_Player &&
         //         _Map.Slots[i].nodeType != PuzzleSlot.NodeType.Null &&
-        //         _Map.Slots[i].nodeColor != NodeColor.NC5_Blank)
+        //         _Map.Slots[i].nodeColor != NodeColor.NC6_Null)
         //    {
 
         //        if (_Map.Slots[i].cube.specialCubeType == SpecialCubeType.Vertical)
@@ -684,7 +684,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
         //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
@@ -715,7 +715,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
         //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
@@ -744,7 +744,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
         //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
@@ -773,7 +773,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (_Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Null &&
         //            _Map.Slots[Count].cube.specialCubeType != SpecialCubeType.Diagonal)
@@ -806,7 +806,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
         //        if (Count == _SlotNum)
         //            continue;
@@ -838,7 +838,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
 
         //        //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
@@ -866,7 +866,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
 
 
@@ -895,7 +895,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         //    if (_Map.Slots[Count].nodeColor != NodeColor.NC6_Player &&
         //        _Map.Slots[Count].nodeType != PuzzleSlot.NodeType.Null &&
-        //        _Map.Slots[Count].nodeColor != NodeColor.NC5_Blank)
+        //        _Map.Slots[Count].nodeColor != NodeColor.NC6_Null)
         //    {
         //        //if (_Map.Slots[Count].cube.specialCubeType == SpecialCubeType.Diagonal)
         //        //    _Map.Slots[Count].cube.specialCubeType = SpecialCubeType.Null;

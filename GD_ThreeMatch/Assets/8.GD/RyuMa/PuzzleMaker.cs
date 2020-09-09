@@ -37,8 +37,12 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     public int Test;
 
-    public bool[] m_Block;
-    public bool[] m_Panel;
+    public bool[] m_BlockCh;
+    public bool[] m_PanelCh;
+
+    public Block m_Block;
+    public Panel m_Panel;
+
 
 
 
@@ -95,8 +99,8 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     private void Awake()
     {
-        m_Block = new bool[SlotEditorBase.Instance.BlockList.Count];
-        m_Panel = new bool[SlotEditorBase.Instance.PanelList.Count];
+        m_BlockCh = new bool[SlotEditorBase.Instance.BlockList.Count];
+        m_PanelCh = new bool[SlotEditorBase.Instance.PanelList.Count];
     }
 
     private void Start()

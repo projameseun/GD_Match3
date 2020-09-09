@@ -14,7 +14,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
 
     public bool SlotDown;
-    public int SelectNum;
+    public int m_SelectNum;
     int X, Y;
 
     public Vector2 ClickVec;
@@ -37,6 +37,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         if (CheckClickVec(Camera.main.ScreenToWorldPoint(eventData.position)))
             return;
         CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
+
         DownAction();
     }
 
@@ -78,7 +79,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     }
 
 
-
+    
     virtual public bool CheckClickVec(Vector2 CllicVec)
     {
         ClickVec = CllicVec - BaseVec;
@@ -90,7 +91,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         }
         X = (int)(ClickVec.x / 0.6f);
         Y = (int)(ClickVec.y / 0.6f);
-        SelectNum = X -(Y * MatchBase.MaxHorizon);
+        m_SelectNum = X -(Y * MatchBase.MaxHorizon);
 
         ClickVec.x = 0.3f + 0.6f * X;
         ClickVec.y = -0.3f + 0.6f * Y;

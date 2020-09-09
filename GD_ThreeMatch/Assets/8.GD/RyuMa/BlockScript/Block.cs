@@ -21,7 +21,8 @@ public enum NodeColor
     NC2_Pink,
     NC3_Red,
     NC4_Yellow,
-    NC5_Blank,
+    NC5_Random,
+    NC6_Null
     
 }
 
@@ -47,9 +48,6 @@ public class Block : MonoBehaviour
     // 연계시 폭발하는지
     public bool Burst;
 
-    // burst중인지 아닌지 체크
-    public bool Bursting;
-
     // 반칸을 채우는지
     public bool Gravity;
 
@@ -57,7 +55,9 @@ public class Block : MonoBehaviour
     public bool CanMove;
 
 
-
+    // burst중인지 아닌지 체크
+    [HideInInspector]
+    public bool Bursting = false;
 
 
 
@@ -77,7 +77,7 @@ public class Block : MonoBehaviour
     //처음 생성시 연출 및 시작 부분
     virtual public void Init()
     { 
-    
+        
     }
 
 
@@ -124,5 +124,13 @@ public class Block : MonoBehaviour
     { 
     
     }
+
+
+
+    public void SetColor(NodeColor _color)
+    { 
+
+    }
+
 
 }
