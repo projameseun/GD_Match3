@@ -37,7 +37,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         if (CheckClickVec(Camera.main.ScreenToWorldPoint(eventData.position)))
             return;
         CurrentVec = Camera.main.ScreenToWorldPoint(eventData.position);
-
+        SlotDown = true;
         DownAction();
     }
 
@@ -93,11 +93,22 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         Y = (int)(ClickVec.y / 0.6f);
         m_SelectNum = X -(Y * MatchBase.MaxHorizon);
 
-        ClickVec.x = 0.3f + 0.6f * X;
-        ClickVec.y = -0.3f + 0.6f * Y;
+        ClickVec.x = 0.3f + (0.6f * X);
+        ClickVec.y = -0.3f + (0.6f * Y);
         return false;
     }
 
+
+    virtual public bool CheckSlotNum(MapManager _map)
+    {
+
+        if (m_SelectNum % MatchBase.MaxHorizon <= _map.TopRight &&
+            m_SelectNum <= _map.BottomRight)
+        {
+            return false;
+        }
+        return true;
+    }
 
 
 

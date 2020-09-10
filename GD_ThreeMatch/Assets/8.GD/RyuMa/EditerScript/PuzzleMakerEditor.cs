@@ -69,19 +69,9 @@ public class PuzzleMakerEditor : Editor
         EditorGUILayout.EndHorizontal();
 
 
-        //기본 블럭
-        if (theMaker.m_BlockCh[0] == true)
-        {
-            if (EditorUtil.DrawButton_Click("색 랜덤", GUILayout.Width(85f)))
-            {
-                EditorGUILayout.BeginHorizontal(); // 가로축 시작
+        //블럭 체크
+        BlockCheck();
 
-                theMaker.m_Block.nodeColor = (NodeColor)Random.Range(0,5);
-
-
-                EditorGUILayout.EndHorizontal(); // 가로축 종료
-            }
-        }
 
 
 
@@ -98,6 +88,24 @@ public class PuzzleMakerEditor : Editor
         //}
         //GUILayout.Space(20f);
 
+    }
+
+
+    public void BlockCheck()
+    {
+        //기본 블럭
+        if (theMaker.m_BlockCh[0] == true)
+        {
+            GUILayout.Space(10f);
+
+
+            EditorUtil.DrawLabel("------큐브------", false, GUILayout.Width(200f));
+            EditorUtil.DrawVariable_Field<PuzzleMaker>("큐브 색", theMaker, "m_NodeColor", true);
+            if (theMaker.m_NodeColor == NodeColor.NC6_Null)
+            {
+                theMaker.m_NodeColor = NodeColor.NC5_Random;
+            }
+        }
     }
 
     

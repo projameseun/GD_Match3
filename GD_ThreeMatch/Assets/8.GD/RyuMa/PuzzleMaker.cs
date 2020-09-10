@@ -35,13 +35,16 @@ public class EnemyIndex
 public class PuzzleMaker : G_Singleton<PuzzleMaker>
 {
 
-    public int Test;
+    public bool MakerStart = false;
 
-    public bool[] m_BlockCh;
-    public bool[] m_PanelCh;
+    public bool[] m_BlockCh = new bool[100];
+    public bool[] m_PanelCh = new bool[100];
 
-    public Block m_Block;
-    public Panel m_Panel;
+    public BlockType m_blockType;
+    public PanelType m_PanelType;
+
+    public NodeColor m_NodeColor;
+
 
 
 
@@ -99,6 +102,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     private void Awake()
     {
+        MakerStart = true;
         m_BlockCh = new bool[SlotEditorBase.Instance.BlockList.Count];
         m_PanelCh = new bool[SlotEditorBase.Instance.PanelList.Count];
     }
@@ -298,12 +302,17 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
         BottomLeft = MatchBase.MaxHorizon * (m_Vertical-1);
         BottomRight = BottomLeft + TopRight;
 
+        EditorMap.Horizon = m_Horizon;
+        EditorMap.Vertical = m_Vertical;
+        EditorMap.TopRight = TopRight;
+        EditorMap.BottomLeft = BottomLeft;
+        EditorMap.BottomRight = BottomRight;
 
         for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y+= MatchBase.MaxHorizon)
         {
             for (int x = 0; x < MatchBase.MaxHorizon; x++)
             {
-
+                EditorMap.Slots[x + y].block = EditorMap.Slots[x + y].gameObject.AddComponent<Block>();
                 EditorMap.Slots[x + y].m_Image.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
                 EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
             }
@@ -311,18 +320,22 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     }
 
-
-    public void SelectItem(Block _block = null, Panel _panel = null)
+    public void ShowIndex()
     {
-        if (_block != null)
+
+
+        for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y += MatchBase.MaxHorizon)
         {
-            SelectPanel = null;
-        }
-        else if (_panel != null)
-        {
-            SelectBlock = null;
+            for (int x = 0; x < MatchBase.MaxHorizon; x++)
+            {
+                EditorMap.Slots[x + y].block = EditorMap.Slots[x + y].gameObject.AddComponent<Block>();
+                EditorMap.Slots[x + y].m_Image.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
+                EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
+            }
         }
     }
+
+
 
 
 }

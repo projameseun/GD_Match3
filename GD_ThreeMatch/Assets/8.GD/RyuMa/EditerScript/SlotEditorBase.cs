@@ -64,7 +64,8 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         PuzzleMaker.Instance.m_BlockCh[SelectNum] = true;
         BlockImageList[0].ItemOnOff(true);
         CurrentBlockType = BlockList[SelectNum].GetComponent<Block>().blockType;
-        PuzzleMaker.Instance.m_Block = BlockList[SelectNum].GetComponent<Block>();
+        PuzzleMaker.Instance.m_blockType = BlockList[SelectNum].GetComponent<Block>().blockType ;
+        ChangeBlock();
     }
 
 
@@ -72,21 +73,25 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     public void ClickItem(PuzzleSlot _slot)
     {
 
+        // 기본 블럭
         if (SelectType == SlotBaseType.Block)
         {
-            _slot.block = PuzzleMaker.Instance.m_Block;
+            _slot.block.blockType = PuzzleMaker.Instance.m_blockType;
 
-            if ((int)_slot.block.nodeColor <= 4)
+            if ((int)PuzzleMaker.Instance.m_NodeColor <= 4)
             {
-                _slot.m_Image.sprite = _slot.block.m_BasicSprite[(int)_slot.block.nodeColor];
+                _slot.m_Image.sprite = 
+                    BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[(int)PuzzleMaker.Instance.m_NodeColor];
+                _slot.m_Image.color = new Color(1,1,1, 1);
             }
-            else if (_slot.block.nodeColor == NodeColor.NC5_Random)
+            else if (PuzzleMaker.Instance.m_NodeColor == NodeColor.NC5_Random)
             {
-                _slot.m_Image.sprite = _slot.block.m_BasicSprite[Random.Range(0, 5)];
+                _slot.m_Image.sprite = BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[0];
+                _slot.m_Image.color = new Color(0.5f, 0.5f, 0.5f, 1);
             }
             else
             {
-                _slot.m_Image.sprite = _slot.block.m_BasicSprite[0];
+                Debug.Log("여기 들어오면 안됨");
             }
 
 
@@ -134,7 +139,9 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
             PuzzleMaker.Instance.m_BlockCh[SelectNum] = true;
             BlockImageList[SelectNum % 10].ItemOnOff(true);
             CurrentBlockType = BlockList[SelectNum].GetComponent<Block>().blockType;
-            PuzzleMaker.Instance.m_Block = BlockList[SelectNum].GetComponent<Block>();
+            PuzzleMaker.Instance.m_blockType = BlockList[SelectNum].GetComponent<Block>().blockType;
+
+            ChangeBlock();
         }
         else if (SelectType == SlotBaseType.Panel)
         {
@@ -143,4 +150,17 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
             CurrentPanelType = PanelList[SelectNum].GetComponent<Panel>().panelType;
         }
     }
+
+    public void ChangeBlock()
+    {
+        switch (PuzzleMaker.Instance.m_blockType)
+        {
+            case BlockType.Cube:
+                PuzzleMaker.Instance.m_NodeColor = NodeColor.NC5_Random;
+
+                break;
+        }
+    }
+
+
 }

@@ -31,6 +31,7 @@ public enum NodeColor
 
 public class Block : MonoBehaviour
 {
+
     public List<Sprite> m_BasicSprite;
     public List<SpriteRenderer> m_spriteRen;
 
@@ -38,6 +39,10 @@ public class Block : MonoBehaviour
 
     //블럭이 무슨 블럭인지
     public BlockType blockType;
+
+
+
+
 
     //블럭의 색
     public NodeColor nodeColor;
@@ -57,7 +62,7 @@ public class Block : MonoBehaviour
 
     // burst중인지 아닌지 체크
     [HideInInspector]
-    public bool Bursting = false;
+    public bool Bursting;
 
 
 

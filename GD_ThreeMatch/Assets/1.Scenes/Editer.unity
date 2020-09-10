@@ -750,6 +750,8 @@ MonoBehaviour:
   - {fileID: 223456950}
   PanelSetList: []
   SelectType: 0
+  CurrentBlockType: 0
+  CurrentPanelType: 0
   SelectNum: 0
   BlockList:
   - {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
@@ -3142,9 +3144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8d81a62389cce498f62797831b718d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Test: 0
-  m_Block: 
-  m_Panel: 
+  MakerStart: 1
+  m_BlockCh: 
+  m_PanelCh: 
+  m_blockType: 0
+  m_PanelType: 0
+  m_NodeColor: 0
   mapMainType: 0
   changeMode: 0
   EditorMap: {fileID: 0}
@@ -3924,11 +3929,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotDown: 0
-  SelectNum: 0
+  m_SelectNum: 0
   ClickVec: {x: 0, y: 0}
   CurrentVec: {x: 0, y: 0}
   BaseVec: {x: 0, y: 0}
   BaseObj: {fileID: 1156045658}
+  EditMap: {fileID: 0}
 --- !u!114 &1587229597
 MonoBehaviour:
   m_ObjectHideFlags: 0

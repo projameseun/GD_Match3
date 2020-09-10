@@ -47,8 +47,8 @@ public class PuzzleSlot : MonoBehaviour
     public Vector2 Vec;
 
     public bool Down;
-    public Block block;
-    public List<Panel> panel;
+    public Block block = null;
+    public List<Panel> panel = null;
 
 
     [HideInInspector]

@@ -61,8 +61,7 @@ public class MapManager : MonoBehaviour
             Slots[i].SetSlot(i);
         }
     }
-
-
+    
     
 
 

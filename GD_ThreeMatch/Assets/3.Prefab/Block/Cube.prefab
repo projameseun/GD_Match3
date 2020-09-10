@@ -134,10 +134,10 @@ MonoBehaviour:
   m_spriteRen:
   - {fileID: 467185064427026963}
   blockType: 1
-  nodeColor: 0
+  nodeColor: 5
   Match: 1
   Burst: 1
-  Bursting: 0
   Gravity: 1
   CanMove: 1
+  Bursting: 0
   Num: 0
