@@ -67,10 +67,26 @@ public class PuzzleMakerEditor : Editor
             EditorGUILayout.EndHorizontal(); // 가로축 종료
         }
         EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal();
+        EditorUtil.DrawLabel("---------------------", false, GUILayout.Width(200f));
+        EditorGUILayout.EndHorizontal();
+
+        if (EditorUtil.DrawButton_Click("인덱스 표시", GUILayout.Width(85f)))
+        {
+            theMaker.ShowIndex();
 
 
-        //블럭 체크
-        BlockCheck();
+
+
+        }
+
+        if (theMaker.MakerStart == true)
+        {
+            //블럭 체크
+            BlockCheck();
+        }
+            
+        
 
 
 
@@ -93,6 +109,9 @@ public class PuzzleMakerEditor : Editor
 
     public void BlockCheck()
     {
+
+       
+
         //기본 블럭
         if (theMaker.m_BlockCh[0] == true)
         {

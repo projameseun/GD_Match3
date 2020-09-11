@@ -320,17 +320,22 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     }
 
+
+    bool IndexOnOff = false;
     public void ShowIndex()
     {
-
+        IndexOnOff = !IndexOnOff;
 
         for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y += MatchBase.MaxHorizon)
         {
             for (int x = 0; x < MatchBase.MaxHorizon; x++)
             {
-                EditorMap.Slots[x + y].block = EditorMap.Slots[x + y].gameObject.AddComponent<Block>();
-                EditorMap.Slots[x + y].m_Image.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
-                EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
+
+                if (x > TopRight || x+y > BottomRight)
+                    continue;
+
+               
+                EditorMap.Slots[x + y].m_Text.enabled = IndexOnOff;
             }
         }
     }
