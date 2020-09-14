@@ -26,7 +26,7 @@ public class EditorSlotManager : SlotManager
     {
         base.DownAction();
 
-        SlotEditorBase.Instance.ClickItem(EditMap.Slots[m_SelectNum]);
+        SlotEditorBase.Instance.ClickItem(EditMap.Slots[m_SelectNum].GetComponent<EditorSlot>());
 
 
     }
@@ -38,7 +38,7 @@ public class EditorSlotManager : SlotManager
         if (CheckSlotNum(EditMap))
             return;
 
-        SlotEditorBase.Instance.ClickItem(EditMap.Slots[m_SelectNum]);
+        SlotEditorBase.Instance.ClickItem(EditMap.Slots[m_SelectNum].GetComponent<EditorSlot>());
     }
 
 

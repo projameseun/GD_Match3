@@ -753,9 +753,12 @@ MonoBehaviour:
   CurrentBlockType: 0
   CurrentPanelType: 0
   SelectNum: 0
+  BlockListCount: 0
   BlockList:
   - {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
-  PanelList: []
+  PanelListCount: 0
+  PanelList:
+  - {fileID: 4068278579700578170, guid: 4ec14b01d40f30c4da68c73f8ee9e078, type: 3}
 --- !u!222 &292433063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2724,7 +2727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapType: 2
-  SlotPrefab: {fileID: 3475048422943842450, guid: 15b6770109ac04f43a8a9f313944aa52,
+  SlotPrefab: {fileID: 3475048422943842450, guid: 67d75a88df3389a40bc3e6bcd6c9b2ec,
     type: 3}
   CameraPos: {x: 0, y: 0}
   SlotBase: {fileID: 1461559501160670419}
@@ -3150,6 +3153,7 @@ MonoBehaviour:
   m_blockType: 0
   m_PanelType: 0
   m_NodeColor: 0
+  m_Count: 0
   mapMainType: 0
   changeMode: 0
   EditorMap: {fileID: 0}

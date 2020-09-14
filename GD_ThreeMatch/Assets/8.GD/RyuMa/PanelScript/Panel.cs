@@ -6,7 +6,7 @@ using UnityEngine;
 
 public enum PanelType
 { 
-    NULL,
+    BackPanel,
     Portal
 }
 
@@ -17,13 +17,12 @@ public class Panel : MonoBehaviour
 
     public PanelType panelType;
 
+    public List<Sprite> m_sprite;
     public List<SpriteRenderer> m_spriteRen;
-    int Num;
+    public int m_Count;
 
-
-    public bool Defense;
-
-
+    public bool m_Burst;
+    public bool m_Destroy;
 
 
     virtual public void Init()

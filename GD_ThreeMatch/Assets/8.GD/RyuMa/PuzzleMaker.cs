@@ -37,7 +37,9 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     public bool MakerStart = false;
 
+    [HideInInspector]
     public bool[] m_BlockCh = new bool[100];
+    [HideInInspector]
     public bool[] m_PanelCh = new bool[100];
 
     public BlockType m_blockType;
@@ -46,6 +48,8 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     public NodeColor m_NodeColor;
 
 
+    // 판넬
+    public int m_Count; 
 
 
 

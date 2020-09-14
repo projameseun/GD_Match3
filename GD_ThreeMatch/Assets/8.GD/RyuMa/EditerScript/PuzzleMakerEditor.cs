@@ -84,6 +84,7 @@ public class PuzzleMakerEditor : Editor
         {
             //블럭 체크
             BlockCheck();
+
         }
             
         
@@ -127,7 +128,22 @@ public class PuzzleMakerEditor : Editor
         }
     }
 
-    
+    public void PanelCheck()
+    {
+        // 배경 블럭
+        if (theMaker.m_PanelCh[0] == true)
+        {
+            GUILayout.Space(10f);
+
+
+            EditorUtil.DrawLabel("------배경 판넬------", false, GUILayout.Width(200f));
+            EditorUtil.DrawVariable_Field<PuzzleMaker>("큐브 색", theMaker, "m_NodeColor", true);
+            if (theMaker.m_NodeColor == NodeColor.NC6_Null)
+            {
+                theMaker.m_NodeColor = NodeColor.NC5_Random;
+            }
+        }
+    }
     //public override void OnInspectorGUI()
     //{
     //    base.OnInspectorGUI();
