@@ -38,19 +38,22 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     public bool MakerStart = false;
 
     [HideInInspector]
-    public bool[] m_BlockCh = new bool[100];
+    public List<bool> m_BlockCh;
     [HideInInspector]
-    public bool[] m_PanelCh = new bool[100];
-
+    public List<bool> m_PanelCh;
     public BlockType m_blockType;
     public PanelType m_PanelType;
 
     public NodeColor m_NodeColor;
 
 
-    // 판넬
-    public int m_Count; 
+    // 블럭
+    public bool m_CubeCh;
 
+    // 판넬
+    public int m_Count;
+
+    public bool m_BackPanelCh;
 
 
     public MapMainType mapMainType;
@@ -104,11 +107,12 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
 
-    private void Awake()
+    
+    public void Awake()
     {
         MakerStart = true;
-        m_BlockCh = new bool[SlotEditorBase.Instance.BlockList.Count];
-        m_PanelCh = new bool[SlotEditorBase.Instance.PanelList.Count];
+
+        m_BlockCh.Add(m_CubeCh);
     }
 
     private void Start()

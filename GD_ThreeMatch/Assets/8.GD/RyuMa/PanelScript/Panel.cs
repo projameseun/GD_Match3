@@ -6,6 +6,7 @@ using UnityEngine;
 
 public enum PanelType
 { 
+    Null = 0,
     BackPanel,
     Portal
 }

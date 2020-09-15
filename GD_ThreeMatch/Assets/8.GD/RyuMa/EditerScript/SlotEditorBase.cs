@@ -113,9 +113,20 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     }
 
 
-    public void PanelItem(PuzzleSlot _slot)
+    public void PanelItem(EditorSlot _slot)
     {
-       
+        switch (PuzzleMaker.Instance.m_PanelType)
+        {
+            case PanelType.BackPanel:
+                _slot.m_blockType = BlockType.Null;
+                _slot.m_UpPanel.panelType = PanelType.BackPanel;
+                _slot.m_MiddlePanel.panelType = PanelType.Null;
+                _slot.m_DownPanel.panelType = PanelType.Null;
+                break;
+
+
+        }
+
     }
 
 

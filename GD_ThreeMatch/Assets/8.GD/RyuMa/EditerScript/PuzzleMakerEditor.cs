@@ -114,7 +114,7 @@ public class PuzzleMakerEditor : Editor
        
 
         //기본 블럭
-        if (theMaker.m_BlockCh[0] == true)
+        if (theMaker.m_CubeCh == true)
         {
             GUILayout.Space(10f);
 
@@ -131,7 +131,7 @@ public class PuzzleMakerEditor : Editor
     public void PanelCheck()
     {
         // 배경 블럭
-        if (theMaker.m_PanelCh[0] == true)
+        if (theMaker.m_BackPanelCh == true)
         {
             GUILayout.Space(10f);
 

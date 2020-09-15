@@ -48,8 +48,10 @@ public class PuzzleSlot : MonoBehaviour
 
     public bool Down;
     public Block block = null;
-    public List<Panel> panel = null;
-
+    public Panel m_UpPanel = null;
+    public Panel m_MiddlePanel = null;
+    public Panel m_DownPanel = null;
+    public List<Panel> m_PanelList;
 
     [HideInInspector]
     public Image m_Image;
@@ -81,6 +83,10 @@ public class PuzzleSlot : MonoBehaviour
     {
         m_Image = GetComponent<Image>();
         m_Text = GetComponentInChildren<Text>();
+
+        m_PanelList.Add(m_UpPanel);
+        m_PanelList.Add(m_MiddlePanel);
+        m_PanelList.Add(m_DownPanel);
     }
 
 
