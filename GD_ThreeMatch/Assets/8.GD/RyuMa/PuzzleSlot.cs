@@ -83,10 +83,6 @@ public class PuzzleSlot : MonoBehaviour
     {
         m_Image = GetComponent<Image>();
         m_Text = GetComponentInChildren<Text>();
-
-        m_PanelList.Add(m_UpPanel);
-        m_PanelList.Add(m_MiddlePanel);
-        m_PanelList.Add(m_DownPanel);
     }
 
 

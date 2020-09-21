@@ -3148,11 +3148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MakerStart: 1
-  m_BlockCh: 
-  m_PanelCh: 
   m_blockType: 0
   m_PanelType: 0
   m_NodeColor: 0
+  m_CubeCh: 0
+  m_BackPanelCh: 0
   m_Count: 0
   mapMainType: 0
   changeMode: 0

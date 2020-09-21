@@ -36,11 +36,6 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 {
 
     public bool MakerStart = false;
-
-    [HideInInspector]
-    public List<bool> m_BlockCh;
-    [HideInInspector]
-    public List<bool> m_PanelCh;
     public BlockType m_blockType;
     public PanelType m_PanelType;
 
@@ -51,9 +46,12 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     public bool m_CubeCh;
 
     // 판넬
+    public bool m_BackPanelCh;
+
+
+
     public int m_Count;
 
-    public bool m_BackPanelCh;
 
 
     public MapMainType mapMainType;
@@ -111,8 +109,6 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     public void Awake()
     {
         MakerStart = true;
-
-        m_BlockCh.Add(m_CubeCh);
     }
 
     private void Start()
@@ -295,6 +291,13 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
 
 
+
+
+    public void AllCheckOff()
+    {
+        m_CubeCh = false;
+        m_BackPanelCh = false;
+    }
 
 
 
