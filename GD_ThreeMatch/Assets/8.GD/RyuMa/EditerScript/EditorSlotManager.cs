@@ -25,7 +25,10 @@ public class EditorSlotManager : SlotManager
     public override void DownAction()
     {
         base.DownAction();
-
+        if (CheckClickVec(CurrentVec))
+            return;
+        if (CheckSlotNum(EditMap))
+            return;
         SlotEditorBase.Instance.ClickItem(EditMap.Slots[m_SelectNum].GetComponent<EditorSlot>());
 
 

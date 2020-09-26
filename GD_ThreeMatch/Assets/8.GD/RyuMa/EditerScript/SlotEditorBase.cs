@@ -131,11 +131,11 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         switch (PuzzleMaker.Instance.m_PanelType)
         {
             case PanelType.BackPanel:
-                PuzzleMaker.Instance.m_BackPanelCh = true;
                 _slot.ResetEditorSlot();
                 _slot.MiddlePanel = PanelType.BackPanel;
                 _slot.m_MiddleImage.sprite =
                 PanelList[SelectNum].GetComponent<Panel>().m_sprite[PuzzleMaker.Instance.m_Count];
+                _slot.m_MiddleImage.color = new Color(1, 1, 1, 1);
                 break;
 
 
@@ -162,10 +162,8 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         }
         SelectNum = _Num;
         SelectType = _Type;
-        
         if (SelectType == SlotBaseType.Block)
         {
-
             BlockImageList[SelectNum % 10].ItemOnOff(true);
             CurrentBlockType = BlockList[SelectNum].GetComponent<Block>().blockType;
             PuzzleMaker.Instance.m_blockType = CurrentBlockType;
@@ -174,8 +172,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         }
         else if (SelectType == SlotBaseType.Panel)
         {
-            
-           PanelImageList[SelectNum % 10].ItemOnOff(true);
+            PanelImageList[SelectNum % 10].ItemOnOff(true);
             CurrentPanelType = PanelList[SelectNum].GetComponent<Panel>().panelType;
             PuzzleMaker.Instance.m_PanelType = CurrentPanelType;
 
@@ -224,7 +221,6 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         {
             case PanelType.BackPanel:
                 PuzzleMaker.Instance.m_BackPanelCh = true;
-
                 PuzzleMaker.Instance.m_Count = 0;
                 break;
         }
