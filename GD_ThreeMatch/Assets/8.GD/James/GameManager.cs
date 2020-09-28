@@ -40,6 +40,19 @@ public class MapInfo
 public class SlotInfo
 {
     public string Type;
+
+    public int BlockType;
+    public int UpPanelType;
+    public int MiddlePanelType;
+    public int DownPanelType;
+
+    public SlotInfo(BlockType _Block, PanelType _UpPanel, PanelType _MiddlePanel, PanelType _DownPanel)
+    {
+        BlockType = (int)_Block;
+        UpPanelType = (int)_UpPanel;
+        MiddlePanelType = (int)_MiddlePanel;
+        DownPanelType = (int)_DownPanel;
+    }
     //public MonsterSheet monsheet;
     //public PortalSheet portalsheet;
     //public SlotObjectSheets slotObject;
@@ -51,8 +64,11 @@ public class SlotInfo
     //    this.portalsheet = portalsheet;
     //    this.slotObject = _slotObject;
     //}
+    public SlotInfo()
+    { 
+        
+    }
 
-    public SlotInfo() { }
 }
 
 

@@ -52,6 +52,13 @@ public class PuzzleMakerEditor : Editor
                 theMaker.SettingMap();
             }
         }
+        else
+        {
+            if (EditorUtil.DrawButton_Click("게임 시작", GUILayout.Width(85f)))
+            {
+
+            }
+        }
 
         GUILayout.Space(10f); // 빈공간 추가
         EditorGUILayout.BeginHorizontal();
