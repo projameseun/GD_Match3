@@ -212,7 +212,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 state = State.LoadingMap;
                 MoveCount = 100;
                 SetMoveCount(0);
-                theGM.LoadMap();
+                //theGM.LoadMap();
 
 
             }
@@ -1675,7 +1675,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         theFade.FadeOutEnd = false;
         ResetMoveMap();
 
-        theGM.LoadMap();
+        //theGM.LoadMap();
     }
 
     //현재 매치가 가능한 상태가 있는지 체크 true 면 가능, false 면 불가능

@@ -34,6 +34,12 @@ public class MapInfo
         Value = value;
 
     }
+    public MapInfo(string name, int value)
+    {
+        Name = name;
+        Value = value.ToString();
+
+    }
 }
 
 [System.Serializable]
@@ -46,12 +52,24 @@ public class SlotInfo
     public int MiddlePanelType;
     public int DownPanelType;
 
-    public SlotInfo(BlockType _Block, PanelType _UpPanel, PanelType _MiddlePanel, PanelType _DownPanel)
+    public int m_Color;
+    public int m_UpCount;
+    public int m_MiddleCount;
+    public int m_DownCount;
+    public SlotInfo(EditorSlot _slot)
     {
-        BlockType = (int)_Block;
-        UpPanelType = (int)_UpPanel;
-        MiddlePanelType = (int)_MiddlePanel;
-        DownPanelType = (int)_DownPanel;
+        BlockType = (int)_slot.m_blockType;
+        m_Color = (int)_slot.m_Color;
+
+        UpPanelType = (int)_slot.UpPanel;
+        MiddlePanelType = (int)_slot.MiddlePanel;
+        DownPanelType = (int)_slot.DownPanel;
+
+        m_UpCount = _slot.m_UpCount;
+        m_MiddleCount = _slot.m_MiddleCount;
+        m_DownCount = _slot.m_DownCount;
+
+
     }
     //public MonsterSheet monsheet;
     //public PortalSheet portalsheet;
@@ -209,31 +227,34 @@ public class GameManager : G_Singleton<GameManager>
         }
     }
 
-    public List<SlotInfo> PuzzleSlotList
-    {
-        get
-        {
-            MapManager _Map = PuzzleMaker.Instance.EditorMap;
 
-            puzzleslotList = new List<SlotInfo>();
-            for (int Hor = 0; Hor < _Map.BottomRight; Hor += MatchBase.MaxHorizon)
-            {
-                for (int i = 0; i <= _Map.TopRight; i++)
-                {
-                    //puzzleslotList.Add(new SlotInfo(((int)_Map.Slots[i + Hor].block.blockType).ToString(), _Map.Slots[i + Hor].monsterSheet, 
-                    //                            _Map.Slots[i + Hor].portalSheet, _Map.Slots[i + Hor].SlotSheet));;
-                    //Debug.Log(puzzleslotList[i + Hor].nodeType);
+    //맵 데이터 저장
+    //public List<SlotInfo> PuzzleSlotList
+    //{
+    //    get
+    //    {
+    //        MapManager _Map = PuzzleMaker.Instance.EditorMap;
 
-                }
-            }
-            return puzzleslotList;
-        }
+    //        puzzleslotList = new List<SlotInfo>();
 
-        set
-        {
-            puzzleslotList = value;
-        }
-    }// public List<MapInfo> MapInfoList
+
+
+    //        for (int Hor = 0; Hor < _Map.BottomRight; Hor += MatchBase.MaxHorizon)
+    //        {
+    //            for (int i = 0; i <= _Map.TopRight; i++)
+    //            {
+    //                puzzleslotList.Add(new SlotInfo(_Map.Slots[i + Hor].GetComponent<EditorSlot>().m_blockType, _Map.Slots[i + Hor].GetComponent<EditorSlot>().UpPanel, _Map.Slots[i + Hor].GetComponent<EditorSlot>().MiddlePanel, _Map.Slots[i + Hor].GetComponent<EditorSlot>().DownPanel));
+
+    //            }
+    //        }
+    //        return puzzleslotList;
+    //    }
+
+    //    set
+    //    {
+    //        puzzleslotList = value;
+    //    }
+    //}// public List<MapInfo> MapInfoList
 
 
 
@@ -258,134 +279,134 @@ public class GameManager : G_Singleton<GameManager>
 
 
 
-    public void SaveBtn()
-    {
-        //string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
+    //public void SaveBtn()
+    //{
+    //    //string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
+    //    string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
 
-        //byte[] bytes = reader.bytes;
-        //string FileName = System.Text.Encoding.UTF8.GetString(bytes);
-        //print(FilePath);
-        //리스트는 저장이 안되지만 크랠스는 저장이된다
-        string jdata = JsonUtility.ToJson(new Serialization<MapInfo>(MapInfoList), true);
-        //print(jdata);
-        Debug.Log("FilePath = " + FilePath);
-        Debug.Log("jdata = " + jdata);
-
-
-        File.WriteAllText(FilePath, jdata);
+    //    //byte[] bytes = reader.bytes;
+    //    //string FileName = System.Text.Encoding.UTF8.GetString(bytes);
+    //    //print(FilePath);
+    //    //리스트는 저장이 안되지만 크랠스는 저장이된다
+    //    string jdata = JsonUtility.ToJson(new Serialization<MapInfo>(MapInfoList), true);
+    //    //print(jdata);
+    //    Debug.Log("FilePath = " + FilePath);
+    //    Debug.Log("jdata = " + jdata);
 
 
-
-        //string FilePath2 = Application.streamingAssetsPath +"/" + theMaker.MapName + "Son.json";
-        string FilePath2 = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + "Son.json");
-        string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList) , true);
-        //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
-        //print(jdata2);
-        Debug.Log("FilePath2 = " + FilePath2);
-        Debug.Log("jdata2 = " + jdata2);
+    //    File.WriteAllText(FilePath, jdata);
 
 
 
-        File.WriteAllText(FilePath2, jdata2);
-        //만약에 Json으로 변경할려면 경로를 변경해주면된다
-        // string FilePath = Application.persistentDataPath + "/MyItem.json";
-        //for (int i = 0; i < SetMapList.Count; i++)
-        //{
-        //    if (i == 0) SetMapList[i].Value = MapManager.instance.TopRight.ToString();
-        //    if (i == 1) SetMapList[i].Value = MapManager.instance.BottomLeft.ToString();
-        //    if (i == 2) SetMapList[i].Value = MapManager.instance.BottomRight.ToString();
-        //}
+    //    //string FilePath2 = Application.streamingAssetsPath +"/" + theMaker.MapName + "Son.json";
+    //    string FilePath2 = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + "Son.json");
+    //    string jdata2 = JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList) , true);
+    //    //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
+    //    //print(jdata2);
+    //    Debug.Log("FilePath2 = " + FilePath2);
+    //    Debug.Log("jdata2 = " + jdata2);
 
 
-        Debug.Log("저장하였습니다");
 
-    }
+    //    File.WriteAllText(FilePath2, jdata2);
+    //    //만약에 Json으로 변경할려면 경로를 변경해주면된다
+    //    // string FilePath = Application.persistentDataPath + "/MyItem.json";
+    //    //for (int i = 0; i < SetMapList.Count; i++)
+    //    //{
+    //    //    if (i == 0) SetMapList[i].Value = MapManager.instance.TopRight.ToString();
+    //    //    if (i == 1) SetMapList[i].Value = MapManager.instance.BottomLeft.ToString();
+    //    //    if (i == 2) SetMapList[i].Value = MapManager.instance.BottomRight.ToString();
+    //    //}
 
-    public void LoadMap()
-    {
-        //Debug.Log("로드를 눌렀습니다");
 
-        //string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
+    //    Debug.Log("저장하였습니다");
 
-        //복호화
-        //Debug.Log("FilePath = " + FilePath);
+    //}
 
-        WWW reader = new WWW(FilePath);
+    //public void LoadMap()
+    //{
+    //    //Debug.Log("로드를 눌렀습니다");
 
-        while (!reader.isDone)
-        {
+    //    //string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
+    //    string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
 
-        }
+    //    //복호화
+    //    //Debug.Log("FilePath = " + FilePath);
 
-        //string jdata = File.ReadAllText(FilePath);
+    //    WWW reader = new WWW(FilePath);
 
-        byte[] bytes = reader.bytes;
-        string jdata = System.Text.Encoding.UTF8.GetString(bytes);
-        List<MapInfo> a_LoadMapList;
-        a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(jdata).Slot;
-        mapInfoList = (a_LoadMapList);
+    //    while (!reader.isDone)
+    //    {
 
-        string FilePath2 = Path.Combine( Application.streamingAssetsPath + "/" + PuzzleMaker.Instance.m_MapName + "Son.json");
-        reader = new WWW(FilePath2);
+    //    }
 
-        while (!reader.isDone)
-        {
+    //    //string jdata = File.ReadAllText(FilePath);
 
-        }
-        // string jdata2 = File.ReadAllText(FilePath2);
-        byte[] bytes2 = reader.bytes;
-        string jdata2 = System.Text.Encoding.UTF8.GetString(bytes2);
-        List<SlotInfo> a_LoadSlotList;
-        a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(jdata2).Slot;
-        puzzleslotList = (a_LoadSlotList);
+    //    byte[] bytes = reader.bytes;
+    //    string jdata = System.Text.Encoding.UTF8.GetString(bytes);
+    //    List<MapInfo> a_LoadMapList;
+    //    a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(jdata).Slot;
+    //    mapInfoList = (a_LoadMapList);
 
-        PuzzleMaker.Instance.mapMainType = (MapMainType)int.Parse(mapInfoList[0].Value);
-        PuzzleMaker.Instance.m_MapName = mapInfoList[1].Value;
+    //    string FilePath2 = Path.Combine( Application.streamingAssetsPath + "/" + PuzzleMaker.Instance.m_MapName + "Son.json");
+    //    reader = new WWW(FilePath2);
 
-        //theMoveMap.TopRight = int.Parse(mapInfoList[2].Value);
-        //theMoveMap.BottomLeft = int.Parse(mapInfoList[3].Value);
-        //theMoveMap.BottomRight = int.Parse(mapInfoList[4].Value);
+    //    while (!reader.isDone)
+    //    {
 
-        int ListCount = 0;
+    //    }
+    //    // string jdata2 = File.ReadAllText(FilePath2);
+    //    byte[] bytes2 = reader.bytes;
+    //    string jdata2 = System.Text.Encoding.UTF8.GetString(bytes2);
+    //    List<SlotInfo> a_LoadSlotList;
+    //    a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(jdata2).Slot;
+    //    puzzleslotList = (a_LoadSlotList);
 
-        //TODO
-        //for(int i=0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
-        //{
-        //    theMoveMap.Slots[i].block. = PuzzleSlot.NodeType.Null;
-        //    theMoveMap.Slots[i].nodeColor = NodeColor.NC8_Null;
-        //    theMoveMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.NULL; 
-        //    if (theMoveMap.Slots[i].cube != null)
-        //    {
-        //        theMoveMap.Slots[i].cube.Resetting();
-        //        theMoveMap.Slots[i].cube = null;
-        //    }
+    //    PuzzleMaker.Instance.mapMainType = (MapMainType)int.Parse(mapInfoList[0].Value);
+    //    PuzzleMaker.Instance.m_MapName = mapInfoList[1].Value;
 
-        //}
+    //    //theMoveMap.TopRight = int.Parse(mapInfoList[2].Value);
+    //    //theMoveMap.BottomLeft = int.Parse(mapInfoList[3].Value);
+    //    //theMoveMap.BottomRight = int.Parse(mapInfoList[4].Value);
 
-        //for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor+=thePuzzle.theMoveMap.Horizontal)
-        //{
-        //    for(int i=0; i<=theMoveMap.TopRight; i++)
-        //    {
-        //        theMoveMap.Slots[i + Hor].nodeType = (PuzzleSlot.NodeType)(int.Parse(puzzleslotList[ListCount].Type));
-        //        theMoveMap.Slots[i + Hor].nodeColor = NodeColor.NC8_Null;
-        //        theMoveMap.Slots[i + Hor].SlotSheet = puzzleslotList[ListCount].slotObject;
-        //        if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
-        //        {
-        //            theMoveMap.Slots[i + Hor].monsterSheet = puzzleslotList[ListCount].monsheet;
-        //        }
-        //        else if(theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
-        //        {
-        //            theMoveMap.Slots[i + Hor].portalSheet = puzzleslotList[ListCount].portalsheet;
-        //        }
+    //    int ListCount = 0;
 
-        //        ListCount++;
-        //    }
-        //}
+    //    //TODO
+    //    //for(int i=0; i < theMoveMap.Horizontal * theMoveMap.Vertical; i++)
+    //    //{
+    //    //    theMoveMap.Slots[i].block. = PuzzleSlot.NodeType.Null;
+    //    //    theMoveMap.Slots[i].nodeColor = NodeColor.NC8_Null;
+    //    //    theMoveMap.Slots[i].SlotSheet.SlotSheet = SlotObjectSheet.NULL; 
+    //    //    if (theMoveMap.Slots[i].cube != null)
+    //    //    {
+    //    //        theMoveMap.Slots[i].cube.Resetting();
+    //    //        theMoveMap.Slots[i].cube = null;
+    //    //    }
 
-        PuzzleMaker.Instance.BT_TestStart();
-    }
+    //    //}
+
+    //    //for (int Hor = 0; Hor < theMoveMap.BottomRight; Hor+=thePuzzle.theMoveMap.Horizontal)
+    //    //{
+    //    //    for(int i=0; i<=theMoveMap.TopRight; i++)
+    //    //    {
+    //    //        theMoveMap.Slots[i + Hor].nodeType = (PuzzleSlot.NodeType)(int.Parse(puzzleslotList[ListCount].Type));
+    //    //        theMoveMap.Slots[i + Hor].nodeColor = NodeColor.NC8_Null;
+    //    //        theMoveMap.Slots[i + Hor].SlotSheet = puzzleslotList[ListCount].slotObject;
+    //    //        if (theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Enemy)
+    //    //        {
+    //    //            theMoveMap.Slots[i + Hor].monsterSheet = puzzleslotList[ListCount].monsheet;
+    //    //        }
+    //    //        else if(theMoveMap.Slots[i + Hor].nodeType == PuzzleSlot.NodeType.Portal)
+    //    //        {
+    //    //            theMoveMap.Slots[i + Hor].portalSheet = puzzleslotList[ListCount].portalsheet;
+    //    //        }
+
+    //    //        ListCount++;
+    //    //    }
+    //    //}
+
+    //    PuzzleMaker.Instance.BT_TestStart();
+    //}
 
     public void GameOver()
     {

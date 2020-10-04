@@ -1,1 +1,725 @@
-{"Slot":[{"Name":"MapName","Value":""},{"Name":"TopRight","Value":"10"},{"Name":"BottomLeft","Value":"160"},{"Name":"BottomRight","Value":"170"}]}
+{
+    "Slot": [
+        {
+            "Name": "MapMainType",
+            "Value": "0"
+        },
+        {
+            "Name": "MapName",
+            "Value": ""
+        }
+    ],
+    "Data": {
+        "MonsterDataSheet": [],
+        "ProgressDataSheet": [],
+        "CurrentProgressNum": 0
+    }
+}[Next]{
+    "Slot": [
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        },
+        {
+            "Type": "",
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 0,
+            "DownPanelType": 0
+        }
+    ],
+    "Data": {
+        "MonsterDataSheet": [],
+        "ProgressDataSheet": [],
+        "CurrentProgressNum": 0
+    }
+}

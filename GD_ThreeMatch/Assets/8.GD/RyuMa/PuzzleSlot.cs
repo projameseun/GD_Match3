@@ -197,9 +197,16 @@ public class PuzzleSlot : MonoBehaviour
         m_Text.text = _Num.ToString();
     }
 
-    public void Resetting()
+    virtual public void Resetting()
     { 
+
     }
+
+    virtual public void SetSlot(SlotInfo _Info)
+    { 
+        
+    }
+
 
 
 }

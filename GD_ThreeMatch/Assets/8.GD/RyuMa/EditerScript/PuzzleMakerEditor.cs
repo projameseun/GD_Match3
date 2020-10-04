@@ -54,26 +54,25 @@ public class PuzzleMakerEditor : Editor
         }
         else
         {
-            if (EditorUtil.DrawButton_Click("게임 시작", GUILayout.Width(85f)))
-            {
+            EditorGUILayout.BeginHorizontal();
+            EditorUtil.DrawLabel("맵 이름", false, GUILayout.Width(50f));
+            EditorUtil.DrawProperty("", serializedObject, "m_MapName", false, GUILayout.Width(150f));
+            EditorGUILayout.EndHorizontal();
 
+            EditorGUILayout.BeginHorizontal();
+            if (EditorUtil.DrawButton_Click("맵 저장", GUILayout.Width(85f)))
+            {
+                SaveManager.Instance.SaveMap();
             }
+            if (EditorUtil.DrawButton_Click("맵 로드", GUILayout.Width(85f)))
+            {
+                SaveManager.Instance.SaveMap();
+            }
+            EditorGUILayout.EndHorizontal();
         }
 
         GUILayout.Space(10f); // 빈공간 추가
-        EditorGUILayout.BeginHorizontal();
-        EditorUtil.DrawLabel("맵 이름", false, GUILayout.Width(50f));
-        EditorUtil.DrawProperty("", serializedObject, "m_MapName", false, GUILayout.Width(150f));
 
-        if (EditorUtil.DrawButton_Click("맵 불러오기", GUILayout.Width(85f)))
-        {
-            EditorGUILayout.BeginHorizontal(); // 가로축 시작
-
-
-
-            EditorGUILayout.EndHorizontal(); // 가로축 종료
-        }
-        EditorGUILayout.EndHorizontal();
         EditorGUILayout.BeginHorizontal();
         EditorUtil.DrawLabel("---------------------", false, GUILayout.Width(200f));
         EditorGUILayout.EndHorizontal();

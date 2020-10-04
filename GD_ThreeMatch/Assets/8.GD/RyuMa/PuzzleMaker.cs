@@ -323,7 +323,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
         {
             for (int x = 0; x < MatchBase.MaxHorizon; x++)
             {
-                EditorMap.Slots[x + y].block = EditorMap.Slots[x + y].gameObject.AddComponent<Block>();
+                EditorMap.Slots[x + y].Resetting();
                 EditorMap.Slots[x + y].m_Image.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
                 EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
             }
