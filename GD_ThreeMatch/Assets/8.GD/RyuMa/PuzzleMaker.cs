@@ -292,7 +292,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
 
 
-
+    //모든 블럭, 판넬 에디텉 비활성화
     public void AllCheckOff()
     {
         m_CubeCh = false;

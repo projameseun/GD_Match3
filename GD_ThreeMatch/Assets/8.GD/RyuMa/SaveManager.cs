@@ -44,9 +44,9 @@ public class SaveManager : G_Singleton<SaveManager>
             mapInfoList.Clear();
 
             mapInfoList.Add(new MapInfo("MapName", PuzzleMaker.Instance.m_MapName));
-            mapInfoList.Add(new MapInfo("TopRight", PuzzleMaker.Instance.TopRight));
-            mapInfoList.Add(new MapInfo("TopRight", PuzzleMaker.Instance.BottomLeft));
-            mapInfoList.Add(new MapInfo("TopRight", PuzzleMaker.Instance.BottomRight));
+            mapInfoList.Add(new MapInfo("Horizon", PuzzleMaker.Instance.m_Horizon));
+            mapInfoList.Add(new MapInfo("Horizon", PuzzleMaker.Instance.m_Vertical));
+
             //mapInfoList.Add(new MapInfo("TopRight", thePuzzle.theMoveMap.TopRight.ToString()));
             //mapInfoList.Add(new MapInfo("BottomLeft", thePuzzle.theMoveMap.BottomLeft.ToString()));
             //mapInfoList.Add(new MapInfo("BottomRight", thePuzzle.theMoveMap.BottomRight.ToString()));
@@ -126,32 +126,88 @@ public class SaveManager : G_Singleton<SaveManager>
         List<MapInfo> a_LoadMapList;
         a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(MapData[0]).Slot;
 
-        PuzzleMaker.Instance.TopRight = int.Parse(a_LoadMapList[1].Value);
-        PuzzleMaker.Instance.BottomLeft = int.Parse(a_LoadMapList[2].Value);
-        PuzzleMaker.Instance.BottomRight = int.Parse(a_LoadMapList[3].Value);
+        PuzzleMaker.Instance.m_Horizon = int.Parse(a_LoadMapList[1].Value);
+        PuzzleMaker.Instance.m_Vertical = int.Parse(a_LoadMapList[2].Value);
+
+        PuzzleMaker.Instance.TopRight = PuzzleMaker.Instance.m_Horizon - 1;
+        PuzzleMaker.Instance.BottomLeft = MatchBase.MaxHorizon * (PuzzleMaker.Instance.m_Vertical - 1);
+        PuzzleMaker.Instance.BottomRight = PuzzleMaker.Instance.BottomLeft + PuzzleMaker.Instance.TopRight;
+
+
+        MapManager _Map = PuzzleMaker.Instance.EditorMap;
+        _Map.Horizon = PuzzleMaker.Instance.m_Horizon;
+        _Map.Vertical = PuzzleMaker.Instance.m_Vertical;
+        _Map.TopRight = PuzzleMaker.Instance.TopRight;
+        _Map.BottomLeft = PuzzleMaker.Instance.BottomLeft;
+        _Map.BottomRight = PuzzleMaker.Instance.BottomRight;
+
+
 
         List<SlotInfo> a_LoadSlotList;
         a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(MapData[1]).Slot;
         puzzleslotList = (a_LoadSlotList);
 
 
-        MapManager _Map = PuzzleMaker.Instance.EditorMap;
+
 
         int SlotListCount = 0;
 
-        for (int Hor = 0; Hor < PuzzleMaker.Instance.BottomRight; Hor += MatchBase.MaxHorizon)
+
+        for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y += MatchBase.MaxHorizon)
         {
-            for (int i = 0; i < MatchBase.MaxHorizon; i++)
+            for (int x = 0; x < MatchBase.MaxHorizon; x++)
             {
-                if (Hor < PuzzleMaker.Instance.BottomRight && i <= PuzzleMaker.Instance.TopRight)
+
+                if (x <= PuzzleMaker.Instance.TopRight && y <= PuzzleMaker.Instance.BottomRight)
                 {
-                    _Map.Slots[Hor + i].SetSlot(puzzleslotList[SlotListCount]);
+                    _Map.Slots[x + y].SetSlot(puzzleslotList[SlotListCount]);
+                    SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)_Map.Slots[x + y], (BlockType)puzzleslotList[SlotListCount].BlockType, (NodeColor)puzzleslotList[SlotListCount].m_Color);
+                    SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[x + y],
+                        (PanelType)puzzleslotList[SlotListCount].UpPanelType, puzzleslotList[SlotListCount].m_UpCount);
+                    SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[x + y],
+                        (PanelType)puzzleslotList[SlotListCount].MiddlePanelType, puzzleslotList[SlotListCount].m_MiddleCount);
+                    SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[x + y],
+                        (PanelType)puzzleslotList[SlotListCount].DownPanelType, puzzleslotList[SlotListCount].m_DownCount);
                     SlotListCount++;
+                    
                 }
-                //puzzleslotList[Hor + i];
+                else
+                {
+                    _Map.Slots[x + y].Resetting();
+                }
+                _Map.Slots[x + y].m_Image.enabled = (x <= PuzzleMaker.Instance.TopRight && y <= PuzzleMaker.Instance.BottomRight) ? true : false;
+                _Map.Slots[x + y].m_Text.enabled = (x <= PuzzleMaker.Instance.TopRight && y <= PuzzleMaker.Instance.BottomRight) ? true : false;
+
 
             }
         }
+
+
+
+        //for (int Hor = 0; Hor < PuzzleMaker.Instance.BottomRight; Hor += MatchBase.MaxHorizon)
+        //{
+        //    for (int i = 0; i < MatchBase.MaxHorizon; i++)
+        //    {
+        //        if (Hor < PuzzleMaker.Instance.BottomRight && i <= PuzzleMaker.Instance.TopRight)
+        //        {
+        //            _Map.Slots[Hor + i].SetSlot(puzzleslotList[SlotListCount]);
+        //            SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)_Map.Slots[Hor + i], (BlockType)puzzleslotList[SlotListCount].BlockType, (NodeColor)puzzleslotList[SlotListCount].m_Color);
+        //            SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[Hor + i],
+        //                (PanelType)puzzleslotList[SlotListCount].UpPanelType, puzzleslotList[SlotListCount].m_UpCount);
+        //            SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[Hor + i],
+        //                (PanelType)puzzleslotList[SlotListCount].MiddlePanelType, puzzleslotList[SlotListCount].m_MiddleCount);
+        //            SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[Hor + i],
+        //                (PanelType)puzzleslotList[SlotListCount].DownPanelType, puzzleslotList[SlotListCount].m_DownCount);
+        //            SlotListCount++;
+        //        }
+        //        else
+        //        {
+        //            _Map.Slots[Hor + i].Resetting();
+        //        }
+        //        //puzzleslotList[Hor + i];
+
+        //    }
+        //}
 
 
         //string FilePath2 = Path.Combine(Application.streamingAssetsPath + "/" + PuzzleMaker.Instance.m_MapName + "Son.json");

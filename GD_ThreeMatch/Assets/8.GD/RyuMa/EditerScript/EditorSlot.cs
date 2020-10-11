@@ -38,6 +38,9 @@ public class EditorSlot : PuzzleSlot
         m_MiddleCount = _Info.m_MiddleCount;
         m_DownCount = _Info.m_DownCount;
 
+
+
+
     }
 
 
@@ -56,13 +59,13 @@ public class EditorSlot : PuzzleSlot
         m_DownCount = 0;
 
         m_BlockImage.sprite = null;
-        m_BlockImage.color = new Color(1, 1, 1, 0);
+        m_BlockImage.enabled = false;
         m_UpImage.sprite = null;
-        m_UpImage.color = new Color(1, 1, 1, 0);
+        m_UpImage.enabled = false;
         m_MiddleImage.sprite = null;
-        m_MiddleImage.color = new Color(1, 1, 1, 0);
+        m_MiddleImage.enabled = false;
         m_DownImage.sprite = null;
-        m_DownImage.color = new Color(1, 1, 1, 0);
+        m_DownImage.enabled = false;
     }
 
 

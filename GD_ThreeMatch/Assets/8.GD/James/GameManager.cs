@@ -45,8 +45,6 @@ public class MapInfo
 [System.Serializable]
 public class SlotInfo
 {
-    public string Type;
-
     public int BlockType;
     public int UpPanelType;
     public int MiddlePanelType;

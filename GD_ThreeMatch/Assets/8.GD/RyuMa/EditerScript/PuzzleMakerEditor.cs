@@ -66,7 +66,7 @@ public class PuzzleMakerEditor : Editor
             }
             if (EditorUtil.DrawButton_Click("맵 로드", GUILayout.Width(85f)))
             {
-                SaveManager.Instance.SaveMap();
+                SaveManager.Instance.LoadMap();
             }
             EditorGUILayout.EndHorizontal();
         }

@@ -12,6 +12,10 @@ public enum SlotBaseType
 }
 
 
+
+
+
+
 public class SlotEditorBase : A_Singleton<SlotEditorBase>
 {
 
@@ -95,10 +99,9 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
     public void BlockItem(EditorSlot _slot)
     {
-        _slot.m_blockType = PuzzleMaker.Instance.m_blockType;
-        _slot.m_Color = PuzzleMaker.Instance.m_NodeColor;
 
-        ChangeBlockImage(_slot);
+
+        ChangeBlockImage(_slot, PuzzleMaker.Instance.m_blockType, PuzzleMaker.Instance.m_NodeColor);
 
 
 
@@ -107,43 +110,35 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
     public void PanelItem(EditorSlot _slot)
     {
-        _slot.MiddlePanel = PuzzleMaker.Instance.m_PanelType;
-        _slot.m_MiddleCount = PuzzleMaker.Instance.m_Count;
-        switch (PuzzleMaker.Instance.m_PanelType)
-        {
-            case PanelType.BackPanel:
-                _slot.Resetting();
-                _slot.MiddlePanel = PuzzleMaker.Instance.m_PanelType;
-                _slot.m_MiddleCount = PuzzleMaker.Instance.m_Count;
-
-                _slot.m_MiddleImage.sprite =
-                PanelList[SelectNum].GetComponent<Panel>().m_sprite[PuzzleMaker.Instance.m_Count];
-                _slot.m_MiddleImage.color = new Color(1, 1, 1, 1);
-                break;
 
 
-        }
+        ChangePanelImage(_slot, PuzzleMaker.Instance.m_PanelType, PuzzleMaker.Instance.m_Count);
 
     }
 
-    public void ChangeBlockImage(EditorSlot _slot)
+    public void ChangeBlockImage(EditorSlot _slot, BlockType _type, NodeColor _Color)
     {
-        switch (_slot.m_blockType)
+        switch (_type)
         {
             case BlockType.Cube:
-                _slot.m_Color = PuzzleMaker.Instance.m_NodeColor;
+
+
+                _slot.m_blockType = _type;
+                _slot.m_Color = _Color;
                 if ((int)_slot.m_Color <= 4)
                 {
 
                     _slot.m_BlockImage.sprite =
-                        BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[(int)PuzzleMaker.Instance.m_NodeColor];
+                        BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[(int)_slot.m_Color];
                     _slot.m_BlockImage.color = new Color(1, 1, 1, 1);
+                    _slot.m_BlockImage.enabled = true;
                 }
                 else if (_slot.m_Color == NodeColor.NC5_Random)
                 {
 
                     _slot.m_BlockImage.sprite = BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[0];
                     _slot.m_BlockImage.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                    _slot.m_BlockImage.enabled = true;
                 }
                 else
                 {
@@ -151,24 +146,34 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
                 }
                 break;
         }
+
+
+
+
+
     }
 
-    public void ChangePanelImage(EditorSlot _slot)
+    public void ChangePanelImage(EditorSlot _slot,PanelType _Type ,int _Count)
     {
-        switch (PuzzleMaker.Instance.m_PanelType)
+
+        switch (_Type)
         {
+            //0 백판넬
             case PanelType.BackPanel:
                 _slot.Resetting();
-                _slot.MiddlePanel = PuzzleMaker.Instance.m_PanelType;
-                _slot.m_MiddleCount = PuzzleMaker.Instance.m_Count;
+                _slot.MiddlePanel = _Type;
+                _slot.m_MiddleCount = _Count;
 
                 _slot.m_MiddleImage.sprite =
-                PanelList[SelectNum].GetComponent<Panel>().m_sprite[PuzzleMaker.Instance.m_Count];
+                PanelList[0].GetComponent<Panel>().m_sprite[_Count];
                 _slot.m_MiddleImage.color = new Color(1, 1, 1, 1);
+                _slot.m_MiddleImage.enabled = true;
+
                 break;
 
 
         }
+
     }
 
 
