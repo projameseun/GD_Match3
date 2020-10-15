@@ -326,6 +326,13 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
                 EditorMap.Slots[x + y].Resetting();
                 EditorMap.Slots[x + y].m_Image.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
                 EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
+                if (x <= TopRight && y <= BottomRight)
+                {
+               
+                    SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)EditorMap.Slots[x + y], BlockType.Cube, NodeColor.NC5_Random);
+                }
+                    
+                
             }
         }
 

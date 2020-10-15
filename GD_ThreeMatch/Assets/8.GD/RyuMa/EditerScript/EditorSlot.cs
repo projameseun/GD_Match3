@@ -60,12 +60,19 @@ public class EditorSlot : PuzzleSlot
 
         m_BlockImage.sprite = null;
         m_BlockImage.enabled = false;
+        m_BlockImage.color = new Color(1, 1, 1, 1);
+
         m_UpImage.sprite = null;
         m_UpImage.enabled = false;
+        m_UpImage.color = new Color(1, 1, 1, 1);
+
         m_MiddleImage.sprite = null;
         m_MiddleImage.enabled = false;
+        m_MiddleImage.color = new Color(1, 1, 1, 1);
+
         m_DownImage.sprite = null;
         m_DownImage.enabled = false;
+        m_DownImage.color = new Color(1, 1, 1, 1);
     }
 
 

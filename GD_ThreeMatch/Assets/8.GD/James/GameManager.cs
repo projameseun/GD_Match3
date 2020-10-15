@@ -22,25 +22,7 @@ public class Serialization<T>
 }
 
 
-[System.Serializable]
-public class MapInfo
-{
-    public string Name, Value;
 
-
-    public MapInfo(string name, string value)
-    {
-        Name = name;
-        Value = value;
-
-    }
-    public MapInfo(string name, int value)
-    {
-        Name = name;
-        Value = value.ToString();
-
-    }
-}
 
 [System.Serializable]
 public class SlotInfo
@@ -136,6 +118,9 @@ public class GameManager : G_Singleton<GameManager>
     GUIStyle style = new GUIStyle();
     int w = 0, h = 0;
     Rect rect;
+
+    public string[] MapData;
+
 
     protected override void Init()
     {

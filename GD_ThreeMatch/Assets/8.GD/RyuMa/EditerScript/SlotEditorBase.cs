@@ -78,7 +78,6 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     // 선택한 아이템을 넣는다
     public void ClickItem(EditorSlot _slot)
     {
-        _slot.m_Image.enabled = false;
         // 기본 블럭
         if (SelectType == SlotBaseType.Block)
         {
@@ -111,13 +110,14 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     public void PanelItem(EditorSlot _slot)
     {
 
-
+        
         ChangePanelImage(_slot, PuzzleMaker.Instance.m_PanelType, PuzzleMaker.Instance.m_Count);
 
     }
 
     public void ChangeBlockImage(EditorSlot _slot, BlockType _type, NodeColor _Color)
     {
+        _slot.m_Image.enabled = false;
         switch (_type)
         {
             case BlockType.Cube:
@@ -155,7 +155,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
     public void ChangePanelImage(EditorSlot _slot,PanelType _Type ,int _Count)
     {
-
+        _slot.m_Image.enabled = false;
         switch (_Type)
         {
             //0 백판넬
@@ -166,9 +166,14 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
                 _slot.m_MiddleImage.sprite =
                 PanelList[0].GetComponent<Panel>().m_sprite[_Count];
-                _slot.m_MiddleImage.color = new Color(1, 1, 1, 1);
-                _slot.m_MiddleImage.enabled = true;
 
+               
+                _slot.m_MiddleImage.enabled = true;
+                if (_Count == 0)
+                {
+                    _slot.m_MiddleImage.color = new Color(0, 0, 1, 1);
+                }else
+                    _slot.m_MiddleImage.color = new Color(1, 1, 1, 1);
                 break;
 
 

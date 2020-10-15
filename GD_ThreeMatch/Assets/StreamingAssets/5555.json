@@ -6,11 +6,11 @@
         },
         {
             "Name": "Horizon",
-            "Value": "7"
+            "Value": "10"
         },
         {
             "Name": "Horizon",
-            "Value": "7"
+            "Value": "10"
         }
     ],
     "Data": {
@@ -21,39 +21,9 @@
 }[Next]{
     "Slot": [
         {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -63,7 +33,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -73,7 +43,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -83,47 +53,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 6,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 0,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -133,7 +63,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -143,7 +73,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -153,47 +83,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 6,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 0,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -203,7 +93,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -213,7 +103,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -223,47 +113,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 6,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 0,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -273,7 +123,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -283,7 +133,87 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -293,47 +223,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 6,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 0,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -343,7 +233,87 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -353,7 +323,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -363,117 +333,87 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
+            "m_MiddleCount": 1,
             "m_DownCount": 0
         },
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
-            "m_MiddleCount": 0,
+            "m_MiddleCount": 1,
             "m_DownCount": 0
         },
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
-            "m_MiddleCount": 0,
+            "m_MiddleCount": 1,
             "m_DownCount": 0
         },
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
-            "m_MiddleCount": 0,
+            "m_MiddleCount": 1,
             "m_DownCount": 0
         },
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
-            "m_DownCount": 0
-        },
-        {
-            "BlockType": 1,
-            "UpPanelType": 0,
-            "MiddlePanelType": 0,
-            "DownPanelType": 0,
-            "m_Color": 3,
-            "m_UpCount": 0,
-            "m_MiddleCount": 0,
+            "m_MiddleCount": 1,
             "m_DownCount": 0
         },
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -483,7 +423,7 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -493,7 +433,87 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
@@ -503,7 +523,497 @@
         {
             "BlockType": 0,
             "UpPanelType": 0,
-            "MiddlePanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 1,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
+            "DownPanelType": 0,
+            "m_Color": 6,
+            "m_UpCount": 0,
+            "m_MiddleCount": 0,
+            "m_DownCount": 0
+        },
+        {
+            "BlockType": 0,
+            "UpPanelType": 0,
+            "MiddlePanelType": 1,
             "DownPanelType": 0,
             "m_Color": 6,
             "m_UpCount": 0,
