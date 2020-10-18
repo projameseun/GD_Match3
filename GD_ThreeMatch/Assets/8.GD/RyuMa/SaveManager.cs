@@ -86,10 +86,10 @@ public class SaveManager : G_Singleton<SaveManager>
     }
 
 
-    public void SaveMap()
+    public void SaveMap(string _MapName)
     {
         //string FilePath = Application.streamingAssetsPath + "/" + theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
+        string FilePath = Path.Combine(Application.streamingAssetsPath, _MapName + ".json");
 
         //byte[] bytes = reader.bytes;
         //string FileName = System.Text.Encoding.UTF8.GetString(bytes);
@@ -123,12 +123,12 @@ public class SaveManager : G_Singleton<SaveManager>
 
     }
 
-    public void LoadMap()
+    public void LoadMap(string _MapName)
     {
         //Debug.Log("로드를 눌렀습니다");
 
         //string FilePath = Application.streamingAssetsPath +"/"+ theMaker.MapName + ".json";
-        string FilePath = Path.Combine(Application.streamingAssetsPath, PuzzleMaker.Instance.m_MapName + ".json");
+        string FilePath = Path.Combine(Application.streamingAssetsPath, _MapName + ".json");
 
         //복호화
         //Debug.Log("FilePath = " + FilePath);
@@ -149,6 +149,9 @@ public class SaveManager : G_Singleton<SaveManager>
 
         //PuzzleMaker.Instance.BT_TestStart();
     }
+
+
+    //에디터에 있는 맵을 세팅해준다
     public void EditorMapSet()
     {
 
@@ -215,5 +218,64 @@ public class SaveManager : G_Singleton<SaveManager>
             }
         }
     }
+
+    //인게임 맵을 세팅해준다
+    public void SetMap(MapManager _Map)
+    {
+        LoadMap(PuzzleManager.Instance.MapName);
+        List<MapInfo> a_LoadMapList;
+        a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(GameManager.Instance.MapData[0]).Slot;
+
+
+        _Map.SetValue(int.Parse(a_LoadMapList[1].Value), int.Parse(a_LoadMapList[2].Value));
+
+
+
+
+        List<SlotInfo> a_LoadSlotList;
+        a_LoadSlotList = JsonUtility.FromJson<Serialization<SlotInfo>>(GameManager.Instance.MapData[1]).Slot;
+        puzzleslotList = (a_LoadSlotList);
+
+
+
+
+        int SlotListCount = 0;
+
+
+        for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y += MatchBase.MaxHorizon)
+        {
+            for (int x = 0; x < MatchBase.MaxHorizon; x++)
+            {
+                _Map.Slots[x + y].m_Image.enabled = (x <= PuzzleMaker.Instance.TopRight && y <= PuzzleMaker.Instance.BottomRight) ? true : false;
+                _Map.Slots[x + y].m_Text.enabled = (x <= PuzzleMaker.Instance.TopRight && y <= PuzzleMaker.Instance.BottomRight) ? true : false;
+
+                if (x <= PuzzleMaker.Instance.TopRight && y <= PuzzleMaker.Instance.BottomRight)
+                {
+                    _Map.Slots[x + y].SetSlot(puzzleslotList[SlotListCount]);
+                    SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)_Map.Slots[x + y], (BlockType)puzzleslotList[SlotListCount].BlockType, (NodeColor)puzzleslotList[SlotListCount].m_Color);
+
+                    SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[x + y],
+                        (PanelType)puzzleslotList[SlotListCount].UpPanelType, puzzleslotList[SlotListCount].m_UpCount);
+
+                    SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[x + y],
+                        (PanelType)puzzleslotList[SlotListCount].MiddlePanelType, puzzleslotList[SlotListCount].m_MiddleCount);
+
+                    SlotEditorBase.Instance.ChangePanelImage((EditorSlot)_Map.Slots[x + y],
+                        (PanelType)puzzleslotList[SlotListCount].DownPanelType, puzzleslotList[SlotListCount].m_DownCount);
+                    SlotListCount++;
+
+                }
+                else
+                {
+                    _Map.Slots[x + y].Resetting();
+                }
+
+
+
+            }
+        }
+    }
+
+
 
 }

@@ -61,8 +61,19 @@ public class MapManager : MonoBehaviour
             Slots[i].SetSlot(i);
         }
     }
-    
-    
+
+
+
+
+    public void SetValue(int Hor, int Ver)
+    {
+        Horizon = Hor;
+        Vertical = Ver;
+        TopRight = Horizon - 1;
+        BottomLeft = MatchBase.MaxHorizon * (Vertical - 1);
+        BottomRight = BottomLeft + TopRight;
+    }
+
 
 
 }

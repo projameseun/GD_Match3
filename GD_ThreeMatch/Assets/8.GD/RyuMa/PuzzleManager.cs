@@ -36,7 +36,7 @@ public enum FoodState
 
 public class PuzzleManager : A_Singleton<PuzzleManager>
 {
-
+    public string MapName;
 
 
     public enum GameMode

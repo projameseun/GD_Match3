@@ -6,12 +6,30 @@ using Spine.Unity;
 
 
 
+public class ObjectPool
+{
+    public GameObject Ori;
+    public Queue<GameObject> OirQueue;
+    public List<GameObject> OriList;
+}
+
+
 
 public class ObjectManager : G_Singleton<ObjectManager>
 {
 
+
+
+
+
+
     [Header("UI")]
     public GameObject WorldCanvasObj;
+
+
+    public List<ObjectPool> ObjectList;
+
+
 
 
     //게임오브젝트 리스트
@@ -120,7 +138,6 @@ public class ObjectManager : G_Singleton<ObjectManager>
     public GameObject BlockBreak;
 
     Queue<GameObject> ObjectQueue = new Queue<GameObject>();
-    List<GameObject> ObjectList = new List<GameObject>();
     Vector2 SpawnVec = new Vector2(100, 0);
 
 
@@ -368,129 +385,7 @@ public class ObjectManager : G_Singleton<ObjectManager>
     public GameObject FindObj(string _Name, bool _Active = true)
     {
         GameObject Frefab = null;
-        switch (_Name)
-        {
-            case "Cube":
-                ObjectQueue = Cubes;
-                ObjectList = CubeList;
-                Frefab = CubePrefab;
-                break;
-            case "CubeP":
-                ObjectQueue = CubeParticles;
-                ObjectList = CubeParticleList;
-                Frefab = CubeParticle;
-                break;
-            case "CubeE":
-                ObjectQueue = CubeEfs;
-                ObjectList = CubeEfList;
-                Frefab = CubeEf;
-                break;
-            case "Speech":
-                ObjectQueue = SpeechBubbles;
-                ObjectList = SpeechBubbleList;
-                Frefab = SpeechObj;
-                break;
-            case "AttackEffect":
-                ObjectQueue = AttackEffects;
-                ObjectList = AttackEffectList;
-                Frefab = AttackEffect;
-                break;
-            case "DamageText":
-                ObjectQueue = DamageTexts;
-                ObjectList = DamageTextList;
-                Frefab = DamageText;
-                break;
-            case "AliceSkill":
-                ObjectQueue = AliceSkills;
-                ObjectList = AliceSkillList;
-                Frefab = AliceSkill;
-                break;
-            case "AliceAnimEffect":
-                ObjectQueue = AliceAnimEffects;
-                ObjectList = AliceAnimEffectList;
-                Frefab = AliceAnimEffect;
-                break;
-            case "SlimeP":
-                ObjectQueue = SlimeSkillHits;
-                ObjectList = SlimeSkillHitList;
-                Frefab = SlimeSkillHit;
-                break;
-            case "SlimeSkillParticle":
-                ObjectQueue = SlimeSkillAttacks;
-                ObjectList = SlimeSkillAttackList;
-                Frefab = SlimeSkillAttack;
-                break;
-            case "SlotPanel":
-                ObjectQueue = SlotPanels;
-                ObjectList = SlotPanelList;
-                Frefab = SlotPanel;
-                break;
-            case "ClickParticle":
-                ObjectQueue = ClickParticles;
-                ObjectList = ClickParticleList;
-                Frefab = ClickParticle;
-                break;
-            case "Portal":
-                ObjectQueue = Portals;
-                ObjectList = PortalList;
-                Frefab = Portal;
-                break;
-            case "EnemySkull":
-                ObjectQueue = EnemySkulls;
-                ObjectList = EnemySkullList;
-                Frefab = EnemySkull;
-                break;
-            case "CubeBlue":
-                ObjectQueue = CubeEffectBlues;
-                ObjectList = CubeEffectBlueList;
-                Frefab = CubeEffectBlue;
-                break;
-            case "CubeRed":
-                ObjectQueue = CubeEffectReds;
-                ObjectList = CubeEffectRedList;
-                Frefab = CubeEffectRed;
-                break;
-            case "CubeYellow":
-                ObjectQueue = CubeEffectYellows;
-                ObjectList = CubeEffectYellowList;
-                Frefab = CubeEffectYellow;
-                break;
-            case "CubePink":
-                ObjectQueue = CubeEffectPinks;
-                ObjectList = CubeEffectPinkList;
-                Frefab = CubeEffectPink;
-                break;
-            case "CubeGreen":
-                ObjectQueue = CubeEffectGreens;
-                ObjectList = CubeEffectGreenList;
-                Frefab = CubeEffectGreen;
-                break;
-            case "BerylSkill":
-                ObjectQueue = BerylSkills;
-                ObjectList = BerylSkillList;
-                Frefab = BerylSkill;
-                break;
-            //case "PortalArrow":
-            //    ObjectQueue = PortalArrows;
-            //    ObjectList = PortalArrowList;
-            //    Frefab = PortalArrow;
-            //    break;
-            case "PoisonSkill":
-                ObjectQueue = PoisonSlimeSkills;
-                ObjectList = PoisonSlimeSkillList;
-                Frefab = PoisonSlimeSkill;
-                break;
-            case "PoisonP":
-                ObjectQueue = PoisonSlimePs;
-                ObjectList = PoisonSlimePList;
-                Frefab = PoisonSlimeP;
-                break;
-            case "BlockBreak":
-                ObjectQueue = BlockBreaks;
-                ObjectList = BlockBreakList;
-                Frefab = BlockBreak;
-                break;
-        }
+ 
 
         if (Frefab == null)
         {
@@ -516,7 +411,7 @@ public class ObjectManager : G_Singleton<ObjectManager>
         //만약 모든 리스트에 오브젝트들이 활성화되어있다면 오브젝트를 추가하고 넣는다
         Obj = Instantiate(Frefab);
         Obj.SetActive(_Active);
-        ObjectList.Add(Obj);
+
         return Obj;
     }
 

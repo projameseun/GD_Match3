@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Net;
-
+using UnityEngine.SceneManagement;
+using System;
 
 [System.Serializable]
 public class Serialization<T>
@@ -399,5 +400,20 @@ public class GameManager : G_Singleton<GameManager>
         //thePuzzle.gameMode = PuzzleManager.GameMode.Null;
         //theObject.ResettingAllObj();
 
+    }
+
+
+    public void Sceen(Action action)
+    {
+        StartCoroutine(LoadScene(action));
+    }
+    IEnumerator LoadScene(Action action)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("MainGame");
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+        action();
     }
 }

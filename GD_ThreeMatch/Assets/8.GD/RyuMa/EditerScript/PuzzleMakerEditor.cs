@@ -62,16 +62,16 @@ public class PuzzleMakerEditor : Editor
             EditorGUILayout.BeginHorizontal();
             if (EditorUtil.DrawButton_Click("맵 저장", GUILayout.Width(85f)))
             {
-                SaveManager.Instance.SaveMap();
+                SaveManager.Instance.SaveMap(PuzzleMaker.Instance.m_MapName);
             }
             if (EditorUtil.DrawButton_Click("맵 로드", GUILayout.Width(85f)))
             {
-                SaveManager.Instance.LoadMap();
+                SaveManager.Instance.LoadMap(PuzzleMaker.Instance.m_MapName);
                 SaveManager.Instance.EditorMapSet();
             }
             if (EditorUtil.DrawButton_Click("맵 실행", GUILayout.Width(85f)))
             {
-                SaveManager.Instance.SaveMap();
+                //SaveManager.Instance.SaveMap(_MapName);
             }
             EditorGUILayout.EndHorizontal();
         }
