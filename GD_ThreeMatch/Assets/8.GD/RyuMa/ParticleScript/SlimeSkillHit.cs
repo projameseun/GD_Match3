@@ -7,7 +7,6 @@ public class SlimeSkillHit : ParticleManager
     public override void Resetting()
     {
         base.Resetting();
-        theObject.SlimeSkillHits.Enqueue(this.gameObject);
     }
 
 }

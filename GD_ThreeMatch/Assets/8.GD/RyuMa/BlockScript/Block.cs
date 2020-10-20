@@ -47,6 +47,10 @@ public class Block : MonoBehaviour
     //블럭의 색
     public NodeColor nodeColor;
 
+
+
+
+
     // 매치가 가능한지
     public bool Match;
 
@@ -64,7 +68,9 @@ public class Block : MonoBehaviour
     [HideInInspector]
     public bool Bursting;
 
-
+    // 다용도 값
+    [HideInInspector]
+    public int m_Value;
 
 
     //Trunk
@@ -80,7 +86,7 @@ public class Block : MonoBehaviour
 
 
     //처음 생성시 연출 및 시작 부분
-    virtual public void Init()
+    virtual public void Init(NodeColor _color, int _Val)
     { 
         
     }
@@ -126,8 +132,8 @@ public class Block : MonoBehaviour
 
 
     virtual public void Resetting()
-    { 
-    
+    {
+        ObjectManager.Instance.ResetObj(this.gameObject);
     }
 
 

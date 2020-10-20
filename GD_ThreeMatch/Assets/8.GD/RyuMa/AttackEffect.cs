@@ -278,7 +278,6 @@ public class AttackEffect : MonoBehaviour
 
 
         gameObject.SetActive(false);
-        theObject.AttackEffects.Enqueue(this.gameObject);
     }
 
 

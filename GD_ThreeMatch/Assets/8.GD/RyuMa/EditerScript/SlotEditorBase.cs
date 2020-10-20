@@ -100,7 +100,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     {
 
 
-        ChangeBlockImage(_slot, PuzzleMaker.Instance.m_blockType, PuzzleMaker.Instance.m_NodeColor);
+        ChangeBlockImage(_slot, PuzzleMaker.Instance.m_blockType, PuzzleMaker.Instance.m_NodeColor, PuzzleMaker.Instance.m_Count);
 
 
 
@@ -111,29 +111,37 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     {
 
         
-        ChangePanelImage(_slot, PuzzleMaker.Instance.m_PanelType, PuzzleMaker.Instance.m_Count);
+        ChangePanelImage(_slot, PuzzleMaker.Instance.m_PanelType, PuzzleMaker.Instance.m_NodeColor, PuzzleMaker.Instance.m_Count);
 
     }
 
-    public void ChangeBlockImage(EditorSlot _slot, BlockType _type, NodeColor _Color)
+    public void ChangeBlockImage(EditorSlot _slot, BlockType _type, NodeColor _Color, int _Val = 0)
     {
         _slot.m_Image.enabled = false;
         switch (_type)
         {
+            case BlockType.Null:
+                _slot.m_blockType = BlockType.Null;
+                _slot.m_BlockColor = NodeColor.NC6_Null;
+                _slot.m_BlockCount = 0;
+                break;
+
+
             case BlockType.Cube:
 
 
                 _slot.m_blockType = _type;
-                _slot.m_Color = _Color;
-                if ((int)_slot.m_Color <= 4)
+                _slot.m_BlockColor = _Color;
+                _slot.m_BlockCount = 0;
+                if ((int)_slot.m_BlockColor <= 4)
                 {
 
                     _slot.m_BlockImage.sprite =
-                        BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[(int)_slot.m_Color];
+                        BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[(int)_slot.m_BlockColor];
                     _slot.m_BlockImage.color = new Color(1, 1, 1, 1);
                     _slot.m_BlockImage.enabled = true;
                 }
-                else if (_slot.m_Color == NodeColor.NC5_Random)
+                else if (_slot.m_BlockColor == NodeColor.NC5_Random)
                 {
 
                     _slot.m_BlockImage.sprite = BlockList[SelectNum].GetComponent<Block>().m_BasicSprite[0];
@@ -153,15 +161,22 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
     }
 
-    public void ChangePanelImage(EditorSlot _slot,PanelType _Type ,int _Count)
+    public void ChangePanelImage(EditorSlot _slot,PanelType _Type, NodeColor _color ,int _Count)
     {
         _slot.m_Image.enabled = false;
         switch (_Type)
         {
+            case PanelType.Null:
+                _slot.MiddlePanel = PanelType.Null;
+                _slot.m_MiddleColor = NodeColor.NC6_Null;
+                _slot.m_MiddleCount = 0;
+                break;
+
             //0 백판넬
             case PanelType.BackPanel:
                 _slot.Resetting();
                 _slot.MiddlePanel = _Type;
+                _slot.m_MiddleColor = NodeColor.NC6_Null;
                 _slot.m_MiddleCount = _Count;
 
                 _slot.m_MiddleImage.sprite =

@@ -76,26 +76,26 @@ public class CubeEffect : MonoBehaviour
             return;
 
 
-        if (_nodeColor == NodeColor.NC0_Blue)
-        {
-            CubeP = theObject.FindObj("CubeBlue", false).GetComponent<CubeEffectP>();
-        }
-        else if (_nodeColor == NodeColor.NC1_Green)
-        {
-            CubeP = theObject.FindObj("CubeGreen", false).GetComponent<CubeEffectP>();
-        }
-        else if (_nodeColor == NodeColor.NC2_Pink) // 핑크
-        {
-            CubeP = theObject.FindObj("CubePink", false).GetComponent<CubeEffectP>();
-        }
-        else if (_nodeColor == NodeColor.NC3_Red) // 빨간색
-        {
-            CubeP = theObject.FindObj("CubeRed", false).GetComponent<CubeEffectP>();
-        }
-        else if (_nodeColor == NodeColor.NC4_Yellow) // 노란색
-        {
-            CubeP = theObject.FindObj("CubeYellow", false).GetComponent<CubeEffectP>();
-        }
+        //if (_nodeColor == NodeColor.NC0_Blue)
+        //{
+        //    CubeP = theObject.FindObj("CubeBlue", false).GetComponent<CubeEffectP>();
+        //}
+        //else if (_nodeColor == NodeColor.NC1_Green)
+        //{
+        //    CubeP = theObject.FindObj("CubeGreen", false).GetComponent<CubeEffectP>();
+        //}
+        //else if (_nodeColor == NodeColor.NC2_Pink) // 핑크
+        //{
+        //    CubeP = theObject.FindObj("CubePink", false).GetComponent<CubeEffectP>();
+        //}
+        //else if (_nodeColor == NodeColor.NC3_Red) // 빨간색
+        //{
+        //    CubeP = theObject.FindObj("CubeRed", false).GetComponent<CubeEffectP>();
+        //}
+        //else if (_nodeColor == NodeColor.NC4_Yellow) // 노란색
+        //{
+        //    CubeP = theObject.FindObj("CubeYellow", false).GetComponent<CubeEffectP>();
+        //}
         CubeP.ParticleSetting(true, this.gameObject);
         CubeP.gameObject.SetActive(true);
 
@@ -239,7 +239,7 @@ public class CubeEffect : MonoBehaviour
         this.transform.eulerAngles = new Vector3(0, 0, 0);
         Rotation = new Vector3(0, 0, 0);
         gameObject.SetActive(false);
-        theObject.CubeEfs.Enqueue(this.gameObject);
+
         if (CubeP != null)
         {
             CubeP.transform.SetParent(null);

@@ -7,6 +7,5 @@ public class PortalP : ParticleManager
     public override void Resetting()
     {
         base.Resetting();
-        theObject.Portals.Enqueue(this.gameObject);
     }
 }

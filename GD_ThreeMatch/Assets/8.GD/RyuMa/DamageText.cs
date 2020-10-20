@@ -158,7 +158,7 @@ public class DamageText : MonoBehaviour
         FlotingEvent = false;
         DamageObj.transform.position = this.transform.position;
         this.gameObject.SetActive(false);
-        theObject.DamageTexts.Enqueue(this.gameObject);
+     
 
 
     }

@@ -2200,28 +2200,28 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
             }
         }
 
-        for (int i = 0; i < theObject.EnemySkullList.Count; i++)
-        {
-            if (theObject.EnemySkullList[i].activeSelf == true)
-            {
-                theObject.EnemySkullList[i].gameObject.SetActive(false);
-                theObject.EnemySkulls.Enqueue(theObject.EnemySkullList[i]);
-            }
-        }
-        for (int i = 0; i < theObject.SlotPanelList.Count; i++)
-        {
-            if (theObject.SlotPanelList[i].activeSelf == true)
-            {
-                theObject.SlotPanelList[i].GetComponent<SlotObject>().Resetting();
-            }
-        }
-        for (int i = 0; i < theObject.PortalList.Count; i++)
-        {
-            if (theObject.PortalList[i].activeSelf == true)
-            {
-                theObject.PortalList[i].GetComponent<ParticleManager>().Resetting();
-            }
-        }
+        //for (int i = 0; i < theObject.EnemySkullList.Count; i++)
+        //{
+        //    if (theObject.EnemySkullList[i].activeSelf == true)
+        //    {
+        //        theObject.EnemySkullList[i].gameObject.SetActive(false);
+        //        theObject.EnemySkulls.Enqueue(theObject.EnemySkullList[i]);
+        //    }
+        //}
+        //for (int i = 0; i < theObject.SlotPanelList.Count; i++)
+        //{
+        //    if (theObject.SlotPanelList[i].activeSelf == true)
+        //    {
+        //        theObject.SlotPanelList[i].GetComponent<SlotObject>().Resetting();
+        //    }
+        //}
+        //for (int i = 0; i < theObject.PortalList.Count; i++)
+        //{
+        //    if (theObject.PortalList[i].activeSelf == true)
+        //    {
+        //        theObject.PortalList[i].GetComponent<ParticleManager>().Resetting();
+        //    }
+        //}
 
         //for (int i = 0; i < theObject.PortalArrowList.Count; i++)
         //{

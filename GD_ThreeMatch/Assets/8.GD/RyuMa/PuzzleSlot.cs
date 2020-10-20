@@ -87,6 +87,12 @@ public class PuzzleSlot : MonoBehaviour
 
 
 
+    //슬롯을 한번에 정리해준다
+    public void SetSlot()
+    { 
+    
+    }
+
 
 
 

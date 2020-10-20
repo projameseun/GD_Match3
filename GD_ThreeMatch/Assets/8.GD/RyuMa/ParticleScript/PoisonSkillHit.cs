@@ -7,6 +7,6 @@ public class PoisonSkillHit : ParticleManager
     public override void Resetting()
     {
         base.Resetting();
-        theObject.PoisonSlimePs.Enqueue(this.gameObject);
+
     }
 }

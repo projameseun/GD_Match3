@@ -63,6 +63,7 @@ public class PuzzleMakerEditor : Editor
             if (EditorUtil.DrawButton_Click("맵 저장", GUILayout.Width(85f)))
             {
                 SaveManager.Instance.SaveMap(PuzzleMaker.Instance.m_MapName);
+                GameManager.Instance.MapName = PuzzleMaker.Instance.m_MapName;
             }
             if (EditorUtil.DrawButton_Click("맵 로드", GUILayout.Width(85f)))
             {
@@ -71,7 +72,13 @@ public class PuzzleMakerEditor : Editor
             }
             if (EditorUtil.DrawButton_Click("맵 실행", GUILayout.Width(85f)))
             {
-                //SaveManager.Instance.SaveMap(_MapName);
+                SaveManager.Instance.SaveMap(PuzzleMaker.Instance.m_MapName);
+                GameManager.Instance.MapName = PuzzleMaker.Instance.m_MapName;
+                GameManager.Instance.CheatMode = true;
+                Debug.Log("map name = " + GameManager.Instance.MapName);
+                GameManager.Instance.SceneChange("Ingame",null);
+                SaveManager.Instance.LoadMap(GameManager.Instance.MapName);
+
             }
             EditorGUILayout.EndHorizontal();
         }

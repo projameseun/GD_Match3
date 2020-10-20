@@ -41,6 +41,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     public NodeColor m_NodeColor;
 
+    public int m_Value;
 
     // 블럭
     public bool m_CubeCh;

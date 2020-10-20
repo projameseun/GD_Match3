@@ -62,8 +62,6 @@ public class SpeechBubble : MonoBehaviour
         SpeechBox.color = Boxcolor;
         SpeechText.color = Speechcolor;
 
-        theObject.SpeechBubbles.Enqueue(this.gameObject);
-
     }
 
 

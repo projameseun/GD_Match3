@@ -13,13 +13,23 @@ public class EditorSlot : PuzzleSlot
     public Image m_UpImage;
     public Image m_MiddleImage;
     public Image m_DownImage;
-    public PanelType UpPanel;
-    public PanelType MiddlePanel;
-    public PanelType DownPanel;
+
     public BlockType m_blockType;
-    public NodeColor m_Color;
+    public NodeColor m_BlockColor;
+    public int m_BlockCount;
+
+
+    public PanelType UpPanel;
+    public NodeColor m_UpColor;
     public int m_UpCount;
+
+    public PanelType MiddlePanel;
+    public NodeColor m_MiddleColor;
     public int m_MiddleCount;
+
+
+    public PanelType DownPanel;
+    public NodeColor m_DownColor;
     public int m_DownCount;
 
 
@@ -33,7 +43,12 @@ public class EditorSlot : PuzzleSlot
         MiddlePanel = (PanelType)_Info.MiddlePanelType;
         DownPanel = (PanelType)_Info.DownPanelType;
 
-        m_Color = (NodeColor)_Info.m_Color;
+        m_BlockColor = (NodeColor)_Info.m_BlockColor;
+        m_UpColor = (NodeColor)_Info.m_UpColor;
+        m_MiddleColor = (NodeColor)_Info.m_MiddleColor;
+        m_DownColor = (NodeColor)_Info.m_DownColor;
+
+
         m_UpCount = _Info.m_UpCount;
         m_MiddleCount = _Info.m_MiddleCount;
         m_DownCount = _Info.m_DownCount;
@@ -53,7 +68,11 @@ public class EditorSlot : PuzzleSlot
         DownPanel = PanelType.Null;
         m_blockType = BlockType.Null;
 
-        m_Color = NodeColor.NC6_Null;
+        m_BlockColor = NodeColor.NC6_Null;
+        m_UpColor = NodeColor.NC6_Null;
+        m_MiddleColor = NodeColor.NC6_Null;
+        m_DownColor = NodeColor.NC6_Null;
+
         m_UpCount = 0;
         m_MiddleCount = 0;
         m_DownCount = 0;

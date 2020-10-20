@@ -9,6 +9,6 @@ public class AliceSkills : ParticleManager
     public override void Resetting()
     {
         base.Resetting();
-        theObject.AliceSkills.Enqueue(this.gameObject);
+
     }
 }

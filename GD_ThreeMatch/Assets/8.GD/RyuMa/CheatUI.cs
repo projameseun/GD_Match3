@@ -17,15 +17,20 @@ public class CheatUI : MonoBehaviour
         {
             MapLoadButton.onClick.AddListener(() =>
             {
-                MapManager map = PuzzleManager.Instance.theMoveMap;
+                LoadEditorMap();
             });
         }
 
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void LoadEditorMap()
     {
-        
+        SaveManager.Instance.SetMap(PuzzleManager.Instance.theMoveMap);
+
+
+
     }
+
+
 }

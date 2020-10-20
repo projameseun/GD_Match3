@@ -12,12 +12,8 @@ public class Serialization<T>
 {
     public Serialization(List<T> _Slot) => Slot = _Slot;
 
-    public Serialization(PlayerSaveData _Data) => Data = _Data;
-
 
     public List<T> Slot;
-
-    public PlayerSaveData Data;
 
 
 }
@@ -33,14 +29,21 @@ public class SlotInfo
     public int MiddlePanelType;
     public int DownPanelType;
 
-    public int m_Color;
+    public int m_BlockColor;
+    public int m_BlockCount;
+
+    public int m_UpColor;
     public int m_UpCount;
+
+    public int m_MiddleColor;
     public int m_MiddleCount;
+
+    public int m_DownColor;
     public int m_DownCount;
     public SlotInfo(EditorSlot _slot)
     {
         BlockType = (int)_slot.m_blockType;
-        m_Color = (int)_slot.m_Color;
+        m_BlockColor = (int)_slot.m_BlockColor;
 
         UpPanelType = (int)_slot.UpPanel;
         MiddlePanelType = (int)_slot.MiddlePanel;
@@ -120,11 +123,15 @@ public class GameManager : G_Singleton<GameManager>
     int w = 0, h = 0;
     Rect rect;
 
+    //맵 데이터
+    public string MapName;
     public string[] MapData;
+
 
 
     protected override void Init()
     {
+        base.Init();
         Application.targetFrameRate = 60;
         if (CheatMode == true)
         {
@@ -139,6 +146,8 @@ public class GameManager : G_Singleton<GameManager>
             style.normal.textColor = GUIColor;
         }
     }
+
+   
     void Update()
     {
         if (CheatMode)
@@ -159,57 +168,26 @@ public class GameManager : G_Singleton<GameManager>
 
 
     //public TextAsset MapBase;
-
-    private List<SlotInfo> puzzleslotList = new List<SlotInfo>();
     private List<MapInfo> mapInfoList = new List<MapInfo>();
-    private PlayerSaveData playerSaveData = new PlayerSaveData();
 
-    private void Start()
-    {
 
-        //InitSetting();
-    }
 
-    // 게임 저장할 데이터
-    public PlayerSaveData SaveData
-    {
-        get
-        {
-            playerSaveData = new PlayerSaveData();
-            playerSaveData.MonsterDataSheet = new List<bool>(EnemyDataSheet);
-            playerSaveData.ProgressDataSheet = new List<bool>(ProgressDataSheet);
-            playerSaveData.CurrentProgressNum = CurrentProgressNum;
-            return playerSaveData;
-        }
-        set
-        {
-            playerSaveData = value;
-        }
-    }
-
-    public List<MapInfo> MapInfoList
-    {
-        get
-        {
-            //MapManager _Map = thePuzzle.theMoveMap;
-            mapInfoList = new List<MapInfo>();
-
-            mapInfoList.Add(new MapInfo("MapMainType", ((int)PuzzleMaker.Instance.mapMainType).ToString()));
-            mapInfoList.Add(new MapInfo("MapName", PuzzleMaker.Instance.m_MapName));
-          
-            //mapInfoList.Add(new MapInfo("TopRight", thePuzzle.theMoveMap.TopRight.ToString()));
-            //mapInfoList.Add(new MapInfo("BottomLeft", thePuzzle.theMoveMap.BottomLeft.ToString()));
-            //mapInfoList.Add(new MapInfo("BottomRight", thePuzzle.theMoveMap.BottomRight.ToString()));
-
-            return mapInfoList;
-
-        }
-        set
-        {
-            mapInfoList = value;
-            
-        }
-    }
+    //// 게임 저장할 데이터
+    //public PlayerSaveData SaveData
+    //{
+    //    get
+    //    {
+    //        playerSaveData = new PlayerSaveData();
+    //        playerSaveData.MonsterDataSheet = new List<bool>(EnemyDataSheet);
+    //        playerSaveData.ProgressDataSheet = new List<bool>(ProgressDataSheet);
+    //        playerSaveData.CurrentProgressNum = CurrentProgressNum;
+    //        return playerSaveData;
+    //    }
+    //    set
+    //    {
+    //        playerSaveData = value;
+    //    }
+    //}
 
 
     //맵 데이터 저장
@@ -242,24 +220,24 @@ public class GameManager : G_Singleton<GameManager>
 
 
 
-    public void SaveGameData()
-    {
-        Debug.Log("저장");
-        string FilePath = Path.Combine(Application.persistentDataPath,"PlayerData.json");
-        string jdata = JsonUtility.ToJson(new Serialization<PlayerSaveData>(SaveData), true);
-        Debug.Log(FilePath);
-        File.WriteAllText(FilePath, jdata);
-    }
+    //public void SaveGameData()
+    //{
+    //    Debug.Log("저장");
+    //    string FilePath = Path.Combine(Application.persistentDataPath,"PlayerData.json");
+    //    string jdata = JsonUtility.ToJson(new Serialization<PlayerSaveData>(SaveData), true);
+    //    Debug.Log(FilePath);
+    //    File.WriteAllText(FilePath, jdata);
+    //}
 
-    public void LoadGameData()
-    {
-        Debug.Log("불러오기");
-        string FilePath = Path.Combine(Application.persistentDataPath, "PlayerData.json");
-        string jdata = File.ReadAllText(FilePath);
-        PlayerSaveData NewData;
-        NewData = JsonUtility.FromJson<Serialization<PlayerSaveData>>(jdata).Data;
-        playerSaveData = (NewData);
-    }
+    //public void LoadGameData()
+    //{
+    //    Debug.Log("불러오기");
+    //    string FilePath = Path.Combine(Application.persistentDataPath, "PlayerData.json");
+    //    string jdata = File.ReadAllText(FilePath);
+    //    PlayerSaveData NewData;
+    //    NewData = JsonUtility.FromJson<Serialization<PlayerSaveData>>(jdata).Data;
+    //    playerSaveData = (NewData);
+    //}
 
 
 
@@ -392,28 +370,20 @@ public class GameManager : G_Singleton<GameManager>
     //    PuzzleMaker.Instance.BT_TestStart();
     //}
 
-    public void GameOver()
-    {
-        //theTitle.TitleAnim.gameObject.SetActive(true);
-        //state = GMState.GM00_Title;
-        //thePuzzle.state = PuzzleManager.State.Ready;
-        //thePuzzle.gameMode = PuzzleManager.GameMode.Null;
-        //theObject.ResettingAllObj();
 
+
+
+    public void SceneChange(string MapName,Action action)
+    {
+        StartCoroutine(LoadScene(MapName, action));
     }
-
-
-    public void Sceen(Action action)
+    IEnumerator LoadScene(string _MapName,Action action)
     {
-        StartCoroutine(LoadScene(action));
-    }
-    IEnumerator LoadScene(Action action)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("MainGame");
+        AsyncOperation operation = SceneManager.LoadSceneAsync(_MapName);
         while (!operation.isDone)
         {
             yield return null;
         }
-        action();
+        action?.Invoke();
     }
 }

@@ -8,7 +8,6 @@ public class CubeParticle : ParticleManager
     public override void Resetting()
     {
         base.Resetting();
-        theObject.CubeParticles.Enqueue(this.gameObject);
     }
 
 }

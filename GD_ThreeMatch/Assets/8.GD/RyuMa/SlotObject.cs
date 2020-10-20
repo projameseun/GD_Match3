@@ -38,7 +38,7 @@ public class SlotObject : Panel
 
 
 
-    public void Resetting()
+    public override void Resetting()
     {
         this.gameObject.SetActive(false);
         SpriteRen.sortingOrder = 1;

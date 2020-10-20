@@ -7,6 +7,5 @@ public class BlockBreakEffect : ParticleManager
     public override void Resetting()
     {
         base.Resetting();
-        ObjectManager.Instance.BlockBreaks.Enqueue(gameObject);
     }
 }

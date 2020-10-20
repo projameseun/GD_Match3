@@ -10,7 +10,6 @@ public class AliceAnimEffect : ParticleManager
     public override void Resetting()
     {
         base.Resetting();
-        theObject.AliceAnimEffects.Enqueue(this.gameObject);
     }
 
 
