@@ -5,12 +5,11 @@ using UnityEngine;
 public class BackPanel : Panel
 {
 
-    public override void Init()
+    public override void Init(PuzzleSlot _slot, string[] Data)
     {
-        base.Init();
+        base.Init(_slot, Data);
 
-        m_spriteRen[0].sprite = m_sprite[m_Count];
-
+        m_spriteRen[0].sprite = m_sprite[int.Parse(Data[1])];
     }
 
 

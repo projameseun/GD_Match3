@@ -3,16 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public enum BlockType
-{
-    Blank = -1,
-    Null = 0,
-    Cube,
-    SpecialCube,
-    Player,
-
-
-}
 
 public enum NodeColor
 {
@@ -32,21 +22,21 @@ public enum NodeColor
 public class Block : MonoBehaviour
 {
 
-    public List<Sprite> m_BasicSprite;
-    public List<SpriteRenderer> m_spriteRen;
+
 
 
 
     //블럭이 무슨 블럭인지
     public BlockType blockType;
 
-
-
-
-
     //블럭의 색
     public NodeColor nodeColor;
 
+    public List<Sprite> m_sprite;
+    public List<SpriteRenderer> m_spriteRen;
+
+
+    [HideInInspector] public PuzzleSlot m_Slot;
 
 
 
@@ -86,9 +76,12 @@ public class Block : MonoBehaviour
 
 
     //처음 생성시 연출 및 시작 부분
-    virtual public void Init(NodeColor _color, int _Val)
-    { 
-        
+    virtual public void Init(PuzzleSlot _slot, string[] Data)
+    {
+        this.transform.position = _slot.transform.position;
+
+        m_Slot = _slot;
+
     }
 
 
@@ -139,9 +132,23 @@ public class Block : MonoBehaviour
 
 
     public void SetColor(NodeColor _color)
-    { 
-
+    {
+        nodeColor = _color;
+        if (_color == NodeColor.NC6_Null)
+            return;
+        else if (_color == NodeColor.NC5_Random)
+        {
+            SetRandomColor();
+        }
+        else
+        {
+            m_spriteRen[0].sprite = m_sprite[(int)_color];
+        }
     }
 
+    public void SetRandomColor()
+    {
+
+    }
 
 }

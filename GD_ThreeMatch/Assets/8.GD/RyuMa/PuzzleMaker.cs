@@ -36,10 +36,16 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 {
 
     public bool MakerStart = false;
+
     public BlockType m_blockType;
     public PanelType m_PanelType;
-
     public NodeColor m_NodeColor;
+    public int m_Count;
+    public string m_Data1;
+    public string m_Data2;
+    public string m_Data3;
+    public string m_Data4;
+    public string[] SlotData;
 
     public int m_Value;
 
@@ -49,9 +55,9 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     // 판넬
     public bool m_BackPanelCh;
 
+    public bool m_PortalCh;
 
 
-    public int m_Count;
 
 
 
@@ -106,8 +112,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
 
-    
-    public void Awake()
+    protected override void Init()
     {
         MakerStart = true;
     }
@@ -125,7 +130,8 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            SettingMap();
+            Debug.Log(m_CubeCh + " " + m_BackPanelCh + " " + m_PortalCh);
+            //SettingMap();
         }
     }
 
@@ -298,6 +304,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     {
         m_CubeCh = false;
         m_BackPanelCh = false;
+        m_PortalCh = false;
     }
 
 
@@ -319,7 +326,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
         EditorMap.TopRight = TopRight;
         EditorMap.BottomLeft = BottomLeft;
         EditorMap.BottomRight = BottomRight;
-
+        string[] RandomCub = { "0", "5" };
         for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y+= MatchBase.MaxHorizon)
         {
             for (int x = 0; x < MatchBase.MaxHorizon; x++)
@@ -329,8 +336,8 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
                 EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
                 if (x <= TopRight && y <= BottomRight)
                 {
-               
-                    SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)EditorMap.Slots[x + y], BlockType.Cube, NodeColor.NC5_Random);
+                 
+                    SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)EditorMap.Slots[x + y], RandomCub);
                 }
                     
                 

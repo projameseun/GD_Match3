@@ -8,7 +8,12 @@ public class Cube : Block
 {
 
 
+    public override void Init(PuzzleSlot _slot, string[] Data)
+    {
+        base.Init(_slot, Data);
+        SetColor((NodeColor)int.Parse(Data[1]));
 
+    }
 
     // trunk
 
@@ -16,7 +21,7 @@ public class Cube : Block
 
 
 
-    
+
     //private void Start()
     //{
 
@@ -44,7 +49,7 @@ public class Cube : Block
     //}
     //IEnumerator DestroyCor()
     //{
-        
+
     //    while (DestroyEvent)
     //    {
     //        DestoryTime -= Time.deltaTime * 1.5f;
@@ -137,7 +142,7 @@ public class Cube : Block
     //        DestroyCorStart();
     //    }
 
-        
+
 
 
     //}
@@ -269,7 +274,7 @@ public class Cube : Block
     //{
     //    if (specialCubeType == SpecialCubeType.Null)
     //        return;
-      
+
     //    MapManager _Map = null;
     //    thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
 
@@ -292,7 +297,7 @@ public class Cube : Block
     //        ObjectManager.Instance.SpawnBlockBreak(this.transform.position);
     //        StartCoroutine(DestroyCor());
     //    }
-           
+
     //}
 
 

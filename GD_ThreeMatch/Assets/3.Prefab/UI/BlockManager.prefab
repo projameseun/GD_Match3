@@ -49,5 +49,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockLists:
-  - type: 1
+  - type: 0
     Block: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}

@@ -49,5 +49,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelLists:
-  - type: 1
+  - type: 0
     Panel: {fileID: 4068278579700578170, guid: 4ec14b01d40f30c4da68c73f8ee9e078, type: 3}

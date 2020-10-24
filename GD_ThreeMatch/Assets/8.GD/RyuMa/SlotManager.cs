@@ -79,7 +79,7 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     }
 
 
-    
+    // 클릭한 위치가 맵 안쪽인지 체크, 안쪽이면 번호 
     virtual public bool CheckClickVec(Vector2 CllicVec)
     {
         ClickVec = CllicVec - BaseVec;
@@ -87,18 +87,20 @@ public class SlotManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         {
             ClickVec.x = 0;
             ClickVec.y = 0;
+            m_SelectNum = 0;
             return true;
         }
-        X = (int)(ClickVec.x / 0.6f);
-        Y = (int)(ClickVec.y / 0.6f);
+        X = (int)(ClickVec.x / MatchBase.CellDistance);
+        Y = (int)(ClickVec.y / MatchBase.CellDistance);
         m_SelectNum = X -(Y * MatchBase.MaxHorizon);
 
-        ClickVec.x = 0.3f + (0.6f * X);
-        ClickVec.y = -0.3f + (0.6f * Y);
+        ClickVec.x = (MatchBase.CellDistance / 2) + (MatchBase.CellDistance * X);
+        ClickVec.y = -(MatchBase.CellDistance /2) + (MatchBase.CellDistance * Y);
         return false;
     }
 
 
+    // 사용할 맵에 누른 번호를 체크
     virtual public bool CheckSlotNum(MapManager _map)
     {
 

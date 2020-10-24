@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum PanelType
+{
+    Null = -1,
+    PT0_BackPanel,
+    PT1_Portal,
+    PT2_MonsterArea
+}
+
+
 [System.Serializable]
 public class PanelList
 {

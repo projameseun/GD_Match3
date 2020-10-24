@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676d9c5c92b481c4ca4b860f1380bd5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelType: 1
+  panelType: 0
   nodeColor: 6
+  m_Slot: {fileID: 0}
   m_sprite:
   - {fileID: 0}
   - {fileID: 21300000, guid: 61accb8cd6345d04293bce8d4d2a5690, type: 3}
@@ -137,6 +138,9 @@ MonoBehaviour:
   m_spriteRen:
   - {fileID: 451403313118928589}
   m_Count: 0
-  m_Burst: 0
+  m_Exist: 1
+  m_Switch: 1
+  m_Match: 1
+  m_BlockBurst: 1
+  m_PanelBurst: 1
   m_Destroy: 0
-  m_Value: 0

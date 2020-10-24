@@ -7088,7 +7088,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 940816158}
-  - component: {fileID: 940816159}
   m_Layer: 5
   m_Name: BattleSlotBase
   m_TagString: Untagged
@@ -7115,30 +7114,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2.15}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &940816159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940816157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 0.6, y: 0.6}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 11
 --- !u!1 &978938887
 GameObject:
   m_ObjectHideFlags: 0
@@ -15417,29 +15392,30 @@ PrefabInstance:
     - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1846594418676540948, guid: cf2ac42a78f18574f87bdf958a123ab4,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 239608216962628459, guid: cf2ac42a78f18574f87bdf958a123ab4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cf2ac42a78f18574f87bdf958a123ab4, type: 3}
 --- !u!1001 &2488319556498595962
 PrefabInstance:

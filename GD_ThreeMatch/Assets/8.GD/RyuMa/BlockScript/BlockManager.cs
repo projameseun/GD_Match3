@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BlockType
+{
+    Blank = -2,
+    Null = -1,
+    BT0_Cube,
+    BT1_SpecialCube,
+    BT2_Player,
+
+
+}
+
+
 [System.Serializable]
 public class BlockList
 {

@@ -873,11 +873,9 @@ MonoBehaviour:
   CurrentPanelType: 0
   SelectNum: 0
   BlockListCount: 0
-  BlockList:
-  - {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
+  BlockList: []
   PanelListCount: 0
-  PanelList:
-  - {fileID: 4068278579700578170, guid: 4ec14b01d40f30c4da68c73f8ee9e078, type: 3}
+  PanelList: []
 --- !u!222 &292433063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2804,7 +2802,6 @@ MonoBehaviour:
   Slots: []
   direction: 0
   FirstBattle: 0
-  CellSize: {x: 0.6, y: 0.6}
   Horizon: 0
   Vertical: 0
   TopLeft: 0
@@ -3221,10 +3218,16 @@ MonoBehaviour:
   m_blockType: 0
   m_PanelType: 0
   m_NodeColor: 0
+  m_Count: 0
+  m_Data1: 
+  m_Data2: 
+  m_Data3: 
+  m_Data4: 
+  SlotData: []
   m_Value: 0
   m_CubeCh: 0
   m_BackPanelCh: 0
-  m_Count: 0
+  m_PortalCh: 0
   mapMainType: 0
   changeMode: 0
   EditorMap: {fileID: 0}

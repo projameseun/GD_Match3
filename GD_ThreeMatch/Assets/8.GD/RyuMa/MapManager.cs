@@ -27,8 +27,6 @@ public class MapManager : MonoBehaviour
     public Direction direction;
     public bool FirstBattle = false;
 
-    public Vector2 CellSize = new Vector2(0.6f,0.6f);
-
 
 
     public int Horizon;
@@ -51,8 +49,8 @@ public class MapManager : MonoBehaviour
         {
             GameObject SlotObj = Instantiate(SlotPrefab);
             SlotObj.transform.position = 
-                new Vector2(this.transform.position.x + 0.3f + CellSize.x * (i % MatchBase.MaxHorizon),
-               this.transform.position.y - 0.3f + -CellSize.y * (int)(i / MatchBase.MaxHorizon));
+                new Vector2(this.transform.position.x + (MatchBase.CellDistance / 2) + MatchBase.CellDistance * (i % MatchBase.MaxHorizon),
+               this.transform.position.y - (MatchBase.CellDistance / 2) + -MatchBase.CellDistance * (int)(i / MatchBase.MaxHorizon));
             SlotObj.transform.SetParent(SlotBase.transform);
             //SlotObj.transform.parent = SlotBase.transform;
             SlotObj.gameObject.name = string.Format("Slot" + i);

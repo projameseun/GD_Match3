@@ -61,30 +61,30 @@ public class FindMatches : A_Singleton<FindMatches>
         {
             for (int i = 1; i <= _Map.TopRight; i++)
             {
-                if (_Map.Slots[i+Hor].block.nodeColor != NodeColor.NC6_Null)
+                if (_Map.Slots[i+Hor].m_Block.nodeColor != NodeColor.NC6_Null)
                 {
 
                     if (i + Hor > _Map.TopRight && i + Hor < _Map.BottomLeft)
                     {
 
-                        if (_Map.Slots[i+Hor - 1].block.nodeColor != NodeColor.NC6_Null &&
-                            _Map.Slots[i+Hor + 1].block.nodeColor != NodeColor.NC6_Null)
+                        if (_Map.Slots[i+Hor - 1].m_Block.nodeColor != NodeColor.NC6_Null &&
+                            _Map.Slots[i+Hor + 1].m_Block.nodeColor != NodeColor.NC6_Null)
                         {
 
-                            if (_Map.Slots[i+Hor - 1].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor &&
-                                _Map.Slots[i+Hor + 1].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor)
+                            if (_Map.Slots[i+Hor - 1].m_Block.nodeColor == _Map.Slots[i+Hor].m_Block.nodeColor &&
+                                _Map.Slots[i+Hor + 1].m_Block.nodeColor == _Map.Slots[i+Hor].m_Block.nodeColor)
                             {
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor - 1].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor - 1].m_Block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor - 1].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor - 1].m_Block);
                                 }
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor + 1].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor + 1].m_Block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor + 1].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor + 1].m_Block);
                                 }
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor].m_Block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor].m_Block);
                                 }
 
 
@@ -92,26 +92,26 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                         }
 
-                        if (_Map.Slots[i+Hor + MatchBase.MaxHorizon].block.nodeColor != NodeColor.NC6_Null &&
-                            _Map.Slots[i+Hor - MatchBase.MaxHorizon].block.nodeColor != NodeColor.NC6_Null)
+                        if (_Map.Slots[i+Hor + MatchBase.MaxHorizon].m_Block.nodeColor != NodeColor.NC6_Null &&
+                            _Map.Slots[i+Hor - MatchBase.MaxHorizon].m_Block.nodeColor != NodeColor.NC6_Null)
                         {
-                            if (_Map.Slots[i+Hor + MatchBase.MaxHorizon].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor &&
-                                _Map.Slots[i+Hor - MatchBase.MaxHorizon].block.nodeColor == _Map.Slots[i+Hor].block.nodeColor)
+                            if (_Map.Slots[i+Hor + MatchBase.MaxHorizon].m_Block.nodeColor == _Map.Slots[i+Hor].m_Block.nodeColor &&
+                                _Map.Slots[i+Hor - MatchBase.MaxHorizon].m_Block.nodeColor == _Map.Slots[i+Hor].m_Block.nodeColor)
                             {
 
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor + MatchBase.MaxHorizon].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor + MatchBase.MaxHorizon].m_Block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor + MatchBase.MaxHorizon].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor + MatchBase.MaxHorizon].m_Block);
                                 }
 
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor - MatchBase.MaxHorizon].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor - MatchBase.MaxHorizon].m_Block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor - MatchBase.MaxHorizon].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor - MatchBase.MaxHorizon].m_Block);
                                 }
 
-                                if (!currentMathces.Contains(_Map.Slots[i+Hor].block))
+                                if (!currentMathces.Contains(_Map.Slots[i+Hor].m_Block))
                                 {
-                                    currentMathces.Add(_Map.Slots[i+Hor].block);
+                                    currentMathces.Add(_Map.Slots[i+Hor].m_Block);
                                 }
                             }
                         }
@@ -140,17 +140,17 @@ public class FindMatches : A_Singleton<FindMatches>
         {
             for (int Num = _Map.TopLeft + MatchBase.MaxHorizon; Num < _Map.BottomLeft;)
             {
-                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC6_Null)
+                if (_Map.Slots[Num + i].m_Block.nodeColor != NodeColor.NC6_Null)
                 {
                     int Count = 1;
                     SpecialCubeList.Add(Num + i);
 
                     while (true)
                     {
-                        if (_Map.Slots[Num + i + (MatchBase.MaxHorizon * Count)].block != null)
+                        if (_Map.Slots[Num + i + (MatchBase.MaxHorizon * Count)].m_Block != null)
                         {
-                            if (_Map.Slots[Num + i].block.nodeColor == 
-                                _Map.Slots[Num + i + (MatchBase.MaxHorizon * Count)].block.nodeColor)
+                            if (_Map.Slots[Num + i].m_Block.nodeColor == 
+                                _Map.Slots[Num + i + (MatchBase.MaxHorizon * Count)].m_Block.nodeColor)
                             {
                                 SpecialCubeList.Add(Num + i + (MatchBase.MaxHorizon * Count));
                                 Count++;
@@ -310,17 +310,17 @@ public class FindMatches : A_Singleton<FindMatches>
         {
             for (int Num = 0; Num < _Map.TopRight;)
             {
-                if (_Map.Slots[Num + i].block.nodeColor != NodeColor.NC6_Null)
+                if (_Map.Slots[Num + i].m_Block.nodeColor != NodeColor.NC6_Null)
                 {
                     int Count = 1;
                     SpecialCubeList.Add(Num + i);
 
                     while (true)
                     {
-                        if (_Map.Slots[Num + i + Count].block != null)
+                        if (_Map.Slots[Num + i + Count].m_Block != null)
                         {
 
-                            if (_Map.Slots[Num + i].block.nodeColor == _Map.Slots[Num + i + Count].block.nodeColor)
+                            if (_Map.Slots[Num + i].m_Block.nodeColor == _Map.Slots[Num + i + Count].m_Block.nodeColor)
                             {
                                 SpecialCubeList.Add(Num + i + Count);
                                 Count++;
@@ -572,7 +572,7 @@ public class FindMatches : A_Singleton<FindMatches>
         //int HorizonNum =0;
 
 
-        //_Map.Slots[_SlotNum].block.GetComponent<SpecialCube>().specialCubeType = SpecialCubeType.Null;
+        //_Map.Slots[_SlotNum].m_Block.GetComponent<SpecialCube>().specialCubeType = SpecialCubeType.Null;
 
         //for (int i = 0; i < _Map.Vertical; i++)
         //{

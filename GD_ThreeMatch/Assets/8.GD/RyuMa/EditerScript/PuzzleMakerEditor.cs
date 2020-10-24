@@ -23,6 +23,8 @@ public class PuzzleMakerEditor : Editor
     }
     public override void OnInspectorGUI()
     {
+        //EditorGUILayout.BeginHorizontal();
+        //EditorGUILayout.EndHorizontal();
         //serializedObject.Update();
         GUILayout.Space(10f);
         serializedObject.Update();
@@ -84,7 +86,6 @@ public class PuzzleMakerEditor : Editor
         }
 
         GUILayout.Space(10f); // 빈공간 추가
-
         EditorGUILayout.BeginHorizontal();
         EditorUtil.DrawLabel("---------------------", false, GUILayout.Width(200f));
         EditorGUILayout.EndHorizontal();
@@ -129,9 +130,7 @@ public class PuzzleMakerEditor : Editor
 
     public void BlockCheck()
     {
-
-       
-
+        GUILayout.Space(10f);
         //기본 블럭
         if (theMaker.m_CubeCh == true)
         {
@@ -144,19 +143,39 @@ public class PuzzleMakerEditor : Editor
             {
                 theMaker.m_NodeColor = NodeColor.NC5_Random;
             }
+            theMaker.SlotData = new string[] { "0", ((int)theMaker.m_NodeColor).ToString() };
+
+
+
         }
     }
 
     public void PanelCheck()
     {
+        GUILayout.Space(10f);
         // 배경 블럭
         if (theMaker.m_BackPanelCh == true)
         {
-            GUILayout.Space(10f);
 
 
             EditorUtil.DrawLabel("------배경 판넬------", false, GUILayout.Width(200f));
             EditorUtil.DrawVariable_Field<PuzzleMaker>("이미지 번호", theMaker, "m_Count", true);
+
+            theMaker.SlotData = new string[] { "0", theMaker.m_Count.ToString() };
+
+        }
+        else if (theMaker.m_PortalCh == true)
+        {
+            EditorUtil.DrawLabel("------포탈 판넬------", false, GUILayout.Width(200f));
+            EditorGUILayout.BeginHorizontal();
+      
+            EditorUtil.DrawLabel("이동 맵 이름", false, GUILayout.Width(120f));
+            EditorUtil.DrawProperty("", serializedObject, "m_Data1", true);
+            EditorGUILayout.EndHorizontal();
+            EditorUtil.DrawVariable_Field<PuzzleMaker>("인덱스 번호", theMaker, "m_Count", true);
+
+            theMaker.SlotData = new string[] { "1", theMaker.m_Data1, theMaker.m_Count.ToString() };
+
         }
     }
 

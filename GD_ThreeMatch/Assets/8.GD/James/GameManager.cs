@@ -24,48 +24,22 @@ public class Serialization<T>
 [System.Serializable]
 public class SlotInfo
 {
-    public int BlockType;
-    public int UpPanelType;
-    public int MiddlePanelType;
-    public int DownPanelType;
+    public string[] BlockData;
 
-    public int m_BlockColor;
-    public int m_BlockCount;
+    public string[] UpPanelData;
 
-    public int m_UpColor;
-    public int m_UpCount;
+    public string[] MiddlePanelData;
 
-    public int m_MiddleColor;
-    public int m_MiddleCount;
-
-    public int m_DownColor;
-    public int m_DownCount;
+    public string[] DownPanelData;
     public SlotInfo(EditorSlot _slot)
     {
-        BlockType = (int)_slot.m_blockType;
-        m_BlockColor = (int)_slot.m_BlockColor;
-
-        UpPanelType = (int)_slot.UpPanel;
-        MiddlePanelType = (int)_slot.MiddlePanel;
-        DownPanelType = (int)_slot.DownPanel;
-
-        m_UpCount = _slot.m_UpCount;
-        m_MiddleCount = _slot.m_MiddleCount;
-        m_DownCount = _slot.m_DownCount;
-
+        BlockData = _slot.slotInfo.BlockData;
+        UpPanelData = _slot.slotInfo.UpPanelData;
+        MiddlePanelData = _slot.slotInfo.MiddlePanelData;
+        DownPanelData = _slot.slotInfo.DownPanelData;
 
     }
-    //public MonsterSheet monsheet;
-    //public PortalSheet portalsheet;
-    //public SlotObjectSheets slotObject;
 
-    //public SlotInfo(string type, MonsterSheet monsheet, PortalSheet portalsheet, SlotObjectSheets _slotObject)
-    //{
-    //    Type = type;
-    //    this.monsheet = monsheet;
-    //    this.portalsheet = portalsheet;
-    //    this.slotObject = _slotObject;
-    //}
     public SlotInfo()
     { 
         

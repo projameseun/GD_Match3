@@ -47,30 +47,16 @@ public class PuzzleSlot : MonoBehaviour
     public Vector2 Vec;
 
     public bool Down;
-    public Block block = null;
+    public Block m_Block = null;
     public Panel m_UpPanel = null;
     public Panel m_MiddlePanel = null;
     public Panel m_DownPanel = null;
-    public List<Panel> m_PanelList;
+    public List<Panel> m_PanelList = new List<Panel>();
 
     [HideInInspector]
     public Image m_Image;
     [HideInInspector]
     public Text m_Text;
-
-    ////몬스터 시트
-
-
-
-    // 포탈 시트
-
-
-
-    //몬스터일 경우 넣는다
-
-
-
-
 
 
     //trunk
@@ -89,10 +75,53 @@ public class PuzzleSlot : MonoBehaviour
 
     //슬롯을 한번에 정리해준다
     public void SetSlot()
-    { 
-    
+    {
+        if (m_UpPanel != null)
+            m_PanelList.Add(m_UpPanel);
+
+        if (m_MiddlePanel != null)
+            m_PanelList.Add(m_MiddlePanel);
+
+        if (m_DownPanel != null)
+            m_PanelList.Add(m_DownPanel);
+
+
+        for (int i = 0; i < m_PanelList.Count; i++)
+        {
+
+        }
+
     }
 
+
+
+    //해당 슬롯이 스위치가 가능하지 체크한다
+    public bool CheckSwitch()
+    {
+        if (m_Block == null)
+            return true;
+
+        if (m_PanelList.Find(obj => obj.m_Switch == false) == null)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public bool CheckMatch()
+    {
+        if (m_Block == null)
+            return true;
+
+        if (m_PanelList.Find(obj => obj.m_Match == false) == null)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
 
 
@@ -142,51 +171,15 @@ public class PuzzleSlot : MonoBehaviour
 
     }
 
-    public void SkillEvent()
+
+
+
+
+
+    public void BurstEvent(float _Delay = 0f)
     {
-       
-        //Direction dir = Direction.Right;
-        //thePuzzle.SetMoveCount(-1);
-        //Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
-        //thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
-        //// 슬롯이 오른쪽
-        //if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
-        //{
-        //    StartVec.x -= 1.8f;
-        //    dir = Direction.Right;
-        //}
-        //else
-        //{
-        //    StartVec.x += 1.8f;
-        //    dir = Direction.Left;
-        //}
-        //if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
-        //{
-        //    StartVec.y -= 1f;
-        //}
-        //else
-        //{
-        //    StartVec.y += 1f;
-        //}
-
-        ////수정 확인
-        ////thePuzzle.Player.BattleEvent(StartVec, dir, SkillType.ST1_GirlSkill, block.specialCubeType,
-        ////    thePuzzle.theBattleMap, SlotNum);
-
-      
-        //thePuzzle.playerUIs[(int)theBattle.CurrentSkillUI].ResetSkillGauge();
-        //theBattle.SkillEventOnOff = true;
-    }
 
 
-
-
-    public void BlockBurst(float _Delay = 0f)
-    {
-        if (block == null)
-            return;
-        if (block.Burst == false || block.Bursting == true)
-            return;
     }
 
 
@@ -204,7 +197,20 @@ public class PuzzleSlot : MonoBehaviour
     }
 
     virtual public void Resetting()
-    { 
+    {
+        if (m_Block != null)
+        {
+            m_Block.Resetting();
+            m_Block = null;
+        }
+        for (int i = 0; i < m_PanelList.Count; i++)
+        {
+            m_PanelList[i].Resetting();
+        }
+        m_PanelList.Clear();
+        m_UpPanel = null;
+        m_MiddlePanel = null;
+        m_DownPanel = null;
 
     }
 
