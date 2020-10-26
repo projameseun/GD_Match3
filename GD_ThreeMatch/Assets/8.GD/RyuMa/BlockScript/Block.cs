@@ -65,7 +65,6 @@ public class Block : MonoBehaviour
 
     //Trunk
     public int Num;
-    bool OnlyOneEvent;
     Vector2 TargetVec;
     float Speed;
 
@@ -98,10 +97,9 @@ public class Block : MonoBehaviour
     }
 
     // 기본적으로 블럭을 움직이게 하는 함수
-    virtual public void MoveEvent(Vector2 _vec, float _Speed, bool _Event = false)
+    virtual public void MoveEvent(Vector2 _vec, float _Speed)
     {
         TargetVec = _vec;
-        OnlyOneEvent = _Event;
         Speed = _Speed;
         if (this.gameObject.activeSelf == true)
             StartCoroutine(MoveCor());
@@ -116,11 +114,7 @@ public class Block : MonoBehaviour
             yield return null;
         }
         transform.position = TargetVec;
-        if (OnlyOneEvent == true)
-        {
-            OnlyOneEvent = false;
-            PuzzleManager.Instance.CubeEvent = true;
-        }
+
     }
 
 

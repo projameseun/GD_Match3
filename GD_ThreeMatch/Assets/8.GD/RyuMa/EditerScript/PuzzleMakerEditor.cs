@@ -172,7 +172,7 @@ public class PuzzleMakerEditor : Editor
             EditorUtil.DrawLabel("이동 맵 이름", false, GUILayout.Width(120f));
             EditorUtil.DrawProperty("", serializedObject, "m_Data1", true);
             EditorGUILayout.EndHorizontal();
-            EditorUtil.DrawVariable_Field<PuzzleMaker>("인덱스 번호", theMaker, "m_Count", true);
+            EditorUtil.DrawVariable_Field<PuzzleMaker>("도착 인덱스 번호", theMaker, "m_Count", true);
 
             theMaker.SlotData = new string[] { "1", theMaker.m_Data1, theMaker.m_Count.ToString() };
 

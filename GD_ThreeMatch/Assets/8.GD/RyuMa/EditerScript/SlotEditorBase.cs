@@ -88,6 +88,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     // 선택한 아이템을 넣는다
     public void ClickItem(EditorSlot _slot)
     {
+        //우클릭으로 슬롯 리셋
         if (Input.GetMouseButton(1))
         {
             _slot.Resetting();
@@ -95,11 +96,12 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
             string[] RanCube = { "0", "5" };
 
             ChangeBlockImage(_slot, RanCube);
+            return;
         }
-        // 기본 블럭
+
+
         if (SelectType == SlotBaseType.Block)
         {
-
             BlockItem(_slot);
         } 
         else if (SelectType == SlotBaseType.Panel)
@@ -116,6 +118,8 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
     public void BlockItem(EditorSlot _slot)
     {
+
+        //해당 슬롯에 블럭을 넣을 수 없는지 확인한다
         if (int.Parse(_slot.slotInfo.MiddlePanelData[0]) == (int)PanelType.PT0_BackPanel)
             return;
 
@@ -295,6 +299,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
                 break;
             case PanelType.PT1_Portal:
                 PuzzleMaker.Instance.m_PortalCh = true;
+                PuzzleMaker.Instance.m_Data1 = "";
                 PuzzleMaker.Instance.m_Count = 0;
                 break;
         }

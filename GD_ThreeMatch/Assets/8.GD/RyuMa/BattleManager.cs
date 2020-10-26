@@ -343,7 +343,6 @@ public class BattleManager : MonoBehaviour
                         theFade.CloseBlackChat();
                         thePuzzle.ChangeGameMode();
                         thePuzzle.CheckEnemyData();
-                        thePuzzle.CubeEvent = false;
                         thePuzzle.state = PuzzleManager.State.LoadingMap;
                         theFade.FadeInEvent();
                     }
@@ -490,7 +489,6 @@ public class BattleManager : MonoBehaviour
                         theFade.CloseBlackChat();
                         thePuzzle.ChangeGameMode();
                         thePuzzle.CheckEnemyData();
-                        thePuzzle.CubeEvent = false;
                         thePuzzle.state = PuzzleManager.State.LoadingMap;
                         theFade.FadeInEvent();
                     }

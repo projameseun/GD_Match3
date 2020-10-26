@@ -95,32 +95,38 @@ public class PuzzleSlot : MonoBehaviour
 
 
 
-    //해당 슬롯이 스위치가 가능하지 체크한다
+    //스위치가 가능하면 true
     public bool CheckSwitch()
     {
         if (m_Block == null)
-            return true;
+            return false;
 
         if (m_PanelList.Find(obj => obj.m_Switch == false) == null)
         {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
 
     }
 
+    // 매치가 가능하면 true
     public bool CheckMatch()
     {
+        //블럭이 없다
         if (m_Block == null)
-            return true;
+            return false;
 
+        //블럭이 매치를 안한다
+        if (m_Block.Match == false)
+            return false;
+
+        //판넬이 블럭을 매치 못하게 한다
         if (m_PanelList.Find(obj => obj.m_Match == false) == null)
         {
-            return true;
+            return false;
         }
-
-        return false;
+        return true;
     }
 
 
@@ -181,6 +187,28 @@ public class PuzzleSlot : MonoBehaviour
 
 
     }
+
+    //블럭과 블럭을 서로 교환
+    public void SwitchBlock(PuzzleSlot OtherSlot)
+    {
+        //자신의 슬롯 복사
+        Block CopyBlock = this.m_Block;
+
+
+        m_Block.MoveEvent(OtherSlot.transform.position, MatchBase.BlockSpeed);
+
+        OtherSlot.m_Block.MoveEvent(this.transform.position, MatchBase.BlockSpeed);
+
+
+        m_Block = OtherSlot.m_Block;
+
+        OtherSlot.m_Block = CopyBlock;
+
+
+
+
+    }
+
 
 
 
