@@ -4116,7 +4116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 594927104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de6f0ce21d99034594a3a4076bc7dfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dd78a5cb85b0e04696f77eaaa3f37fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SlotDown: 0
@@ -4137,7 +4137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10549,7 +10549,6 @@ MonoBehaviour:
   Slots: []
   direction: 1
   FirstBattle: 0
-  CellSize: {x: 0.6, y: 0.6}
   Horizon: 0
   Vertical: 10
   TopLeft: 0
@@ -11944,13 +11943,13 @@ MonoBehaviour:
   MoveCountText: {fileID: 855786369}
   FoodImage: {fileID: 1417404216}
   SlotDown: 0
-  CubeEvent: 0
   MoveCount: 30
   CurrentPoint: 0
   FirstHeroNum: 0
   secondHeroNum: 2
   Player: {fileID: 1456947069}
-  EventEndTime: 0
+  EventTime: 0
+  CheckEvent: 0
   AutoEvent: 0
   CubeMoveSpeed: 0.2
   SelectNum: 0
@@ -11971,6 +11970,7 @@ MonoBehaviour:
   CheckBoom: 0
   CurrentCheckBoomTime: 0
   MaxCheckBoomTime: 0.37
+  RandomBlock: []
 --- !u!114 &1703859107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11987,10 +11987,16 @@ MonoBehaviour:
   m_blockType: 0
   m_PanelType: 0
   m_NodeColor: 0
+  m_Count: 0
+  m_Data1: 
+  m_Data2: 
+  m_Data3: 
+  m_Data4: 
+  SlotData: []
   m_Value: 0
   m_CubeCh: 0
   m_BackPanelCh: 0
-  m_Count: 0
+  m_PortalCh: 0
   mapMainType: 0
   changeMode: 2
   EditorMap: {fileID: 0}

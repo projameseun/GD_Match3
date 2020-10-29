@@ -175,6 +175,8 @@ public class ObjectManager : G_Singleton<ObjectManager>
 
     }
 
+
+    //오브젝트를 비활성화
     public void ResetObj(GameObject _Obj)
     {
         _Obj.transform.SetParent(this.transform);

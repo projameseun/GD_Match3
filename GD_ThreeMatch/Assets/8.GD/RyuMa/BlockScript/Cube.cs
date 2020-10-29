@@ -11,7 +11,13 @@ public class Cube : Block
     public override void Init(PuzzleSlot _slot, string[] Data)
     {
         base.Init(_slot, Data);
-        SetColor((NodeColor)int.Parse(Data[1]));
+        NodeColor color = (NodeColor)int.Parse(Data[1]);
+        if (color == NodeColor.NC5_Random)
+        {
+            
+        }
+        else
+            SetColor(color);
 
     }
 
@@ -19,6 +25,17 @@ public class Cube : Block
 
 
 
+
+    public override void BurstEvent(MapManager _map, int _num)
+    {
+        base.BurstEvent(_map, _num);
+
+
+        
+
+
+
+    }
 
 
 

@@ -50,8 +50,9 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public enum State
     {
         Ready = 0,
-        ChangeMatch,
-        ChangeMatchRetrun,
+        Switching,          //스위치를 시도
+        SwitchRetrun,       //스위치후 다시 복귀
+        MatchBurst,         //매치를 버스팅 한다
         DestroyCube,
         FillBlank,
         CheckMatch,
@@ -127,15 +128,18 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     //쓰래기통
 
     //이밴트 발동중인 시간을 체크
-    [HideInInspector] public float EventEndTime; 
+    public float EventTime = 0f;
+    public bool CheckEvent;
+
+
+
+
 
     public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
     [HideInInspector] public float CubeMoveSpeed = 0.2f;
     float AutoEventTime = 0;
     public int SelectNum = 0;
     public int OtherNum = 0;
-    float EventTime = 0f;
-    bool EventEnd = false;
     int HintNum;
     int[] EnemyCubeCount = new int[6];
     WaitForSeconds Wait = new WaitForSeconds(0.1f);
@@ -187,7 +191,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         theBattle = FindObjectOfType<BattleManager>();
         theFade = FindObjectOfType<FadeManager>();
         Player = FindObjectOfType<PlayerCube>();
-        theMatch = FindObjectOfType<FindMatches>();
+        theMatch = FindMatches.Instance;
         theObject = FindObjectOfType<ObjectManager>();
         theCamera = FindObjectOfType<CameraManager>();
         theGirl = FindObjectOfType<GirlManager>();
@@ -199,6 +203,37 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     private void Update()
     {
+        if (CheckEvent == true)
+        {
+            if (EventTime > 0)
+                EventTime -= Time.deltaTime;
+        }
+
+
+
+        //기본 준비상태
+        if (state == State.Ready)
+        {
+
+        }
+        // 스위치 체크
+        else if (state == State.Switching)
+        {
+            CheckSwitching();
+        }
+        // 매치가 없어서 돌아온다
+        else if (state == State.SwitchRetrun)
+        {
+            CheckSwitchReturn();
+        }
+        else if (state == State.MatchBurst)
+        {
+
+        }
+
+
+
+
         return;
 
         //if (theGM.state == GMState.GM00_Title)
@@ -274,7 +309,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     //                    SetMoveCount(-1);
     //                    FindMatches.Instance.FindSpecialCube(theMoveMap);
     //                    DestroyCube(theMoveMap);
-                        
+
     //                    return;
     //                }
     //                else
@@ -737,7 +772,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     //                theFade.ShowMapNameEvent(theMaker.m_MapName);
     //                CheckMoveBGM();
     //                CheckTutorialMessage();
-                    
+
     //            }
     //        }
     //        else if (state == State.ChangeMode)
@@ -908,13 +943,84 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     //}
 
+
+    #region 이밴트 시간 체크
+
     public void EventUpdate(float _EventTime = 1f)
     {
-        if (EventEndTime < _EventTime)
+        CheckEvent = true;
+        if (EventTime < _EventTime)
         {
-            EventEndTime = _EventTime;
+            EventTime = _EventTime;
         }
     }
+    public bool EventEnd
+    {
+        get
+        {
+            if (EventTime <= 0 && CheckEvent == true)
+            {
+                EventTime = 0;
+                CheckEvent = false;
+                return true;
+            }
+            return false;
+        }
+        
+    }
+
+    #endregion
+
+
+
+
+    //스텝
+
+    public void CheckSwitching()
+    {
+        if (EventEnd)
+        {
+            //매치가 가능한가 체크
+            if (theMatch.FindAllMatches(GetMap()))
+            {
+                state = State.MatchBurst;
+
+                //매치가 된 블럭들을 모두 버스팅 해준다
+                for (int i = 0; i < theMatch.currentMathces.Count; i++)
+                {
+                    theMatch.currentMathces[i].BurstEvent();
+                }
+                theMatch.currentMathces.Clear();
+
+
+            }
+            else
+            {
+                state = State.SwitchRetrun;
+                EventUpdate(MatchBase.BlockSpeed);
+                GetMap().Slots[SelectNum].SwitchBlock(GetMap().Slots[OtherNum]);
+
+            }
+        }
+
+    }
+
+
+    public void CheckSwitchReturn()
+    {
+        if (EventEnd)
+        {
+            state = State.Ready;
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -1211,6 +1317,11 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         //}
 
     }
+
+
+
+
+
 
 
     // 최초 한번만 실행해서 NULL이 아닌 슬롯에 큐브를 설치
@@ -1906,86 +2017,86 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     // 전투 시작전 적 큐브를 깍는 이밴트
     public void CheckEnemyCubeCount()
     {
-        if (StartEffect.Count > 0)
-        {
-            for (int i = 0; i < StartEffect.Count;)
-            {
-                if (StartEffect[i].activeSelf == false)
-                {
-                    StartEffect.RemoveAt(i);
-                }
-                else
-                {
-                    i++;
-                }
-            }
-        }
+        //if (StartEffect.Count > 0)
+        //{
+        //    for (int i = 0; i < StartEffect.Count;)
+        //    {
+        //        if (StartEffect[i].activeSelf == false)
+        //        {
+        //            StartEffect.RemoveAt(i);
+        //        }
+        //        else
+        //        {
+        //            i++;
+        //        }
+        //    }
+        //}
 
 
-        if (EventTime <= 0.1f)
-        {
-            EventTime += Time.deltaTime;
-        }
-        else
-        {
-            EventEnd = true; // false일 경우 이밴트가 실행 true일 경우 이밴트 종료
-            EventTime = 0.1f;
-            for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
-            {
-                for (int UINum = 0; UINum < CubeSprites.Length; UINum++)
-                {
-                    if (theBattle.EnemyCubeUi[i].cubeColor == PlayerCubeUI[UINum].cubeColor)
-                    {
-                        if (EnemyCubeCount[i] <= 0)
-                        {
-                            continue;
-                        }
-                        int CubeCount = 0;
-                        if (EnemyCubeCount[i] >= 10 && PlayerCubeUI[UINum].CubeCount >= 10)
-                        {
-                            CubeCount = 10;
-                        }
-                        else if (EnemyCubeCount[i] >= PlayerCubeUI[UINum].CubeCount)
-                        {
-                            CubeCount = PlayerCubeUI[UINum].CubeCount;
-                        }
-                        else if (EnemyCubeCount[i] <= PlayerCubeUI[UINum].CubeCount)
-                        {
-                            CubeCount = EnemyCubeCount[i];
-                        }
-                        EnemyCubeCount[i] -= CubeCount;
+        //if (EventTime <= 0.1f)
+        //{
+        //    EventTime += Time.deltaTime;
+        //}
+        //else
+        //{
+        //    EventEnd = true; // false일 경우 이밴트가 실행 true일 경우 이밴트 종료
+        //    EventTime = 0.1f;
+        //    for (int i = 0; i < theBattle.Enemy[theBattle.SelectEnemyNum].CubeCount.Length; i++)
+        //    {
+        //        for (int UINum = 0; UINum < CubeSprites.Length; UINum++)
+        //        {
+        //            if (theBattle.EnemyCubeUi[i].cubeColor == PlayerCubeUI[UINum].cubeColor)
+        //            {
+        //                if (EnemyCubeCount[i] <= 0)
+        //                {
+        //                    continue;
+        //                }
+        //                int CubeCount = 0;
+        //                if (EnemyCubeCount[i] >= 10 && PlayerCubeUI[UINum].CubeCount >= 10)
+        //                {
+        //                    CubeCount = 10;
+        //                }
+        //                else if (EnemyCubeCount[i] >= PlayerCubeUI[UINum].CubeCount)
+        //                {
+        //                    CubeCount = PlayerCubeUI[UINum].CubeCount;
+        //                }
+        //                else if (EnemyCubeCount[i] <= PlayerCubeUI[UINum].CubeCount)
+        //                {
+        //                    CubeCount = EnemyCubeCount[i];
+        //                }
+        //                EnemyCubeCount[i] -= CubeCount;
 
 
-                        if (PlayerCubeUI[UINum].CubeCount > 0)
-                        {
-                            PlayerCubeUI[UINum].AddCount(-CubeCount);
-                            EventEnd = false;
-                            GameObject Effect = theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
-                                theBattle.EnemyCubeUi[i].gameObject, PlayerCubeUI[UINum].cubeColor,
-                                (CubeEffectType)1, -CubeCount, false, 10000);
-                            StartEffect.Add(Effect);
-                        }
+        //                if (PlayerCubeUI[UINum].CubeCount > 0)
+        //                {
+        //                    PlayerCubeUI[UINum].AddCount(-CubeCount);
+        //                    EventEnd = false;
+        //                    GameObject Effect = theObject.CubeEffectEvent(PlayerCubeUI[UINum].transform.position,
+        //                        theBattle.EnemyCubeUi[i].gameObject, PlayerCubeUI[UINum].cubeColor,
+        //                        (CubeEffectType)1, -CubeCount, false, 10000);
+        //                    StartEffect.Add(Effect);
+        //                }
 
-                    }
-                }
-            }
+        //            }
+        //        }
+        //    }
 
-            if (EventEnd == true && StartEffect.Count == 0)
-            {
-                EventTime = 0;
-                EventEnd = false;
-                state = State.Ready;
-                Vector2 vec = new Vector2(playerUIs[0].transform.position.x,
-                    playerUIs[0].transform.position.y + 1.8f);
-                // theObject.SpeechEvent(vec, "전투 시작!!!", 3);
-                theBattle.BattleStart = true;
-                theBattle.battleState = BattleState.Null;
-                theMessage.MessageEnd = false;
-                theEnd.GameEndOn = true;
-            }
+        //    if (EventEnd == true && StartEffect.Count == 0)
+        //    {
+        //        EventTime = 0;
+        //        EventEnd = false;
+        //        state = State.Ready;
+        //        Vector2 vec = new Vector2(playerUIs[0].transform.position.x,
+        //            playerUIs[0].transform.position.y + 1.8f);
+        //        // theObject.SpeechEvent(vec, "전투 시작!!!", 3);
+        //        theBattle.BattleStart = true;
+        //        theBattle.battleState = BattleState.Null;
+        //        theMessage.MessageEnd = false;
+        //        theEnd.GameEndOn = true;
+        //    }
 
 
-        }
+        //}
     }
 
     //몬스터가 죽으면 해당 몬스터 데이터시트 확인한다

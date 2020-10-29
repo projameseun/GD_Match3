@@ -36,6 +36,7 @@ public class Block : MonoBehaviour
     public List<SpriteRenderer> m_spriteRen;
 
 
+
     [HideInInspector] public PuzzleSlot m_Slot;
 
 
@@ -50,8 +51,11 @@ public class Block : MonoBehaviour
     // 반칸을 채우는지
     public bool Gravity;
 
+    // 빈칸을 넘어서 채울 수 있는가
+    public bool GravityJump;
+
     // 이동이 가능한지
-    public bool CanMove;
+    public bool Switch;
 
 
     // burst중인지 아닌지 체크
@@ -68,6 +72,13 @@ public class Block : MonoBehaviour
     Vector2 TargetVec;
     float Speed;
 
+
+    [HideInInspector]
+    PuzzleManager thePuzzle;
+
+
+
+
     virtual protected void Awake()
     {
         
@@ -80,6 +91,7 @@ public class Block : MonoBehaviour
         this.transform.position = _slot.transform.position;
 
         m_Slot = _slot;
+        thePuzzle = PuzzleManager.Instance;
 
     }
 

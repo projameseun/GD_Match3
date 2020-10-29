@@ -7,14 +7,14 @@ using UnityEditor.SceneManagement;
 
 public class DataManager : Editor
 {
-    [MenuItem("Shortcut/Scene/InGame")]
+    [MenuItem("GD/Scene/InGame")]
     static void GoInGame()
     {
         EditorSceneManager.OpenScene("Assets/1.Scenes/InGame.unity");
     }
 
 
-    [MenuItem("Shortcut/Scene/SonMap")]
+    [MenuItem("GD/Scene/SonMap")]
     static void GoPuzzleMaker()
     {
         EditorSceneManager.OpenScene("Assets/1.Scenes/SonMap.unity");

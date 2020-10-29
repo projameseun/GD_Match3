@@ -259,57 +259,25 @@ public class SaveManager : G_Singleton<SaveManager>
                 if (x <= _Map.TopRight && y <= _Map.BottomRight)
                 {
                     _Map.Slots[x + y].gameObject.SetActive(true);
-                    blockType = (BlockType)int.Parse(puzzleslotList[SlotListCount].BlockData[0]);
-                    GameObject block = BlockManager.Instance.CreatBlock(blockType);
-                    if (block != null)
-                    {
-                        _Map.Slots[x + y].m_Block = block.GetComponent<Block>();
-                        _Map.Slots[x + y].m_Block.Init(_Map.Slots[x + y], puzzleslotList[SlotListCount].BlockData);
-                    }
-                    else
-                        _Map.Slots[x + y].m_Block = null;
 
-                   
+                    blockType = (BlockType)int.Parse(puzzleslotList[SlotListCount].BlockData[0]);
+                    _Map.Slots[x + y].CreatBlockSet(blockType, puzzleslotList[SlotListCount].BlockData);
+                    FindMatches.Instance.CheckRandomBlock(_Map.Slots[x + y]);
+
 
                     panelType = (PanelType)int.Parse(puzzleslotList[SlotListCount].UpPanelData[0]);
-                    GameObject PanelUp = PanelManager.Instance.CreatePanel(panelType);
-
-                    if (PanelUp != null)
-                    {
-                        _Map.Slots[x + y].m_UpPanel = PanelUp.GetComponent<Panel>();
-                        _Map.Slots[x + y].m_UpPanel.Init(_Map.Slots[x + y], puzzleslotList[SlotListCount].UpPanelData);
-                    }
-                    else
-                        _Map.Slots[x + y].m_UpPanel = null;
-
-
+                    _Map.Slots[x + y].CreatPanel(_Map.Slots[x + y].m_UpPanel, panelType, puzzleslotList[SlotListCount].UpPanelData);
 
 
                     panelType = (PanelType)int.Parse(puzzleslotList[SlotListCount].MiddlePanelData[0]);
-                    GameObject PanelMiddle = PanelManager.Instance.CreatePanel(panelType);
-
-                    if (PanelMiddle != null)
-                    {
-                        _Map.Slots[x + y].m_MiddlePanel = PanelMiddle.GetComponent<Panel>();
-                        _Map.Slots[x + y].m_MiddlePanel.Init(_Map.Slots[x + y], puzzleslotList[SlotListCount].MiddlePanelData);
-                    }
-                    else
-                        _Map.Slots[x + y].m_MiddlePanel = null;
-
+                    _Map.Slots[x + y].CreatPanel(_Map.Slots[x + y].m_MiddlePanel, panelType, puzzleslotList[SlotListCount].MiddlePanelData);
 
 
                     panelType = (PanelType)int.Parse(puzzleslotList[SlotListCount].DownPanelData[0]);
+                    _Map.Slots[x + y].CreatPanel(_Map.Slots[x + y].m_DownPanel, panelType, puzzleslotList[SlotListCount].DownPanelData);
                     GameObject PanelDown = PanelManager.Instance.CreatePanel(panelType);
 
-                    if (PanelDown != null)
-                    {
-                        _Map.Slots[x + y].m_DownPanel = PanelDown.GetComponent<Panel>();
-                        _Map.Slots[x + y].m_DownPanel.Init(_Map.Slots[x + y], puzzleslotList[SlotListCount].DownPanelData);
-                    }
-                    else
-                        _Map.Slots[x + y].m_MiddlePanel = null;
-
-                    _Map.Slots[x + y].SetSlot();
+                    _Map.Slots[x + y].SetSlot(_Map);
                     SlotListCount++;
 
                 }

@@ -63,7 +63,7 @@ public class PuzzleSlot : MonoBehaviour
     Vector2 FirstVec;
     Vector2 CurrentVec;
     bool CheckCor;
-
+    MapManager thisMap;
 
     private void Awake()
     {
@@ -74,8 +74,10 @@ public class PuzzleSlot : MonoBehaviour
 
 
     //슬롯을 한번에 정리해준다
-    public void SetSlot()
+    public void SetSlot(MapManager _map)
     {
+        thisMap = _map;
+
         if (m_UpPanel != null)
             m_PanelList.Add(m_UpPanel);
 
@@ -101,7 +103,21 @@ public class PuzzleSlot : MonoBehaviour
         if (m_Block == null)
             return false;
 
-        if (m_PanelList.Find(obj => obj.m_Switch == false) == null)
+        if (m_Block.Switch == false)
+            return false;
+        if (m_PanelList.Find(obj => obj.m_Switch == false) != null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    //해당 슬롯을 중력에 의해 바꿀 수 있는지 최초에 확인
+    public bool CheckGravityStart()
+    {
+
+        if (m_PanelList.Find(obj => obj.m_Gravity == false) != null)
         {
             return false;
         }
@@ -109,6 +125,82 @@ public class PuzzleSlot : MonoBehaviour
         return true;
 
     }
+
+    //중력 확인후 서로 교환이 가능한지 확인
+    public bool CheckGravityBlock()
+    {
+        if (m_Block == null)
+            return false;
+        if (m_Block.Gravity == false)
+            return false;
+
+        if (m_PanelList.Find(obj => obj.m_Gravity == false) != null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    // 해당 슬롯에 BackPanel이면 새로운 큐브를 생성
+    public bool CheckBackPanel()
+    {
+        if (m_MiddlePanel != null)
+        {
+            if (m_MiddlePanel.panelType == PanelType.PT0_BackPanel)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void CreatBlockSet(BlockType _blockType, string[] Data)
+    {
+        GameObject block = BlockManager.Instance.CreatBlock(_blockType);
+        if (block != null)
+        {
+            m_Block = block.GetComponent<Block>();
+            if(m_Block.nodeColor == NodeColor.NC5_Random)
+            m_Block.Init(this, Data);
+        }
+        else
+            m_Block = null;
+    }
+
+    public void CreatBlock(BlockType _blockType, string[] Data)
+    {
+        GameObject block = BlockManager.Instance.CreatBlock(_blockType);
+        if (block != null)
+        {
+            m_Block = block.GetComponent<Block>();
+            m_Block.Init(this, Data);
+        }
+        else
+           m_Block = null;
+    }
+
+    public void CreatPanel(Panel _panel,PanelType _panelType, string[] Data)
+    {
+    
+        GameObject panel = PanelManager.Instance.CreatePanel(_panelType);
+
+        if (panel != null)
+        {
+            _panel = panel.GetComponent<Panel>();
+            _panel.Init(this, Data);
+        }
+        else
+        {
+            _panel = null;
+        }
+
+
+    }
+
+
+
 
     // 매치가 가능하면 true
     public bool CheckMatch()
@@ -122,7 +214,7 @@ public class PuzzleSlot : MonoBehaviour
             return false;
 
         //판넬이 블럭을 매치 못하게 한다
-        if (m_PanelList.Find(obj => obj.m_Match == false) == null)
+        if (m_PanelList.Find(obj => obj.m_Match == false) != null)
         {
             return false;
         }
@@ -130,7 +222,42 @@ public class PuzzleSlot : MonoBehaviour
     }
 
 
+    //자신의 방향에 있는 슬롯을 가져온다
+    public PuzzleSlot GetDirSlot(Direction _dir)
+    {
+        switch (_dir)
+        {
+            case Direction.Up:
+                if (SlotNum - MatchBase.MaxHorizon < 0)
+                    return null;
+                return thisMap.Slots[SlotNum - MatchBase.MaxHorizon];
+            case Direction.Left:
+                if (SlotNum % MatchBase.MaxHorizon == 0)
+                    return null;
+                return thisMap.Slots[SlotNum - 1];
+            case Direction.Down:
+                if (SlotNum + MatchBase.MaxHorizon > thisMap.BottomRight)
+                    return null;
+                return thisMap.Slots[SlotNum + MatchBase.MaxHorizon];
+            case Direction.Right:
+                if (SlotNum % MatchBase.MaxHorizon > thisMap.TopRight)
+                    return null;
+                return thisMap.Slots[SlotNum + 1];
+        }
+        return null;
+    }
 
+
+
+    // 블럭의 색과 유무 확인
+    public bool CheckBlockColor()
+    {
+        if (m_Block == null)
+            return false;
+        if ((int)m_Block.nodeColor > 4)
+            return false;
+        return true;
+    }
 
     public void SpecialCubeEvent()
     {
@@ -184,23 +311,60 @@ public class PuzzleSlot : MonoBehaviour
 
     public void BurstEvent(float _Delay = 0f)
     {
+        bool BurstEnd = false;
+        if (m_UpPanel != null)
+        {
+            if (m_UpPanel.m_BlockBurst == true)
+            {
+                BurstEnd = m_UpPanel.m_BlockBurst;
+                m_UpPanel.BurstEvent();
+                if(BurstEnd)
+                    return;
+            }
+        }
 
+        if (m_MiddlePanel != null)
+        {
+            if (m_MiddlePanel.m_BlockBurst == true)
+            {
+                BurstEnd = m_MiddlePanel.m_BlockBurst;
+                m_MiddlePanel.BurstEvent();
+                if (BurstEnd)
+                    return;
+            }
+        }
 
+        if (m_DownPanel != null)
+        {
+            if (m_DownPanel.m_BlockBurst == true)
+            {
+                BurstEnd = m_DownPanel.m_BlockBurst;
+                m_DownPanel.BurstEvent();
+                if (BurstEnd)
+                    return;
+            }
+        }
+
+        if (m_Block != null)
+        {
+            m_Block.BurstEvent(thisMap,SlotNum);
+        }
     }
 
     //블럭과 블럭을 서로 교환
     public void SwitchBlock(PuzzleSlot OtherSlot)
     {
         //자신의 슬롯 복사
-        Block CopyBlock = this.m_Block;
+        Block CopyBlock = this.m_Block != null? this.m_Block : null;
+
+        if(m_Block != null)
+            m_Block.MoveEvent(OtherSlot.transform.position, MatchBase.BlockSpeed);
+
+        if(OtherSlot.m_Block != null)
+            OtherSlot.m_Block.MoveEvent(this.transform.position, MatchBase.BlockSpeed);
 
 
-        m_Block.MoveEvent(OtherSlot.transform.position, MatchBase.BlockSpeed);
-
-        OtherSlot.m_Block.MoveEvent(this.transform.position, MatchBase.BlockSpeed);
-
-
-        m_Block = OtherSlot.m_Block;
+        m_Block = OtherSlot.m_Block != null? OtherSlot.m_Block : null;
 
         OtherSlot.m_Block = CopyBlock;
 

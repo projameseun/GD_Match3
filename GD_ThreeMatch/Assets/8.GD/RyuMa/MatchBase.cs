@@ -15,7 +15,7 @@ public class MatchBase : MonoBehaviour
 
 
     //블럭 이동속도
-    public static float BlockSpeed = 0.5f;
+    public static float BlockSpeed = 0.2f;
 
 
 

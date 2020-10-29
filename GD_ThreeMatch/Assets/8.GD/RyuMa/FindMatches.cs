@@ -32,7 +32,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
 
 
-    public List<PuzzleSlot> currentMathces = new List<PuzzleSlot>();
+    public List<PuzzleSlot> currentMathces = new List<PuzzleSlot>();    //매치가 가능한 것들을 모아둔다
     List<SpecialData> SpecialList = new List<SpecialData>();
     public bool CheckBoom;
     public float CurrentCheckBoomTime;
@@ -120,6 +120,127 @@ public class FindMatches : A_Singleton<FindMatches>
 
     }
     #endregion
+
+
+    //빈공간이 있는지 확인. 
+    public bool FindBlank(MapManager _Map)
+    {
+        bool Blank = false;
+
+        //중력 아래
+        if (_Map.direction == Direction.Down)
+        {
+            for (int x = 1 ; x < _Map.TopRight; x++)
+            {
+                for (int y = _Map.BottomLeft - MatchBase.MaxHorizon; y > _Map.TopRight;)
+                {
+                    if (_Map.Slots[x + y].CheckGravityStart())
+                    {
+                        int Count = 0;
+
+                        while (true)
+                        {
+                            Count -= MatchBase.MaxHorizon;
+                            // 새로운 블럭을 생성해 준다
+                            if (_Map.Slots[x + y + Count].CheckBackPanel())
+                            {
+                                _Map.Slots[x + y + Count].CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                Count -= MatchBase.MaxHorizon;
+                                break;
+                            }
+                            else if (_Map.Slots[x + y + Count].m_Block == null)
+                            {
+                                break;
+                            }
+
+                            if (_Map.Slots[x + y + Count].CheckGravityBlock())
+                            {
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                break;
+                            }
+                        }
+                        y += Count;
+
+                    }
+
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+        return Blank;
+    }
+
+
+
+    [HideInInspector]
+    public List<Block> RandomBlock = new List<Block>();
+
+
+
+    List<NodeColor> randomColor = new List<NodeColor>();
+    // 랜덤 블럭들을 랜덤하게 세팅해준다
+    public void CheckRandomBlock(PuzzleSlot slot)
+    {
+        if (slot.m_Block == null)
+            return;
+        if (slot.m_Block.nodeColor != NodeColor.NC5_Random)
+            return;
+        randomColor.Add(NodeColor.NC0_Blue);
+        randomColor.Add(NodeColor.NC1_Green);
+        randomColor.Add(NodeColor.NC2_Pink);
+        randomColor.Add(NodeColor.NC3_Red);
+        randomColor.Add(NodeColor.NC4_Yellow);
+        PuzzleSlot slot1 = null;
+        PuzzleSlot slot2 = null;
+
+        //위쪽 확인
+        slot1 = slot.GetDirSlot(Direction.Up);
+        if (slot1 != null && slot1.CheckBlockColor())
+        {
+            slot2 = slot1.GetDirSlot(Direction.Up);
+            if (slot2 != null && slot2.CheckBlockColor())
+            {
+                if (slot1.m_Block.nodeColor == slot2.m_Block.nodeColor)
+                {
+                    if (randomColor.Contains(slot1.m_Block.nodeColor))
+                        randomColor.Remove(slot1.m_Block.nodeColor);
+                }
+
+            }
+        }
+        slot1 = slot.GetDirSlot(Direction.Left);
+        if (slot1 != null && slot1.CheckBlockColor())
+        {
+            slot2 = slot1.GetDirSlot(Direction.Left);
+            if (slot2 != null && slot2.CheckBlockColor())
+            {
+                if (slot1.m_Block.nodeColor == slot2.m_Block.nodeColor)
+                {
+                    if (randomColor.Contains(slot1.m_Block.nodeColor))
+                        randomColor.Remove(slot1.m_Block.nodeColor);
+                }
+
+            }
+        }
+        NodeColor SetColor = randomColor[Random.Range(0, randomColor.Count)];
+        randomColor.Clear();
+        slot.m_Block.SetColor(SetColor);
+
+
+    }
+
+
+
+
     //특수 큐브를 만들 수 있는지 확인
     public void FindSpecialCube(MapManager _Map)
     {
