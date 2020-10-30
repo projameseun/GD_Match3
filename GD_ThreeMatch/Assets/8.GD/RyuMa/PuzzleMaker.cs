@@ -37,6 +37,9 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
     public bool MakerStart = false;
 
+    public int m_MapType;
+
+
     public BlockType m_blockType;
     public PanelType m_PanelType;
     public NodeColor m_NodeColor;
@@ -327,6 +330,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
         EditorMap.BottomLeft = BottomLeft;
         EditorMap.BottomRight = BottomRight;
         string[] RandomCub = { "0", "5" };
+        string[] BasicBack = { "0", "0" };
         for (int y = 0; y < MatchBase.MaxHorizon * MatchBase.MaxVertical; y+= MatchBase.MaxHorizon)
         {
             for (int x = 0; x < MatchBase.MaxHorizon; x++)
@@ -334,20 +338,25 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
                 EditorMap.Slots[x + y].Resetting();
                 EditorMap.Slots[x + y].m_Image.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
                 EditorMap.Slots[x + y].m_Text.enabled = (x <= TopRight && y <= BottomRight) ? true : false;
+
                 if (x <= TopRight && y <= BottomRight)
                 {
-                 
-                    SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)EditorMap.Slots[x + y], RandomCub);
+                    if (y == 0 || y == EditorMap.BottomLeft || x == 0 || x == EditorMap.TopRight)
+                    {
+                        SlotEditorBase.Instance.ChangePanelImage((EditorSlot)EditorMap.Slots[x + y], BasicBack);
+                    }
+                    else
+                    {
+                        SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)EditorMap.Slots[x + y], RandomCub);
+                    }
                 }
-                    
-                
             }
         }
 
     }
 
 
-    bool IndexOnOff = false;
+    bool IndexOnOff = true;
     public void ShowIndex()
     {
         IndexOnOff = !IndexOnOff;

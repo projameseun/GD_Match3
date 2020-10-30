@@ -71,6 +71,14 @@ public class Panel : MonoBehaviour
 
 
 
+
+    virtual public void CreatBlock(BlockType type, string[] Data)
+    {
+
+    }
+
+
+
     virtual public void BurstEvent()
     {
 

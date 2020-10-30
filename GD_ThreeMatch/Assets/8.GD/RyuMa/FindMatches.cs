@@ -3,19 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SpecialData
-{
-    public int Num;
-    SpecialCubeType Type;
-
-    public SpecialData(int _Num, SpecialCubeType _Type)
-    {
-        Num = _Num;
-        Type = _Type;
-    }
-
-
-}
 
 
 
@@ -30,10 +17,6 @@ public class FindMatches : A_Singleton<FindMatches>
 
 
 
-
-
-    public List<PuzzleSlot> currentMathces = new List<PuzzleSlot>();    //매치가 가능한 것들을 모아둔다
-    List<SpecialData> SpecialList = new List<SpecialData>();
     public bool CheckBoom;
     public float CurrentCheckBoomTime;
     public float MaxCheckBoomTime;
@@ -51,6 +34,10 @@ public class FindMatches : A_Singleton<FindMatches>
 
     }
     #region FindMatch
+
+
+    [HideInInspector]
+    public List<PuzzleSlot> currentMathces = new List<PuzzleSlot>();    //매치가 가능한 것들을 모아둔다
     //매치가 가능한 조건이 있는지 확인
     public bool FindAllMatches(MapManager _Map,bool _ChangeBlank = true)
     {
@@ -119,6 +106,38 @@ public class FindMatches : A_Singleton<FindMatches>
             return false;
 
     }
+
+    //매치가 안되도록 세팅해준다
+    public void NotMatchSet(MapManager map)
+    {
+        if (FindAllMatches(map))
+        {
+            List<PuzzleSlot> MatchSlot = new List<PuzzleSlot>();
+            for (int i = 0; i < currentMathces.Count; i++)
+            {
+                MatchSlot.Add(currentMathces[i]);
+            }
+
+            while (true)
+            {
+                for (int i = 0; i < MatchSlot.Count; i++)
+                {
+                    MatchSlot[i].m_Block.SetRandomColor();
+                }
+                if (FindAllMatches(map, false) == false)
+                {
+                    break;
+                }
+
+            }
+
+        }
+
+    }
+
+
+
+
     #endregion
 
 
@@ -136,15 +155,16 @@ public class FindMatches : A_Singleton<FindMatches>
                 {
                     if (_Map.Slots[x + y].CheckGravityStart())
                     {
+                        Blank = true; // 빈칸이 있으면 있다고 반영
                         int Count = 0;
-
+                        bool Pass = false;
                         while (true)
                         {
                             Count -= MatchBase.MaxHorizon;
                             // 새로운 블럭을 생성해 준다
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
-                                _Map.Slots[x + y + Count].CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count -= MatchBase.MaxHorizon;
                                 break;
@@ -154,28 +174,147 @@ public class FindMatches : A_Singleton<FindMatches>
                                 break;
                             }
 
-                            if (_Map.Slots[x + y + Count].CheckGravityBlock())
+                            if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
+                            Pass = true;
                         }
                         y += Count;
 
                     }
+                }
+            }
+        }
 
+        //중력 위
+        if (_Map.direction == Direction.Up)
+        {
+            for (int x = 1; x < _Map.TopRight; x++)
+            {
+                for (int y = MatchBase.MaxHorizon; y < _Map.BottomRight;)
+                {
+                    if (_Map.Slots[x + y].CheckGravityStart())
+                    {
+                        Blank = true; // 빈칸이 있으면 있다고 반영
+                        int Count = 0;
+                        bool Pass = false;
+                        while (true)
+                        {
+                            Count += MatchBase.MaxHorizon;
+                            // 새로운 블럭을 생성해 준다
+                            if (_Map.Slots[x + y + Count].CheckBackPanel())
+                            {
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                Count += MatchBase.MaxHorizon;
+                                break;
+                            }
+                            else if (_Map.Slots[x + y + Count].m_Block == null)
+                            {
+                                break;
+                            }
+
+                            if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
+                            {
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                break;
+                            }
+                            Pass = true;
+                        }
+                        y += Count;
+
+                    }
+                }
+            }
+        }
+
+        //중력 왼쪽
+        if (_Map.direction == Direction.Left)
+        {
+            for (int y = MatchBase.MaxHorizon; y < _Map.BottomRight; y+= MatchBase.MaxHorizon)
+            {
+                for (int x = 1;x <= _Map.TopRight;)
+                {
+                    if (_Map.Slots[x + y].CheckGravityStart())
+                    {
+                        Blank = true; // 빈칸이 있으면 있다고 반영
+                        int Count = 0;
+                        bool Pass = false;
+                        while (true)
+                        {
+                            Count++;
+                            // 새로운 블럭을 생성해 준다
+                            if (_Map.Slots[x + y + Count].CheckBackPanel())
+                            {
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                Count ++;
+                                break;
+                            }
+                            else if (_Map.Slots[x + y + Count].m_Block == null)
+                            {
+                                break;
+                            }
+
+                            if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
+                            {
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                break;
+                            }
+                            Pass = true;
+                        }
+                        x += Count;
+                    }
+                }
+            }
+        }
+
+        //중력 오른쪽
+        if (_Map.direction == Direction.Right)
+        {
+            for (int y = MatchBase.MaxHorizon; y < _Map.BottomRight; y += MatchBase.MaxHorizon)
+            {
+                for (int x = _Map.TopRight -1; x >= 0;)
+                {
+                    if (_Map.Slots[x + y].CheckGravityStart())
+                    {
+                        Blank = true; // 빈칸이 있으면 있다고 반영
+                        int Count = 0;
+                        bool Pass = false;
+                        while (true)
+                        {
+                            Count--;
+                            // 새로운 블럭을 생성해 준다
+                            if (_Map.Slots[x + y + Count].CheckBackPanel())
+                            {
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                Count--;
+                                break;
+                            }
+                            else if (_Map.Slots[x + y + Count].m_Block == null)
+                            {
+                                break;
+                            }
+
+                            if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
+                            {
+                                _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
+                                break;
+                            }
+                            Pass = true;
+                        }
+                        x += Count;
+                    }
                 }
             }
         }
 
 
-
-
-
-
-
-
-
+        if (Blank == true)
+            PuzzleManager.Instance.EventUpdate(MatchBase.BlockSpeed);
         return Blank;
     }
 
@@ -187,11 +326,21 @@ public class FindMatches : A_Singleton<FindMatches>
 
 
     List<NodeColor> randomColor = new List<NodeColor>();
-    // 랜덤 블럭들을 랜덤하게 세팅해준다
-    public void CheckRandomBlock(PuzzleSlot slot)
+
+
+    //처음 맵을 세팅할때 블럭들의 초기화
+    public void CheckSetBlock(PuzzleSlot slot)
     {
         if (slot.m_Block == null)
             return;
+        CheckRandomBlock(slot);
+
+    }
+
+
+    // 랜덤 블럭들을 랜덤하게 세팅해준다
+    public void CheckRandomBlock(PuzzleSlot slot)
+    {
         if (slot.m_Block.nodeColor != NodeColor.NC5_Random)
             return;
         randomColor.Add(NodeColor.NC0_Blue);
@@ -203,10 +352,10 @@ public class FindMatches : A_Singleton<FindMatches>
         PuzzleSlot slot2 = null;
 
         //위쪽 확인
-        slot1 = slot.GetDirSlot(Direction.Up);
+        slot1 = slot.GetSlot(Direction.Up);
         if (slot1 != null && slot1.CheckBlockColor())
         {
-            slot2 = slot1.GetDirSlot(Direction.Up);
+            slot2 = slot1.GetSlot(Direction.Up);
             if (slot2 != null && slot2.CheckBlockColor())
             {
                 if (slot1.m_Block.nodeColor == slot2.m_Block.nodeColor)
@@ -217,10 +366,10 @@ public class FindMatches : A_Singleton<FindMatches>
 
             }
         }
-        slot1 = slot.GetDirSlot(Direction.Left);
+        slot1 = slot.GetSlot(Direction.Left);
         if (slot1 != null && slot1.CheckBlockColor())
         {
-            slot2 = slot1.GetDirSlot(Direction.Left);
+            slot2 = slot1.GetSlot(Direction.Left);
             if (slot2 != null && slot2.CheckBlockColor())
             {
                 if (slot1.m_Block.nodeColor == slot2.m_Block.nodeColor)

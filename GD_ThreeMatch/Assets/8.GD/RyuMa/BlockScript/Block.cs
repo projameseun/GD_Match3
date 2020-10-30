@@ -88,10 +88,13 @@ public class Block : MonoBehaviour
     //처음 생성시 연출 및 시작 부분
     virtual public void Init(PuzzleSlot _slot, string[] Data)
     {
+        if (thePuzzle == null)
+            thePuzzle = PuzzleManager.Instance;
+
         this.transform.position = _slot.transform.position;
 
         m_Slot = _slot;
-        thePuzzle = PuzzleManager.Instance;
+
 
     }
 
@@ -109,9 +112,10 @@ public class Block : MonoBehaviour
     }
 
     // 기본적으로 블럭을 움직이게 하는 함수
-    virtual public void MoveEvent(Vector2 _vec, float _Speed)
+    virtual public void MoveEvent(PuzzleSlot Target, float _Speed)
     {
-        TargetVec = _vec;
+        m_Slot = Target;
+        TargetVec = Target.transform.position;
         Speed = _Speed;
         if (this.gameObject.activeSelf == true)
             StartCoroutine(MoveCor());
@@ -142,19 +146,13 @@ public class Block : MonoBehaviour
         nodeColor = _color;
         if (_color == NodeColor.NC6_Null)
             return;
-        else if (_color == NodeColor.NC5_Random)
-        {
-            SetRandomColor();
-        }
-        else
-        {
-            m_spriteRen[0].sprite = m_sprite[(int)_color];
-        }
+        m_spriteRen[0].sprite = m_sprite[(int)_color];
     }
 
     public void SetRandomColor()
     {
-
+        nodeColor = (NodeColor)Random.Range(0, 5);
+        m_spriteRen[0].sprite = m_sprite[(int)nodeColor];
     }
 
 }

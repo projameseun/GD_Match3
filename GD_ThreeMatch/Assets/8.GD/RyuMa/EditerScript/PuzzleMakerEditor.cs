@@ -8,12 +8,7 @@ using UnityEngine;
 public class PuzzleMakerEditor : Editor
 {
     PuzzleMaker theMaker;
-
-
-    string[] Test = { "Test" };
-
-
-
+    string[] setname = { "World", "Battle" };
 
 
     bool MapSetting = false;
@@ -30,6 +25,8 @@ public class PuzzleMakerEditor : Editor
         serializedObject.Update();
        
         MapSetting = EditorGUILayout.Toggle("맵 설정", MapSetting);
+
+        theMaker.m_MapType = GUILayout.Toolbar(theMaker.m_MapType, setname, new GUILayoutOption[] { GUILayout.Width(150) });
         if (MapSetting == false)
         {
             EditorGUILayout.BeginHorizontal(); // 가로축 시작
@@ -86,19 +83,13 @@ public class PuzzleMakerEditor : Editor
         }
 
         GUILayout.Space(10f); // 빈공간 추가
-        EditorGUILayout.BeginHorizontal();
-        EditorUtil.DrawLabel("---------------------", false, GUILayout.Width(200f));
-        EditorGUILayout.EndHorizontal();
+
 
         if (EditorUtil.DrawButton_Click("인덱스 표시", GUILayout.Width(85f)))
         {
             theMaker.ShowIndex();
-
-
-
-
         }
-
+        EditorGUILayout.BeginVertical(EditorStyles.textArea);
         if (theMaker.MakerStart == true)
         {
             //블럭 체크
@@ -106,8 +97,8 @@ public class PuzzleMakerEditor : Editor
             PanelCheck();
 
         }
-            
-        
+        EditorGUILayout.EndVertical();
+
 
 
 

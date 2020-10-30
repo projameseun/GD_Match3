@@ -138,9 +138,10 @@ MonoBehaviour:
   m_spriteRen:
   - {fileID: 451403313118928589}
   m_Count: 0
-  m_Exist: 1
-  m_Switch: 1
-  m_Match: 1
-  m_BlockBurst: 1
-  m_PanelBurst: 1
+  m_Exist: 0
+  m_Switch: 0
+  m_Gravity: 0
+  m_Match: 0
+  m_BlockBurst: 0
+  m_PanelBurst: 0
   m_Destroy: 0

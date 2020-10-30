@@ -13,4 +13,17 @@ public class BackPanel : Panel
     }
 
 
+
+    public override void CreatBlock(BlockType type, string[] Data)
+    {
+        base.CreatBlock(type, Data);
+
+        BlockType blocktype = BlockType.BT0_Cube;
+
+        GameObject block = BlockManager.Instance.CreatBlock(blocktype);
+        m_Slot.m_Block = block.GetComponent<Block>();
+        m_Slot.m_Block.Init(m_Slot, null);
+    }
+
+
 }

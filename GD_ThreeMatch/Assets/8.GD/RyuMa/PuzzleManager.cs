@@ -53,8 +53,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         Switching,          //스위치를 시도
         SwitchRetrun,       //스위치후 다시 복귀
         MatchBurst,         //매치를 버스팅 한다
-        DestroyCube,
-        FillBlank,
+        FillBlank,          //매치한 블럭들이 모두 사라지고 빈곳을 채워준다
         CheckMatch,
         ChangeMode,
         BattleResult,    // 배틀 끝나고 결과창
@@ -131,13 +130,6 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public float EventTime = 0f;
     public bool CheckEvent;
 
-
-
-
-
-    public bool AutoEvent = false; // cubeEvent 를 강제로 실행한다
-    [HideInInspector] public float CubeMoveSpeed = 0.2f;
-    float AutoEventTime = 0;
     public int SelectNum = 0;
     public int OtherNum = 0;
     int HintNum;
@@ -226,13 +218,15 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         {
             CheckSwitchReturn();
         }
+        // 매치한 블럭들을 버스팅해주고 있다
         else if (state == State.MatchBurst)
         {
-
+            CheckBursting();
         }
-
-
-
+        else if (state == State.FillBlank)
+        {
+            CheckFillBlank();
+        }
 
         return;
 
@@ -261,18 +255,6 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         //}
 
 
-        ////큐브 없이 큐브 이밴트를 사용해야 할 때 사용
-        //if (AutoEvent == true)
-        //{
-        //    if (AutoEventTime < 0.6f)
-        //        AutoEventTime += Time.deltaTime;
-        //    else
-        //    {
-        //        CubeEvent = true;
-        //        AutoEvent = false;
-        //        AutoEventTime = 0;
-        //    }
-        //}
 
     }
 
@@ -1014,7 +996,34 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         }
     }
 
+    public void CheckBursting()
+    {
+        if (EventEnd)
+        {
+            if (theMatch.FindBlank(GetMap()))
+            {
+                state = State.FillBlank;
+            }
+            else
+            {
+                state = State.Ready;
+            }
+            
 
+        }
+    }
+
+    public void CheckFillBlank()
+    {
+        if (EventEnd)
+        {
+            if (theMatch.FindBlank(GetMap()) == false)
+            {
+                state = State.Ready;
+            }
+        }
+
+    }
 
 
 
@@ -2200,6 +2209,8 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     // 퍼즐 슬롯을 모두 리셋(초기화)시키는 이밴트
     public void PuzzleResetting(MapManager _Map)
     {
+        
+
         //for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)
         //{
         //    _Map.Slots[i].nodeType = PuzzleSlot.NodeType.Normal;

@@ -1,0 +1,559 @@
+{
+    "Slot": [
+        {
+            "Name": "MapName",
+            "Value": "Test"
+        },
+        {
+            "Name": "Horizon",
+            "Value": "6"
+        },
+        {
+            "Name": "Horizon",
+            "Value": "6"
+        }
+    ]
+}[Next]{
+    "Slot": [
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "0",
+                "5"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "-1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        },
+        {
+            "BlockData": [
+                "-1"
+            ],
+            "UpPanelData": [
+                "-1"
+            ],
+            "MiddlePanelData": [
+                "0",
+                "1"
+            ],
+            "DownPanelData": [
+                "-1"
+            ]
+        }
+    ]
+}

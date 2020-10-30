@@ -87,7 +87,7 @@ public class InGameSlotManager : SlotManager
             CurrentDir = Direction.Right;
         }
         PuzzleSlot thisSlot = thePuzzle.GetMap().Slots[m_SelectNum];
-        PuzzleSlot otherSlot = thePuzzle.GetMap().Slots[m_SelectNum].GetDirSlot(CurrentDir);
+        PuzzleSlot otherSlot = thePuzzle.GetMap().Slots[m_SelectNum].GetSlot(CurrentDir);
         thePuzzle.OtherNum = otherSlot.SlotNum;
         if (otherSlot == null)
             return;
