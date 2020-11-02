@@ -3215,6 +3215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MakerStart: 1
+  m_MapType: 0
   m_blockType: 0
   m_PanelType: 0
   m_NodeColor: 0

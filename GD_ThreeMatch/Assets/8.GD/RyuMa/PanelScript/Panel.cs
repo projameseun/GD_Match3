@@ -79,7 +79,7 @@ public class Panel : MonoBehaviour
 
 
 
-    virtual public void BurstEvent()
+    virtual public void BurstEvent(PuzzleSlot slot)
     {
 
 

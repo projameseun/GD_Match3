@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GirlCube : MonoBehaviour
+using Spine.Unity;
+using Spine;
+public class GirlCube : Block
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public MeshRenderer SpinMesh;
+    public SkeletonAnimation anim;
+    public GameObject SdPlayer;
+    public GameObject PlayerDirObj;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
+
+
+    
+
 }

@@ -35,6 +35,11 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.Instance.CheatMode == true)
+        {
+            state = State.SonMap;
+        }
+
         Rect rect = MainCamera.rect;
         float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16);
         float scalewidth = 1f / scaleheight;

@@ -11,36 +11,19 @@ public class ParticleManager : MonoBehaviour
     float ParticleTime = 0;
 
     protected ObjectManager theObject;
-    private void Awake()
-    {
-        particle = GetComponent<ParticleSystem>();
-    }
 
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Loop == false)
-        {
-            if (ParticleTime > 0)
-            {
-                ParticleTime -= Time.deltaTime;
-            }
-            else
-            {
-                ParticleTime = 0;
-                Resetting();
-            }
-        }
-    }
-
-    virtual public void ParticleSetting(bool loop, GameObject _Parent = null, float _time = 3f)
+    virtual public void ParticleSetting(bool loop = false, float _time = 2f,int Index = 0, GameObject _Parent = null)
     {
         if (theObject == null)
-            theObject = FindObjectOfType<ObjectManager>();
+            theObject = ObjectManager.Instance;
+        if(particle == null)
+            particle = GetComponent<ParticleSystem>();
+
         var main = particle.main;
+        Loop = loop;
+        main.loop = loop;
         ParticleTime = _time;
+
         if (_Parent != null)
         {
             parent = _Parent;
@@ -48,19 +31,41 @@ public class ParticleManager : MonoBehaviour
             this.transform.position = _Parent.transform.position;
 
         }
-        Loop = loop;
-        main.loop = loop;
+
         this.gameObject.SetActive(true);
         particle.Play();
+
+        if (loop == false)
+        {
+            StartCoroutine(NotLoop());
+        }
+
     }
+
+
+
+    virtual public IEnumerator NotLoop()
+    {
+        while (ParticleTime > 0)
+        {
+            ParticleTime -= Time.deltaTime;
+            yield return null;
+        }
+        ParticleTime = 0;
+        Resetting();
+    }
+
+
     virtual public void Resetting()
     {
+      
+
         parent = null;
         Loop = false;
         ParticleTime = 0;
         var main = particle.main;
         main.loop = false;
-        this.gameObject.SetActive(false);
+        ObjectManager.Instance.ResetObj(this.gameObject);
     }
 
 }

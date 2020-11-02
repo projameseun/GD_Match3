@@ -145,10 +145,12 @@ public class FindMatches : A_Singleton<FindMatches>
     public bool FindBlank(MapManager _Map)
     {
         bool Blank = false;
-
+        int TestCount = 0;
         //중력 아래
         if (_Map.direction == Direction.Down)
         {
+            Debug.Log("중력 아래");
+
             for (int x = 1 ; x < _Map.TopRight; x++)
             {
                 for (int y = _Map.BottomLeft - MatchBase.MaxHorizon; y > _Map.TopRight;)
@@ -160,40 +162,62 @@ public class FindMatches : A_Singleton<FindMatches>
                         bool Pass = false;
                         while (true)
                         {
+                            TestCount++;
+
                             Count -= MatchBase.MaxHorizon;
                             // 새로운 블럭을 생성해 준다
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
+                                Debug.Log("블럭 생성 " + x + y + Count);
+
                                 _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count -= MatchBase.MaxHorizon;
                                 break;
                             }
+                            //다음칸에 블럭이 없다
                             else if (_Map.Slots[x + y + Count].m_Block == null)
                             {
+                                Debug.Log("블럭 생성 " + x + y + Count);
                                 break;
                             }
-
-                            if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
+                            //다음칸에 블럭이 있고 중력 여부를 확인한다
+                            else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
+                                Debug.Log("블럭 교환 " + x + y + Count);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
                             Pass = true;
+
+
+                            if (TestCount > 100)
+                            {
+                                Debug.Log("중력 아래 무한반복중");
+                                Debug.Break();
+                                return false;
+                            }
+
                         }
                         y += Count;
 
+                    }
+                    else
+                    {
+                        Debug.Log("교환 불가 " + (x + y));
+                        y -= MatchBase.MaxHorizon;
                     }
                 }
             }
         }
 
         //중력 위
-        if (_Map.direction == Direction.Up)
+        else if (_Map.direction == Direction.Up)
         {
+            Debug.Log("중력 위");
             for (int x = 1; x < _Map.TopRight; x++)
             {
-                for (int y = MatchBase.MaxHorizon; y < _Map.BottomRight;)
+                for (int y = MatchBase.MaxHorizon; y < _Map.BottomLeft;)
                 {
                     if (_Map.Slots[x + y].CheckGravityStart())
                     {
@@ -215,27 +239,38 @@ public class FindMatches : A_Singleton<FindMatches>
                             {
                                 break;
                             }
-
-                            if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
+                            else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
                             Pass = true;
+
+                            if (TestCount > 100)
+                            {
+                                Debug.Log("중력 위 무한반복중");
+                                Debug.Break();
+                                return false;
+                            }
                         }
                         y += Count;
 
+                    }
+                    else
+                    {
+                        y += MatchBase.MaxHorizon;
                     }
                 }
             }
         }
 
         //중력 왼쪽
-        if (_Map.direction == Direction.Left)
+        else if (_Map.direction == Direction.Left)
         {
-            for (int y = MatchBase.MaxHorizon; y < _Map.BottomRight; y+= MatchBase.MaxHorizon)
+            Debug.Log("중력 왼쪽");
+            for (int y = MatchBase.MaxHorizon; y < _Map.BottomLeft; y+= MatchBase.MaxHorizon)
             {
-                for (int x = 1;x <= _Map.TopRight;)
+                for (int x = 1;x < _Map.TopRight;)
                 {
                     if (_Map.Slots[x + y].CheckGravityStart())
                     {
@@ -250,30 +285,41 @@ public class FindMatches : A_Singleton<FindMatches>
                             {
                                 _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
-                                Count ++;
+                                Count++;
                                 break;
                             }
                             else if (_Map.Slots[x + y + Count].m_Block == null)
                             {
                                 break;
                             }
-
-                            if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
+                            else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
                             Pass = true;
+
+                            if (TestCount > 100)
+                            {
+                                Debug.Log("중력 왼쪽 무한반복중");
+                                Debug.Break();
+                                return false;
+                            }
                         }
                         x += Count;
+                    }
+                    else
+                    {
+                        x++; 
                     }
                 }
             }
         }
 
         //중력 오른쪽
-        if (_Map.direction == Direction.Right)
+        else if (_Map.direction == Direction.Right)
         {
+            Debug.Log("중력 오른쪽");
             for (int y = MatchBase.MaxHorizon; y < _Map.BottomRight; y += MatchBase.MaxHorizon)
             {
                 for (int x = _Map.TopRight -1; x >= 0;)
@@ -307,14 +353,22 @@ public class FindMatches : A_Singleton<FindMatches>
                             Pass = true;
                         }
                         x += Count;
+
+                        if (TestCount > 100)
+                        {
+                            Debug.Log("중력 오른쪽 무한반복중");
+                            Debug.Break();
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        x--;
                     }
                 }
             }
         }
 
-
-        if (Blank == true)
-            PuzzleManager.Instance.EventUpdate(MatchBase.BlockSpeed);
         return Blank;
     }
 

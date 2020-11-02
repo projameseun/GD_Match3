@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 7742d9702dc86fa4785215492e040805, type: 3}
     - {fileID: 102900000, guid: 2f16dac2673031242a22bd749428c8f7, type: 3}
-    totalSpriteSurfaceArea: 5419379
+    totalSpriteSurfaceArea: 5429379
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -134,6 +134,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 67ef7baac65811947bb2a44edfe5eef6, type: 3}
   - {fileID: 21300000, guid: 137e91ba5d706c749912fb5168322b6a, type: 3}
   - {fileID: 21300000, guid: 519ca3da611bf6249b8af096e31573d4, type: 3}
+  - {fileID: 21300000, guid: ad50b91be6e53fd47b8404d7ca1146b7, type: 3}
   - {fileID: 21300000, guid: ce5eba5b13283b84b89bea06cbc5a55c, type: 3}
   - {fileID: 21300000, guid: 195b8d0d304c52c4a835cb5821577db3, type: 3}
   - {fileID: 21300000, guid: fed58e5d51c8ba749877e0a9976a96ea, type: 3}
@@ -245,6 +246,7 @@ SpriteAtlas:
   - UI_block_black_alpha_02
   - SlimeUpper2
   - UI_skill_bar_green
+  - 100x100
   - Sprite-0007
   - UI_countB_pink
   - UI_skill_bar_red

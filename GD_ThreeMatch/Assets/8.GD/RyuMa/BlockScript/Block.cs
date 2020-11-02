@@ -106,7 +106,7 @@ public class Block : MonoBehaviour
 
 
     //매치및 이펙트로 터지는 이밴트
-    virtual public void BurstEvent(MapManager _map, int _num)
+    virtual public void BurstEvent(PuzzleSlot _Slot)
     {
 
     }

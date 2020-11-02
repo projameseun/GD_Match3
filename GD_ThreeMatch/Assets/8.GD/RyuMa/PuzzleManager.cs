@@ -106,6 +106,10 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public TextMeshPro MoveCountText;
     public Image FoodImage;
     //메치가 되면 true;
+    [HideInInspector]
+    public Block PlayerBlock;
+
+
 
 
 
@@ -130,8 +134,18 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     public float EventTime = 0f;
     public bool CheckEvent;
 
+    //가장 최근에 선택된 슬롯 번호
     public int SelectNum = 0;
     public int OtherNum = 0;
+
+    //플레이어 위치
+    public int StartWorldIndex;
+
+    //최초 한번만 스텝을 확인
+    public bool CheckStep;
+
+
+
     int HintNum;
     int[] EnemyCubeCount = new int[6];
     WaitForSeconds Wait = new WaitForSeconds(0.1f);
@@ -184,7 +198,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         theFade = FindObjectOfType<FadeManager>();
         Player = FindObjectOfType<PlayerCube>();
         theMatch = FindMatches.Instance;
-        theObject = FindObjectOfType<ObjectManager>();
+        theObject = ObjectManager.Instance;
         theCamera = FindObjectOfType<CameraManager>();
         theGirl = FindObjectOfType<GirlManager>();
         BT_ChangeDirection(1);
@@ -201,32 +215,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 EventTime -= Time.deltaTime;
         }
 
-
-
-        //기본 준비상태
-        if (state == State.Ready)
-        {
-
-        }
-        // 스위치 체크
-        else if (state == State.Switching)
-        {
-            CheckSwitching();
-        }
-        // 매치가 없어서 돌아온다
-        else if (state == State.SwitchRetrun)
-        {
-            CheckSwitchReturn();
-        }
-        // 매치한 블럭들을 버스팅해주고 있다
-        else if (state == State.MatchBurst)
-        {
-            CheckBursting();
-        }
-        else if (state == State.FillBlank)
-        {
-            CheckFillBlank();
-        }
+        UpdateStep();
 
         return;
 
@@ -258,6 +247,34 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     }
 
+
+    public void UpdateStep()
+    {
+        //기본 준비상태
+        if (state == State.Ready)
+        {
+
+        }
+        // 스위치 체크
+        else if (state == State.Switching)
+        {
+            CheckSwitching();
+        }
+        // 매치가 없어서 돌아온다
+        else if (state == State.SwitchRetrun)
+        {
+            CheckSwitchReturn();
+        }
+        // 매치한 블럭들을 버스팅해주고 있다
+        else if (state == State.MatchBurst)
+        {
+            CheckBursting();
+        }
+        else if (state == State.FillBlank)
+        {
+            CheckFillBlank();
+        }
+    }
 
     //public void PuzzleUpdate()
     //{
@@ -956,6 +973,11 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
 
 
+
+    #region 스텝
+
+
+
     //스텝
 
     public void CheckSwitching()
@@ -1002,24 +1024,66 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         {
             if (theMatch.FindBlank(GetMap()))
             {
+                EventUpdate(MatchBase.BlockSpeed/2);
                 state = State.FillBlank;
             }
             else
             {
                 state = State.Ready;
             }
-            
+
 
         }
     }
 
+
+    //빈칸을 한칸씩 움직여준다, 모두 움직이면 다시 매치 체크
     public void CheckFillBlank()
     {
         if (EventEnd)
         {
+            //빈칸이 있는지 없는지 확인
             if (theMatch.FindBlank(GetMap()) == false)
             {
-                state = State.Ready;
+                //빈칸이 없을 경우 다시한번 매치가 있는지 확인
+                if (theMatch.FindAllMatches(GetMap()))
+                {
+                    state = State.MatchBurst;
+                    //매치가 된 블럭들을 모두 버스팅 해준다
+                    for (int i = 0; i < theMatch.currentMathces.Count; i++)
+                    {
+                        theMatch.currentMathces[i].BurstEvent();
+                    }
+                    theMatch.currentMathces.Clear();
+                }
+                else
+                {
+                    //매치가 더이상 없을 경우 모든 스텝을 확인
+
+
+
+                    //매치가 더이상 없을 경우 모든 스텝을 확인
+                    state = State.Ready;
+                }
+            }
+            else
+            {
+                EventUpdate(MatchBase.BlockSpeed);
+            }
+        }
+
+    }
+
+    public void CheckPortal()
+    {
+
+        if (PlayerBlock.m_Slot.m_MiddlePanel != null)
+        {
+            if (PlayerBlock.m_Slot.m_MiddlePanel.panelType == PanelType.PT1_Portal)
+            {
+                PortalPanel Portal = (PortalPanel)PlayerBlock.m_Slot.m_MiddlePanel;
+                SaveManager.Instance.LoadMap(Portal.PortalMapName);
+                StartWorldIndex = Portal.m_Count;
             }
         }
 
@@ -1030,6 +1094,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
 
 
+    #endregion
 
 
 
@@ -1800,7 +1865,6 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     //현재 매치가 가능한 상태가 있는지 체크 true 면 가능, false 면 불가능
     public bool DeadlockCheck(MapManager _Map)
     {
-        NodeColor CopyColor;
 
 
         //for (int i = 0; i < _Map.Horizontal * _Map.Vertical; i++)

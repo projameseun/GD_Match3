@@ -56,74 +56,74 @@ public class CubeEffect : MonoBehaviour
     }
 
 
-    public void SetCubeEffect(Vector2 StartVec, GameObject _TargetVec,
-        NodeColor _nodeColor,
-        CubeEffectType _Type,
-        int _CubeCount,
-        bool RandomStart,
-        float _Speed)
-    {
-        if (theObject == null)
-            theObject = FindObjectOfType<ObjectManager>();
-        if (theBattle == null)
-            theBattle = FindObjectOfType<BattleManager>();
-        if (thePuzzle == null)
-            thePuzzle = FindObjectOfType<PuzzleManager>();
-        RandomStart = false;
+    //public void SetCubeEffect(Vector2 StartVec, GameObject _TargetVec,
+    //    NodeColor _nodeColor,
+    //    CubeEffectType _Type,
+    //    int _CubeCount,
+    //    bool RandomStart,
+    //    float _Speed)
+    //{
+    //    if (theObject == null)
+    //        theObject = FindObjectOfType<ObjectManager>();
+    //    if (theBattle == null)
+    //        theBattle = FindObjectOfType<BattleManager>();
+    //    if (thePuzzle == null)
+    //        thePuzzle = FindObjectOfType<PuzzleManager>();
+    //    RandomStart = false;
 
 
-        if (_TargetVec == null)
-            return;
+    //    if (_TargetVec == null)
+    //        return;
 
 
-        //if (_nodeColor == NodeColor.NC0_Blue)
-        //{
-        //    CubeP = theObject.FindObj("CubeBlue", false).GetComponent<CubeEffectP>();
-        //}
-        //else if (_nodeColor == NodeColor.NC1_Green)
-        //{
-        //    CubeP = theObject.FindObj("CubeGreen", false).GetComponent<CubeEffectP>();
-        //}
-        //else if (_nodeColor == NodeColor.NC2_Pink) // 핑크
-        //{
-        //    CubeP = theObject.FindObj("CubePink", false).GetComponent<CubeEffectP>();
-        //}
-        //else if (_nodeColor == NodeColor.NC3_Red) // 빨간색
-        //{
-        //    CubeP = theObject.FindObj("CubeRed", false).GetComponent<CubeEffectP>();
-        //}
-        //else if (_nodeColor == NodeColor.NC4_Yellow) // 노란색
-        //{
-        //    CubeP = theObject.FindObj("CubeYellow", false).GetComponent<CubeEffectP>();
-        //}
-        CubeP.ParticleSetting(true, this.gameObject);
-        CubeP.gameObject.SetActive(true);
+    //    //if (_nodeColor == NodeColor.NC0_Blue)
+    //    //{
+    //    //    CubeP = theObject.FindObj("CubeBlue", false).GetComponent<CubeEffectP>();
+    //    //}
+    //    //else if (_nodeColor == NodeColor.NC1_Green)
+    //    //{
+    //    //    CubeP = theObject.FindObj("CubeGreen", false).GetComponent<CubeEffectP>();
+    //    //}
+    //    //else if (_nodeColor == NodeColor.NC2_Pink) // 핑크
+    //    //{
+    //    //    CubeP = theObject.FindObj("CubePink", false).GetComponent<CubeEffectP>();
+    //    //}
+    //    //else if (_nodeColor == NodeColor.NC3_Red) // 빨간색
+    //    //{
+    //    //    CubeP = theObject.FindObj("CubeRed", false).GetComponent<CubeEffectP>();
+    //    //}
+    //    //else if (_nodeColor == NodeColor.NC4_Yellow) // 노란색
+    //    //{
+    //    //    CubeP = theObject.FindObj("CubeYellow", false).GetComponent<CubeEffectP>();
+    //    //}
+    //    CubeP.ParticleSetting(true, this.gameObject);
+    //    CubeP.gameObject.SetActive(true);
 
 
-        Speed = _Speed;
+    //    Speed = _Speed;
 
-        this.transform.position = StartVec;
-        nodeColor = _nodeColor;
-        cubeEffectType = _Type;
-        Move = true;
-        TargetPos = _TargetVec;
-        CubeCount = _CubeCount;
-        DestroyCount = 10f; // 오브젝트 생존시간
-        if (RandomStart == true)
-        {
-            float RandZ = Random.Range(0F, 360f);
-            Rotation.z = RandZ;
-            this.transform.eulerAngles = Rotation;
-            FrontPos = FrontObj.transform.position - this.transform.position;
-            FrontPos.Normalize();
-            RB2D.velocity = FrontPos * 100;
-            AngleSpeed = 200f;
-        }
-        else
-        {
-            AngleSpeed = 2000f;
-        }
-    }
+    //    this.transform.position = StartVec;
+    //    nodeColor = _nodeColor;
+    //    cubeEffectType = _Type;
+    //    Move = true;
+    //    TargetPos = _TargetVec;
+    //    CubeCount = _CubeCount;
+    //    DestroyCount = 10f; // 오브젝트 생존시간
+    //    if (RandomStart == true)
+    //    {
+    //        float RandZ = Random.Range(0F, 360f);
+    //        Rotation.z = RandZ;
+    //        this.transform.eulerAngles = Rotation;
+    //        FrontPos = FrontObj.transform.position - this.transform.position;
+    //        FrontPos.Normalize();
+    //        RB2D.velocity = FrontPos * 100;
+    //        AngleSpeed = 200f;
+    //    }
+    //    else
+    //    {
+    //        AngleSpeed = 2000f;
+    //    }
+    //}
 
     //----------움직이는 기능
     public void MoveCube()

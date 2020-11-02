@@ -23,12 +23,12 @@ public class PanelManager : A_Singleton<PanelManager>
 {
     public List<PanelList> panelLists = new List<PanelList>();
 
-    public GameObject CreatePanel(PanelType _type)
+    public Panel CreatePanel(PanelType _type)
     {
         PanelList _Panel = null;
         _Panel = panelLists.Find(find => find.type == _type);
 
-        return _Panel != null ? ObjectManager.Instance.FindObj(_Panel.Panel) : null;
+        return _Panel != null ? ObjectManager.Instance.FindObj<Panel>(_Panel.Panel) : null;
     }
 
 }

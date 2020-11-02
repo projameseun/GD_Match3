@@ -29,7 +29,7 @@ public class ObjectPool
 
 
 
-public class ObjectManager : G_Singleton<ObjectManager>
+public class ObjectManager : A_Singleton<ObjectManager>
 {
 
 
@@ -142,7 +142,7 @@ public class ObjectManager : G_Singleton<ObjectManager>
 
 
     //사용하고싶은 오브젝트를 찾는 함수(오브젝트 이름, 오브젝트 활성화)
-    public GameObject FindObj(GameObject _Obj, bool _Active = true)
+    public T FindObj<T>(GameObject _Obj, bool _Active = true)
     {
         GameObject Prefab = null;
 
@@ -153,13 +153,13 @@ public class ObjectManager : G_Singleton<ObjectManager>
             {
                 Prefab = Pool.OirQueue.Dequeue();
                 Prefab.SetActive(_Active);
-                return Prefab;
+                return Prefab.GetComponent<T>();
             }
             else
             {
                 Prefab = Pool.CreatePool();
                 Prefab.SetActive(_Active);
-                return Prefab;
+                return Prefab.GetComponent<T>();
             }
         }
         else
@@ -168,7 +168,7 @@ public class ObjectManager : G_Singleton<ObjectManager>
             PoolList.Add(_Obj.name, NewPool);
             Prefab = NewPool.CreatePool();
             Prefab.SetActive(_Active);
-            return Prefab;
+            return Prefab.GetComponent<T>();
 
         }
 

@@ -124,7 +124,8 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     {
 
         EditorMap = FindObjectOfType<MapManager>();
-       
+
+        Selection.activeGameObject = this.gameObject;
 
     }
 
@@ -133,8 +134,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            Debug.Log(m_CubeCh + " " + m_BackPanelCh + " " + m_PortalCh);
-            //SettingMap();
+            ShowIndex();
         }
     }
 
@@ -341,6 +341,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
                 if (x <= TopRight && y <= BottomRight)
                 {
+                    EditorMap.Slots[x + y].gameObject.SetActive(true);
                     if (y == 0 || y == EditorMap.BottomLeft || x == 0 || x == EditorMap.TopRight)
                     {
                         SlotEditorBase.Instance.ChangePanelImage((EditorSlot)EditorMap.Slots[x + y], BasicBack);
@@ -350,6 +351,11 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
                         SlotEditorBase.Instance.ChangeBlockImage((EditorSlot)EditorMap.Slots[x + y], RandomCub);
                     }
                 }
+                else 
+                {
+                    EditorMap.Slots[x + y].gameObject.SetActive(false);
+                }
+
             }
         }
 

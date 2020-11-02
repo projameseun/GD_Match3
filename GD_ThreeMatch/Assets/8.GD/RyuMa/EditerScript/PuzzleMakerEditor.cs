@@ -121,13 +121,9 @@ public class PuzzleMakerEditor : Editor
 
     public void BlockCheck()
     {
-        GUILayout.Space(10f);
         //기본 블럭
         if (theMaker.m_CubeCh == true)
         {
-            GUILayout.Space(10f);
-
-
             EditorUtil.DrawLabel("------큐브------", false, GUILayout.Width(200f));
             EditorUtil.DrawVariable_Field<PuzzleMaker>("큐브 색", theMaker, "m_NodeColor", true);
             if (theMaker.m_NodeColor == NodeColor.NC6_Null)
@@ -143,12 +139,9 @@ public class PuzzleMakerEditor : Editor
 
     public void PanelCheck()
     {
-        GUILayout.Space(10f);
         // 배경 블럭
         if (theMaker.m_BackPanelCh == true)
         {
-
-
             EditorUtil.DrawLabel("------배경 판넬------", false, GUILayout.Width(200f));
             EditorUtil.DrawVariable_Field<PuzzleMaker>("이미지 번호", theMaker, "m_Count", true);
 

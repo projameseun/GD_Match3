@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalPanel : MonoBehaviour
+public class PortalPanel : Panel
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public string PortalMapName;
+
+
+
+    public override void Init(PuzzleSlot _slot, string[] Data)
     {
-        
+        base.Init(_slot, Data);
+
+        PortalMapName = Data[1];
+        m_Count = int.Parse(Data[2]);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
 }

@@ -57,7 +57,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
             if (i < BlockList.Count)
             {
                 CopyBlock = BlockList[i].GetComponent<Block>();
-                BlockImageList[i].SetItem(CopyBlock.m_spriteRen[0].sprite, i,
+                BlockImageList[i].SetItem(CopyBlock.m_sprite[0], i,
                    SlotBaseType.Block);
             }
             else
@@ -68,7 +68,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
             if (i < PanelList.Count)
             {
                 CopyPanel = PanelList[i].GetComponent<Panel>();
-                PanelImageList[i].SetItem(CopyPanel.m_spriteRen[0].sprite, i,
+                PanelImageList[i].SetItem(CopyPanel.m_sprite[0], i,
                    SlotBaseType.Panel);
             }
             else
@@ -158,14 +158,14 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
                 {
 
                     _slot.m_BlockImage.sprite =
-                        BlockList[SelectNum].GetComponent<Block>().m_sprite[int.Parse(_slot.slotInfo.BlockData[1])];
+                        BlockList[0].GetComponent<Block>().m_sprite[int.Parse(_slot.slotInfo.BlockData[1])];
                     _slot.m_BlockImage.color = new Color(1, 1, 1, 1);
                     _slot.m_BlockImage.enabled = true;
                 }
                 else if (int.Parse(_slot.slotInfo.BlockData[1]) == (int)NodeColor.NC5_Random)
                 {
 
-                    _slot.m_BlockImage.sprite = BlockList[SelectNum].GetComponent<Block>().m_sprite[0];
+                    _slot.m_BlockImage.sprite = BlockList[0].GetComponent<Block>().m_sprite[0];
                     _slot.m_BlockImage.color = new Color(0.5f, 0.5f, 0.5f, 1);
                     _slot.m_BlockImage.enabled = true;
                 }
@@ -189,6 +189,19 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         {
             case PanelType.Null:
 
+                //if (_pos == PanelPos.Up)
+                //{
+                //    _slot.m_UpImage.enabled = false;
+                //    _slot.m_UpImage.sprite = null;
+                //    _slot.slotInfo.UpPanelData = null;
+                //}
+                //else if (_pos == PanelPos.Middle)
+                //{ 
+                    
+                //}
+
+
+
                 break;
 
             //0 백판넬
@@ -208,9 +221,10 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
                 break;
 
             case PanelType.PT1_Portal:
+                _slot.m_UpImage.enabled = true;
                 _slot.slotInfo.UpPanelData = Data;
-                _slot.m_MiddleImage.sprite =
-                PanelList[0].GetComponent<Panel>().m_sprite[0];
+                _slot.m_UpImage.sprite =
+                PanelList[1].GetComponent<Panel>().m_sprite[0];
                 break;
 
         }

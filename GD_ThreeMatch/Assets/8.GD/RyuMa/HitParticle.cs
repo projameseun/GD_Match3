@@ -8,6 +8,16 @@ public class HitParticle : ParticleManager
     public ParticleSystem[] Particles;
 
 
+    public override void ParticleSetting(bool loop = false, float _time = 2, int Index = 0, GameObject _Parent = null)
+    {
+
+        SetColor((NodeColor)Index);
+
+        base.ParticleSetting(loop, _time, Index, _Parent);
+    }
+
+
+
     public void SetColor(NodeColor _Nod)
     {
 

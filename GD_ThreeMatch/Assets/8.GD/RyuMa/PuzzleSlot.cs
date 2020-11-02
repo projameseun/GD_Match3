@@ -176,10 +176,10 @@ public class PuzzleSlot : MonoBehaviour
 
     public void CreatBlock(BlockType _blockType, string[] Data)
     {
-        GameObject block = BlockManager.Instance.CreatBlock(_blockType);
+        Block block = BlockManager.Instance.CreatBlock(_blockType);
         if (block != null)
         {
-            m_Block = block.GetComponent<Block>();
+            m_Block = block;
             m_Block.Init(this, Data);
         }
         else
@@ -188,21 +188,21 @@ public class PuzzleSlot : MonoBehaviour
 
     public void CreatPanel(PanelPos _PanelPos, PanelType _panelType, string[] Data)
     {
-        GameObject panel = PanelManager.Instance.CreatePanel(_panelType);
+        Panel panel = PanelManager.Instance.CreatePanel(_panelType);
         if (panel != null)
         {
             switch (_PanelPos)
             {
                 case PanelPos.Up:
-                    m_UpPanel = panel.GetComponent<Panel>();
+                    m_UpPanel = panel;
                     m_UpPanel.Init(this, Data);
                     break;
                 case PanelPos.Middle:
-                    m_MiddlePanel = panel.GetComponent<Panel>();
+                    m_MiddlePanel = panel;
                     m_MiddlePanel.Init(this, Data);
                     break;
                 case PanelPos.Down:
-                    m_DownPanel = panel.GetComponent<Panel>();
+                    m_DownPanel = panel;
                     m_DownPanel.Init(this, Data);
                     break;
             }
@@ -342,7 +342,7 @@ public class PuzzleSlot : MonoBehaviour
             if (m_UpPanel.m_BlockBurst == true)
             {
                 BurstEnd = m_UpPanel.m_BlockBurst;
-                m_UpPanel.BurstEvent();
+                m_UpPanel.BurstEvent(this);
                 if(BurstEnd)
                     return;
             }
@@ -353,7 +353,7 @@ public class PuzzleSlot : MonoBehaviour
             if (m_MiddlePanel.m_BlockBurst == true)
             {
                 BurstEnd = m_MiddlePanel.m_BlockBurst;
-                m_MiddlePanel.BurstEvent();
+                m_MiddlePanel.BurstEvent(this);
                 if (BurstEnd)
                     return;
             }
@@ -364,7 +364,7 @@ public class PuzzleSlot : MonoBehaviour
             if (m_DownPanel.m_BlockBurst == true)
             {
                 BurstEnd = m_DownPanel.m_BlockBurst;
-                m_DownPanel.BurstEvent();
+                m_DownPanel.BurstEvent(this);
                 if (BurstEnd)
                     return;
             }
@@ -372,7 +372,7 @@ public class PuzzleSlot : MonoBehaviour
 
         if (m_Block != null)
         {
-            m_Block.BurstEvent(thisMap,SlotNum);
+            m_Block.BurstEvent(this);
         }
     }
 
@@ -391,7 +391,7 @@ public class PuzzleSlot : MonoBehaviour
 
         m_Block = OtherSlot.m_Block != null? OtherSlot.m_Block : null;
 
-        OtherSlot.m_Block = CopyBlock;
+        OtherSlot.m_Block = CopyBlock != null ? CopyBlock : null;
 
 
 

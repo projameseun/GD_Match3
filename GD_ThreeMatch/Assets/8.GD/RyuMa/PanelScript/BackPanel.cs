@@ -20,8 +20,8 @@ public class BackPanel : Panel
 
         BlockType blocktype = BlockType.BT0_Cube;
 
-        GameObject block = BlockManager.Instance.CreatBlock(blocktype);
-        m_Slot.m_Block = block.GetComponent<Block>();
+        Block block = BlockManager.Instance.CreatBlock(blocktype);
+        m_Slot.m_Block = block;
         m_Slot.m_Block.Init(m_Slot, null);
     }
 

@@ -196,6 +196,7 @@ public class SaveManager : G_Singleton<SaveManager>
                 if (x <= PuzzleMaker.Instance.TopRight && y <= PuzzleMaker.Instance.BottomRight)
                 {
                     _Map.Slots[x + y].gameObject.SetActive(true);
+                    _Map.Slots[x + y].Resetting();
                     _Map.Slots[x + y].SetSlot(puzzleslotList[SlotListCount]);
 
 
@@ -274,7 +275,6 @@ public class SaveManager : G_Singleton<SaveManager>
 
                     panelType = (PanelType)int.Parse(puzzleslotList[SlotListCount].DownPanelData[0]);
                     _Map.Slots[x + y].CreatPanel(PanelPos.Down, panelType, puzzleslotList[SlotListCount].DownPanelData);
-                    GameObject PanelDown = PanelManager.Instance.CreatePanel(panelType);
 
                     _Map.Slots[x + y].SetSlot(_Map);
                     SlotListCount++;

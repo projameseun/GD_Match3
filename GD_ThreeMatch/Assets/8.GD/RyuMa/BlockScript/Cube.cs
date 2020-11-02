@@ -32,12 +32,16 @@ public class Cube : Block
 
 
 
-    public override void BurstEvent(MapManager _map, int _num)
+    public override void BurstEvent(PuzzleSlot _Slolt)
     {
-        base.BurstEvent(_map, _num);
+        base.BurstEvent(_Slolt);
 
 
-        PuzzleManager.Instance.EventUpdate(0.5f);
+        _Slolt.m_Block = null;
+
+        EffectManager.Instance.CubeEffect(this.transform.position, (int)nodeColor);
+
+        PuzzleManager.Instance.EventUpdate(0.2f);
 
 
         Resetting();

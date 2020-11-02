@@ -29,13 +29,13 @@ public class BlockManager : A_Singleton<BlockManager>
 
 
 
-    public GameObject CreatBlock(BlockType _type)
+    public Block CreatBlock(BlockType _type)
     {
         BlockList _Block = null;
         _Block = blockLists.Find(find => find.type == _type);
 
         
-        return _Block != null? ObjectManager.Instance.FindObj(_Block.Block) : null;
+        return _Block != null? ObjectManager.Instance.FindObj<Block>(_Block.Block) : null;
         
     }
 
