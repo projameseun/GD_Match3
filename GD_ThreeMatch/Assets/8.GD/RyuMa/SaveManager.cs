@@ -106,8 +106,10 @@ public class SaveManager : G_Singleton<SaveManager>
         jdata += JsonUtility.ToJson(new Serialization<SlotInfo>(PuzzleSlotList), true);
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
         //print(jdata2);
-        Debug.Log("FilePath = " + FilePath);
-        Debug.Log("jdata = " + jdata);
+
+        //Debug.Log("FilePath = " + FilePath);
+        //Debug.Log("jdata = " + jdata);
+
         File.WriteAllText(FilePath, jdata);
         //만약에 Json으로 변경할려면 경로를 변경해주면된다
         // string FilePath = Application.persistentDataPath + "/MyItem.json";

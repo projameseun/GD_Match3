@@ -112,6 +112,7 @@ public class FindMatches : A_Singleton<FindMatches>
     {
         if (FindAllMatches(map))
         {
+            Debug.Log("시작부터 매치가 가능해서 재배열");
             List<PuzzleSlot> MatchSlot = new List<PuzzleSlot>();
             for (int i = 0; i < currentMathces.Count; i++)
             {
@@ -126,11 +127,24 @@ public class FindMatches : A_Singleton<FindMatches>
                 }
                 if (FindAllMatches(map, false) == false)
                 {
-                    break;
+                    if (CheckCanMatch(map))
+                    {
+                        Debug.Log("매치 가능 있음");
+                        break;
+                    }
+                    else
+                    {
+                        Debug.Log("매치 가능 없음");
+                    }
+
                 }
 
             }
 
+        }
+        else
+        {
+            Debug.Log("매치없이 맵 잘 배열됨");
         }
 
     }
@@ -149,8 +163,6 @@ public class FindMatches : A_Singleton<FindMatches>
         //중력 아래
         if (_Map.direction == Direction.Down)
         {
-            Debug.Log("중력 아래");
-
             for (int x = 1 ; x < _Map.TopRight; x++)
             {
                 for (int y = _Map.BottomLeft - MatchBase.MaxHorizon; y > _Map.TopRight;)
@@ -168,8 +180,6 @@ public class FindMatches : A_Singleton<FindMatches>
                             // 새로운 블럭을 생성해 준다
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
-                                Debug.Log("블럭 생성 " + x + y + Count);
-
                                 _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count -= MatchBase.MaxHorizon;
@@ -178,13 +188,11 @@ public class FindMatches : A_Singleton<FindMatches>
                             //다음칸에 블럭이 없다
                             else if (_Map.Slots[x + y + Count].m_Block == null)
                             {
-                                Debug.Log("블럭 생성 " + x + y + Count);
                                 break;
                             }
                             //다음칸에 블럭이 있고 중력 여부를 확인한다
                             else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
-                                Debug.Log("블럭 교환 " + x + y + Count);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
@@ -204,7 +212,6 @@ public class FindMatches : A_Singleton<FindMatches>
                     }
                     else
                     {
-                        Debug.Log("교환 불가 " + (x + y));
                         y -= MatchBase.MaxHorizon;
                     }
                 }
@@ -376,9 +383,6 @@ public class FindMatches : A_Singleton<FindMatches>
 
     [HideInInspector]
     public List<Block> RandomBlock = new List<Block>();
-
-
-
     List<NodeColor> randomColor = new List<NodeColor>();
 
 
@@ -440,6 +444,117 @@ public class FindMatches : A_Singleton<FindMatches>
 
 
     }
+
+
+
+
+    // 매치가 가능한지 채크한다
+    public bool CheckCanMatch(MapManager map)
+    {
+        for (int y = MatchBase.MaxHorizon; y < map.BottomLeft; y += MatchBase.MaxHorizon)
+        {
+            for (int x = 1; x < map.TopRight; x++)
+            {
+                if (map.Slots[x + y].CheckMatch() && map.Slots[x + y].CheckSwitch())
+                {
+                    //위 확인
+                    if (map.Slots[x + y - MatchBase.MaxHorizon].CheckSwitch())
+                    {
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon * 2), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon * 3)))
+                        {
+                            return true;
+                        }
+
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 2), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1)))
+                        {
+                            return true;
+                        }
+
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1)))
+                        {
+                            return true;
+                        }
+
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 2)))
+                        {
+                            return true;
+                        }
+                    }
+
+                    // 아래 확인 
+                    if (map.Slots[x + y + MatchBase.MaxHorizon].CheckSwitch())
+                    {
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon*2), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon*3)))
+                        {
+                            return true;
+                        }
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon-2), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon-1)))
+                        {
+                            return true;
+                        }
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon +1)))
+                        {
+                            return true;
+                        }
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon +1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon + 2)))
+                        {
+                            return true;
+                        }
+                    }
+
+                    // 왼쪽 확인 
+                    if (map.Slots[x + y - 1].CheckSwitch())
+                    {
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-2), map.Slots[x + y].GetSlot(-3)))
+                        {
+                            return true;
+                        }
+
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-(MatchBase.MaxHorizon*2) - 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1)))
+                        {
+                            return true;
+                        }
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon - 1)))
+                        {
+                            return true;
+                        }
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot((MatchBase.MaxHorizon*2) -1)))
+                        {
+                            return true;
+                        }
+                    }
+
+                    // 오른쪽 확인 
+                    if (map.Slots[x + y + 1].CheckSwitch())
+                    {
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(2), map.Slots[x + y].GetSlot(3)))
+                        {
+                            return true;
+                        }
+
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-(MatchBase.MaxHorizon * 2) + 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1)))
+                        {
+                            return true;
+                        }
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon + 1)))
+                        {
+                            return true;
+                        }
+                        if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon + 1), map.Slots[x + y].GetSlot((MatchBase.MaxHorizon * 2) +1)))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        return false;
+
+    }
+
 
 
 

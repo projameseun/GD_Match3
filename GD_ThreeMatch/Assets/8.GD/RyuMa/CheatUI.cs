@@ -41,7 +41,6 @@ public class CheatUI : MonoBehaviour
     public void LoadEditorMap()
     {
         SaveManager.Instance.SetMap(thePuzzle.GetMap());
-
         theMatch.NotMatchSet(thePuzzle.GetMap());
 
       

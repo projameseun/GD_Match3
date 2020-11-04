@@ -250,9 +250,25 @@ public class PuzzleSlot : MonoBehaviour
                     return null;
                 return thisMap.Slots[SlotNum + MatchBase.MaxHorizon];
             case Direction.Right:
-                if (SlotNum % MatchBase.MaxHorizon > thisMap.TopRight)
+                if (SlotNum % MatchBase.MaxHorizon >= thisMap.TopRight)
                     return null;
                 return thisMap.Slots[SlotNum + 1];
+            case Direction.TopLeft:
+                if (SlotNum % MatchBase.MaxHorizon == 0 || SlotNum - MatchBase.MaxHorizon < 0)
+                    return null;
+                return thisMap.Slots[SlotNum - MatchBase.MaxHorizon - 1];
+            case Direction.TopRight:
+                if (SlotNum % MatchBase.MaxHorizon >= thisMap.TopRight || SlotNum - MatchBase.MaxHorizon < 0)
+                    return null;
+                return thisMap.Slots[SlotNum - MatchBase.MaxHorizon + 1];
+            case Direction.BottomLeft:
+                if (SlotNum % MatchBase.MaxHorizon >= thisMap.TopRight || SlotNum + MatchBase.MaxHorizon > thisMap.BottomRight)
+                    return null;
+                return thisMap.Slots[SlotNum + MatchBase.MaxHorizon - 1];
+            case Direction.BottomRight:
+                if (SlotNum % MatchBase.MaxHorizon >= thisMap.TopRight || SlotNum + MatchBase.MaxHorizon > thisMap.BottomRight)
+                    return null;
+                return thisMap.Slots[SlotNum + MatchBase.MaxHorizon - 1];
         }
         return null;
     }
@@ -264,7 +280,7 @@ public class PuzzleSlot : MonoBehaviour
         if (Num < 0)
             return null;
 
-        if (Num >= thisMap.Slots.Length)
+        if (Num > thisMap.BottomRight)
             return null;
 
 
@@ -283,6 +299,31 @@ public class PuzzleSlot : MonoBehaviour
             return false;
         return true;
     }
+
+
+
+    // 자기 자신은 매칭이 가능한지 먼저 채크한 후 사용한다
+    public bool CheckThreeMatch(PuzzleSlot slot1, PuzzleSlot slot2)
+    {
+        if (slot1 == null || slot2 == null)
+        {
+            return false;
+        }
+
+        //먼저 두개가 매칭이 가능한지
+        if (slot1.CheckMatch() == false || slot2.CheckMatch() == false)
+            return false;
+
+        //모든 블럭의 색이 매칭이 가능한지
+        if (slot1.m_Block.nodeColor != m_Block.nodeColor || slot2.m_Block.nodeColor != m_Block.nodeColor)
+            return false;
+
+        return true;
+
+    }
+
+
+
 
     public void SpecialCubeEvent()
     {

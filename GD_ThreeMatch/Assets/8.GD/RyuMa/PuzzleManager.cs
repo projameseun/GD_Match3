@@ -22,7 +22,11 @@ public enum Direction
     Up = 0,
     Down,
     Left,
-    Right
+    Right,
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight
 }
 
 public enum FoodState
@@ -1061,6 +1065,15 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                     //매치가 더이상 없을 경우 모든 스텝을 확인
 
 
+
+
+                    if (theMatch.CheckCanMatch(GetMap()))
+                    {
+                        Debug.Log("매치 조건 있음");
+                    }
+                    else {
+                        Debug.Log("매치 조건 없음");
+                    }
 
                     //매치가 더이상 없을 경우 모든 스텝을 확인
                     state = State.Ready;
