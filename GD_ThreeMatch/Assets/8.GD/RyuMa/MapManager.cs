@@ -74,4 +74,19 @@ public class MapManager : MonoBehaviour
 
 
 
+
+
+    public void ResettingMap()
+    {
+        for (int y = 0; y <= BottomRight; y += MatchBase.MaxHorizon)
+        {
+            for (int x = 0; x <= TopRight; x++)
+            {
+                Slots[x + y].Resetting();
+            }
+        }
+
+    }
+
+
 }

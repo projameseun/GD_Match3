@@ -68,7 +68,6 @@ public class Block : MonoBehaviour
 
 
     //Trunk
-    public int Num;
     Vector2 TargetVec;
     float Speed;
 
@@ -94,6 +93,9 @@ public class Block : MonoBehaviour
         this.transform.position = _slot.transform.position;
 
         m_Slot = _slot;
+
+        this.transform.SetParent(null);
+        this.transform.localScale = Vector3.one;
 
 
     }
@@ -146,13 +148,20 @@ public class Block : MonoBehaviour
         nodeColor = _color;
         if (_color == NodeColor.NC6_Null)
             return;
+        if (_color == NodeColor.NC5_Random)
+        {
+            Debug.Log("렌덤은 들어오면 안됨!!");
+            return;
+        }
+      
         m_spriteRen[0].sprite = m_sprite[(int)_color];
     }
 
-    public void SetRandomColor()
+    public void SetRandomColor(bool Init = true)
     {
         nodeColor = (NodeColor)Random.Range(0, 5);
-        m_spriteRen[0].sprite = m_sprite[(int)nodeColor];
+        if(Init == true)
+           m_spriteRen[0].sprite = m_sprite[(int)nodeColor];
     }
 
 }

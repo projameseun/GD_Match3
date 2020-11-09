@@ -230,6 +230,8 @@ public class SaveManager : G_Singleton<SaveManager>
     public void SetMap(MapManager _Map)
     {
 
+        _Map.ResettingMap();
+
         LoadMap(GameManager.Instance.MapName);
         List<MapInfo> a_LoadMapList = new List<MapInfo>();
         a_LoadMapList = JsonUtility.FromJson<Serialization<MapInfo>>(GameManager.Instance.MapData[0]).Slot;
@@ -288,6 +290,23 @@ public class SaveManager : G_Singleton<SaveManager>
                 }
             }
         }
+
+
+        //랜덤블럭들을 매치가 되지 않도록 세팅한다
+        
+        FindMatches.Instance.NotMatchSet(_Map);
+        for (int y = MatchBase.MaxHorizon; y < _Map.BottomLeft; y += MatchBase.MaxHorizon)
+        {
+            for (int x = 1; x < _Map.TopRight; x++)
+            {
+                _Map.Slots[x + y].m_Block.SetColor(_Map.Slots[x + y].m_Block.nodeColor);
+            }
+        }
+
+        PuzzleManager.Instance.InsertPlayer(_Map);
+
+
+
     }
 
 

@@ -222,7 +222,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
             case PanelType.PT1_Portal:
                 _slot.m_UpImage.enabled = true;
-                _slot.slotInfo.UpPanelData = Data;
+                _slot.slotInfo.MiddlePanelData= Data;
                 _slot.m_UpImage.sprite =
                 PanelList[1].GetComponent<Panel>().m_sprite[0];
                 break;

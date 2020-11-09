@@ -14,6 +14,7 @@ public class Cube : Block
         if (Data != null)
         {
             NodeColor color = (NodeColor)int.Parse(Data[1]);
+            nodeColor = color;
             if (color != NodeColor.NC5_Random)
             {
                 SetColor(color);

@@ -79,6 +79,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
 
     public string m_MapName;
+    public int StartIndex;
 
     public int m_Horizon;
     public int m_Vertical;

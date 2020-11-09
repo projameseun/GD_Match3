@@ -99,6 +99,7 @@ public class GameManager : G_Singleton<GameManager>
 
     //맵 데이터
     public string MapName;
+    public int StartIndex;
     public string[] MapData;
 
 

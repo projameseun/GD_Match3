@@ -56,8 +56,9 @@ public class PuzzleMakerEditor : Editor
             EditorGUILayout.BeginHorizontal();
             EditorUtil.DrawLabel("맵 이름", false, GUILayout.Width(50f));
             EditorUtil.DrawProperty("", serializedObject, "m_MapName", false, GUILayout.Width(150f));
+            
             EditorGUILayout.EndHorizontal();
-
+            EditorUtil.DrawVariable_Field<PuzzleMaker>("도착 인덱스 번호", theMaker, "StartIndex", true);
             EditorGUILayout.BeginHorizontal();
             if (EditorUtil.DrawButton_Click("맵 저장", GUILayout.Width(85f)))
             {
@@ -73,10 +74,11 @@ public class PuzzleMakerEditor : Editor
             {
                 SaveManager.Instance.SaveMap(PuzzleMaker.Instance.m_MapName);
                 GameManager.Instance.MapName = PuzzleMaker.Instance.m_MapName;
+                GameManager.Instance.StartIndex = PuzzleMaker.Instance.StartIndex;
                 GameManager.Instance.CheatMode = true;
-                Debug.Log("map name = " + GameManager.Instance.MapName);
-                GameManager.Instance.SceneChange("Ingame",null);
-                SaveManager.Instance.LoadMap(GameManager.Instance.MapName);
+                GameManager.Instance.SceneChange("Ingame",()=> {
+                    SaveManager.Instance.LoadMap(GameManager.Instance.MapName);
+                });
 
             }
             EditorGUILayout.EndHorizontal();

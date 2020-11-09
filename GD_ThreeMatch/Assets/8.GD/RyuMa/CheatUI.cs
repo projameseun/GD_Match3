@@ -37,18 +37,10 @@ public class CheatUI : MonoBehaviour
 
     }
 
-
+    // 나중에 맵을 세팅하는 종합세트
     public void LoadEditorMap()
     {
         SaveManager.Instance.SetMap(thePuzzle.GetMap());
-        theMatch.NotMatchSet(thePuzzle.GetMap());
-
-      
-
-     
-
-
-
     }
 
 

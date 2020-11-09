@@ -106,9 +106,6 @@ public class ObjectManager : A_Singleton<ObjectManager>
     // 로딩중에 오브젝트를 한번 잡는다
     public void LoadingInit()
     {
-        GameObject Cube = CubeEffectEvent(this.gameObject.transform.position,
-            this.gameObject, NodeColor.NC0_Blue, CubeEffectType.GoEnemy, 0, false);
-        Cube.GetComponent<CubeEffect>().DestroyCount = 1;
 
         SpeechEvent(this.transform.position, "test", 1);
       
@@ -197,13 +194,6 @@ public class ObjectManager : A_Singleton<ObjectManager>
     }
 
 
-    public GameObject SpawnCube()
-    {
-        //GameObject Cube = FindObj("Cube");
-        //Cube.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        return null;
-    }
-
 
 
 
@@ -225,21 +215,7 @@ public class ObjectManager : A_Singleton<ObjectManager>
     //}
 
     // 큐브 이펙트를 사용하는 함수
-    public GameObject CubeEffectEvent(Vector2 _StartVec, GameObject _Target,NodeColor _NodeColor,
-        CubeEffectType _CubeTarget, int _CubeCount, bool _RandStart,float _Speed = 4000)
-    {
 
-        //GameObject CubeEffect = FindObj("CubeE");
-        //CubeEffect.GetComponent<CubeEffect>().SetCubeEffect(_StartVec,
-        //           _Target,
-        //           _NodeColor, _CubeTarget, _CubeCount, _RandStart, _Speed
-        //           );
-
-
-
-        return null;
-
-    }
 
     // 말풍선 이밴트를 사용하는 함수
     public GameObject SpeechEvent(Vector2 _StartVec, string _Speech, float _LifeTime)

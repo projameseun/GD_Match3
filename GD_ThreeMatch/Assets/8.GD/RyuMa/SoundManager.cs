@@ -10,7 +10,7 @@ public class SoundSlot
 }
 
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : A_Singleton<SoundManager>
 {
     public SoundSlot[] BGMSoundslots;
     public SoundSlot[] SESoundslots;

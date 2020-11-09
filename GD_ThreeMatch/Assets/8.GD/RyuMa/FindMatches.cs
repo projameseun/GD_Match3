@@ -108,7 +108,12 @@ public class FindMatches : A_Singleton<FindMatches>
     }
 
     //매치가 안되도록 세팅해준다
-    public void NotMatchSet(MapManager map)
+    //색을 지정해도 셔플과정에서 수정되어 색이 바뀔 수 있다
+
+
+    static int ShuffleCount = 0;
+
+    public bool NotMatchSet(MapManager map)
     {
         if (FindAllMatches(map))
         {
@@ -119,11 +124,13 @@ public class FindMatches : A_Singleton<FindMatches>
                 MatchSlot.Add(currentMathces[i]);
             }
 
+            int Count = 0;
             while (true)
             {
+                Count++;
                 for (int i = 0; i < MatchSlot.Count; i++)
                 {
-                    MatchSlot[i].m_Block.SetRandomColor();
+                    MatchSlot[i].m_Block.SetRandomColor(false);
                 }
                 if (FindAllMatches(map, false) == false)
                 {
@@ -138,15 +145,37 @@ public class FindMatches : A_Singleton<FindMatches>
                     }
 
                 }
+                if (Count > 100)
+                {
+                    Debug.Log("셔플해도 안되는듯?");
 
+                    return false;
+                }
             }
 
         }
         else
         {
-            Debug.Log("매치없이 맵 잘 배열됨");
+            if (CheckCanMatch(map))
+            {
+                Debug.Log("매치 가능 있음 셔플 횟수 = " + ShuffleCount);
+                ShuffleCount = 0;
+                
+                return true;
+            }
+            else
+            {
+                ShuffleCount++;
+                if (ShuffleCount > 100)
+                {
+                    Debug.Log("무한루프중... 횟수 : " + ShuffleCount);
+                    return false;
+                }
+                Shuffling(map);
+            }
         }
 
+        return true;
     }
 
 
@@ -446,8 +475,31 @@ public class FindMatches : A_Singleton<FindMatches>
     }
 
 
+    // 더이상 매치가 안되는걸 확인한 후 셔플해준다
+    public bool Shuffling(MapManager map)
+    {
+
+        for (int y = MatchBase.MaxHorizon; y < map.BottomLeft; y += MatchBase.MaxHorizon)
+        {
+            for (int x = 1; x < map.TopRight; x++)
+            {
+                if (map.Slots[x + y].CheckSwitch() && map.Slots[x + y].m_Block.nodeColor <= NodeColor.NC4_Yellow)
+                {
+                    map.Slots[x + y].m_Block.SetRandomColor(false);
+                }
+
+            }
+        }
+        return NotMatchSet(map);
+    }
+
+    
 
 
+
+    //매치가 가능한 번호와 방향을 알려준다
+    [HideInInspector] public int CanMatchNum;
+    [HideInInspector] public Direction CanMatchDir;
     // 매치가 가능한지 채크한다
     public bool CheckCanMatch(MapManager map)
     {
@@ -462,21 +514,29 @@ public class FindMatches : A_Singleton<FindMatches>
                     {
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon * 2), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon * 3)))
                         {
+                            CanMatchDir = Direction.Up;
+                            CanMatchNum = x + y;
                             return true;
                         }
 
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 2), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1)))
                         {
+                            CanMatchDir = Direction.Up;
+                            CanMatchNum = x + y;
                             return true;
                         }
 
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1)))
                         {
+                            CanMatchDir = Direction.Up;
+                            CanMatchNum = x + y;
                             return true;
                         }
 
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 2)))
                         {
+                            CanMatchDir = Direction.Up;
+                            CanMatchNum = x + y;
                             return true;
                         }
                     }
@@ -486,18 +546,26 @@ public class FindMatches : A_Singleton<FindMatches>
                     {
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon*2), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon*3)))
                         {
+                            CanMatchDir = Direction.Down;
+                            CanMatchNum = x + y;
                             return true;
                         }
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon-2), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon-1)))
                         {
+                            CanMatchDir = Direction.Down;
+                            CanMatchNum = x + y;
                             return true;
                         }
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon +1)))
                         {
+                            CanMatchDir = Direction.Down;
+                            CanMatchNum = x + y;
                             return true;
                         }
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon +1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon + 2)))
                         {
+                            CanMatchDir = Direction.Down;
+                            CanMatchNum = x + y;
                             return true;
                         }
                     }
@@ -507,19 +575,27 @@ public class FindMatches : A_Singleton<FindMatches>
                     {
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-2), map.Slots[x + y].GetSlot(-3)))
                         {
+                            CanMatchDir = Direction.Left;
+                            CanMatchNum = x + y;
                             return true;
                         }
 
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-(MatchBase.MaxHorizon*2) - 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1)))
                         {
+                            CanMatchDir = Direction.Left;
+                            CanMatchNum = x + y;
                             return true;
                         }
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon - 1)))
                         {
+                            CanMatchDir = Direction.Left;
+                            CanMatchNum = x + y;
                             return true;
                         }
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon - 1), map.Slots[x + y].GetSlot((MatchBase.MaxHorizon*2) -1)))
                         {
+                            CanMatchDir = Direction.Left;
+                            CanMatchNum = x + y;
                             return true;
                         }
                     }
@@ -529,19 +605,27 @@ public class FindMatches : A_Singleton<FindMatches>
                     {
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(2), map.Slots[x + y].GetSlot(3)))
                         {
+                            CanMatchDir = Direction.Right;
+                            CanMatchNum = x + y;
                             return true;
                         }
 
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-(MatchBase.MaxHorizon * 2) + 1), map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1)))
                         {
+                            CanMatchDir = Direction.Right;
+                            CanMatchNum = x + y;
                             return true;
                         }
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(-MatchBase.MaxHorizon + 1), map.Slots[x + y].GetSlot(MatchBase.MaxHorizon + 1)))
                         {
+                            CanMatchDir = Direction.Right;
+                            CanMatchNum = x + y;
                             return true;
                         }
                         if (map.Slots[x + y].CheckThreeMatch(map.Slots[x + y].GetSlot(MatchBase.MaxHorizon + 1), map.Slots[x + y].GetSlot((MatchBase.MaxHorizon * 2) +1)))
                         {
+                            CanMatchDir = Direction.Right;
+                            CanMatchNum = x + y;
                             return true;
                         }
                     }
@@ -550,6 +634,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
         }
 
+        CanMatchNum = 0;
 
         return false;
 
