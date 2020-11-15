@@ -9,6 +9,7 @@ public enum BlockType
     BT0_Cube,
     BT1_SpecialCube,
     BT2_Player,
+    BT3_Rock,
 
 
 }

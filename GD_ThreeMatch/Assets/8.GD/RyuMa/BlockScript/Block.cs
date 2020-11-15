@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using System;
 
 public enum NodeColor
 {
@@ -47,6 +47,9 @@ public class Block : MonoBehaviour
 
     // 연계시 폭발하는지
     public bool Burst;
+
+    // 폭발 주변에서 영향이 있는지
+    public bool AroundBurst;
 
     // 반칸을 채우는지
     public bool Gravity;
@@ -108,7 +111,7 @@ public class Block : MonoBehaviour
 
 
     //매치및 이펙트로 터지는 이밴트
-    virtual public void BurstEvent(PuzzleSlot _Slot)
+    virtual public void BurstEvent(PuzzleSlot _Slot, Action action = null)
     {
 
     }
@@ -126,9 +129,9 @@ public class Block : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
         seq.Append(this.transform.DOMove(TargetVec, Speed)).SetEase(Ease.Linear);
-
         while (Vector2.Distance(transform.position, TargetVec) >= 0.05f)
         {
+
             yield return null;
         }
         transform.position = TargetVec;
@@ -159,7 +162,7 @@ public class Block : MonoBehaviour
 
     public void SetRandomColor(bool Init = true)
     {
-        nodeColor = (NodeColor)Random.Range(0, 5);
+        nodeColor = (NodeColor)UnityEngine.Random.Range(0, 5);
         if(Init == true)
            m_spriteRen[0].sprite = m_sprite[(int)nodeColor];
     }

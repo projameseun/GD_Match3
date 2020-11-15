@@ -51,3 +51,5 @@ MonoBehaviour:
   blockLists:
   - type: 0
     Block: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a, type: 3}
+  - type: 3
+    Block: {fileID: 8572742152529024570, guid: b42b855e97798124e92c7e3525488de9, type: 3}

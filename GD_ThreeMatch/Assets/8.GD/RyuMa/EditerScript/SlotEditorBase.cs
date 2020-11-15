@@ -20,9 +20,7 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 {
 
     public ItemBase[] BlockImageList;
-    public Image[] BlockSetList;
     public ItemBase[] PanelImageList;
-    public Image[] PanelSetList;
 
 
     public SlotBaseType SelectType;
@@ -35,9 +33,6 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
     public List<GameObject> BlockList;
     public int PanelListCount;
     public List<GameObject> PanelList;
-
-    Block CopyBlock;
-    Panel CopyPanel;
 
 
     private void Start()
@@ -56,9 +51,9 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         {
             if (i < BlockList.Count)
             {
-                CopyBlock = BlockList[i].GetComponent<Block>();
-                BlockImageList[i].SetItem(CopyBlock.m_sprite[0], i,
+                BlockImageList[i].SetItem(BlockList[i].GetComponent<Block>().m_sprite[0], i,
                    SlotBaseType.Block);
+
             }
             else
             {
@@ -67,15 +62,13 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
 
             if (i < PanelList.Count)
             {
-                CopyPanel = PanelList[i].GetComponent<Panel>();
-                PanelImageList[i].SetItem(CopyPanel.m_sprite[0], i,
+                PanelImageList[i].SetItem(PanelList[i].GetComponent<Panel>().m_sprite[0], i,
                    SlotBaseType.Panel);
             }
             else
             {
                 PanelImageList[i].SetItem(null, i, SlotBaseType.Null);
             }
-
         }
         PuzzleMaker.Instance.m_CubeCh = true;
         BlockImageList[0].ItemOnOff(true);
@@ -173,6 +166,12 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
                 {
                     Debug.Log("여기 들어오면 안됨");
                 }
+                break;
+            case BlockType.BT3_Rock:
+                _slot.slotInfo.BlockData = _Data;
+                _slot.m_BlockImage.sprite = BlockList[1].GetComponent<Block>().m_sprite[0];
+                _slot.m_BlockImage.color = new Color(1, 1, 1, 1);
+                _slot.m_BlockImage.enabled = true;
                 break;
         }
 
@@ -279,23 +278,12 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
         {
             case BlockType.BT0_Cube:
                 PuzzleMaker.Instance.m_CubeCh = true;
-                for (int i = 0; i < BlockImageList.Length; i++)
-                {
-                    if (i < 5)
-                    {
-                        BlockImageList[i].m_ItemImage.sprite = BlockList[SelectNum].GetComponent<Block>().m_sprite[i];
-                    }
-                    else if (i == 5)
-                    {
-                        BlockImageList[i].m_ItemImage.sprite = BlockList[SelectNum].GetComponent<Block>().m_sprite[0];
-                    }
-                    else
-                    {
-                        BlockImageList[i].m_ItemImage.enabled = false;
-                    }
-                }
-
                 PuzzleMaker.Instance.m_NodeColor = NodeColor.NC5_Random;
+
+                break;
+            case BlockType.BT3_Rock:
+                PuzzleMaker.Instance.m_RockCh = true;
+                PuzzleMaker.Instance.m_Count = 0;
 
                 break;
         }

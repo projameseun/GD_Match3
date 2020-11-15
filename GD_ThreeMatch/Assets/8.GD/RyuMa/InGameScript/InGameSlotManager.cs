@@ -58,6 +58,7 @@ public class InGameSlotManager : SlotManager
 
     public override void UpAction()
     {
+
         // 스위치 이밴트
         SwitchEvent();
     }
@@ -68,6 +69,10 @@ public class InGameSlotManager : SlotManager
     {
         thePuzzle.SlotDown = false;
         float Dis = Vector2.Distance(ClickVec, CurrentVec);
+
+        if (Dis < 0.3f)
+            return;
+
         float AngleZ = GetAngleZ(CurrentVec, ClickVec);
         Direction CurrentDir = Direction.Up;
         if (AngleZ <= 45 || AngleZ >= 315)      //위

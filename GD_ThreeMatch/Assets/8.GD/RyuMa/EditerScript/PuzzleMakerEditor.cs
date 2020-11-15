@@ -137,6 +137,13 @@ public class PuzzleMakerEditor : Editor
 
 
         }
+        else if (theMaker.m_RockCh == true)
+        {
+            EditorUtil.DrawLabel("------바위------", false, GUILayout.Width(200f));
+            EditorUtil.DrawVariable_Field<PuzzleMaker>("바위 카운트", theMaker, "m_Count", true);
+
+            theMaker.SlotData = new string[] { "3", theMaker.m_Count.ToString() };
+        }
     }
 
     public void PanelCheck()

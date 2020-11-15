@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using System;
 
 public class Cube : Block
 {
@@ -31,14 +31,11 @@ public class Cube : Block
     // trunk
 
 
-
-
-    public override void BurstEvent(PuzzleSlot _Slolt)
+    public override void BurstEvent(PuzzleSlot _Slot, Action action = null)
     {
-        base.BurstEvent(_Slolt);
+        base.BurstEvent(_Slot, action);
 
-
-        _Slolt.m_Block = null;
+        _Slot.m_Block = null;
 
         EffectManager.Instance.CubeEffect(this.transform.position, (int)nodeColor);
 
@@ -46,8 +43,9 @@ public class Cube : Block
 
 
         Resetting();
-
     }
+
+
 
 
 

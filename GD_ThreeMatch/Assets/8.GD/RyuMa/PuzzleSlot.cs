@@ -62,6 +62,15 @@ public class PuzzleSlot : MonoBehaviour
     public Panel m_DownPanel = null;
     public List<Panel> m_PanelList = new List<Panel>();
 
+
+
+    public bool m_isBursting = false; 
+
+
+
+
+
+
     [HideInInspector]
     public Image m_Image;
     [HideInInspector]
@@ -105,6 +114,8 @@ public class PuzzleSlot : MonoBehaviour
     }
 
 
+
+    #region 체크
 
     //스위치가 가능하면 true
     public bool CheckSwitch()
@@ -173,7 +184,76 @@ public class PuzzleSlot : MonoBehaviour
         return false;
     }
 
+    // 매치가 가능하면 true
+    public bool CheckMatch()
+    {
+        //블럭이 없다
+        if (m_Block == null)
+            return false;
 
+        //블럭이 매치를 안한다
+        if (m_Block.Match == false)
+            return false;
+
+        //판넬이 블럭을 매치 못하게 한다
+        if (m_PanelList.Find(obj => obj.m_Match == false) != null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    // 블럭의 색과 유무 확인
+    public bool CheckBlockColor()
+    {
+        if (m_Block == null)
+            return false;
+        if ((int)m_Block.nodeColor > 4)
+            return false;
+        return true;
+    }
+
+    // 자기 자신은 매칭이 가능한지 먼저 채크한 후 사용한다
+    public bool CheckThreeMatch(PuzzleSlot slot1, PuzzleSlot slot2)
+    {
+        if (slot1 == null || slot2 == null)
+        {
+            return false;
+        }
+
+        //먼저 두개가 매칭이 가능한지
+        if (slot1.CheckMatch() == false || slot2.CheckMatch() == false)
+            return false;
+
+        //모든 블럭의 색이 매칭이 가능한지
+        if (slot1.m_Block.nodeColor != m_Block.nodeColor || slot2.m_Block.nodeColor != m_Block.nodeColor)
+            return false;
+
+        return true;
+
+    }
+
+    public void CheckAroundBurst()
+    {
+        for (int i = 0; i < m_PanelList.Count; i++)
+        {
+            if (m_PanelList[i].m_AroundBurst == true)
+            {
+                m_PanelList[i].BurstEvent(this);
+                return;
+            }
+        }
+
+        if (m_Block != null)
+        {
+            m_Block.BurstEvent(this);
+        }
+
+
+
+    }
+
+    #endregion
     public void CreatBlock(BlockType _blockType, string[] Data)
     {
         Block block = BlockManager.Instance.CreatBlock(_blockType);
@@ -212,24 +292,6 @@ public class PuzzleSlot : MonoBehaviour
 
 
 
-    // 매치가 가능하면 true
-    public bool CheckMatch()
-    {
-        //블럭이 없다
-        if (m_Block == null)
-            return false;
-
-        //블럭이 매치를 안한다
-        if (m_Block.Match == false)
-            return false;
-
-        //판넬이 블럭을 매치 못하게 한다
-        if (m_PanelList.Find(obj => obj.m_Match == false) != null)
-        {
-            return false;
-        }
-        return true;
-    }
 
 
     //자신의 방향에 있는 슬롯을 가져온다
@@ -290,85 +352,8 @@ public class PuzzleSlot : MonoBehaviour
 
 
 
-    // 블럭의 색과 유무 확인
-    public bool CheckBlockColor()
-    {
-        if (m_Block == null)
-            return false;
-        if ((int)m_Block.nodeColor > 4)
-            return false;
-        return true;
-    }
 
 
-
-    // 자기 자신은 매칭이 가능한지 먼저 채크한 후 사용한다
-    public bool CheckThreeMatch(PuzzleSlot slot1, PuzzleSlot slot2)
-    {
-        if (slot1 == null || slot2 == null)
-        {
-            return false;
-        }
-
-        //먼저 두개가 매칭이 가능한지
-        if (slot1.CheckMatch() == false || slot2.CheckMatch() == false)
-            return false;
-
-        //모든 블럭의 색이 매칭이 가능한지
-        if (slot1.m_Block.nodeColor != m_Block.nodeColor || slot2.m_Block.nodeColor != m_Block.nodeColor)
-            return false;
-
-        return true;
-
-    }
-
-
-
-
-    public void SpecialCubeEvent()
-    {
-        //thePuzzle.SetMoveCount(-1);
-        //if (thePuzzle.gameMode == PuzzleManager.GameMode.MoveMap)
-        //{
-        //    thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
-        //    thePuzzle.Player.ChangeAnim("Attack");
-        //    thePuzzle.Player.Map = thePuzzle.theMoveMap;
-        //    thePuzzle.Player.SlotNum = SlotNum;
-        //    thePuzzle.Player.Type = cube.specialCubeType;
-            
-        //}
-        //else if (thePuzzle.gameMode == PuzzleManager.GameMode.Battle)
-        //{
-        //    thePuzzle.state = PuzzleManager.State.SpecialCubeEvent;
-
-
-        //    Direction dir = Direction.Right;
-        //    Vector2 StartVec = new Vector2(this.transform.position.x, this.transform.position.y);
-        //    // 슬롯이 오른쪽
-        //    if (SlotNum % thePuzzle.theBattleMap.Horizontal > 5)
-        //    {
-        //        StartVec.x -= 1.8f;
-        //        dir = Direction.Right;
-        //    }
-        //    else
-        //    {
-        //        StartVec.x += 1.8f;
-        //        dir = Direction.Left;
-        //    }
-
-        //    if (SlotNum / thePuzzle.theBattleMap.Horizontal <= 4)
-        //    {
-        //        StartVec.y -= 1f;
-        //    }
-        //    else
-        //    {
-        //        StartVec.y += 1f;
-        //    }
-        //    thePuzzle.Player.BattleEvent(StartVec,dir,SkillType.ST0_SpecialCube, cube.specialCubeType,thePuzzle.theBattleMap,SlotNum);
-
-        //}
-
-    }
 
 
 
@@ -389,7 +374,7 @@ public class PuzzleSlot : MonoBehaviour
             }
         }
 
-        if (m_MiddlePanel != null)
+        else if (m_MiddlePanel != null)
         {
             if (m_MiddlePanel.m_BlockBurst == true)
             {
@@ -400,7 +385,7 @@ public class PuzzleSlot : MonoBehaviour
             }
         }
 
-        if (m_DownPanel != null)
+        else if (m_DownPanel != null)
         {
             if (m_DownPanel.m_BlockBurst == true)
             {
@@ -411,10 +396,14 @@ public class PuzzleSlot : MonoBehaviour
             }
         }
 
-        if (m_Block != null)
+        else if (m_Block != null)
         {
             m_Block.BurstEvent(this);
         }
+
+        AroundBurstEvent();
+
+
     }
 
     //블럭과 블럭을 서로 교환
@@ -439,6 +428,34 @@ public class PuzzleSlot : MonoBehaviour
 
     }
 
+
+
+    public void AroundBurstEvent()
+    {
+        PuzzleSlot slot = GetSlot(Direction.Up);
+        if (slot != null)
+        {
+            slot.CheckAroundBurst();
+        }
+
+        slot = GetSlot(Direction.Left);
+        if (slot != null)
+        {
+            slot.CheckAroundBurst();
+        }
+
+        slot = GetSlot(Direction.Down);
+        if (slot != null)
+        {
+            slot.CheckAroundBurst();
+        }
+
+        slot = GetSlot(Direction.Right);
+        if (slot != null)
+        {
+            slot.CheckAroundBurst();
+        }
+    }
 
 
 

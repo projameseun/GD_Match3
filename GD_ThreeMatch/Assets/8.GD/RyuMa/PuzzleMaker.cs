@@ -55,6 +55,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     // 블럭
     public bool m_CubeCh;
 
+    public bool m_RockCh;
     // 판넬
     public bool m_BackPanelCh;
 
@@ -307,6 +308,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     public void AllCheckOff()
     {
         m_CubeCh = false;
+        m_RockCh = false;
         m_BackPanelCh = false;
         m_PortalCh = false;
     }

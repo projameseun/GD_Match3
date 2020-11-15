@@ -591,6 +591,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlockManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3289796852280573359, guid: 9595fdc704f239741a5377b2916eeee0,
+        type: 3}
+      propertyPath: blockLists.Array.data[0].Block
+      value: 
+      objectReference: {fileID: 7429211708485965819, guid: 596c6157ed13a2a44a1e47a47872468a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9595fdc704f239741a5377b2916eeee0, type: 3}
 --- !u!1 &240753507
@@ -855,7 +861,6 @@ MonoBehaviour:
   - {fileID: 1644468235}
   - {fileID: 814527331}
   - {fileID: 61404489}
-  BlockSetList: []
   PanelImageList:
   - {fileID: 1599598903}
   - {fileID: 1292336004}
@@ -867,7 +872,6 @@ MonoBehaviour:
   - {fileID: 1449585420}
   - {fileID: 243149270}
   - {fileID: 223456950}
-  PanelSetList: []
   SelectType: 0
   CurrentBlockType: 0
   CurrentPanelType: 0
@@ -3227,6 +3231,7 @@ MonoBehaviour:
   SlotData: []
   m_Value: 0
   m_CubeCh: 0
+  m_RockCh: 0
   m_BackPanelCh: 0
   m_PortalCh: 0
   mapMainType: 0
@@ -3235,6 +3240,7 @@ MonoBehaviour:
   SelectBlock: {fileID: 0}
   SelectPanel: {fileID: 0}
   m_MapName: 
+  StartIndex: 0
   m_Horizon: 10
   m_Vertical: 10
   TopLeft: 0
