@@ -1,40 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static HappyRyuMa.GameMaker;
 
 
-
-
-
-//[System.Serializable]
-//public class MonsterSheet
-//{
-//    //몬스터 시트
-//    public int SlotImageIndex;
-//    public bool OnlyOneEnemy = false;     //true일 경우 한번 처치후 더이상 나오지 않음
-//    public int addEnemyMeet;              //적과 조우할 확률 증가량
-//    public int[] EnemyIndex = null;       //몬스터 인덱스 번호
-//    public int[] EnemyChance = null;      //몬스터별 확률
-//    public int OnlyOneNum;                //데이터 시트에 저장할 번호
-
-
-//}
-
-//[System.Serializable]
-//public class PortalSheet
-//{
-//    public string MapName = null;
-//    public int NextPosNum;
-//}
-
-//[System.Serializable]
-//public class SlotObjectSheets
-//{
-//    public SlotObjectSheet SlotSheet;
-//}
 
 
 
@@ -213,6 +185,24 @@ public class PuzzleSlot : MonoBehaviour
         return true;
     }
 
+    public bool CheckBlockCanBurst()
+    {
+        for (int i = 0; i < m_PanelList.Count; i++)
+        {
+            if (m_PanelList[i].m_BlockBurst == false)
+                return false;
+        }
+
+        if (m_Block == null)
+            return false;
+
+        if (m_Block.Burst == false)
+            return false;
+
+        return true;
+    }
+
+
     // 자기 자신은 매칭이 가능한지 먼저 채크한 후 사용한다
     public bool CheckThreeMatch(PuzzleSlot slot1, PuzzleSlot slot2)
     {
@@ -233,20 +223,32 @@ public class PuzzleSlot : MonoBehaviour
 
     }
 
-    public void CheckAroundBurst()
+    public void CheckAroundBurst(Action action = null)
     {
+        if (PuzzleManager.Instance.AddBurstList(this,false) == false)
+            return;
+
+        bool CheckBlock = true;
+
         for (int i = 0; i < m_PanelList.Count; i++)
         {
             if (m_PanelList[i].m_AroundBurst == true)
             {
+                CheckBlock = m_PanelList[i].m_BlockBurst;
                 m_PanelList[i].BurstEvent(this);
+                PuzzleManager.Instance.AddBurstList(this);
                 return;
             }
         }
-
-        if (m_Block != null)
+       
+        if (m_Block != null && CheckBlock)
         {
-            m_Block.BurstEvent(this);
+            if (m_Block.AroundBurst == true)
+            {
+                PuzzleManager.Instance.AddBurstList(this);
+                m_Block.BurstEvent(this);
+            }
+             
         }
 
 
@@ -359,48 +361,31 @@ public class PuzzleSlot : MonoBehaviour
 
 
 
-
-    public void BurstEvent(float _Delay = 0f)
+    //매치 버스트
+    public void BurstEvent(float _Delay = 0f, Action action = null)
     {
-        bool BurstEnd = false;
-        if (m_UpPanel != null)
+        if (PuzzleManager.Instance.AddBurstList(this) == false)
+            return;
+
+        bool CheckBlock = true;
+
+
+        for (int i = 0; i < m_PanelList.Count; i++)
         {
-            if (m_UpPanel.m_BlockBurst == true)
+            if (m_UpPanel.m_PanelBurst == true)
             {
-                BurstEnd = m_UpPanel.m_BlockBurst;
-                m_UpPanel.BurstEvent(this);
-                if(BurstEnd)
-                    return;
+                CheckBlock = m_PanelList[i].m_BlockBurst;
+                m_PanelList[i].BurstEvent(this, action);
+                break;
             }
         }
 
-        else if (m_MiddlePanel != null)
+        if (m_Block != null && CheckBlock)
         {
-            if (m_MiddlePanel.m_BlockBurst == true)
-            {
-                BurstEnd = m_MiddlePanel.m_BlockBurst;
-                m_MiddlePanel.BurstEvent(this);
-                if (BurstEnd)
-                    return;
-            }
+            if(CheckBlockCanBurst() == true)
+                m_Block.BurstEvent(this, action);
         }
-
-        else if (m_DownPanel != null)
-        {
-            if (m_DownPanel.m_BlockBurst == true)
-            {
-                BurstEnd = m_DownPanel.m_BlockBurst;
-                m_DownPanel.BurstEvent(this);
-                if (BurstEnd)
-                    return;
-            }
-        }
-
-        else if (m_Block != null)
-        {
-            m_Block.BurstEvent(this);
-        }
-
+ 
         AroundBurstEvent();
 
 
@@ -413,7 +398,7 @@ public class PuzzleSlot : MonoBehaviour
         Block CopyBlock = this.m_Block != null? this.m_Block : null;
 
         if(m_Block != null)
-            m_Block.MoveEvent(OtherSlot, MatchBase.BlockSpeed);
+            m_Block.MoveEvent(OtherSlot,MatchBase.BlockSpeed);
 
         if(OtherSlot.m_Block != null)
             OtherSlot.m_Block.MoveEvent(this, MatchBase.BlockSpeed);

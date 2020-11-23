@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 
 
 
@@ -33,7 +33,7 @@ public class Panel : MonoBehaviour
 
     public bool m_BlockBurst = true;    // 판넬 안 블럭이 터지는 이밴트 영향을 받는지
 
-    public bool m_AroundBurst;
+    public bool m_AroundBurst;          // 주변 버스트에 영향을 받는지
 
     public bool m_PanelBurst = true;    // 판넬이 터지는 이밴트에 영향을 받는지
     // 판넬이 파괴가 가능한지
@@ -81,7 +81,7 @@ public class Panel : MonoBehaviour
 
 
 
-    virtual public void BurstEvent(PuzzleSlot slot)
+    virtual public void BurstEvent(PuzzleSlot slot,Action action = null)
     {
 
 

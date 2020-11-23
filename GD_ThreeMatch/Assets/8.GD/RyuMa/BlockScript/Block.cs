@@ -117,24 +117,27 @@ public class Block : MonoBehaviour
     }
 
     // 기본적으로 블럭을 움직이게 하는 함수
-    virtual public void MoveEvent(PuzzleSlot Target, float _Speed)
+    virtual public void MoveEvent(PuzzleSlot Target,float speed)
     {
         m_Slot = Target;
         TargetVec = Target.transform.position;
-        Speed = _Speed;
+        Speed = speed;
+        DOTween.Kill(this.transform);
+        StopAllCoroutines();
         if (this.gameObject.activeSelf == true)
             StartCoroutine(MoveCor());
     }
     IEnumerator MoveCor()
     {
         Sequence seq = DOTween.Sequence();
-        seq.Append(this.transform.DOMove(TargetVec, Speed)).SetEase(Ease.Linear);
+        seq.Append(this.transform.DOMove(TargetVec, Speed).SetEase(Ease.Linear));
         while (Vector2.Distance(transform.position, TargetVec) >= 0.05f)
         {
 
             yield return null;
         }
         transform.position = TargetVec;
+        seq.Kill();
 
     }
 

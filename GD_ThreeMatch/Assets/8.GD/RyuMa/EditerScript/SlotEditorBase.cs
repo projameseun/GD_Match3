@@ -220,10 +220,17 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
                 break;
 
             case PanelType.PT1_Portal:
-                _slot.m_UpImage.enabled = true;
+                _slot.m_MiddleImage.enabled = true;
                 _slot.slotInfo.MiddlePanelData= Data;
-                _slot.m_UpImage.sprite =
+                _slot.m_MiddleImage.sprite =
                 PanelList[1].GetComponent<Panel>().m_sprite[0];
+                break;
+            case PanelType.PT2_Wall:
+                _slot.BlockResetting();
+                _slot.m_MiddleImage.enabled = true;
+                _slot.slotInfo.MiddlePanelData = Data;
+                _slot.m_MiddleImage.sprite =
+              PanelList[2].GetComponent<Panel>().m_sprite[0];
                 break;
 
         }
@@ -302,6 +309,10 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
             case PanelType.PT1_Portal:
                 PuzzleMaker.Instance.m_PortalCh = true;
                 PuzzleMaker.Instance.m_Data1 = "";
+                PuzzleMaker.Instance.m_Count = 0;
+                break;
+            case PanelType.PT2_Wall:
+                PuzzleMaker.Instance.m_WallCh = true;
                 PuzzleMaker.Instance.m_Count = 0;
                 break;
         }

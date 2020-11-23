@@ -8,7 +8,9 @@ public enum PanelType
     Null = -1,
     PT0_BackPanel,
     PT1_Portal,
+    PT2_Wall,
     PT2_MonsterArea
+
 }
 
 

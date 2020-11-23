@@ -30,11 +30,8 @@ public class EditorSlot : PuzzleSlot
     public override void Resetting()
     {
         slotInfo.BlockData = new string[] { "-1" };
-
         slotInfo.UpPanelData = new string[] { "-1" };
-
         slotInfo.MiddlePanelData = new string[] { "-1" };
-
         slotInfo.DownPanelData = new string[] { "-1" };
 
         m_BlockImage.sprite = null;
@@ -53,6 +50,15 @@ public class EditorSlot : PuzzleSlot
         m_DownImage.enabled = false;
         m_DownImage.color = new Color(1, 1, 1, 1);
     }
+
+    public void BlockResetting()
+    {
+        slotInfo.BlockData = new string[] { "-1" };
+        m_BlockImage.sprite = null;
+        m_BlockImage.enabled = false;
+        m_BlockImage.color = new Color(1, 1, 1, 1);
+    }
+
 
 
 }

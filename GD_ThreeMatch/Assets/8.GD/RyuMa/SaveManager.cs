@@ -299,7 +299,8 @@ public class SaveManager : G_Singleton<SaveManager>
         {
             for (int x = 1; x < _Map.TopRight; x++)
             {
-                _Map.Slots[x + y].m_Block.SetColor(_Map.Slots[x + y].m_Block.nodeColor);
+                if(_Map.Slots[x + y].m_Block != null)
+                    _Map.Slots[x + y].m_Block.SetColor(_Map.Slots[x + y].m_Block.nodeColor);
             }
         }
 

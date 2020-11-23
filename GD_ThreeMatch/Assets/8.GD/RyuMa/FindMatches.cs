@@ -250,7 +250,6 @@ public class FindMatches : A_Singleton<FindMatches>
         //중력 위
         else if (_Map.direction == Direction.Up)
         {
-            Debug.Log("중력 위");
             for (int x = 1; x < _Map.TopRight; x++)
             {
                 for (int y = MatchBase.MaxHorizon; y < _Map.BottomLeft;)
@@ -303,7 +302,6 @@ public class FindMatches : A_Singleton<FindMatches>
         //중력 왼쪽
         else if (_Map.direction == Direction.Left)
         {
-            Debug.Log("중력 왼쪽");
             for (int y = MatchBase.MaxHorizon; y < _Map.BottomLeft; y+= MatchBase.MaxHorizon)
             {
                 for (int x = 1;x < _Map.TopRight;)
@@ -355,7 +353,6 @@ public class FindMatches : A_Singleton<FindMatches>
         //중력 오른쪽
         else if (_Map.direction == Direction.Right)
         {
-            Debug.Log("중력 오른쪽");
             for (int y = MatchBase.MaxHorizon; y < _Map.BottomRight; y += MatchBase.MaxHorizon)
             {
                 for (int x = _Map.TopRight -1; x >= 0;)

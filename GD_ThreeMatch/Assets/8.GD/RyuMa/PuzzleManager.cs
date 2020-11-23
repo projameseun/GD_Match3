@@ -166,7 +166,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     //[HideInInspector] public List<string> PortalName;
     List<GameObject> StartEffect = new List<GameObject>();
-
+    [HideInInspector] public List<PuzzleSlot> BurstList = new List<PuzzleSlot>();
 
     private ObjectManager theObject;
     private FindMatches theMatch;
@@ -1035,9 +1035,10 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
     {
         if (EventEnd)
         {
+            BurstResset();
             if (theMatch.FindBlank(GetMap()))
             {
-                EventUpdate(MatchBase.BlockSpeed/2);
+                EventUpdate(MatchBase.BlockSpeed);
                 state = State.FillBlank;
             }
             else
@@ -1195,7 +1196,16 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     }
 
-
+    public void IsBurstingReset(MapManager map)
+    {
+        for (int y = MatchBase.MaxHorizon; y < map.BottomLeft; y += MatchBase.MaxHorizon)
+        {
+            for (int x = 1; x < map.TopRight; x++)
+            {
+                map.Slots[x + y].m_isBursting = false;
+            }
+        }
+    }
 
 
 
@@ -1646,8 +1656,28 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     }
 
+    public bool AddBurstList(PuzzleSlot slot, bool Add = true)
+    {
+        if (BurstList.Contains(slot))
+            return false;
+        if(Add)
+            BurstList.Add(slot);
+        return true;
+    }
 
 
+
+
+    public void BurstResset()
+    {
+        for (int i = 0; i < BurstList.Count; i++)
+        {
+            BurstList[i].m_isBursting = false;
+        }
+        BurstList.Clear();
+
+
+    }
     public void ResetMoveMap()
     {
         theBattleMap.FirstBattle = false;
