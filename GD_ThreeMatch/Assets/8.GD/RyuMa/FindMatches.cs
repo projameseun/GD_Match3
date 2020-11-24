@@ -217,7 +217,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             //다음칸에 블럭이 없다
                             else if (_Map.Slots[x + y + Count].m_Block == null)
                             {
-                                break;
+
                             }
                             //다음칸에 블럭이 있고 중력 여부를 확인한다
                             else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
@@ -272,7 +272,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else if (_Map.Slots[x + y + Count].m_Block == null)
                             {
-                                break;
+
                             }
                             else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
@@ -324,7 +324,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else if (_Map.Slots[x + y + Count].m_Block == null)
                             {
-                                break;
+
                             }
                             else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
@@ -375,7 +375,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else if (_Map.Slots[x + y + Count].m_Block == null)
                             {
-                                break;
+
                             }
 
                             if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))

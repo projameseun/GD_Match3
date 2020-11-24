@@ -1003,11 +1003,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 state = State.MatchBurst;
 
                 //매치가 된 블럭들을 모두 버스팅 해준다
-                for (int i = 0; i < theMatch.currentMathces.Count; i++)
-                {
-                    theMatch.currentMathces[i].BurstEvent();
-                }
-                theMatch.currentMathces.Clear();
+                BurstEvent();
 
 
             }
@@ -1072,11 +1068,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 {
                     state = State.MatchBurst;
                     //매치가 된 블럭들을 모두 버스팅 해준다
-                    for (int i = 0; i < theMatch.currentMathces.Count; i++)
-                    {
-                        theMatch.currentMathces[i].BurstEvent();
-                    }
-                    theMatch.currentMathces.Clear();
+                    BurstEvent();
                 }
                 else
                 {
@@ -1205,6 +1197,23 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
                 map.Slots[x + y].m_isBursting = false;
             }
         }
+    }
+
+
+    //매치가 된 블럭, 주변 블럭을 모두 버스팅 해준다
+    public void BurstEvent()
+    {
+        for (int i = 0; i < theMatch.currentMathces.Count; i++)
+        {
+            theMatch.currentMathces[i].BurstEvent();
+        }
+        for (int i = 0; i < AroundSlot.Count; i++)
+        {
+            AroundSlot[i].CheckAroundBurst();
+        }
+
+        AroundSlot.Clear();
+        theMatch.currentMathces.Clear();
     }
 
 
@@ -1656,16 +1665,9 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
     }
 
-    public bool AddBurstList(PuzzleSlot slot, bool Add = true)
-    {
-        if (BurstList.Contains(slot))
-            return false;
-        if(Add)
-            BurstList.Add(slot);
-        return true;
-    }
 
-
+    [HideInInspector]
+    public List<PuzzleSlot> AroundSlot = new List<PuzzleSlot>();
 
 
     public void BurstResset()
@@ -1675,8 +1677,6 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
             BurstList[i].m_isBursting = false;
         }
         BurstList.Clear();
-
-
     }
     public void ResetMoveMap()
     {

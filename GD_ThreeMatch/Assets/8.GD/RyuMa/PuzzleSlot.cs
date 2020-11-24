@@ -131,14 +131,17 @@ public class PuzzleSlot : MonoBehaviour
         if (CheckPass == true)
         {
             if (m_Block.GravityJump == false)
+            {
+                Debug.Log("점프 가능 :" + SlotNum);
                 return false;
+            }
+             
         }
 
         if (m_PanelList.Find(obj => obj.m_Gravity == false) != null)
         {
             return false;
         }
-
         return true;
     }
 
@@ -225,9 +228,8 @@ public class PuzzleSlot : MonoBehaviour
 
     public void CheckAroundBurst(Action action = null)
     {
-        if (PuzzleManager.Instance.AddBurstList(this,false) == false)
+        if (m_isBursting)
             return;
-
         bool CheckBlock = true;
 
         for (int i = 0; i < m_PanelList.Count; i++)
@@ -236,7 +238,6 @@ public class PuzzleSlot : MonoBehaviour
             {
                 CheckBlock = m_PanelList[i].m_BlockBurst;
                 m_PanelList[i].BurstEvent(this);
-                PuzzleManager.Instance.AddBurstList(this);
                 return;
             }
         }
@@ -245,7 +246,6 @@ public class PuzzleSlot : MonoBehaviour
         {
             if (m_Block.AroundBurst == true)
             {
-                PuzzleManager.Instance.AddBurstList(this);
                 m_Block.BurstEvent(this);
             }
              
@@ -364,29 +364,39 @@ public class PuzzleSlot : MonoBehaviour
     //매치 버스트
     public void BurstEvent(float _Delay = 0f, Action action = null)
     {
-        if (PuzzleManager.Instance.AddBurstList(this) == false)
-            return;
+        //if (PuzzleManager.Instance.AddBurstList(this) == false)
+        //    return;
 
+        if (PuzzleManager.Instance.AroundSlot.Contains(this) == true)
+            PuzzleManager.Instance.AroundSlot.Remove(this);
+        m_isBursting = true;
         bool CheckBlock = true;
-
+        bool Around = false;
 
         for (int i = 0; i < m_PanelList.Count; i++)
         {
             if (m_UpPanel.m_PanelBurst == true)
             {
                 CheckBlock = m_PanelList[i].m_BlockBurst;
+                Around = true;
+            
                 m_PanelList[i].BurstEvent(this, action);
+
                 break;
             }
         }
 
         if (m_Block != null && CheckBlock)
         {
-            if(CheckBlockCanBurst() == true)
+            if (CheckBlockCanBurst() == true)
+            {
+                Around = true;
                 m_Block.BurstEvent(this, action);
+            }
+                
         }
- 
-        AroundBurstEvent();
+        if (Around == true)
+            AroundBurstEvent();
 
 
     }
@@ -420,25 +430,29 @@ public class PuzzleSlot : MonoBehaviour
         PuzzleSlot slot = GetSlot(Direction.Up);
         if (slot != null)
         {
-            slot.CheckAroundBurst();
+            if (slot.m_isBursting == false && PuzzleManager.Instance.AroundSlot.Contains(slot) == false)
+                PuzzleManager.Instance.AroundSlot.Add(slot);
         }
 
         slot = GetSlot(Direction.Left);
         if (slot != null)
         {
-            slot.CheckAroundBurst();
+            if (slot.m_isBursting == false && PuzzleManager.Instance.AroundSlot.Contains(slot) == false)
+                PuzzleManager.Instance.AroundSlot.Add(slot);
         }
 
         slot = GetSlot(Direction.Down);
         if (slot != null)
         {
-            slot.CheckAroundBurst();
+            if (slot.m_isBursting == false && PuzzleManager.Instance.AroundSlot.Contains(slot) == false)
+                PuzzleManager.Instance.AroundSlot.Add(slot);
         }
 
         slot = GetSlot(Direction.Right);
         if (slot != null)
         {
-            slot.CheckAroundBurst();
+            if (slot.m_isBursting == false && PuzzleManager.Instance.AroundSlot.Contains(slot) == false)
+                PuzzleManager.Instance.AroundSlot.Add(slot);
         }
     }
 

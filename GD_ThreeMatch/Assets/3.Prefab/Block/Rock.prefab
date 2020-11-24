@@ -137,6 +137,6 @@ MonoBehaviour:
   AroundBurst: 1
   Gravity: 1
   GravityJump: 0
-  Switch: 0
+  Switch: 1
   Bursting: 0
   m_Value: 0
