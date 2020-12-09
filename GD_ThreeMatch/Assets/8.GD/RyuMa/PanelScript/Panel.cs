@@ -19,7 +19,7 @@ public class Panel : MonoBehaviour
     public List<Sprite> m_sprite;
     public List<SpriteRenderer> m_spriteRen;
 
-    [HideInInspector]
+
     public int m_Count;
 
 
@@ -90,6 +90,7 @@ public class Panel : MonoBehaviour
 
     virtual public void Resetting()
     {
+        m_Slot.DestroyPanel(this);
         ObjectManager.Instance.ResetObj(this.gameObject);
     }
 

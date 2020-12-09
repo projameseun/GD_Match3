@@ -232,17 +232,21 @@ public class PuzzleSlot : MonoBehaviour
             return;
         bool CheckBlock = true;
 
+
         for (int i = 0; i < m_PanelList.Count; i++)
         {
+            if (m_PanelList[i].m_BlockBurst == false)
+                CheckBlock = false;
             if (m_PanelList[i].m_AroundBurst == true)
             {
                 CheckBlock = m_PanelList[i].m_BlockBurst;
+                
                 m_PanelList[i].BurstEvent(this);
                 return;
             }
         }
        
-        if (m_Block != null && CheckBlock)
+        if (m_Block != null)
         {
             if (m_Block.AroundBurst == true)
             {
@@ -355,6 +359,29 @@ public class PuzzleSlot : MonoBehaviour
 
 
 
+    public void DestroyPanel(Panel _panel)
+    {
+
+        if (m_UpPanel != null && m_UpPanel == _panel)
+        {
+            m_UpPanel = null;
+        }
+        else if (m_MiddlePanel != null && m_MiddlePanel == _panel)
+        {
+            m_MiddlePanel = null;
+        }
+        else if (m_DownPanel != null && m_DownPanel == _panel)
+        {
+            m_DownPanel = null;
+        }
+        if (m_PanelList.Contains(_panel) == true)
+        {
+            m_PanelList.Remove(_panel);
+        }
+    }
+
+
+
 
 
 
@@ -364,12 +391,11 @@ public class PuzzleSlot : MonoBehaviour
     //매치 버스트
     public void BurstEvent(float _Delay = 0f, Action action = null)
     {
-        //if (PuzzleManager.Instance.AddBurstList(this) == false)
-        //    return;
 
         if (PuzzleManager.Instance.AroundSlot.Contains(this) == true)
             PuzzleManager.Instance.AroundSlot.Remove(this);
         m_isBursting = true;
+        PuzzleManager.Instance.BurstList.Add(this);
         bool CheckBlock = true;
         bool Around = false;
 
@@ -433,21 +459,18 @@ public class PuzzleSlot : MonoBehaviour
             if (slot.m_isBursting == false && PuzzleManager.Instance.AroundSlot.Contains(slot) == false)
                 PuzzleManager.Instance.AroundSlot.Add(slot);
         }
-
         slot = GetSlot(Direction.Left);
         if (slot != null)
         {
             if (slot.m_isBursting == false && PuzzleManager.Instance.AroundSlot.Contains(slot) == false)
                 PuzzleManager.Instance.AroundSlot.Add(slot);
         }
-
         slot = GetSlot(Direction.Down);
         if (slot != null)
         {
             if (slot.m_isBursting == false && PuzzleManager.Instance.AroundSlot.Contains(slot) == false)
                 PuzzleManager.Instance.AroundSlot.Add(slot);
         }
-
         slot = GetSlot(Direction.Right);
         if (slot != null)
         {

@@ -233,6 +233,13 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
               PanelList[2].GetComponent<Panel>().m_sprite[0];
                 break;
 
+            case PanelType.PT3_Cage:
+                _slot.m_UpImage.enabled = true;
+                _slot.slotInfo.UpPanelData = Data;
+                _slot.m_UpImage.sprite =
+             PanelList[3].GetComponent<Panel>().m_sprite[0];
+                break;
+
         }
 
     }
@@ -313,6 +320,10 @@ public class SlotEditorBase : A_Singleton<SlotEditorBase>
                 break;
             case PanelType.PT2_Wall:
                 PuzzleMaker.Instance.m_WallCh = true;
+                PuzzleMaker.Instance.m_Count = 0;
+                break;
+            case PanelType.PT3_Cage:
+                PuzzleMaker.Instance.m_CageCh = true;
                 PuzzleMaker.Instance.m_Count = 0;
                 break;
         }

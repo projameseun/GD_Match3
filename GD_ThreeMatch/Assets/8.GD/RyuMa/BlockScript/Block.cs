@@ -60,6 +60,11 @@ public class Block : MonoBehaviour
     // 이동이 가능한지
     public bool Switch;
 
+    // 흔들리는 기능
+    public bool Shake;
+
+
+
 
     // burst중인지 아닌지 체크
     [HideInInspector]
@@ -169,5 +174,114 @@ public class Block : MonoBehaviour
         if(Init == true)
            m_spriteRen[0].sprite = m_sprite[(int)nodeColor];
     }
+
+
+
+
+
+
+    bool shakking;
+
+    //블럭이 이동후 멈췄을 때 애니메이션
+    virtual public void DropEndAnim(Direction _DIR, GameObject _DownPivot = null, GameObject _UpPivot = null)
+    {
+        if(Shake == false)
+           return ;
+        if (_DownPivot == null)
+            return;
+        if (_UpPivot == null)
+            return;
+        Sequence seq = DOTween.Sequence();
+        switch (_DIR)
+        {
+            case Direction.Down:
+                // 위에서 아래
+                //seq.Append(Pivot2.transform.DOLocalMoveY(Pivot1Distance - 0.05f, 0.1f));
+                seq.Insert(0, _DownPivot.transform.DOScaleY(0.75f, 0.1f));
+                seq.Insert(0, _DownPivot.transform.DOScaleX(1.1f, 0.1f));
+                seq.Insert(0.1f, _DownPivot.transform.DOScaleY(1, 0.1f));
+                seq.Insert(0.1f, _DownPivot.transform.DOScaleX(1f, 0.1f));
+                //seq.Append(Pivot2.transform.DOLocalMoveY(PivotDistance, 0.1f));
+                break;
+
+            case Direction.Up:
+                seq.Insert(0, _UpPivot.transform.DOScaleY(0.75f, 0.1f));
+                seq.Insert(0, _UpPivot.transform.DOScaleX(1.1f, 0.1f));
+                seq.Insert(0.1f, _UpPivot.transform.DOScaleX(1f, 0.1f));
+                seq.Insert(0.1f, _UpPivot.transform.DOScaleY(1, 0.1f));
+                //seq.Append(Pivot2.transform.DOLocalMoveY(-Pivot1Distance - 0.05f, 0.1f));
+                //seq.Append(Pivot2.transform.DOLocalMoveY(-Pivot1Distance, 0.1f));
+                break;
+
+            case Direction.Left:
+                seq.Append(_DownPivot.transform.DOLocalMoveX(0.05f, 0.1f));
+                seq.Append(_DownPivot.transform.DOLocalMoveX(0, 0.1f));
+                break;
+            case Direction.Right:
+                seq.Append(_DownPivot.transform.DOLocalMoveX(-0.05f, 0.1f));
+                seq.Append(_DownPivot.transform.DOLocalMoveX(0, 0.1f));
+                break;
+        }
+
+        seq.AppendCallback(() =>
+        {
+            shakking = false;
+        });
+    }
+
+    //Target 방향 기준으로 흔들리는 애니메이션
+    virtual public void ShakeEvent(Vector2 Target, GameObject _Pivot = null)
+    {
+        if (Shake == false)
+            return;
+
+        Vector2 vec = Target - (Vector2)this.transform.position;
+
+        float AngleZ = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+        //이미지의 0도 중심이 아래일 경우 +90
+        //이미지의 0도 중심이 위일 경우 -90
+        AngleZ -= 90f;
+        if (AngleZ < 0)
+            AngleZ += 360;
+        vec.Normalize();
+        shakking = true;
+        Sequence seq = DOTween.Sequence();
+        seq.Insert(0, _Pivot.transform.DOLocalMove(-vec * 0.15f, 0.13f).SetRelative());
+        seq.Insert(0.13f, _Pivot.transform.DOLocalMove(vec * 0.05f, 0.13f).SetRelative());
+        seq.Insert(0.26f, _Pivot.transform.DOLocalMove(new Vector3(0, -0.3f, 0), 0.14f));
+        //왼쪽
+        if (AngleZ < 170 && AngleZ > 10)
+        {
+            seq.Insert(0, _Pivot.transform.DORotate(new Vector3(0, 0, -30), 0.13f));
+            seq.Insert(0.13f, _Pivot.transform.DORotate(new Vector3(0, 0, 15), 0.13f));
+            seq.Insert(0.26f, _Pivot.transform.DORotate(new Vector3(0, 0, 0), 0.14f));
+        }
+        //오른쪽
+        else if (AngleZ > 190 && AngleZ < 350)
+        {
+            seq.Insert(0, _Pivot.transform.DORotate(new Vector3(0, 0, 30), 0.13f));
+            seq.Insert(0.13f, _Pivot.transform.DORotate(new Vector3(0, 0, -15), 0.13f));
+            seq.Insert(0.26f, _Pivot.transform.DORotate(new Vector3(0, 0, 0), 0.14f));
+        }
+
+
+
+
+        seq.Insert(0, _Pivot.transform.DOScaleY(0.8f, 0.2f));
+        seq.Insert(0, _Pivot.transform.DOScaleX(1.1f, 0.2f));
+        seq.Insert(0.2f, _Pivot.transform.DOScaleY(1f, 0.2f));
+        seq.Insert(0.2f, _Pivot.transform.DOScaleX(1f, 0.2f));
+
+        seq.InsertCallback(0.2f, () =>
+        {
+            shakking = false;
+        });
+
+
+    }
+
+
+
+
 
 }

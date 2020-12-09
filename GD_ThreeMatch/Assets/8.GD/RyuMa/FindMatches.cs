@@ -183,12 +183,24 @@ public class FindMatches : A_Singleton<FindMatches>
 
     #endregion
 
-
+    [HideInInspector]
+    public List<Block> CurrentShakeBlock = new List<Block>();
+    [HideInInspector]
+    public List<Block> LastShakeBlock = new List<Block>();
+    int TestCount = 0;
     //빈공간이 있는지 확인. 
     public bool FindBlank(MapManager _Map)
     {
         bool Blank = false;
-        int TestCount = 0;
+        TestCount = 0;
+
+        for (int i = 0; i < CurrentShakeBlock.Count; i++)
+        {
+            LastShakeBlock.Add(CurrentShakeBlock[i]);
+        }
+        CurrentShakeBlock.Clear();
+
+
         //중력 아래
         if (_Map.direction == Direction.Down)
         {
@@ -210,6 +222,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
                                 _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count -= MatchBase.MaxHorizon;
                                 break;
@@ -222,6 +235,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             //다음칸에 블럭이 있고 중력 여부를 확인한다
                             else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
@@ -266,6 +280,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
                                 _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count += MatchBase.MaxHorizon;
                                 break;
@@ -276,6 +291,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
@@ -318,6 +334,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
                                 _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count++;
                                 break;
@@ -328,6 +345,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             }
                             else if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
@@ -369,6 +387,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
                                 _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count--;
                                 break;
@@ -380,6 +399,7 @@ public class FindMatches : A_Singleton<FindMatches>
 
                             if (_Map.Slots[x + y + Count].CheckGravityBlock(Pass))
                             {
+                                ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 break;
                             }
@@ -401,6 +421,14 @@ public class FindMatches : A_Singleton<FindMatches>
                 }
             }
         }
+
+        for (int i = 0; i < LastShakeBlock.Count; i++)
+        {
+            if(CurrentShakeBlock.Contains(LastShakeBlock[i]) == false)
+               LastShakeBlock[i].DropEndAnim(_Map.direction);
+        }
+        LastShakeBlock.Clear();
+
 
         return Blank;
     }
@@ -763,6 +791,19 @@ public class FindMatches : A_Singleton<FindMatches>
         }
 
     }
+
+    public void ChekcShakeBlock(Block _block)
+    {
+        if (_block == null)
+            return;
+        if (_block.Shake == true)
+        {
+            if (CurrentShakeBlock.Contains(_block) == false)
+                CurrentShakeBlock.Add(_block);
+        }
+    }
+
+
 
     //가로 특수큐브
     public void FindHorizonCube(MapManager _Map,int _SlotNum)

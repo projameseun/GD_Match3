@@ -9,9 +9,13 @@ public enum PanelType
     PT0_BackPanel,
     PT1_Portal,
     PT2_Wall,
-    PT2_MonsterArea
+
+    PT3_Cage,
+
 
 }
+
+
 
 
 [System.Serializable]

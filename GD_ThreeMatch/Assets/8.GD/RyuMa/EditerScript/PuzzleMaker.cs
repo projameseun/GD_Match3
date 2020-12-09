@@ -50,6 +50,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     public bool m_BackPanelCh;
     public bool m_PortalCh;
     public bool m_WallCh;
+    public bool m_CageCh;
 
 
 
@@ -304,6 +305,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
         m_BackPanelCh = false;
         m_PortalCh = false;
         m_WallCh = false;
+        m_CageCh = false;
     }
 
 

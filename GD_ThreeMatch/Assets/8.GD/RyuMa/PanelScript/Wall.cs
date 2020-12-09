@@ -29,7 +29,6 @@ public class Wall : Panel
 
     public override void Resetting()
     {
-        m_Slot.m_MiddlePanel = null;
         base.Resetting();
     }
 

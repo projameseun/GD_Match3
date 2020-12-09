@@ -176,6 +176,13 @@ public class PuzzleMakerEditor : Editor
 
             theMaker.SlotData = new string[] { "2", theMaker.m_Count.ToString() };
         }
+        else if (theMaker.m_CageCh)
+        {
+            EditorUtil.DrawLabel("------ 감옥 판넬 ------", false, GUILayout.Width(200f));
+            EditorUtil.DrawVariable_Field<PuzzleMaker>("감옥 카운트", theMaker, "m_Count", true);
+
+            theMaker.SlotData = new string[] { "3", theMaker.m_Count.ToString() };
+        }
 
     }
 

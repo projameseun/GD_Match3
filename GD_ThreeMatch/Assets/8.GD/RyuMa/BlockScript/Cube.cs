@@ -7,6 +7,10 @@ using System;
 public class Cube : Block
 {
 
+    public GameObject DownPivot;
+    public GameObject UpPivot;
+
+
 
     public override void Init(PuzzleSlot _slot, string[] Data)
     {
@@ -45,6 +49,14 @@ public class Cube : Block
         Resetting();
     }
 
+
+
+
+    public override void DropEndAnim(Direction _DIR, GameObject _DownPivot = null, GameObject _UpPivot = null)
+    {
+
+        base.DropEndAnim(_DIR, DownPivot, UpPivot);
+    }
 
 
 

@@ -3235,6 +3235,7 @@ MonoBehaviour:
   m_BackPanelCh: 0
   m_PortalCh: 0
   m_WallCh: 0
+  m_CageCh: 0
   mapMainType: 0
   EditorMap: {fileID: 0}
   SelectBlock: {fileID: 0}
