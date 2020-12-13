@@ -3219,7 +3219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MakerStart: 1
-  m_MapType: 0
+  m_MapType: 1
   m_blockType: 0
   m_PanelType: 0
   m_NodeColor: 0
@@ -3236,11 +3236,12 @@ MonoBehaviour:
   m_PortalCh: 0
   m_WallCh: 0
   m_CageCh: 0
+  m_CubeSpawn: 0000000000
   mapMainType: 0
   EditorMap: {fileID: 0}
   SelectBlock: {fileID: 0}
   SelectPanel: {fileID: 0}
-  m_MapName: 
+  m_MapName: Test
   StartIndex: 0
   m_Horizon: 10
   m_Vertical: 10

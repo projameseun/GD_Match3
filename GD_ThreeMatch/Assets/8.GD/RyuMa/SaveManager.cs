@@ -72,9 +72,15 @@ public class SaveManager : G_Singleton<SaveManager>
 
             mapInfoList.Add(new MapInfo("MapName", PuzzleMaker.Instance.m_MapName));
             mapInfoList.Add(new MapInfo("Horizon", PuzzleMaker.Instance.m_Horizon));
-            mapInfoList.Add(new MapInfo("Horizon", PuzzleMaker.Instance.m_Vertical));
-
-
+            mapInfoList.Add(new MapInfo("Vertical", PuzzleMaker.Instance.m_Vertical));
+            string CubeSpawn = "";
+            for (int i = 0; i < PuzzleMaker.Instance.m_CubeSpawn.Length; i++)
+            {
+                CubeSpawn += PuzzleMaker.Instance.m_CubeSpawn[i].ToString();
+                if (i != PuzzleMaker.Instance.m_CubeSpawn.Length - 1)
+                    CubeSpawn += ",";
+            }
+            mapInfoList.Add(new MapInfo("CubeSpawn", CubeSpawn));
             return mapInfoList;
 
         }
@@ -165,7 +171,13 @@ public class SaveManager : G_Singleton<SaveManager>
 
         PuzzleMaker.Instance.m_Horizon = int.Parse(a_LoadMapList[1].Value);
         PuzzleMaker.Instance.m_Vertical = int.Parse(a_LoadMapList[2].Value);
+        string[] CubeSpawn = a_LoadMapList[3].Value.Split(',');
 
+        PuzzleMaker.Instance.m_CubeSpawn = new bool[MatchBase.ColorKinds];
+        for (int i = 0; i < MatchBase.ColorKinds; i++)
+        {
+            PuzzleMaker.Instance.m_CubeSpawn[i] = bool.Parse(CubeSpawn[i]);
+        }
         PuzzleMaker.Instance.TopRight = PuzzleMaker.Instance.m_Horizon - 1;
         PuzzleMaker.Instance.BottomLeft = MatchBase.MaxHorizon * (PuzzleMaker.Instance.m_Vertical - 1);
         PuzzleMaker.Instance.BottomRight = PuzzleMaker.Instance.BottomLeft + PuzzleMaker.Instance.TopRight;

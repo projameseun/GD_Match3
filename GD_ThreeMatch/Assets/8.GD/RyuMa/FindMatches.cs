@@ -525,7 +525,7 @@ public class FindMatches : A_Singleton<FindMatches>
     //매치가 가능한 번호와 방향을 알려준다
     [HideInInspector] public int CanMatchNum;
     [HideInInspector] public Direction CanMatchDir;
-    // 매치가 가능한지 채크한다
+    // 매치가 가능한지 체크한다
     public bool CheckCanMatch(MapManager map)
     {
         for (int y = MatchBase.MaxHorizon; y < map.BottomLeft; y += MatchBase.MaxHorizon)
@@ -791,6 +791,8 @@ public class FindMatches : A_Singleton<FindMatches>
         }
 
     }
+
+
 
     public void ChekcShakeBlock(Block _block)
     {

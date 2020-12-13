@@ -22,11 +22,10 @@ public class EnemyIndex
     public int ChanceMeet;
 }
 
-public class PuzzleMaker : G_Singleton<PuzzleMaker>
+public class PuzzleMaker : A_Singleton<PuzzleMaker>
 {
-
+    [HideInInspector]
     public bool MakerStart = false;
-
     public int m_MapType;
 
 
@@ -52,11 +51,26 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     public bool m_WallCh;
     public bool m_CageCh;
 
+    public bool[] m_CubeSpawn;
+
+
+
+
 
 
     public MapMainType mapMainType;
     [HideInInspector]
-    public MapManager EditorMap;
+    public MapManager EditorMap
+    {
+        get 
+        {
+          return FindObjectOfType<MapManager>();
+        }
+        set
+        {
+            EditorMap = value;
+        }
+    }
 
 
     [HideInInspector]
@@ -105,18 +119,22 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
     [Header("TestPlaySetting")]
     public int PlayerStartNum;
 
+
     protected override void Init()
     {
+        base.Init();
+        Debug.Log("Test");
         MakerStart = true;
+        m_CubeSpawn = new bool[MatchBase.ColorKinds];
+        //EditorMap = FindObjectOfType<MapManager>();
+
+        //인스펙터를 처음에 해준다
+        Selection.activeGameObject = this.gameObject;
     }
 
     private void Start()
     {
-
-        EditorMap = FindObjectOfType<MapManager>();
-
         Selection.activeGameObject = this.gameObject;
-
     }
 
 
@@ -130,77 +148,7 @@ public class PuzzleMaker : G_Singleton<PuzzleMaker>
 
 
 
-    public void BT_PuzzleMaker(PuzzleSlot _Slot, int _SlotNum)
-    {
-        //if (changeMode == ChangeMode.Ch0_Null)
-        //{
-        //    _Slot.nodeType = PuzzleSlot.NodeType.Null;
-        //    _Slot.nodeColor = NodeColor.NC8_Null;
-        //    _Slot.TestText.text = ""; //string.Format("N(" + _SlotNum + ")");
-        //    _Slot.TestText.color = new Color(1, 1, 1);
-        //    _Slot.SlotSheet.SlotSheet = SlotObjectSheet.NULL;
-        //}
-        //else if (changeMode == ChangeMode.Ch1_Normal)
-        //{
-        //    _Slot.nodeType = PuzzleSlot.NodeType.Normal;
-        //    _Slot.nodeColor = NodeColor.NC8_Null;
-        //    _Slot.TestText.text = "C"; //string.Format(_SlotNum.ToString());
-        //    _Slot.TestText.color = new Color(0, 0, 0);
-        //    _Slot.SlotSheet.SlotSheet = SlotObjectSheet.ST_0_SlotPanel;
-        //}
-        ////else if (changeMode == ChangeMode.Player)
-        ////{
-        ////    _Slot.nodeType = PuzzleSlot.NodeType.Normal;
-        ////    _Slot.nodeColor = NodeColor.Player;
-        ////    _Slot.TestText.text = "P";
-        ////    _Slot.TestText.color = new Color(0, 0, 1);
-        ////}
-        //else if (changeMode == ChangeMode.Ch2_Enemy)
-        //{
-        //    _Slot.nodeType = PuzzleSlot.NodeType.Enemy;
-        //    _Slot.nodeColor = NodeColor.NC8_Null;
-        //    _Slot.TestText.text = "E";
-        //    _Slot.TestText.color = EnemyColor;
-        //    _Slot.SlotSheet.SlotSheet = SlotObjectSheet.ST_1_Enemy;
-        //    _Slot.monsterSheet = new MonsterSheet();
 
-        //    _Slot.monsterSheet.OnlyOneEnemy = OnlyOneEnemy;
-        //    if (OnlyOneEnemy == true)
-        //        _Slot.monsterSheet.OnlyOneNum = DataSheet;
-
-        //    _Slot.monsterSheet.SlotImageIndex = MonsterImageIndex;
-        //    _Slot.monsterSheet.addEnemyMeet = addEnemyMeet;
-        //    _Slot.monsterSheet.EnemyIndex = new int[enemyIndex.Length];
-        //    _Slot.monsterSheet.EnemyChance = new int[enemyIndex.Length];
-        //    for (int i = 0; i < enemyIndex.Length; i++)
-        //    {
-        //        _Slot.monsterSheet.EnemyIndex[i] = enemyIndex[i].EnemyNum;
-        //        _Slot.monsterSheet.EnemyChance[i] = enemyIndex[i].ChanceMeet;
-        //    }
-
-        //}
-        //else if (changeMode == ChangeMode.Ch3_Portal)
-        //{
-        //    _Slot.nodeType = PuzzleSlot.NodeType.Portal;
-        //    _Slot.nodeColor = NodeColor.NC8_Null;
-        //    _Slot.TestText.text = "P";//string.Format("P(" + _SlotNum + ")");
-        //    _Slot.TestText.color = new Color(0, 0, 1f);
-
-        //    _Slot.portalSheet = new PortalSheet();
-        //    _Slot.portalSheet.MapName = MoveMapName;
-        //    _Slot.portalSheet.NextPosNum = PlayerStartPos;
-        //    _Slot.SlotSheet.SlotSheet = SlotObjectSheet.ST_2_Portal;
-        //}
-        //else if (changeMode == ChangeMode.Ch4_Object)
-        //{
-        //    _Slot.nodeType = PuzzleSlot.NodeType.Null;
-        //    _Slot.nodeColor = NodeColor.NC8_Null;
-        //    _Slot.SlotSheet.SlotSheet = objectType;
-        //    _Slot.TestText.text = ((int)objectType).ToString();
-
-        //}
-
-    }
 
     public void BT_SonMapStart()
     {

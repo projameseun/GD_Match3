@@ -38,6 +38,16 @@ public enum FoodState
 
 
 
+public class BlockSeed
+{
+    public BlockType type;
+    string[] Data;
+}
+
+
+
+
+
 public class PuzzleManager : A_Singleton<PuzzleManager>
 {
     public string MapName;
@@ -208,7 +218,7 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
         theObject = ObjectManager.Instance;
         theCamera = FindObjectOfType<CameraManager>();
         theGirl = FindObjectOfType<GirlManager>();
-        BT_ChangeDirection(1);
+        //BT_ChangeDirection(1);
     }
 
 
@@ -717,6 +727,27 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
             PlayerCubeUI[i + 2].SetCubeUi(ColorList[i], i + 2, CubeUiSprites[ColorList[i]]);
         }
     }
+
+
+
+
+
+
+
+
+    //해당 슬롯에 블럭을 생성해준다
+    public void CreateBlock(PuzzleSlot _Slot)
+    {
+
+        _Slot.CreatBlock(BlockType.BT0_Cube, null);
+
+    }
+
+
+
+
+
+
 
 
 

@@ -16,13 +16,10 @@ public class BackPanel : Panel
 
     public override void CreatBlock(BlockType type, string[] Data)
     {
-        base.CreatBlock(type, Data);
 
-        BlockType blocktype = BlockType.BT0_Cube;
-
-        Block block = BlockManager.Instance.CreatBlock(blocktype);
+        Block block = BlockManager.Instance.CreatBlock(type);
         m_Slot.m_Block = block;
-        m_Slot.m_Block.Init(m_Slot, null);
+        m_Slot.m_Block.Init(m_Slot, Data);
     }
 
 

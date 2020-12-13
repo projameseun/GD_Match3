@@ -22,6 +22,8 @@ public class PuzzleMakerEditor : Editor
         //EditorGUILayout.EndHorizontal();
         //serializedObject.Update();
         GUILayout.Space(10f);
+
+        //시작지점 지우면 안됨
         serializedObject.Update();
        
         MapSetting = EditorGUILayout.Toggle("맵 설정", MapSetting);
@@ -91,32 +93,47 @@ public class PuzzleMakerEditor : Editor
         {
             theMaker.ShowIndex();
         }
-        EditorGUILayout.BeginVertical(EditorStyles.textArea);
+
         if (theMaker.MakerStart == true)
         {
+            EditorGUILayout.BeginVertical(EditorStyles.textArea);
             //블럭 체크
             BlockCheck();
             PanelCheck();
+            EditorGUILayout.EndVertical();
+        }
+
+
+
+
+
+
+        if (theMaker.MakerStart == true)
+        {
+            EditorUtil.DrawLabel("Appear Color", false, GUILayout.Width(120f));
+
+            if (theMaker.m_CubeSpawn != null && theMaker.m_CubeSpawn.Length != 0)
+            {
+                for (int i = 0; i < MatchBase.ColorKinds; i++)
+                {
+                    if(i % 2 == 0)
+                        EditorGUILayout.BeginHorizontal();
+                    theMaker.m_CubeSpawn[i] = EditorGUILayout.Toggle(((NodeColor)i).ToString(), theMaker.m_CubeSpawn[i]);
+
+                    if (i % 2 == 1 || i == MatchBase.ColorKinds - 1)
+                        EditorGUILayout.EndHorizontal();
+
+
+
+                }
+            }
 
         }
-        EditorGUILayout.EndVertical();
 
 
-
-
-
-
-
-
+        //마지막 끝나는 지점 지우면 안됨
         serializedObject.ApplyModifiedProperties();
-        //
-        ////EditorGUILayout.BeginHorizontal();
-        //EditorUtil.DrawLabel("STAGE", false, GUILayout.Width(45f));
-        //if (EditorUtil.DrawButton_Click("<<", GUILayout.Width(50f)))
-        //{
-        //    theMaker.SettingMap();
-        //}
-        //GUILayout.Space(20f);
+
 
     }
 

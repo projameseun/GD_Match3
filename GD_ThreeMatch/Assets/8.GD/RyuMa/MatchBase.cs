@@ -19,5 +19,8 @@ public class MatchBase : MonoBehaviour
 
 
 
+    public static int ColorKinds = 5;
+
+
 
 }

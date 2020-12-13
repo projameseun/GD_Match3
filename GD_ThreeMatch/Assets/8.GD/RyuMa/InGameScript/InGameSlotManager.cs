@@ -27,10 +27,18 @@ public class InGameSlotManager : SlotManager
 
         base.OnPointerDown(eventData);
     }
+
+    //누른 블럭의 정보 확인
     public override void DownAction()
     {
         if (CheckSlotNum(thePuzzle.GetMap()))
         {
+            return;
+        }
+        if (thePuzzle.GetMap().Slots[m_SelectNum].CheckSwitch() == false)
+        {
+            m_SelectNum = 0;
+            SlotDown = false;
             return;
         }
         thePuzzle.SlotDown = true;
