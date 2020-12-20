@@ -74,9 +74,36 @@ public class Panel : MonoBehaviour
 
 
 
-    virtual public void CreatBlock(BlockType type, string[] Data)
+    virtual public void CreatBlock(BlockType type = BlockType.Null, string[] Data= null, bool Event = true)
     {
+        Block block = null;
 
+        if (PuzzleManager.Instance.m_EditSeed.Count > 0)
+        {
+            int Count = PuzzleManager.Instance.m_EditSeed.Count - 1;
+
+
+            block = BlockManager.Instance.CreatBlock(PuzzleManager.Instance.m_EditSeed[Count].type);
+            m_Slot.m_Block = block;
+            m_Slot.m_Block.Init(m_Slot, PuzzleManager.Instance.m_EditSeed[Count].Data);
+            PuzzleManager.Instance.m_EditSeed.RemoveAt(Count);
+            return;
+        }
+
+        if (type != BlockType.Null)
+        {
+            block = BlockManager.Instance.CreatBlock(type);
+            m_Slot.m_Block = block;
+            m_Slot.m_Block.Init(m_Slot, Data);
+        }
+        else
+        {
+            int RandomBlock = UnityEngine.Random.Range(0, PuzzleManager.Instance.m_BlockSeed.Count);
+
+            block = BlockManager.Instance.CreatBlock(PuzzleManager.Instance.m_BlockSeed[RandomBlock].type);
+            m_Slot.m_Block = block;
+            m_Slot.m_Block.Init(m_Slot, PuzzleManager.Instance.m_BlockSeed[RandomBlock].Data);
+        }
     }
 
 

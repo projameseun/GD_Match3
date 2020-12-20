@@ -135,6 +135,39 @@ public class ObjectManager : A_Singleton<ObjectManager>
         }
 
     }
+    public GameObject FindObj(GameObject _Obj, bool _Active = true)
+    {
+        GameObject Prefab = null;
+
+        if (PoolList.ContainsKey(_Obj.name))
+        {
+            ObjectPool Pool = PoolList[_Obj.name];
+            if (Pool.OirQueue.Count > 0)
+            {
+                Prefab = Pool.OirQueue.Dequeue();
+                Prefab.SetActive(_Active);
+                return Prefab;
+            }
+            else
+            {
+                Prefab = Pool.CreatePool();
+                Prefab.SetActive(_Active);
+                return Prefab;
+            }
+        }
+        else
+        {
+            ObjectPool NewPool = new ObjectPool(_Obj);
+            PoolList.Add(_Obj.name, NewPool);
+            Prefab = NewPool.CreatePool();
+            Prefab.SetActive(_Active);
+            return Prefab;
+
+        }
+
+
+    }
+
 
 
 

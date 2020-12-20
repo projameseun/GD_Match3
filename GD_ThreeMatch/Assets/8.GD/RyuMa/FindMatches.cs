@@ -221,7 +221,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             // 새로운 블럭을 생성해 준다
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
-                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock();
                                 ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count -= MatchBase.MaxHorizon;
@@ -279,7 +279,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             // 새로운 블럭을 생성해 준다
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
-                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock();
                                 ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count += MatchBase.MaxHorizon;
@@ -333,7 +333,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             // 새로운 블럭을 생성해 준다
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
-                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock();
                                 ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count++;
@@ -386,7 +386,7 @@ public class FindMatches : A_Singleton<FindMatches>
                             // 새로운 블럭을 생성해 준다
                             if (_Map.Slots[x + y + Count].CheckBackPanel())
                             {
-                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock(BlockType.BT0_Cube, null);
+                                _Map.Slots[x + y + Count].m_MiddlePanel.CreatBlock();
                                 ChekcShakeBlock(_Map.Slots[x + y + Count].m_Block);
                                 _Map.Slots[x + y].SwitchBlock(_Map.Slots[x + y + Count]);
                                 Count--;
@@ -438,6 +438,7 @@ public class FindMatches : A_Singleton<FindMatches>
     [HideInInspector]
     public List<Block> RandomBlock = new List<Block>();
     List<NodeColor> randomColor = new List<NodeColor>();
+    List<NodeColor> seed = new List<NodeColor>();
 
 
     //처음 맵을 세팅할때 블럭들의 초기화
@@ -492,6 +493,21 @@ public class FindMatches : A_Singleton<FindMatches>
 
             }
         }
+
+        for (int i = 0; i < PuzzleManager.Instance.m_BlockSeed.Count; i++)
+        {
+
+            seed.Add((NodeColor)int.Parse(PuzzleManager.Instance.m_BlockSeed[i].Data[1]));
+        }
+
+        for (int i = 0; i < randomColor.Count; i++)
+        {
+            if (seed.Contains(randomColor[i]) == false)
+            {
+                randomColor.RemoveAt(i);
+            }
+        }
+        seed.Clear();
         NodeColor SetColor = randomColor[Random.Range(0, randomColor.Count)];
         randomColor.Clear();
         slot.m_Block.SetColor(SetColor);

@@ -123,7 +123,6 @@ public class PuzzleMaker : A_Singleton<PuzzleMaker>
     protected override void Init()
     {
         base.Init();
-        Debug.Log("Test");
         MakerStart = true;
         m_CubeSpawn = new bool[MatchBase.ColorKinds];
         //EditorMap = FindObjectOfType<MapManager>();
@@ -269,6 +268,11 @@ public class PuzzleMaker : A_Singleton<PuzzleMaker>
         TopRight = m_Horizon - 1;
         BottomLeft = MatchBase.MaxHorizon * (m_Vertical-1);
         BottomRight = BottomLeft + TopRight;
+
+        for (int i = 0; i < m_CubeSpawn.Length; i++)
+        {
+            m_CubeSpawn[i] = true;
+        }
 
         EditorMap.Horizon = m_Horizon;
         EditorMap.Vertical = m_Vertical;

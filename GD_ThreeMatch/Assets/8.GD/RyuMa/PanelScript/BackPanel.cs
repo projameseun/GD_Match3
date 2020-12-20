@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BackPanel : Panel
 {
@@ -10,17 +11,16 @@ public class BackPanel : Panel
         base.Init(_slot, Data);
 
         m_spriteRen[0].sprite = m_sprite[int.Parse(Data[1])];
+
+        panelType = PanelType.PT0_BackPanel;
     }
 
 
-
-    public override void CreatBlock(BlockType type, string[] Data)
+    public override void CreatBlock(BlockType type, string[] Data, bool Event = true)
     {
-
-        Block block = BlockManager.Instance.CreatBlock(type);
-        m_Slot.m_Block = block;
-        m_Slot.m_Block.Init(m_Slot, Data);
+        base.CreatBlock(type, Data, Event);
     }
+
 
 
 }

@@ -14,7 +14,7 @@
         },
         {
             "Name": "CubeSpawn",
-            "Value": "False,False,False,False,False"
+            "Value": "True,True,True,True,False"
         }
     ]
 }[Next]{

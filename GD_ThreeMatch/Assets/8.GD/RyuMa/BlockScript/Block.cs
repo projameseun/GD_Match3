@@ -156,6 +156,7 @@ public class Block : MonoBehaviour
 
     public void SetColor(NodeColor _color)
     {
+     
         nodeColor = _color;
         if (_color == NodeColor.NC6_Null)
             return;
@@ -170,8 +171,11 @@ public class Block : MonoBehaviour
 
     public void SetRandomColor(bool Init = true)
     {
-        nodeColor = (NodeColor)UnityEngine.Random.Range(0, 5);
-        if(Init == true)
+        int Random = UnityEngine.Random.Range(0, thePuzzle.m_BlockSeed.Count);
+
+        nodeColor = (NodeColor)int.Parse(thePuzzle.m_BlockSeed[Random].Data[1]);
+
+        if (Init == true)
            m_spriteRen[0].sprite = m_sprite[(int)nodeColor];
     }
 

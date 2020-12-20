@@ -131,6 +131,7 @@ public class SaveManager : G_Singleton<SaveManager>
 
     }
 
+
     public void LoadMap(string _MapName)
     {
 
@@ -258,7 +259,19 @@ public class SaveManager : G_Singleton<SaveManager>
         puzzleslotList = (a_LoadSlotList);
 
 
+        string[] CubeSpawn = a_LoadMapList[3].Value.Split(',');
 
+        PuzzleManager.Instance.m_BlockSeed.Clear();
+
+        for (int i = 0; i < MatchBase.ColorKinds; i++)
+        {
+            if (bool.Parse(CubeSpawn[i]) == true)
+            {
+                string[] _data = { "0", (i).ToString() };
+                PuzzleManager.Instance.m_BlockSeed.Add(new BlockSeed(BlockType.BT0_Cube, _data));
+            }
+         
+        }
 
         int SlotListCount = 0;
 

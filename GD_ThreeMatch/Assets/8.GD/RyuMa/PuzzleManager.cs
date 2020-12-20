@@ -37,11 +37,21 @@ public enum FoodState
 }
 
 
-
-public class BlockSeed
+[System.Serializable]
+public struct BlockSeed
 {
     public BlockType type;
-    string[] Data;
+    public string[] Data;
+
+
+    public BlockSeed(BlockType _type, string[] _Data)
+    {
+        type = _type;
+        Data = _Data;
+    }
+
+
+
 }
 
 
@@ -523,6 +533,12 @@ public class PuzzleManager : A_Singleton<PuzzleManager>
 
 
     #endregion
+
+
+
+    public List<BlockSeed> m_EditSeed = new List<BlockSeed>();
+    public List<BlockSeed> m_BlockSeed = new List<BlockSeed>();
+
 
 
     //새로운 맵에 캐릭터를 넣는다

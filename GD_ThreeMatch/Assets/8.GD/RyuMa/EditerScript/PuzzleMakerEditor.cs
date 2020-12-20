@@ -18,9 +18,14 @@ public class PuzzleMakerEditor : Editor
     }
     public override void OnInspectorGUI()
     {
+
+        //가로축 그려질 메뉴
         //EditorGUILayout.BeginHorizontal();
         //EditorGUILayout.EndHorizontal();
+
+
         //serializedObject.Update();
+        //EditorUtil.SetLabelWidth(80f); 라벨 사이즈 정해줌
         GUILayout.Space(10f);
 
         //시작지점 지우면 안됨
@@ -110,24 +115,42 @@ public class PuzzleMakerEditor : Editor
 
         if (theMaker.MakerStart == true)
         {
-            EditorUtil.DrawLabel("Appear Color", false, GUILayout.Width(120f));
 
-            if (theMaker.m_CubeSpawn != null && theMaker.m_CubeSpawn.Length != 0)
+            EditorGUILayout.BeginVertical(EditorStyles.textArea);
+            //EditorGUILayout.BeginHorizontal();
+            EditorUtil.DrawLabel("색 종류", false, GUILayout.Width(120f));
+            //EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorUtil.SetLabelWidth(80f);
+            if (theMaker.m_CubeSpawn == null || theMaker.m_CubeSpawn.Length == 0)
             {
-                for (int i = 0; i < MatchBase.ColorKinds; i++)
-                {
-                    if(i % 2 == 0)
-                        EditorGUILayout.BeginHorizontal();
-                    theMaker.m_CubeSpawn[i] = EditorGUILayout.Toggle(((NodeColor)i).ToString(), theMaker.m_CubeSpawn[i]);
-
-                    if (i % 2 == 1 || i == MatchBase.ColorKinds - 1)
-                        EditorGUILayout.EndHorizontal();
-
-
-
-                }
+                theMaker.m_CubeSpawn = new bool[MatchBase.ColorKinds];
             }
 
+
+            for (int i = 0; i < MatchBase.ColorKinds; i++)
+            {
+                //if (i % 2 == 0)
+                //    EditorGUILayout.BeginHorizontal();
+                theMaker.m_CubeSpawn[i] = EditorUtil.DrawVariable_Bool(((NodeColor)i).ToString(), theMaker.m_CubeSpawn[i], false, GUILayout.Width(130));
+                if (i == 1 || i == 3)
+                {
+                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.BeginHorizontal();
+                }
+                //if (i % 2 == 1 || i == MatchBase.ColorKinds - 1)
+                //{
+                //    EditorGUILayout.EndHorizontal();
+                //    //EditorGUILayout.BeginHorizontal();
+                //}
+                //EditorGUILayout.EndHorizontal();
+
+
+
+            }
+            EditorUtil.SetLabelWidth(350f);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
         }
 
 
